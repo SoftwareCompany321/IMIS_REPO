@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewData["Title"] = "AccountHeaderList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <section class="content-header">
@@ -37,7 +38,7 @@
                         </div>
                     </div>
                     <div class="table-responsive" style="overflow:auto;width:100%">
-                        <table id="bmsJob" class="table table-bordered table-hover action-b-th-0">
+                        <table id="account" class="table table-bordered table-hover action-b-th-0">
                             <thead>
                                 <tr>
 
@@ -64,7 +65,7 @@
 </section>
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {
-            var table = jQuery("#bmsJob");
+            var table = jQuery("#account");
             table.dataTable({
                 "bProcessing": true,
                 "processing": true,
@@ -96,14 +97,13 @@
                 'select': {
                     'style': 'multi'
                 },
-                'createdRow': function (row, data, dataIndex) {
-                $(row).attr('id', data.id);
-            },
+                 
                 "columns": [
                 { "data": "accId", "orderable": true },
                 { "data": "code", "orderable": true },
                 { "data": "nepName", "orderable": true },
                 { "data": "engName", "orderable": false },
+                { "data": "accCode", "orderable": false }, 
                 { "data": "accCode", "orderable": false }, 
                 ], 
                 order: [
@@ -129,8 +129,7 @@
             }); 
 
         });
-     
-    });
+      
 
 </script>
 

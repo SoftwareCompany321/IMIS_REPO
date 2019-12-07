@@ -88,7 +88,7 @@ namespace IMIS_Service.IMenuService
         {
             //for the query of menu and sub menu
             //Note m=mainmenu  and   s=submenu 
-            return( await _db.Userassignments.Take(10).ToListAsync());
+            return( await (from a in _db.Userassignments where a.Sn==2 select new Userassignments {DisplayName=a.DisplayName,MenuUrl=a.MenuUrl,Rightsname=a.Rightsname}).ToListAsync());
         }
 
         //public async Task<IList<MspMenu>> MspMenus()
