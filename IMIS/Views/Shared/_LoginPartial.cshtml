@@ -1,0 +1,70 @@
+@using Microsoft.AspNetCore.Identity
+@using IMIS_DataEntity.EntityClass
+@inject SignInManager<Usermaster> SignInManager
+@inject UserManager<Usermaster> UserManager
+
+<div class="login-vertical-adjust">
+    <div class="login-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-6 centered">
+                    <div class="well">
+                        <div class="brand">
+                            <a class="platform-name" href="javascript:;">
+                                <figure><img src="images/hcm-logo.gif" alt="HCM Logo"></figure>
+                                <span>Social Safety Net <br>Management Information System</span>
+                            </a>
+                        </div>
+                        <div class="login-form">
+                            <form action="index.html">
+
+                                <div class="form-group">
+                                    <div class="col-md-9 centered">
+                                        <input type="text" class="form-control" id="code" placeholder="Username">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-9 centered">
+                                        <input type="password" class="form-control" id="code" placeholder="Password">
+                                    </div>
+                                </div>
+
+                                <div class="form-group form-action">
+                                    <div class="col-md-9 centered">
+                                        <button type="submit" class="btn btn-primary">Login</button>
+                                        <a href="forgot-password.html" class="btn btn-default pull-right">Forgot Password?</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-->
+    </div>
+</div>
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @*<li class="nav-item">
+                <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+            </li>*@
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

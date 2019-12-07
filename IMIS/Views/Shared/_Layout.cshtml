@@ -1,0 +1,120 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using IMIS_DataEntity.EntityClass
+
+@inject SignInManager<Usermaster> SignInManager
+@inject UserManager<Usermaster> UserManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] Service Subscription</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link href="~/css/main.css" rel="stylesheet" />
+        <link href="~/css/util.css" rel="stylesheet" />
+        <link href="~/css/admin.css" rel="stylesheet" />
+        <link href="~/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+        <link href="~/css/style.css" rel="stylesheet" />
+    </environment>
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-fixed-top header" role="navigation">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="brand">
+                    <a class="menu-toggler"><i class="material-icons">menu</i></a>
+                    <a class="platform-name" href="index.html">
+                        <figure><img src="images/hcm-logo.gif" alt="HCM Logo"></figure>
+                        <span>Social Safety Net <br>Management Information System</span>
+                    </a>
+                    <ul class="authority">
+                        <li>Deputy Prime Minister's Office</li>
+                        <li>Department of Social Welfare</li>
+                        <li>Kingdom of Swaziland</li>
+                    </ul>
+                </div>
+                <div class="flag navbar-right top-nav">
+                    <img src="images/swaziland-animated-flag.gif" alt="Animated Flag">
+                </div>
+                <div class="language">
+                   @**need to put link to change Language*@
+                    @*<a href='@Url.Action("ChangeStatus", "Home")?Languageset=@Session["LanguageSetting"]'>@(Utils.Changelanguage())</a>*@
+                </div>
+            </div>
+        </nav>
+        <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <div class="side-nav">
+                <div class="side-nav-header">
+                    <a href="login.html" class="logout"><i class="material-icons">power_settings_new</i></a>
+                    <a class="user-meta" href="settings.html">
+                        <figure class="user-image"><img src="http://lorempixel.com/people/40/40/" alt="Profile Picture"></figure>
+                        <span class="user-name">Prakash Bhatta</span>
+                    </a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"> <a href="index.html"><i class="material-icons">dashboard</i> Dashboard</a> </li>
+                    <li> <a href="setup.html"><i class="material-icons">settings</i>Setup</a> </li>
+                    <li> <a href="administration.html"><i class="material-icons">supervisor_account</i>Administration</a></li>
+                    <li> <a href="ovc-registry.html"><i class="material-icons">account_balance</i>OVC Registry</a> </li>
+                    <li> <a href="targeting.html"><i class="material-icons">radio_button_checked</i>Targeting</a> </li>
+                    <li> <a href="#"><i class="material-icons">school</i>Enrollment</a> </li>
+                    <li> <a href="#"><i class="material-icons">payment</i>Payment</a> </li>
+                    <li> <a href="#"><i class="material-icons">mood</i>Co-Responsibility</a></li>
+                    <li> <a href="#"><i class="material-icons">work</i>Case Management</a> </li>
+                    <li> <a href="#"><i class="material-icons">assessment</i>Reports</a> </li>
+                </ul>
+            </div>
+        </div>
+        <partial name="_CookieConsentPartial" />
+        <div id="page-wrapper">
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; 2019 - Service Subscription</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+            </script>
+            <script src="~/js/site.min.js" asp-append-version="true"></script>
+        </environment>
+
+        @RenderSection("Scripts", required: false)
+</body>
+</html>
