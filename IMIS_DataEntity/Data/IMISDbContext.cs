@@ -14366,6 +14366,18 @@ namespace IMIS_DataEntity.Data
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
                     .HasColumnType("numeric(22,0)");
+
+                entity.Property(e => e.MenuName).HasColumnName("MENUNAME").HasMaxLength(100);
+                entity.Property(e => e.MenuUrl).HasColumnName("MENUURL").HasMaxLength(500);
+                entity.Property(e => e.DisplayName).HasColumnName("DISPLAYNAME").HasMaxLength(100);
+                entity.Property(e => e.ParentMenuId).HasColumnName("PARENTMENUID").HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Active).HasColumnName("ACTIVE").HasColumnType("boolean");
+                entity.Property(e => e.IsLocked).HasColumnName("ISLOCKED").HasColumnType("boolean");
+                entity.Property(e => e.Visible).HasColumnName("VISIBLE").HasColumnType("boolean");
+                entity.Property(e => e.Icon).HasColumnName("ICON").HasMaxLength(50);
+                entity.Property(e => e.MenuOrder).HasColumnName("MENUORDER").HasColumnType("smallint");
+                entity.Property(e => e.CreatedBy).HasColumnName("CREATEDBY").HasMaxLength(100);
+                entity.Property(e => e.CreatedAt).HasColumnName("CREATEDAT").HasColumnType("TIMESTAMP");  
             });
 
 

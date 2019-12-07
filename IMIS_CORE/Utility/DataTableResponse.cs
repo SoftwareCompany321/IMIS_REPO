@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MSP_Service.DatatableModel
+namespace IMIS_CORE.Utility
 {
     public sealed class DataTableResponse
     {
@@ -10,6 +10,5 @@ namespace MSP_Service.DatatableModel
         public int TotalRecord { get; set; }
         public int FilteredRecord { get; set; }
         public object data { get; set; }
-
     }
 }

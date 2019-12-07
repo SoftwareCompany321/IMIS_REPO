@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewData["Title"] = "AccountHeaderList";
+}
+
+<section class="content-header">
+    <h1>
+        Account Header List
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Content("~/home.html")" class="active"><i class="fa fa-th-large"></i> Home</a></li>
+        <li class="active"> Account Header List</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                    @if (ViewBag.Message != null || ViewBag.Message == "")
+                    {
+                        <div message-content="@ViewBag.Message" message-class="@ViewBag.Class"></div>
+                    }
+                    <div class="row">
+
+                        <div class="col-lg-6">
+
+                        </div>
+
+                        <div class="col-lg-6">
+                            <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/AccountHeaderCreate.html")">Create Account Header</a>
+                            
+                            <input type="text" id="usersearch" placeholder="Search" class="grid-search" />
+
+                        </div>
+                    </div>
+                    <div class="table-responsive" style="overflow:auto;width:100%">
+                        <table id="bmsJob" class="table table-bordered table-hover action-b-th-0">
+                            <thead>
+                                <tr>
+
+                                    <th width="20px">Id</th>
+                                    <th width="10px">Code</th>
+                                    <th width="10px">Name(Nep)</th>
+                                    <th width="10px">Name(Eng)</th>
+                                    <th width="10px">Display</th>
+                                    <th width="10px">AccCode</th>  
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<script type="text/javascript" language="javascript">
+        jQuery(document).ready(function () {
+            var table = jQuery("#bmsJob");
+            table.dataTable({
+                "bProcessing": true,
+                "processing": true,
+                "serverSide": true,
+                "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
+                'searching': true,//recordsFiltered
+				"ajax": {
+                   "url": "@Url.Content("~/AccountHeaderFetchData.html")", "type": "POST", "data": function (d) { 
+                    d.search = $("#usersearch").val();
+                }
+                },
+                "language": {
+                    "infoFiltered": ""
+                },
+                'stateSave': false,
+                'select': {
+                    info: false
+                },
+                // 'columnDefs': [AccId
+                //    {
+                //        'targets': 0,
+                //        'checkboxes': {
+                //            'selectRow': true,
+                //            'selectAll': true,
+                //            'className': 'select-checkbox',
+                //        }
+                //    }
+                //],
+                'select': {
+                    'style': 'multi'
+                },
+                'createdRow': function (row, data, dataIndex) {
+                $(row).attr('id', data.id);
+            },
+                "columns": [
+                { "data": "accId", "orderable": true },
+                { "data": "code", "orderable": true },
+                { "data": "nepName", "orderable": true },
+                { "data": "engName", "orderable": false },
+                { "data": "accCode", "orderable": false }, 
+                ], 
+                order: [
+
+                    [8, "desc"]
+                ],
+                "paging": true,
+                "pageLength": 10,
+                lengthMenu: [
+                    [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
+                ],
+                "fnInitComplete": function (oSettings, json) {
+					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
+				},
+
+            });
+            jQuery('#usersearch').on("keyup", function () {
+               table.fnFilter(this.value);
+            }).on("keypress", function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+            }); 
+
+        });
+     
+    });
+
+</script>
+
+
+
+
+
+
+
+
+
+
