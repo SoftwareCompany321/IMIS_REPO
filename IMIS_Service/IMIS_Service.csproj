@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\IMIS_CORE\IMIS_CORE.csproj" />
     <ProjectReference Include="..\IMIS_DataEntity\IMIS_DataEntity.csproj" />
   </ItemGroup>
 
