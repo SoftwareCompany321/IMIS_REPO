@@ -1,12 +1,9 @@
 ﻿using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using Microsoft.EntityFrameworkCore;
-using MSP_Service.DatatableModel;
-using MSP_Service.GlobalFunc;
-using MSP_Service.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace IMIS_Service.IMenuService
@@ -91,7 +88,7 @@ namespace IMIS_Service.IMenuService
         {
             //for the query of menu and sub menu
             //Note m=mainmenu  and   s=submenu 
-            return( await _db.Userassignments.ToListAsync());
+            return( await (from a in _db.Userassignments where a.Sn==2 select new Userassignments {DisplayName=a.DisplayName,MenuUrl=a.MenuUrl,Rightsname=a.Rightsname}).ToListAsync());
         }
 
         //public async Task<IList<MspMenu>> MspMenus()

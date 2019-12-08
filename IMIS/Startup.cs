@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Http;
 using App.Web;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.IMenuService;
+using IMIS_Service.IAccountHead;
 
 namespace IMIS
 {
@@ -88,7 +89,8 @@ namespace IMIS
             });
             //Add service for accessing current HttpContext
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<MenuService>(); 
+            services.AddScoped<MenuService>();
+            services.AddScoped<IAccountHead, AccountHead>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
