@@ -1,4 +1,4 @@
-﻿ @inject IMIS_Service.IMenuService.MenuService _menuService
+﻿@inject IMIS_Service.IMenuService.MenuService _menuService
 @*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -9,32 +9,40 @@
     {
         @for (int i = 0; i < mainlist.Count; i++)
         {
-                <li class="treeview">
-                    <a href="~/@mainlist[i].MenuUrl">
-                        <i class="@mainlist[i]"></i> <span>@mainlist[i].Rightsname</span>
-                        <span class="pull-right-container">
+            @*<li class="treeview">*@
+            <li>
+
+                @*<a href="/ADIAOA==/scheme.html">
+                        <i class="fa fa fa-database"></i>
+                        <span>Manage Scheme</span>
+                    </a>*@
+
+                <a href="~/@Url.Content(mainlist[i].MenuUrl)">
+                    <i class="@mainlist[i].Icon"></i>@mainlist[i].Rightsname
+
+                    @*<span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
-                        </span>
-                    </a>
-                </li>
-                            @*@{*@
-                    // var submenulist = await _menuService.MspSubMenu(mainlist[i].Id);
-                    //if (mainlist[i].MenuSubMenu.Count > 0)
-                    //{
-                        @*<ul class="treeview-menu">*@
+                        </span>*@
+                </a>
+            </li>
+            @*@{*@
+            // var submenulist = await _menuService.MspSubMenu(mainlist[i].Id);
+            //if (mainlist[i].MenuSubMenu.Count > 0)
+            //{
+            @*<ul class="treeview-menu">*@
 
-                          //  @for (int j = 0; j < mainlist[i].MenuSubMenu.Count; j++)
-                           // {
-                                //var menu = mainlist[i].MenuSubMenu[j].MenuUrl;
+            //  @for (int j = 0; j < mainlist[i].MenuSubMenu.Count; j++)
+            // {
+            //var menu = mainlist[i].MenuSubMenu[j].MenuUrl;
 
-                                @*<li><a href="~/@mainlist[i].MenuSubMenu[j].MenuUrl"><i class="@mainlist[i].MenuSubMenu[j].Icon"></i>@mainlist[i].MenuSubMenu[j].DisplayName*@ @*<span class="label label-primary pull-right">4</span>*@@*</a></li>*@
+            @*<li><a href="~/@mainlist[i].MenuSubMenu[j].MenuUrl"><i class="@mainlist[i].MenuSubMenu[j].Icon"></i>@mainlist[i].MenuSubMenu[j].DisplayName*@ @*<span class="label label-primary pull-right">4</span>*@@*</a></li>*@
 
-                          //  }
+            //  }
 
-                        @*</ul>*@
-                   // }
+            @*</ul>*@
+            // }
 
-               // }
-            
+            // }
+
         }
     } }

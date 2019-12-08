@@ -73,7 +73,7 @@
                 "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
                 'searching': true,//recordsFiltered
 				"ajax": {
-                   "url": "@Url.Content("~/AccountHeaderFetchData.html")", "type": "POST", "data": function (d) { 
+                   "url": "@Url.Content("~/AccountHeaderFetchData.html")", "type": "GET", "data": function (d) { 
                     d.search = $("#usersearch").val();
                 }
                 },
@@ -81,9 +81,9 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-                'select': {
-                    info: false
-                },
+                //'select': {
+                //    info: false
+                //},
                 // 'columnDefs': [AccId
                 //    {
                 //        'targets': 0,
@@ -94,9 +94,9 @@
                 //        }
                 //    }
                 //],
-                'select': {
-                    'style': 'multi'
-                },
+                //'select': {
+                //    'style': 'multi'
+                //},
                  
                 "columns": [
                 { "data": "accId", "orderable": true },
@@ -108,7 +108,7 @@
                 ], 
                 order: [
 
-                    [8, "desc"]
+                    [1, "desc"]
                 ],
                 "paging": true,
                 "pageLength": 10,
