@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
 {
     public interface IItemSupplierDtl
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> ItemSupplierDtlFetchData(DataTableVm model);
     }
-    public class IBankDtl : IItemSupplierDtl
+    public class ItemSupplierDtl : IItemSupplierDtl
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public ItemSupplierDtl(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ItemSupplierDtlFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

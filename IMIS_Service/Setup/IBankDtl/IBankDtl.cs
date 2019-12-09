@@ -7,20 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMIS_Service.Setup.IAccountHead
+namespace IMIS_Service.Setup.IBankDtl
 {
-    public interface IAccountHead
+    public interface IBankDtl
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> BankDtlFetchData(DataTableVm model);
     }
-    public class IBankDtl : IAccountHead
+    public class BankDtl : IBankDtl
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public BankDtl(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> BankDtlFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

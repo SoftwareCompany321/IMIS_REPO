@@ -11,7 +11,7 @@ namespace IMIS_Service.Setup.IItemPurchaseType
 {
     public interface IItemPurchaseType
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> ItemPurchaseTypeFetchData(DataTableVm model);
     }
     public class IBankDtl : IItemPurchaseType
     {
@@ -20,7 +20,7 @@ namespace IMIS_Service.Setup.IItemPurchaseType
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ItemPurchaseTypeFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;
