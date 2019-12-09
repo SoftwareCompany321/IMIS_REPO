@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IItemCategories
 {
     public interface IItemCategories
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> ItemCategoriesFetchData(DataTableVm model);
     }
-    public class IBankDtl : IItemCategories
+    public class ItemCategories : IItemCategories
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public ItemCategories(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ItemCategoriesFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IWareHouse
 {
     public interface IWareHouse
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> WareHouseFetchData(DataTableVm model);
     }
-    public class IBankDtl : IWareHouse
+    public class WareHouse : IWareHouse
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public WareHouse(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> WareHouseFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;
@@ -40,17 +40,10 @@ namespace IMIS_Service.Setup.IWareHouse
                     draw = model.draw;
                 }
 
-                var accMasters =  (from accountH in _db.AccAccMaster
+                var accMasters =  (from wareHouse in _db.InvWarehouse
                                         select new
                                         {
-                                            accountH.AccId,
-                                            accountH.AccCode,
-                                            accountH.Code,
-                                            accountH.EngName,
-                                            accountH.NepName,
-                                            accountH.FiscalYear,
-                                            accountH.IsTransactable,
-                                            accountH.IsBudgetable
+                                            wareHouse.NameEn 
                                         });
                 ///filter count for the total; record
                 ///
@@ -60,12 +53,12 @@ namespace IMIS_Service.Setup.IWareHouse
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NepName == searchBy || x.EngName==searchBy);
+                        accMasters =  accMasters.Where(x => x.NameEn == searchBy || x.NameEn == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.AccCode).Skip(skip).ToListAsync();
+                var finallist = await accMasters.OrderByDescending(x => x.NameEn).Skip(skip).ToListAsync();
 
                 return new DataTableResponse
                 {

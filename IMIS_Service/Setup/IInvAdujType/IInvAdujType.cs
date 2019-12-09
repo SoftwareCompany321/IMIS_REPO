@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IInvAdujType
 {
     public interface IInvAdujType
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> InvAdujTypeFetchData(DataTableVm model);
     }
-    public class IBankDtl : IInvAdujType
+    public class InvAdujType : IInvAdujType
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public InvAdujType(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> InvAdujTypeFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

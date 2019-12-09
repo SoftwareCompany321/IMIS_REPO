@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IItemSpecification
 {
     public interface IItemSpecification
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> ItemSpecificationFetchData(DataTableVm model);
     }
-    public class IBankDtl : IItemSpecification
+    public class ItemSpecification : IItemSpecification
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public ItemSpecification(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ItemSpecificationFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

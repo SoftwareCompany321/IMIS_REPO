@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IProjectSetup
 {
     public interface IProjectSetup
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> ProjectSetupFetchData(DataTableVm model);
     }
-    public class IBankDtl : IProjectSetup
+    public class ProjectSetup : IProjectSetup
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public ProjectSetup(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ProjectSetupFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

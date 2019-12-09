@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.ISupplierListingDesc
 {
     public interface ISupplierListingDesc
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> SupplierListingDescFetchData(DataTableVm model);
     }
-    public class IBankDtl : ISupplierListingDesc
+    public class SupplierListingDesc : ISupplierListingDesc
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public SupplierListingDesc(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> SupplierListingDescFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

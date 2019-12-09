@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.ICountryDtl
 {
     public interface ICountryDtl
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> CountryDtlFetchData(DataTableVm model);
     }
-    public class IBankDtl : ICountryDtl
+    public class CountryDtl : ICountryDtl
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public CountryDtl(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> CountryDtlFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

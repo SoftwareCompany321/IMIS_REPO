@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
 {
     public interface IItemPurYearlyPlan
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> ItemPurYearlyPlanFetchData(DataTableVm model);
     }
-    public class IBankDtl : IItemPurYearlyPlan
+    public class ItemPurYearlyPlan : IItemPurYearlyPlan
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public ItemPurYearlyPlan(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ItemPurYearlyPlanFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

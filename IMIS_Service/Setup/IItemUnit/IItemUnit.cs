@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IItemUnit
 {
     public interface IItemUnit
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> ItemUnitFetchData(DataTableVm model);
     }
-    public class IBankDtl : IItemUnit
+    public class ItemUnit : IItemUnit
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public ItemUnit(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ItemUnitFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

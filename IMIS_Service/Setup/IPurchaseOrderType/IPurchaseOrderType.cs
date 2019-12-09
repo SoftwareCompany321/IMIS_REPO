@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
 {
     public interface IPurchaseOrderType
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> PurchaseOrderTypeFetchData(DataTableVm model);
     }
-    public class IBankDtl : IPurchaseOrderType
+    public class PurchaseOrderType : IPurchaseOrderType
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public PurchaseOrderType(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> PurchaseOrderTypeFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

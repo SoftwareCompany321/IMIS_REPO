@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IIncomeRecordKeeping
 {
     public interface IIncomeRecordKeeping
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> IncomeRecordKeepingFetchData(DataTableVm model);
     }
-    public class IBankDtl : IIncomeRecordKeeping
+    public class IncomeRecordKeeping : IIncomeRecordKeeping
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public IncomeRecordKeeping(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> IncomeRecordKeepingFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

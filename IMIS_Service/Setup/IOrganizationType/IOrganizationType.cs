@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IOrganizationType
 {
     public interface IOrganizationType
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> OrganizationTypeFetchData(DataTableVm model);
     }
-    public class IBankDtl : IOrganizationType
+    public class OrganizationType : IOrganizationType
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public OrganizationType(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> OrganizationTypeFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

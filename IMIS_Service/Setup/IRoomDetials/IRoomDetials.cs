@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IRoomDetials
 {
     public interface IRoomDetials
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> RoomDetialsFetchData(DataTableVm model);
     }
-    public class IBankDtl : IRoomDetials
+    public class RoomDetials : IRoomDetials
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public RoomDetials(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> RoomDetialsFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IReceiptDistribution
 {
     public interface IReceiptDistribution
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> ReceiptDistributionFetchData(DataTableVm model);
     }
-    public class IBankDtl : IReceiptDistribution
+    public class ReceiptDistribution : IReceiptDistribution
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public ReceiptDistribution(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ReceiptDistributionFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

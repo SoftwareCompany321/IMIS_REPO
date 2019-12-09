@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IItemBrand
 {
     public interface IItemBrand
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> ItemBrandFetchData(DataTableVm model);
     }
-    public class IBankDtl : IItemBrand
+    public class ItemBrand : IItemBrand
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public ItemBrand(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ItemBrandFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IDepartment
 {
     public interface IDepartment
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> DepartmentFetchData(DataTableVm model);
     }
-    public class IBankDtl : IDepartment
+    public class Department : IDepartment
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public Department(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> DepartmentFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

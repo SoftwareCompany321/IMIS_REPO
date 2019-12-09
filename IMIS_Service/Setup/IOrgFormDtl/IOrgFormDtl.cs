@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IOrgFormDtl
 {
     public interface IOrgFormDtl
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> OrgFormDtlFetchData(DataTableVm model);
     }
-    public class IBankDtl : IOrgFormDtl
+    public class OrgFormDtl : IOrgFormDtl
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public OrgFormDtl(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> OrgFormDtlFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

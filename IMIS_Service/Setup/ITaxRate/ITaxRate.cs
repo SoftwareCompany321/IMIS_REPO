@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.ITaxRate
 {
     public interface ITaxRate
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> TaxRateFetchData(DataTableVm model);
     }
-    public class IBankDtl : ITaxRate
+    public class TaxRate : ITaxRate
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public TaxRate(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> TaxRateFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;

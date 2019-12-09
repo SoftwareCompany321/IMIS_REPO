@@ -11,16 +11,16 @@ namespace IMIS_Service.Setup.IFuelMaintenance
 {
     public interface IFuelMaintenance
     {
-        Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<DataTableResponse> FuelMaintenanceFetchData(DataTableVm model);
     }
-    public class IBankDtl : IFuelMaintenance
+    public class FuelMaintenance : IFuelMaintenance
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public FuelMaintenance(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> AccountHeadFetchData(DataTableVm model)
+        public async Task<DataTableResponse> FuelMaintenanceFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;
