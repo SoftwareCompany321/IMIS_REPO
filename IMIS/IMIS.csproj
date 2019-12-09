@@ -22,4 +22,10 @@
     <ProjectReference Include="..\IMIS_Service\IMIS_Service.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Controllers\EmployeeManagement\" />
+    <Folder Include="Controllers\Security\" />
+  </ItemGroup>
+
 </Project>

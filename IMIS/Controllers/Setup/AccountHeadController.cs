@@ -8,7 +8,7 @@ using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IMIS.Controllers
+namespace IMIS.Controllers.Setup
 {
     [Authorize]
     public class AccountHeadController : Controller
