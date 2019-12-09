@@ -90,7 +90,7 @@ namespace IMIS
             //Add service for accessing current HttpContext
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<MenuService>();
-            services.AddScoped<IAccountHead, AccountHead>();
+            services.AddScoped<IAccountHead, IBankDtl>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
