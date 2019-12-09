@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "AccountHeaderList";
+    ViewData["Title"] = "OrgamizationTypeList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 
                 <div class="tab-lists-wrapper boxed parentTabs">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#region-tab">Account Header List</a> </li> 
+                        <li class="active"><a href="#region-tab">Organization Type List</a> </li> 
                     </ul>
 
                     <div class="tab-content">
@@ -21,7 +21,7 @@
                         <!-- tab 1: region starts -->
                         <div class="tab-pane fade active in" id="region-tab">
                             <!-- generic add button for all the "add" forms | Add region -->
-                            <a href="@Url.Content("~/AccountHeaderCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                            <a href="@Url.Content("~/OrgamizationTypeCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
                             <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
 
                             <!-- search filters -->
@@ -109,7 +109,7 @@
                         </div>
 
                         <div class="col-lg-6">
-                            <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/AccountHeaderCreate.html")">Create Account Header</a>
+                            <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/OrgamizationTypeCreate.html")">Create Account Header</a>
 
                             <input type="text" id="usersearch" placeholder="Search" class="grid-search" />
 
@@ -152,7 +152,7 @@
                 "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
                 'searching': true,//recordsFiltered
 				"ajax": {
-                   "url": "@Url.Content("~/AccountHeaderFetchData.html")", "type": "GET", "data": function (d) {
+                   "url": "@Url.Content("~/OrgamizationTypeFetchData.html")", "type": "GET", "data": function (d) {
                     d.search = $("#usersearch").val();
                 }
                 },
