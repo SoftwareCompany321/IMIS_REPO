@@ -40,17 +40,12 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                     draw = model.draw;
                 }
 
-                var accMasters =  (from accountH in _db.AccAccMaster
+                var accMasters =  (from tvp in _db.TblVehicleParts
                                         select new
                                         {
-                                            accountH.AccId,
-                                            accountH.AccCode,
-                                            accountH.Code,
-                                            accountH.EngName,
-                                            accountH.NepName,
-                                            accountH.FiscalYear,
-                                            accountH.IsTransactable,
-                                            accountH.IsBudgetable
+                                            tvp.Sn,
+                                            tvp.NpName,
+                                            tvp.EngName 
                                         });
                 ///filter count for the total; record
                 ///
@@ -60,12 +55,12 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NepName == searchBy || x.EngName==searchBy);
+                        accMasters =  accMasters.Where(x => x.NpName == searchBy || x.EngName == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.AccCode).Skip(skip).ToListAsync();
+                var finallist = await accMasters.OrderByDescending(x => x.Sn).Skip(skip).ToListAsync();
 
                 return new DataTableResponse
                 {

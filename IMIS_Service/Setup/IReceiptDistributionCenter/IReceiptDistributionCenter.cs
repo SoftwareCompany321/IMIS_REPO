@@ -40,17 +40,18 @@ namespace IMIS_Service.Setup.IReceiptDistributionCenter
                     draw = model.draw;
                 }
 
-                var accMasters =  (from accountH in _db.AccAccMaster
+                var accMasters =  (from cc in _db.Collectioncounters
                                         select new
                                         {
-                                            accountH.AccId,
-                                            accountH.AccCode,
-                                            accountH.Code,
-                                            accountH.EngName,
-                                            accountH.NepName,
-                                            accountH.FiscalYear,
-                                            accountH.IsTransactable,
-                                            accountH.IsBudgetable
+                                            cc.Location,
+                                            cc.Macaddress,
+                                            cc.Nepname,
+                                            cc.Specialnotes,
+                                            cc.TaxThliIssuedCntr,
+                                            cc.Wardno,
+                                            cc.Counterid,
+                                            cc.CmptrName,
+                                            cc.Counterheadid
                                         });
                 ///filter count for the total; record
                 ///
@@ -58,14 +59,11 @@ namespace IMIS_Service.Setup.IReceiptDistributionCenter
                 if (accMasters != null)
                 {
                     totalResultsCount = await accMasters.CountAsync();
-                    if (!string.IsNullOrEmpty(searchBy))
-                    {
-                        accMasters =  accMasters.Where(x => x.NepName == searchBy || x.EngName==searchBy);
-                    }
+                    
                     filteredResultsCount = await accMasters.CountAsync();
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.AccCode).Skip(skip).ToListAsync();
+                var finallist = await accMasters.OrderByDescending(x => x.Counterid).Skip(skip).ToListAsync();
 
                 return new DataTableResponse
                 {

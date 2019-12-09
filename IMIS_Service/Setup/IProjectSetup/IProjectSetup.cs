@@ -40,17 +40,14 @@ namespace IMIS_Service.Setup.IProjectSetup
                     draw = model.draw;
                 }
 
-                var accMasters =  (from accountH in _db.AccAccMaster
+                var accMasters =  (from ip in _db.InvProject
                                         select new
                                         {
-                                            accountH.AccId,
-                                            accountH.AccCode,
-                                            accountH.Code,
-                                            accountH.EngName,
-                                            accountH.NepName,
-                                            accountH.FiscalYear,
-                                            accountH.IsTransactable,
-                                            accountH.IsBudgetable
+                                            ip.InvRequisitionMast,
+                                            ip.IsActive,
+                                            ip.NameEn,
+                                            ip.NameNp, 
+                                            ip.ProjectId 
                                         });
                 ///filter count for the total; record
                 ///
@@ -60,12 +57,12 @@ namespace IMIS_Service.Setup.IProjectSetup
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NepName == searchBy || x.EngName==searchBy);
+                        accMasters =  accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.AccCode).Skip(skip).ToListAsync();
+                var finallist = await accMasters.OrderByDescending(x => x.ProjectId).Skip(skip).ToListAsync();
 
                 return new DataTableResponse
                 {

@@ -40,17 +40,12 @@ namespace IMIS_Service.Setup.ICountryDtl
                     draw = model.draw;
                 }
 
-                var accMasters =  (from accountH in _db.AccAccMaster
+                var accMasters =  (from nt in _db.Nationalities
                                         select new
                                         {
-                                            accountH.AccId,
-                                            accountH.AccCode,
-                                            accountH.Code,
-                                            accountH.EngName,
-                                            accountH.NepName,
-                                            accountH.FiscalYear,
-                                            accountH.IsTransactable,
-                                            accountH.IsBudgetable
+                                            nt.Nationalityid,
+                                            nt.Nepname,
+                                            nt.Engname 
                                         });
                 ///filter count for the total; record
                 ///
@@ -60,12 +55,12 @@ namespace IMIS_Service.Setup.ICountryDtl
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NepName == searchBy || x.EngName==searchBy);
+                        accMasters =  accMasters.Where(x => x.Nepname == searchBy || x.Engname == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.AccCode).Skip(skip).ToListAsync();
+                var finallist = await accMasters.OrderByDescending(x => x.Nationalityid).Skip(skip).ToListAsync();
 
                 return new DataTableResponse
                 {

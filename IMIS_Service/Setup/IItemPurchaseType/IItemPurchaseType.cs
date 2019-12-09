@@ -40,17 +40,12 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                     draw = model.draw;
                 }
 
-                var accMasters =  (from accountH in _db.AccAccMaster
+                var accMasters =  (from ipt in _db.InvPurType
                                         select new
                                         {
-                                            accountH.AccId,
-                                            accountH.AccCode,
-                                            accountH.Code,
-                                            accountH.EngName,
-                                            accountH.NepName,
-                                            accountH.FiscalYear,
-                                            accountH.IsTransactable,
-                                            accountH.IsBudgetable
+                                            ipt.Id,
+                                            ipt.NepEng,
+                                            ipt.NepName 
                                         });
                 ///filter count for the total; record
                 ///
@@ -60,12 +55,12 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NepName == searchBy || x.EngName==searchBy);
+                        accMasters =  accMasters.Where(x => x.NepName == searchBy || x.NepEng == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.AccCode).Skip(skip).ToListAsync();
+                var finallist = await accMasters.OrderByDescending(x => x.Id).Skip(skip).ToListAsync();
 
                 return new DataTableResponse
                 {

@@ -40,32 +40,29 @@ namespace IMIS_Service.Setup.IReceiptDistribution
                     draw = model.draw;
                 }
 
-                var accMasters =  (from accountH in _db.AccAccMaster
-                                        select new
-                                        {
-                                            accountH.AccId,
-                                            accountH.AccCode,
-                                            accountH.Code,
-                                            accountH.EngName,
-                                            accountH.NepName,
-                                            accountH.FiscalYear,
-                                            accountH.IsTransactable,
-                                            accountH.IsBudgetable
-                                        });
+                var accMasters = (from ib in _db.Issuedbills
+                                  select new
+                                  {
+                                      ib.Billnofrom,
+                                      ib.Billnoto,
+                                      ib.Counterid,
+                                      ib.Dateissued,
+                                      ib.Sn,
+                                      ib.Specialnotes,
+                                      ib.Thelino,
+                                      ib.Userid
+                                  });
                 ///filter count for the total; record
                 ///
 
                 if (accMasters != null)
                 {
                     totalResultsCount = await accMasters.CountAsync();
-                    if (!string.IsNullOrEmpty(searchBy))
-                    {
-                        accMasters =  accMasters.Where(x => x.NepName == searchBy || x.EngName==searchBy);
-                    }
+
                     filteredResultsCount = await accMasters.CountAsync();
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.AccCode).Skip(skip).ToListAsync();
+                var finallist = await accMasters.OrderByDescending(x => x.Counterid).Skip(skip).ToListAsync();
 
                 return new DataTableResponse
                 {
