@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ProjectSetuperFetchData.html")]
-        public async Task<JsonResult> ProjectSetuperFetchData(DataTableVm model)
+        [Route("/ProjectSetupFetchData.html")]
+        public async Task<JsonResult> ProjectSetupFetchData(DataTableVm model)
         {
             var response = await _ProjectSetup.ProjectSetupFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ProjectSetuperlsit.html")]
-        public IActionResult ProjectSetuperList()
+        [Route("/ProjectSetuplsit.html")]
+        public IActionResult ProjectSetupList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ProjectSetuperCreate.html")]
-        public IActionResult ProjectSetuperCreate()
+        [Route("/ProjectSetupCreate.html")]
+        public IActionResult ProjectSetupCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ProjectSetuperCreate.html")]
-        public IActionResult ProjectSetuperCreate(ProjectSetupVM model)
+        [Route("/ProjectSetupCreate.html")]
+        public IActionResult ProjectSetupCreate(ProjectSetupVM model)
         {
             return View();
         }

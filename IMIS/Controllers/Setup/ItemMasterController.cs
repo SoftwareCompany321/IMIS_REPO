@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemMastererFetchData.html")]
-        public async Task<JsonResult> ItemMastererFetchData(DataTableVm model)
+        [Route("/ItemMasterFetchData.html")]
+        public async Task<JsonResult> ItemMasterFetchData(DataTableVm model)
         {
             var response = await _ItemMaster.ItemMasterFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemMastererlsit.html")]
-        public IActionResult ItemMastererList()
+        [Route("/ItemMasterlsit.html")]
+        public IActionResult ItemMasterList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ItemMastererCreate.html")]
-        public IActionResult ItemMastererCreate()
+        [Route("/ItemMasterCreate.html")]
+        public IActionResult ItemMasterCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ItemMastererCreate.html")]
-        public IActionResult ItemMastererCreate(ItemMasterVM model)
+        [Route("/ItemMasterCreate.html")]
+        public IActionResult ItemMasterCreate(ItemMasterVM model)
         {
             return View();
         }

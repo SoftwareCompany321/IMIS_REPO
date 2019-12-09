@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemPurYearlyPlanerFetchData.html")]
-        public async Task<JsonResult> ItemPurYearlyPlanerFetchData(DataTableVm model)
+        [Route("/ItemPurYearlyPlanFetchData.html")]
+        public async Task<JsonResult> ItemPurYearlyPlanFetchData(DataTableVm model)
         {
             var response = await _ItemPurYearlyPlan.ItemPurYearlyPlanFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemPurYearlyPlanerlsit.html")]
-        public IActionResult ItemPurYearlyPlanerList()
+        [Route("/ItemPurYearlyPlanlsit.html")]
+        public IActionResult ItemPurYearlyPlanList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ItemPurYearlyPlanerCreate.html")]
-        public IActionResult ItemPurYearlyPlanerCreate()
+        [Route("/ItemPurYearlyPlanCreate.html")]
+        public IActionResult ItemPurYearlyPlanCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ItemPurYearlyPlanerCreate.html")]
-        public IActionResult ItemPurYearlyPlanerCreate(ItemPurYearlyPlanVM model)
+        [Route("/ItemPurYearlyPlanCreate.html")]
+        public IActionResult ItemPurYearlyPlanCreate(ItemPurYearlyPlanVM model)
         {
             return View();
         }

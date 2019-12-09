@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/DepartmenterFetchData.html")]
-        public async Task<JsonResult> DepartmenterFetchData(DataTableVm model)
+        [Route("/DepartmentFetchData.html")]
+        public async Task<JsonResult> DepartmentFetchData(DataTableVm model)
         {
             var response = await _Department.DepartmentFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/Departmenterlsit.html")]
-        public IActionResult DepartmenterList()
+        [Route("/Departmentlsit.html")]
+        public IActionResult DepartmentList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/DepartmenterCreate.html")]
-        public IActionResult DepartmenterCreate()
+        [Route("/DepartmentCreate.html")]
+        public IActionResult DepartmentCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/DepartmenterCreate.html")]
-        public IActionResult DepartmenterCreate(DepartmentVM model)
+        [Route("/DepartmentCreate.html")]
+        public IActionResult DepartmentCreate(DepartmentVM model)
         {
             return View();
         }

@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OrganizationTypeerFetchData.html")]
-        public async Task<JsonResult> OrganizationTypeerFetchData(DataTableVm model)
+        [Route("/OrganizationTypeFetchData.html")]
+        public async Task<JsonResult> OrganizationTypeFetchData(DataTableVm model)
         {
             var response = await _OrganizationType.OrganizationTypeFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OrganizationTypeerlsit.html")]
-        public IActionResult OrganizationTypeerList()
+        [Route("/OrganizationTypelsit.html")]
+        public IActionResult OrganizationTypeList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/OrganizationTypeerCreate.html")]
-        public IActionResult OrganizationTypeerCreate()
+        [Route("/OrganizationTypeCreate.html")]
+        public IActionResult OrganizationTypeCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/OrganizationTypeerCreate.html")]
-        public IActionResult OrganizationTypeerCreate(OrganizationTypeVM model)
+        [Route("/OrganizationTypeCreate.html")]
+        public IActionResult OrganizationTypeCreate(OrganizationTypeVM model)
         {
             return View();
         }

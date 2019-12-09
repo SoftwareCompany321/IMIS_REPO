@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/CountryDtlerFetchData.html")]
-        public async Task<JsonResult> CountryDtlerFetchData(DataTableVm model)
+        [Route("/CountryDtlFetchData.html")]
+        public async Task<JsonResult> CountryDtlFetchData(DataTableVm model)
         {
             var response = await _CountryDtl.CountryDtlFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/CountryDtlerlsit.html")]
-        public IActionResult CountryDtlerList()
+        [Route("/CountryDtllsit.html")]
+        public IActionResult CountryDtlList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/CountryDtlerCreate.html")]
-        public IActionResult CountryDtlerCreate()
+        [Route("/CountryDtlCreate.html")]
+        public IActionResult CountryDtlCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/CountryDtlerCreate.html")]
-        public IActionResult CountryDtlerCreate(CountryDtlVM model)
+        [Route("/CountryDtlCreate.html")]
+        public IActionResult CountryDtlCreate(CountryDtlVM model)
         {
             return View();
         }

@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/TaxRateerFetchData.html")]
-        public async Task<JsonResult> TaxRateerFetchData(DataTableVm model)
+        [Route("/TaxRateFetchData.html")]
+        public async Task<JsonResult> TaxRateFetchData(DataTableVm model)
         {
             var response = await _TaxRate.TaxRateFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/TaxRateerlsit.html")]
-        public IActionResult TaxRateerList()
+        [Route("/TaxRatelsit.html")]
+        public IActionResult TaxRateList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/TaxRateerCreate.html")]
-        public IActionResult TaxRateerCreate()
+        [Route("/TaxRateCreate.html")]
+        public IActionResult TaxRateCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/TaxRateerCreate.html")]
-        public IActionResult TaxRateerCreate(TaxRateVM model)
+        [Route("/TaxRateCreate.html")]
+        public IActionResult TaxRateCreate(TaxRateVM model)
         {
             return View();
         }

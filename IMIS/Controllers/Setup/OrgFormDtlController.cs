@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OrgFormDtlerFetchData.html")]
-        public async Task<JsonResult> OrgFormDtlerFetchData(DataTableVm model)
+        [Route("/OrgFormDtlFetchData.html")]
+        public async Task<JsonResult> OrgFormDtlFetchData(DataTableVm model)
         {
             var response = await _OrgFormDtl.OrgFormDtlFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OrgFormDtlerlsit.html")]
-        public IActionResult OrgFormDtlerList()
+        [Route("/OrgFormDtllsit.html")]
+        public IActionResult OrgFormDtlList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/OrgFormDtlerCreate.html")]
-        public IActionResult OrgFormDtlerCreate()
+        [Route("/OrgFormDtlCreate.html")]
+        public IActionResult OrgFormDtlCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/OrgFormDtlerCreate.html")]
-        public IActionResult OrgFormDtlerCreate(OrgFormDtlVM model)
+        [Route("/OrgFormDtlCreate.html")]
+        public IActionResult OrgFormDtlCreate(OrgFormDtlVM model)
         {
             return View();
         }

@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/BankEntryerFetchData.html")]
-        public async Task<JsonResult> BankEntryerFetchData(DataTableVm model)
+        [Route("/BankEntryFetchData.html")]
+        public async Task<JsonResult> BankEntryFetchData(DataTableVm model)
         {
             var response = await _BankEntry.BankDtlFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/BankEntryerlsit.html")]
-        public IActionResult BankEntryerList()
+        [Route("/BankEntrylsit.html")]
+        public IActionResult BankEntryList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/BankEntryerCreate.html")]
-        public IActionResult BankEntryerCreate()
+        [Route("/BankEntryCreate.html")]
+        public IActionResult BankEntryCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/BankEntryerCreate.html")]
-        public IActionResult BankEntryerCreate(BankDtlVM model)
+        [Route("/BankEntryCreate.html")]
+        public IActionResult BankEntryCreate(BankDtlVM model)
         {
             return View();
         }

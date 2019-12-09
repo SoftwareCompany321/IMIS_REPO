@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ReceiptDistributionCentererFetchData.html")]
-        public async Task<JsonResult> ReceiptDistributionCentererFetchData(DataTableVm model)
+        [Route("/ReceiptDistributionCenterFetchData.html")]
+        public async Task<JsonResult> ReceiptDistributionCenterFetchData(DataTableVm model)
         {
             var response = await _ReceiptDistributionCenter.ReceiptDistributionCenterFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ReceiptDistributionCentererlsit.html")]
-        public IActionResult ReceiptDistributionCentererList()
+        [Route("/ReceiptDistributionCenterlsit.html")]
+        public IActionResult ReceiptDistributionCenterList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ReceiptDistributionCentererCreate.html")]
-        public IActionResult ReceiptDistributionCentererCreate()
+        [Route("/ReceiptDistributionCenterCreate.html")]
+        public IActionResult ReceiptDistributionCenterCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ReceiptDistributionCentererCreate.html")]
-        public IActionResult ReceiptDistributionCentererCreate(ReceiptDistributionCenterVM model)
+        [Route("/ReceiptDistributionCenterCreate.html")]
+        public IActionResult ReceiptDistributionCenterCreate(ReceiptDistributionCenterVM model)
         {
             return View();
         }

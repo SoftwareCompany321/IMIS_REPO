@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemPurMasterPlanerFetchData.html")]
-        public async Task<JsonResult> ItemPurMasterPlanerFetchData(DataTableVm model)
+        [Route("/ItemPurMasterPlanFetchData.html")]
+        public async Task<JsonResult> ItemPurMasterPlanFetchData(DataTableVm model)
         {
             var response = await _ItemPurMasterPlan.ItemPurMasterPlanFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemPurMasterPlanerlsit.html")]
-        public IActionResult ItemPurMasterPlanerList()
+        [Route("/ItemPurMasterPlanlsit.html")]
+        public IActionResult ItemPurMasterPlanList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ItemPurMasterPlanerCreate.html")]
-        public IActionResult ItemPurMasterPlanerCreate()
+        [Route("/ItemPurMasterPlanCreate.html")]
+        public IActionResult ItemPurMasterPlanCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ItemPurMasterPlanerCreate.html")]
-        public IActionResult ItemPurMasterPlanerCreate(ItemPurMasterPlanVM model)
+        [Route("/ItemPurMasterPlanCreate.html")]
+        public IActionResult ItemPurMasterPlanCreate(ItemPurMasterPlanVM model)
         {
             return View();
         }

@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OtherSetupTypeerFetchData.html")]
-        public async Task<JsonResult> OtherSetupTypeerFetchData(DataTableVm model)
+        [Route("/OtherSetupTypeFetchData.html")]
+        public async Task<JsonResult> OtherSetupTypeFetchData(DataTableVm model)
         {
             var response = await _OtherSetupType.ItemOtherSetupTypeFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OtherSetupTypeerlsit.html")]
-        public IActionResult OtherSetupTypeerList()
+        [Route("/OtherSetupTypelsit.html")]
+        public IActionResult OtherSetupTypeList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/OtherSetupTypeerCreate.html")]
-        public IActionResult OtherSetupTypeerCreate()
+        [Route("/OtherSetupTypeCreate.html")]
+        public IActionResult OtherSetupTypeCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/OtherSetupTypeerCreate.html")]
-        public IActionResult OtherSetupTypeerCreate(ItemOtherSetupTypeVM model)
+        [Route("/OtherSetupTypeCreate.html")]
+        public IActionResult OtherSetupTypeCreate(ItemOtherSetupTypeVM model)
         {
             return View();
         }

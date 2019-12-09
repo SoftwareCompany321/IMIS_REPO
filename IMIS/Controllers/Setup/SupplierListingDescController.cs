@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/SupplierListingDescerFetchData.html")]
-        public async Task<JsonResult> SupplierListingDescerFetchData(DataTableVm model)
+        [Route("/SupplierListingDescFetchData.html")]
+        public async Task<JsonResult> SupplierListingDescFetchData(DataTableVm model)
         {
             var response = await _SupplierListingDesc.SupplierListingDescFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/SupplierListingDescerlsit.html")]
-        public IActionResult SupplierListingDescerList()
+        [Route("/SupplierListingDesclsit.html")]
+        public IActionResult SupplierListingDescList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/SupplierListingDescerCreate.html")]
-        public IActionResult SupplierListingDescerCreate()
+        [Route("/SupplierListingDescCreate.html")]
+        public IActionResult SupplierListingDescCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/SupplierListingDescerCreate.html")]
-        public IActionResult SupplierListingDescerCreate(SupplierListingDescVM model)
+        [Route("/SupplierListingDescCreate.html")]
+        public IActionResult SupplierListingDescCreate(SupplierListingDescVM model)
         {
             return View();
         }

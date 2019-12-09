@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemPurchaseTypeerFetchData.html")]
-        public async Task<JsonResult> ItemPurchaseTypeerFetchData(DataTableVm model)
+        [Route("/ItemPurchaseTypeFetchData.html")]
+        public async Task<JsonResult> ItemPurchaseTypeFetchData(DataTableVm model)
         {
             var response = await _ItemPurchaseType.ItemPurchaseTypeFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemPurchaseTypeerlsit.html")]
-        public IActionResult ItemPurchaseTypeerList()
+        [Route("/ItemPurchaseTypelsit.html")]
+        public IActionResult ItemPurchaseTypeList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ItemPurchaseTypeerCreate.html")]
-        public IActionResult ItemPurchaseTypeerCreate()
+        [Route("/ItemPurchaseTypeCreate.html")]
+        public IActionResult ItemPurchaseTypeCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ItemPurchaseTypeerCreate.html")]
-        public IActionResult ItemPurchaseTypeerCreate(ItemPurchaseTypeVM model)
+        [Route("/ItemPurchaseTypeCreate.html")]
+        public IActionResult ItemPurchaseTypeCreate(ItemPurchaseTypeVM model)
         {
             return View();
         }

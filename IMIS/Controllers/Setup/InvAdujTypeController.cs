@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/InvAdujTypeerFetchData.html")]
-        public async Task<JsonResult> InvAdujTypeerFetchData(DataTableVm model)
+        [Route("/InvAdujTypeFetchData.html")]
+        public async Task<JsonResult> InvAdujTypeFetchData(DataTableVm model)
         {
             var response = await _InvAdujType.InvAdujTypeFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/InvAdujTypeerlsit.html")]
-        public IActionResult InvAdujTypeerList()
+        [Route("/InvAdujTypelsit.html")]
+        public IActionResult InvAdujTypeList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/InvAdujTypeerCreate.html")]
-        public IActionResult InvAdujTypeerCreate()
+        [Route("/InvAdujTypeCreate.html")]
+        public IActionResult InvAdujTypeCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/InvAdujTypeerCreate.html")]
-        public IActionResult InvAdujTypeerCreate(InvAdujTypeVM model)
+        [Route("/InvAdujTypeCreate.html")]
+        public IActionResult InvAdujTypeCreate(InvAdujTypeVM model)
         {
             return View();
         }

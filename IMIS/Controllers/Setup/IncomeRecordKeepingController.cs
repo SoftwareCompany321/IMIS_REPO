@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/IncomeRecordKeepingerFetchData.html")]
-        public async Task<JsonResult> IncomeRecordKeepingerFetchData(DataTableVm model)
+        [Route("/IncomeRecordKeepingFetchData.html")]
+        public async Task<JsonResult> IncomeRecordKeepingFetchData(DataTableVm model)
         {
             var response = await _IncomeRecordKeeping.IncomeRecordKeepingFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/IncomeRecordKeepingerlsit.html")]
-        public IActionResult IncomeRecordKeepingerList()
+        [Route("/IncomeRecordKeepinglsit.html")]
+        public IActionResult IncomeRecordKeepingList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/IncomeRecordKeepingerCreate.html")]
-        public IActionResult IncomeRecordKeepingerCreate()
+        [Route("/IncomeRecordKeepingCreate.html")]
+        public IActionResult IncomeRecordKeepingCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/IncomeRecordKeepingerCreate.html")]
-        public IActionResult IncomeRecordKeepingerCreate(IncomeRecordKeepingVM model)
+        [Route("/IncomeRecordKeepingCreate.html")]
+        public IActionResult IncomeRecordKeepingCreate(IncomeRecordKeepingVM model)
         {
             return View();
         }

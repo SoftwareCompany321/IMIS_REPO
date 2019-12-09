@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemSupplierDtlerFetchData.html")]
-        public async Task<JsonResult> ItemSupplierDtlerFetchData(DataTableVm model)
+        [Route("/ItemSupplierDtlFetchData.html")]
+        public async Task<JsonResult> ItemSupplierDtlFetchData(DataTableVm model)
         {
             var response = await _ItemSupplierDtl.ItemSupplierDtlFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemSupplierDtlerlsit.html")]
-        public IActionResult ItemSupplierDtlerList()
+        [Route("/ItemSupplierDtllsit.html")]
+        public IActionResult ItemSupplierDtlList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ItemSupplierDtlerCreate.html")]
-        public IActionResult ItemSupplierDtlerCreate()
+        [Route("/ItemSupplierDtlCreate.html")]
+        public IActionResult ItemSupplierDtlCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ItemSupplierDtlerCreate.html")]
-        public IActionResult ItemSupplierDtlerCreate(ItemSupplierDtlVM model)
+        [Route("/ItemSupplierDtlCreate.html")]
+        public IActionResult ItemSupplierDtlCreate(ItemSupplierDtlVM model)
         {
             return View();
         }

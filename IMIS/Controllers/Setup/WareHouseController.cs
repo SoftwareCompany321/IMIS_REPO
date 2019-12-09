@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/WareHouseerFetchData.html")]
-        public async Task<JsonResult> WareHouseerFetchData(DataTableVm model)
+        [Route("/WareHouseFetchData.html")]
+        public async Task<JsonResult> WareHouseFetchData(DataTableVm model)
         {
             var response = await _WareHouse.WareHouseFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/WareHouseerlsit.html")]
-        public IActionResult WareHouseerList()
+        [Route("/WareHouselsit.html")]
+        public IActionResult WareHouseList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/WareHouseerCreate.html")]
-        public IActionResult WareHouseerCreate()
+        [Route("/WareHouseCreate.html")]
+        public IActionResult WareHouseCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/WareHouseerCreate.html")]
-        public IActionResult WareHouseerCreate(WareHouseVM model)
+        [Route("/WareHouseCreate.html")]
+        public IActionResult WareHouseCreate(WareHouseVM model)
         {
             return View();
         }

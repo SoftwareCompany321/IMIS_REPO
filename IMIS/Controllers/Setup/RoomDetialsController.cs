@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/RoomDetialserFetchData.html")]
-        public async Task<JsonResult> RoomDetialserFetchData(DataTableVm model)
+        [Route("/RoomDetialsFetchData.html")]
+        public async Task<JsonResult> RoomDetialsFetchData(DataTableVm model)
         {
             var response = await _RoomDetials.RoomDetialsFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/RoomDetialserlsit.html")]
-        public IActionResult RoomDetialserList()
+        [Route("/RoomDetialslsit.html")]
+        public IActionResult RoomDetialsList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/RoomDetialserCreate.html")]
-        public IActionResult RoomDetialserCreate()
+        [Route("/RoomDetialsCreate.html")]
+        public IActionResult RoomDetialsCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/RoomDetialserCreate.html")]
-        public IActionResult RoomDetialserCreate(RoomDetialsVM model)
+        [Route("/RoomDetialsCreate.html")]
+        public IActionResult RoomDetialsCreate(RoomDetialsVM model)
         {
             return View();
         }

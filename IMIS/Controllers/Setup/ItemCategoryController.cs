@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemCategoryerFetchData.html")]
-        public async Task<JsonResult> ItemCategoryerFetchData(DataTableVm model)
+        [Route("/ItemCategoryFetchData.html")]
+        public async Task<JsonResult> ItemCategoryFetchData(DataTableVm model)
         {
             var response = await _ItemCategory.ItemCategoriesFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemCategoryerlsit.html")]
-        public IActionResult ItemCategoryerList()
+        [Route("/ItemCategorylsit.html")]
+        public IActionResult ItemCategoryList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ItemCategoryerCreate.html")]
-        public IActionResult ItemCategoryerCreate()
+        [Route("/ItemCategoryCreate.html")]
+        public IActionResult ItemCategoryCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ItemCategoryerCreate.html")]
-        public IActionResult ItemCategoryerCreate(ItemCategoriesVM model)
+        [Route("/ItemCategoryCreate.html")]
+        public IActionResult ItemCategoryCreate(ItemCategoriesVM model)
         {
             return View();
         }

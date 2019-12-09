@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemSpecificationerFetchData.html")]
-        public async Task<JsonResult> ItemSpecificationerFetchData(DataTableVm model)
+        [Route("/ItemSpecificationFetchData.html")]
+        public async Task<JsonResult> ItemSpecificationFetchData(DataTableVm model)
         {
             var response = await _ItemSpecification.ItemSpecificationFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemSpecificationerlsit.html")]
-        public IActionResult ItemSpecificationerList()
+        [Route("/ItemSpecificationlsit.html")]
+        public IActionResult ItemSpecificationList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ItemSpecificationerCreate.html")]
-        public IActionResult ItemSpecificationerCreate()
+        [Route("/ItemSpecificationCreate.html")]
+        public IActionResult ItemSpecificationCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ItemSpecificationerCreate.html")]
-        public IActionResult ItemSpecificationerCreate(ItemSpecificationVM model)
+        [Route("/ItemSpecificationCreate.html")]
+        public IActionResult ItemSpecificationCreate(ItemSpecificationVM model)
         {
             return View();
         }

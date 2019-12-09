@@ -24,8 +24,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemBranderFetchData.html")]
-        public async Task<JsonResult> ItemBranderFetchData(DataTableVm model)
+        [Route("/ItemBrandFetchData.html")]
+        public async Task<JsonResult> ItemBrandFetchData(DataTableVm model)
         {
             var response = await _ItemBrand.ItemBrandFetchData(model);
             return Json(new
@@ -38,22 +38,22 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemBranderlsit.html")]
-        public IActionResult ItemBranderList()
+        [Route("/ItemBrandlsit.html")]
+        public IActionResult ItemBrandList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/ItemBranderCreate.html")]
-        public IActionResult ItemBranderCreate()
+        [Route("/ItemBrandCreate.html")]
+        public IActionResult ItemBrandCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/ItemBranderCreate.html")]
-        public IActionResult ItemBranderCreate(ItemBrandVM model)
+        [Route("/ItemBrandCreate.html")]
+        public IActionResult ItemBrandCreate(ItemBrandVM model)
         {
             return View();
         }
