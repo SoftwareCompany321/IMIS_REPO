@@ -10,7 +10,7 @@ namespace IMIS_Service.ViewModel
         {
             MenuSubMenu = new List<MenuSubMenuVM>();
         }
-        public int Id { get; set; }
+        public decimal? Id { get; set; }
         public string MenuName { get; set; }
         public string MenuUrl { get; set; }
         public string DisplayName { get; set; }

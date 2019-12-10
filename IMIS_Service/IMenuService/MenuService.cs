@@ -1,5 +1,6 @@
 ﻿using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace IMIS_Service.IMenuService
         //Task<string> MenuDelete(int id);
         //Task<IList<Userassignments>> MspSubMenu(int id);
 
-        Task<IList<Userassignments>> menuVM();
+        Task<IList<MenuVM>> menuVM();
 
        // Task<DataTableResponse> MenuDataTabel(DataTableM model);
 
@@ -33,6 +34,38 @@ namespace IMIS_Service.IMenuService
             _db = db;
            
         }
+
+        public async Task<IList<MenuVM>> menuVM()
+        {
+            //for the query of menu and sub menu
+            //Note m=mainmenu  and   s=submenu
+            return (await (from m in _db.Userassignments
+                           where m.ParentMenuId==0
+                           select new MenuVM
+                           {
+                               DisplayName = m.Rightsname,
+                               Id =m.Sn,
+                               MenuUrl = m.MenuUrl,
+                               Active = m.Active,
+                               IsLocked = m.IsLocked,
+                               Icon = m.Icon,
+                               Visible = m.Visible,
+                               MenuSubMenu = (from s in _db.Userassignments
+                                              where s.ParentMenuId ==s.Sn
+                                              select new MenuSubMenuVM
+                                              {
+                                                  DisplayName = s.DisplayName,
+                                                  Id = s.Sn,
+                                                  MenuUrl = s.MenuUrl,
+                                                  IsLocked = s.IsLocked,
+                                                  Icon = s.Icon,
+                                                  Visible = s.Visible,
+                                                  Active = s.Active
+                                              }).ToList()
+                           }).ToListAsync());
+        }
+
+
         //public async Task<(string message, int Id)> MenuAdd(MenuVM mspMenu)
         //{
         //    var add = new MspMenu()
@@ -84,12 +117,12 @@ namespace IMIS_Service.IMenuService
             throw new NotImplementedException();
         }
 
-        public async Task<IList<Userassignments>> menuVM()
-        {
-            //for the query of menu and sub menu
-            //Note m=mainmenu  and   s=submenu 
-            return( await (from a in _db.Userassignments where a.Sn==2 select new Userassignments {DisplayName=a.DisplayName,MenuUrl=a.MenuUrl,Rightsname=a.Rightsname}).ToListAsync());
-        }
+        //public async Task<IList<Userassignments>> menuVM()
+        //{
+        //    //for the query of menu and sub menu
+        //    //Note m=mainmenu  and   s=submenu 
+        //    return (await (from a in _db.Userassignments where a.Sn == 2 select new Userassignments { DisplayName = a.DisplayName, MenuUrl = a.MenuUrl, Rightsname = a.Rightsname }).ToListAsync());
+        //}
 
         //public async Task<IList<MspMenu>> MspMenus()
         //{
