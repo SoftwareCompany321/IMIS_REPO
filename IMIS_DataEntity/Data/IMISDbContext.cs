@@ -14,6 +14,7 @@ namespace IMIS_DataEntity.Data
 
         }
 
+        public virtual DbSet<ImisMenu> ImisMenu { get; set; }
         public virtual DbSet<AccAccMaster> AccAccMaster { get; set; }
         public virtual DbSet<AccAsuliBibaran> AccAsuliBibaran { get; set; }
         public virtual DbSet<AccBankGrnty> AccBankGrnty { get; set; }
@@ -298,7 +299,10 @@ namespace IMIS_DataEntity.Data
         {
 
             base.OnModelCreating(modelBuilder);
-             modelBuilder.Entity<Usermaster>().ToTable("Usermaster");
+
+
+            modelBuilder.Entity<ImisMenu>().ToTable("Imis_Menu");
+            modelBuilder.Entity<Usermaster>().ToTable("Usermaster");
             ///  default table to be customise 
             modelBuilder.Entity<AccAccMaster>(entity =>
             {

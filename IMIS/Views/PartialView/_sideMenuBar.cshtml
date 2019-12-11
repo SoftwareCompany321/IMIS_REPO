@@ -5,38 +5,37 @@
 
     if (mainlist.Count > 0)
     {
-        @for (int i = 0; i < mainlist.Count; i++)
+        for (int i = 0; i < mainlist.Count; i++)
         {
             <li class="treeview">
-                <a href="~/@Url.Content(mainlist[i].MenuUrl)">
+                <a>
                     <i class="@mainlist[i].Icon"></i>@mainlist[i].DisplayName
 
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
-            </li>
 
-            if (mainlist[i].MenuSubMenu.Count > 0)
-            {
-                <ul class="treeview-menu">
-
-                    @for (int j = 0; j < mainlist[i].MenuSubMenu.Count; j++)
+                @{
+                    if (mainlist[i].MenuSubMenu.Count > 0)
                     {
-                        var menu = mainlist[i].MenuSubMenu[j].MenuUrl;
+                        <ul class="treeview-menu">
 
-                        <li>
-                            <a href="~/@Url.Content(mainlist[i].MenuSubMenu[j].MenuUrl)">
-                                <i class="@mainlist[i].MenuSubMenu[j].Icon"></i>@mainlist[i].MenuSubMenu[j].DisplayName
-                            </a>
-                        </li>
+                            @for (int j = 0; j < mainlist[i].MenuSubMenu.Count; j++)
+                            {
+                                var menu = mainlist[i].MenuSubMenu[j].MenuUrl;
 
+                                <li>
+                                    <a href="~/@Url.Content(mainlist[i].MenuSubMenu[j].MenuUrl)">
+                                        <i class="@mainlist[i].MenuSubMenu[j].Icon"></i>@mainlist[i].MenuSubMenu[j].DisplayName
+                                    </a>
+                                </li>
+
+                            }
+                        </ul>
                     }
-
-                </ul>
-            }
-
-        }
-
+                }
+            </li>
         }
     }
+}

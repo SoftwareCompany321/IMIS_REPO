@@ -38,31 +38,32 @@ namespace IMIS_Service.IMenuService
         public async Task<IList<MenuVM>> menuVM()
         {
             //for the query of menu and sub menu
-            //Note m=mainmenu  and   s=submenu
-            return (await (from m in _db.Userassignments
-                           where m.ParentMenuId==0
-                           select new MenuVM
-                           {
-                               DisplayName = m.Rightsname,
-                               Id =m.Sn,
-                               MenuUrl = m.MenuUrl,
-                               Active = m.Active,
-                               IsLocked = m.IsLocked,
-                               Icon = m.Icon,
-                               Visible = m.Visible,
-                               MenuSubMenu = (from s in _db.Userassignments
-                                              where s.ParentMenuId ==s.Sn
-                                              select new MenuSubMenuVM
-                                              {
-                                                  DisplayName = s.DisplayName,
-                                                  Id = s.Sn,
-                                                  MenuUrl = s.MenuUrl,
-                                                  IsLocked = s.IsLocked,
-                                                  Icon = s.Icon,
-                                                  Visible = s.Visible,
-                                                  Active = s.Active
-                                              }).ToList()
-                           }).ToListAsync());
+            //Note m=mainmenu  and   s=submenu 
+
+            try
+            {
+                return (await (from m in _db.ImisMenu
+                               where m.ParentMenuId == 0
+                               select new MenuVM
+                               {
+                                   DisplayName = m.DisplayName,
+                                   MenuUrl = m.MenuUrl,
+                                   MenuSubMenu = (from s in _db.ImisMenu
+                                                  where s.ParentMenuId ==m.Id
+                                                  select new MenuSubMenuVM
+                                                  {
+                                                      DisplayName = s.DisplayName,
+                                                      MenuUrl = s.MenuUrl
+                                                  }).ToList()
+                               }).ToListAsync());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+          
         }
 
 
