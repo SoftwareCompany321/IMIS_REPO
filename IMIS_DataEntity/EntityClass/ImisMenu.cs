@@ -18,6 +18,7 @@ namespace IMIS_DataEntity.EntityClass
         public string MenuUrl { get; set; }
         [Column(TypeName = "varchar(100)")]
         public string DisplayName { get; set; }
+        public string DisplayNameNep { get; set; }
         public int ParentMenuId { get; set; }
         public bool Active { get; set; }
         public bool IsLocked { get; set; }
