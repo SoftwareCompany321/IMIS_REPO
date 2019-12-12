@@ -18,6 +18,8 @@ namespace IMIS_DataEntity.EntityClass
         public string MenuUrl { get; set; }
         [Column(TypeName = "varchar(100)")]
         public string DisplayName { get; set; }
+        [Column(TypeName = "varchar(100)")]
+        public string DisplayNepName { get; set; }
         public int ParentMenuId { get; set; }
         public bool Active { get; set; }
         public bool IsLocked { get; set; }
@@ -30,5 +32,7 @@ namespace IMIS_DataEntity.EntityClass
         public string CreatedBy { get; set; } 
         [Column(TypeName = "varchar(450)")]
         public string UpdateBy { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }
