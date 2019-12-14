@@ -245,3 +245,12 @@ sup, .small {
 .UrlLoad{
     background:url('~/images/bg-01.jpg')!important;
 }
+
+th.details-control {
+    background: url('../images/icons/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+
+tr.shown td.details-control {
+    background: url('../images/icons/details_close.png') no-repeat center center;
+}

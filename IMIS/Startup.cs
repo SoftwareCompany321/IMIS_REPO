@@ -18,6 +18,7 @@ using App.Web;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.IMenuService;
 using IMIS_Service.IAccountHead;
+using IMIS_Service.GlobalFunction;
 
 namespace IMIS
 {
@@ -90,6 +91,7 @@ namespace IMIS
             //Add service for accessing current HttpContext
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<MenuService>();
+            services.AddScoped<GlobalFunction>();
             services.AddScoped<IAccountHead, AccountHead>();
         }
 

@@ -1,18 +1,24 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using IMIS_DataEntity.Data;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
-namespace MSP_Service.GlobalFunc
+namespace IMIS_Service.GlobalFunction
 {
-    public  class GlobalFunction
+
+    public class GlobalFunction
     {
         private readonly IHttpContextAccessor _httpCA = null;
-        public GlobalFunction(IHttpContextAccessor httpContextAccessor)
+
+        private readonly IMISDbContext _db;
+        public GlobalFunction(IHttpContextAccessor httpContextAccessor, IMISDbContext db)
         {
             _httpCA = httpContextAccessor;
+            _db = db;
         }
         public string getUserId()
         {
@@ -22,6 +28,12 @@ namespace MSP_Service.GlobalFunc
         public string getUserName(string userid = "")
         {
             return (_httpCA.HttpContext.User.Identity.Name);
+        }
+
+        public IEnumerable<SelectListItem> GetAllParentMenu()
+        {
+            return new SelectList(_db.ImisMenu.Where(x => x.ParentMenuId == 0), "Id", "DisplayName");
+
         }
     }
 }
