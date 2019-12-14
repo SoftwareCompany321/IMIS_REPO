@@ -42,12 +42,14 @@ namespace IMIS_Service.IMenuService
                                {
                                    DisplayName = m.DisplayName,
                                    MenuUrl = m.MenuUrl,
+                                   NepName=m.DisplayNepName,
                                    MenuSubMenu = (from s in _db.ImisMenu
                                                   where s.ParentMenuId == m.Id
                                                   select new MenuSubMenuVM
                                                   {
                                                       DisplayName = s.DisplayName,
-                                                      MenuUrl = s.MenuUrl
+                                                      MenuUrl = s.MenuUrl,
+                                                      NepName=s.DisplayNepName
                                                   }).ToList()
                                }).ToListAsync());
             }
@@ -72,6 +74,7 @@ namespace IMIS_Service.IMenuService
                 MenuOrder = mspMenu.MenuOrder,
                 ParentMenuId = mspMenu.ParentMenuId,
                 Icon = mspMenu.Icon,
+                DisplayNepName=mspMenu.NepName,
                 Visible = mspMenu.Visible
             };
             try
