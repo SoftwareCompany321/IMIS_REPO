@@ -82,8 +82,8 @@ namespace IMIS_Service.IMenuService
                 int menuId = 0;
                 if (mspMenu.Id == 0)
                 {
-                    int count = await _db.ImisMenu.CountAsync();
-                    add.Id = count + 1;
+                    //int count = await _db.ImisMenu.CountAsync();
+                   // add.Id = count + 1;
                     add.CreatedAt = DateTime.Now;
                     add.CreatedBy = _global.getUserId();
                     await _db.AddAsync(add);
