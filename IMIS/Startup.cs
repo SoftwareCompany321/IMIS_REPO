@@ -19,6 +19,7 @@ using IMIS_DataEntity.EntityClass;
 using IMIS_Service.IMenuService;
 using IMIS_Service.IAccountHead;
 using IMIS_Service.GlobalFunction;
+using IMIS_Service.Setup.IItemUnit;
 
 namespace IMIS
 {
@@ -93,6 +94,7 @@ namespace IMIS
             services.AddScoped<MenuService>();
             services.AddScoped<GlobalFunction>();
             services.AddScoped<IAccountHead, AccountHead>();
+            services.AddScoped<IItemUnit, ItemUnit>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

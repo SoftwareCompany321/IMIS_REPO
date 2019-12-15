@@ -75,7 +75,8 @@ namespace IMIS_Service.IMenuService
                 ParentMenuId = mspMenu.ParentMenuId,
                 Icon = mspMenu.Icon,
                 DisplayNepName=mspMenu.NepName,
-                Visible = mspMenu.Visible
+                Visible = mspMenu.Visible,
+                MenuUrl=mspMenu.MenuUrl
             };
             try
             {
