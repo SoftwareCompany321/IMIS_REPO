@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,12 @@ namespace IMIS_Service.Setup.IItemUnit
     public interface IItemUnit
     {
         Task<DataTableResponse> ItemUnitFetchData(DataTableVm model);
+
+        Task<(string message, int Id)> AddEdit(ItemUnitVM Model);
+
+        Task<ItemUnitVM> ViewOrEditData(int Id);
+
+
     }
     public class ItemUnit : IItemUnit
     {
@@ -20,6 +28,40 @@ namespace IMIS_Service.Setup.IItemUnit
         {
             _db = db;
         }
+
+        public async Task<(string message, int Id)> AddEdit(ItemUnitVM Model)
+        {
+            try
+            {
+                var AddEdit = new InvUnit()
+                {
+                    UnitId = Model.UnitId,
+                    DescEn = Model.DescEn,
+                    DescNp = Model.DescNp,
+                    NoOfUnits = Model.NoOfUnits
+
+                };
+
+                if (Model.UnitId == 0)
+                {
+                    int countrow = await _db.InvUnit.CountAsync();
+                    AddEdit.UnitId = countrow + 1;
+                    await _db.AddAsync(AddEdit);
+                }
+                else
+                {
+                    _db.Entry(AddEdit).State = EntityState.Modified; 
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<DataTableResponse> ItemUnitFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
@@ -40,19 +82,21 @@ namespace IMIS_Service.Setup.IItemUnit
                     draw = model.draw;
                 }
 
-                var accMasters =  (from iu in _db.InvUnit
-                                        select new
-                                        {
-                                            iu.UnitId,
-                                            iu.InvItemMst 
-                                        });
+                var accMasters = (from iu in _db.InvUnit
+                                  select new
+                                  {
+                                      iu.UnitId,
+                                      iu.DescEn,
+                                      iu.DescNp,
+                                      iu.NoOfUnits
+                                  });
                 ///filter count for the total; record
                 ///
 
                 if (accMasters != null)
                 {
                     totalResultsCount = await accMasters.CountAsync();
-                     filteredResultsCount = await accMasters.CountAsync();
+                    filteredResultsCount = await accMasters.CountAsync();
                 }
 
                 var finallist = await accMasters.OrderByDescending(x => x.UnitId).Skip(skip).ToListAsync();
@@ -62,7 +106,7 @@ namespace IMIS_Service.Setup.IItemUnit
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =finallist
+                    data = finallist
                 };
 
 
@@ -74,9 +118,37 @@ namespace IMIS_Service.Setup.IItemUnit
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =0
+                    data = 0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<ItemUnitVM> ViewOrEditData(int UnitId)
+        {
+            try
+            {
+                var data = await _db.InvUnit.Where(x => x.UnitId == UnitId).FirstOrDefaultAsync();
+                if (data != null)
+                {
+                    return new ItemUnitVM()
+                    {
+                        UnitId = data.UnitId,
+                        DescNp = data.DescNp,
+                        DescEn = data.DescEn,
+                        NoOfUnits = data.NoOfUnits
+                    };
+                }
+                else
+                {
+                    return new ItemUnitVM();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

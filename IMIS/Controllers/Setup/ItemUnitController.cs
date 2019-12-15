@@ -50,11 +50,37 @@ namespace IMIS.Controllers.Setup
         {
             return View();
         }
-
         [HttpPost]
         [Route("/ItemUnitCreate.html")]
-        public IActionResult ItemUnitCreate(ItemUnitVM model)
+        public async Task<IActionResult> ItemUnitCreate(ItemUnitVM model)
         {
+            var response = await _ItemUnit.AddEdit(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemUnitCreate.html");
+            }
+            return View();
+        }
+        [HttpGet]
+
+        [Route("{unitId}/ItemUnitEdit.html")]
+        public async Task<IActionResult> ItemUnitEdit(int UnitId)
+        {
+            return View(await _ItemUnit.ViewOrEditData(UnitId));
+        }
+        [HttpPost]
+        [Route("{unitId}/ItemUnitEdit.html")]
+        public async Task<IActionResult> ItemUnitEdit(ItemUnitVM model, int UnitId)
+        {
+            var response = await _ItemUnit.AddEdit(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemUnitlsit.html");
+            }
             return View();
         }
     }
