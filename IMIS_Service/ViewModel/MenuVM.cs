@@ -14,6 +14,7 @@ namespace IMIS_Service.ViewModel
         public string MenuName { get; set; }
         public string MenuUrl { get; set; }
         public string DisplayName { get; set; }
+        public string NepName { get; set; }
         public int ParentMenuId { get; set; }
         public bool Active { get; set; }
         public bool IsLocked { get; set; }

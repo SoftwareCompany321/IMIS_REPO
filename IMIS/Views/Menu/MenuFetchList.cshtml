@@ -1,0 +1,226 @@
+﻿
+@{
+    ViewData["Title"] = "MenuFetchList";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+    <body> 
+        <!-- Bootstrap Core CSS -->  
+        <!-- Navigation -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div class="tab-lists-wrapper boxed parentTabs">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#region-tab">Menu List</a> </li>
+                    </ul>
+
+                    <div class="tab-content">
+
+                        <!-- tab 1: region starts -->
+                        <div class="tab-pane fade active in" id="region-tab">
+                            <!-- generic add button for all the "add" forms | Add region -->
+                            <a href="@Url.Content("~/MenuCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                            <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
+                            @if (ViewBag.Message != null || ViewBag.Message == "")
+                            {
+                                <div class="alert @ViewBag.Class">
+                                    @ViewBag.Message
+                                </div>
+                            }
+                            <!-- search filters -->
+                            <div class="collapse" id="searchCollapse">
+                                <div class="well">
+                                    <div class="form-group">
+                                        <div class="col-sm-3 ">
+                                            <select name="regions" id="region" class="form-control">
+                                                <option value="0">Select Region</option>
+                                                <option value="1">Region One</option>
+                                                <option value="2">Region Two</option>
+                                                <option value="3">Region Three</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <select name="constituency" id="constituency" class="form-control">
+                                                <option value="0">Select Constituency</option>
+                                                <option value="1">Constituency One</option>
+                                                <option value="2">Constituency Two</option>
+                                                <option value="3">Constituency Three</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-1 pull-right"><a href="#" class="btn btn-default form-modal-call"><i class="material-icons">search</i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table id="menu" class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th width="10px"></th>
+                                            <th width="10px">Name(Eng)</th>
+                                            <th width="10px">Name(Nep)</th>
+                                        </tr>
+                                    </thead>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <script src="js/plugins/script.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+
+
+
+<script lang="ja" type="text/javascript"> 
+     jQuery(document).ready(function () {
+            var table = jQuery("#menu");
+            table.dataTable({
+                "bProcessing": true,
+                "processing": true,
+                "serverSide": true,
+                "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
+                'searching': true,//recordsFiltered
+				"ajax": {
+                   "url": "@Url.Content("~/menudatagetfetchdatadatable.html")", "type": "GET", "data": function (d) {
+                    d.search = $("#usersearch").val();
+                }
+                },
+                "language": {
+                    "infoFiltered": ""
+                },
+                'stateSave': false,
+
+                "columns": [
+                {
+                    "className": 'details-control',
+                    "orderable": false,
+                    "data": null,
+                    "defaultContent": ''
+                },
+                { "data": "displayName", "orderable": true },
+                { "data": "nepName", "orderable": true },
+                ],
+                order: [
+
+                    [1, "desc"]
+                ],
+                "paging": true,
+                "pageLength": 10,
+                lengthMenu: [
+                    [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
+                ],
+                "fnInitComplete": function (oSettings, json) {
+					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
+				},
+
+            });
+            jQuery('#usersearch').on("keyup", function () {
+               table.fnFilter(this.value);
+            }).on("keypress", function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+            });
+
+         $('#menu tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+
+            if (row.child.isShown()) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                row.child(format(row.data())).show();
+                tr.addClass('shown');
+            }
+         });
+         function format(d) {
+        // `d` is the original data object for the row calling the function
+        return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+            '<tr>' +
+            '<td>Full name:</td>' +
+            '<td>' + d.menuSubMenu.displayName + '</td>' +
+            '</tr>' +
+            '</table>';
+            }
+
+        });
+
+
+
+
+    @*$(document).ready(function () {
+        var table = $('#menu').DataTable({
+           "ajax": {
+                   "url": "@Url.Content("~/menudatafetchlist.html")", "type": "GET", "data": function (d) {
+                    d.search = $("#usersearch").val();
+                }
+                },
+            "columns": [
+                {
+                    "className": 'details-control',
+                    "orderable": false,
+                    "data": null,
+                    "defaultContent": ''
+                },
+                { "data": "name" },
+                { "data": "position" },
+                { "data": "office" },
+                { "data": "salary" }
+            ],
+            "order": [[1, 'asc']]
+        });
+
+        // Add event listener for opening and closing details
+        $('#menu tbody').on('click', 'td.details-control', function () {
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+
+            if (row.child.isShown()) {
+                // This row is already open - close it
+                row.child.hide();
+                tr.removeClass('shown');
+            }
+            else {
+                // Open this row
+                row.child(format(row.data())).show();
+                tr.addClass('shown');
+            }
+        });
+    });
+
+    function format(d) {
+        // `d` is the original data object for the row calling the function
+        return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+            '<tr>' +
+            '<td>Full name:</td>' +
+            '<td>' + d.displayName + '</td>' +
+            '</tr>' +
+            '<tr>' +
+            '<td>Extension number:</td>' +
+            '<td>' + d.extn + '</td>' +
+            '</tr>' +
+            '<tr>' +
+            '<td>Extra info:</td>' +
+            '<td>And any further details here (images etc)...</td>' +
+            '</tr>' +
+            '</table>';
+    }*@
+
+</script>
