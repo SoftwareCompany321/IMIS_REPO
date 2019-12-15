@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MSP_Service.GlobalFunc
 {
-    public class GlobalFunction
+    public  class GlobalFunction
     {
         private readonly IHttpContextAccessor _httpCA = null;
         public GlobalFunction(IHttpContextAccessor httpContextAccessor)

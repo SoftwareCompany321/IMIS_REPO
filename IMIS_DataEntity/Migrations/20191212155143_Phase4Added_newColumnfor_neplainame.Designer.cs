@@ -3,15 +3,17 @@ using System;
 using IMIS_DataEntity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IMIS_DataEntity.Migrations
 {
     [DbContext(typeof(IMISDbContext))]
-    partial class IMISDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191212155143_Phase4Added_newColumnfor_neplainame")]
+    partial class Phase4Added_newColumnfor_neplainame
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3818,9 +3820,6 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<string>("CreatedBy")
                         .HasColumnType("varchar(450)");
 
@@ -3850,9 +3849,6 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<string>("UpdateBy")
                         .HasColumnType("varchar(450)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Visible")
                         .HasColumnType("boolean");
