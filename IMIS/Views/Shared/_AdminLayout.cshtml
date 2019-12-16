@@ -1,8 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using IMIS_DataEntity.EntityClass
+@using IMIS_CORE.Core;
 @inject SignInManager<Usermaster> SignInManager
 @inject UserManager<Usermaster> UserManager
-
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +39,8 @@
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="@Url.Content("~/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css")">
 
+    <script src="~/js/UnicodeRomanized.js"></script>
+    @*<script src="~/js/UnicodeTraditional.js"></script>*@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
@@ -60,7 +63,7 @@
 
         <header class="main-header">
             <!-- Logo -->
-            <a href="@Url.Action("Index","Home")" class="logo">
+            <a href="@Url.Action("Index", "Home")" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
@@ -321,6 +324,18 @@
                                     </div>
                                 </li>
                             </ul>
+                        </li>
+                        <li class="dropdown user user-menu">
+                            @{ string lang = "English";
+                                Byte[] binForm;
+                                if (HttpContextAccessor.HttpContext.Session.TryGetValue("LanguageSetting", out binForm))
+                                    lang = binForm.ConvertToString();
+                            }
+                             <a href='@Url.Action("ChangeStatus", "Home")?Languageset= @lang' class="dropdown-toggle" data-toggle="dropdown">
+
+                                <span class="hidden-xs">@(Utils.Changelanguage())</span>
+                            </a>
+
                         </li>
                         <!-- Control Sidebar Toggle Button -->
                         <li>
@@ -736,7 +751,7 @@
     </div>     <!-- ./wrapper -->
     <!-- jQuery 3 -->
     <script src="@Url.Content("~/bower_components/datatables.net/js/jquery.dataTables.js")"></script>
-    <script src="@Url.Content("~/bower_components/datatables.net-bs/js/dataTables.bootstrap.js")"></script> 
+    <script src="@Url.Content("~/bower_components/datatables.net-bs/js/dataTables.bootstrap.js")"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="@Url.Content("~/bower_components/jquery-ui/jquery-ui.min.js")"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

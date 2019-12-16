@@ -11,9 +11,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging; 
+using Microsoft.Extensions.Logging;
 using IMIS_CORE.Core;
 using IMIS_DataEntity.EntityClass;
+using App.Web;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Headers;
 
 namespace IMIS.Areas.Identity.Pages.Account
 {
@@ -49,7 +52,7 @@ namespace IMIS.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [EmailAddress] 
+            [EmailAddress]
             public string Email { get; set; }
 
             [Required]
@@ -89,6 +92,10 @@ namespace IMIS.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+                    Utils.GetLanguageList(); 
+                    if (AppHttpContext.Current.Session.GetString("LanguageSetting") != null)
+                        AppHttpContext.Current.Session.SetString("LanguageSetting", "Nepali");
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

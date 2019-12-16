@@ -10,8 +10,9 @@ using System.Web;
 using System.Reflection;
 using System.IO;
 using App.Web;
-using System.Runtime.Serialization.Formatters.Binary;
- 
+using System.Runtime.Serialization.Formatters.Binary; 
+using Microsoft.AspNetCore.Http;
+using System.Text.RegularExpressions;
 
 namespace IMIS_CORE.Core
 {
@@ -181,6 +182,15 @@ namespace IMIS_CORE.Core
             }
         }
 
+        //to get ApplicationPath
+        public static string GetApplicationRoot()
+        {
+            var exePath = Path.GetDirectoryName(System.Reflection
+                              .Assembly.GetExecutingAssembly().CodeBase);
+            Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:\\+[\S\s]*?(?=\\+bin)");
+            var appRoot = appPathMatcher.Match(exePath).Value;
+            return appRoot;
+        }
         /// <summary>
         /// extention function that Get Unicode toggle words from excel sheet
         /// </summary> 
@@ -188,7 +198,7 @@ namespace IMIS_CORE.Core
         public static void GetLanguageList()
         {
 
-            var buildDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var buildDir = GetApplicationRoot();
             string filepath = System.IO.Path.GetFullPath(buildDir + @"\Unicode\unicodexml.xml");
             DataSet ds = new DataSet();
             ds.ReadXml(filepath);

@@ -26,9 +26,9 @@
                     </div>
                 </div>
                 <div class="form-group is-empty">
-                    <label for="region" class="col-md-2 control-label">Nep Name<span class="requried">*</span></label>
+                    <label for="region" class="col-md-2 control-label">Nep Name<span class="requried" >*</span></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" asp-for="NepName">
+                        <input type="text" class="form-control" asp-for="NepName" onkeypress = "return setUnicode(event,this);">
                     </div>
                 </div>
                 <div class="form-group is-empty">
