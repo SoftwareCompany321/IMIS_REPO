@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/WareHouselsit.html")]
+        [Route("/WareHouselist.html")]
         public IActionResult WareHouseList()
         {
             return View();

@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/IncomeRecordKeepinglsit.html")]
+        [Route("/IncomeRecordKeepinglist.html")]
         public IActionResult IncomeRecordKeepingList()
         {
             return View();

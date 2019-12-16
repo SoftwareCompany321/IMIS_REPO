@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/TaxRatelsit.html")]
+        [Route("/TaxRatelist.html")]
         public IActionResult TaxRateList()
         {
             return View();

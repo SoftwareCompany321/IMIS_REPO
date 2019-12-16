@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/BankDtllsit.html")]
+        [Route("/BankDtllist.html")]
         public IActionResult BankDtlerList()
         {
             return View();

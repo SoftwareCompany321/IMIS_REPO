@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemPurchaseTypelsit.html")]
+        [Route("/ItemPurchaseTypelist.html")]
         public IActionResult ItemPurchaseTypeList()
         {
             return View();

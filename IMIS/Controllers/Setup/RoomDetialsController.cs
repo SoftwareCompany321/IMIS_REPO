@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/RoomDetialslsit.html")]
+        [Route("/RoomDetialslist.html")]
         public IActionResult RoomDetialsList()
         {
             return View();

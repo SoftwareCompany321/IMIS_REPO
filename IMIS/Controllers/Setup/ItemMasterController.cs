@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemMasterlsit.html")]
+        [Route("/ItemMasterlist.html")]
         public IActionResult ItemMasterList()
         {
             return View();

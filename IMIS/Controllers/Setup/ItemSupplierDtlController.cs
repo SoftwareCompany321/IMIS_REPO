@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemSupplierDtllsit.html")]
+        [Route("/ItemSupplierDtllist.html")]
         public IActionResult ItemSupplierDtlList()
         {
             return View();

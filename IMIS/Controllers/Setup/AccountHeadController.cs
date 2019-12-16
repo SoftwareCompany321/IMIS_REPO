@@ -40,7 +40,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/accountheaderlsit.html")] 
+        [Route("/accountheaderlist.html")] 
         public IActionResult AccountHeaderList()
         {
             return View();

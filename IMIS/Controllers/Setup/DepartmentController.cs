@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/Departmentlsit.html")]
+        [Route("/Departmentlist.html")]
         public IActionResult DepartmentList()
         {
             return View();

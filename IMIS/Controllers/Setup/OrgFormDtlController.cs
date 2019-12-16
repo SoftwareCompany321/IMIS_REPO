@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OrgFormDtllsit.html")]
+        [Route("/OrgFormDtllist.html")]
         public IActionResult OrgFormDtlList()
         {
             return View();

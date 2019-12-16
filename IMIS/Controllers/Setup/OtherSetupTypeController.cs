@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OtherSetupTypelsit.html")]
+        [Route("/OtherSetupTypelist.html")]
         public IActionResult OtherSetupTypeList()
         {
             return View();

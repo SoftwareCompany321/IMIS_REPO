@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemUnitlsit.html")]
+        [Route("/ItemUnitlist.html")]
         public IActionResult ItemUnitList()
         {
             return View();
@@ -79,7 +79,7 @@ namespace IMIS.Controllers.Setup
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/ItemUnitlsit.html");
+                return Redirect("~/ItemUnitlist.html");
             }
             return View();
         }

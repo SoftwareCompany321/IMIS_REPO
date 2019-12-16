@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ReceiptDistributionlsit.html")]
+        [Route("/ReceiptDistributionlist.html")]
         public IActionResult ReceiptDistributionList()
         {
             return View();

@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ProjectSetuplsit.html")]
+        [Route("/ProjectSetuplist.html")]
         public IActionResult ProjectSetupList()
         {
             return View();

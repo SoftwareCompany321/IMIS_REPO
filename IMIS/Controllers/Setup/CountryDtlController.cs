@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/CountryDtllsit.html")]
+        [Route("/CountryDtllist.html")]
         public IActionResult CountryDtlList()
         {
             return View();

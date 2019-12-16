@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OrganizationTypelsit.html")]
+        [Route("/OrganizationTypelist.html")]
         public IActionResult OrganizationTypeList()
         {
             return View();

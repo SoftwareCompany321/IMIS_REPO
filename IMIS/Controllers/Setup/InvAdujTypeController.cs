@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/InvAdujTypelsit.html")]
+        [Route("/InvAdujTypelist.html")]
         public IActionResult InvAdujTypeList()
         {
             return View();

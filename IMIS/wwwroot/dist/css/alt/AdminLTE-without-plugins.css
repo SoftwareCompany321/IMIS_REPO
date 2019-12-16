@@ -815,10 +815,10 @@ a:focus {
 .control-sidebar-dark {
   color: #b8c7ce;
 }
-.control-sidebar-dark,
-.control-sidebar-dark + .control-sidebar-bg {
-  background: #222d32;
-}
+    .control-sidebar-dark,
+    .control-sidebar-dark + .control-sidebar-bg {
+        background: #367fa9;
+    }
 .control-sidebar-dark .nav-tabs.control-sidebar-tabs {
   border-bottom: #1c2529;
 }
@@ -840,13 +840,13 @@ a:focus {
 .control-sidebar-dark .nav-tabs.control-sidebar-tabs > li > a:hover {
   color: #fff;
 }
-.control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a,
-.control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a:hover,
-.control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a:focus,
-.control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a:active {
-  background: #222d32;
-  color: #fff;
-}
+    .control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a,
+    .control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a:hover,
+    .control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a:focus,
+    .control-sidebar-dark .nav-tabs.control-sidebar-tabs > li.active > a:active {
+        background: #367fa9;
+        color: #fff;
+    }
 .control-sidebar-dark .control-sidebar-heading,
 .control-sidebar-dark .control-sidebar-subheading {
   color: #fff;
@@ -2813,18 +2813,18 @@ table.text-center th {
   transform: translate(0, 0);
 }
 .direct-chat-contacts {
-  -webkit-transform: translate(101%, 0);
-  -ms-transform: translate(101%, 0);
-  -o-transform: translate(101%, 0);
-  transform: translate(101%, 0);
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  height: 250px;
-  width: 100%;
-  background: #222d32;
-  color: #fff;
-  overflow: auto;
+    -webkit-transform: translate(101%, 0);
+    -ms-transform: translate(101%, 0);
+    -o-transform: translate(101%, 0);
+    transform: translate(101%, 0);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 250px;
+    width: 100%;
+    background: #367fa9;
+    color: #fff;
+    overflow: auto;
 }
 .contacts-list > li {
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
