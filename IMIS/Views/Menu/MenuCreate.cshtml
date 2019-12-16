@@ -28,7 +28,7 @@
                 <div class="form-group is-empty">
                     <label for="region" class="col-md-2 control-label">Nep Name<span class="requried">*</span></label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" asp-for="NepName">
+                        <input type="text" class="form-control" id="nep" asp-for="NepName">
                     </div>
                 </div>
                 <div class="form-group is-empty">
@@ -48,4 +48,11 @@
     </div>
 
 </div>
-
+<script src="~/js/nepali.js"></script>
+<script>
+ $(document).ready(function(){
+     $("input").keyup(function (e) {  
+         setUnicode(e, $(this).val());
+   });
+});
+</script>
