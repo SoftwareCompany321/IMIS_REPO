@@ -1,0 +1,48 @@
+﻿@model IMIS_Service.ViewModel.MenuVM
+@{
+    ViewData["Title"] = "MenuEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="well">
+            <form method="post" asp-action="MenuEdit">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="code" class="col-md-2 control-label">Parent Menu <span class="requried">*</span></label>
+                    <div class="col-md-7">
+                        <select asp-for="ParentMenuId" asp-items="@ViewData["ParentMenu"] as SelectList" class="form-control">
+                            <option value="0">--Select Menu--</option>
+                        </select>
+                    </div>
+                </div> 
+                <div class="form-group is-empty">
+                    <label for="region" class="col-md-2 control-label">Child Menu Name<span class="requried">*</span></label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" asp-for="DisplayName">
+                    </div>
+                </div>
+                <div class="form-group is-empty">
+                    <label for="region" class="col-md-2 control-label">Nep Name<span class="requried">*</span></label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" asp-for="NepName">
+                    </div>
+                </div>
+                <div class="form-group is-empty">
+                    <label for="short-name" class="col-md-2 control-label">Menu Url</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" asp-for="MenuUrl">
+                    </div>
+                </div>
+                <div class="form-group form-action">
+                    <div class="col-md-10 col-md-offset-2">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-default">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
