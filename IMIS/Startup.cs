@@ -20,6 +20,7 @@ using IMIS_Service.IMenuService;
 using IMIS_Service.IAccountHead;
 using IMIS_Service.GlobalFunction;
 using IMIS_Service.Setup.IItemUnit;
+using IMIS_Service.Setup.IItemBrand;
 
 namespace IMIS
 {
@@ -95,6 +96,7 @@ namespace IMIS
             services.AddScoped<GlobalFunction>();
             services.AddScoped<IAccountHead, AccountHead>();
             services.AddScoped<IItemUnit, ItemUnit>();
+            services.AddScoped<IItemBrand, ItemBrand>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

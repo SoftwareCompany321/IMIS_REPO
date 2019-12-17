@@ -25,7 +25,7 @@
                             {
                                 var menu = mainlist[i].MenuSubMenu[j].MenuUrl;
 
-                                <li>
+                                <li id="@mainlist[i].MenuSubMenu[j].Id" class="actMenChild">
                                     <a href="~/@Url.Content(mainlist[i].MenuSubMenu[j].MenuUrl)">
                                         <i class="@mainlist[i].MenuSubMenu[j].Icon"></i>@mainlist[i].MenuSubMenu[j].DisplayName
                                     </a>
@@ -39,3 +39,17 @@
         }
     }
 }
+
+@*<script>
+
+     $('.actMenChild').on('click', function () {
+            let this_id = $(this).attr('id');
+             localStorage.setItem("actMenChild", this_id);
+          $(this).addClass("active");
+        });
+        $('.actMen').on('click', function () {
+            let this_id = $(this).attr('id');
+            localStorage.setItem("activeParent", this_id);
+        });
+
+</script>*@
