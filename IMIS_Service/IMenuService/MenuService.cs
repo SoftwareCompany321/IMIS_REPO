@@ -17,6 +17,8 @@ namespace IMIS_Service.IMenuService
         Task<IList<MenuVM>> menuVM();
         Task<DataTableResponse> MenuDataTabel(DataTableVm model);
 
+        Task<MenuVM> ViewEdit(int id);
+
     }
 
     public class MenuService : IMenuService, IDisposable
@@ -40,16 +42,18 @@ namespace IMIS_Service.IMenuService
                                where m.ParentMenuId == 0
                                select new MenuVM
                                {
+                                   Id = m.Id,
                                    DisplayName = m.DisplayName,
                                    MenuUrl = m.MenuUrl,
-                                   NepName=m.DisplayNepName,
+                                   NepName = m.DisplayNepName,
                                    MenuSubMenu = (from s in _db.ImisMenu
                                                   where s.ParentMenuId == m.Id
                                                   select new MenuSubMenuVM
                                                   {
+                                                      Id = s.Id,
                                                       DisplayName = s.DisplayName,
                                                       MenuUrl = s.MenuUrl,
-                                                      NepName=s.DisplayNepName
+                                                      NepName = s.DisplayNepName
                                                   }).ToList()
                                }).ToListAsync());
             }
@@ -74,9 +78,9 @@ namespace IMIS_Service.IMenuService
                 MenuOrder = mspMenu.MenuOrder,
                 ParentMenuId = mspMenu.ParentMenuId,
                 Icon = mspMenu.Icon,
-                DisplayNepName=mspMenu.NepName,
+                DisplayNepName = mspMenu.NepName,
                 Visible = mspMenu.Visible,
-                MenuUrl=mspMenu.MenuUrl
+                MenuUrl = mspMenu.MenuUrl
             };
             try
             {
@@ -84,7 +88,7 @@ namespace IMIS_Service.IMenuService
                 if (mspMenu.Id == 0)
                 {
                     //int count = await _db.ImisMenu.CountAsync();
-                   // add.Id = count + 1;
+                    // add.Id = count + 1;
                     add.CreatedAt = DateTime.Now;
                     add.CreatedBy = _global.getUserId();
                     await _db.AddAsync(add);
@@ -159,6 +163,33 @@ namespace IMIS_Service.IMenuService
             if (_db != null)
             {
                 _db.Dispose();
+            }
+        }
+
+        public async Task<MenuVM> ViewEdit(int id)
+        {
+            try
+            {
+                var data = await _db.ImisMenu.Where(x => x.Id == id).FirstOrDefaultAsync();
+                if (data != null)
+                {
+                    return (new MenuVM
+                    {
+                        Id = data.Id,
+                        MenuName = data.MenuName,
+                        DisplayName = data.DisplayName,
+                        NepName = data.DisplayNepName,
+                        MenuUrl = data.MenuUrl,
+                        ParentMenuId = data.ParentMenuId
+
+                    });
+                }
+                return (new MenuVM());
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

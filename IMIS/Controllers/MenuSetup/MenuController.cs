@@ -72,5 +72,33 @@ namespace IMIS.Controllers.MenuSetup
         }
 
 
+        [HttpGet]
+        [Route("/{id}/MenuEdit.html")]
+        public async Task<IActionResult> MenuEdit(int id)
+        {
+            ViewData["ParentMenu"] = _global.GetAllParentMenu(); 
+            return View(await _menuService.ViewEdit(id));
+
+        }
+
+        [HttpPost]
+        [Route("/{id}/MenuEdit.html")] 
+        public async Task<IActionResult> MenuEdit(MenuVM model)
+        {
+            var result = await _menuService.MenuAddEdit(model);
+
+            if (result.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/menudatafetchlist.html");
+            }
+            return View();
+
+        }
+
+
+
+
     }
 }

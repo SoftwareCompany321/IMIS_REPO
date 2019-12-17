@@ -1,14 +1,13 @@
 ﻿@model IMIS_Service.ViewModel.MenuVM
-
 @{
-    ViewData["Title"] = "MenuCreate";
+    ViewData["Title"] = "MenuEdit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="row">
     <div class="col-md-8">
         <div class="well">
-            <form method="post" asp-action="MenuCreate">
+            <form method="post" asp-action="MenuEdit">
                 @Html.AntiForgeryToken()
                 <div class="form-group">
                     <label for="code" class="col-md-2 control-label">Parent Menu <span class="requried">*</span></label>
@@ -17,8 +16,7 @@
                             <option value="0">--Select Menu--</option>
                         </select>
                     </div>
-                </div>
-
+                </div> 
                 <div class="form-group is-empty">
                     <label for="region" class="col-md-2 control-label">Child Menu Name<span class="requried">*</span></label>
                     <div class="col-md-9">
@@ -26,7 +24,7 @@
                     </div>
                 </div>
                 <div class="form-group is-empty">
-                    <label for="region" class="col-md-2 control-label">Nep Name<span class="requried" >*</span></label>
+                    <label for="region" class="col-md-2 control-label">Nep Name<span class="requried">*</span></label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" asp-for="NepName">
                     </div>
@@ -48,11 +46,3 @@
     </div>
 
 </div>
-<script src="~/js/nepali.js"></script>
-<script>
- $(document).ready(function(){
-     $("input").keyup(function (e) {  
-         setUnicode(e, $(this).val());
-   });
-});
-</script>
