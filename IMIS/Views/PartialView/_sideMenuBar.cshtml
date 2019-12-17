@@ -1,5 +1,5 @@
 ﻿@inject IMIS_Service.IMenuService.MenuService _menuService
-
+@using IMIS_CORE.Core;
 @{
     var mainlist = await _menuService.menuVM();
 
@@ -7,9 +7,10 @@
     {
         for (int i = 0; i < mainlist.Count; i++)
         {
+            string dispalyName = Utils.ToggleLanguage(mainlist[i].DisplayName, mainlist[i].NepName);
             <li class="treeview">
                 <a>
-                    <i class="@mainlist[i].Icon"></i>@mainlist[i].DisplayName
+                    <i class="@mainlist[i].Icon"></i>@dispalyName
 
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -27,7 +28,7 @@
 
                                 <li>
                                     <a href="~/@Url.Content(mainlist[i].MenuSubMenu[j].MenuUrl)">
-                                        <i class="@mainlist[i].MenuSubMenu[j].Icon"></i>@mainlist[i].MenuSubMenu[j].DisplayName
+                                        <i class="@mainlist[i].MenuSubMenu[j].Icon"></i>@Utils.ToggleLanguage(mainlist[i].MenuSubMenu[j].DisplayName,mainlist[i].MenuSubMenu[j].NepName)
                                     </a>
                                 </li>
 
