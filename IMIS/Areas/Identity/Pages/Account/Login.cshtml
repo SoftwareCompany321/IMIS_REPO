@@ -19,10 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/main.css" rel="stylesheet" />
     <link href="~/css/util.css" rel="stylesheet" />
     <link href="~/css/admin.css" rel="stylesheet" />
@@ -43,7 +41,7 @@
                                     <div class="well">
                                         <div class="brand">
                                             <a class="platform-name" href="javascript:;">
-                                                <figure><img src="~/images/imis-logo.gif" alt="IMIS Logo"></figure>
+                                                <figure><img src="~/images/GovLogo.png" alt="IMIS Logo"></figure>
                                                 <span>IMIS Service Management</span>
                                             </a>
                                             <div asp-validation-summary="All" class="text-danger"></div>
@@ -53,35 +51,33 @@
                                             <form id="account" method="post">
                                                 <div class="form-group">
                                                     <div class="col-md-9 centered">
-                                                        <label>@Utils.GetLabel("EMAIL")</label>
-                                                        <input asp-for="Input.Email" class="form-control" />
+                                                        @*<label>@Utils.GetLabel("EMAIL")</label>*@
+                                                        <input asp-for="Input.Email" class="form-control" placeholder="@Utils.GetLabel("EMAIL")" />
                                                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <div class="col-md-9 centered">
-                                                        <label asp-for="Input.Password"></label>
-                                                        <input asp-for="Input.Password" class="form-control" />
+                                                        <input asp-for="Input.Password" class="form-control" placeholder="@Utils.GetLabel("Password")" />
                                                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                                                     </div>
                                                 </div>
-                                                <div class="form-group">
-                                                    <div class="checkbox">
-                                                        <label asp-for="Input.RememberMe">
-                                                            <input asp-for="Input.RememberMe" />
-                                                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                                                        </label>
-                                                    </div>
-                                                </div>
+                                                @*<div class="form-group">
+            <div class="checkbox">
+                <label asp-for="Input.RememberMe">
+                    <input asp-for="Input.RememberMe" />
+                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                </label>
+            </div>
+        </div>*@
                                                 <div class="form-group form-action">
                                                     <div class="col-md-9 centered">
-
                                                         <button type="submit" class="btn btn-primary">Login</button>
-                                                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-
+                                                        <a id="forgot-password" asp-page="./ForgotPassword" class="btn btn-default pull-right">Forgot Password?</a>
                                                     </div>
                                                 </div>
+                                               
                                             </form>
                                         </div>
                                     </div>
