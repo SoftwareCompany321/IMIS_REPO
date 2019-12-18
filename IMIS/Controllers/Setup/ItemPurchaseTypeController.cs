@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/ItemPurchaseTypeCreate.html")]
-        public IActionResult ItemPurchaseTypeCreate(ItemPurchaseTypeVM model)
+        public async Task<IActionResult> ItemPurchaseTypeCreate(ItemPurchaseTypeVM model)
         {
+            var response = await _ItemPurchaseType.AddEditSave(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemCategorylist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/{id}ItemPurchaseTypeEdit.html")]
+        public async Task<IActionResult> ItemPurchaseTypeEdit(int id)
+        {
+            return View(await _ItemPurchaseType.ViewEdit(id));
+        }
+
+        [HttpPost]
+        [Route("/ItemPurchaseTypeEdit.html")]
+        public async Task<IActionResult> ItemPurchaseTypeEdit(ItemPurchaseTypeVM model)
+        {
+            var response = await _ItemPurchaseType.AddEditSave(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Update";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemCategorylist.html");
+            }
             return View();
         }
     }
