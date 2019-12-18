@@ -1,4 +1,4 @@
-﻿
+﻿@using IMIS_CORE.Core
 @{
     ViewData["Title"] = "ItemUnitList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -12,7 +12,7 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">Item Unit List</a> </li>
+                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Item Unit List")</a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -20,7 +20,7 @@
                     <!-- tab 1: region starts -->
                     <div class="tab-pane fade active in" id="region-tab">
                         <!-- generic add button for all the "add" forms | Add region -->
-                        <a href="@Url.Content("~/ItemUnitCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                        <a href="@Url.Content("~/ItemUnitCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">@Utils.GetLabel("add")</i></a>
                         <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
                         @if (ViewBag.Message != null || ViewBag.Message == "")
                         {
@@ -33,20 +33,10 @@
                             <div class="well">
                                 <div class="form-group">
                                     <div class="col-sm-3 ">
-                                        <select name="regions" id="region" class="form-control">
-                                            <option value="0">Select Region</option>
-                                            <option value="1">Region One</option>
-                                            <option value="2">Region Two</option>
-                                            <option value="3">Region Three</option>
-                                        </select>
+                                        <input type="text" class="form-control" placeholder=@Utils.GetLabel("Name")>
                                     </div>
                                     <div class="col-sm-3">
-                                        <select name="constituency" id="constituency" class="form-control">
-                                            <option value="0">Select Constituency</option>
-                                            <option value="1">Constituency One</option>
-                                            <option value="2">Constituency Two</option>
-                                            <option value="3">Constituency Three</option>
-                                        </select>
+                                        <input type="text" class="form-control" placeholder=@Utils.GetLabel("Name(Nepali)")>
                                     </div>
                                     <div class="col-sm-1 pull-right"><a href="#" class="btn btn-default form-modal-call"><i class="material-icons">search</i></a></div>
                                 </div>
@@ -56,11 +46,11 @@
                             <table id="menu" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="10px">Unit Id </th>
-                                        <th width="10px">Name(Nep)</th>
-                                        <th width="10px">Name(Eng)</th>
-                                        <th width="10px">Small Unit</th> 
-                                        <th>&nbsp;</th>
+                                        <th>@Utils.GetLabel("Unit Id") </th>
+                                        <th>@Utils.GetLabel("Name(Nep)")</th>
+                                        <th>@Utils.GetLabel("Name(Eng)")</th>
+                                        <th>@Utils.GetLabel("Small Unit")</th>
+                                        <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
 
@@ -92,7 +82,7 @@
             "bProcessing": true,
             "processing": true,
             "serverSide": true,
-            "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
+            "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-3"p>><"clear">',
             'searching': true,//recordsFiltered
             "ajax": {
                 "url": "@Url.Content("~/ItemUnitFetchData.html")", "type": "GET", "data": function (d) {

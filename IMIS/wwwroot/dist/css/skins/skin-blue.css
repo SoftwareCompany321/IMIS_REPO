@@ -67,7 +67,7 @@
 }
 .skin-blue .sidebar-menu > li.header {
   color: #4b646f;
-  background: #1a2226;
+  background: #f0ad4e;
 }
 .skin-blue .sidebar-menu > li > a {
   border-left: 3px solid transparent;
@@ -76,7 +76,7 @@
 .skin-blue .sidebar-menu > li.active > a,
 .skin-blue .sidebar-menu > li.menu-open > a {
   color: #ffffff;
-  background: #1e282c;
+  background: #f0ad4e;
 }
 .skin-blue .sidebar-menu > li.active > a {
   border-left-color: #3c8dbc;

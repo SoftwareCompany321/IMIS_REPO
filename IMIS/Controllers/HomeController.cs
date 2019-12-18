@@ -39,7 +39,9 @@ namespace IMIS.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public ActionResult ChangeStatus(string Languageset)
+        [HttpGet]
+        [Route("{languageset}/ChangeStatus.html")]
+        public async Task<IActionResult> ChangeStatus(string Languageset)
         {
             if (Languageset == "English")
             {
@@ -47,18 +49,18 @@ namespace IMIS.Controllers
             }
             else
             {
-                AppHttpContext.Current.Session.SetString("LanguageSetting", "English"); 
+                AppHttpContext.Current.Session.SetString("LanguageSetting", "English");
             }
             //string url = Request.Headers["Referer"].ToString();
-            string url = Request.HttpContext.Request.Path ;
-            //string url = HttpContext.Request.UrlReferrer.AbsoluteUri;
-            if (url != null)
-                return Redirect(url.ToString());
-            //else if (url.ToString().Segments.Length >= 3)
-            //    return RedirectToAction(Request.UrlReferrer.Segments[2].Replace("/", ""), Request.UrlReferrer.Segments[1].Replace("/", ""));
-            else
-                return RedirectToAction("Dashboard", "Dashboard");
-            //return RedirectToAction("Dashboard", "Dashboard");
+            string url = Request.Headers["Referer"].ToString();
+            string returnUrl = string.Empty;
+            Uri baseUri = new Uri(url);
+            if (baseUri.LocalPath != null)
+                returnUrl = baseUri.LocalPath;
+
+             returnUrl = returnUrl ?? Url.Content("~/");
+            return LocalRedirect(returnUrl);
+
         }
 
     }

@@ -318,9 +318,10 @@
                             @{ string lang = "English";
                                 Byte[] binForm;
                                 if (HttpContextAccessor.HttpContext.Session.TryGetValue("LanguageSetting", out binForm))
-                                    lang = binForm.ConvertToString();
+                                    lang = System.Text.Encoding.UTF8.GetString(binForm);  
+                                var langurl ="/" + lang + "/ChangeStatus.html";
                             }
-                             <a href='@Url.Action("ChangeStatus", "Home")?Languageset= @lang' class="dropdown-toggle" data-toggle="dropdown">
+                              <a href='@langurl' >
 
                                 <span class="hidden-xs">@(Utils.Changelanguage())</span>
                             </a>

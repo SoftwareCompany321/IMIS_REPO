@@ -11,20 +11,20 @@
         <div class="container-fluid">
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#sub11">Create Item Unit</a> </li>
+                    <li class="active"><a href="#sub11">@Utils.GetLabel("Create Item Unit")</a> </li>
 
                 </ul>
                 <div class="tab-content">
                     <a asp-action="ItemUnitList" asp-controller="ItemUnit" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
                     <div class="tab-pane fade active in" id="sub111">
-                        <h2 class="form-title">Add Inv Item</h2>
+                        <h2 class="form-title">@Utils.GetLabel("Add Item Unit")</h2>
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="well">
                                     <form method="post" asp-action="ItemUnitCreate">
                                         @Html.AntiForgeryToken()
                                         <div class="form-group is-empty">
-                                            <label for="region" class="col-md-2 control-label">Description(English)<span class="requried">*</span></label>
+                                            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Description(English)")<span class="requried">*</span></label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" asp-for="DescEn">
                                             </div>
@@ -32,19 +32,19 @@
                                         <div class="form-group is-empty">
                                             <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Description(Nepali)")  <span class="requried">*</span></label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" asp-for="DescNp">
+                                                <input type="text" class="form-control" asp-for="DescNp" onkeypress = "return setUnicode(event,this);">
                                             </div>
                                         </div>
                                         <div class="form-group is-empty">
-                                            <label for="short-name" class="col-md-2 control-label">Smallest Unit No</label>
+                                            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Smallest Unit No")</label>
                                             <div class="col-md-9">
                                                 <input type="text" class="form-control" asp-for="NoOfUnits">
                                             </div>
                                         </div>
                                         <div class="form-group form-action">
                                             <div class="col-md-10 col-md-offset-2">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <button type="button" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">@Utils.GetLabel("Submit")</button>
+                                                <button type="button" class="btn btn-default">@Utils.GetLabel("Cancel")</button>
                                             </div>
                                         </div>
                                     </form>

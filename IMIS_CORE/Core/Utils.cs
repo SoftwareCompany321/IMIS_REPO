@@ -250,7 +250,7 @@ namespace IMIS_CORE.Core
                 DataTable dtUnicode = null;
                 Byte[] binForm;
                 if (AppHttpContext.Current.Session.TryGetValue("LanguageSetting", out binForm))
-                    sessionLanguage = binForm.ConvertToString();
+                    sessionLanguage = System.Text.Encoding.UTF8.GetString(binForm);  
                 Byte[] retValue;
                 if (AppHttpContext.Current.Session.TryGetValue("UnicodeWords", out retValue))
                     dtUnicode = (DataTable)ByteArrayToObject(retValue);
@@ -299,7 +299,7 @@ namespace IMIS_CORE.Core
             labelName = labelName.ToUpper();
             Byte[] binForm;
             if (AppHttpContext.Current.Session.TryGetValue("LanguageSetting", out binForm))
-                sessionLanguage = binForm.ConvertToString();
+                sessionLanguage = System.Text.Encoding.UTF8.GetString(binForm);  
             Byte[] retValue;
             if (AppHttpContext.Current.Session.TryGetValue("UnicodeWords", out retValue))
                 dtUnicode = (DataTable)ByteArrayToObject(retValue);
@@ -326,7 +326,7 @@ namespace IMIS_CORE.Core
             string sessionLanguage = "";
             Byte[] binForm;
             if (AppHttpContext.Current.Session.TryGetValue("LanguageSetting", out binForm))
-                sessionLanguage = binForm.ConvertToString();
+                sessionLanguage = System.Text.Encoding.UTF8.GetString(binForm);  
             if (sessionLanguage == "English")
             {
                 return DESC_ENG;
@@ -347,7 +347,7 @@ namespace IMIS_CORE.Core
             string sessionLanguage = "English";
             Byte[] binForm;
             if (AppHttpContext.Current.Session.TryGetValue("LanguageSetting", out binForm))
-                sessionLanguage = binForm.ConvertToString();
+                sessionLanguage = System.Text.Encoding.UTF8.GetString(binForm);  
             if (sessionLanguage == "English")
             {
                 strLabel = GetAlternateLabel("In Nepali");
