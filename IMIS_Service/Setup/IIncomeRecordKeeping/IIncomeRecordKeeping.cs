@@ -67,7 +67,7 @@ namespace IMIS_Service.Setup.IIncomeRecordKeeping
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return new DataTableResponse
                 {

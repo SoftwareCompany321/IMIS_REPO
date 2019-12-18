@@ -69,7 +69,7 @@ namespace IMIS_Service.Setup.ISupplierListingDesc
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return new DataTableResponse
                 {

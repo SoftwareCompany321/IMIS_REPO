@@ -55,7 +55,7 @@ namespace IMIS_Service.Setup.IItemUnit
                 await _db.SaveChangesAsync(true);
                 return ("success", 0);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
 
                 throw;
@@ -111,7 +111,7 @@ namespace IMIS_Service.Setup.IItemUnit
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return new DataTableResponse
                 {

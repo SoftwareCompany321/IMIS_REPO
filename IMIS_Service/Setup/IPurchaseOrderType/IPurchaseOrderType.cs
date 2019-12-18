@@ -72,7 +72,7 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return new DataTableResponse
                 {

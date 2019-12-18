@@ -18,6 +18,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\ExceptionHandler\ExceptionHandler.csproj" />
     <ProjectReference Include="..\IMIS_CORE\IMIS_CORE.csproj" />
     <ProjectReference Include="..\IMIS_Service\IMIS_Service.csproj" />
   </ItemGroup>
@@ -26,6 +27,7 @@
   <ItemGroup>
     <Folder Include="Controllers\EmployeeManagement\" />
     <Folder Include="Controllers\Security\" />
+    <Folder Include="logs\" />
   </ItemGroup>
 
 </Project>

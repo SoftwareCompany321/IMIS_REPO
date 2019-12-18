@@ -107,7 +107,7 @@ namespace IMIS_Service.IMenuService
                 }
                 return ("success", menuId);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return ("fail", 0);
 

@@ -74,7 +74,7 @@ namespace IMIS_Service.Setup.IReceiptDistribution
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return new DataTableResponse
                 {

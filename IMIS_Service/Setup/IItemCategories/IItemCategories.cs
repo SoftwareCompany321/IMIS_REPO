@@ -72,7 +72,7 @@ namespace IMIS_Service.Setup.IItemCategories
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return new DataTableResponse
                 {

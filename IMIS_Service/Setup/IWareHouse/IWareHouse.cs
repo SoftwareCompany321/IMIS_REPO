@@ -70,7 +70,7 @@ namespace IMIS_Service.Setup.IWareHouse
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return new DataTableResponse
                 {

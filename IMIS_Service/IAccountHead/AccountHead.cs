@@ -77,7 +77,7 @@ namespace IMIS_Service.IAccountHead
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new DataTableResponse
                 {

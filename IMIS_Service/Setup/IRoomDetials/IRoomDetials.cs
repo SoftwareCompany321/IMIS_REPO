@@ -76,7 +76,7 @@ namespace IMIS_Service.Setup.IRoomDetials
 
 
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return new DataTableResponse
                 {
