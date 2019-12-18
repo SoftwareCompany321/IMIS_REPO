@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/ItemCategoryCreate.html")]
-        public IActionResult ItemCategoryCreate(ItemCategoriesVM model)
+        public async Task<IActionResult> ItemCategoryCreate(ItemCategoriesVM model)
         {
+            var response = await _ItemCategory.AddEditItemCategories(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemCategorylist.html");
+            }
+            return View(); 
+        }
+
+        [HttpGet]
+        [Route("/ItemCategoryEdit.html")]
+        public async Task<IActionResult> ItemCategoryEdit(decimal id)
+        {
+            return View(await _ItemCategory.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/ItemCategoryEdit.html")]
+        public async Task<IActionResult> ItemCategoryEdit(ItemCategoriesVM model, int id)
+        {
+            var response = await _ItemCategory.AddEditItemCategories(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemCategorylist.html");
+            }
             return View();
         }
     }

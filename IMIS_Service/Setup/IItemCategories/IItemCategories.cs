@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,10 @@ namespace IMIS_Service.Setup.IItemCategories
     public interface IItemCategories
     {
         Task<DataTableResponse> ItemCategoriesFetchData(DataTableVm model);
+
+        Task<(string message, int id)> AddEditItemCategories(ItemCategoriesVM model);
+
+        Task<ItemCategoriesVM> ViewEdit(decimal Id);
     }
     public class ItemCategories : IItemCategories
     {
@@ -20,6 +26,43 @@ namespace IMIS_Service.Setup.IItemCategories
         {
             _db = db;
         }
+
+        public async Task<(string message, int id)> AddEditItemCategories(ItemCategoriesVM model)
+        {
+            try
+            {
+                var item = new InvItemCategory()
+                {
+                    Id=model.Id,
+                    NameEn=model.NameEn,
+                    NameNp=model.NameNp,
+                    Code=model.Code,
+                    Isexp=model.Isexp,
+                    DepreciationMax=model.DepreciationMax,
+                    DepreciationMin=model.DepreciationMin,   
+                };
+                if (model.Id == 0)
+                {
+                    int id = await _db.InvItemCategory.CountAsync();
+                    item.Id = id + 1;
+                    _db.InvItemCategory.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<DataTableResponse> ItemCategoriesFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
@@ -82,6 +125,37 @@ namespace IMIS_Service.Setup.IItemCategories
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<ItemCategoriesVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.InvItemCategory.Where(x => x.Id == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new ItemCategoriesVM()
+                    {
+                        Id=response.Id,
+                        Code=response.Code,
+                        DepreciationMax=response.DepreciationMax,
+                        DepreciationMin=response.DepreciationMin,
+                        Isexp=response.Isexp,
+                        NameEn=response.NameEn,
+                        NameNp=response.NameNp, 
+                        
+                    });
+                }
+                else
+                {
+                    return new ItemCategoriesVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
