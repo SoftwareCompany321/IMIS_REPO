@@ -1,17 +1,23 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IMIS_DataEntity.EntityClass;
 
 namespace IMIS_Service.Setup.IItemBrand
 {
     public interface IItemBrand
     {
         Task<DataTableResponse> ItemBrandFetchData(DataTableVm model);
+
+        Task<(string message, int id)> AddEdit(ItemBrandVM model);
+
+        Task<ItemBrandVM> ViewEdit(decimal braandId);
     }
     public class ItemBrand : IItemBrand
     {
@@ -20,6 +26,39 @@ namespace IMIS_Service.Setup.IItemBrand
         {
             _db = db;
         }
+
+        public async Task<(string message, int id)> AddEdit(ItemBrandVM model)
+        {
+            try
+            {
+                var InvBrand = new InvBrand()
+                {
+                   BrandId=model.BrandId,
+                   NameEn=model.NameEn,
+                   NameNp=model.NameNp,
+                   IsActive="Y"
+                };
+                if (model.BrandId == 0)
+                {
+                    int count = await _db.InvBrand.CountAsync();
+                    InvBrand.BrandId = count + 1;
+                    await _db.AddAsync(InvBrand);
+                } 
+                else
+                {
+                    _db.Entry(InvBrand).State = EntityState.Modified;
+                } 
+                await _db.SaveChangesAsync();
+
+                return ("success", 0);
+            } 
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public async Task<DataTableResponse> ItemBrandFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
@@ -82,6 +121,34 @@ namespace IMIS_Service.Setup.IItemBrand
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<ItemBrandVM> ViewEdit(decimal braandId)
+        {
+            try
+            {
+                var response = await _db.InvBrand.Where(x => x.BrandId == braandId).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new ItemBrandVM()
+                    {
+                        BrandId = response.BrandId,
+                        IsActive = response.IsActive,
+                        NameEn = response.NameEn,
+                        NameNp = response.NameNp
+                    });
+                }
+                else
+                {
+                    return new ItemBrandVM();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

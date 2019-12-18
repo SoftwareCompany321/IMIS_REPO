@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/ItemBrandCreate.html")]
-        public IActionResult ItemBrandCreate(ItemBrandVM model)
+        public async Task<IActionResult> ItemBrandCreate(ItemBrandVM model)
         {
+            var response = await _ItemBrand.AddEdit(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemBrandlsit.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/{id}/ItemBrandEdit.html")]
+        public async Task<IActionResult> ItemBrandEdit(decimal id)
+        {
+            return View(await _ItemBrand.ViewEdit(id));
+        }
+
+        [HttpPost]
+        [Route("/{id}/ItemBrandEdit.html")]
+        public async Task<IActionResult> ItemBrandEdit(ItemBrandVM model)
+        {
+            var response = await _ItemBrand.AddEdit(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemBrandlsit.html");
+            }
             return View();
         }
     }
