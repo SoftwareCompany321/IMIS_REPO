@@ -5,24 +5,26 @@ using System.Text;
 namespace IMIS_Service.ViewModel
 {
     public class ItemCategoriesVM
-    {
-        public decimal AccId { get; set; }
+    { 
+        public decimal Id { get; set; }
+        public string NameNp { get; set; }
+        public string NameEn { get; set; }
+        public decimal? ParentId { get; set; }
+        public decimal? GrpLevel { get; set; }
+        public decimal? IsHeader { get; set; }
+        public short? Isexp { get; set; }
+        public short? Islast { get; set; }
         public string Code { get; set; }
-        public string NepName { get; set; }
-        public string EngName { get; set; }
-        public decimal? ParentAccId { get; set; }
-        public int? GrpLevel { get; set; }
-        public string IsFixed { get; set; }
-        public string IsTransactable { get; set; }
-        public string IsBudgetable { get; set; }
-        public string DispCode { get; set; }
-        public string DispName { get; set; }
-        public string AccType { get; set; }
-        public decimal? TypeId { get; set; }
-        public string AccCode { get; set; }
-        public decimal? SubModuleId { get; set; }
-        public string FiscalYear { get; set; }
-        public string IsHide { get; set; }
-        public decimal? Iscapitalcurrent { get; set; }
+        public decimal? Unit { get; set; }
+        public decimal? Minl { get; set; }
+        public decimal? Maxl { get; set; }
+        public decimal? Rminl { get; set; }
+        public decimal? Rmaxl { get; set; }
+        public double? DepreciationPer { get; set; }
+        public double? DepreciationMin { get; set; }
+        public double? DepreciationMax { get; set; }
+        public string Remarks { get; set; }
+        public decimal? ItemId { get; set; }
+         
     }
 }
