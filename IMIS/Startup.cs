@@ -21,6 +21,20 @@ using IMIS_Service.IAccountHead;
 using IMIS_Service.GlobalFunction;
 using IMIS_Service.Setup.IItemUnit;
 using IMIS_Service.Setup.IItemBrand;
+using IMIS_Service.Setup.IItemCategories;
+using IMIS_Service.Setup.IItemPurchaseType;
+using IMIS_Service.Setup.IItemSpecification;
+using IMIS_Service.Setup.IItemOtherSetupType;
+using IMIS_Service.Setup.IOrganizationType;
+using IMIS_Service.Setup.IRoomDetials;
+using IMIS_Service.Setup.IWareHouse;
+using IMIS_Service.Setup.IDepartment;
+using IMIS_Service.Setup.IProjectSetup;
+using IMIS_Service.Setup.IItemMaster;
+using IMIS_Service.Setup.IIncomeRecordKeeping;
+using IMIS_Service.Setup.IReceiptDistribution;
+using IMIS_Service.Setup.ITaxRate;
+using IMIS_Service.Setup.IItemPurMasterPlan;
 
 namespace IMIS
 {
@@ -97,6 +111,21 @@ namespace IMIS
             services.AddScoped<IAccountHead, AccountHead>();
             services.AddScoped<IItemUnit, ItemUnit>();
             services.AddScoped<IItemBrand, ItemBrand>();
+            services.AddScoped<IItemCategories, ItemCategories>();
+            services.AddScoped<IItemPurchaseType, ItemPurchaseType>();
+            services.AddScoped<IItemSpecification, ItemSpecification>();
+            services.AddScoped<IItemOtherSetupType, ItemOtherSetupType>();
+            services.AddScoped<IOrganizationType, OrganizationType>();
+            services.AddScoped<IRoomDetials, RoomDetials>();
+            services.AddScoped<IWareHouse, WareHouse>();
+            services.AddScoped<IDepartment, Department>();
+            services.AddScoped<IProjectSetup, ProjectSetup>();
+            services.AddScoped<IItemMaster, ItemMaster>();
+            services.AddScoped<IIncomeRecordKeeping, IncomeRecordKeeping>();
+            services.AddScoped<IReceiptDistribution, ReceiptDistribution>();
+            services.AddScoped<ITaxRate, TaxRate>();
+            services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

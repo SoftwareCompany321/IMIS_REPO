@@ -60,7 +60,7 @@ namespace IMIS.Controllers.Setup
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/ItemBrandlsit.html");
+                return Redirect("~/ItemBrandlist.html");
             }
             return View();
         }
@@ -81,7 +81,7 @@ namespace IMIS.Controllers.Setup
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/ItemBrandlsit.html");
+                return Redirect("~/ItemBrandlist.html");
             }
             return View();
         }

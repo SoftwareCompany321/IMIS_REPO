@@ -1,41 +1,46 @@
-﻿@model IMIS_Service.ViewModel.ItemCategoriesVM
+﻿@using IMIS_CORE.Core
+@model IMIS_Service.ViewModel.ItemCategoriesVM
 @{
-    ViewData["Title"] = "ItemCategoryCreate";
+    ViewData["Title"] = Utils.GetLabel("ItemCategoryCreate");
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-    <body>
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="tab-lists-wrapper boxed parentTabs">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#sub11">Create Item Category</a> </li>
+<body>
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="tab-lists-wrapper boxed parentTabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#sub11">@Utils.GetLabel("Create Item Category")</a> </li>
 
-                    </ul>
-                    <div class="tab-content">
-                        <a asp-action="ItemCategoryList" asp-controller="ItemCategory" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
-                        <div class="tab-pane fade active in" id="sub111">
-                            <h2 class="form-title">Item Brand Entry From</h2>
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <div class="well">
-                                        <form method="post" asp-action="ItemCategoryCreate" asp-controller="ItemCategory">
-                                            @Html.AntiForgeryToken() 
-                                            @await Html.PartialAsync("~/Views/ItemCategory/_partialItemCaterory.cshtml",Model)
-                                            <div class="form-group form-action">
-                                                <div class="col-md-10 col-md-offset-2">
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                    <button type="button" class="btn btn-default">Cancel</button>
+</ul>
+                <div class="tab-content">
+                    <a asp-action="ItemCategoryList" asp-controller="ItemCategory" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
+                    <div class="tab-pane fade active in" id="sub111">
+                        <h2 class="form-title">
+                            @Utils.GetLabel("Add Item Category")</h2>
+
+                                                <div class="row">
+                                                    <div class="col-md-8">
+                                                        <div class="well">
+                                                            <form method="post" asp-action="ItemCategoryCreate" asp-controller="ItemCategory">
+                                                                @Html.AntiForgeryToken()
+                                                                @await Html.PartialAsync("~/Views/ItemCategory/_partialItemCaterory.cshtml", Model)
+                                                                <div class="form-group form-action">
+                                                                    <div class="col-md-10 col-md-offset-2">
+                                                                        <button type="submit" class="btn btn-primary">
+                                                                            @Utils.GetLabel("Submit")</button>
+
+                                                                        <button type="button" class="btn btn-default">@Utils.GetLabel("Cancel")</button>
+</div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
+</div>
                 </div>
             </div>
-            <!-- /.container-fluid -->
         </div>
-    </body>
+        <!-- /.container-fluid -->
+    </div>
+</body>

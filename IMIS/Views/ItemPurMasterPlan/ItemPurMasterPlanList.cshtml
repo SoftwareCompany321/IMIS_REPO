@@ -1,77 +1,66 @@
-﻿
+﻿@using IMIS_CORE.Core
 @{
     ViewData["Title"] = "ItemPurMasterPlanList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <!DOCTYPE html>
-  
+
 <body>
-     
-        <!-- Navigation --> 
-        <div id="page-wrapper">
-            <div class="container-fluid">
 
-                <div class="tab-lists-wrapper boxed parentTabs">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a href="#region-tab">Master Plan List</a> </li> 
-                    </ul>
+    <!-- Navigation -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
 
-                    <div class="tab-content">
+            <div class="tab-lists-wrapper boxed parentTabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#region-tab">Master Plan List</a> </li>
+                </ul>
 
-                        <!-- tab 1: region starts -->
-                        <div class="tab-pane fade active in" id="region-tab">
-                            <!-- generic add button for all the "add" forms | Add region -->
-                            <a href="@Url.Content("~/ItemPurMasterPlanCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
-                            <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
+                <div class="tab-content">
 
-                            <!-- search filters -->
-                            <div class="collapse" id="searchCollapse">
-                                <div class="well">
-                                    <div class="form-group">
-                                        <div class="col-sm-3 ">
-                                            <select name="regions" id="region" class="form-control">
-                                                <option value="0">Select Region</option>
-                                                <option value="1">Region One</option>
-                                                <option value="2">Region Two</option>
-                                                <option value="3">Region Three</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <select name="constituency" id="constituency" class="form-control">
-                                                <option value="0">Select Constituency</option>
-                                                <option value="1">Constituency One</option>
-                                                <option value="2">Constituency Two</option>
-                                                <option value="3">Constituency Three</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-sm-1 pull-right"><a href="#" class="btn btn-default form-modal-call"><i class="material-icons">search</i></a></div>
+                    <!-- tab 1: region starts -->
+                    <div class="tab-pane fade active in" id="region-tab">
+                        <!-- generic add button for all the "add" forms | Add region -->
+                        <a href="@Url.Content("~/ItemPurMasterPlanCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                        <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
+
+                        <!-- search filters -->
+                        <div class="collapse" id="searchCollapse">
+                            <div class="well">
+                                <div class="form-group">
+                                    <div class="col-sm-3 ">
+                                        <input type="text" class="form-control" placeholder=@Utils.GetLabel("Name")>
                                     </div>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" placeholder=@Utils.GetLabel("Name(Nepali)")>
+                                    </div>
+                                    <div class="col-sm-1 pull-right"><a href="#" class="btn btn-default form-modal-call"><i class="material-icons">search</i></a></div>
                                 </div>
                             </div>
-                            <div class="table-responsive">
-                                <table id="account" class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th width="20px">Id</th>
-                                            <th>Code</th>
-                                            <th>Name(Nep)</th>
-                                            <th>Name(Eng)</th>
-                                            <th>Display</th>
-                                            <th>AccCode</th>
-                                        </tr>
-                                    </thead>
-                                   
-                                </table>
-                            </div>
                         </div>
-                      
+                        <div class="table-responsive">
+                            <table id="account" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="20px">Id</th>
+                                        <th>Code</th>
+                                        <th>Name(Nep)</th>
+                                        <th>Name(Eng)</th>
+                                        <th>Display</th>
+                                        <th>AccCode</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+                        </div>
                     </div>
+
                 </div>
             </div>
-            <!-- /.container-fluid -->
         </div>
-        <!-- /#page-wrapper -->
-    
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
     <!-- /#wrapper -->
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -80,67 +69,67 @@
     <script src="js/bootstrap.min.js"></script>
 </body>
 
- 
+
 
 @*<section class="content-header">
-    <h1>
-        Account Header List
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="@Url.Content("~/home.html")" class="active"><i class="fa fa-th-large"></i> Home</a></li>
-        <li class="active"> Account Header List</li>
-    </ol>
-</section>
-<section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                 /.box-header 
-                <div class="box-body">
+        <h1>
+            Account Header List
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="@Url.Content("~/home.html")" class="active"><i class="fa fa-th-large"></i> Home</a></li>
+            <li class="active"> Account Header List</li>
+        </ol>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                     /.box-header
+                    <div class="box-body">
 
-                    @if (ViewBag.Message != null || ViewBag.Message == "")
-                    {
-                        <div message-content="@ViewBag.Message" message-class="@ViewBag.Class"></div>
-                    }
-                    <div class="row">
+                        @if (ViewBag.Message != null || ViewBag.Message == "")
+                        {
+                            <div message-content="@ViewBag.Message" message-class="@ViewBag.Class"></div>
+                        }
+                        <div class="row">
 
-                        <div class="col-lg-6">
+                            <div class="col-lg-6">
 
+                            </div>
+
+                            <div class="col-lg-6">
+                                <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/ItemPurMasterPlanCreate.html")">Create Account Header</a>
+
+                                <input type="text" id="usersearch" placeholder="Search" class="grid-search" />
+
+                            </div>
                         </div>
+                        <div class="table-responsive" style="overflow:auto;width:100%">
+                            <table id="account" class="table table-bordered table-hover action-b-th-0">
+                                <thead>
+                                    <tr>
 
-                        <div class="col-lg-6">
-                            <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/ItemPurMasterPlanCreate.html")">Create Account Header</a>
+                                        <th width="20px">Id</th>
+                                        <th>Code</th>
+                                        <th>Name(Nep)</th>
+                                        <th>Name(Eng)</th>
+                                        <th>Display</th>
+                                        <th>AccCode</th>
+                                    </tr>
+                                </thead>
 
-                            <input type="text" id="usersearch" placeholder="Search" class="grid-search" />
-
+                            </table>
                         </div>
                     </div>
-                    <div class="table-responsive" style="overflow:auto;width:100%">
-                        <table id="account" class="table table-bordered table-hover action-b-th-0">
-                            <thead>
-                                <tr>
-
-                                    <th width="20px">Id</th>
-                                    <th>Code</th>
-                                    <th>Name(Nep)</th>
-                                    <th>Name(Eng)</th>
-                                    <th>Display</th>
-                                    <th>AccCode</th>
-                                </tr>
-                            </thead>
-
-                        </table>
-                    </div>
+                     /.box-body
                 </div>
-                 /.box-body 
+                 /.box
             </div>
-             /.box 
-        </div>
 
-         /.col 
-    </div>
-     /.row 
-</section>*@
+             /.col
+        </div>
+         /.row
+    </section>*@
 
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {

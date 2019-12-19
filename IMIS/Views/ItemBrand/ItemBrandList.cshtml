@@ -13,7 +13,7 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">Item Brand List</a> </li>
+                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Item Brand List")</a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -42,11 +42,11 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th  >@Utils.GetLabel("Id")</th>
+                                        <th>@Utils.GetLabel("Id")</th>
 
-                                        <th  >@Utils.GetLabel("Name(Nepali)")</th>
+                                        <th>@Utils.GetLabel("Description(Nepali)")</th>
 
-                                        <th>@Utils.GetLabel("Name(English)")</th>
+                                        <th>@Utils.GetLabel("Description(English)")</th>
 
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>
@@ -90,13 +90,13 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-                 
+
 
                 "columns": [
-                { "data": "brandId", "orderable": true }, 
+                { "data": "brandId", "orderable": true },
                 { "data": "nameNp", "orderable": true },
                 { "data": "nameEn", "orderable": false },
-                { "data": "brandId", "orderable": true }, 
+                { "data": "brandId", "orderable": true },
                 ],
                 "rowCallback": function (row, data, index) {
                  var url ='/' + data.brandId + '/ItemBrandEdit.html';

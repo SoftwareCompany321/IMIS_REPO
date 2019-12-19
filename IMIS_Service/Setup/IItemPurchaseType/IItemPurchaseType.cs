@@ -19,10 +19,10 @@ namespace IMIS_Service.Setup.IItemPurchaseType
 
         Task<ItemPurchaseTypeVM> ViewEdit(int id);
     }
-    public class IBankDtl : IItemPurchaseType
+    public class ItemPurchaseType : IItemPurchaseType
     {
         private readonly IMISDbContext _db;
-        public IBankDtl(IMISDbContext db)
+        public ItemPurchaseType(IMISDbContext db)
         {
             _db = db;
         }

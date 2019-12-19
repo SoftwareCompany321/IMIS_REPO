@@ -9,40 +9,44 @@
     <B>जिन्सी व्वस्थापन प्रणाली</B>
   </row>
   <row>
-    <A>DUE TO PASSAGE OF LEGAL INSPECTION, TO INCREASE THE CONSTRUCTION OF ADDITIONAL CONSTRUCTION AND THIRD INSTALLMENT HAS BEEN CERTIFIED FOR THE PAYMENT</A>
-    <B>प्राबिधिक निरीक्षणबाट पास भएकोले थप निर्माण कार्य आघि बढाउनको लागि तथा तेश्रो किस्ता भुक्तानीको लागि प्रमाणित गरिएको छ</B>
+    <A>ADD ITEM BRAND</A>
+    <B>ब्रान्ड विवरणको प्रबिस्टि</B>
   </row> 
   <row>
-    <A>IF APPROVED THEN THE APPROVED MAP DESIGN</A>
-    <B>स्वीकृत नक्सा डिजाइन मध्येको भए</B>
+    <A>CREATE ITEM BRAND</A>
+    <B>ब्रान्ड विवरणको प्रबिस्टि</B>
+  </row> 
+  <row>
+    <A>EDIT ITEM BRAND</A>
+    <B>ब्रान्ड विवरणको सुधार</B>
   </row>
   <row>
-    <A>ACCORDING TO SCHEDULE 11, THE ORDER SHOULD BE MADE TO IMPROVE / HANDLE THE ORDER</A>
-    <B>सुधार/प्रबलिकरण गर्नुपर्ने देखिएकोले अनुसूची ११ अनुसार सुधार/प्रबलिकरण गर्ने आदेश दिईएको छ</B>
+    <A>ITEM BRAND LIST</A>
+    <B>ब्रान्ड विवरणको सुची</B>
   </row>
   <row>
-    <A>IF THE INSPECTION IS APPROVED, DUE TO PUBLIC INSPECTION, IT IS NECESSARY TO INCREASE ADDITIONAL CONSTRUCTION WORK AND THE PAYMENT HAS BEEN VERIFIED FOR THE PAYMENT IS REQUIRED.</A>
-    <B>यदि निरीक्षण स्वीकृत भए, प्राबिधिक निरीक्षणबाट पास भएकोले थप निर्माण कार्य आघि बढाउनको लागि तथा  किस्ता भुक्तानीको लागि प्रमाणित गरिएको छ लाइ टिक गर्न जरुरि छ</B>
+    <A>DASHBOARD</A>
+    <B>ड्यासबोर्ड</B>
   </row>
   <row>
-    <A>IF THE INSPECTION IS NOT ACCEPTED, THE ORDER TO IMPROVE / HANDLE THE ORDER, ACCORDING TO SCHEDULE 11, ORDER HAS BEEN MADE TO BE CORRECTED / NECESSARY.</A>
-    <B>यदि निरीक्षण स्वीकृत नभए, सुधार/प्रबलिकरण गर्नुपर्ने देखिएकोले अनुसूची ११ अनुसार सुधार/प्रबलिकरण गर्ने आदेश दिईएको छ लाइ टिक गर्न जरुरि छ</B>
+    <A>STATISTICS OVERVIEW</A>
+    <B>तथ्यांक अभिलेख </B>
   </row>
   <row>
-    <A>DESIGN NO</A>
-    <B>डिजाइन नं</B>
+    <A>ITEM UNIT LIST</A>
+    <B>सामानको इकाईको सुची</B>
   </row>
   <row>
-    <A>IF OWN DESIGN</A>
-    <B>आफ्नै डिजाइन भए</B>
+    <A>SMALL UNIT NO</A>
+    <B>सानो इकाई संख्या</B>
   </row>
    <row>
-    <A>CONSTRUCTION MATERIALS AND TECHNOLOGY</A>
-    <B>निर्माण सामग्री र प्रविधि</B>
+    <A>SMALL UNIT</A>
+    <B>सानो इकाई</B>
   </row>
     <row>
-    <A>ROOFING AND BUILDING MATERIALS</A>
-    <B>छाना र सामग्रीको निर्माण</B>
+    <A>ADD ITEM UNIT</A>
+    <B>सामानको इकाईको प्रबिस्टि</B>
   </row>
   <row>
     <A>LABELS IN ENGLISH</A>
@@ -57,12 +61,12 @@
     <B>नेपाल सरकार</B>
   </row>
   <row>
-    <A>DEPARTMENT OF CIVIL PERSONNEL RECORDS</A>
-    <B>निजामति किताबखाना</B>
+    <A>CREATE ITEM UNIT</A>
+    <B>सामानको इकाईको प्रबिस्टि</B>
   </row>
   <row>
-    <A>HARIHAR BHAWAN, LALITPUR</A>
-    <B>हरिहरभवन, ललितपुर</B>
+    <A>EDIT ITEM UNIT</A>
+    <B>सामानको इकाईको सुधार</B>
   </row>
   <row>
     <A>PHONE NO</A>
@@ -22926,8 +22930,8 @@
     <B>लाभग्राही क्रम संख्या</B>
   </row>
   <row>
-    <A>DAMAGE GRADE TOTAL COUNT</A>
-    <B>कुल क्षति ग्रेड संख्या</B>
+    <A>UNIT ID</A>
+    <B>इकाई नं</B>
   </row>
   <row>
     <A>SUMMARY REPORT BY DISTRICT GRAPH</A>

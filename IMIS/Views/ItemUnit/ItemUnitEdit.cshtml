@@ -1,4 +1,4 @@
-﻿
+﻿@using IMIS_CORE.Core
 @{
     ViewData["Title"] = "ItemUnitEdit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -32,7 +32,7 @@
                                         <div class="form-group is-empty">
                                             <label for="region" class="col-md-2 control-label">Description(Nepali)<span class="requried">*</span></label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" asp-for="DescNp" onkeypress = "return setUnicode(event,this);">
+                                                <input type="text" class="form-control" asp-for="DescNp" onkeypress="return setUnicode(event,this);">
                                             </div>
                                         </div>
                                         <div class="form-group is-empty">
