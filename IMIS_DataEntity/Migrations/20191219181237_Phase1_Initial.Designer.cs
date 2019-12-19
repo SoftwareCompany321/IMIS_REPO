@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IMIS_DataEntity.Migrations
 {
     [DbContext(typeof(IMISDbContext))]
-    [Migration("20191219164045_Phase1_Initial")]
+    [Migration("20191219181237_Phase1_Initial")]
     partial class Phase1_Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -3822,9 +3822,6 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("DisplayName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("DisplayNameNep")
                         .HasColumnType("text");
 
                     b.Property<string>("DisplayNepName")

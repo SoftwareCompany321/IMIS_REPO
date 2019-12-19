@@ -395,7 +395,9 @@ namespace IMIS_DataEntity.Migrations
                 {
                     table.PrimaryKey("APPLICATION_CONFIGURATION_pkey", x => x.SN);
                 });
-  
+
+           
+
             migrationBuilder.CreateTable(
                 name: "BANKMASTER",
                 columns: table => new
@@ -694,8 +696,7 @@ namespace IMIS_DataEntity.Migrations
                     UpdateBy = table.Column<string>(nullable: true),
                     DisplayNepName = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: true),
-                    UpdatedAt = table.Column<DateTime>(nullable: true),
-                    DisplayNameNep = table.Column<string>(nullable: true)
+                    UpdatedAt = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3683,8 +3684,7 @@ namespace IMIS_DataEntity.Migrations
                         principalColumn: "WORK_ID",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-         
+             
             migrationBuilder.CreateTable(
                 name: "BANK_BRANCH",
                 columns: table => new
@@ -4174,6 +4174,7 @@ namespace IMIS_DataEntity.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
+
              
             migrationBuilder.CreateTable(
                 name: "TBL_BGT_MGMT_RELEASE",
@@ -7427,8 +7428,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "IX_ACC_WORK_PAYMNT_TRANS_WORK_ID",
                 table: "ACC_WORK_PAYMNT_TRANS",
                 column: "WORK_ID");
-             
 
+            
             migrationBuilder.CreateIndex(
                 name: "IX_BANK_BRANCH_BANKID",
                 table: "BANK_BRANCH",
@@ -8424,7 +8425,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_WORK_PAYMNT_TRANS");
 
             migrationBuilder.DropTable(
-                name: "APPLICATION_CONFIGURATION"); 
+                name: "APPLICATION_CONFIGURATION");
+             
+
             migrationBuilder.DropTable(
                 name: "BANKTRANSACTIONS");
 
@@ -8972,7 +8975,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_PAYMENT_MASTER");
 
             migrationBuilder.DropTable(
-                name: "ACC_FUND_PROVIDR_MSTR"); 
+                name: "ACC_FUND_PROVIDR_MSTR");
+             
 
             migrationBuilder.DropTable(
                 name: "Usermaster");

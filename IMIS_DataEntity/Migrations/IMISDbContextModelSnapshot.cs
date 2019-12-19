@@ -3822,9 +3822,6 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<string>("DisplayName")
                         .HasColumnType("text");
 
-                    b.Property<string>("DisplayNameNep")
-                        .HasColumnType("text");
-
                     b.Property<string>("DisplayNepName")
                         .HasColumnType("text");
 

@@ -1,0 +1,13 @@
+MenuName,MenuUrl,DisplayName,ParentMenuId,Active,IsLocked,Visible,Icon,MenuOrder,CreatedBy,UpdateBy,DisplayNepName,CreatedAt,UpdatedAt,Id
+NULL,NULL,Security,0,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,सुरक्षा प्रणाली,1753-01-01 00:00:00,1753-01-01 00:00:00,1
+NULL,ItemPurchaseTypelist.html,Item Purchase Type,10,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,सामानको खरिद किसिम ,1753-01-01 00:00:01,1753-01-01 00:00:00,2
+NULL,NULL,Personel Mangement,0,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,कर्मचारी व्वस्थापन,1753-01-01 00:00:02,1753-01-01 00:00:00,3
+NULL,NULL,Transaction,0,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,कारोबार प्रबिस्टि,1753-01-01 00:00:03,1753-01-01 00:00:00,4
+NULL,NULL,Report,0,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,प्रतिबेदन,1753-01-01 00:00:04,1753-01-01 00:00:00,5
+NULL,ItemCategorieslist.html,Item Category,10,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,सामानको बर्गिकरण,1753-01-01 00:00:05,1753-01-01 00:00:00,6
+NULL,ItemSpecificationlsit.html,Item Specification,10,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,सामानको स्पेसिफिकेसन,1753-01-01 00:00:06,1753-01-01 00:00:00,7
+NULL,OtherSetupTypelist.html,Other Setup Type,10,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,अन्य प्रबिस्टि किसिम ,1753-01-01 00:00:07,1753-01-01 00:00:00,8
+NULL,ItemUnitlist.html,Item Brand,10,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,सामानको ब्रान्ड,1753-01-01 00:00:08,1753-01-01 00:00:00,9
+Settings,NULL,Settings,0,TRUE,TRUE,TRUE,fa fa-cogs,1,NULL,NULL,अधारभुत प्रबिस्टि,1753-01-01 00:00:09,1753-01-01 00:00:00,10
+Add Menu,menudatafetchlist.html,Add Menu,10,TRUE,TRUE,TRUE,NULL,1,NULL,NULL,मेनु प्रबिस्टि,1753-01-01 00:00:10,1753-01-01 00:00:00,11
+NULL,ItemUnitFetchData.html,Item Unit,10,FALSE,FALSE,FALSE,NULL,0,6faf6e1b-4f36-470d-bf20-04882020ea6f,NULL,सामानको इकाई,1753-01-01 00:00:11,1753-01-01 00:00:00,12

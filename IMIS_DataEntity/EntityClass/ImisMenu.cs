@@ -24,7 +24,6 @@ namespace IMIS_DataEntity.EntityClass
         public string DisplayNepName { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
- 
-        public string DisplayNameNep { get; set; }
+  
     }
 }
