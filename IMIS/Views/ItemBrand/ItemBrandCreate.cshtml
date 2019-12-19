@@ -1,4 +1,5 @@
-﻿@model IMIS_Service.ViewModel.ItemBrandVM
+﻿@using IMIS_CORE.Core
+@model IMIS_Service.ViewModel.ItemBrandVM
 @{
     ViewData["Title"] = "ItemBrandCreate";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -30,19 +31,14 @@
                                         <div class="form-group is-empty">
                                             <label for="region" class="col-md-2 control-label">Description(Nepali)<span class="requried">*</span></label>
                                             <div class="col-md-9">
-                                                <input type="text" class="form-control" asp-for="NameNp">
+                                                <input type="text" class="form-control" asp-for="NameNp" onkeypress="return setUnicode(event,this);">
                                             </div>
                                         </div>
-                                        @*<div class="form-group is-empty">
-                                            <label for="short-name" class="col-md-2 control-label">Smallest Unit No</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" asp-for="NoOfUnits">
-                                            </div>
-                                        </div>*@
+
                                         <div class="form-group form-action">
                                             <div class="col-md-10 col-md-offset-2">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <button type="button" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">@Utils.GetLabel("Submit")</button>
+                                                <button type="button" class="btn btn-default">@Utils.GetLabel("Cancel")</button>
                                             </div>
                                         </div>
                                     </form>

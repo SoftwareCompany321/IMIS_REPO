@@ -20,7 +20,7 @@
                     <!-- tab 1: region starts -->
                     <div class="tab-pane fade active in" id="region-tab">
                         <!-- generic add button for all the "add" forms | Add region -->
-                        <a href="@Url.Content("~/ItemUnitCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">@Utils.GetLabel("add")</i></a>
+                        <a href="@Url.Content("~/ItemUnitCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
                         <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
                         @if (ViewBag.Message != null || ViewBag.Message == "")
                         {
@@ -47,8 +47,8 @@
                                 <thead>
                                     <tr>
                                         <th>@Utils.GetLabel("Unit Id") </th>
-                                        <th>@Utils.GetLabel("Name(Nep)")</th>
-                                        <th>@Utils.GetLabel("Name(Eng)")</th>
+                                        <th>@Utils.GetLabel("Name(Nepali)")</th>
+                                        <th>@Utils.GetLabel("Name(English)")</th>
                                         <th>@Utils.GetLabel("Small Unit")</th>
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>

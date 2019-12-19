@@ -10,9 +10,10 @@ using System.Web;
 using System.Reflection;
 using System.IO;
 using App.Web;
-using System.Runtime.Serialization.Formatters.Binary; 
+using System.Runtime.Serialization.Formatters.Binary;
 using Microsoft.AspNetCore.Http;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Http.Headers;
 
 namespace IMIS_CORE.Core
 {
@@ -198,24 +199,32 @@ namespace IMIS_CORE.Core
         /// <returns></returns>
         public static void GetLanguageList()
         {
-
-            var buildDir = GetApplicationRoot();
-            string filepath = System.IO.Path.GetFullPath(buildDir + @"\Unicode\unicodexml.xml");
-            DataSet ds = new DataSet();
-            ds.ReadXml(filepath);
-            DataTable dtRes = new DataTable();
-            //  dtRes = ReadFromEXcel(filepath);
-            if (ds.Tables[0] != null)
+            DataTable dt = new DataTable();
+            dt = getUnicodedataTable();
+            if (dt != null)
             {
-                AppHttpContext.Current.Session.Set("UnicodeWords", SerializeData(ds.Tables[0]));
-
-                //HttpContext.Current.Session["UnicodeWords"] = ds.Tables[0];
+                AppHttpContext.Current.Session.Set("UnicodeWords", SerializeData(dt)); 
             }
             else
             {
                 AppHttpContext.Current.Session.Set("UnicodeWords", null);
             }
 
+        }
+
+        private static DataTable getUnicodedataTable()
+        {
+            var buildDir = GetApplicationRoot();
+            string filepath = System.IO.Path.GetFullPath(buildDir + @"\Unicode\unicodexml.xml");
+            DataSet ds = new DataSet();
+            ds.ReadXml(filepath);
+            DataTable dtRes = new DataTable();
+            if (ds.Tables[0] != null)
+            {
+
+            }
+            dtRes = ds.Tables[0];
+            return dtRes;
         }
         private static byte[] SerializeData(Object o)
         {
@@ -246,11 +255,14 @@ namespace IMIS_CORE.Core
             //labelName = labelName.ToUpper();
             if (!String.IsNullOrEmpty(labelName))
             {
-                string sessionLanguage = "";
+                
                 DataTable dtUnicode = null;
-                Byte[] binForm;
-                if (AppHttpContext.Current.Session.TryGetValue("LanguageSetting", out binForm))
-                    sessionLanguage = System.Text.Encoding.UTF8.GetString(binForm);  
+                string sessionLanguage = "English";
+                if (AppHttpContext.Current.Session.GetString("LanguageSetting") != null)
+                    sessionLanguage = AppHttpContext.Current.Session.GetString("LanguageSetting");
+                else
+                    AppHttpContext.Current.Session.SetString("LanguageSetting", "English"); 
+
                 Byte[] retValue;
                 if (AppHttpContext.Current.Session.TryGetValue("UnicodeWords", out retValue))
                     dtUnicode = (DataTable)ByteArrayToObject(retValue);
@@ -294,16 +306,23 @@ namespace IMIS_CORE.Core
         /// <returns>string</returns>
         public static string GetAlternateLabel(string labelName)
         {
-            string sessionLanguage = "";
+           
             DataTable dtUnicode = null;
             labelName = labelName.ToUpper();
-            Byte[] binForm;
-            if (AppHttpContext.Current.Session.TryGetValue("LanguageSetting", out binForm))
-                sessionLanguage = System.Text.Encoding.UTF8.GetString(binForm);  
+            string sessionLanguage = "English";
+            if (AppHttpContext.Current.Session.GetString("LanguageSetting") != null)
+                sessionLanguage = AppHttpContext.Current.Session.GetString("LanguageSetting");
+            else
+                AppHttpContext.Current.Session.SetString("LanguageSetting", "English");
+             
             Byte[] retValue;
             if (AppHttpContext.Current.Session.TryGetValue("UnicodeWords", out retValue))
                 dtUnicode = (DataTable)ByteArrayToObject(retValue);
-
+           if(dtUnicode==null)
+            {
+                GetLanguageList();
+                dtUnicode = getUnicodedataTable();
+            } 
             if (sessionLanguage == "English")
             {
                 var drNepaliLabel = dtUnicode.AsEnumerable().Where(s => s.Field<string>("A") == labelName);
@@ -323,10 +342,11 @@ namespace IMIS_CORE.Core
         /// <returns>string</returns>
         public static string ToggleLanguage(string DESC_ENG, string DESC_LOC)
         {
-            string sessionLanguage = "";
-            Byte[] binForm;
-            if (AppHttpContext.Current.Session.TryGetValue("LanguageSetting", out binForm))
-                sessionLanguage = System.Text.Encoding.UTF8.GetString(binForm);  
+            string sessionLanguage = "English";
+            if (AppHttpContext.Current.Session.GetString("LanguageSetting") != null)
+                sessionLanguage = AppHttpContext.Current.Session.GetString("LanguageSetting");
+            else
+                AppHttpContext.Current.Session.SetString("LanguageSetting", "English");
             if (sessionLanguage == "English")
             {
                 return DESC_ENG;
@@ -345,9 +365,10 @@ namespace IMIS_CORE.Core
         {
             string strLabel = "";
             string sessionLanguage = "English";
-            Byte[] binForm;
-            if (AppHttpContext.Current.Session.TryGetValue("LanguageSetting", out binForm))
-                sessionLanguage = System.Text.Encoding.UTF8.GetString(binForm);  
+            if (AppHttpContext.Current.Session.GetString("LanguageSetting") != null)
+                sessionLanguage = AppHttpContext.Current.Session.GetString("LanguageSetting");
+            else
+                AppHttpContext.Current.Session.SetString("LanguageSetting", "English");
             if (sessionLanguage == "English")
             {
                 strLabel = GetAlternateLabel("In Nepali");
