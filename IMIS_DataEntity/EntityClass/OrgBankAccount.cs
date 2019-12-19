@@ -5,11 +5,11 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class OrgBankAccount
     {
-        public decimal Id { get; set; }
-        public decimal? OrgId { get; set; }
-        public decimal? Bankid { get; set; }
-        public decimal? BranchId { get; set; }
-        public decimal? BankAccntTypeId { get; set; }
+        public int Id { get; set; }
+        public int? OrgId { get; set; }
+        public int? Bankid { get; set; }
+        public int? BranchId { get; set; }
+        public int? BankAccntTypeId { get; set; }
         public string AccNo { get; set; }
         public string AccName { get; set; }
 

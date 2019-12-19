@@ -5,16 +5,16 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvDepreciation
     {
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string Fiscalyear { get; set; }
-        public decimal? DakhilaId { get; set; }
-        public decimal? ItemId { get; set; }
-        public decimal? BrandId { get; set; }
-        public decimal? SpecId { get; set; }
-        public decimal? UnitId { get; set; }
-        public double? Qty { get; set; }
-        public double? OrginalRate { get; set; }
-        public double? DepreRate { get; set; }
-        public decimal? DeprePer { get; set; }
+        public int? DakhilaId { get; set; }
+        public int? ItemId { get; set; }
+        public int? BrandId { get; set; }
+        public int? SpecId { get; set; }
+        public int? UnitId { get; set; }
+        public float? Qty { get; set; }
+        public float? OrginalRate { get; set; }
+        public float? DepreRate { get; set; }
+        public int? DeprePer { get; set; }
     }
 }

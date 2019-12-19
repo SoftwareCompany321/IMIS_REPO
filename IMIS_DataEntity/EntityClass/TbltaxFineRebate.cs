@@ -5,12 +5,12 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class TbltaxFineRebate
     {
-        public decimal Sn { get; set; }
+        public int Sn { get; set; }
         public string FiscalYear { get; set; }
-        public double? DurationInYears { get; set; }
+        public float? DurationInYears { get; set; }
         public string TaxType { get; set; }
-        public decimal? FlatRate { get; set; }
-        public double? RatePercent { get; set; }
+        public int? FlatRate { get; set; }
+        public float? RatePercent { get; set; }
         public string RebateFlag { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace IMIS_DataEntity.EntityClass
             InvPurOrderMast = new HashSet<InvPurOrderMast>();
         }
 
-        public decimal SupId { get; set; }
+        public int SupId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string CompanyNameNp { get; set; }
@@ -23,7 +23,7 @@ namespace IMIS_DataEntity.EntityClass
         public string DateVs { get; set; }
         public DateTime? DateAd { get; set; }
         public string OrgType { get; set; }
-        public decimal? OrgId { get; set; }
+        public int? OrgId { get; set; }
         public string IsSelected { get; set; }
         public string RegNo { get; set; }
         public string SupType { get; set; }

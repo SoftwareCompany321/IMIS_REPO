@@ -5,9 +5,9 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class PisWorkshop
     {
-        public decimal Sn { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? LocalPostId { get; set; }
+        public int Sn { get; set; }
+        public int? EmpId { get; set; }
+        public int? LocalPostId { get; set; }
         public string NepName { get; set; }
         public string Description { get; set; }
         public string WorkingOffice { get; set; }
@@ -17,7 +17,7 @@ namespace IMIS_DataEntity.EntityClass
         public DateTime? FromDateAd { get; set; }
         public DateTime? ToDateAd { get; set; }
         public string Organizer { get; set; }
-        public decimal? CountryId { get; set; }
+        public int? CountryId { get; set; }
         public string Remarks { get; set; }
         public string ApplyTo { get; set; }
 

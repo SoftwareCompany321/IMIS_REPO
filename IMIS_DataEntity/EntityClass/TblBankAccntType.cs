@@ -10,7 +10,7 @@ namespace IMIS_DataEntity.EntityClass
             OrgBankAccount = new HashSet<OrgBankAccount>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string Nepname { get; set; }
         public string Engname { get; set; }
         public string Remarks { get; set; }

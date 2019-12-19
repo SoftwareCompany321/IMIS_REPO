@@ -5,10 +5,10 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class TblDegister
     {
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string NpName { get; set; }
         public string EngName { get; set; }
         public string Remarks { get; set; }
-        public decimal? IsFullDegister { get; set; }
+        public int? IsFullDegister { get; set; }
     }
 }

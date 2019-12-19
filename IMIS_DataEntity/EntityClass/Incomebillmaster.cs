@@ -11,22 +11,22 @@ namespace IMIS_DataEntity.EntityClass
             AccCashTrans = new HashSet<AccCashTrans>();
         }
 
-        public decimal Sn { get; set; }
+        public int Sn { get; set; }
         public string Billno { get; set; }
         public string Description { get; set; }
-        public decimal? Counterid { get; set; }
-        public decimal? Personid { get; set; }
+        public int? Counterid { get; set; }
+        public int? Personid { get; set; }
         public string Billdate { get; set; }
-        public decimal? Cashamount { get; set; }
-        public decimal? Bankamount { get; set; }
-        public decimal? VchrId { get; set; }
+        public int? Cashamount { get; set; }
+        public int? Bankamount { get; set; }
+        public int? VchrId { get; set; }
         public string VchrDateNp { get; set; }
-        public decimal? Userid { get; set; }
-        public decimal? Useride { get; set; }
+        public int? Userid { get; set; }
+        public int? Useride { get; set; }
         public string Dataentryvsdate { get; set; }
         public DateTime? Dataentryaddatetime { get; set; }
         public DateTime? Dataeditaddatetime { get; set; }
-        public decimal? Billtypeid { get; set; }
+        public int? Billtypeid { get; set; }
         public string Taxincometype { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -36,9 +36,9 @@ namespace IMIS_DataEntity.EntityClass
         public string BillNoManual { get; set; }
         public string FiscalYear { get; set; }
         public string Project { get; set; }
-        public decimal? SubModuleId { get; set; }
-        public decimal? CurrencyId { get; set; }
-        public decimal? BackupPersonid { get; set; }
+        public int? SubModuleId { get; set; }
+        public int? CurrencyId { get; set; }
+        public int? BackupPersonid { get; set; }
 
         public virtual Tblbilltype Billtype { get; set; }
         public virtual AccSubModuleType SubModule { get; set; }

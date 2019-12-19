@@ -5,7 +5,7 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class Fiscalyears
     {
-        public decimal? Sn { get; set; }
+        public int? Sn { get; set; }
         public string Fiscalyear { get; set; }
         public string Datefrom { get; set; }
         public string Dateto { get; set; }

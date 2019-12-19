@@ -11,11 +11,11 @@ namespace IMIS_DataEntity.EntityClass
             Tblmalpotrates = new HashSet<Tblmalpotrates>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? Groupid { get; set; }
+        public int Id { get; set; }
+        public int? Groupid { get; set; }
         public string Nepname { get; set; }
         public string Description { get; set; }
-        public decimal? Worda { get; set; }
+        public int? Worda { get; set; }
 
         public virtual Tblmalpotgroup Group { get; set; }
         public virtual ICollection<Tblfywisempotassrate> Tblfywisempotassrate { get; set; }

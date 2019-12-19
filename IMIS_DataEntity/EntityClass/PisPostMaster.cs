@@ -13,14 +13,14 @@ namespace IMIS_DataEntity.EntityClass
             PisLocalPostMaster = new HashSet<PisLocalPostMaster>();
         }
 
-        public decimal PostId { get; set; }
+        public int PostId { get; set; }
         public string GeneralPost { get; set; }
         public string GeneralPostShort { get; set; }
-        public decimal? PostLevel { get; set; }
-        public double? BasicSalary { get; set; }
-        public decimal? RateOfGrade { get; set; }
-        public decimal? MaxGradeRate { get; set; }
-        public decimal? PrabidikOrPrasasan { get; set; }
+        public int? PostLevel { get; set; }
+        public float? BasicSalary { get; set; }
+        public int? RateOfGrade { get; set; }
+        public int? MaxGradeRate { get; set; }
+        public int? PrabidikOrPrasasan { get; set; }
 
         public virtual ICollection<PisDarbandi> PisDarbandi { get; set; }
         public virtual ICollection<PisEmployeeMaster> PisEmployeeMasterFirstAppointPost { get; set; }

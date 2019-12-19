@@ -10,10 +10,10 @@ namespace IMIS_DataEntity.EntityClass
             InvLilamappdetails = new HashSet<InvLilamappdetails>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? Appno { get; set; }
-        public decimal? Projid { get; set; }
-        public decimal? Applylilamid { get; set; }
+        public int Id { get; set; }
+        public int? Appno { get; set; }
+        public int? Projid { get; set; }
+        public int? Applylilamid { get; set; }
         public string Orgapplicantname { get; set; }
         public string Orgapplicantpost { get; set; }
         public string Applydate { get; set; }

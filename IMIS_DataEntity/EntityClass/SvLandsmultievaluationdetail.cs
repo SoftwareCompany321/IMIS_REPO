@@ -5,11 +5,11 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class SvLandsmultievaluationdetail
     {
-        public decimal? Sn { get; set; }
-        public decimal? Iid { get; set; }
-        public decimal? Landid { get; set; }
+        public int? Sn { get; set; }
+        public int? Iid { get; set; }
+        public int? Landid { get; set; }
         public string Kittanumber { get; set; }
-        public decimal? Generalrateid { get; set; }
-        public decimal? Areainsqft { get; set; }
+        public int? Generalrateid { get; set; }
+        public int? Areainsqft { get; set; }
     }
 }

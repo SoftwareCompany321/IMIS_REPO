@@ -17,20 +17,20 @@ namespace IMIS_DataEntity.EntityClass
             InvRequisitionMast = new HashSet<InvRequisitionMast>();
         }
 
-        public decimal ItemId { get; set; }
+        public int ItemId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public decimal? UnitId { get; set; }
-        public decimal? ItemMainClass { get; set; }
-        public decimal? ItemType { get; set; }
-        public decimal? ItemNature { get; set; }
-        public decimal? Maxl { get; set; }
-        public decimal? Minl { get; set; }
-        public decimal? Rmaxl { get; set; }
-        public decimal? Rminl { get; set; }
-        public decimal? Gussage { get; set; }
-        public decimal? Sizes { get; set; }
-        public decimal? Countryid { get; set; }
+        public int? UnitId { get; set; }
+        public int? ItemMainClass { get; set; }
+        public int? ItemType { get; set; }
+        public int? ItemNature { get; set; }
+        public int? Maxl { get; set; }
+        public int? Minl { get; set; }
+        public int? Rmaxl { get; set; }
+        public int? Rminl { get; set; }
+        public int? Gussage { get; set; }
+        public int? Sizes { get; set; }
+        public int? Countryid { get; set; }
         public string Companyname { get; set; }
         public string Source { get; set; }
         public string Remarks { get; set; }
@@ -38,18 +38,18 @@ namespace IMIS_DataEntity.EntityClass
         public string KittaNo { get; set; }
         public string LandLocation { get; set; }
         public string Constructontype { get; set; }
-        public double? Depreciation { get; set; }
-        public double? Minrate { get; set; }
-        public double? Depmaxrate { get; set; }
-        public decimal? Propertytype { get; set; }
-        public decimal? LandAreaInsqFeets { get; set; }
-        public decimal? AreaInsqFeets { get; set; }
-        public decimal? LandUnitRate { get; set; }
-        public decimal? LandMarketRate { get; set; }
-        public decimal? Landid { get; set; }
-        public decimal? AccId { get; set; }
-        public decimal? BudgetAccId { get; set; }
-        public decimal? VehiclePartsId { get; set; }
+        public float? Depreciation { get; set; }
+        public float? Minrate { get; set; }
+        public float? Depmaxrate { get; set; }
+        public int? Propertytype { get; set; }
+        public int? LandAreaInsqFeets { get; set; }
+        public int? AreaInsqFeets { get; set; }
+        public int? LandUnitRate { get; set; }
+        public int? LandMarketRate { get; set; }
+        public int? Landid { get; set; }
+        public int? AccId { get; set; }
+        public int? BudgetAccId { get; set; }
+        public int? VehiclePartsId { get; set; }
 
         public virtual InvUnit Unit { get; set; }
         public virtual ICollection<InvGoodsAdjust> InvGoodsAdjust { get; set; }

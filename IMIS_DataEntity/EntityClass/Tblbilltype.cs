@@ -12,7 +12,7 @@ namespace IMIS_DataEntity.EntityClass
             Storedbills = new HashSet<Storedbills>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string Nepname { get; set; }
         public string Isincome { get; set; }
         public string Description { get; set; }

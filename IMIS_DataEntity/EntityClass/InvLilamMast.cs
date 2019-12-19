@@ -5,18 +5,18 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvLilamMast
     {
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string LilamNo { get; set; }
-        public decimal? IssueBy { get; set; }
-        public decimal? Lilamtype { get; set; }
-        public decimal? ReceiveBy { get; set; }
+        public int? IssueBy { get; set; }
+        public int? Lilamtype { get; set; }
+        public int? ReceiveBy { get; set; }
         public string ReceivePersonName { get; set; }
         public string RecivePersonPost { get; set; }
         public string Remarks { get; set; }
-        public decimal? PrepBy { get; set; }
-        public decimal? CheckBy { get; set; }
+        public int? PrepBy { get; set; }
+        public int? CheckBy { get; set; }
         public string IssueDt { get; set; }
-        public decimal? AcceptBy { get; set; }
+        public int? AcceptBy { get; set; }
         public string AcceptDt { get; set; }
         public string PrepDt { get; set; }
         public string CheckDt { get; set; }
@@ -30,10 +30,10 @@ namespace IMIS_DataEntity.EntityClass
         public string PublishDate { get; set; }
         public string Description { get; set; }
         public string NewspaperName { get; set; }
-        public double? PernewsRate { get; set; }
-        public double? AcceptPercent { get; set; }
-        public decimal? Bankid { get; set; }
-        public decimal? ValidDays { get; set; }
+        public float? PernewsRate { get; set; }
+        public float? AcceptPercent { get; set; }
+        public int? Bankid { get; set; }
+        public int? ValidDays { get; set; }
         public string FiscalyearChukta { get; set; }
     }
 }

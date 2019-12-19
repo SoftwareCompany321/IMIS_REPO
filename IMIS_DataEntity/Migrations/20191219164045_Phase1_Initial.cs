@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IMIS_DataEntity.Migrations
 {
-    public partial class Phase1 : Migration
+    public partial class Phase1_Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,16 +12,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_BANK_STATEMENT",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     BANK_ID = table.Column<int>(nullable: true),
                     TRANSACTION_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    TRANSACTION_DATE_EN = table.Column<DateTime>(type: "date", nullable: true),
+                    TRANSACTION_DATE_EN = table.Column<DateTime>(nullable: true),
                     CHEQUE_NO = table.Column<string>(maxLength: 30, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true),
-                    DR_AMT = table.Column<double>(nullable: true),
-                    CR_AMT = table.Column<double>(nullable: true),
-                    BANK_TRANSACTION_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BALANCE = table.Column<double>(nullable: true)
+                    DR_AMT = table.Column<float>(nullable: true),
+                    CR_AMT = table.Column<float>(nullable: true),
+                    BANK_TRANSACTION_ID = table.Column<int>(nullable: true),
+                    BALANCE = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -31,18 +31,18 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_BGT_ALLOCATE",
                 columns: table => new
                 {
-                    BGT_ALLOCATE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    REVISED_AMOUNT = table.Column<double>(nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
+                    BGT_ALLOCATE_ID = table.Column<int>(nullable: false),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    REVISED_AMOUNT = table.Column<float>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     ALLOCATED_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    ENTRY_USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ENTRY_DATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    UPDATE_USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UPDATE_DATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    ENTRY_USER_ID = table.Column<int>(nullable: true),
+                    ENTRY_DATETIME = table.Column<DateTime>(nullable: true),
+                    UPDATE_USER_ID = table.Column<int>(nullable: true),
+                    UPDATE_DATETIME = table.Column<DateTime>(nullable: true),
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -65,7 +65,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_CURRENCTY",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NP_NAME = table.Column<string>(nullable: true),
                     ENG_NAME = table.Column<string>(nullable: true),
                     SYMBOL = table.Column<string>(maxLength: 40, nullable: true)
@@ -79,7 +79,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_FUND_PROVIDR_MSTR",
                 columns: table => new
                 {
-                    PROVIDER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    PROVIDER_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: false),
                     PHONES = table.Column<string>(maxLength: 50, nullable: true),
@@ -96,9 +96,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_INCOME_RATE",
                 columns: table => new
                 {
-                    RATE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    RATE_ID = table.Column<int>(nullable: false),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    RATE = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -110,12 +110,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_LAST_YR_PESKI",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: true),
+                    PERSON_ID = table.Column<int>(nullable: true),
                     ADVANCE_TYPE = table.Column<string>(maxLength: 1, nullable: true),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TOTAL_PES_REM = table.Column<double>(nullable: true)
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
+                    TOTAL_PES_REM = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -126,24 +126,24 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_LASTYEAR_ADV_DETAILS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PAYMENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PAYMENT_ID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 15, nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VHCR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PAYMENT_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DR_AMOUNT = table.Column<double>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true),
+                    VHCR_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    BUDGET_ACC_ID = table.Column<int>(nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true),
+                    PAYMENT_TYPE_ID = table.Column<int>(nullable: true),
+                    PERSON_ID = table.Column<int>(nullable: true),
+                    DR_AMOUNT = table.Column<float>(nullable: true),
                     STATUS = table.Column<string>(maxLength: 2, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 255, nullable: true),
-                    ADD_USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ADD_USER_ID = table.Column<int>(nullable: true),
                     ADD_DATE = table.Column<string>(maxLength: 15, nullable: true),
                     VOUCHER_NO = table.Column<string>(maxLength: 50, nullable: true),
                     VOUCHER_DATE = table.Column<string>(maxLength: 15, nullable: true),
-                    LAST_YR_PESKI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    LAST_YR_PESKI_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -154,7 +154,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_ORG_MASTER",
                 columns: table => new
                 {
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ORG_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 90, nullable: true),
                     NAME_EN = table.Column<string>(maxLength: 90, nullable: true),
                     ADDRESS = table.Column<string>(maxLength: 90, nullable: true),
@@ -163,17 +163,17 @@ namespace IMIS_DataEntity.Migrations
                     REG_NO = table.Column<string>(maxLength: 25, nullable: true),
                     VAT_NO = table.Column<string>(maxLength: 25, nullable: true),
                     PAN_NO = table.Column<string>(maxLength: 25, nullable: true),
-                    ZONE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DISTRICT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VDC = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MINISTRY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ZONE = table.Column<int>(nullable: true),
+                    DISTRICT = table.Column<int>(nullable: true),
+                    VDC = table.Column<int>(nullable: true),
+                    MINISTRY = table.Column<int>(nullable: true),
                     CODE = table.Column<string>(maxLength: 30, nullable: true),
                     HEAD = table.Column<string>(maxLength: 50, nullable: true),
                     MOBILE_NO = table.Column<string>(maxLength: 20, nullable: true),
                     RELATED_PERSON = table.Column<string>(maxLength: 100, nullable: true),
-                    ORG_MASTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ORG_MASTER_ID = table.Column<int>(nullable: true),
                     SAPATI = table.Column<string>(maxLength: 2, nullable: true),
-                    ORC_ACC_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    ORC_ACC_TYPE_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -184,11 +184,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_PADADHIKARI_POST",
                 columns: table => new
                 {
-                    POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    POST_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: true),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    DURATION_IN_YRS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    POST_LEVEL = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    DURATION_IN_YRS = table.Column<int>(nullable: true),
+                    POST_LEVEL = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -199,13 +199,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_PAYMENT_CREDIT",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PAYMENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PAYMENT_ID = table.Column<int>(nullable: true),
                     IS_OF_LAST_YEAR = table.Column<string>(maxLength: 1, nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true)
+                    ACC_ID = table.Column<int>(nullable: true),
+                    BUDGET_ACC_ID = table.Column<int>(nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -215,16 +215,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_RECEIVABLE",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
+                    TAXPAYERID = table.Column<int>(nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    NETTAXAMOUNT = table.Column<double>(nullable: true),
-                    FINEAMOUNT = table.Column<double>(nullable: true),
-                    ADDITIONALCHARGES = table.Column<double>(nullable: true),
-                    REDUCTIONALCHARGES = table.Column<double>(nullable: true),
+                    NETTAXAMOUNT = table.Column<float>(nullable: true),
+                    FINEAMOUNT = table.Column<float>(nullable: true),
+                    ADDITIONALCHARGES = table.Column<float>(nullable: true),
+                    REDUCTIONALCHARGES = table.Column<float>(nullable: true),
                     TAXTYPE = table.Column<string>(maxLength: 5, nullable: true),
                     TYPE = table.Column<int>(nullable: true),
-                    VCHRID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VCHRID = table.Column<int>(nullable: true),
                     VCHR_DATE = table.Column<string>(maxLength: 12, nullable: true)
                 },
                 constraints: table =>
@@ -235,14 +235,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_SUB_MODULE_TYPE",
                 columns: table => new
                 {
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SUB_MODULE_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: false),
                     MODULE = table.Column<string>(maxLength: 2, nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
-                    ISCAPITAL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ISCAPITAL = table.Column<int>(nullable: true),
                     BUDGET_ACC_NO = table.Column<string>(maxLength: 50, nullable: true),
-                    ISEXPENCES = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ISEXPENCES = table.Column<int>(nullable: true),
                     ACC_EXPENCES_CODE = table.Column<string>(maxLength: 50, nullable: true)
                 },
                 constraints: table =>
@@ -254,7 +254,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_TRANS_TYPE",
                 columns: table => new
                 {
-                    TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    TYPE_ID = table.Column<int>(nullable: false),
                     TYPE_CODE = table.Column<string>(maxLength: 10, nullable: false),
                     NEP_NAME = table.Column<string>(maxLength: 70, nullable: false),
                     ENG_NAME = table.Column<string>(maxLength: 50, nullable: true),
@@ -269,16 +269,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_UNAUTHORISED",
                 columns: table => new
                 {
-                    UNAUTHORISED_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNAUTHORISED_DAFA_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNAUTHORISED_AMT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    UNAUTHORISED_ID = table.Column<int>(nullable: false),
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true),
+                    UNAUTHORISED_DAFA_ID = table.Column<int>(nullable: true),
+                    UNAUTHORISED_AMT = table.Column<int>(nullable: true),
                     INSPECT_DATE = table.Column<string>(maxLength: 20, nullable: true),
                     INSPECT_DETAILS = table.Column<string>(maxLength: 200, nullable: true),
-                    INSPECT_AMT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FILLEDBY_EMPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VERIFIEDBY_EMPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    INSPECT_AMT = table.Column<int>(nullable: true),
+                    FILLEDBY_EMPID = table.Column<int>(nullable: true),
+                    VERIFIEDBY_EMPID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -289,10 +289,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_USER_COMITE_MSTR",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEP_NAME = table.Column<string>(maxLength: 150, nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 70, nullable: true),
-                    WARD = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    WARD = table.Column<int>(nullable: true),
                     ADDRESS = table.Column<string>(maxLength: 90, nullable: true),
                     EMAIL = table.Column<string>(maxLength: 50, nullable: true),
                     PHONES = table.Column<string>(maxLength: 50, nullable: true),
@@ -309,7 +309,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_VCHR_TYPE_MASTER",
                 columns: table => new
                 {
-                    VCHR_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    VCHR_TYPE_ID = table.Column<int>(nullable: false),
                     NEP_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     MODULE = table.Column<string>(maxLength: 2, nullable: false),
@@ -325,38 +325,38 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_WORK_MASTER",
                 columns: table => new
                 {
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    WORK_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 90, nullable: true),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    ESTIMATED_AMT = table.Column<double>(nullable: true),
-                    VARIATION_AMT = table.Column<double>(nullable: true),
-                    CORRECTED_AMT = table.Column<double>(nullable: true),
-                    FINAL_ACTUAL_AMT_TOBE_PAID = table.Column<double>(nullable: true),
-                    TOTAL_ACTUAL_COST = table.Column<double>(nullable: true),
+                    ESTIMATED_AMT = table.Column<float>(nullable: true),
+                    VARIATION_AMT = table.Column<float>(nullable: true),
+                    CORRECTED_AMT = table.Column<float>(nullable: true),
+                    FINAL_ACTUAL_AMT_TOBE_PAID = table.Column<float>(nullable: true),
+                    TOTAL_ACTUAL_COST = table.Column<float>(nullable: true),
                     AGREEMENT_PARTY = table.Column<string>(maxLength: 70, nullable: true),
-                    AGREEMENT_AMT = table.Column<double>(nullable: true),
+                    AGREEMENT_AMT = table.Column<float>(nullable: true),
                     AGREEMENT_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     AGREEMENT_EXPIRY_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     WORK_COMPLETE_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     MEASURE_BOOK_NO = table.Column<string>(maxLength: 70, nullable: true),
-                    DEPOSIT_AMT = table.Column<double>(nullable: true),
-                    BANK_GUARANTEE_AMT = table.Column<double>(nullable: true),
+                    DEPOSIT_AMT = table.Column<float>(nullable: true),
+                    BANK_GUARANTEE_AMT = table.Column<float>(nullable: true),
                     DEPOSIT_RELEASE_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     DEPOSIT_RELEASED_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    WARD_NO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    WARD_NO = table.Column<int>(nullable: true),
                     IS_COMPLETED = table.Column<string>(maxLength: 1, nullable: true),
                     DEADLINE_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     TP_NO = table.Column<string>(maxLength: 25, nullable: true),
-                    BANKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PARTY_PERSONTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PARTY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_PERSONTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DEPOSITS_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DEPOSITS_FORFEIT_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    BANKID = table.Column<int>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    PARTY_PERSONTYPEID = table.Column<int>(nullable: true),
+                    PARTY_ID = table.Column<int>(nullable: true),
+                    PERSON_PERSONTYPEID = table.Column<int>(nullable: true),
+                    PERSON_ID = table.Column<int>(nullable: true),
+                    DEPOSITS_ACC_ID = table.Column<int>(nullable: true),
+                    DEPOSITS_FORFEIT_ACC_ID = table.Column<int>(nullable: true),
                     IS_KRAMAGAT = table.Column<string>(maxLength: 1, nullable: true),
-                    YOJANA_NATUR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    YOJANA_NATUR_ID = table.Column<int>(nullable: true),
                     AGREEMENT_SIGNING_PERSON = table.Column<string>(maxLength: 70, nullable: true)
                 },
                 constraints: table =>
@@ -368,9 +368,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACCODE",
                 columns: table => new
                 {
-                    ACCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    SBCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    GRCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACCODE = table.Column<int>(nullable: false),
+                    SBCODE = table.Column<int>(nullable: true),
+                    GRCODE = table.Column<int>(nullable: true),
                     TRANTYPE = table.Column<string>(maxLength: 1, nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 70, nullable: true),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: true),
@@ -395,30 +395,16 @@ namespace IMIS_DataEntity.Migrations
                 {
                     table.PrimaryKey("APPLICATION_CONFIGURATION_pkey", x => x.SN);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
-
+  
             migrationBuilder.CreateTable(
                 name: "BANKMASTER",
                 columns: table => new
                 {
-                    BANKID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    BANKID = table.Column<int>(nullable: false),
                     ENGNAME = table.Column<string>(maxLength: 100, nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 100, nullable: true),
                     BANKCODE = table.Column<string>(maxLength: 50, nullable: true),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
                     ADDRESS = table.Column<string>(maxLength: 100, nullable: true),
                     PHONES = table.Column<string>(maxLength: 40, nullable: true),
                     EMAILS = table.Column<string>(maxLength: 100, nullable: true),
@@ -426,7 +412,7 @@ namespace IMIS_DataEntity.Migrations
                     BRANCHCODE = table.Column<string>(maxLength: 200, nullable: true),
                     TRANCODE = table.Column<string>(maxLength: 200, nullable: true),
                     CYCODE = table.Column<string>(maxLength: 200, nullable: true),
-                    FINANCEL_INSTITUTE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    FINANCEL_INSTITUTE_ID = table.Column<int>(nullable: true),
                     BRANCH = table.Column<string>(maxLength: 50, nullable: true),
                     BANKNAME = table.Column<string>(nullable: true)
                 },
@@ -439,9 +425,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "BUDJET_SOURCE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PARENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    COUNTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PARENT_ID = table.Column<int>(nullable: true),
+                    COUNTRY_ID = table.Column<int>(nullable: true),
                     CODE = table.Column<string>(maxLength: 70, nullable: true),
                     EMAIL = table.Column<string>(maxLength: 50, nullable: true),
                     PHONE = table.Column<string>(maxLength: 50, nullable: true),
@@ -459,11 +445,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "BUDJET_SUB_HEAD",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     CODE = table.Column<string>(maxLength: 70, nullable: true),
-                    MINISTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    MINISTRY_ID = table.Column<int>(nullable: true),
                     MINISTRY_CODE = table.Column<string>(maxLength: 70, nullable: true),
-                    PARENT_CODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PARENT_CODE = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 70, nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 70, nullable: true),
                     ENGNAME = table.Column<string>(maxLength: 70, nullable: true),
@@ -477,12 +463,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "BUSINESSMASTER_HISTORY",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BIZ_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
+                    BIZ_ID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 70, nullable: true),
-                    BUSINESSGROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ADD_DATE = table.Column<DateTime>(type: "date", nullable: true),
+                    BUSINESSGROUPID = table.Column<int>(nullable: true),
+                    TAXPAYERID = table.Column<int>(nullable: true),
+                    ADD_DATE = table.Column<DateTime>(nullable: true),
                     COMPUTER_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     DATA_STATUS = table.Column<string>(maxLength: 20, nullable: true),
                     WINDOWS_USER = table.Column<string>(maxLength: 100, nullable: true),
@@ -496,28 +482,28 @@ namespace IMIS_DataEntity.Migrations
                 name: "CELEDGER20682069",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HOUSEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CONSTRUCTIONTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CONSTRUCTIONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TALANUMBER = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TOTALAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEPERUNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CALCULATEDVALUE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
+                    IID = table.Column<int>(nullable: true),
+                    HOUSEID = table.Column<int>(nullable: true),
+                    CONSTRUCTIONTYPEID = table.Column<int>(nullable: true),
+                    CONSTRUCTIONID = table.Column<int>(nullable: true),
+                    TALANUMBER = table.Column<int>(nullable: true),
+                    TOTALAREA = table.Column<int>(nullable: true),
+                    RATEID = table.Column<int>(nullable: true),
+                    RATEPERUNIT = table.Column<int>(nullable: true),
+                    CALCULATEDVALUE = table.Column<int>(nullable: true),
                     VSDATEOFMADE = table.Column<string>(maxLength: 10, nullable: true),
-                    DEPPERCENT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DEPRECIATIONAMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OTHERPLUSINEVALUATIONS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OTHERMINUSINEVALUATIONS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DEPPERCENT = table.Column<int>(nullable: true),
+                    DEPRECIATIONAMOUNT = table.Column<int>(nullable: true),
+                    OTHERPLUSINEVALUATIONS = table.Column<int>(nullable: true),
+                    OTHERMINUSINEVALUATIONS = table.Column<int>(nullable: true),
                     OTHERPLUSMINUSDESCRIPTIONS = table.Column<string>(maxLength: 90, nullable: true),
-                    NETCALCULATEDVALUE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NONCOMPLETIONREASONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NETCALCULATEDVALUE = table.Column<int>(nullable: true),
+                    NONCOMPLETIONREASONID = table.Column<int>(nullable: true),
                     NONCOMPLETIONREASONS = table.Column<string>(maxLength: 90, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 90, nullable: true),
-                    SPACEMEASURINGUNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXED = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SPACEMEASURINGUNIT = table.Column<int>(nullable: true),
+                    TAXED = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -527,10 +513,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "COLLECTIONCOUNTERS",
                 columns: table => new
                 {
-                    COUNTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    COUNTERID = table.Column<int>(nullable: false),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: true),
-                    COUNTERHEADID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WARDNO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTERHEADID = table.Column<int>(nullable: true),
+                    WARDNO = table.Column<int>(nullable: true),
                     LOCATION = table.Column<string>(maxLength: 50, nullable: true),
                     SPECIALNOTES = table.Column<string>(maxLength: 90, nullable: true),
                     CMPTR_NAME = table.Column<string>(maxLength: 50, nullable: true),
@@ -545,7 +531,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "CONSTANTVALUES",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
                     VARNAME = table.Column<string>(maxLength: 50, nullable: true),
                     STRVALUE = table.Column<string>(nullable: true)
                 },
@@ -557,11 +543,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "CONTACTS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEPNAME = table.Column<string>(maxLength: 100, nullable: true),
                     ENGNAME = table.Column<string>(maxLength: 100, nullable: true),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
-                    DISTRICTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DISTRICTID = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 150, nullable: true)
                 },
                 constraints: table =>
@@ -573,7 +559,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "COUNTRY",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: false),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
@@ -587,12 +573,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "DDC",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: false),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    DISTRICTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    DISTRICTID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -602,7 +588,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "DEV_REGION",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: false),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
@@ -616,12 +602,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "DISTRICT",
                 columns: table => new
                 {
-                    DISTRICTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DISTRICTID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: false),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    ZONEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    ZONEID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -631,7 +617,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "EMP_GRP",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEPNAME = table.Column<string>(maxLength: 80, nullable: true),
                     ENGNAME = table.Column<string>(maxLength: 80, nullable: true)
                 },
@@ -644,7 +630,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "FISCALYEARS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 9, nullable: true),
                     DATEFROM = table.Column<string>(maxLength: 10, nullable: true),
                     DATETO = table.Column<string>(maxLength: 10, nullable: true)
@@ -657,11 +643,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "FYWISERENTDARRATE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    RATEID = table.Column<int>(nullable: true),
                     RATENAME = table.Column<string>(maxLength: 100, nullable: true),
-                    RENT_PER = table.Column<double>(nullable: true),
-                    RENT_TYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    RENT_PER = table.Column<float>(nullable: true),
+                    RENT_TYPEID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -673,49 +659,76 @@ namespace IMIS_DataEntity.Migrations
                 name: "FYWISESANITATION_RATE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    GROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUBGROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ROAD_TYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    RATEID = table.Column<int>(nullable: true),
+                    GROUPID = table.Column<int>(nullable: true),
+                    SUBGROUPID = table.Column<int>(nullable: true),
+                    ROAD_TYPEID = table.Column<int>(nullable: true),
                     RATENAME = table.Column<string>(nullable: true),
-                    RATE = table.Column<double>(nullable: true),
+                    RATE = table.Column<float>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    AREA_UPTO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FOR_EACH_AREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EACH_AREA_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    AREA_UPTO = table.Column<int>(nullable: true),
+                    FOR_EACH_AREA = table.Column<int>(nullable: true),
+                    EACH_AREA_RATE = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                 });
 
             migrationBuilder.CreateTable(
+                name: "Imis_Menu",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    MenuName = table.Column<string>(nullable: true),
+                    MenuUrl = table.Column<string>(nullable: true),
+                    DisplayName = table.Column<string>(nullable: true),
+                    ParentMenuId = table.Column<int>(nullable: false),
+                    Active = table.Column<bool>(nullable: false),
+                    IsLocked = table.Column<bool>(nullable: false),
+                    Visible = table.Column<bool>(nullable: false),
+                    Icon = table.Column<string>(nullable: true),
+                    MenuOrder = table.Column<int>(nullable: false),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdateBy = table.Column<string>(nullable: true),
+                    DisplayNepName = table.Column<string>(nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: true),
+                    UpdatedAt = table.Column<DateTime>(nullable: true),
+                    DisplayNameNep = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Imis_Menu", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "INCOMEBILLDETAILS_HISTORY",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SN_INCOMEBILLDTL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
+                    SN_INCOMEBILLDTL = table.Column<int>(nullable: true),
+                    BILLID = table.Column<int>(nullable: true),
                     BILLNO = table.Column<string>(maxLength: 25, nullable: true),
                     BILLDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    COUNTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VRNO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTERID = table.Column<int>(nullable: true),
+                    PERSONID = table.Column<int>(nullable: true),
+                    ACCODE = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<int>(nullable: true),
+                    VRNO = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    ORDERINBILL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ORDERINBILL = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     PROJECT = table.Column<string>(maxLength: 10, nullable: true),
-                    TAXADDTNLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    QTY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TAXADDTNLID = table.Column<int>(nullable: true),
+                    QTY = table.Column<int>(nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true),
                     TAX_TYPE = table.Column<string>(maxLength: 5, nullable: true),
-                    BACKUP_PERSONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ADD_DATE = table.Column<DateTime>(type: "date", nullable: true),
+                    BACKUP_PERSONID = table.Column<int>(nullable: true),
+                    ADD_DATE = table.Column<DateTime>(nullable: true),
                     COMPUTER_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     DATA_STATUS = table.Column<string>(maxLength: 20, nullable: true),
                     WINDOWS_USER = table.Column<string>(maxLength: 100, nullable: true),
@@ -729,10 +742,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_APPLICANT_RATE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    APPLICANTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_DETAIL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true)
+                    ID = table.Column<int>(nullable: false),
+                    APPLICANTID = table.Column<int>(nullable: true),
+                    ITEM_DETAIL_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -743,7 +756,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_BRAND",
                 columns: table => new
                 {
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    BRAND_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 1, nullable: true)
@@ -757,23 +770,23 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_DEPLIST",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    DAKHILA_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    QTY = table.Column<double>(nullable: true),
+                    DAKHILA_ID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    QTY = table.Column<float>(nullable: true),
                     PURCHASE_DATE = table.Column<string>(maxLength: 15, nullable: true),
-                    PURCHASE_AMT = table.Column<double>(nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DEPRE_DURATON = table.Column<double>(nullable: true),
-                    DEPRE_PER = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DEPRE_AMT = table.Column<double>(nullable: true),
-                    MAX_DEPRE_AMT = table.Column<double>(nullable: true),
-                    MIN_DEPRE_AMT = table.Column<double>(nullable: true),
-                    DEDUCT_AMT = table.Column<double>(nullable: true),
-                    NET_AMT = table.Column<double>(nullable: true)
+                    PURCHASE_AMT = table.Column<float>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    UNIT_ID = table.Column<int>(nullable: true),
+                    DEPRE_DURATON = table.Column<float>(nullable: true),
+                    DEPRE_PER = table.Column<int>(nullable: true),
+                    DEPRE_AMT = table.Column<float>(nullable: true),
+                    MAX_DEPRE_AMT = table.Column<float>(nullable: true),
+                    MIN_DEPRE_AMT = table.Column<float>(nullable: true),
+                    DEDUCT_AMT = table.Column<float>(nullable: true),
+                    NET_AMT = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -784,17 +797,17 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_DEPRECIATION",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    DAKHILA_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    QTY = table.Column<double>(nullable: true),
-                    ORGINAL_RATE = table.Column<double>(nullable: true),
-                    DEPRE_RATE = table.Column<double>(nullable: true),
-                    DEPRE_PER = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    DAKHILA_ID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    UNIT_ID = table.Column<int>(nullable: true),
+                    QTY = table.Column<float>(nullable: true),
+                    ORGINAL_RATE = table.Column<float>(nullable: true),
+                    DEPRE_RATE = table.Column<float>(nullable: true),
+                    DEPRE_PER = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -805,10 +818,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_DEPT",
                 columns: table => new
                 {
-                    DEPT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    DEPT_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    OFFICE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    OFFICE_ID = table.Column<int>(nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 1, nullable: true)
                 },
                 constraints: table =>
@@ -820,17 +833,17 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_INCREASE_DECREASE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    NUM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DAKHILA_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    NUM_ID = table.Column<int>(nullable: true),
+                    DAKHILA_ID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    UNIT_ID = table.Column<int>(nullable: true),
                     PURCHASE_DATE = table.Column<string>(maxLength: 30, nullable: true),
-                    STOCK_QTY = table.Column<double>(nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
-                    SCAP_AMOUNT = table.Column<double>(nullable: true),
+                    STOCK_QTY = table.Column<float>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
+                    SCAP_AMOUNT = table.Column<float>(nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 30, nullable: true)
                 },
                 constraints: table =>
@@ -842,15 +855,15 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ISSUE_DAKHILA",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ISSUE_DETAIL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ISSU_MASTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DAKHILA_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ISSUE_NO = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    UNIT_ID = table.Column<int>(nullable: true),
+                    ISSUE_DETAIL_ID = table.Column<int>(nullable: true),
+                    ISSU_MASTER_ID = table.Column<int>(nullable: true),
+                    DAKHILA_ID = table.Column<int>(nullable: true),
+                    ISSUE_NO = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -862,7 +875,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ITEM_ADJ_TYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     ADD_SUB = table.Column<string>(maxLength: 15, nullable: true),
@@ -877,25 +890,25 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ITEM_CATEGORY",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    PARENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    GRP_LEVEL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    IS_HEADER = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PARENT_ID = table.Column<int>(nullable: true),
+                    GRP_LEVEL = table.Column<int>(nullable: true),
+                    IS_HEADER = table.Column<int>(nullable: true),
                     ISEXP = table.Column<short>(nullable: true),
                     ISLAST = table.Column<short>(nullable: true),
                     CODE = table.Column<string>(maxLength: 10, nullable: true),
-                    UNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MINL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MAXL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RMINL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RMAXL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DEPRECIATION_PER = table.Column<double>(nullable: true),
-                    DEPRECIATION_MIN = table.Column<double>(nullable: true),
-                    DEPRECIATION_MAX = table.Column<double>(nullable: true),
+                    UNIT = table.Column<int>(nullable: true),
+                    MINL = table.Column<int>(nullable: true),
+                    MAXL = table.Column<int>(nullable: true),
+                    RMINL = table.Column<int>(nullable: true),
+                    RMAXL = table.Column<int>(nullable: true),
+                    DEPRECIATION_PER = table.Column<decimal>(nullable: true),
+                    DEPRECIATION_MIN = table.Column<decimal>(nullable: true),
+                    DEPRECIATION_MAX = table.Column<decimal>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    ITEM_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -906,7 +919,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ITEM_SPEC",
                 columns: table => new
                 {
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SPEC_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 1, nullable: true)
@@ -920,14 +933,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_LILAM_APPMASTER",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    APPNO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PROJID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    APPLYLILAMID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    APPNO = table.Column<int>(nullable: true),
+                    PROJID = table.Column<int>(nullable: true),
+                    APPLYLILAMID = table.Column<int>(nullable: true),
                     ORGAPPLICANTNAME = table.Column<string>(maxLength: 50, nullable: true),
                     ORGAPPLICANTPOST = table.Column<string>(maxLength: 50, nullable: true),
                     APPLYDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    APPLYENGDATE = table.Column<DateTime>(type: "date", nullable: true),
+                    APPLYENGDATE = table.Column<DateTime>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 150, nullable: true)
                 },
                 constraints: table =>
@@ -939,23 +952,23 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_LILAM_DETAIL",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    MINIMUMRATE = table.Column<double>(nullable: true),
-                    LILAM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DAKHILAID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NIKASHAID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ISSUE_NO = table.Column<double>(nullable: true),
-                    TOTAL_IN_STOCK = table.Column<double>(nullable: true),
-                    DEP_AMT = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    MINIMUMRATE = table.Column<float>(nullable: true),
+                    LILAM_ID = table.Column<int>(nullable: true),
+                    DAKHILAID = table.Column<int>(nullable: true),
+                    NIKASHAID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    UNIT_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    ITEM_TYPE = table.Column<int>(nullable: true),
+                    ITEM_ISSUE_NO = table.Column<float>(nullable: true),
+                    TOTAL_IN_STOCK = table.Column<float>(nullable: true),
+                    DEP_AMT = table.Column<float>(nullable: true),
                     ISSUE_DT = table.Column<string>(maxLength: 10, nullable: true),
                     DELIVERY_STATUS = table.Column<string>(maxLength: 1, nullable: true),
                     REMARKS = table.Column<string>(nullable: true),
-                    ISSUE_DT_ENG = table.Column<DateTime>(type: "date", nullable: true)
+                    ISSUE_DT_ENG = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -966,35 +979,35 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_LILAM_MAST",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     LILAM_NO = table.Column<string>(maxLength: 50, nullable: false),
-                    ISSUE_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LILAMTYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RECEIVE_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ISSUE_BY = table.Column<int>(nullable: true),
+                    LILAMTYPE = table.Column<int>(nullable: true),
+                    RECEIVE_BY = table.Column<int>(nullable: true),
                     RECEIVE_PERSON_NAME = table.Column<string>(maxLength: 50, nullable: true),
                     RECIVE_PERSON_POST = table.Column<string>(maxLength: 50, nullable: true),
                     REMARKS = table.Column<string>(nullable: true),
-                    PREP_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CHECK_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREP_BY = table.Column<int>(nullable: true),
+                    CHECK_BY = table.Column<int>(nullable: true),
                     ISSUE_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPT_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACCEPT_BY = table.Column<int>(nullable: true),
                     ACCEPT_DT = table.Column<string>(maxLength: 10, nullable: true),
                     PREP_DT = table.Column<string>(maxLength: 10, nullable: true),
                     CHECK_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    ISSUE_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    PREP_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    CHECK_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    ISSUE_DT_ENG = table.Column<DateTime>(nullable: true),
+                    PREP_DT_ENG = table.Column<DateTime>(nullable: true),
+                    CHECK_DT_ENG = table.Column<DateTime>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPT_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    ACCEPT_DT_ENG = table.Column<DateTime>(nullable: true),
                     PAGENO = table.Column<string>(maxLength: 200, nullable: true),
                     REGISTERNO = table.Column<string>(maxLength: 200, nullable: true),
                     PUBLISH_DATE = table.Column<string>(maxLength: 20, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 200, nullable: true),
                     NEWSPAPER_NAME = table.Column<string>(maxLength: 200, nullable: true),
-                    PERNEWS_RATE = table.Column<double>(nullable: true),
-                    ACCEPT_PERCENT = table.Column<double>(nullable: true),
-                    BANKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VALID_DAYS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PERNEWS_RATE = table.Column<float>(nullable: true),
+                    ACCEPT_PERCENT = table.Column<float>(nullable: true),
+                    BANKID = table.Column<int>(nullable: true),
+                    VALID_DAYS = table.Column<int>(nullable: true),
                     FISCALYEAR_CHUKTA = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -1006,11 +1019,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_LILAM_REC_LIST",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     REC_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    APPLICANTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    APPLICANTID = table.Column<int>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    USER_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1020,7 +1033,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ORG_TYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 1, nullable: true)
@@ -1034,7 +1047,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_PROJECT",
                 columns: table => new
                 {
-                    PROJECT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    PROJECT_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 1, nullable: true)
@@ -1048,21 +1061,21 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_PUR_MAST_PLAN",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     PKG_NO = table.Column<string>(maxLength: 20, nullable: true),
-                    APPROX_AMT = table.Column<double>(nullable: true),
-                    BUDGET1YEAR = table.Column<double>(nullable: true),
-                    BUDGET2YEAR = table.Column<double>(nullable: true),
-                    BUDGET3YEAR = table.Column<double>(nullable: true),
+                    APPROX_AMT = table.Column<float>(nullable: true),
+                    BUDGET1YEAR = table.Column<float>(nullable: true),
+                    BUDGET2YEAR = table.Column<float>(nullable: true),
+                    BUDGET3YEAR = table.Column<float>(nullable: true),
                     PUR_TYPE = table.Column<string>(maxLength: 10, nullable: true),
                     AGREEMENT_TYPE = table.Column<string>(maxLength: 10, nullable: true),
                     BUDGET_RESOURCE = table.Column<string>(maxLength: 30, nullable: true),
                     WORK_ST_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     WORK_END_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    WORK_ST_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    WORK_END_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    WORK_ST_DATE_AD = table.Column<DateTime>(nullable: true),
+                    WORK_END_DATE_AD = table.Column<DateTime>(nullable: true),
                     BUDGET_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true)
                 },
@@ -1075,11 +1088,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_PUR_TYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NEP_NAME = table.Column<string>(maxLength: 50, nullable: true),
-                    NEP_ENG = table.Column<string>(maxLength: 50, nullable: true),
-                    REMARKS = table.Column<string>(maxLength: 50, nullable: true),
-                    ISDEFAULT = table.Column<string>(maxLength: 1, nullable: true)
+                    ID = table.Column<int>(nullable: false),
+                    NEP_NAME = table.Column<string>(maxLength: 100, nullable: true),
+                    NEP_ENG = table.Column<string>(maxLength: 100, nullable: true),
+                    REMARKS = table.Column<string>(maxLength: 100, nullable: true),
+                    ISDEFAULT = table.Column<char>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1089,12 +1102,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_SUP_ITM_DET",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    QTY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    SUP_ID = table.Column<int>(nullable: true),
+                    QTY = table.Column<int>(nullable: true),
+                    RATE = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -1106,7 +1119,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_SUPPLIER",
                 columns: table => new
                 {
-                    SUP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SUP_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     COMPANY_NAME_NP = table.Column<string>(maxLength: 70, nullable: true),
@@ -1117,9 +1130,9 @@ namespace IMIS_DataEntity.Migrations
                     PHONE_NO = table.Column<string>(maxLength: 15, nullable: true),
                     EMAIL = table.Column<string>(maxLength: 30, nullable: true),
                     DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
-                    DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    DATE_AD = table.Column<DateTime>(nullable: true),
                     ORG_TYPE = table.Column<string>(maxLength: 50, nullable: true),
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ORG_ID = table.Column<int>(nullable: true),
                     IS_SELECTED = table.Column<string>(maxLength: 5, nullable: true),
                     REG_NO = table.Column<string>(maxLength: 30, nullable: true),
                     SUP_TYPE = table.Column<string>(maxLength: 1, nullable: true)
@@ -1133,8 +1146,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_SUPPLIER_FISCALYEAR",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    SUP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    SUP_ID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 15, nullable: true)
                 },
                 constraints: table =>
@@ -1146,10 +1159,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_TAX_RATE",
                 columns: table => new
                 {
-                    TAX_RATE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    TAX_RATE_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    TAX_RATE = table.Column<double>(nullable: false)
+                    TAX_RATE = table.Column<float>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1160,10 +1173,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_TYPE_SETUP",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     DESC_NP = table.Column<string>(maxLength: 50, nullable: false),
                     DESC_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TYPE_ID = table.Column<int>(nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 1, nullable: true)
                 },
                 constraints: table =>
@@ -1175,12 +1188,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_UNIT",
                 columns: table => new
                 {
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    UNIT_ID = table.Column<int>(nullable: false),
                     DESC_NP = table.Column<string>(maxLength: 50, nullable: false),
                     DESC_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    MUL_FACTOR = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    MUL_FACTOR = table.Column<int>(nullable: true),
                     RELATED_TO = table.Column<string>(maxLength: 10, nullable: true),
-                    NO_OF_UNITS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NO_OF_UNITS = table.Column<int>(nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 1, nullable: true)
                 },
                 constraints: table =>
@@ -1192,7 +1205,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_WAREHOUSE",
                 columns: table => new
                 {
-                    WAREHOUSE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    WAREHOUSE_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 1, nullable: true)
@@ -1206,10 +1219,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_YRLY_PUR_PLAN",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    APPROX_AMT = table.Column<double>(nullable: true),
+                    APPROX_AMT = table.Column<float>(nullable: true),
                     PUR_TYPE = table.Column<string>(maxLength: 10, nullable: true),
                     AGREEMENT_TYPE = table.Column<string>(maxLength: 30, nullable: true),
                     APRX_AMT_ACPT_DATE = table.Column<string>(maxLength: 10, nullable: true),
@@ -1220,14 +1233,14 @@ namespace IMIS_DataEntity.Migrations
                     TENDR_ACCEPT_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     WRK_ORDER_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     WRK_ACMPLSH_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    ANLYSIS_DSGN_DT_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    APRX_AMT_ACPT_DT_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    TENDR_ACCEPT_DT_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    TENDR_CALL_DT_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    TENDR_OPEN_DT_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    AGREEMENT_DT_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    WRK_2_FIN_DT_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    WRK_ACMPLSH_DT_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    ANLYSIS_DSGN_DT_AD = table.Column<DateTime>(nullable: true),
+                    APRX_AMT_ACPT_DT_AD = table.Column<DateTime>(nullable: true),
+                    TENDR_ACCEPT_DT_AD = table.Column<DateTime>(nullable: true),
+                    TENDR_CALL_DT_AD = table.Column<DateTime>(nullable: true),
+                    TENDR_OPEN_DT_AD = table.Column<DateTime>(nullable: true),
+                    AGREEMENT_DT_AD = table.Column<DateTime>(nullable: true),
+                    WRK_2_FIN_DT_AD = table.Column<DateTime>(nullable: true),
+                    WRK_ACMPLSH_DT_AD = table.Column<DateTime>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
@@ -1239,35 +1252,35 @@ namespace IMIS_DataEntity.Migrations
                 name: "IPTTAXSUMMARY_HISTORY",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
+                    IID = table.Column<int>(nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 9, nullable: true),
-                    NETTAXAMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FINEAMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ADDITIONALCHARGES = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    REDUCTIONALCHARGES = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ISTHISFROMREVENUEACCOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXPAIDAMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NETTAXAMOUNT = table.Column<int>(nullable: true),
+                    FINEAMOUNT = table.Column<int>(nullable: true),
+                    ADDITIONALCHARGES = table.Column<int>(nullable: true),
+                    REDUCTIONALCHARGES = table.Column<int>(nullable: true),
+                    ISTHISFROMREVENUEACCOUNT = table.Column<int>(nullable: true),
+                    TAXPAIDAMOUNT = table.Column<int>(nullable: true),
                     DATEPAID = table.Column<string>(maxLength: 10, nullable: true),
                     SPECIALNOTES = table.Column<string>(nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    BILLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
+                    BILLID = table.Column<int>(nullable: true),
                     BILLNO = table.Column<string>(maxLength: 25, nullable: true),
-                    LAST_TAX_PAID_AMOUNT = table.Column<double>(nullable: true),
+                    LAST_TAX_PAID_AMOUNT = table.Column<float>(nullable: true),
                     TAX_TYPE = table.Column<string>(maxLength: 2, nullable: true),
-                    REM_IPT_PAID_AMOUNT = table.Column<double>(nullable: true),
-                    REM_HL_PAID_AMOUNT = table.Column<double>(nullable: true),
-                    REM_IPT_FINE_AMOUNT = table.Column<double>(nullable: true),
-                    REM_HL_FINE_AMOUNT = table.Column<double>(nullable: true),
+                    REM_IPT_PAID_AMOUNT = table.Column<float>(nullable: true),
+                    REM_HL_PAID_AMOUNT = table.Column<float>(nullable: true),
+                    REM_IPT_FINE_AMOUNT = table.Column<float>(nullable: true),
+                    REM_HL_FINE_AMOUNT = table.Column<float>(nullable: true),
                     REM_HL_FINE_STATUS = table.Column<string>(maxLength: 1, nullable: true),
                     REM_IPT_FINE_STATUS = table.Column<string>(maxLength: 1, nullable: true),
-                    YEAR = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MONTH = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ADD_DATE = table.Column<DateTime>(type: "date", nullable: true),
+                    YEAR = table.Column<int>(nullable: true),
+                    MONTH = table.Column<int>(nullable: true),
+                    ADD_DATE = table.Column<DateTime>(nullable: true),
                     COMPUTER_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     DATA_STATUS = table.Column<string>(maxLength: 20, nullable: true),
                     WINDOWS_USER = table.Column<string>(maxLength: 100, nullable: true),
@@ -1281,13 +1294,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "ISSUEDBILLS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
                     DATEISSUED = table.Column<string>(maxLength: 10, nullable: true),
-                    THELINO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    THELINO = table.Column<int>(nullable: true),
                     BILLNOFROM = table.Column<string>(maxLength: 25, nullable: true),
                     BILLNOTO = table.Column<string>(maxLength: 25, nullable: true),
-                    COUNTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTERID = table.Column<int>(nullable: true),
+                    USERID = table.Column<int>(nullable: true),
                     SPECIALNOTES = table.Column<string>(maxLength: 90, nullable: true)
                 },
                 constraints: table =>
@@ -1298,9 +1311,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "LANDMEASURINGUNITS",
                 columns: table => new
                 {
-                    UNITID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    UNITID = table.Column<int>(nullable: true),
                     UNITNAME = table.Column<string>(maxLength: 50, nullable: true),
-                    SQFTPERUNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SQFTPERUNIT = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1310,12 +1323,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "LANDSMULTIEVALUATIONDETAIL",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
+                    IID = table.Column<int>(nullable: true),
+                    LANDID = table.Column<int>(nullable: true),
                     KITTANUMBER = table.Column<string>(maxLength: 50, nullable: true),
-                    GENERALRATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREAINSQFT = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    GENERALRATEID = table.Column<int>(nullable: true),
+                    AREAINSQFT = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1325,29 +1338,29 @@ namespace IMIS_DataEntity.Migrations
                 name: "LELEDGER20682069",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WARDNO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TRACKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
+                    IID = table.Column<int>(nullable: true),
+                    LANDID = table.Column<int>(nullable: true),
+                    WARDNO = table.Column<int>(nullable: true),
+                    TRACKID = table.Column<int>(nullable: true),
                     KITTANUMBER = table.Column<string>(maxLength: 50, nullable: true),
-                    TOTALAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NONEVALUATEDAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NETEVALUATINGAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEPERUNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CALCULATEDVALUE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OTHERPLUSINEVALUATIONS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OTHERMINUSINEVALUATIONS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TOTALAREA = table.Column<int>(nullable: true),
+                    NONEVALUATEDAREA = table.Column<int>(nullable: true),
+                    NETEVALUATINGAREA = table.Column<int>(nullable: true),
+                    RATEID = table.Column<int>(nullable: true),
+                    RATEPERUNIT = table.Column<int>(nullable: true),
+                    CALCULATEDVALUE = table.Column<int>(nullable: true),
+                    OTHERPLUSINEVALUATIONS = table.Column<int>(nullable: true),
+                    OTHERMINUSINEVALUATIONS = table.Column<int>(nullable: true),
                     OTHERPLUSMINUSDESCRIPTIONS = table.Column<string>(maxLength: 90, nullable: true),
-                    NETCALCULATEDVALUE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SELFDECLAREDVALUE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    APPLIEDVALUE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NONCOMPLETIONREASONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NETCALCULATEDVALUE = table.Column<int>(nullable: true),
+                    SELFDECLAREDVALUE = table.Column<int>(nullable: true),
+                    APPLIEDVALUE = table.Column<int>(nullable: true),
+                    NONCOMPLETIONREASONID = table.Column<int>(nullable: true),
                     NONCOMPLETIONREASONS = table.Column<string>(maxLength: 90, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 90, nullable: true),
-                    LANDMEASURINGUNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXED = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    LANDMEASURINGUNIT = table.Column<int>(nullable: true),
+                    TAXED = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1357,24 +1370,24 @@ namespace IMIS_DataEntity.Migrations
                 name: "MALPOT_LANDS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    IID = table.Column<int>(nullable: true),
                     EID = table.Column<string>(maxLength: 200, nullable: true),
                     NP_FIRSTNAME = table.Column<string>(maxLength: 200, nullable: true),
                     NP_LASTNAME = table.Column<string>(maxLength: 200, nullable: true),
-                    OLDVDCID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    OLDVDCID = table.Column<int>(nullable: true),
                     OLDWORDNO = table.Column<string>(maxLength: 100, nullable: true),
                     MOTHNUMBER = table.Column<string>(maxLength: 200, nullable: true),
                     KITTANUMBER = table.Column<string>(maxLength: 200, nullable: true),
-                    VDCID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORDNO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREAINSQFT = table.Column<double>(nullable: true),
-                    NONFUNCTIONALAREAINSQFT = table.Column<double>(nullable: true),
-                    ADD_USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EDIT_USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VDCID = table.Column<int>(nullable: true),
+                    WORDNO = table.Column<int>(nullable: true),
+                    AREAINSQFT = table.Column<float>(nullable: true),
+                    NONFUNCTIONALAREAINSQFT = table.Column<float>(nullable: true),
+                    ADD_USERID = table.Column<int>(nullable: true),
+                    EDIT_USERID = table.Column<int>(nullable: true),
                     ADD_DATE = table.Column<string>(maxLength: 30, nullable: true),
                     EDIT_DATE = table.Column<string>(maxLength: 30, nullable: true),
-                    IS_IPT = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    IS_IPT = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1477,7 +1490,7 @@ namespace IMIS_DataEntity.Migrations
                 {
                     SN = table.Column<short>(nullable: false),
                     KV = table.Column<int>(nullable: true),
-                    DISTANCEFT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DISTANCEFT = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 150, nullable: true)
                 },
                 constraints: table =>
@@ -1517,11 +1530,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "MAP_RATE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true),
-                    RATE_PERMIT = table.Column<double>(nullable: true),
-                    DEPOSITE_RATE_PERMIT = table.Column<double>(nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    RATE_PERMIT = table.Column<float>(nullable: true),
+                    DEPOSITE_RATE_PERMIT = table.Column<float>(nullable: true),
+                    USERID = table.Column<int>(nullable: true),
                     ENTRY_DATE = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -1561,13 +1574,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "MAP_SITE",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PERMITID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    PERMITID = table.Column<int>(nullable: true),
                     LANDSHAPE = table.Column<short>(nullable: true),
-                    SIDE_A = table.Column<double>(nullable: true),
-                    SIDE_B = table.Column<double>(nullable: true),
-                    SIDE_C = table.Column<double>(nullable: true),
-                    AREA = table.Column<double>(nullable: true)
+                    SIDE_A = table.Column<float>(nullable: true),
+                    SIDE_B = table.Column<float>(nullable: true),
+                    SIDE_C = table.Column<float>(nullable: true),
+                    AREA = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1579,8 +1592,8 @@ namespace IMIS_DataEntity.Migrations
                 columns: table => new
                 {
                     ID = table.Column<short>(nullable: false),
-                    ROAD_WIDTH = table.Column<double>(nullable: true),
-                    HOUSE_HEIGHT = table.Column<double>(nullable: true),
+                    ROAD_WIDTH = table.Column<float>(nullable: true),
+                    HOUSE_HEIGHT = table.Column<float>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 150, nullable: true)
                 },
@@ -1593,7 +1606,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "MAP_STOREYS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true)
@@ -1607,7 +1620,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "MAP_STRUCTURE_TYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true)
@@ -1621,7 +1634,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "MAP_ZONE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true)
@@ -1635,11 +1648,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "MINISTRY",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     CODE = table.Column<string>(maxLength: 70, nullable: true),
-                    ZONE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DISTRICT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VDC = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ZONE = table.Column<int>(nullable: true),
+                    DISTRICT = table.Column<int>(nullable: true),
+                    VDC = table.Column<int>(nullable: true),
                     PHONE = table.Column<string>(maxLength: 70, nullable: true),
                     ADDRESS = table.Column<string>(maxLength: 150, nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 70, nullable: true),
@@ -1654,10 +1667,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "MINISTRY_ACC_HEAD",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    MINISTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUB_HEAD_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    MINISTRY_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    SUB_HEAD_ID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 70, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
@@ -1670,7 +1683,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "NATIONALITIES",
                 columns: table => new
                 {
-                    NATIONALITYID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NATIONALITYID = table.Column<int>(nullable: true),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: true),
                     ENGNAME = table.Column<string>(maxLength: 25, nullable: true),
@@ -1684,15 +1697,15 @@ namespace IMIS_DataEntity.Migrations
                 name: "NEW_PROPERTY_TAXTABLE",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    RATESN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FROMPROPERTYVALUE = table.Column<double>(nullable: true),
-                    TOPROPERTYVALUE = table.Column<double>(nullable: true),
-                    FROMTAXAMOUNT = table.Column<double>(nullable: true),
-                    TOTAXAMOUNT = table.Column<double>(nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    RATESN = table.Column<int>(nullable: true),
+                    FROMPROPERTYVALUE = table.Column<float>(nullable: true),
+                    TOPROPERTYVALUE = table.Column<float>(nullable: true),
+                    FROMTAXAMOUNT = table.Column<float>(nullable: true),
+                    TOTAXAMOUNT = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 190, nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    TAX_PERCENT = table.Column<double>(nullable: true)
+                    TAX_PERCENT = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1703,7 +1716,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "OFFICE_TYPE",
                 columns: table => new
                 {
-                    OFFICE_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    OFFICE_TYPE_ID = table.Column<int>(nullable: false),
                     OFFICE_TYPE = table.Column<string>(maxLength: 30, nullable: false)
                 },
                 constraints: table =>
@@ -1715,30 +1728,30 @@ namespace IMIS_DataEntity.Migrations
                 name: "PAYMENT_SLIP_MASTER",
                 columns: table => new
                 {
-                    PAYMENT_SLIP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    PAYMENT_SLIP_ID = table.Column<int>(nullable: false),
                     PAYMENT_DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true),
-                    TRANSACTION_TYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILL_AMT = table.Column<double>(nullable: true),
-                    VAT_AMT = table.Column<double>(nullable: true),
-                    RETENTION_MONEY_EDUCTION = table.Column<double>(nullable: true),
-                    CONTRACT_TAX_DEDUCTION = table.Column<double>(nullable: true),
-                    INCOME_TAX_DEDUCTION = table.Column<double>(nullable: true),
-                    LAST_YEARS_ADV_DEDUCTION = table.Column<double>(nullable: true),
-                    VAT_DEDUCTION = table.Column<double>(nullable: true),
-                    OTHER_DEDUCTION = table.Column<double>(nullable: true),
-                    CHEQUE_PAYMENT = table.Column<double>(nullable: true),
-                    CASH_PAYMENT = table.Column<double>(nullable: true),
-                    ADV_CLEARED_FROM_BILL = table.Column<double>(nullable: true),
-                    ADV_CLEARED_FROM_BANK = table.Column<double>(nullable: true),
-                    ADV_CLEARED_FROM_CASH = table.Column<double>(nullable: true),
-                    LY_ADV_CLEARED_FROM_BILL = table.Column<double>(nullable: true),
-                    LY_ADV_CLEARED_FROM_BANK = table.Column<double>(nullable: true),
-                    LY_ADV_CLEARED_FROM_CASH = table.Column<double>(nullable: true),
+                    TRANSACTION_TYPEID = table.Column<int>(nullable: true),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: true),
+                    PERSON_ID = table.Column<int>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true),
+                    BILL_AMT = table.Column<float>(nullable: true),
+                    VAT_AMT = table.Column<float>(nullable: true),
+                    RETENTION_MONEY_EDUCTION = table.Column<float>(nullable: true),
+                    CONTRACT_TAX_DEDUCTION = table.Column<float>(nullable: true),
+                    INCOME_TAX_DEDUCTION = table.Column<float>(nullable: true),
+                    LAST_YEARS_ADV_DEDUCTION = table.Column<float>(nullable: true),
+                    VAT_DEDUCTION = table.Column<float>(nullable: true),
+                    OTHER_DEDUCTION = table.Column<float>(nullable: true),
+                    CHEQUE_PAYMENT = table.Column<float>(nullable: true),
+                    CASH_PAYMENT = table.Column<float>(nullable: true),
+                    ADV_CLEARED_FROM_BILL = table.Column<float>(nullable: true),
+                    ADV_CLEARED_FROM_BANK = table.Column<float>(nullable: true),
+                    ADV_CLEARED_FROM_CASH = table.Column<float>(nullable: true),
+                    LY_ADV_CLEARED_FROM_BILL = table.Column<float>(nullable: true),
+                    LY_ADV_CLEARED_FROM_BANK = table.Column<float>(nullable: true),
+                    LY_ADV_CLEARED_FROM_CASH = table.Column<float>(nullable: true),
                     IS_PESKI = table.Column<string>(maxLength: 1, nullable: true),
-                    VR_NO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VR_NO = table.Column<int>(nullable: true),
                     VR_DATE = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -1750,7 +1763,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "PERSON_TYPE_MASTER",
                 columns: table => new
                 {
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(nullable: true),
                     NAME_EN = table.Column<string>(nullable: true),
                     ISFIXED = table.Column<string>(maxLength: 1, nullable: true)
@@ -1764,7 +1777,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_APPOINTMENT_TYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: true),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 70, nullable: true)
@@ -1778,7 +1791,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_ATTRIBUTES",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NEP = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 90, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true)
@@ -1792,10 +1805,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EDU_BOARD",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NEP = table.Column<string>(maxLength: 100, nullable: true),
                     NAME_ENG = table.Column<string>(maxLength: 100, nullable: true),
-                    COUNTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTRY_ID = table.Column<int>(nullable: true),
                     PLACE = table.Column<string>(maxLength: 70, nullable: true)
                 },
                 constraints: table =>
@@ -1807,7 +1820,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EDU_LEVEL",
                 columns: table => new
                 {
-                    EDU_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    EDU_ID = table.Column<int>(nullable: false),
                     EDU_NAME = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
@@ -1819,7 +1832,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_BARGA",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 25, nullable: true),
                     NAME_EN = table.Column<string>(maxLength: 25, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true)
@@ -1833,29 +1846,29 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_DEP",
                 columns: table => new
                 {
-                    DEPT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    DEPT_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 70, nullable: true),
-                    SALARY_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ALLOWANCE_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ADD_PF_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ADD_INSRNCE_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUB_PF_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUB_INSRNCE_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CIT_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    INCME_TAX_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LEND_PF_D_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SOC_SEC_TAX = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BHATTA_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PESKI_KATTI_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OTHR_KATTI_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ABSNT_KATTI_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SAPATI_KATTI_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TDS_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDJET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SALARY_ACC_ID = table.Column<int>(nullable: false),
+                    ALLOWANCE_ACC_ID = table.Column<int>(nullable: true),
+                    ADD_PF_ACC_ID = table.Column<int>(nullable: true),
+                    ADD_INSRNCE_ACC_ID = table.Column<int>(nullable: true),
+                    SUB_PF_ACC_ID = table.Column<int>(nullable: true),
+                    SUB_INSRNCE_ACC_ID = table.Column<int>(nullable: true),
+                    CIT_ACC_ID = table.Column<int>(nullable: true),
+                    INCME_TAX_ACC_ID = table.Column<int>(nullable: true),
+                    LEND_PF_D_ACC_ID = table.Column<int>(nullable: true),
+                    SOC_SEC_TAX = table.Column<int>(nullable: true),
+                    BHATTA_ACC_ID = table.Column<int>(nullable: true),
+                    PESKI_KATTI_ACC_ID = table.Column<int>(nullable: true),
+                    OTHR_KATTI_ACC_ID = table.Column<int>(nullable: true),
+                    ABSNT_KATTI_ACC_ID = table.Column<int>(nullable: true),
+                    SAPATI_KATTI_ACC_ID = table.Column<int>(nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true),
+                    TDS_ACC_ID = table.Column<int>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true),
+                    BUDJET_SOURCE_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1866,9 +1879,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_INSURANCE_PAID",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(nullable: true)
                 },
@@ -1881,10 +1894,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_GEO_REGION",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     GR_ID = table.Column<string>(maxLength: 2, nullable: true),
                     GR_NAME = table.Column<string>(maxLength: 50, nullable: true),
-                    MARKS_PER_YEAR = table.Column<double>(nullable: true),
+                    MARKS_PER_YEAR = table.Column<float>(nullable: true),
                     DETAILS = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -1896,20 +1909,20 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_HAJIRI",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    YEAR = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MONTH = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TOTAL_DAYS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PUBLIC_HOLIDAYS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HAJIRI_DAYS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    GHABIS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BIBIS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CABIS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BETALABIS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OTHER = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    GAYAL = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SN = table.Column<int>(nullable: false),
+                    YEAR = table.Column<int>(nullable: true),
+                    MONTH = table.Column<int>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST = table.Column<int>(nullable: true),
+                    TOTAL_DAYS = table.Column<int>(nullable: true),
+                    PUBLIC_HOLIDAYS = table.Column<int>(nullable: true),
+                    HAJIRI_DAYS = table.Column<int>(nullable: true),
+                    GHABIS = table.Column<int>(nullable: true),
+                    BIBIS = table.Column<int>(nullable: true),
+                    CABIS = table.Column<int>(nullable: true),
+                    BETALABIS = table.Column<int>(nullable: true),
+                    OTHER = table.Column<int>(nullable: true),
+                    GAYAL = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1920,25 +1933,25 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_LAND_BLDNGS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true),
                     UNIT_DESC = table.Column<string>(maxLength: 100, nullable: true),
-                    ZONE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DISTRICT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VDC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ZONE_ID = table.Column<int>(nullable: true),
+                    DISTRICT_ID = table.Column<int>(nullable: true),
+                    VDC_ID = table.Column<int>(nullable: true),
                     WARD_NO = table.Column<string>(maxLength: 10, nullable: true),
-                    ROAD_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ROAD_ID = table.Column<int>(nullable: true),
                     STREET = table.Column<string>(maxLength: 70, nullable: true),
                     OWNERSHIP_DETAILS = table.Column<string>(maxLength: 100, nullable: true),
-                    AQUISITION_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    AQUISITION_TYPE_ID = table.Column<int>(nullable: true),
                     SPECIAL_NOTES = table.Column<string>(maxLength: 150, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_IDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    USER_IDE = table.Column<int>(nullable: true),
                     DATA_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATA_EDIT_AD_DATE = table.Column<DateTime>(type: "date", nullable: true)
+                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATA_EDIT_AD_DATE = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1949,20 +1962,20 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_LOAN_DHITO_GIVEN",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true),
                     TRANS_DESC = table.Column<string>(maxLength: 100, nullable: true),
                     REASON_TO_TAKE = table.Column<string>(maxLength: 100, nullable: true),
-                    VALUE_IN_NRS = table.Column<double>(nullable: true),
+                    VALUE_IN_NRS = table.Column<float>(nullable: true),
                     RETURNING_DURATION = table.Column<string>(maxLength: 50, nullable: true),
                     SPECIAL_NOTES = table.Column<string>(maxLength: 150, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_IDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    USER_IDE = table.Column<int>(nullable: true),
                     DATA_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATA_EDIT_AD_DATE = table.Column<DateTime>(type: "date", nullable: true)
+                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATA_EDIT_AD_DATE = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1973,20 +1986,20 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_LOAN_DHITO_TAKEN",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true),
                     TRANS_DESC = table.Column<string>(maxLength: 100, nullable: true),
                     REASON_TO_TAKE = table.Column<string>(maxLength: 100, nullable: true),
-                    VALUE_IN_NRS = table.Column<double>(nullable: true),
+                    VALUE_IN_NRS = table.Column<float>(nullable: true),
                     RETURNING_DURATION = table.Column<string>(maxLength: 50, nullable: true),
                     SPECIAL_NOTES = table.Column<string>(maxLength: 150, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_IDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    USER_IDE = table.Column<int>(nullable: true),
                     DATA_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATA_EDIT_AD_DATE = table.Column<DateTime>(type: "date", nullable: true)
+                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATA_EDIT_AD_DATE = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1997,11 +2010,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_NIJAMATI_SEWA_SAMUHA",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PARENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PARENT_ID = table.Column<int>(nullable: true),
                     NAME_NP = table.Column<string>(maxLength: 100, nullable: true),
                     NAME_EN = table.Column<string>(maxLength: 100, nullable: true),
-                    GRP_LEVEL = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    GRP_LEVEL = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2018,18 +2031,18 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_ORNAMENTS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true),
                     UNIT_DESC = table.Column<string>(maxLength: 100, nullable: true),
-                    AQUISITION_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    AQUISITION_TYPE_ID = table.Column<int>(nullable: true),
                     SPECIAL_NOTES = table.Column<string>(maxLength: 150, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_IDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    USER_IDE = table.Column<int>(nullable: true),
                     DATA_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATA_EDIT_AD_DATE = table.Column<DateTime>(type: "date", nullable: true)
+                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATA_EDIT_AD_DATE = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2040,49 +2053,49 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_PAYROLLS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     MONTH = table.Column<short>(nullable: true),
                     EMP_ID = table.Column<int>(nullable: false),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     POST_IN_SHORT = table.Column<string>(maxLength: 40, nullable: true),
                     LOCAL_POST = table.Column<string>(maxLength: 70, nullable: true),
                     EMP_NAME_NP = table.Column<string>(maxLength: 70, nullable: true),
-                    BASIC_SALARY = table.Column<double>(nullable: true),
+                    BASIC_SALARY = table.Column<float>(nullable: true),
                     GRADE_INC_MONTH = table.Column<short>(nullable: true),
-                    RATE_OF_GRADE = table.Column<double>(nullable: true),
-                    GRADE_AMOUNT = table.Column<double>(nullable: true),
-                    GRADE_SALARY_TOTAL = table.Column<double>(nullable: true),
-                    ALLOWANCE_AMT = table.Column<double>(nullable: true),
-                    OTHER_ALLOWANCE_AMT = table.Column<double>(nullable: true),
-                    PF_ADD_AMT = table.Column<double>(nullable: true),
-                    INSURANCE_ADD_AMT = table.Column<double>(nullable: true),
-                    NET_SALARY = table.Column<double>(nullable: true),
-                    PF_DEDUCT_AMT = table.Column<double>(nullable: true),
-                    INSURANCE_DEDUCT_AMT = table.Column<double>(nullable: true),
-                    CIT_PERCENT = table.Column<double>(nullable: true),
-                    CIT_AMT = table.Column<double>(nullable: true),
-                    TAX_AMT = table.Column<double>(nullable: true),
-                    ADVANCE_DEDUCT_AMT = table.Column<double>(nullable: true),
-                    LOAN_DEDUCT_AMT = table.Column<double>(nullable: true),
-                    ABSENT_DAYS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ABSENT_DEDUCT_AMT = table.Column<double>(nullable: true),
-                    OTHER_DEDUCT_TOTAL = table.Column<double>(nullable: true),
-                    TOTAL_PAYABLE_SALARY = table.Column<double>(nullable: true),
+                    RATE_OF_GRADE = table.Column<float>(nullable: true),
+                    GRADE_AMOUNT = table.Column<float>(nullable: true),
+                    GRADE_SALARY_TOTAL = table.Column<float>(nullable: true),
+                    ALLOWANCE_AMT = table.Column<float>(nullable: true),
+                    OTHER_ALLOWANCE_AMT = table.Column<float>(nullable: true),
+                    PF_ADD_AMT = table.Column<float>(nullable: true),
+                    INSURANCE_ADD_AMT = table.Column<float>(nullable: true),
+                    NET_SALARY = table.Column<float>(nullable: true),
+                    PF_DEDUCT_AMT = table.Column<float>(nullable: true),
+                    INSURANCE_DEDUCT_AMT = table.Column<float>(nullable: true),
+                    CIT_PERCENT = table.Column<float>(nullable: true),
+                    CIT_AMT = table.Column<float>(nullable: true),
+                    TAX_AMT = table.Column<float>(nullable: true),
+                    ADVANCE_DEDUCT_AMT = table.Column<float>(nullable: true),
+                    LOAN_DEDUCT_AMT = table.Column<float>(nullable: true),
+                    ABSENT_DAYS = table.Column<int>(nullable: true),
+                    ABSENT_DEDUCT_AMT = table.Column<float>(nullable: true),
+                    OTHER_DEDUCT_TOTAL = table.Column<float>(nullable: true),
+                    TOTAL_PAYABLE_SALARY = table.Column<float>(nullable: true),
                     PAYMODE = table.Column<string>(maxLength: 30, nullable: true),
-                    POST_LEVEL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    POST_LEVEL = table.Column<int>(nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    PAY_BANK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TRANS_TPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DEDUCT_DEP_VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PAY_BANK_ID = table.Column<int>(nullable: true),
+                    TRANS_TPE_ID = table.Column<int>(nullable: true),
+                    DEDUCT_DEP_VCHR_ID = table.Column<int>(nullable: true),
                     DEDUCT_DEP_VCHR_DATE_NEP = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 9, nullable: true),
-                    FESTIVE_VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    FESTIVE_VCHR_ID = table.Column<int>(nullable: true),
                     FESTIVE_VCHR_DATE_NEP = table.Column<string>(maxLength: 10, nullable: true),
-                    PENSIONKOSH_ADD_AMT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PENSIONKOSH_DED_AMT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TDS_AMT = table.Column<double>(nullable: true)
+                    PENSIONKOSH_ADD_AMT = table.Column<int>(nullable: true),
+                    PENSIONKOSH_DED_AMT = table.Column<int>(nullable: true),
+                    TDS_AMT = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2093,24 +2106,24 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_PD_ORG_INVLVMNT",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
                     ORG_NAME = table.Column<string>(maxLength: 70, nullable: true),
                     ORG_ADD = table.Column<string>(maxLength: 100, nullable: true),
                     ORG_FORMED_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     ORG_AIMS = table.Column<string>(maxLength: 150, nullable: true),
                     ORG_ACHEIVMNTS = table.Column<string>(maxLength: 150, nullable: true),
-                    NO_OF_BENIFIC_POPLN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NO_OF_BENIFIC_POPLN = table.Column<int>(nullable: true),
                     POST_IN_ORG = table.Column<string>(maxLength: 50, nullable: true),
                     RESPNSBLTY_IN_ORG = table.Column<string>(maxLength: 90, nullable: true),
                     ORG_JOINED_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     ORG_LEFT_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_IDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    USER_IDE = table.Column<int>(nullable: true),
                     DATA_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATA_EDIT_AD_DATE = table.Column<DateTime>(type: "date", nullable: true)
+                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATA_EDIT_AD_DATE = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2121,11 +2134,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_PD_SRVC_DTLS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     APPOINTMNT_LEVEL = table.Column<string>(maxLength: 50, nullable: true),
-                    APPOINTMNT_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    APPOINTMNT_TYPE = table.Column<int>(nullable: true),
                     OFFICE_DETAIL = table.Column<string>(maxLength: 70, nullable: true),
                     DATE_FROM = table.Column<string>(maxLength: 10, nullable: true),
                     DATE_TO = table.Column<string>(maxLength: 10, nullable: true),
@@ -2140,23 +2153,23 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_PERSON_VISIT_RECRD",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: true),
+                    PERSON_ID = table.Column<int>(nullable: true),
                     PERSON_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     PERSON_POST = table.Column<string>(maxLength: 70, nullable: true),
                     REF_NO = table.Column<string>(maxLength: 50, nullable: true),
                     FROM_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     TO_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    AMOUNT_TAKEN = table.Column<double>(nullable: true),
+                    AMOUNT_TAKEN = table.Column<float>(nullable: true),
                     VISIT_LOCATION = table.Column<string>(maxLength: 100, nullable: true),
                     JOB_DETAILS = table.Column<string>(maxLength: 70, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_IDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    USER_IDE = table.Column<int>(nullable: true),
                     DATA_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATA_EDIT_AD_DATE = table.Column<DateTime>(type: "date", nullable: true)
+                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATA_EDIT_AD_DATE = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2167,14 +2180,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_POST_MASTER",
                 columns: table => new
                 {
-                    POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    POST_ID = table.Column<int>(nullable: false),
                     GENERAL_POST = table.Column<string>(maxLength: 70, nullable: true),
                     GENERAL_POST_SHORT = table.Column<string>(maxLength: 40, nullable: true),
-                    POST_LEVEL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BASIC_SALARY = table.Column<double>(nullable: true),
-                    RATE_OF_GRADE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MAX_GRADE_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PRABIDIK_OR_PRASASAN = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    POST_LEVEL = table.Column<int>(nullable: true),
+                    BASIC_SALARY = table.Column<float>(nullable: true),
+                    RATE_OF_GRADE = table.Column<int>(nullable: true),
+                    MAX_GRADE_RATE = table.Column<int>(nullable: true),
+                    PRABIDIK_OR_PRASASAN = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2185,7 +2198,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_SERVICE_STATUS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: true),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 70, nullable: true)
@@ -2199,20 +2212,20 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_SHARE_BANKBALANCE",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true),
                     COMPANY_OR_BANK = table.Column<string>(maxLength: 70, nullable: true),
-                    VALUE_IN_NRS = table.Column<double>(nullable: true),
+                    VALUE_IN_NRS = table.Column<float>(nullable: true),
                     OWNERSHIP_DETAILS = table.Column<string>(maxLength: 100, nullable: true),
-                    AQUISITION_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    AQUISITION_TYPE_ID = table.Column<int>(nullable: true),
                     SPECIAL_NOTES = table.Column<string>(maxLength: 150, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_IDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    USER_IDE = table.Column<int>(nullable: true),
                     DATA_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATA_EDIT_AD_DATE = table.Column<DateTime>(type: "date", nullable: true)
+                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATA_EDIT_AD_DATE = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2223,7 +2236,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "PMS_YOJTYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     YOJTYPE_NAME_NP = table.Column<string>(maxLength: 150, nullable: false),
                     YOJTYPE_NAME_ENG = table.Column<string>(maxLength: 150, nullable: true),
                     YOJTYPE_REMARKS = table.Column<string>(maxLength: 100, nullable: true)
@@ -2237,10 +2250,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "RENT_DAR_RATE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     RATENAME = table.Column<string>(maxLength: 100, nullable: true),
-                    RENT_PER = table.Column<double>(nullable: true),
-                    RENT_TYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    RENT_PER = table.Column<float>(nullable: true),
+                    RENT_TYPEID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2251,7 +2264,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "RENTTYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: true),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 255, nullable: true)
@@ -2264,8 +2277,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "REPORT_GENERAL",
                 columns: table => new
                 {
-                    REPORT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OFFICE_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    REPORT_ID = table.Column<int>(nullable: true),
+                    OFFICE_TYPE_ID = table.Column<int>(nullable: true),
                     REPORT_NAME = table.Column<string>(maxLength: 60, nullable: true),
                     REPORT_FOR = table.Column<string>(maxLength: 50, nullable: true),
                     ANUSUCHI_HEAD = table.Column<string>(maxLength: 30, nullable: true),
@@ -2280,7 +2293,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "SANITATION_GROUP",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     GROUPNAME = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -2292,9 +2305,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "SPACEMEASURINGUNITS",
                 columns: table => new
                 {
-                    UNITID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    UNITID = table.Column<int>(nullable: true),
                     UNITNAME = table.Column<string>(maxLength: 50, nullable: true),
-                    SQFTPERUNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SQFTPERUNIT = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2304,8 +2317,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "SUBJECT_AREA",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PARENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PARENT_ID = table.Column<int>(nullable: true),
                     CODE = table.Column<string>(maxLength: 70, nullable: true),
                     NEP_NAME = table.Column<string>(nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 100, nullable: true),
@@ -2320,56 +2333,56 @@ namespace IMIS_DataEntity.Migrations
                 name: "SV_BUSINESSMASTER",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEPNAME = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 70, nullable: true),
-                    BUSINESSGROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    INITIALCAPITAL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ZONEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DISTRICTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VDCID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WARDNO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    BUSINESSGROUPID = table.Column<int>(nullable: true),
+                    TYPEID = table.Column<int>(nullable: true),
+                    TAXPAYERID = table.Column<int>(nullable: true),
+                    INITIALCAPITAL = table.Column<int>(nullable: true),
+                    ZONEID = table.Column<int>(nullable: true),
+                    DISTRICTID = table.Column<int>(nullable: true),
+                    VDCID = table.Column<int>(nullable: true),
+                    WARDNO = table.Column<int>(nullable: true),
                     STREET = table.Column<string>(maxLength: 70, nullable: true),
-                    TRACKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TRACKID = table.Column<int>(nullable: true),
                     HOUSENO = table.Column<string>(maxLength: 50, nullable: true),
                     PHONES = table.Column<string>(maxLength: 50, nullable: true),
                     EMAILS = table.Column<string>(maxLength: 100, nullable: true),
                     HOUSEOWNER = table.Column<string>(maxLength: 70, nullable: true),
                     ISINRENT = table.Column<short>(nullable: true),
-                    MONTHLYRENT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREAINSQUAREFEETS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    MONTHLYRENT = table.Column<int>(nullable: true),
+                    AREAINSQUAREFEETS = table.Column<int>(nullable: true),
                     INITIALREGISTEREDOFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     INITIALREGNO = table.Column<string>(maxLength: 30, nullable: true),
                     INITIALREGDATE = table.Column<string>(maxLength: 10, nullable: true),
                     MUNICIPALREGNO = table.Column<string>(maxLength: 30, nullable: true),
                     MUNICIPALLREGDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    SQFEETSOFSIGNBOARD = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LENGTHOFSIGNBOARD = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WIDTHOFSIGNBOARD = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SQFEETSOFSIGNBOARD = table.Column<int>(nullable: true),
+                    LENGTHOFSIGNBOARD = table.Column<int>(nullable: true),
+                    WIDTHOFSIGNBOARD = table.Column<int>(nullable: true),
                     CONTENTOFSIGNBOARD = table.Column<string>(maxLength: 90, nullable: true),
                     BUSINESSSTARTINGDATE = table.Column<string>(maxLength: 10, nullable: true),
                     SPECIALNOTES = table.Column<string>(maxLength: 100, nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    GENERALRATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
+                    GENERALRATEID = table.Column<int>(nullable: true),
                     MAIL_ADDRESS = table.Column<string>(maxLength: 200, nullable: true),
                     BUSINESS_STATUS = table.Column<short>(nullable: true),
                     CLOSED_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     CLOSE_REASON = table.Column<string>(maxLength: 200, nullable: true),
                     PAID_LAST_FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    SANITATIONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MAXCAPITAL = table.Column<double>(nullable: true),
-                    YEARLY_TRAN_AMOUNT = table.Column<double>(nullable: true),
+                    SANITATIONID = table.Column<int>(nullable: true),
+                    MAXCAPITAL = table.Column<float>(nullable: true),
+                    YEARLY_TRAN_AMOUNT = table.Column<float>(nullable: true),
                     SHIFTDATE = table.Column<string>(maxLength: 12, nullable: true),
-                    SHIFTTAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SHIFTTAXPAYERID = table.Column<int>(nullable: true),
                     ADDRESSCHANGE = table.Column<string>(maxLength: 12, nullable: true),
-                    HOUSEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUSINESSOWNERTAX_IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    HOUSEID = table.Column<int>(nullable: true),
+                    BUSINESSOWNERTAX_IID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2380,27 +2393,27 @@ namespace IMIS_DataEntity.Migrations
                 name: "SV_CONSTRUCTIONS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HOUSEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TALANUMBER = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CONSTRUCTIONTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LENGTHINFEET = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WIDTHTHINFEET = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HEIGHTINFEET = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREAINSQFEET = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    IID = table.Column<int>(nullable: true),
+                    HOUSEID = table.Column<int>(nullable: true),
+                    TALANUMBER = table.Column<int>(nullable: true),
+                    CONSTRUCTIONTYPEID = table.Column<int>(nullable: true),
+                    LENGTHINFEET = table.Column<int>(nullable: true),
+                    WIDTHTHINFEET = table.Column<int>(nullable: true),
+                    HEIGHTINFEET = table.Column<int>(nullable: true),
+                    AREAINSQFEET = table.Column<int>(nullable: true),
                     VSDATEOFMADE = table.Column<string>(maxLength: 10, nullable: true),
-                    CONSTRUCTIONUSESTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CONSTRUCTIONUSESTYPEID = table.Column<int>(nullable: true),
                     SELFUSEORINRENT = table.Column<short>(nullable: true),
-                    GENERALRATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    GENERALRATEID = table.Column<int>(nullable: true),
                     INCLUDEINEVALUATION = table.Column<short>(nullable: true),
                     SPECIALNOTE = table.Column<string>(maxLength: 90, nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    TAXPAYER_DEFINE_AMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
+                    TAXPAYER_DEFINE_AMOUNT = table.Column<int>(nullable: true),
                     VSMAPPDATE = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -2412,35 +2425,35 @@ namespace IMIS_DataEntity.Migrations
                 name: "SV_HOUSES",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    IID = table.Column<int>(nullable: true),
+                    LANDID = table.Column<int>(nullable: true),
                     HOUSENUMBER = table.Column<string>(maxLength: 50, nullable: true),
-                    HOUSETYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HOUSECONSTRUCTIONTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    HOUSETYPEID = table.Column<int>(nullable: true),
+                    HOUSECONSTRUCTIONTYPEID = table.Column<int>(nullable: true),
                     SALES_DT = table.Column<string>(maxLength: 10, nullable: true),
                     VSDATEOFMADE = table.Column<string>(maxLength: 10, nullable: true),
                     AQUISITIONDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    USESTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USESTYPEID = table.Column<int>(nullable: true),
                     HASMAPREGISTERED = table.Column<short>(nullable: true),
                     MAPREGISTEREDDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    NUMOFTALAS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HEIGHTINFEETS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LENGTHINFEETS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WIDTHINFEETS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREAINSQFEETS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NUMOFTALAS = table.Column<int>(nullable: true),
+                    HEIGHTINFEETS = table.Column<int>(nullable: true),
+                    LENGTHINFEETS = table.Column<int>(nullable: true),
+                    WIDTHINFEETS = table.Column<int>(nullable: true),
+                    AREAINSQFEETS = table.Column<int>(nullable: true),
                     SPECIALNOTE = table.Column<string>(nullable: true),
                     INCLUDEINEVALUATION = table.Column<short>(nullable: true),
-                    AREAOFCONSTRUCTIONSINSQFEETS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    AREAOFCONSTRUCTIONSINSQFEETS = table.Column<int>(nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DEFINE_AMT = table.Column<double>(nullable: true),
-                    SANITATIONRATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
+                    DEFINE_AMT = table.Column<float>(nullable: true),
+                    SANITATIONRATEID = table.Column<int>(nullable: true),
                     BUILDINGCODE = table.Column<string>(maxLength: 30, nullable: true),
-                    BIN_GIS = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    BIN_GIS = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2451,64 +2464,64 @@ namespace IMIS_DataEntity.Migrations
                 name: "SV_LANDS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OLDVDCID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    IID = table.Column<int>(nullable: true),
+                    OLDVDCID = table.Column<int>(nullable: true),
                     OLDWARDNO = table.Column<string>(maxLength: 30, nullable: true),
                     LAND_RULES = table.Column<string>(nullable: true),
-                    WARDNO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    WARDNO = table.Column<int>(nullable: true),
                     MOTHNUMBER = table.Column<string>(maxLength: 50, nullable: true),
                     MAPNUMBER = table.Column<string>(maxLength: 50, nullable: true),
                     KITTANUMBER = table.Column<string>(nullable: true),
                     STREETNAME = table.Column<string>(maxLength: 70, nullable: true),
                     HASTRACK = table.Column<short>(nullable: true),
-                    TRACKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TRACKRELATIONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TRACKID = table.Column<int>(nullable: true),
+                    TRACKRELATIONID = table.Column<int>(nullable: true),
                     AQUISITIONDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    AQUISITIONTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USESTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VALUEINRSONAQUISITION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREAINSQFT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NONFUNCTIONALAREAINSQFT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    AQUISITIONTYPEID = table.Column<int>(nullable: true),
+                    USESTYPEID = table.Column<int>(nullable: true),
+                    VALUEINRSONAQUISITION = table.Column<int>(nullable: true),
+                    AREAINSQFT = table.Column<int>(nullable: true),
+                    NONFUNCTIONALAREAINSQFT = table.Column<int>(nullable: true),
                     EASTBOUNDARY = table.Column<string>(maxLength: 70, nullable: true),
                     WESTBOUNDARY = table.Column<string>(maxLength: 70, nullable: true),
                     NORTHTBOUNDARY = table.Column<string>(maxLength: 70, nullable: true),
                     SOUTHTBOUNDARY = table.Column<string>(maxLength: 70, nullable: true),
-                    LQTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDNATUREID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCATIONFACTORID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SELFDECLAREDVALUEINRS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    LQTYPEID = table.Column<int>(nullable: true),
+                    LANDNATUREID = table.Column<int>(nullable: true),
+                    LOCATIONFACTORID = table.Column<int>(nullable: true),
+                    SELFDECLAREDVALUEINRS = table.Column<int>(nullable: true),
                     SPECIALNOTE = table.Column<string>(maxLength: 90, nullable: true),
-                    GENERALRATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    GENERALRATEID = table.Column<int>(nullable: true),
                     INCLUDEINEVALUATION = table.Column<short>(nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
                     SALES_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    EVALEXCLUSIONREASONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MALPOTRATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREA_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NOMINATION_DIRECTION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NOMINATION_AREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NOMINATION_LENGTH = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NOMINATION_BREADTH = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NOMINATION_TF = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDTYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
+                    EVALEXCLUSIONREASONID = table.Column<int>(nullable: true),
+                    MALPOTRATE = table.Column<int>(nullable: true),
+                    AREA_TYPE_ID = table.Column<int>(nullable: true),
+                    NOMINATION_DIRECTION = table.Column<int>(nullable: true),
+                    NOMINATION_AREA = table.Column<int>(nullable: true),
+                    NOMINATION_LENGTH = table.Column<int>(nullable: true),
+                    NOMINATION_BREADTH = table.Column<int>(nullable: true),
+                    NOMINATION_TF = table.Column<int>(nullable: true),
+                    LANDTYPE = table.Column<int>(nullable: true),
                     EASTBOUNDARY_KITTA = table.Column<string>(maxLength: 50, nullable: true),
                     WESTBOUNDARY_KITTA = table.Column<string>(maxLength: 50, nullable: true),
                     NORTHBOUNDARY_KITTA = table.Column<string>(maxLength: 50, nullable: true),
                     SOUTHBOUNDARY_KITTA = table.Column<string>(maxLength: 50, nullable: true),
                     TOLENAME = table.Column<string>(maxLength: 50, nullable: true),
-                    LANDMEASURINGUNITID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    LANDMEASURINGUNITID = table.Column<int>(nullable: true),
                     GRID_NO = table.Column<string>(maxLength: 100, nullable: true),
                     SHEET_NO = table.Column<string>(maxLength: 100, nullable: true),
                     EASTRUNFT = table.Column<string>(maxLength: 5, nullable: true),
                     WESTRUNFT = table.Column<string>(maxLength: 5, nullable: true),
                     NORTHRUNFT = table.Column<string>(maxLength: 5, nullable: true),
                     SOUTHRUNFT = table.Column<string>(maxLength: 5, nullable: true),
-                    AREAINSQFT_FIELD = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    AREAINSQFT_FIELD = table.Column<int>(nullable: true),
                     IS_LRMIS_ADD = table.Column<string>(maxLength: 2, nullable: true),
                     DEIGSTERTYPEID = table.Column<string>(maxLength: 2, nullable: true)
                 },
@@ -2521,12 +2534,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "SV_LANDSMULTIEVALUATIONDETAIL",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
+                    IID = table.Column<int>(nullable: true),
+                    LANDID = table.Column<int>(nullable: true),
                     KITTANUMBER = table.Column<string>(maxLength: 50, nullable: true),
-                    GENERALRATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREAINSQFT = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    GENERALRATEID = table.Column<int>(nullable: true),
+                    AREAINSQFT = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2536,7 +2549,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "SV_PEOPLE",
                 columns: table => new
                 {
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    IID = table.Column<int>(nullable: false),
                     EID = table.Column<string>(maxLength: 50, nullable: true),
                     SEX = table.Column<short>(nullable: true),
                     FIRSTNEPNAME = table.Column<string>(maxLength: 120, nullable: true),
@@ -2549,42 +2562,42 @@ namespace IMIS_DataEntity.Migrations
                     PHONES = table.Column<string>(maxLength: 60, nullable: true),
                     MOBILES = table.Column<string>(maxLength: 60, nullable: true),
                     EMAIL = table.Column<string>(maxLength: 90, nullable: true),
-                    OCUPATIONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RELIGIONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MOTHERLANGUAGEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NATIONALITYID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    OCUPATIONID = table.Column<int>(nullable: true),
+                    RELIGIONID = table.Column<int>(nullable: true),
+                    MOTHERLANGUAGEID = table.Column<int>(nullable: true),
+                    NATIONALITYID = table.Column<int>(nullable: true),
                     HASCC = table.Column<short>(nullable: true),
                     CCNUMBER = table.Column<string>(maxLength: 50, nullable: true),
-                    CCISSUEDDRISTICTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CCISSUEDDRISTICTID = table.Column<int>(nullable: true),
                     CCISSUEDDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    COUNTRYID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ZONEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DISTRICTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VDCID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WARDNO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTRYID = table.Column<int>(nullable: true),
+                    ZONEID = table.Column<int>(nullable: true),
+                    DISTRICTID = table.Column<int>(nullable: true),
+                    VDCID = table.Column<int>(nullable: true),
+                    WARDNO = table.Column<int>(nullable: true),
                     STREETNAME = table.Column<string>(maxLength: 60, nullable: true),
-                    TRACKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TRACKID = table.Column<int>(nullable: true),
                     HOUSENO = table.Column<string>(maxLength: 50, nullable: true),
                     CORESPADDRESSLINE1 = table.Column<string>(maxLength: 50, nullable: true),
                     CORESPADDRESSLINE2 = table.Column<string>(maxLength: 50, nullable: true),
                     CORESPADDRESSLINE3 = table.Column<string>(maxLength: 50, nullable: true),
                     CORESPADDRESSLINE4 = table.Column<string>(maxLength: 50, nullable: true),
                     OTHERDETAILS = table.Column<string>(maxLength: 180, nullable: true),
-                    INDIVIDUALTYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    INDIVIDUALTYPE = table.Column<int>(nullable: true),
                     PHOTO = table.Column<string>(nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
                     IPT_UNPAID_FISCAL_YEAR = table.Column<string>(maxLength: 9, nullable: true),
-                    IPT_UNPAID_AMOUNT = table.Column<double>(nullable: true),
+                    IPT_UNPAID_AMOUNT = table.Column<float>(nullable: true),
                     HLT_UNPAID_FISCAL_YEAR = table.Column<string>(maxLength: 9, nullable: true),
-                    HLT_UNPAID_AMOUNT = table.Column<double>(nullable: true),
+                    HLT_UNPAID_AMOUNT = table.Column<float>(nullable: true),
                     IS_UNPAID_CLEARED = table.Column<string>(maxLength: 1, nullable: true),
                     CANCEL_DATE = table.Column<string>(maxLength: 12, nullable: true),
                     CANCEL_REASON = table.Column<string>(nullable: true),
-                    TOLBIKASHID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TOLBIKASHID = table.Column<int>(nullable: true),
                     IS_LRMIS_ADD = table.Column<string>(maxLength: 2, nullable: true)
                 },
                 constraints: table =>
@@ -2596,9 +2609,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "SV_TBHOUSEKITTANUMBER",
                 columns: table => new
                 {
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HOUSEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    IID = table.Column<int>(nullable: true),
+                    HOUSEID = table.Column<int>(nullable: true),
+                    LANDID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2608,19 +2621,19 @@ namespace IMIS_DataEntity.Migrations
                 name: "SV_VEHICLEMASTER",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    TAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    TAXPAYERID = table.Column<int>(nullable: true),
                     VEHICLENAME = table.Column<string>(maxLength: 70, nullable: true),
-                    VEHICLETYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VEHICLETYPE = table.Column<int>(nullable: true),
                     VEHICLENO = table.Column<string>(maxLength: 50, nullable: true),
                     REGISTEREDOFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     REGISTEREDDATE = table.Column<string>(maxLength: 10, nullable: true),
                     MUNICIPALTYREGNO = table.Column<string>(maxLength: 30, nullable: true),
                     MUNICIPALTYREGDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    AQUISITIONTYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    AQUISITIONTYPE = table.Column<int>(nullable: true),
                     AQUISITIONDATE = table.Column<string>(maxLength: 10, nullable: true),
                     AQUIREDFROM = table.Column<string>(maxLength: 70, nullable: true),
-                    USESTYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USESTYPE = table.Column<int>(nullable: true),
                     COLOR = table.Column<string>(maxLength: 30, nullable: true),
                     NUMBEROFSEATES = table.Column<string>(maxLength: 50, nullable: true),
                     CCORHPRSPOWER = table.Column<string>(maxLength: 50, nullable: true),
@@ -2629,19 +2642,19 @@ namespace IMIS_DataEntity.Migrations
                     CHESISNO = table.Column<string>(maxLength: 50, nullable: true),
                     MODELDESCRIPTION = table.Column<string>(maxLength: 70, nullable: true),
                     NOOFCILENDERS = table.Column<string>(maxLength: 50, nullable: true),
-                    USEDFUEL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USEDFUEL = table.Column<int>(nullable: true),
                     SPECIALNOTES = table.Column<string>(maxLength: 100, nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
                     VEHICLE_STATUS = table.Column<short>(nullable: true),
                     CLOSED_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     CLOSE_REASON = table.Column<string>(maxLength: 200, nullable: true),
                     PAID_LAST_FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
                     NAMASARIMITI = table.Column<string>(maxLength: 12, nullable: true),
-                    NAMASARITAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    NAMASARITAXPAYERID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2654,30 +2667,30 @@ namespace IMIS_DataEntity.Migrations
                 {
                     SN = table.Column<long>(nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 9, nullable: true),
-                    TAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TAXPAYERID = table.Column<int>(nullable: true),
+                    LANDID = table.Column<int>(nullable: true),
                     KITTANUMBER = table.Column<string>(nullable: true),
-                    GENERALRATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEPERUNIT = table.Column<double>(nullable: true),
+                    GENERALRATEID = table.Column<int>(nullable: true),
+                    RATEPERUNIT = table.Column<float>(nullable: true),
                     SPECIALNOTES = table.Column<string>(nullable: true),
-                    NETTAXAMOUNT = table.Column<double>(nullable: true),
-                    FINEAMOUNT = table.Column<double>(nullable: true),
-                    ADDITIONALCHARGES = table.Column<double>(nullable: true),
-                    REDUCTIONALCHARGES = table.Column<double>(nullable: true),
-                    TAXPAIDAMOUNT = table.Column<double>(nullable: true),
-                    LAST_TAX_PAID_AMOUNT = table.Column<double>(nullable: true),
-                    TOTALAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NONEVALUATEDAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NETEVALUATINGAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NETTAXAMOUNT = table.Column<float>(nullable: true),
+                    FINEAMOUNT = table.Column<float>(nullable: true),
+                    ADDITIONALCHARGES = table.Column<float>(nullable: true),
+                    REDUCTIONALCHARGES = table.Column<float>(nullable: true),
+                    TAXPAIDAMOUNT = table.Column<float>(nullable: true),
+                    LAST_TAX_PAID_AMOUNT = table.Column<float>(nullable: true),
+                    TOTALAREA = table.Column<int>(nullable: true),
+                    NONEVALUATEDAREA = table.Column<int>(nullable: true),
+                    NETEVALUATINGAREA = table.Column<int>(nullable: true),
+                    BILLID = table.Column<int>(nullable: true),
                     BILLDATE = table.Column<string>(maxLength: 10, nullable: true),
                     BILLNO = table.Column<string>(maxLength: 25, nullable: true),
-                    COUNTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTERID = table.Column<int>(nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true)
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2690,30 +2703,30 @@ namespace IMIS_DataEntity.Migrations
                     SN = table.Column<long>(nullable: true),
                     MALPOT_ID = table.Column<long>(nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 9, nullable: true),
-                    TAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TAXPAYERID = table.Column<int>(nullable: true),
+                    LANDID = table.Column<int>(nullable: true),
                     KITTANUMBER = table.Column<string>(nullable: true),
-                    GENERALRATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEPERUNIT = table.Column<double>(nullable: true),
+                    GENERALRATEID = table.Column<int>(nullable: true),
+                    RATEPERUNIT = table.Column<float>(nullable: true),
                     SPECIALNOTES = table.Column<string>(nullable: true),
-                    NETTAXAMOUNT = table.Column<double>(nullable: true),
-                    FINEAMOUNT = table.Column<double>(nullable: true),
-                    ADDITIONALCHARGES = table.Column<double>(nullable: true),
-                    REDUCTIONALCHARGES = table.Column<double>(nullable: true),
-                    TAXPAIDAMOUNT = table.Column<double>(nullable: true),
-                    LAST_TAX_PAID_AMOUNT = table.Column<double>(nullable: true),
-                    TOTALAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NONEVALUATEDAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NETEVALUATINGAREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NETTAXAMOUNT = table.Column<float>(nullable: true),
+                    FINEAMOUNT = table.Column<float>(nullable: true),
+                    ADDITIONALCHARGES = table.Column<float>(nullable: true),
+                    REDUCTIONALCHARGES = table.Column<float>(nullable: true),
+                    TAXPAIDAMOUNT = table.Column<float>(nullable: true),
+                    LAST_TAX_PAID_AMOUNT = table.Column<float>(nullable: true),
+                    TOTALAREA = table.Column<int>(nullable: true),
+                    NONEVALUATEDAREA = table.Column<int>(nullable: true),
+                    NETEVALUATINGAREA = table.Column<int>(nullable: true),
+                    BILLID = table.Column<int>(nullable: true),
                     BILLDATE = table.Column<string>(maxLength: 10, nullable: true),
                     BILLNO = table.Column<string>(maxLength: 25, nullable: true),
-                    COUNTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTERID = table.Column<int>(nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true)
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2723,11 +2736,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "TAX_RATE_CEILING",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NP_FROM = table.Column<string>(maxLength: 15, nullable: true),
                     NP_TO = table.Column<string>(maxLength: 15, nullable: true),
                     MARRIED_STATUS = table.Column<string>(maxLength: 50, nullable: true),
-                    TAX_RATE = table.Column<double>(nullable: true)
+                    TAX_RATE = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2738,28 +2751,28 @@ namespace IMIS_DataEntity.Migrations
                 name: "TAX_RENTAL",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    TAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CONSTRUCTIONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RENTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TAXPAYERID = table.Column<int>(nullable: true),
+                    CONSTRUCTIONID = table.Column<int>(nullable: true),
+                    RENTID = table.Column<int>(nullable: true),
+                    RATEID = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(nullable: true),
-                    NETTAXAMOUNT = table.Column<double>(nullable: true),
-                    FINEAMOUNT = table.Column<double>(nullable: true),
-                    ADDITIONALCHARGES = table.Column<double>(nullable: true),
-                    REDUCTIONALCHARGES = table.Column<double>(nullable: true),
-                    TAXPAIDAMOUNT = table.Column<double>(nullable: true),
-                    LAST_TAX_PAID_AMOUNT = table.Column<double>(nullable: true),
-                    BILLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NETTAXAMOUNT = table.Column<float>(nullable: true),
+                    FINEAMOUNT = table.Column<float>(nullable: true),
+                    ADDITIONALCHARGES = table.Column<float>(nullable: true),
+                    REDUCTIONALCHARGES = table.Column<float>(nullable: true),
+                    TAXPAIDAMOUNT = table.Column<float>(nullable: true),
+                    LAST_TAX_PAID_AMOUNT = table.Column<float>(nullable: true),
+                    BILLID = table.Column<int>(nullable: true),
                     BILLNO = table.Column<string>(maxLength: 50, nullable: true),
                     BILLDATE = table.Column<string>(maxLength: 12, nullable: true),
-                    COUNTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTERID = table.Column<int>(nullable: true),
+                    USERID = table.Column<int>(nullable: true),
                     DATEENTRYVSDATE = table.Column<string>(maxLength: 12, nullable: true),
-                    DATAENTRYADDATE = table.Column<DateTime>(type: "date", nullable: true),
-                    YEAR = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MONTH = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    DATAENTRYADDATE = table.Column<DateTime>(nullable: true),
+                    YEAR = table.Column<int>(nullable: true),
+                    MONTH = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2769,24 +2782,24 @@ namespace IMIS_DataEntity.Migrations
                 name: "TAX_RT_RENTDTL",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CONSTRUCTION_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
+                    CONSTRUCTION_ID = table.Column<int>(nullable: true),
                     RNAME = table.Column<string>(maxLength: 100, nullable: true),
-                    RENT_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RENT_INSQFEET = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ANUAL_RENT_INCOME = table.Column<double>(nullable: true),
+                    RENT_TYPE_ID = table.Column<int>(nullable: true),
+                    RENT_INSQFEET = table.Column<int>(nullable: true),
+                    ANUAL_RENT_INCOME = table.Column<float>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     AGREEMENT_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     VALID_UNTIL = table.Column<string>(maxLength: 10, nullable: true),
                     RENT_STATUS = table.Column<string>(maxLength: 5, nullable: true),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUSINESSID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    RATEID = table.Column<int>(nullable: true),
+                    TAXPAYERID = table.Column<int>(nullable: true),
+                    BUSINESSID = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 12, nullable: true),
                     IS_TAX_PAID_BUSINESS_PERSON = table.Column<string>(maxLength: 2, nullable: true)
                 },
@@ -2798,28 +2811,28 @@ namespace IMIS_DataEntity.Migrations
                 name: "TAX_SANITATION",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    YEAR = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MONTH = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXPAYERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HOUSEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    YEAR = table.Column<int>(nullable: true),
+                    MONTH = table.Column<int>(nullable: true),
+                    TAXPAYERID = table.Column<int>(nullable: true),
+                    HOUSEID = table.Column<int>(nullable: true),
+                    RATEID = table.Column<int>(nullable: true),
                     SPECIALNOTES = table.Column<string>(nullable: true),
-                    NETTAXAMOUNT = table.Column<double>(nullable: true),
-                    FINEAMOUNT = table.Column<double>(nullable: true),
-                    REDUCTIONALCHARGES = table.Column<double>(nullable: true),
-                    TAXPAIDAMOUNT = table.Column<double>(nullable: true),
-                    LAST_TAX_PAID_AMOUNT = table.Column<double>(nullable: true),
-                    BILLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NETTAXAMOUNT = table.Column<float>(nullable: true),
+                    FINEAMOUNT = table.Column<float>(nullable: true),
+                    REDUCTIONALCHARGES = table.Column<float>(nullable: true),
+                    TAXPAIDAMOUNT = table.Column<float>(nullable: true),
+                    LAST_TAX_PAID_AMOUNT = table.Column<float>(nullable: true),
+                    BILLID = table.Column<int>(nullable: true),
                     BILLNO = table.Column<string>(maxLength: 25, nullable: true),
                     BILLDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    COUNTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTERID = table.Column<int>(nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
                     SERVICETYPE = table.Column<string>(maxLength: 5, nullable: true)
                 },
                 constraints: table =>
@@ -2830,9 +2843,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBHOUSEKITTANUMBER",
                 columns: table => new
                 {
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HOUSEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    IID = table.Column<int>(nullable: true),
+                    HOUSEID = table.Column<int>(nullable: true),
+                    LANDID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2842,7 +2855,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BANK_ACCNT_TYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEPNAME = table.Column<string>(maxLength: 100, nullable: true),
                     ENGNAME = table.Column<string>(maxLength: 100, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 150, nullable: true)
@@ -2856,7 +2869,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BANK_FINANCE_INSTITUTUE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NP_NAME = table.Column<string>(nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 200, nullable: true),
                     DESCRIPTIONG = table.Column<string>(nullable: true),
@@ -2871,11 +2884,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BGT_MGMT",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    MINISTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BGT_SUB_HEAD_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TOTAL_BGT_AMT = table.Column<double>(nullable: true),
+                    MINISTRY_ID = table.Column<int>(nullable: true),
+                    BGT_SUB_HEAD_ID = table.Column<int>(nullable: true),
+                    TOTAL_BGT_AMT = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -2887,12 +2900,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BGT_MGMT_ORG",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    MINISTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BGT_SUB_HEAD_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TOTAL_BGT_AMT_ORG = table.Column<double>(nullable: true),
+                    MINISTRY_ID = table.Column<int>(nullable: true),
+                    ORG_ID = table.Column<int>(nullable: true),
+                    BGT_SUB_HEAD_ID = table.Column<int>(nullable: true),
+                    TOTAL_BGT_AMT_ORG = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -2904,13 +2917,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_DATA_HISTORY",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     TABLE_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     FIELD_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     NEW_VALUE = table.Column<string>(nullable: true),
                     OLD_VALUE = table.Column<string>(maxLength: 100, nullable: true),
-                    USER_ID_A = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ADD_DATE = table.Column<DateTime>(type: "date", nullable: true),
+                    USER_ID_A = table.Column<int>(nullable: true),
+                    ADD_DATE = table.Column<DateTime>(nullable: true),
                     COMPUTER_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     DATA_STATUS = table.Column<string>(maxLength: 20, nullable: true),
                     WINDOWS_USER = table.Column<string>(maxLength: 100, nullable: true),
@@ -2925,11 +2938,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_DEGISTER",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NP_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     REMARKS = table.Column<string>(nullable: true),
-                    IS_FULL_DEGISTER = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    IS_FULL_DEGISTER = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -2940,7 +2953,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_KHARIDA_AADASH",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NP_NAME = table.Column<string>(maxLength: 200, nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 100, nullable: true)
                 },
@@ -2953,7 +2966,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_NALI_TYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: true),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 50, nullable: true)
@@ -2967,7 +2980,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_ORGANIZATIONMASTER",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NP_NAME = table.Column<string>(nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 200, nullable: true),
                     DESCRIPTIONG = table.Column<string>(nullable: true)
@@ -2981,7 +2994,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_PAYMENT_ORDER",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     ORDER_CODE = table.Column<string>(maxLength: 100, nullable: true),
                     DATE_BS = table.Column<string>(maxLength: 15, nullable: true),
                     TOKEN_NO = table.Column<string>(maxLength: 100, nullable: true),
@@ -2996,7 +3009,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_PAYMENT_PROCESS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     PAYMENT_PROCESS = table.Column<string>(maxLength: 100, nullable: true),
                     PAYMENT_PROCESS_ENG = table.Column<string>(maxLength: 100, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
@@ -3010,7 +3023,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_PAYMENT_TYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     PAYMENT_TYPE = table.Column<string>(maxLength: 100, nullable: true),
                     PAYMENT_TYPE_ENG = table.Column<string>(maxLength: 100, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
@@ -3024,13 +3037,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_PROPERTY_TAX",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    IID = table.Column<int>(nullable: true),
                     NP_ENTRY_DATE = table.Column<string>(maxLength: 12, nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 12, nullable: true),
-                    HOUSE_LAND_AMOUNT = table.Column<double>(nullable: true),
-                    MALPOT_AMOUNT = table.Column<double>(nullable: true),
-                    TOTAL_TAX = table.Column<double>(nullable: true),
+                    HOUSE_LAND_AMOUNT = table.Column<float>(nullable: true),
+                    MALPOT_AMOUNT = table.Column<float>(nullable: true),
+                    TOTAL_TAX = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -3042,13 +3055,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_SANITAION_TAX",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FROM_AREA = table.Column<double>(nullable: true),
-                    TO_AREA = table.Column<double>(nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: true),
+                    FROM_AREA = table.Column<float>(nullable: true),
+                    TO_AREA = table.Column<float>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 15, nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
                     IS_APARTMENT = table.Column<string>(maxLength: 2, nullable: true)
                 },
                 constraints: table =>
@@ -3059,18 +3072,18 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_STATUS_DETAILS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    MASTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATE = table.Column<double>(nullable: true),
-                    STOCK_QTY = table.Column<double>(nullable: true),
-                    USE_IN_QTY = table.Column<double>(nullable: true),
-                    NOT_USE_IN_QTY = table.Column<double>(nullable: true),
-                    REPAIR_QTY = table.Column<double>(nullable: true),
-                    NOT_REPAIR_QTY = table.Column<double>(nullable: true)
+                    ID = table.Column<int>(nullable: false),
+                    MASTERID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    UNIT_ID = table.Column<int>(nullable: true),
+                    RATE = table.Column<float>(nullable: true),
+                    STOCK_QTY = table.Column<float>(nullable: true),
+                    USE_IN_QTY = table.Column<float>(nullable: true),
+                    NOT_USE_IN_QTY = table.Column<float>(nullable: true),
+                    REPAIR_QTY = table.Column<float>(nullable: true),
+                    NOT_REPAIR_QTY = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3081,12 +3094,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_TAX_TYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     CODE = table.Column<string>(maxLength: 200, nullable: true),
                     NP_NAME = table.Column<string>(nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 200, nullable: true),
                     DESCRIPTIONG = table.Column<string>(nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    ACC_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3097,16 +3110,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_TAXSOURCERECORDNEW",
                 columns: table => new
                 {
-                    TAXSRCID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    TAXSRCID = table.Column<int>(nullable: false),
                     FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    RECORDTYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NETINCOME_CURFY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXPAIDTAXPAYERCNT_CURFY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NETINCOME_LASTFY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXPAIDTAXPAYERCNT_LASTFY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TAXNOTPAIDTAXPAYERCNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNTNOTCOLLECTED = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TOTALTAXPAYERCNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    RECORDTYPE = table.Column<int>(nullable: true),
+                    NETINCOME_CURFY = table.Column<int>(nullable: true),
+                    TAXPAIDTAXPAYERCNT_CURFY = table.Column<int>(nullable: true),
+                    NETINCOME_LASTFY = table.Column<int>(nullable: true),
+                    TAXPAIDTAXPAYERCNT_LASTFY = table.Column<int>(nullable: true),
+                    TAXNOTPAIDTAXPAYERCNT = table.Column<int>(nullable: true),
+                    AMOUNTNOTCOLLECTED = table.Column<int>(nullable: true),
+                    TOTALTAXPAYERCNT = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3117,7 +3130,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_TOLABIKASA_ORG",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NP_NAME = table.Column<string>(maxLength: 150, nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 150, nullable: true),
                     ADDRESS = table.Column<string>(maxLength: 150, nullable: true),
@@ -3125,7 +3138,7 @@ namespace IMIS_DataEntity.Migrations
                     SACHIBA = table.Column<string>(maxLength: 50, nullable: true),
                     CONTACTNO = table.Column<string>(maxLength: 50, nullable: true),
                     EMAIL = table.Column<string>(maxLength: 50, nullable: true),
-                    WARDNO = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    WARDNO = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3136,7 +3149,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_VEHICLE_PARTS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SN = table.Column<int>(nullable: false),
                     NP_NAME = table.Column<string>(maxLength: 200, nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     REMARKS = table.Column<string>(nullable: true)
@@ -3150,7 +3163,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLBILLTYPE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEPNAME = table.Column<string>(maxLength: 100, nullable: true),
                     ISINCOME = table.Column<string>(maxLength: 1, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true)
@@ -3164,8 +3177,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLEXEVERSION",
                 columns: table => new
                 {
-                    EXEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EXEDATE = table.Column<DateTime>(type: "date", nullable: true)
+                    EXEID = table.Column<int>(nullable: true),
+                    EXEDATE = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3175,15 +3188,15 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLFYWISEBTRATES",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    GROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUBGROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SNSUBGROUP = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
+                    GROUPID = table.Column<int>(nullable: true),
+                    SUBGROUPID = table.Column<int>(nullable: true),
+                    SNSUBGROUP = table.Column<int>(nullable: true),
+                    RATEID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 100, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 20, nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 9, nullable: true),
-                    RATEPERUNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    RATEPERUNIT = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3193,11 +3206,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLHL_ADD_SUBTRACT",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SN = table.Column<int>(nullable: false),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FLAT_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATE_PERCENT = table.Column<double>(nullable: true),
+                    RATEID = table.Column<int>(nullable: true),
+                    FLAT_RATE = table.Column<int>(nullable: true),
+                    RATE_PERCENT = table.Column<float>(nullable: true),
                     ADD_FLAG = table.Column<string>(maxLength: 1, nullable: true),
                     ADD_SUB_TRACT_TYPE = table.Column<string>(maxLength: 2, nullable: true)
                 },
@@ -3210,7 +3223,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLLAND_TYPE_AREA",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: false),
                     NEP_NAME = table.Column<string>(maxLength: 50, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true)
@@ -3224,7 +3237,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLMALPOTGROUP",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEPNAME = table.Column<string>(maxLength: 100, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true)
                 },
@@ -3237,12 +3250,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLTAX_FINE_REBATE",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SN = table.Column<int>(nullable: false),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    DURATION_IN_YEARS = table.Column<double>(nullable: true),
+                    DURATION_IN_YEARS = table.Column<float>(nullable: true),
                     TAX_TYPE = table.Column<string>(maxLength: 3, nullable: true),
-                    FLAT_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATE_PERCENT = table.Column<double>(nullable: true),
+                    FLAT_RATE = table.Column<int>(nullable: true),
+                    RATE_PERCENT = table.Column<float>(nullable: true),
                     REBATE_FLAG = table.Column<string>(maxLength: 1, nullable: true)
                 },
                 constraints: table =>
@@ -3254,8 +3267,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLTAXCALCULATIONROKA",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
+                    IID = table.Column<int>(nullable: true),
                     REASON = table.Column<string>(maxLength: 255, nullable: true),
                     ROKA_DATE = table.Column<string>(maxLength: 12, nullable: true)
                 },
@@ -3267,8 +3280,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBUSERSECURITYRIGHTS",
                 columns: table => new
                 {
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RIGHTSID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    USERID = table.Column<int>(nullable: true),
+                    RIGHTSID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3278,7 +3291,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "TYPES",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: false),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
@@ -3292,10 +3305,21 @@ namespace IMIS_DataEntity.Migrations
                 name: "USERASSIGNMENTS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 90, nullable: true),
                     RIGHTSNAME = table.Column<string>(maxLength: 200, nullable: true),
-                    MODULE = table.Column<string>(maxLength: 5, nullable: true)
+                    MODULE = table.Column<string>(maxLength: 5, nullable: true),
+                    ACTIVE = table.Column<bool>(nullable: false),
+                    CREATEDAT = table.Column<DateTime>(nullable: false, defaultValueSql: "'2001-01-01 00:00:00'::timestamp without time zone"),
+                    CREATEDBY = table.Column<string>(maxLength: 100, nullable: true),
+                    DISPLAYNAME = table.Column<string>(maxLength: 100, nullable: true),
+                    ICON = table.Column<string>(maxLength: 50, nullable: true),
+                    ISLOCKED = table.Column<bool>(nullable: false),
+                    MENUNAME = table.Column<string>(maxLength: 100, nullable: true),
+                    MENUORDER = table.Column<short>(nullable: false, defaultValueSql: "'0'::smallint"),
+                    MENUURL = table.Column<string>(maxLength: 500, nullable: true),
+                    PARENTMENUID = table.Column<int>(nullable: false),
+                    VISIBLE = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -3320,22 +3344,22 @@ namespace IMIS_DataEntity.Migrations
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
-                    USERID = table.Column<string>(maxLength: 20, nullable: true),
-                    USERPASSWORD = table.Column<string>(maxLength: 200, nullable: true),
-                    NEPNAME = table.Column<string>(maxLength: 70, nullable: true),
-                    ENGNAME = table.Column<string>(maxLength: 60, nullable: true),
-                    USERSTATUS = table.Column<short>(nullable: true),
-                    LASTLOGGEDON = table.Column<DateTime>(type: "date", nullable: true),
-                    LASTLOGGEDOUT = table.Column<DateTime>(type: "date", nullable: true),
-                    GRANTS = table.Column<string>(maxLength: 20, nullable: true),
-                    UPDATEDBY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ORG_CODE = table.Column<string>(maxLength: 10, nullable: true),
-                    CODE = table.Column<string>(maxLength: 10, nullable: true),
-                    FROM_CENTRAL = table.Column<string>(maxLength: 1, nullable: true),
-                    WARD_NO = table.Column<string>(maxLength: 10, nullable: true),
-                    PWD_CHANGED_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    FISCAL_YEAR = table.Column<string>(maxLength: 12, nullable: true)
+                    Userid = table.Column<string>(nullable: true),
+                    Userpassword = table.Column<string>(nullable: true),
+                    Nepname = table.Column<string>(nullable: true),
+                    Engname = table.Column<string>(nullable: true),
+                    Userstatus = table.Column<short>(nullable: true),
+                    Lastloggedon = table.Column<DateTime>(nullable: true),
+                    Lastloggedout = table.Column<DateTime>(nullable: true),
+                    Grants = table.Column<string>(nullable: true),
+                    Updatedby = table.Column<int>(nullable: true),
+                    EmpId = table.Column<int>(nullable: true),
+                    OrgCode = table.Column<string>(nullable: true),
+                    Code = table.Column<string>(nullable: true),
+                    FromCentral = table.Column<string>(nullable: true),
+                    WardNo = table.Column<string>(nullable: true),
+                    PwdChangedDate = table.Column<DateTime>(nullable: true),
+                    FiscalYear = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3346,13 +3370,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "VDC",
                 columns: table => new
                 {
-                    VDCID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VDCID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: false),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    DISTRICTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    DISTRICTID = table.Column<int>(nullable: true),
+                    TYPEID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3362,12 +3386,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "ZONE",
                 columns: table => new
                 {
-                    ZONEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ZONEID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: false),
                     ENGNAME = table.Column<string>(maxLength: 50, nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    REGIONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    REGIONID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3377,13 +3401,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_BGT_RVSN",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BGT_ALCTN_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    BGT_ALCTN_ID = table.Column<int>(nullable: true),
                     RVSN_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
                     RVSN_REASON = table.Column<string>(maxLength: 200, nullable: true),
-                    UPDATE_USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UPDATE_DATETIME = table.Column<DateTime>(type: "date", nullable: true)
+                    UPDATE_USER_ID = table.Column<int>(nullable: true),
+                    UPDATE_DATETIME = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3400,10 +3424,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_CURRENCTY_RATE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    CURRENCY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    CURRENCY_ID = table.Column<int>(nullable: true),
                     NP_DATE = table.Column<string>(maxLength: 15, nullable: true),
-                    RATE = table.Column<double>(nullable: true)
+                    RATE = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3420,17 +3444,17 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BGT_RELEASE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    MINISTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RELEASE_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    MINISTRY_ID = table.Column<int>(nullable: true),
+                    ORG_ID = table.Column<int>(nullable: true),
+                    RELEASE_TYPE = table.Column<int>(nullable: true),
                     RELEASE_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     CHALANI_NO = table.Column<string>(maxLength: 50, nullable: true),
                     LETTER_SN = table.Column<string>(maxLength: 50, nullable: true),
-                    APPROVED_BGT_YEARLY = table.Column<double>(nullable: true),
-                    PREVIOUS_RELEASE_AMT = table.Column<double>(nullable: true),
-                    RELEASE_AMOUNT = table.Column<double>(nullable: true),
+                    APPROVED_BGT_YEARLY = table.Column<float>(nullable: true),
+                    PREVIOUS_RELEASE_AMT = table.Column<float>(nullable: true),
+                    RELEASE_AMOUNT = table.Column<float>(nullable: true),
                     SPECIAL_TIPPANI = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -3448,12 +3472,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_PADADHIKARI_MSTR",
                 columns: table => new
                 {
-                    PADADIKARI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    PADADIKARI_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: true),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    POST_ID = table.Column<int>(nullable: true),
                     ADDRESS = table.Column<string>(maxLength: 50, nullable: true),
-                    WARD_NO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    WARD_NO = table.Column<int>(nullable: true),
                     ELECTED_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
                     QUALIFICATION = table.Column<string>(maxLength: 100, nullable: true),
                     MOBILE_NO = table.Column<string>(maxLength: 20, nullable: true),
@@ -3461,42 +3485,42 @@ namespace IMIS_DataEntity.Migrations
                     LAST_NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
                     TITLE = table.Column<string>(maxLength: 10, nullable: true),
                     GENDER = table.Column<string>(maxLength: 1, nullable: true),
-                    RELIGION_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MOTHER_LANG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    RELIGION_ID = table.Column<int>(nullable: true),
+                    MOTHER_LANG_ID = table.Column<int>(nullable: true),
                     DATE_OF_BIRTH = table.Column<string>(maxLength: 10, nullable: true),
                     PARENT_NAME = table.Column<string>(maxLength: 70, nullable: true),
-                    P_OCUPATION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    P_OCUPATION = table.Column<int>(nullable: true),
                     SPOUSE_NAME = table.Column<string>(maxLength: 70, nullable: true),
-                    S_OCUPATION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    S_OCUPATION = table.Column<int>(nullable: true),
                     GRANDFATHER_NAME = table.Column<string>(maxLength: 70, nullable: true),
-                    GF_OCUPATION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    GF_OCUPATION = table.Column<int>(nullable: true),
                     MARRIED_STATUS = table.Column<string>(maxLength: 1, nullable: true),
-                    NO_OF_SON = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NO_OF_DAUGHTER = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    NO_OF_SON = table.Column<int>(nullable: true),
+                    NO_OF_DAUGHTER = table.Column<int>(nullable: true),
                     FIRST_APPOINT_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    FIRST_APPOINT_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    FIRST_APPOINT_POST_ID = table.Column<int>(nullable: true),
                     CURRENT_POST_APPOINT_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     RETIRE_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     PRE_EXPERIENCE = table.Column<string>(maxLength: 50, nullable: true),
-                    ZONE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DISTRICT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VDC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TRACK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ZONE_ID = table.Column<int>(nullable: true),
+                    DISTRICT_ID = table.Column<int>(nullable: true),
+                    VDC_ID = table.Column<int>(nullable: true),
+                    TRACK_ID = table.Column<int>(nullable: true),
                     STREET = table.Column<string>(maxLength: 70, nullable: true),
                     PHONES = table.Column<string>(maxLength: 50, nullable: true),
                     EMAILS = table.Column<string>(maxLength: 50, nullable: true),
                     MOBILE = table.Column<string>(maxLength: 50, nullable: true),
                     CITIZENSHIP_NO = table.Column<string>(maxLength: 25, nullable: true),
                     CITZN_ISSUED_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    CITZN_ISSUED_DISTR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CITZN_ISSUED_DISTR_ID = table.Column<int>(nullable: true),
                     IS_TOILET_IN_HOME = table.Column<string>(maxLength: 1, nullable: true),
                     SPECIAL_NOTES = table.Column<string>(maxLength: 150, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_IDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    USER_IDE = table.Column<int>(nullable: true),
                     DATA_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATA_EDIT_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATE_OF_BIRTH_AD = table.Column<DateTime>(type: "date", nullable: true)
+                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATA_EDIT_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATE_OF_BIRTH_AD = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3513,11 +3537,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_ACC_MASTER",
                 columns: table => new
                 {
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ACC_ID = table.Column<int>(nullable: false),
                     CODE = table.Column<string>(maxLength: 100, nullable: false),
                     NEP_NAME = table.Column<string>(maxLength: 200, nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 70, nullable: true),
-                    PARENT_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PARENT_ACC_ID = table.Column<int>(nullable: true),
                     GRP_LEVEL = table.Column<int>(nullable: true),
                     IS_FIXED = table.Column<string>(maxLength: 1, nullable: true),
                     IS_TRANSACTABLE = table.Column<string>(maxLength: 1, nullable: true),
@@ -3525,12 +3549,12 @@ namespace IMIS_DataEntity.Migrations
                     DISP_CODE = table.Column<string>(maxLength: 100, nullable: true),
                     DISP_NAME = table.Column<string>(maxLength: 200, nullable: true),
                     ACC_TYPE = table.Column<string>(maxLength: 1, nullable: true),
-                    TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TYPE_ID = table.Column<int>(nullable: true),
                     ACC_CODE = table.Column<string>(maxLength: 200, nullable: true),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     IS_HIDE = table.Column<string>(maxLength: 1, nullable: true),
-                    ISCAPITALCURRENT = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    ISCAPITALCURRENT = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3547,17 +3571,17 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_VCHR_MASTER",
                 columns: table => new
                 {
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    VCHR_NO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: false),
+                    VCHR_NO = table.Column<int>(nullable: true),
                     VCHR_DATE_NEP = table.Column<string>(maxLength: 10, nullable: true),
-                    VCHR_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VCHR_TYPE_ID = table.Column<int>(nullable: true),
                     NARRATION = table.Column<string>(maxLength: 200, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UPDATE_DATE = table.Column<DateTime>(type: "date", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    UPDATE_DATE = table.Column<DateTime>(nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 10, nullable: true),
                     MODULE = table.Column<string>(maxLength: 2, nullable: false),
                     IS_POSTED = table.Column<string>(maxLength: 1, nullable: true),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
                     NAME_CHEQUE_PAYEE = table.Column<string>(maxLength: 100, nullable: true),
                     IS_OF_LAST_YEAR = table.Column<string>(maxLength: 1, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true),
@@ -3567,14 +3591,14 @@ namespace IMIS_DataEntity.Migrations
                     CONTACT_PHONE = table.Column<string>(maxLength: 50, nullable: true),
                     IS_NIKASH = table.Column<string>(maxLength: 1, nullable: true),
                     WARDNO = table.Column<string>(maxLength: 10, nullable: true),
-                    PREP_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CHECK_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACCEPT_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREP_BY = table.Column<int>(nullable: true),
+                    CHECK_BY = table.Column<int>(nullable: true),
+                    ACCEPT_BY = table.Column<int>(nullable: true),
                     INTERNAL_LEKHA = table.Column<string>(maxLength: 50, nullable: true),
-                    NIYAMIT_AMT = table.Column<double>(nullable: true),
-                    ASULI_AMT = table.Column<double>(nullable: true),
-                    VALID_AMT = table.Column<double>(nullable: true),
-                    N_VALID_AMT = table.Column<double>(nullable: true)
+                    NIYAMIT_AMT = table.Column<float>(nullable: true),
+                    ASULI_AMT = table.Column<float>(nullable: true),
+                    VALID_AMT = table.Column<float>(nullable: true),
+                    N_VALID_AMT = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3597,21 +3621,21 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_BANK_GRNTY",
                 columns: table => new
                 {
-                    GRNTY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    GRNTY_ID = table.Column<int>(nullable: false),
                     GRNTY_NO = table.Column<string>(maxLength: 25, nullable: true),
                     GRNTY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     BANK_NAME = table.Column<string>(maxLength: 200, nullable: true),
-                    GRNTY_AMOUNT = table.Column<double>(nullable: true),
+                    GRNTY_AMOUNT = table.Column<float>(nullable: true),
                     GRNTY_TYPE = table.Column<string>(maxLength: 2, nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true),
+                    PERSON_ID = table.Column<int>(nullable: true),
                     PHUKUWA_PS = table.Column<string>(maxLength: 15, nullable: true),
                     PHUKUWA_CN = table.Column<string>(maxLength: 15, nullable: true),
                     PHUKUWA_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     MAG_PS = table.Column<string>(maxLength: 15, nullable: true),
                     MAG_CN = table.Column<string>(maxLength: 15, nullable: true),
                     MAG_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    ENTRY_DATETIME = table.Column<DateTime>(type: "date", nullable: true),
+                    ENTRY_DATETIME = table.Column<DateTime>(nullable: true),
                     EXPRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -3635,13 +3659,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_WORK_FUNDS_DETAIL",
                 columns: table => new
                 {
-                    FUND_DETAIL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PROVIDER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FUNDED_AMT = table.Column<double>(nullable: true),
-                    FUNDED_PERCENT = table.Column<double>(nullable: true),
-                    ISJANASARAMDHA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ISOWNOFFICE = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    FUND_DETAIL_ID = table.Column<int>(nullable: false),
+                    WORK_ID = table.Column<int>(nullable: true),
+                    PROVIDER_ID = table.Column<int>(nullable: true),
+                    FUNDED_AMT = table.Column<float>(nullable: true),
+                    FUNDED_PERCENT = table.Column<float>(nullable: true),
+                    ISJANASARAMDHA = table.Column<int>(nullable: true),
+                    ISOWNOFFICE = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3660,33 +3684,13 @@ namespace IMIS_DataEntity.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "AspNetRoleClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    RoleId = table.Column<string>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
+         
             migrationBuilder.CreateTable(
                 name: "BANK_BRANCH",
                 columns: table => new
                 {
-                    BRANCH_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BANKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    BRANCH_ID = table.Column<int>(nullable: false),
+                    BANKID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 200, nullable: true),
                     ENGNAME = table.Column<string>(maxLength: 200, nullable: true),
                     BRANCH_CODE = table.Column<string>(maxLength: 50, nullable: true),
@@ -3710,12 +3714,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "SUB_MODULE_SOURCE",
                 columns: table => new
                 {
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BUDJET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false)
+                    SUB_MODULE_ID = table.Column<int>(nullable: false),
+                    BUDJET_SOURCE_ID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("SUB_MODULE_SOURCE_pkey", x => new { x.SUB_MODULE_ID, x.BUDJET_SOURCE_ID });
+                    table.PrimaryKey("SUB_MODULE_SOURCE_pkey", x => new { x.BUDJET_SOURCE_ID, x.SUB_MODULE_ID });
                     table.ForeignKey(
                         name: "SYS_C004357",
                         column: x => x.BUDJET_SOURCE_ID,
@@ -3734,12 +3738,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ROOM_MST",
                 columns: table => new
                 {
-                    ROOM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    FLOOR_NO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ROOM_ID = table.Column<int>(nullable: false),
+                    FLOOR_NO = table.Column<int>(nullable: true),
                     BLOCK_NO = table.Column<string>(maxLength: 10, nullable: true),
                     DESC_NP = table.Column<string>(maxLength: 50, nullable: true),
                     DESC_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    DEPT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    DEPT_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3756,16 +3760,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_LILAMAPPDETAILS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    LILAMAPPLIID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DAKHILAID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NIKASHAID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEMID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNITID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPECID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LILAMQTY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LILAMTOTALAMT = table.Column<double>(nullable: true)
+                    ID = table.Column<int>(nullable: false),
+                    LILAMAPPLIID = table.Column<int>(nullable: true),
+                    DAKHILAID = table.Column<int>(nullable: true),
+                    NIKASHAID = table.Column<int>(nullable: true),
+                    ITEMID = table.Column<int>(nullable: true),
+                    UNITID = table.Column<int>(nullable: true),
+                    BRANDID = table.Column<int>(nullable: true),
+                    SPECID = table.Column<int>(nullable: true),
+                    LILAMQTY = table.Column<int>(nullable: true),
+                    LILAMTOTALAMT = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3782,20 +3786,20 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ITEM_MST",
                 columns: table => new
                 {
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ITEM_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 50, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_MAIN_CLASS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_NATURE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MAXL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MINL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RMAXL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RMINL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    GUSSAGE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SIZES = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    COUNTRYID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    UNIT_ID = table.Column<int>(nullable: true),
+                    ITEM_MAIN_CLASS = table.Column<int>(nullable: true),
+                    ITEM_TYPE = table.Column<int>(nullable: true),
+                    ITEM_NATURE = table.Column<int>(nullable: true),
+                    MAXL = table.Column<int>(nullable: true),
+                    MINL = table.Column<int>(nullable: true),
+                    RMAXL = table.Column<int>(nullable: true),
+                    RMINL = table.Column<int>(nullable: true),
+                    GUSSAGE = table.Column<int>(nullable: true),
+                    SIZES = table.Column<int>(nullable: true),
+                    COUNTRYID = table.Column<int>(nullable: true),
                     COMPANYNAME = table.Column<string>(maxLength: 50, nullable: true),
                     SOURCE = table.Column<string>(maxLength: 50, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
@@ -3803,18 +3807,18 @@ namespace IMIS_DataEntity.Migrations
                     KITTA_NO = table.Column<string>(maxLength: 150, nullable: true),
                     LAND_LOCATION = table.Column<string>(maxLength: 150, nullable: true),
                     CONSTRUCTONTYPE = table.Column<string>(maxLength: 150, nullable: true),
-                    DEPRECIATION = table.Column<double>(nullable: true),
-                    MINRATE = table.Column<double>(nullable: true),
-                    DEPMAXRATE = table.Column<double>(nullable: true),
-                    PROPERTYTYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LAND_AREA_INSQ_FEETS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREA_INSQ_FEETS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LAND_UNIT_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LAND_MARKET_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LANDID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VEHICLE_PARTS_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    DEPRECIATION = table.Column<float>(nullable: true),
+                    MINRATE = table.Column<float>(nullable: true),
+                    DEPMAXRATE = table.Column<float>(nullable: true),
+                    PROPERTYTYPE = table.Column<int>(nullable: true),
+                    LAND_AREA_INSQ_FEETS = table.Column<int>(nullable: true),
+                    AREA_INSQ_FEETS = table.Column<int>(nullable: true),
+                    LAND_UNIT_RATE = table.Column<int>(nullable: true),
+                    LAND_MARKET_RATE = table.Column<int>(nullable: true),
+                    LANDID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    BUDGET_ACC_ID = table.Column<int>(nullable: true),
+                    VEHICLE_PARTS_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -3832,8 +3836,8 @@ namespace IMIS_DataEntity.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false),
-                    REGIONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    GROUND_COV = table.Column<double>(nullable: true),
+                    REGIONID = table.Column<int>(nullable: true),
+                    GROUND_COV = table.Column<float>(nullable: true),
                     AREA = table.Column<long>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 150, nullable: true)
                 },
@@ -3853,11 +3857,11 @@ namespace IMIS_DataEntity.Migrations
                 columns: table => new
                 {
                     ID = table.Column<short>(nullable: false),
-                    REGIONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREA_FROM = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREA_TO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    REGIONID = table.Column<int>(nullable: true),
+                    AREA_FROM = table.Column<int>(nullable: true),
+                    AREA_TO = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    FAR = table.Column<double>(nullable: true),
+                    FAR = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 150, nullable: true)
                 },
                 constraints: table =>
@@ -3875,15 +3879,15 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_BUDJET_SOURCE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    MIN_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    MIN_ACC_ID = table.Column<int>(nullable: true),
+                    SOURCE_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("ACC_BUDJET_SOURCE_pkey", x => x.ID);
+                    table.PrimaryKey("PK_ACC_BUDJET_SOURCE", x => x.ID);
                     table.ForeignKey(
                         name: "FK_MIN_ACC",
                         column: x => x.MIN_ACC_ID,
@@ -3902,18 +3906,18 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_ASULI_BIBARAN",
                 columns: table => new
                 {
-                    ASULI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PAYMENT_PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ASULI_ID = table.Column<int>(nullable: false),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: true),
+                    PAYMENT_PERSON_ID = table.Column<int>(nullable: true),
                     PERSON_NAME = table.Column<string>(maxLength: 90, nullable: true),
                     WORK_NAME = table.Column<string>(maxLength: 100, nullable: true),
-                    AMT_TAKEN = table.Column<double>(nullable: true),
+                    AMT_TAKEN = table.Column<float>(nullable: true),
                     RESPONSIVE_TAKEN = table.Column<string>(maxLength: 100, nullable: true),
                     COLLECT_REASON = table.Column<string>(maxLength: 200, nullable: true),
-                    PESKI_AMT = table.Column<double>(nullable: true),
-                    PESKI_EMPLOYEE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PESKI_AMT = table.Column<float>(nullable: true),
+                    PESKI_EMPLOYEE_ID = table.Column<int>(nullable: true),
                     PROPERTY_DETAILS = table.Column<string>(maxLength: 200, nullable: true),
-                    PROPERTY_EMPLOYEE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PROPERTY_EMPLOYEE_ID = table.Column<int>(nullable: true),
                     PROPERTY_ROKA = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -3931,19 +3935,19 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EDUCATION",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
                     EDU_NAME = table.Column<string>(maxLength: 70, nullable: true),
-                    EDU_LEVEL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    EDU_LEVEL_ID = table.Column<int>(nullable: true),
                     INSTITUTE = table.Column<string>(maxLength: 70, nullable: true),
-                    BOARD_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MARKS_PERCNT = table.Column<double>(nullable: true),
-                    MARKS_GRADE = table.Column<double>(nullable: true),
+                    BOARD_ID = table.Column<int>(nullable: true),
+                    MARKS_PERCNT = table.Column<float>(nullable: true),
+                    MARKS_GRADE = table.Column<float>(nullable: true),
                     DIVISION = table.Column<string>(maxLength: 25, nullable: true),
                     COMPLETION_YR_VS = table.Column<string>(maxLength: 10, nullable: true),
-                    COMPLETION_YR_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    COMPLETION_YR_AD = table.Column<DateTime>(nullable: true),
                     SUBJECTS = table.Column<string>(maxLength: 100, nullable: true),
-                    VALID_FOR_EVAL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VALID_FOR_EVAL = table.Column<int>(nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true)
                 },
                 constraints: table =>
@@ -3967,8 +3971,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_DEP_SOURCE",
                 columns: table => new
                 {
-                    DEPT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BUDJET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false)
+                    DEPT_ID = table.Column<int>(nullable: false),
+                    BUDJET_SOURCE_ID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -3991,12 +3995,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "ORGANIZATION_TREE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PARENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PARENT_ID = table.Column<int>(nullable: true),
                     NEP_NAME = table.Column<string>(maxLength: 70, nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 70, nullable: true),
-                    CONTAINS_DARBANDI = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    GEO_REGION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CONTAINS_DARBANDI = table.Column<int>(nullable: true),
+                    GEO_REGION = table.Column<int>(nullable: true),
                     GRP_LEVEL = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -4020,18 +4024,18 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_LOCAL_POST_MASTER",
                 columns: table => new
                 {
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    LOCAL_POST_ID = table.Column<int>(nullable: false),
                     LOCAL_POST_NAME = table.Column<string>(maxLength: 70, nullable: true),
                     LOCAL_POST_NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    POST_ID = table.Column<int>(nullable: true),
                     POST_DUTIES = table.Column<string>(nullable: true),
-                    BASIC_SALARY = table.Column<double>(nullable: true),
-                    GRADE_RATE = table.Column<double>(nullable: true),
-                    ALLWANCE = table.Column<double>(nullable: true),
-                    INSURANCE_ADD_AMT = table.Column<double>(nullable: true),
-                    PAYROLL_ORDER = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ALLLWANCE = table.Column<double>(nullable: true),
-                    ALLOWANCE = table.Column<double>(nullable: true)
+                    BASIC_SALARY = table.Column<float>(nullable: true),
+                    GRADE_RATE = table.Column<float>(nullable: true),
+                    ALLWANCE = table.Column<float>(nullable: true),
+                    INSURANCE_ADD_AMT = table.Column<float>(nullable: true),
+                    PAYROLL_ORDER = table.Column<int>(nullable: true),
+                    ALLLWANCE = table.Column<float>(nullable: true),
+                    ALLOWANCE = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4048,8 +4052,8 @@ namespace IMIS_DataEntity.Migrations
                 name: "SANITATION_SUBGROUP",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    GROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    GROUPID = table.Column<int>(nullable: true),
                     SUBGROUPNAME = table.Column<string>(maxLength: 200, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 255, nullable: true)
                 },
@@ -4068,10 +4072,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BGT_MGMT_EXP",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BGT_MGMT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BGT_AMT = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    BGT_MGMT_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    BGT_AMT = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -4089,10 +4093,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BGT_MGMT_EXP_ORG",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BGT_MGMT_ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BGT_AMT_ORG = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    BGT_MGMT_ORG_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    BGT_AMT_ORG = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -4110,10 +4114,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_PAYMENT_ORDER_DETAILS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PAYMENT_ORDER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VOUCHER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LINK_VOUCHER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PAYMENT_ORDER_ID = table.Column<int>(nullable: true),
+                    VOUCHER_ID = table.Column<int>(nullable: true),
+                    LINK_VOUCHER_ID = table.Column<int>(nullable: true),
                     PAYMENT_PERMISS_NO = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -4131,13 +4135,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "STOREDBILLS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SN = table.Column<int>(nullable: false),
                     DATEISSUED = table.Column<string>(maxLength: 10, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 70, nullable: true),
                     BILLNOFROM = table.Column<string>(maxLength: 25, nullable: true),
                     BILLNOTO = table.Column<string>(maxLength: 25, nullable: true),
-                    CODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILLTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    CODE = table.Column<int>(nullable: true),
+                    BILLTYPEID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4154,11 +4158,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLMALPOTSUBGROUP",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    GROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    GROUPID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 100, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true),
-                    WORDA = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    WORDA = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4170,103 +4174,18 @@ namespace IMIS_DataEntity.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<string>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserClaims_Usermaster_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Usermaster",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
-                columns: table => new
-                {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserLogins_Usermaster_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Usermaster",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AspNetUserRoles_Usermaster_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Usermaster",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
-                columns: table => new
-                {
-                    UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
-                    Value = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
-                    table.ForeignKey(
-                        name: "FK_AspNetUserTokens_Usermaster_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Usermaster",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
+             
             migrationBuilder.CreateTable(
                 name: "TBL_BGT_MGMT_RELEASE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BGT_RELEASE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    BGT_RELEASE_ID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    MINISTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BGT_SUB_HEAD_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMT = table.Column<double>(nullable: true),
+                    MINISTRY_ID = table.Column<int>(nullable: true),
+                    ORG_ID = table.Column<int>(nullable: true),
+                    BGT_SUB_HEAD_ID = table.Column<int>(nullable: true),
+                    AMT = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -4284,15 +4203,15 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_BGT_TRANSFER",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    FROM_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TO_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BGT_ALCTN_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    FROM_ACC_ID = table.Column<int>(nullable: true),
+                    TO_ACC_ID = table.Column<int>(nullable: true),
+                    BGT_ALCTN_ID = table.Column<int>(nullable: true),
                     TRNSFR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
                     TRNSFR_REASON = table.Column<string>(maxLength: 200, nullable: true),
-                    UPDATE_USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UPDATE_DATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true)
+                    UPDATE_USER_ID = table.Column<int>(nullable: true),
+                    UPDATE_DATETIME = table.Column<DateTime>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4321,23 +4240,23 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_EXPENSES_DETAILS",
                 columns: table => new
                 {
-                    EXPENSE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    TRANS_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PADADHIKARI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WARD_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DR_AMT = table.Column<double>(nullable: true),
-                    CR_AMT = table.Column<double>(nullable: true),
-                    VAT_AMT = table.Column<double>(nullable: true),
-                    PAYMENT_SLIP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    EXPENSE_ID = table.Column<int>(nullable: false),
+                    TRANS_TYPE_ID = table.Column<int>(nullable: true),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    PADADHIKARI_ID = table.Column<int>(nullable: true),
+                    ORG_ID = table.Column<int>(nullable: true),
+                    UC_ID = table.Column<int>(nullable: true),
+                    WARD_ID = table.Column<int>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    DR_AMT = table.Column<float>(nullable: true),
+                    CR_AMT = table.Column<float>(nullable: true),
+                    VAT_AMT = table.Column<float>(nullable: true),
+                    PAYMENT_SLIP_ID = table.Column<int>(nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    ORDER_IN_PAYMENT_SLIP = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ORDER_IN_PAYMENT_SLIP = table.Column<int>(nullable: true),
                     ADVEXPTYPE = table.Column<string>(maxLength: 1, nullable: true),
                     IS_OF_LAST_YEAR = table.Column<string>(maxLength: 1, nullable: true)
                 },
@@ -4380,13 +4299,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_PAYMENT_CLEARANCE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PAYMENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PAYMENT_ID = table.Column<int>(nullable: true),
                     IS_OF_LAST_YEAR = table.Column<string>(maxLength: 1, nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    ACC_ID = table.Column<int>(nullable: true),
+                    BUDGET_ACC_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4409,14 +4328,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "FIREBRIGADESTATE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEPNAME = table.Column<string>(maxLength: 50, nullable: true),
-                    SERVICECHARGERATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MINIMUMSERVICECHARGE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SERVICECHARGERATE = table.Column<int>(nullable: true),
+                    MINIMUMSERVICECHARGE = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
                     TYPE = table.Column<short>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    RATEID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4436,7 +4355,7 @@ namespace IMIS_DataEntity.Migrations
                     ID = table.Column<short>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: false),
                     NAME_EN = table.Column<string>(maxLength: 70, nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
@@ -4457,9 +4376,9 @@ namespace IMIS_DataEntity.Migrations
                     ID = table.Column<int>(nullable: false),
                     RATEID = table.Column<int>(nullable: true),
                     ACCODE = table.Column<int>(nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SERVICE_CHARGE_PERCENT = table.Column<double>(nullable: true),
-                    FLAT_CHARGE_RATE = table.Column<double>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    SERVICE_CHARGE_PERCENT = table.Column<float>(nullable: true),
+                    FLAT_CHARGE_RATE = table.Column<float>(nullable: true),
                     ISAPPLICABLEFORHOUSE = table.Column<short>(nullable: true)
                 },
                 constraints: table =>
@@ -4477,22 +4396,22 @@ namespace IMIS_DataEntity.Migrations
                 name: "TAX_ADDTNL_CHRG_DTLS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SN = table.Column<int>(nullable: false),
                     FISCAL_YEAR = table.Column<string>(maxLength: 9, nullable: true),
-                    IID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SERVICE_CHARGE_PERCENT = table.Column<double>(nullable: true),
-                    FLAT_CHARGE_RATE = table.Column<double>(nullable: true),
+                    IID = table.Column<int>(nullable: true),
+                    ACCODE = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<int>(nullable: true),
+                    LAND_ID = table.Column<int>(nullable: true),
+                    RENT_ID = table.Column<int>(nullable: true),
+                    SERVICE_CHARGE_PERCENT = table.Column<float>(nullable: true),
+                    FLAT_CHARGE_RATE = table.Column<float>(nullable: true),
                     ISAPPLICABLEFORHOUSE = table.Column<short>(nullable: true),
                     TAX_TYPE = table.Column<string>(maxLength: 3, nullable: true),
                     SERVICE_CHARGE_TYPE = table.Column<string>(maxLength: 2, nullable: true),
                     ISREGISTATIONFEE = table.Column<string>(maxLength: 2, nullable: true),
-                    BILL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILL_NO = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    BILL_ID = table.Column<int>(nullable: true),
+                    BILL_NO = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4515,14 +4434,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_CONSTRUCTION_OTHER_CHARGES",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERCENT_OF_TAX = table.Column<double>(nullable: true),
-                    FLAT_CHARGE_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    RATEID = table.Column<int>(nullable: true),
+                    ACCODE = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    PERCENT_OF_TAX = table.Column<float>(nullable: true),
+                    FLAT_CHARGE_RATE = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    SERVICE_CHARGE_CALCULATION = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SERVICE_CHARGE_CALCULATION = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4539,14 +4458,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_LAND_OTHER_CHARGES",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERCENT_OF_TAX = table.Column<double>(nullable: true),
-                    FLAT_CHARGE_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    RATEID = table.Column<int>(nullable: true),
+                    ACCODE = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    PERCENT_OF_TAX = table.Column<float>(nullable: true),
+                    FLAT_CHARGE_RATE = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    SERVICE_CHARGE_CALCULATION = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SERVICE_CHARGE_CALCULATION = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4563,12 +4482,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLBUSINESS_SERVICE_CH_MST",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SERVICECHARGEPERCENT = table.Column<double>(nullable: true),
-                    FLATCHARGERATE = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    RATEID = table.Column<int>(nullable: true),
+                    ACCODE = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    SERVICECHARGEPERCENT = table.Column<float>(nullable: true),
+                    FLATCHARGERATE = table.Column<float>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -4586,12 +4505,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLVEH_SER_CH_MSTR",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SERVICE_CHARGE_PERCENT = table.Column<double>(nullable: true),
-                    FLAT_CHARGE_RATE = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    RATEID = table.Column<int>(nullable: true),
+                    ACCODE = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    SERVICE_CHARGE_PERCENT = table.Column<float>(nullable: true),
+                    FLAT_CHARGE_RATE = table.Column<float>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -4609,20 +4528,20 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_DHRTI_BILL_DTL",
                 columns: table => new
                 {
-                    DHRTI_DTL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    DHRTI_MASTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DHRTI_DTL_ID = table.Column<int>(nullable: false),
+                    DHRTI_MASTER_ID = table.Column<int>(nullable: true),
                     BILL_NO = table.Column<string>(maxLength: 25, nullable: true),
                     BILL_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    COUNTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTER_ID = table.Column<int>(nullable: true),
+                    PERSON_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    ORDER_IN_BILL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ORDER_IN_BILL = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4651,21 +4570,21 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_DHRTI_BILL_MASTER",
                 columns: table => new
                 {
-                    DHRTI_MASTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    DHRTI_MASTER_ID = table.Column<int>(nullable: false),
                     BILL_NO = table.Column<string>(maxLength: 25, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 200, nullable: true),
-                    COUNTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTER_ID = table.Column<int>(nullable: true),
+                    PERSON_ID = table.Column<int>(nullable: true),
                     BLL_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    CASH_AMT = table.Column<double>(nullable: true),
-                    BANK_AMT = table.Column<double>(nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CASH_AMT = table.Column<float>(nullable: true),
+                    BANK_AMT = table.Column<float>(nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATE_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATE_ENTRY_TIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATE_EDIT_TIME = table.Column<DateTime>(type: "date", nullable: true),
+                    DATE_ENTRY_TIME = table.Column<DateTime>(nullable: true),
+                    DATE_EDIT_TIME = table.Column<DateTime>(nullable: true),
                     NAME = table.Column<string>(maxLength: 100, nullable: true),
                     ADDRESS = table.Column<string>(maxLength: 100, nullable: true),
                     WARD_NO = table.Column<short>(nullable: true),
@@ -4673,9 +4592,9 @@ namespace IMIS_DataEntity.Migrations
                     CANCEL_REASON = table.Column<string>(maxLength: 200, nullable: true),
                     BILL_NO_MANUAL = table.Column<string>(maxLength: 25, nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    BILLTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    BILLTYPEID = table.Column<int>(nullable: true),
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4710,42 +4629,42 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_PAYMENT_MASTER",
                 columns: table => new
                 {
-                    PAYMENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    TRANS_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PAYMENT_ID = table.Column<int>(nullable: false),
+                    TRANS_TYPE_ID = table.Column<int>(nullable: true),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: true),
+                    PERSON_ID = table.Column<int>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true),
                     BILL_NO = table.Column<string>(maxLength: 50, nullable: true),
-                    BILL_AMT = table.Column<double>(nullable: true),
-                    VAT_AMT = table.Column<double>(nullable: true),
+                    BILL_AMT = table.Column<float>(nullable: true),
+                    VAT_AMT = table.Column<float>(nullable: true),
                     PAYMENT_DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true),
-                    RETENTION_MONEY_EDUCTION = table.Column<double>(nullable: true),
-                    CONTRACT_TAX_DEDUCTION = table.Column<double>(nullable: true),
-                    INCOME_TAX_DEDUCTION = table.Column<double>(nullable: true),
-                    LAST_YEARS_ADV_DEDUCTION = table.Column<double>(nullable: true),
-                    VAT_DEDUCTION = table.Column<double>(nullable: true),
-                    OTHER_DEDUCTION = table.Column<double>(nullable: true),
-                    CHEQUE_PAYMENT = table.Column<double>(nullable: true),
-                    CASH_PAYMENT = table.Column<double>(nullable: true),
-                    ADV_CLEARED_FROM_BILL = table.Column<double>(nullable: true),
-                    ADV_CLEARED_FROM_BANK = table.Column<double>(nullable: true),
-                    ADV_CLEARED_FROM_CASH = table.Column<double>(nullable: true),
-                    LY_ADV_CLEARED_FROM_BILL = table.Column<double>(nullable: true),
-                    LY_ADV_CLEARED_FROM_BANK = table.Column<double>(nullable: true),
-                    LY_ADV_CLEARED_FROM_CASH = table.Column<double>(nullable: true),
+                    RETENTION_MONEY_EDUCTION = table.Column<float>(nullable: true),
+                    CONTRACT_TAX_DEDUCTION = table.Column<float>(nullable: true),
+                    INCOME_TAX_DEDUCTION = table.Column<float>(nullable: true),
+                    LAST_YEARS_ADV_DEDUCTION = table.Column<float>(nullable: true),
+                    VAT_DEDUCTION = table.Column<float>(nullable: true),
+                    OTHER_DEDUCTION = table.Column<float>(nullable: true),
+                    CHEQUE_PAYMENT = table.Column<float>(nullable: true),
+                    CASH_PAYMENT = table.Column<float>(nullable: true),
+                    ADV_CLEARED_FROM_BILL = table.Column<float>(nullable: true),
+                    ADV_CLEARED_FROM_BANK = table.Column<float>(nullable: true),
+                    ADV_CLEARED_FROM_CASH = table.Column<float>(nullable: true),
+                    LY_ADV_CLEARED_FROM_BILL = table.Column<float>(nullable: true),
+                    LY_ADV_CLEARED_FROM_BANK = table.Column<float>(nullable: true),
+                    LY_ADV_CLEARED_FROM_CASH = table.Column<float>(nullable: true),
                     ADVEXPTYPE = table.Column<string>(maxLength: 1, nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
                     ISPESKI = table.Column<string>(maxLength: 1, nullable: true),
-                    DEDUCT_DEP_VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DEDUCT_DEP_VCHR_ID = table.Column<int>(nullable: true),
                     DEDUCT_DEP_VCHR_DATE_NEP = table.Column<string>(maxLength: 10, nullable: true),
-                    ACC_DEDUCT_DEP_VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACC_DEDUCT_DEP_VCHR_ID = table.Column<int>(nullable: true),
                     ACC_DEDUCT_DEP_VCHR_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     EXPIRE_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    CR_AMOUNT = table.Column<double>(nullable: true),
-                    SUBJECT_AREA_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    CR_AMOUNT = table.Column<float>(nullable: true),
+                    SUBJECT_AREA_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4786,27 +4705,27 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_VCHR_DETAILS",
                 columns: table => new
                 {
-                    VCHR_DETAIL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DR_AMT = table.Column<double>(nullable: true, defaultValueSql: "'0'::double precision"),
-                    CR_AMT = table.Column<double>(nullable: true, defaultValueSql: "'0'::double precision"),
-                    VCHR_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VCHR_DETAIL_ID = table.Column<int>(nullable: false),
+                    VCHR_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    DR_AMT = table.Column<float>(nullable: true, defaultValueSql: "'0'::real"),
+                    CR_AMT = table.Column<float>(nullable: true, defaultValueSql: "'0'::real"),
+                    VCHR_TYPE_ID = table.Column<int>(nullable: true),
                     ID_FROM_SRC = table.Column<int>(nullable: true),
                     ACC_TYPE = table.Column<string>(maxLength: 1, nullable: false),
-                    TRANS_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VCHR_DATE_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    TRANS_TYPE_ID = table.Column<int>(nullable: true),
+                    VCHR_DATE_ENG = table.Column<DateTime>(nullable: true),
                     VCHR_DATE_NEP = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
                     IS_POSTED = table.Column<string>(maxLength: 1, nullable: true),
                     MODULE = table.Column<string>(maxLength: 2, nullable: false),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BANKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SUB_MODULE_ID = table.Column<int>(nullable: false),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true),
+                    BANKID = table.Column<int>(nullable: true),
+                    BILL_ID = table.Column<int>(nullable: true),
+                    BUDGET_ACC_ID = table.Column<int>(nullable: true),
+                    ORG_ID = table.Column<int>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true),
                     IS_JAFAT = table.Column<string>(maxLength: 1, nullable: true),
                     EXPIRE_DATE_NP = table.Column<string>(maxLength: 20, nullable: true),
                     IS_GROUP = table.Column<string>(maxLength: 1, nullable: true)
@@ -4850,17 +4769,17 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_WORK_PAYMNT_TRANS",
                 columns: table => new
                 {
-                    TRANS_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PAYMENT_SLIP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PADADHIKARI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILL_AMT = table.Column<double>(nullable: true),
-                    VAT_AMT = table.Column<double>(nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TRANS_ID = table.Column<int>(nullable: false),
+                    WORK_ID = table.Column<int>(nullable: true),
+                    PAYMENT_SLIP_ID = table.Column<int>(nullable: true),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    PADADHIKARI_ID = table.Column<int>(nullable: true),
+                    ORG_ID = table.Column<int>(nullable: true),
+                    UC_ID = table.Column<int>(nullable: true),
+                    BILL_AMT = table.Column<float>(nullable: true),
+                    VAT_AMT = table.Column<float>(nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
                     IS_OF_LAST_YEAR = table.Column<string>(maxLength: 1, nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true)
@@ -4892,26 +4811,26 @@ namespace IMIS_DataEntity.Migrations
                 name: "INCOMEBILLDETAILS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BILLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    BILLID = table.Column<int>(nullable: true),
                     BILLNO = table.Column<string>(maxLength: 25, nullable: true),
                     BILLDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    COUNTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTERID = table.Column<int>(nullable: true),
+                    PERSONID = table.Column<int>(nullable: true),
+                    ACCODE = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    ORDERINBILL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ORDERINBILL = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     PROJECT = table.Column<string>(maxLength: 10, nullable: true),
-                    TAXADDTNLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TAXADDTNLID = table.Column<int>(nullable: true),
                     TAX_TYPE = table.Column<string>(maxLength: 5, nullable: true),
-                    QTY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BACKUP_PERSONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    QTY = table.Column<int>(nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true),
+                    BACKUP_PERSONID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4934,22 +4853,22 @@ namespace IMIS_DataEntity.Migrations
                 name: "INCOMEBILLMASTER",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SN = table.Column<int>(nullable: false),
                     BILLNO = table.Column<string>(maxLength: 25, nullable: true),
                     DESCRIPTION = table.Column<string>(nullable: true),
-                    COUNTERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTERID = table.Column<int>(nullable: true),
+                    PERSONID = table.Column<int>(nullable: true),
                     BILLDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    CASHAMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BANKAMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CASHAMOUNT = table.Column<int>(nullable: true),
+                    BANKAMOUNT = table.Column<int>(nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERIDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    USERIDE = table.Column<int>(nullable: true),
                     DATAENTRYVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATAENTRYADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    DATAEDITADDATETIME = table.Column<DateTime>(type: "date", nullable: true),
-                    BILLTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DATAENTRYADDATETIME = table.Column<DateTime>(nullable: true),
+                    DATAEDITADDATETIME = table.Column<DateTime>(nullable: true),
+                    BILLTYPEID = table.Column<int>(nullable: true),
                     TAXINCOMETYPE = table.Column<string>(maxLength: 10, nullable: true),
                     NAME = table.Column<string>(nullable: true),
                     ADDRESS = table.Column<string>(maxLength: 100, nullable: true),
@@ -4959,9 +4878,9 @@ namespace IMIS_DataEntity.Migrations
                     BILL_NO_MANUAL = table.Column<string>(maxLength: 25, nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     PROJECT = table.Column<string>(maxLength: 10, nullable: true),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CURRENCY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BACKUP_PERSONID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
+                    CURRENCY_ID = table.Column<int>(nullable: true),
+                    BACKUP_PERSONID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -4990,11 +4909,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "ORG_BANK_ACCOUNT",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BANKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRANCH_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BANK_ACCNT_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    ORG_ID = table.Column<int>(nullable: true),
+                    BANKID = table.Column<int>(nullable: true),
+                    BRANCH_ID = table.Column<int>(nullable: true),
+                    BANK_ACCNT_TYPE_ID = table.Column<int>(nullable: true),
                     ACC_NO = table.Column<string>(maxLength: 50, nullable: true),
                     ACC_NAME = table.Column<string>(maxLength: 150, nullable: true)
                 },
@@ -5025,18 +4944,18 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ISSUE_DETAIL",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ISSUE_MAST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_REQ_NO = table.Column<double>(nullable: true),
-                    ITEM_ISSUE_NO = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    ISSUE_MAST_ID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    ITEM_TYPE = table.Column<int>(nullable: true),
+                    ITEM_REQ_NO = table.Column<float>(nullable: true),
+                    ITEM_ISSUE_NO = table.Column<float>(nullable: true),
                     ISSUE_DT = table.Column<string>(maxLength: 10, nullable: true),
                     DELIVERY_STATUS = table.Column<string>(maxLength: 1, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    ISSUE_DT_ENG = table.Column<DateTime>(type: "date", nullable: true)
+                    ISSUE_DT_ENG = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5071,15 +4990,15 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_AWARDS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     NEP_NAME = table.Column<string>(maxLength: 70, nullable: true),
                     LEVEL_DESC = table.Column<string>(maxLength: 50, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     RVCD_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
-                    RCVD_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    RCVD_DATE_AD = table.Column<DateTime>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 90, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true)
                 },
@@ -5098,13 +5017,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_DARBANDI",
                 columns: table => new
                 {
-                    DARBANDI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    OFFICE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    POST_LEVEL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DARBANDI_ID = table.Column<int>(nullable: false),
+                    OFFICE_ID = table.Column<int>(nullable: true),
+                    POST_ID = table.Column<int>(nullable: true),
+                    POST_LEVEL = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     SEWA_SAMUHA_UPASAMUHA = table.Column<string>(maxLength: 100, nullable: true),
-                    NO_OF_POST = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    NO_OF_POST = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5133,12 +5052,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMPLOYEE_MASTER",
                 columns: table => new
                 {
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    EMP_ID = table.Column<int>(nullable: false),
                     FIRST_NAME_NP = table.Column<string>(maxLength: 70, nullable: true),
                     LAST_NAME_NP = table.Column<string>(maxLength: 50, nullable: true),
                     FIRST_NAME_EN = table.Column<string>(maxLength: 70, nullable: true),
                     LAST_NAME_EN = table.Column<string>(maxLength: 50, nullable: true),
-                    POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    POST_ID = table.Column<int>(nullable: true),
                     SERVICE_GROUP = table.Column<string>(maxLength: 30, nullable: true),
                     TITLE = table.Column<string>(maxLength: 30, nullable: true),
                     GENDER = table.Column<string>(maxLength: 1, nullable: true),
@@ -5148,48 +5067,48 @@ namespace IMIS_DataEntity.Migrations
                     ADDRESS = table.Column<string>(maxLength: 100, nullable: true),
                     DATE_OF_BIRTH = table.Column<string>(maxLength: 25, nullable: true),
                     FIRST_APPOINT_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    FIRST_APPOINT_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    FIRST_APPOINT_POST_ID = table.Column<int>(nullable: true),
                     CURRENT_POST_APPOINT_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     SERVICE_STATUS = table.Column<string>(maxLength: 40, nullable: true),
                     POST_STATUS = table.Column<string>(maxLength: 40, nullable: true),
-                    GRADES = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CIT_PERCENT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    GRADES = table.Column<int>(nullable: true),
+                    CIT_PERCENT = table.Column<int>(nullable: true),
                     PAYMODE = table.Column<string>(maxLength: 30, nullable: true),
                     GOVT_EMP_ID = table.Column<string>(maxLength: 50, nullable: true),
                     PF_ID = table.Column<string>(maxLength: 50, nullable: true),
                     CIT_ID = table.Column<string>(maxLength: 50, nullable: true),
-                    POST_LEVEL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    POST_LEVEL = table.Column<int>(nullable: true),
                     RETIRE_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     PHONES = table.Column<string>(maxLength: 50, nullable: true),
                     EMAILS = table.Column<string>(maxLength: 50, nullable: true),
-                    PAYEMENT_BANK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PAYEMENT_BANK_ID = table.Column<int>(nullable: true),
                     MARRIED_STATUS = table.Column<string>(maxLength: 1, nullable: true),
                     INSURANCE_NO = table.Column<string>(maxLength: 50, nullable: true),
                     MOBILE_NO = table.Column<string>(maxLength: 20, nullable: true),
-                    RELIGION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PARENT_OCUPATION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPOUSE_OCUPATION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    RELIGION = table.Column<int>(nullable: true),
+                    PARENT_OCUPATION = table.Column<int>(nullable: true),
+                    SPOUSE_OCUPATION = table.Column<int>(nullable: true),
                     GF_NAME = table.Column<string>(maxLength: 70, nullable: true),
-                    GF_OCUPATION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    GF_OCUPATION = table.Column<int>(nullable: true),
                     REL_WITH_WILL_PERSON = table.Column<string>(maxLength: 25, nullable: true),
-                    ZONE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DISTRICT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VDC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WARD_NO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ZONE_ID = table.Column<int>(nullable: true),
+                    DISTRICT_ID = table.Column<int>(nullable: true),
+                    VDC_ID = table.Column<int>(nullable: true),
+                    WARD_NO = table.Column<int>(nullable: true),
                     MAIL_ADDRESS = table.Column<string>(maxLength: 100, nullable: true),
-                    APPOINMENT_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    APPOINMENT_TYPE = table.Column<int>(nullable: true),
                     CITIZENSHIP_NO = table.Column<string>(maxLength: 25, nullable: true),
                     CS_ISSUED_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    CS_ISSUED_DISTRICT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DATE_OF_BIRTH_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    CS_ISSUED_DISTRICT = table.Column<int>(nullable: true),
+                    DATE_OF_BIRTH_AD = table.Column<DateTime>(nullable: true),
                     INSURANCE_FACILITY = table.Column<string>(maxLength: 1, nullable: true),
                     DEDUCT_ABSENT = table.Column<string>(maxLength: 1, nullable: true),
                     LEKHA_NO = table.Column<string>(maxLength: 50, nullable: true),
-                    DEPT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DEPT_ID = table.Column<int>(nullable: true),
                     PENSION_KOSH = table.Column<string>(maxLength: 2, nullable: true),
                     CIT_CODE = table.Column<string>(maxLength: 20, nullable: true),
-                    ROOM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ROOM_ID = table.Column<int>(nullable: true),
                     CODE = table.Column<string>(maxLength: 70, nullable: true)
                 },
                 constraints: table =>
@@ -5231,14 +5150,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_FOREIGN_VISITS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     FROM_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
                     TO_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
-                    FROM_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    TO_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    FROM_DATE_AD = table.Column<DateTime>(nullable: true),
+                    TO_DATE_AD = table.Column<DateTime>(nullable: true),
                     VISITING_PRPSE = table.Column<string>(maxLength: 100, nullable: true),
                     FUNDED_BY = table.Column<string>(maxLength: 70, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 90, nullable: true),
@@ -5259,10 +5178,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_OTHER_ADD_SUB",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
                     ADD_SUB = table.Column<string>(maxLength: 1, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 80, nullable: true)
                 },
@@ -5281,13 +5200,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_PRIZES",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true),
                     AWARD_TYPE = table.Column<string>(maxLength: 30, nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
                     AWARDED_BY = table.Column<string>(maxLength: 70, nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     ISSUED_DATE = table.Column<string>(maxLength: 10, nullable: true),
@@ -5309,14 +5228,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_PUBLICATION",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     NEP_NAME = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     PUBLSH_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
-                    PUBLSH_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    PUBLSH_DATE_AD = table.Column<DateTime>(nullable: true),
                     PUBLISHER = table.Column<string>(maxLength: 100, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 90, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true)
@@ -5336,16 +5255,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_SGNFCNT_WORK",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     FROM_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
                     TO_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
-                    FROM_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    TO_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    FROM_DATE_AD = table.Column<DateTime>(nullable: true),
+                    TO_DATE_AD = table.Column<DateTime>(nullable: true),
                     DURATION = table.Column<string>(maxLength: 25, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true)
@@ -5365,21 +5284,21 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_TRAINING",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     TRAINING_TYPE = table.Column<string>(maxLength: 70, nullable: true),
                     TRAINING_NAME = table.Column<string>(maxLength: 70, nullable: true),
                     INSTITUTE = table.Column<string>(maxLength: 70, nullable: true),
-                    COUNTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTRY_ID = table.Column<int>(nullable: true),
                     FRM_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
                     TO_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
-                    FRM_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    TO_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    FRM_DATE_AD = table.Column<DateTime>(nullable: true),
+                    TO_DATE_AD = table.Column<DateTime>(nullable: true),
                     DURATION = table.Column<string>(maxLength: 25, nullable: true),
                     DIVISION = table.Column<string>(maxLength: 15, nullable: true),
-                    MARKS_OBTND = table.Column<double>(nullable: true),
-                    VALID_FOR_EVAL = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    MARKS_OBTND = table.Column<float>(nullable: true),
+                    VALID_FOR_EVAL = table.Column<int>(nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true)
                 },
                 constraints: table =>
@@ -5397,19 +5316,19 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_WORKSHOP",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     NEP_NAME = table.Column<string>(maxLength: 70, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     DURATION = table.Column<string>(maxLength: 25, nullable: true),
                     FROM_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
                     TO_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
-                    FROM_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
-                    TO_DATE_AD = table.Column<DateTime>(type: "date", nullable: true),
+                    FROM_DATE_AD = table.Column<DateTime>(nullable: true),
+                    TO_DATE_AD = table.Column<DateTime>(nullable: true),
                     ORGANIZER = table.Column<string>(maxLength: 100, nullable: true),
-                    COUNTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    COUNTRY_ID = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 90, nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true)
                 },
@@ -5428,16 +5347,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "SANITATION_RATE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    GROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUBGROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ROAD_TYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    GROUPID = table.Column<int>(nullable: true),
+                    SUBGROUPID = table.Column<int>(nullable: true),
+                    ROAD_TYPEID = table.Column<int>(nullable: true),
                     RATENAME = table.Column<string>(nullable: true),
-                    RATE = table.Column<double>(nullable: true),
+                    RATE = table.Column<float>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    AREA_UPTO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FOR_EACH_AREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EACH_AREA_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    AREA_UPTO = table.Column<int>(nullable: true),
+                    FOR_EACH_AREA = table.Column<int>(nullable: true),
+                    EACH_AREA_RATE = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5460,12 +5379,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BGT_MGMT_SRC",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BGT_MGMT_EXP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMT = table.Column<double>(nullable: true),
-                    PAYMENT_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PAYMENT_PROCESS_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    BGT_MGMT_EXP_ID = table.Column<int>(nullable: true),
+                    SOURCE_ID = table.Column<int>(nullable: true),
+                    AMT = table.Column<float>(nullable: true),
+                    PAYMENT_TYPE_ID = table.Column<int>(nullable: true),
+                    PAYMENT_PROCESS_ID = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -5483,14 +5402,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BGT_MGMT_SRC_ORG",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BGT_MGMT_EXP_ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMT = table.Column<double>(nullable: true),
-                    CC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    BGT_MGMT_EXP_ORG_ID = table.Column<int>(nullable: true),
+                    SOURCE_ID = table.Column<int>(nullable: true),
+                    AMT = table.Column<float>(nullable: true),
+                    CC_ID = table.Column<int>(nullable: true),
                     CC_ACTIVE = table.Column<string>(maxLength: 2, nullable: true),
-                    PAYMENT_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PAYMENT_PROCESS_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PAYMENT_TYPE_ID = table.Column<int>(nullable: true),
+                    PAYMENT_PROCESS_ID = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -5514,13 +5433,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "TAX_THLI_ISSUED_CNTR",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    THELI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CNTR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    ID = table.Column<int>(nullable: false),
+                    THELI_ID = table.Column<int>(nullable: true),
+                    CNTR_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("TAX_THLI_ISSUED_CNTR_pkey", x => x.ID);
+                    table.PrimaryKey("PK_TAX_THLI_ISSUED_CNTR", x => x.ID);
                     table.ForeignKey(
                         name: "SYS_C004358",
                         column: x => x.CNTR_ID,
@@ -5539,15 +5458,15 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLMALPOTRATES",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    GROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUBGROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    GROUPID = table.Column<int>(nullable: true),
+                    SUBGROUPID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 100, nullable: true),
-                    RATEPERUNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    RATEPERUNIT = table.Column<int>(nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 150, nullable: true),
-                    AREA_UPTO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FOR_EACH_AREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EACH_AREA_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    AREA_UPTO = table.Column<int>(nullable: true),
+                    FOR_EACH_AREA = table.Column<int>(nullable: true),
+                    EACH_AREA_RATE = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5570,10 +5489,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BGT_MGMT_EXP_RELEASE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BGT_MGMT_RELEASE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMT = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    BGT_MGMT_RELEASE_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    AMT = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -5591,25 +5510,25 @@ namespace IMIS_DataEntity.Migrations
                 name: "BANKTRANSACTIONS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BANKID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    BANKID = table.Column<int>(nullable: true),
                     DESCRIPTION = table.Column<string>(nullable: true),
-                    DRAMOUNT = table.Column<double>(nullable: true),
-                    CRAMOUNT = table.Column<double>(nullable: true),
-                    INCOMEEXPTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DRAMOUNT = table.Column<float>(nullable: true),
+                    CRAMOUNT = table.Column<float>(nullable: true),
+                    INCOMEEXPTYPEID = table.Column<int>(nullable: true),
                     ISOFLASTYEAR = table.Column<string>(maxLength: 1, nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    ORDERINPAYMENTSLIP = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ORDERINPAYMENTSLIP = table.Column<int>(nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
+                    BILLID = table.Column<int>(nullable: true),
                     MODULE = table.Column<string>(maxLength: 2, nullable: true),
-                    SUBMODULE_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DHRTI_MASTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EXP_SLIP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SUBMODULE_TYPE_ID = table.Column<int>(nullable: true),
+                    DHRTI_MASTER_ID = table.Column<int>(nullable: true),
+                    EXP_SLIP_ID = table.Column<int>(nullable: true),
                     PAYMENT_ORDER_NO = table.Column<string>(maxLength: 50, nullable: true),
-                    CHEQUE_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CHEQUE_TYPE_ID = table.Column<int>(nullable: true),
                     PAYEENAME = table.Column<string>(nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true),
                     PAYEENAME_ENG = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -5639,20 +5558,20 @@ namespace IMIS_DataEntity.Migrations
                 name: "CASHTRANSACTION",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    SN = table.Column<int>(nullable: false),
                     DESCRIPTION = table.Column<string>(nullable: true),
-                    DRAMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CRAMOUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    INCOMEEXPTYPEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DRAMOUNT = table.Column<int>(nullable: true),
+                    CRAMOUNT = table.Column<int>(nullable: true),
+                    INCOMEEXPTYPEID = table.Column<int>(nullable: true),
                     ISOFLASTYEAR = table.Column<string>(maxLength: 1, nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILLID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
+                    BILLID = table.Column<int>(nullable: true),
                     MODULE = table.Column<string>(maxLength: 2, nullable: true),
-                    SUBMODULE_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DHRTI_MASTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EXP_SLIP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SUBMODULE_TYPE_ID = table.Column<int>(nullable: true),
+                    DHRTI_MASTER_ID = table.Column<int>(nullable: true),
+                    EXP_SLIP_ID = table.Column<int>(nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5681,14 +5600,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_PAYMENT_DEDUCTION",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PAYMENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PAYMENT_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    BUDGET_ACC_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
                     STATUS = table.Column<string>(maxLength: 1, nullable: true),
                     DEDUCTIONTYPE = table.Column<string>(maxLength: 5, nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5717,33 +5636,33 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_PAYMENT_DETAILS",
                 columns: table => new
                 {
-                    PAYMENT_DETAIL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PAYMENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TRANS_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PADADHIKARI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ORG_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WARD_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WORK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BUDGET_ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DR_AMT = table.Column<double>(nullable: true, defaultValueSql: "'0'::double precision"),
-                    CR_AMT = table.Column<double>(nullable: true, defaultValueSql: "'0'::double precision"),
-                    VAT_AMT = table.Column<double>(nullable: true),
-                    PAYMENT_SLIP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PAYMENT_DETAIL_ID = table.Column<int>(nullable: false),
+                    PAYMENT_ID = table.Column<int>(nullable: true),
+                    TRANS_TYPE_ID = table.Column<int>(nullable: true),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    PADADHIKARI_ID = table.Column<int>(nullable: true),
+                    ORG_ID = table.Column<int>(nullable: true),
+                    UC_ID = table.Column<int>(nullable: true),
+                    WARD_ID = table.Column<int>(nullable: true),
+                    WORK_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    BUDGET_ACC_ID = table.Column<int>(nullable: true),
+                    DR_AMT = table.Column<float>(nullable: true, defaultValueSql: "'0'::real"),
+                    CR_AMT = table.Column<float>(nullable: true, defaultValueSql: "'0'::real"),
+                    VAT_AMT = table.Column<float>(nullable: true),
+                    PAYMENT_SLIP_ID = table.Column<int>(nullable: true),
+                    VCHR_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    ORDER_IN_PAYMENT_SLIP = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ORDER_IN_PAYMENT_SLIP = table.Column<int>(nullable: true),
                     ADVEXPTYPE = table.Column<string>(maxLength: 1, nullable: true),
                     IS_OF_LAST_YEAR = table.Column<string>(maxLength: 1, nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    BUDGET_SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUB_MODULE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    BUDGET_SOURCE_ID = table.Column<int>(nullable: true),
+                    SUB_MODULE_ID = table.Column<int>(nullable: true),
                     ADVANCE_TYPE = table.Column<string>(maxLength: 1, nullable: true),
                     EXPIRE_DATE_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    SUPPLIER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    SUPPLIER_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5796,16 +5715,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_BANK_TRANS",
                 columns: table => new
                 {
-                    BANK_TRANS_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    BANK_TRANS_ID = table.Column<int>(nullable: false),
+                    VCHR_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NEP = table.Column<string>(maxLength: 10, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 200, nullable: true),
-                    DR_AMT = table.Column<double>(nullable: true, defaultValueSql: "'0'::double precision"),
-                    CR_AMT = table.Column<double>(nullable: true, defaultValueSql: "'0'::double precision"),
+                    DR_AMT = table.Column<float>(nullable: true, defaultValueSql: "'0'::real"),
+                    CR_AMT = table.Column<float>(nullable: true, defaultValueSql: "'0'::real"),
                     IS_OF_LASTYEAR = table.Column<string>(maxLength: 2, nullable: true),
-                    TRANS_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BANK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    TRANS_TYPE_ID = table.Column<int>(nullable: true),
+                    BILL_ID = table.Column<int>(nullable: true),
+                    BANK_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5834,15 +5753,15 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_CASH_TRANS",
                 columns: table => new
                 {
-                    CASH_TRANS_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    VCHR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CASH_TRANS_ID = table.Column<int>(nullable: false),
+                    VCHR_ID = table.Column<int>(nullable: true),
                     VCHR_DATE_NEP = table.Column<string>(maxLength: 10, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 200, nullable: true),
-                    DR_AMT = table.Column<double>(nullable: true, defaultValueSql: "'0'::double precision"),
-                    CR_AMT = table.Column<double>(nullable: true, defaultValueSql: "'0'::double precision"),
+                    DR_AMT = table.Column<float>(nullable: true, defaultValueSql: "'0'::real"),
+                    CR_AMT = table.Column<float>(nullable: true, defaultValueSql: "'0'::real"),
                     IS_OF_LASTYEAR = table.Column<string>(maxLength: 2, nullable: true),
-                    INCOME_EXP_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BILL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    INCOME_EXP_TYPE_ID = table.Column<int>(nullable: true),
+                    BILL_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5865,14 +5784,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_FULFILLED_DARBANDI",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    OFFICE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DARBANDI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERSON_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    OFFICE_ID = table.Column<int>(nullable: true),
+                    DARBANDI_ID = table.Column<int>(nullable: true),
+                    PERSON_TYPE_ID = table.Column<int>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
                     DATE_FULFILLED = table.Column<string>(maxLength: 10, nullable: true),
-                    APPOINTMNT_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    APPOINTMNT_TYPE = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5901,27 +5820,27 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_GOODS_ADJUST",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    DAKHILA_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    DAKHILA_ID = table.Column<int>(nullable: true),
                     GD_ADJ_ID = table.Column<string>(maxLength: 10, nullable: false),
                     BUDGET_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     MONTH = table.Column<string>(maxLength: 10, nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ADJ_QTY = table.Column<double>(nullable: true),
-                    ADJ_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ADJ_RATE = table.Column<double>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    ITEM_TYPE = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    ADJ_QTY = table.Column<float>(nullable: true),
+                    ADJ_TYPE_ID = table.Column<int>(nullable: true),
+                    ITEM_ADJ_RATE = table.Column<float>(nullable: true),
                     ADJ_DT_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    ADJ_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    ADJ_DT_ENG = table.Column<DateTime>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    PREP_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREP_BY = table.Column<int>(nullable: true),
                     PREP_DT_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    PREP_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    ACCEPT_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREP_DT_ENG = table.Column<DateTime>(nullable: true),
+                    ACCEPT_BY = table.Column<int>(nullable: true),
                     ACCEPT_DT_NP = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPT_DT_ENG = table.Column<DateTime>(type: "date", nullable: true)
+                    ACCEPT_DT_ENG = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -5962,29 +5881,29 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_GOODS_REC_MAST",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     DAKHILA_ID = table.Column<string>(maxLength: 10, nullable: false),
-                    PUR_MASTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    REPAIR_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PUR_MASTER_ID = table.Column<int>(nullable: true),
+                    REPAIR_ID = table.Column<int>(nullable: true),
                     DAKHILA_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    WAREHOUSE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    WAREHOUSE_ID = table.Column<int>(nullable: true),
                     INV_BILL_NO = table.Column<string>(maxLength: 10, nullable: true),
                     INV_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     DETAILS_NEP = table.Column<string>(maxLength: 200, nullable: true),
                     DETAILS_ENG = table.Column<string>(maxLength: 200, nullable: true),
-                    PREP_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREP_BY = table.Column<int>(nullable: true),
                     PREP_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    CHECK_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CHECK_BY = table.Column<int>(nullable: true),
                     CHECK_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPT_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACCEPT_BY = table.Column<int>(nullable: true),
                     ACCEPT_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    DAKHILA_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    INV_DATE_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    PREP_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    CHECK_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    ACCEPT_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    DAKHILA_DT_ENG = table.Column<DateTime>(nullable: true),
+                    INV_DATE_ENG = table.Column<DateTime>(nullable: true),
+                    PREP_DT_ENG = table.Column<DateTime>(nullable: true),
+                    CHECK_DT_ENG = table.Column<DateTime>(nullable: true),
+                    ACCEPT_DT_ENG = table.Column<DateTime>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    PAYMENT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    PAYMENT_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -6013,36 +5932,36 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ITEM_STATUSCHECK",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
                     INSP_ST_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    INSP_ST_DATE_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    INSP_ST_DATE_ENG = table.Column<DateTime>(nullable: true),
                     INSP_ED_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    INSP_ED_DATE_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    STK_MST_COUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    INSP_ED_DATE_ENG = table.Column<DateTime>(nullable: true),
+                    STK_MST_COUNT = table.Column<int>(nullable: true),
                     COUNT_YES_NO = table.Column<string>(maxLength: 2, nullable: true),
-                    STK_CUR_COUNT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    STK_CUR_COUNT = table.Column<int>(nullable: true),
                     COUNT_UP_DOWN = table.Column<string>(maxLength: 2, nullable: true),
                     INSPECT_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    INSPECT_DATE_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    INSPECT_DATE_ENG = table.Column<DateTime>(nullable: true),
                     UP_DOWN_DETAIL = table.Column<string>(maxLength: 30, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    PREP_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREP_BY = table.Column<int>(nullable: true),
                     PREP_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    PREP_DATE_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    TALLY_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREP_DATE_ENG = table.Column<DateTime>(nullable: true),
+                    TALLY_BY = table.Column<int>(nullable: true),
                     CHECKED_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    CHECK_QTY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    CHECKED_DATE_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    ACCEPTED_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CHECK_QTY = table.Column<int>(nullable: true),
+                    RATE = table.Column<int>(nullable: true),
+                    CHECKED_DATE_ENG = table.Column<DateTime>(nullable: true),
+                    ACCEPTED_BY = table.Column<int>(nullable: true),
                     ACCEPTED_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPTED_DATE_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    ACCEPTED_DATE_ENG = table.Column<DateTime>(nullable: true),
                     FISICAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 2, nullable: true),
-                    UP_DOWN_NO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    UP_DOWN_NO = table.Column<int>(nullable: true),
                     CHECK_STATUS = table.Column<string>(maxLength: 1, nullable: true)
                 },
                 constraints: table =>
@@ -6090,33 +6009,33 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_PUR_ORDER_MAST",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     PUR_ORDER_NO = table.Column<string>(maxLength: 50, nullable: true),
                     REPAIR_ORDER_NO = table.Column<string>(maxLength: 50, nullable: true),
                     LETTER_ORDER_NO = table.Column<string>(maxLength: 50, nullable: true),
                     CUSTOM_ORDER_NO = table.Column<string>(maxLength: 50, nullable: true),
-                    PUR_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PUR_ORDER_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUPP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    REQ_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PUR_TYPE = table.Column<int>(nullable: true),
+                    PUR_ORDER_TYPE = table.Column<int>(nullable: true),
+                    SUPP_ID = table.Column<int>(nullable: true),
+                    REQ_ID = table.Column<int>(nullable: true),
                     BUDGET_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     RETURN_ITEM_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    RETURN_ITEM_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    PREPARED_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    RETURN_ITEM_DT_ENG = table.Column<DateTime>(nullable: true),
+                    PREPARED_BY = table.Column<int>(nullable: true),
                     PREPARED_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    PREPARED_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    CHECKED_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREPARED_DT_ENG = table.Column<DateTime>(nullable: true),
+                    CHECKED_BY = table.Column<int>(nullable: true),
                     CHECKED_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    CHECKED_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    ACCEPTED_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CHECKED_DT_ENG = table.Column<DateTime>(nullable: true),
+                    ACCEPTED_BY = table.Column<int>(nullable: true),
                     ACCEPTED_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPTED_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    ACCEPTED_DT_ENG = table.Column<DateTime>(nullable: true),
                     PUR_ORDER_DT = table.Column<string>(maxLength: 10, nullable: true),
                     DAKHILA_LAST_ENTRY_DT = table.Column<string>(maxLength: 12, nullable: true),
-                    PUR_ORDER_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    PUR_ORDER_DT_ENG = table.Column<DateTime>(nullable: true),
                     ISDAKHILA = table.Column<string>(maxLength: 1, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 255, nullable: true),
-                    ACCOUNTID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACCOUNTID = table.Column<int>(nullable: true),
                     PURCHASE_DECISION_NO = table.Column<string>(maxLength: 50, nullable: true),
                     PURCHASE_DECISION_DATE = table.Column<string>(maxLength: 12, nullable: true)
                 },
@@ -6153,34 +6072,34 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_REQUISITION_MAST",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     REQ_ID = table.Column<string>(maxLength: 10, nullable: true),
                     REQ_DATE_NEP = table.Column<string>(maxLength: 10, nullable: true),
-                    REQ_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MAINTAIN_ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PROJ_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HANDOVER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    HANDOVER_ROOM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    REQ_BY = table.Column<int>(nullable: true),
+                    TYPE_ID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    MAINTAIN_ITEM_ID = table.Column<int>(nullable: true),
+                    PROJ_ID = table.Column<int>(nullable: true),
+                    HANDOVER_ID = table.Column<int>(nullable: true),
+                    HANDOVER_ROOM_ID = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    PREP_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREP_BY = table.Column<int>(nullable: true),
                     PREP_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    CHECK_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CHECK_BY = table.Column<int>(nullable: true),
                     CHECK_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPT_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACCEPT_BY = table.Column<int>(nullable: true),
                     ACCEPT_DT = table.Column<string>(maxLength: 10, nullable: true),
                     ORGSTAFFNAME = table.Column<string>(maxLength: 60, nullable: true),
                     ORGSTAFFPOST = table.Column<string>(maxLength: 100, nullable: true),
-                    REQ_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USERID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    VEHICLE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    REQ_TYPE = table.Column<int>(nullable: true),
+                    USERID = table.Column<int>(nullable: true),
+                    VEHICLE_ID = table.Column<int>(nullable: true),
                     REASION = table.Column<string>(nullable: true),
-                    REQ_DATE_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    PREP_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    CHECK_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
-                    ACCEPT_DT_ENG = table.Column<DateTime>(type: "date", nullable: true),
+                    REQ_DATE_ENG = table.Column<DateTime>(nullable: true),
+                    PREP_DT_ENG = table.Column<DateTime>(nullable: true),
+                    CHECK_DT_ENG = table.Column<DateTime>(nullable: true),
+                    ACCEPT_DT_ENG = table.Column<DateTime>(nullable: true),
                     PURCHASE_GIVE = table.Column<string>(maxLength: 1, nullable: true),
                     STOCK_GIVE = table.Column<string>(maxLength: 1, nullable: true)
                 },
@@ -6229,23 +6148,23 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_STATUS_DETAIL",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     CODE = table.Column<string>(maxLength: 50, nullable: true),
-                    STATUSDATEAD = table.Column<DateTime>(type: "date", nullable: true),
+                    STATUSDATEAD = table.Column<DateTime>(nullable: true),
                     STATUSDATEVS = table.Column<string>(maxLength: 10, nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    TOTALQTY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_STATUS_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TOTALQTY = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    ITEM_STATUS_ID = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 255, nullable: true),
-                    PREBY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREBY = table.Column<int>(nullable: true),
                     PREVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    CHECKEDBY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CHECKEDBY = table.Column<int>(nullable: true),
                     CHECKVSDATE = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPTBY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    MAIN_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACCEPTBY = table.Column<int>(nullable: true),
+                    MAIN_ID = table.Column<int>(nullable: true),
                     ACCEPTVSDATE = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -6275,9 +6194,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_BANK_PAYROLL",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BANK_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    BANK_ID = table.Column<int>(nullable: true),
                     BANK_FOLIO = table.Column<string>(maxLength: 25, nullable: true),
                     ACCOUNT_NO = table.Column<string>(maxLength: 25, nullable: true)
                 },
@@ -6302,11 +6221,11 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_ADV_DED_DTL",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT_CUR = table.Column<double>(nullable: true),
-                    AMOUNT_PREV = table.Column<double>(nullable: true)
+                    ID = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    AMOUNT_CUR = table.Column<float>(nullable: true),
+                    AMOUNT_PREV = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -6323,14 +6242,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_LOANS",
                 columns: table => new
                 {
-                    LOAN_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    LOAN_ID = table.Column<int>(nullable: false),
                     NAME_NP = table.Column<string>(maxLength: 70, nullable: true),
                     NAME_EN = table.Column<string>(maxLength: 70, nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOAN_AMT = table.Column<double>(nullable: true),
-                    INSTALLMENT_AMT = table.Column<double>(nullable: true),
-                    PAID_AMOUNT = table.Column<double>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    LOAN_AMT = table.Column<float>(nullable: true),
+                    INSTALLMENT_AMT = table.Column<float>(nullable: true),
+                    PAID_AMOUNT = table.Column<float>(nullable: true),
                     CLEARED = table.Column<string>(maxLength: 1, nullable: true)
                 },
                 constraints: table =>
@@ -6348,9 +6267,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_LONG_LEAVES",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     LEAVE_NAME = table.Column<string>(maxLength: 70, nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     FROM_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
@@ -6378,13 +6297,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_MED_EXPENSE",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     ISSUED_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    REGULAR_AMT = table.Column<double>(nullable: true),
-                    SPECIAL_AMT = table.Column<double>(nullable: true),
+                    REGULAR_AMT = table.Column<float>(nullable: true),
+                    SPECIAL_AMT = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
@@ -6408,9 +6327,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_PUNISHMNTS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     PUNISH_TYPE = table.Column<string>(maxLength: 90, nullable: true),
                     PUNISH_DATE = table.Column<string>(maxLength: 10, nullable: true),
@@ -6437,12 +6356,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_SRVC_DTLS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     OFFICE_DETAIL = table.Column<string>(maxLength: 70, nullable: true),
-                    GEO_REGION = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    APPOINTMENT_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    GEO_REGION = table.Column<int>(nullable: true),
+                    APPOINTMENT_TYPE = table.Column<int>(nullable: true),
                     DATE_FROM = table.Column<string>(maxLength: 10, nullable: true),
                     DATE_TO = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 90, nullable: true)
@@ -6468,9 +6387,9 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_SUSPENDS",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     NAME_NP = table.Column<string>(maxLength: 100, nullable: true),
                     WORKING_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     FROM_DATE_VS = table.Column<string>(maxLength: 10, nullable: true),
@@ -6498,20 +6417,20 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_EMP_TRNSFR_REC",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    LOCAL_POST_ID = table.Column<int>(nullable: true),
                     REF_NO = table.Column<string>(maxLength: 50, nullable: true),
                     TRNSFR_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    AMT_TAKEN = table.Column<double>(nullable: true),
+                    AMT_TAKEN = table.Column<float>(nullable: true),
                     TRNSFRD_OFFICE = table.Column<string>(maxLength: 70, nullable: true),
                     MOVED_DATE = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    USER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    USER_IDE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    USER_ID = table.Column<int>(nullable: true),
+                    USER_IDE = table.Column<int>(nullable: true),
                     DATA_ENTRY_VS_DATE = table.Column<string>(maxLength: 10, nullable: true),
-                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(type: "date", nullable: true),
-                    DATA_EDIT_AD_DATE = table.Column<DateTime>(type: "date", nullable: true)
+                    DATA_ENTRY_AD_DATE = table.Column<DateTime>(nullable: true),
+                    DATA_EDIT_AD_DATE = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -6534,20 +6453,20 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_INTERNAL_TRANSFER",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OFFICE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DARBANDI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    OFFICE_ID = table.Column<int>(nullable: true),
+                    DARBANDI_ID = table.Column<int>(nullable: true),
                     DATE_FROM = table.Column<string>(maxLength: 10, nullable: true),
                     DATE_TO = table.Column<string>(maxLength: 10, nullable: true),
-                    APPOINTMNT_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    APPOINTMNT_TYPE = table.Column<int>(nullable: true),
                     DATE_OF_DECISION = table.Column<string>(maxLength: 10, nullable: true),
                     DECISION_REFERENCE = table.Column<string>(maxLength: 50, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    TO_OFFICE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TO_LOCAL_POST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TO_APPOINTMNT_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    REPLACED_EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    TO_OFFICE_ID = table.Column<int>(nullable: true),
+                    TO_LOCAL_POST_ID = table.Column<int>(nullable: true),
+                    TO_APPOINTMNT_TYPE = table.Column<int>(nullable: true),
+                    REPLACED_EMP_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -6600,14 +6519,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_PYROLL_OTHR_DTLS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     MONTH = table.Column<short>(nullable: true),
-                    EMPLOYEE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PAYROLL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMOUNT = table.Column<double>(nullable: true),
+                    EMPLOYEE_ID = table.Column<int>(nullable: true),
+                    PAYROLL_ID = table.Column<int>(nullable: true),
+                    AMOUNT = table.Column<float>(nullable: true),
                     ADD_SUB = table.Column<string>(maxLength: 1, nullable: true),
                     DESCRIPTION = table.Column<string>(maxLength: 100, nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
                     SOURCE_TYPE = table.Column<string>(maxLength: 2, nullable: true)
                 },
                 constraints: table =>
@@ -6631,14 +6550,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "WARD_MASTER",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     NEP_NAME = table.Column<string>(maxLength: 100, nullable: true),
                     ENG_NAME = table.Column<string>(maxLength: 50, nullable: true),
                     ADDRESS = table.Column<string>(maxLength: 50, nullable: true),
-                    PRAMUKH_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UPPRAMUKH_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    NUMBER_OF_MEMBERS = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    WARD_SECRETARY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PRAMUKH_ID = table.Column<int>(nullable: true),
+                    UPPRAMUKH_ID = table.Column<int>(nullable: true),
+                    NUMBER_OF_MEMBERS = table.Column<int>(nullable: true),
+                    WARD_SECRETARY_ID = table.Column<int>(nullable: true),
                     MOBILE_NO = table.Column<string>(maxLength: 20, nullable: true)
                 },
                 constraints: table =>
@@ -6668,10 +6587,10 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_VISITED_COUNTRIES",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    VISIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    COUNTRY_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    VISIT_ID = table.Column<int>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    COUNTRY_ID = table.Column<int>(nullable: true),
                     APPLY_TO = table.Column<string>(maxLength: 2, nullable: true)
                 },
                 constraints: table =>
@@ -6689,12 +6608,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_MALPOT_OTHER_CHARGES",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACCODE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PERCENT_OF_TAX = table.Column<double>(nullable: true),
-                    FLAT_CHARGE_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    RATEID = table.Column<int>(nullable: true),
+                    ACCODE = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    PERCENT_OF_TAX = table.Column<float>(nullable: true),
+                    FLAT_CHARGE_RATE = table.Column<int>(nullable: true),
                     FISCAL_YEAR = table.Column<string>(maxLength: 10, nullable: true)
                 },
                 constraints: table =>
@@ -6718,16 +6637,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBLFYWISEMPOTASSRATE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    GROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SUBGROUPID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RATEID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    GROUPID = table.Column<int>(nullable: true),
+                    SUBGROUPID = table.Column<int>(nullable: true),
+                    RATEID = table.Column<int>(nullable: true),
                     NEPNAME = table.Column<string>(maxLength: 100, nullable: true),
                     FISCALYEAR = table.Column<string>(maxLength: 9, nullable: true),
-                    RATEPERUNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AREA_UPTO = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FOR_EACH_AREA = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    EACH_AREA_RATE = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    RATEPERUNIT = table.Column<int>(nullable: true),
+                    AREA_UPTO = table.Column<int>(nullable: true),
+                    FOR_EACH_AREA = table.Column<int>(nullable: true),
+                    EACH_AREA_RATE = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -6756,14 +6675,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "TBL_BGT_MGMT_SRC_RELEASE",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BGT_MGMT_EXP_RELEASE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SOURCE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    AMT = table.Column<double>(nullable: true),
-                    CC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    BGT_MGMT_EXP_RELEASE_ID = table.Column<int>(nullable: true),
+                    SOURCE_ID = table.Column<int>(nullable: true),
+                    AMT = table.Column<float>(nullable: true),
+                    CC_ID = table.Column<int>(nullable: true),
                     CC_ACTIVE = table.Column<string>(maxLength: 2, nullable: true),
-                    PAYMENT_TYPE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PAYMENT_PROCESS_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PAYMENT_TYPE_ID = table.Column<int>(nullable: true),
+                    PAYMENT_PROCESS_ID = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
@@ -6787,14 +6706,14 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_DELETD_FRM_FULFILD_DARB",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FRM_SN_IN_FD = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FRM_OFFICE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    FRM_DARBANDI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    FRM_SN_IN_FD = table.Column<int>(nullable: true),
+                    FRM_OFFICE_ID = table.Column<int>(nullable: true),
+                    FRM_DARBANDI_ID = table.Column<int>(nullable: true),
                     FRM_DATE_FULFILLED = table.Column<string>(maxLength: 10, nullable: true),
-                    FRM_APPOINTMNT_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    TO_SN_IN_FD = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    FRM_APPOINTMNT_TYPE = table.Column<int>(nullable: true),
+                    TO_SN_IN_FD = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -6829,18 +6748,18 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_REPLACED_IN_DARBANDI",
                 columns: table => new
                 {
-                    SN = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ENTRY_SN_IN_FD = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    OFFICE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    DARBANDI_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    SN = table.Column<int>(nullable: false),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    ENTRY_SN_IN_FD = table.Column<int>(nullable: true),
+                    OFFICE_ID = table.Column<int>(nullable: true),
+                    DARBANDI_ID = table.Column<int>(nullable: true),
                     DATE_FULFILLED = table.Column<string>(maxLength: 10, nullable: true),
-                    APPOINTMNT_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    REPLACED_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    APPOINTMNT_TYPE = table.Column<int>(nullable: true),
+                    REPLACED_BY = table.Column<int>(nullable: true),
                     DATE_REPLACED = table.Column<string>(maxLength: 10, nullable: true),
                     DATE_OF_DECISION = table.Column<string>(maxLength: 10, nullable: true),
                     DECISION_REFERENCE = table.Column<string>(maxLength: 50, nullable: true),
-                    IS_PLACED_IN_DARBANDI = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    IS_PLACED_IN_DARBANDI = table.Column<int>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
@@ -6870,23 +6789,23 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_GOODS_REC_DETL",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    GOODS_MASTER_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PUR_QTY = table.Column<double>(nullable: true),
-                    RECV_QTY = table.Column<double>(nullable: true),
-                    RATE = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    GOODS_MASTER_ID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    UNIT_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    PUR_QTY = table.Column<float>(nullable: true),
+                    RECV_QTY = table.Column<float>(nullable: true),
+                    RATE = table.Column<float>(nullable: true),
                     WHETHER_TAX = table.Column<string>(maxLength: 1, nullable: true),
-                    TAX_PER_UNIT_AMT = table.Column<double>(nullable: true),
-                    DISC_AMT = table.Column<double>(nullable: true),
-                    OTHER_EXPENCES_AMT = table.Column<double>(nullable: true),
-                    NET_AMT = table.Column<double>(nullable: true),
+                    TAX_PER_UNIT_AMT = table.Column<float>(nullable: true),
+                    DISC_AMT = table.Column<float>(nullable: true),
+                    OTHER_EXPENCES_AMT = table.Column<float>(nullable: true),
+                    NET_AMT = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
-                    ISNUMBERED = table.Column<string>(maxLength: 1, nullable: true, defaultValueSql: "'0'::character varying"),
-                    DAKHILA_DT_ENG = table.Column<DateTime>(type: "date", nullable: true)
+                    ISNUMBERED = table.Column<string>(maxLength: 1, nullable: true, defaultValueSql: "'N'::character varying"),
+                    DAKHILA_DT_ENG = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -6927,38 +6846,38 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ITEM_DETAILS",
                 columns: table => new
                 {
-                    ITEM_DTL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    QTY = table.Column<double>(nullable: true),
-                    ITEM_RATE = table.Column<double>(nullable: true),
+                    ITEM_DTL_ID = table.Column<int>(nullable: false),
+                    ITEM_ID = table.Column<int>(nullable: false),
+                    BRAND_ID = table.Column<int>(nullable: false),
+                    SPEC_ID = table.Column<int>(nullable: false),
+                    QTY = table.Column<float>(nullable: true),
+                    ITEM_RATE = table.Column<float>(nullable: true),
                     ITEM_STATUS = table.Column<string>(maxLength: 10, nullable: true),
                     BUDGET_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    DAKHILA_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    DAKHILA_ID = table.Column<int>(nullable: true),
                     ENTRY_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    ISSUE_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ISSUE_ID = table.Column<int>(nullable: true),
                     ISSUE_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    GD_ADJ_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ADJ_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LILAM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    GD_ADJ_ID = table.Column<int>(nullable: true),
+                    ADJ_TYPE = table.Column<int>(nullable: true),
+                    LILAM_ID = table.Column<int>(nullable: true),
                     LILAM_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    STOK_RT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    STOK_RT_ID = table.Column<int>(nullable: true),
                     STOK_RT_DT = table.Column<string>(maxLength: 10, nullable: true),
                     ENGINE_NO = table.Column<string>(maxLength: 20, nullable: true),
                     CHASIS_NO = table.Column<string>(maxLength: 20, nullable: true),
                     MODEL_NO = table.Column<string>(maxLength: 20, nullable: true),
                     REG_NO = table.Column<string>(maxLength: 20, nullable: true),
-                    WEIGHT_VEH = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    PREP_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    WEIGHT_VEH = table.Column<int>(nullable: true),
+                    PREP_BY = table.Column<int>(nullable: true),
                     PREP_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    CHECK_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CHECK_BY = table.Column<int>(nullable: true),
                     CHECK_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPT_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACCEPT_BY = table.Column<int>(nullable: true),
                     ACCEPT_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    UNIT = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    UNIT = table.Column<int>(nullable: true),
                     REL_UNIT = table.Column<string>(maxLength: 20, nullable: true),
-                    REL_QTY = table.Column<double>(nullable: true)
+                    REL_QTY = table.Column<float>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -7017,17 +6936,17 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_PUR_ORDER_DETL",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    PUR_MST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    UNIT_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    QTY = table.Column<double>(nullable: true),
-                    ITEM_RATE = table.Column<double>(nullable: true),
-                    TOTAL_AMT = table.Column<double>(nullable: true),
-                    TAX_AMT = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    PUR_MST_ID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    UNIT_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    ITEM_TYPE = table.Column<int>(nullable: true),
+                    QTY = table.Column<float>(nullable: true),
+                    ITEM_RATE = table.Column<float>(nullable: true),
+                    TOTAL_AMT = table.Column<float>(nullable: true),
+                    TAX_AMT = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
                     ISDAKHILA = table.Column<string>(maxLength: 1, nullable: true)
                 },
@@ -7076,25 +6995,25 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_ISSUE_MASTER",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
+                    ID = table.Column<int>(nullable: false),
                     ISSUE_NO = table.Column<string>(maxLength: 10, nullable: false),
-                    REQUEST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ISSUE_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ISSUE_RECEIVE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    RECEIVE_EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    REQUEST_ID = table.Column<int>(nullable: true),
+                    ISSUE_BY = table.Column<int>(nullable: true),
+                    ISSUE_RECEIVE = table.Column<int>(nullable: true),
+                    RECEIVE_EMP_ID = table.Column<int>(nullable: true),
                     ISSUE_DT = table.Column<string>(maxLength: 10, nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
                     ISSUE_BY_CAT = table.Column<string>(maxLength: 30, nullable: true),
                     HO_NAME = table.Column<string>(maxLength: 30, nullable: true),
                     HO_POST = table.Column<string>(maxLength: 30, nullable: true),
-                    PREP_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    PREP_BY = table.Column<int>(nullable: true),
                     PREP_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    CHECK_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    CHECK_BY = table.Column<int>(nullable: true),
                     CHECK_DT = table.Column<string>(maxLength: 10, nullable: true),
-                    ACCEPT_BY = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ACCEPT_BY = table.Column<int>(nullable: true),
                     ACCEPT_DT = table.Column<string>(maxLength: 10, nullable: true),
                     BUDGET_YEAR = table.Column<string>(maxLength: 10, nullable: true),
-                    TYPE = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    TYPE = table.Column<int>(nullable: true),
                     TRANSFER_DECISION_NO = table.Column<string>(maxLength: 50, nullable: true),
                     TRANSFER_DECISION_DATE = table.Column<string>(maxLength: 12, nullable: true)
                 },
@@ -7137,12 +7056,12 @@ namespace IMIS_DataEntity.Migrations
                 name: "INV_REQ_DETAIL",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    REQ_MAST_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ITEM_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    SPEC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    BRAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    QTY = table.Column<double>(nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    REQ_MAST_ID = table.Column<int>(nullable: true),
+                    ITEM_ID = table.Column<int>(nullable: true),
+                    SPEC_ID = table.Column<int>(nullable: true),
+                    BRAND_ID = table.Column<int>(nullable: true),
+                    QTY = table.Column<float>(nullable: true),
                     REMARKS = table.Column<string>(maxLength: 100, nullable: true),
                     IS_ACTIVE = table.Column<string>(maxLength: 10, nullable: true)
                 },
@@ -7179,16 +7098,16 @@ namespace IMIS_DataEntity.Migrations
                 name: "PIS_PYROLL_LOAN_DTLS",
                 columns: table => new
                 {
-                    ID = table.Column<decimal>(type: "numeric(22,0)", nullable: false),
-                    LOAND_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
+                    ID = table.Column<int>(nullable: false),
+                    LOAND_ID = table.Column<int>(nullable: true),
                     MONTH = table.Column<short>(nullable: true),
                     NAME_NP = table.Column<string>(maxLength: 100, nullable: true),
-                    EMP_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    ACC_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true),
-                    LOAND_AMT = table.Column<double>(nullable: true),
-                    INSTALLMENT_AMT = table.Column<double>(nullable: true),
+                    EMP_ID = table.Column<int>(nullable: true),
+                    ACC_ID = table.Column<int>(nullable: true),
+                    LOAND_AMT = table.Column<float>(nullable: true),
+                    INSTALLMENT_AMT = table.Column<float>(nullable: true),
                     CLEARED = table.Column<string>(maxLength: 1, nullable: true),
-                    PAYROLL_ID = table.Column<decimal>(type: "numeric(22,0)", nullable: true)
+                    PAYROLL_ID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -7508,32 +7427,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "IX_ACC_WORK_PAYMNT_TRANS_WORK_ID",
                 table: "ACC_WORK_PAYMNT_TRANS",
                 column: "WORK_ID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetRoleClaims_RoleId",
-                table: "AspNetRoleClaims",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles",
-                column: "NormalizedName",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserClaims_UserId",
-                table: "AspNetUserClaims",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserLogins_UserId",
-                table: "AspNetUserLogins",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_RoleId",
-                table: "AspNetUserRoles",
-                column: "RoleId");
+             
 
             migrationBuilder.CreateIndex(
                 name: "IX_BANK_BRANCH_BANKID",
@@ -7554,12 +7448,6 @@ namespace IMIS_DataEntity.Migrations
                 name: "IX_BANKTRANSACTIONS_VCHR_ID",
                 table: "BANKTRANSACTIONS",
                 column: "VCHR_ID");
-
-            migrationBuilder.CreateIndex(
-                name: "BUDJET_SUB_HEAD_CODE_key",
-                table: "BUDJET_SUB_HEAD",
-                column: "CODE",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_CASHTRANSACTION_DHRTI_MASTER_ID",
@@ -7922,104 +7810,14 @@ namespace IMIS_DataEntity.Migrations
                 column: "REGIONID");
 
             migrationBuilder.CreateIndex(
-                name: "MAP_CONSTRCTION_KIND_NAME_NP_key",
-                table: "MAP_CONSTRCTION_KIND",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_DESIGNER_DTL_REG_NO_key",
-                table: "MAP_DESIGNER_DTL",
-                column: "REG_NO",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_DIRECTION_NAME_NP_key",
-                table: "MAP_DIRECTION",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_DRAIN_TYPE_NAME_NP_key",
-                table: "MAP_DRAIN_TYPE",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_FLOOR_NAME_NP_key",
-                table: "MAP_FLOOR",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_HOUSEUSE_TYPE_NAME_NP_key",
-                table: "MAP_HOUSEUSE_TYPE",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MAP_INCOME_TYPE_ACC_ID",
                 table: "MAP_INCOME_TYPE",
                 column: "ACC_ID");
 
             migrationBuilder.CreateIndex(
-                name: "MAP_INCOME_TYPE_NAME_NP_key",
-                table: "MAP_INCOME_TYPE",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_LAND_OWNER_TYPE_NAME_NP_key",
-                table: "MAP_LAND_OWNER_TYPE",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_NEIGHBOUR_TYPE_NAME_NP_key",
-                table: "MAP_NEIGHBOUR_TYPE",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
                 name: "IX_MAP_REGION_FAR_REGIONID",
                 table: "MAP_REGION_FAR",
                 column: "REGIONID");
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_ROOF_CNSTRCT_TYPE_NAME_NP_key",
-                table: "MAP_ROOF_CNSTRCT_TYPE",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_ROOF_TYPE_NAME_NP_key",
-                table: "MAP_ROOF_TYPE",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_STOREYS_NAME_NP_key",
-                table: "MAP_STOREYS",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_STRUCTURE_TYPE_NAME_NP_key",
-                table: "MAP_STRUCTURE_TYPE",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MAP_ZONE_NAME_NP_key",
-                table: "MAP_ZONE",
-                column: "NAME_NP",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "MINISTRY_CODE_key",
-                table: "MINISTRY",
-                column: "CODE",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ORG_BANK_ACCOUNT_BANK_ACCNT_TYPE_ID",
@@ -8382,6 +8180,11 @@ namespace IMIS_DataEntity.Migrations
                 column: "BUDJET_SOURCE_ID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SUB_MODULE_SOURCE_SUB_MODULE_ID",
+                table: "SUB_MODULE_SOURCE",
+                column: "SUB_MODULE_ID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TAX_ADDTNL_CHRG_DTLS_ACC_ID",
                 table: "TAX_ADDTNL_CHRG_DTLS",
                 column: "ACC_ID");
@@ -8621,23 +8424,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_WORK_PAYMNT_TRANS");
 
             migrationBuilder.DropTable(
-                name: "APPLICATION_CONFIGURATION");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
-
+                name: "APPLICATION_CONFIGURATION"); 
             migrationBuilder.DropTable(
                 name: "BANKTRANSACTIONS");
 
@@ -8682,6 +8469,9 @@ namespace IMIS_DataEntity.Migrations
 
             migrationBuilder.DropTable(
                 name: "FYWISESANITATION_RATE");
+
+            migrationBuilder.DropTable(
+                name: "Imis_Menu");
 
             migrationBuilder.DropTable(
                 name: "INCOMEBILLDETAILS");
@@ -9182,10 +8972,7 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_PAYMENT_MASTER");
 
             migrationBuilder.DropTable(
-                name: "ACC_FUND_PROVIDR_MSTR");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "ACC_FUND_PROVIDR_MSTR"); 
 
             migrationBuilder.DropTable(
                 name: "Usermaster");

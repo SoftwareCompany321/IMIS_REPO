@@ -5,14 +5,14 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class Tblfywisebtrates
     {
-        public decimal? Id { get; set; }
-        public decimal? Groupid { get; set; }
-        public decimal? Subgroupid { get; set; }
-        public decimal? Snsubgroup { get; set; }
-        public decimal? Rateid { get; set; }
+        public int? Id { get; set; }
+        public int? Groupid { get; set; }
+        public int? Subgroupid { get; set; }
+        public int? Snsubgroup { get; set; }
+        public int? Rateid { get; set; }
         public string Nepname { get; set; }
         public string Description { get; set; }
         public string Fiscalyear { get; set; }
-        public decimal? Rateperunit { get; set; }
+        public int? Rateperunit { get; set; }
     }
 }

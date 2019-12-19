@@ -5,17 +5,17 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class AccWorkPaymntTrans
     {
-        public decimal TransId { get; set; }
-        public decimal? WorkId { get; set; }
-        public decimal? PaymentSlipId { get; set; }
-        public decimal? PersonTypeId { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? PadadhikariId { get; set; }
-        public decimal? OrgId { get; set; }
-        public decimal? UcId { get; set; }
-        public double? BillAmt { get; set; }
-        public double? VatAmt { get; set; }
-        public decimal? VchrId { get; set; }
+        public int TransId { get; set; }
+        public int? WorkId { get; set; }
+        public int? PaymentSlipId { get; set; }
+        public int? PersonTypeId { get; set; }
+        public int? EmpId { get; set; }
+        public int? PadadhikariId { get; set; }
+        public int? OrgId { get; set; }
+        public int? UcId { get; set; }
+        public float? BillAmt { get; set; }
+        public float? VatAmt { get; set; }
+        public int? VchrId { get; set; }
         public string VchrDateNp { get; set; }
         public string IsOfLastYear { get; set; }
         public string FiscalYear { get; set; }

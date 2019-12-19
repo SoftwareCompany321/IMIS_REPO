@@ -10,9 +10,9 @@ namespace IMIS_DataEntity.EntityClass
             TaxAddtnlChrgDtls = new HashSet<TaxAddtnlChrgDtls>();
         }
 
-        public decimal Accode1 { get; set; }
-        public decimal? Sbcode { get; set; }
-        public decimal? Grcode { get; set; }
+        public int Accode1 { get; set; }
+        public int? Sbcode { get; set; }
+        public int? Grcode { get; set; }
         public string Trantype { get; set; }
         public string Nepname { get; set; }
         public string Engname { get; set; }

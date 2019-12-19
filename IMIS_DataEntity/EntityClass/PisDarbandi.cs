@@ -13,13 +13,13 @@ namespace IMIS_DataEntity.EntityClass
             PisReplacedInDarbandi = new HashSet<PisReplacedInDarbandi>();
         }
 
-        public decimal DarbandiId { get; set; }
-        public decimal? OfficeId { get; set; }
-        public decimal? PostId { get; set; }
-        public decimal? PostLevel { get; set; }
-        public decimal? LocalPostId { get; set; }
+        public int DarbandiId { get; set; }
+        public int? OfficeId { get; set; }
+        public int? PostId { get; set; }
+        public int? PostLevel { get; set; }
+        public int? LocalPostId { get; set; }
         public string SewaSamuhaUpasamuha { get; set; }
-        public decimal? NoOfPost { get; set; }
+        public int? NoOfPost { get; set; }
 
         public virtual PisLocalPostMaster LocalPost { get; set; }
         public virtual OrganizationTree Office { get; set; }

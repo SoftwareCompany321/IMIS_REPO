@@ -21,17 +21,17 @@ namespace IMIS_DataEntity.EntityClass
             Incomebillmaster = new HashSet<Incomebillmaster>();
         }
 
-        public decimal VchrId { get; set; }
-        public decimal? VchrNo { get; set; }
+        public int VchrId { get; set; }
+        public int? VchrNo { get; set; }
         public string VchrDateNep { get; set; }
-        public decimal? VchrTypeId { get; set; }
+        public int? VchrTypeId { get; set; }
         public string Narration { get; set; }
-        public decimal? UserId { get; set; }
+        public int? UserId { get; set; }
         public DateTime? UpdateDate { get; set; }
         public string Fiscalyear { get; set; }
         public string Module { get; set; }
         public string IsPosted { get; set; }
-        public decimal? SubModuleId { get; set; }
+        public int? SubModuleId { get; set; }
         public string NameChequePayee { get; set; }
         public string IsOfLastYear { get; set; }
         public string Remarks { get; set; }
@@ -41,14 +41,14 @@ namespace IMIS_DataEntity.EntityClass
         public string ContactPhone { get; set; }
         public string IsNikash { get; set; }
         public string Wardno { get; set; }
-        public decimal? PrepBy { get; set; }
-        public decimal? CheckBy { get; set; }
-        public decimal? AcceptBy { get; set; }
+        public int? PrepBy { get; set; }
+        public int? CheckBy { get; set; }
+        public int? AcceptBy { get; set; }
         public string InternalLekha { get; set; }
-        public double? NiyamitAmt { get; set; }
-        public double? AsuliAmt { get; set; }
-        public double? ValidAmt { get; set; }
-        public double? NValidAmt { get; set; }
+        public float? NiyamitAmt { get; set; }
+        public float? AsuliAmt { get; set; }
+        public float? ValidAmt { get; set; }
+        public float? NValidAmt { get; set; }
 
         public virtual AccSubModuleType SubModule { get; set; }
         public virtual AccVchrTypeMaster VchrType { get; set; }

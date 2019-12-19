@@ -5,20 +5,20 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvGoodsRecDetl
     {
-        public decimal Id { get; set; }
-        public decimal? GoodsMasterId { get; set; }
-        public decimal? ItemId { get; set; }
-        public decimal? UnitId { get; set; }
-        public decimal? BrandId { get; set; }
-        public decimal? SpecId { get; set; }
-        public double? PurQty { get; set; }
-        public double? RecvQty { get; set; }
-        public double? Rate { get; set; }
+        public int Id { get; set; }
+        public int? GoodsMasterId { get; set; }
+        public int? ItemId { get; set; }
+        public int? UnitId { get; set; }
+        public int? BrandId { get; set; }
+        public int? SpecId { get; set; }
+        public float? PurQty { get; set; }
+        public float? RecvQty { get; set; }
+        public float? Rate { get; set; }
         public string WhetherTax { get; set; }
-        public double? TaxPerUnitAmt { get; set; }
-        public double? DiscAmt { get; set; }
-        public double? OtherExpencesAmt { get; set; }
-        public double? NetAmt { get; set; }
+        public float? TaxPerUnitAmt { get; set; }
+        public float? DiscAmt { get; set; }
+        public float? OtherExpencesAmt { get; set; }
+        public float? NetAmt { get; set; }
         public string Remarks { get; set; }
         public string Isnumbered { get; set; }
         public DateTime? DakhilaDtEng { get; set; }

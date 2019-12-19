@@ -5,12 +5,12 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class TblDataHistory
     {
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string TableName { get; set; }
         public string FieldName { get; set; }
         public string NewValue { get; set; }
         public string OldValue { get; set; }
-        public decimal? UserIdA { get; set; }
+        public int? UserIdA { get; set; }
         public DateTime? AddDate { get; set; }
         public string ComputerName { get; set; }
         public string DataStatus { get; set; }

@@ -5,17 +5,17 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class TblStatusDetails
     {
-        public decimal Id { get; set; }
-        public decimal? Masterid { get; set; }
-        public decimal? ItemId { get; set; }
-        public decimal? BrandId { get; set; }
-        public decimal? SpecId { get; set; }
-        public decimal? UnitId { get; set; }
-        public double? Rate { get; set; }
-        public double? StockQty { get; set; }
-        public double? UseInQty { get; set; }
-        public double? NotUseInQty { get; set; }
-        public double? RepairQty { get; set; }
-        public double? NotRepairQty { get; set; }
+        public int Id { get; set; }
+        public int? Masterid { get; set; }
+        public int? ItemId { get; set; }
+        public int? BrandId { get; set; }
+        public int? SpecId { get; set; }
+        public int? UnitId { get; set; }
+        public float? Rate { get; set; }
+        public float? StockQty { get; set; }
+        public float? UseInQty { get; set; }
+        public float? NotUseInQty { get; set; }
+        public float? RepairQty { get; set; }
+        public float? NotRepairQty { get; set; }
     }
 }

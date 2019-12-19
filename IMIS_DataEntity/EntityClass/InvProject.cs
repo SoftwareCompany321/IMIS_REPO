@@ -10,7 +10,7 @@ namespace IMIS_DataEntity.EntityClass
             InvRequisitionMast = new HashSet<InvRequisitionMast>();
         }
 
-        public decimal ProjectId { get; set; }
+        public int ProjectId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string IsActive { get; set; }

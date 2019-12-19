@@ -13,11 +13,11 @@ namespace IMIS_DataEntity.EntityClass
             PisEmployeeMaster = new HashSet<PisEmployeeMaster>();
         }
 
-        public decimal Bankid { get; set; }
+        public int Bankid { get; set; }
         public string Engname { get; set; }
         public string Nepname { get; set; }
         public string Bankcode { get; set; }
-        public decimal? SubModuleId { get; set; }
+        public int? SubModuleId { get; set; }
         public string Address { get; set; }
         public string Phones { get; set; }
         public string Emails { get; set; }
@@ -25,7 +25,7 @@ namespace IMIS_DataEntity.EntityClass
         public string Branchcode { get; set; }
         public string Trancode { get; set; }
         public string Cycode { get; set; }
-        public decimal? FinancelInstituteId { get; set; }
+        public int? FinancelInstituteId { get; set; }
         public string Branch { get; set; }
         public string Bankname { get; set; }
 

@@ -10,25 +10,25 @@ namespace IMIS_DataEntity.EntityClass
             InvItemDetails = new HashSet<InvItemDetails>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? DakhilaId { get; set; }
+        public int Id { get; set; }
+        public int? DakhilaId { get; set; }
         public string GdAdjId { get; set; }
         public string BudgetYear { get; set; }
         public string Month { get; set; }
-        public decimal? ItemId { get; set; }
-        public decimal? ItemType { get; set; }
-        public decimal? SpecId { get; set; }
-        public decimal? BrandId { get; set; }
-        public double? AdjQty { get; set; }
-        public decimal? AdjTypeId { get; set; }
-        public double? ItemAdjRate { get; set; }
+        public int? ItemId { get; set; }
+        public int? ItemType { get; set; }
+        public int? SpecId { get; set; }
+        public int? BrandId { get; set; }
+        public float? AdjQty { get; set; }
+        public int? AdjTypeId { get; set; }
+        public float? ItemAdjRate { get; set; }
         public string AdjDtNp { get; set; }
         public DateTime? AdjDtEng { get; set; }
         public string Remarks { get; set; }
-        public decimal? PrepBy { get; set; }
+        public int? PrepBy { get; set; }
         public string PrepDtNp { get; set; }
         public DateTime? PrepDtEng { get; set; }
-        public decimal? AcceptBy { get; set; }
+        public int? AcceptBy { get; set; }
         public string AcceptDtNp { get; set; }
         public DateTime? AcceptDtEng { get; set; }
 

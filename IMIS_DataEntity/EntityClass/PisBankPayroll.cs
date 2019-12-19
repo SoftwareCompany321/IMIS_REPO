@@ -5,9 +5,9 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class PisBankPayroll
     {
-        public decimal Sn { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? BankId { get; set; }
+        public int Sn { get; set; }
+        public int? EmpId { get; set; }
+        public int? BankId { get; set; }
         public string BankFolio { get; set; }
         public string AccountNo { get; set; }
 

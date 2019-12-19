@@ -5,12 +5,12 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class TblvehSerChMstr
     {
-        public decimal Id { get; set; }
-        public decimal? Rateid { get; set; }
-        public decimal? Accode { get; set; }
-        public decimal? AccId { get; set; }
-        public double? ServiceChargePercent { get; set; }
-        public double? FlatChargeRate { get; set; }
+        public int Id { get; set; }
+        public int? Rateid { get; set; }
+        public int? Accode { get; set; }
+        public int? AccId { get; set; }
+        public float? ServiceChargePercent { get; set; }
+        public float? FlatChargeRate { get; set; }
         public string FiscalYear { get; set; }
 
         public virtual AccAccMaster Acc { get; set; }

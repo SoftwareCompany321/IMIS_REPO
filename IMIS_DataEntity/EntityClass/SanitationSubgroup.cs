@@ -10,8 +10,8 @@ namespace IMIS_DataEntity.EntityClass
             SanitationRate = new HashSet<SanitationRate>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? Groupid { get; set; }
+        public int Id { get; set; }
+        public int? Groupid { get; set; }
         public string Subgroupname { get; set; }
         public string Remarks { get; set; }
 

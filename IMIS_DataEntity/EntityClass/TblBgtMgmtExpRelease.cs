@@ -10,10 +10,10 @@ namespace IMIS_DataEntity.EntityClass
             TblBgtMgmtSrcRelease = new HashSet<TblBgtMgmtSrcRelease>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? BgtMgmtReleaseId { get; set; }
-        public decimal? AccId { get; set; }
-        public double? Amt { get; set; }
+        public int Id { get; set; }
+        public int? BgtMgmtReleaseId { get; set; }
+        public int? AccId { get; set; }
+        public float? Amt { get; set; }
         public string Remarks { get; set; }
 
         public virtual TblBgtMgmtRelease BgtMgmtRelease { get; set; }

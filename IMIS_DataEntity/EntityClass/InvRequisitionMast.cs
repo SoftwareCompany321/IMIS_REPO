@@ -11,29 +11,29 @@ namespace IMIS_DataEntity.EntityClass
             InvReqDetail = new HashSet<InvReqDetail>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string ReqId { get; set; }
         public string ReqDateNep { get; set; }
-        public decimal? ReqBy { get; set; }
-        public decimal? TypeId { get; set; }
-        public decimal? ItemId { get; set; }
-        public decimal? MaintainItemId { get; set; }
-        public decimal? ProjId { get; set; }
-        public decimal? HandoverId { get; set; }
-        public decimal? HandoverRoomId { get; set; }
+        public int? ReqBy { get; set; }
+        public int? TypeId { get; set; }
+        public int? ItemId { get; set; }
+        public int? MaintainItemId { get; set; }
+        public int? ProjId { get; set; }
+        public int? HandoverId { get; set; }
+        public int? HandoverRoomId { get; set; }
         public string FiscalYear { get; set; }
         public string Remarks { get; set; }
-        public decimal? PrepBy { get; set; }
+        public int? PrepBy { get; set; }
         public string PrepDt { get; set; }
-        public decimal? CheckBy { get; set; }
+        public int? CheckBy { get; set; }
         public string CheckDt { get; set; }
-        public decimal? AcceptBy { get; set; }
+        public int? AcceptBy { get; set; }
         public string AcceptDt { get; set; }
         public string Orgstaffname { get; set; }
         public string Orgstaffpost { get; set; }
-        public decimal? ReqType { get; set; }
-        public decimal? Userid { get; set; }
-        public decimal? VehicleId { get; set; }
+        public int? ReqType { get; set; }
+        public int? Userid { get; set; }
+        public int? VehicleId { get; set; }
         public string Reasion { get; set; }
         public DateTime? ReqDateEng { get; set; }
         public DateTime? PrepDtEng { get; set; }

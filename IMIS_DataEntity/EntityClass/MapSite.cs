@@ -5,12 +5,12 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class MapSite
     {
-        public decimal? Permitid { get; set; }
-        public decimal Sn { get; set; }
+        public int Sn { get; set; }
+        public int? Permitid { get; set; }
         public short? Landshape { get; set; }
-        public double? SideA { get; set; }
-        public double? SideB { get; set; }
-        public double? SideC { get; set; }
-        public double? Area { get; set; }
+        public float? SideA { get; set; }
+        public float? SideB { get; set; }
+        public float? SideC { get; set; }
+        public float? Area { get; set; }
     }
 }

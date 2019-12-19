@@ -17,14 +17,14 @@ namespace IMIS_DataEntity.EntityClass
             SubModuleSource = new HashSet<SubModuleSource>();
         }
 
-        public decimal SubModuleId { get; set; }
+        public int SubModuleId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string Module { get; set; }
         public string Code { get; set; }
-        public decimal? Iscapital { get; set; }
+        public int? Iscapital { get; set; }
         public string BudgetAccNo { get; set; }
-        public decimal? Isexpences { get; set; }
+        public int? Isexpences { get; set; }
         public string AccExpencesCode { get; set; }
 
         public virtual ICollection<AccDhrtiBillMaster> AccDhrtiBillMaster { get; set; }

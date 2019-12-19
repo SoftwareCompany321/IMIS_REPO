@@ -11,7 +11,7 @@ namespace IMIS_DataEntity.EntityClass
             PisInternalTransferToAppointmntTypeNavigation = new HashSet<PisInternalTransfer>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string Description { get; set; }

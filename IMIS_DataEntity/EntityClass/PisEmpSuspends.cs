@@ -5,9 +5,9 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class PisEmpSuspends
     {
-        public decimal Sn { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? LocalPostId { get; set; }
+        public int Sn { get; set; }
+        public int? EmpId { get; set; }
+        public int? LocalPostId { get; set; }
         public string NameNp { get; set; }
         public string WorkingOffice { get; set; }
         public string FromDateVs { get; set; }

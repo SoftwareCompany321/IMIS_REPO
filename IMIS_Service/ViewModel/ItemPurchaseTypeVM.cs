@@ -10,6 +10,6 @@ namespace IMIS_Service.ViewModel
         public string NepName { get; set; } 
         public string NepEng { get; set; } 
         public string Remarks { get; set; } 
-        public string Isdefault { get; set; }
+        public char? Isdefault { get; set; }
     }
 }

@@ -5,19 +5,19 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvLilamDetail
     {
-        public decimal Id { get; set; }
-        public double? Minimumrate { get; set; }
-        public decimal? LilamId { get; set; }
-        public decimal? Dakhilaid { get; set; }
-        public decimal? Nikashaid { get; set; }
-        public decimal? ItemId { get; set; }
-        public decimal? UnitId { get; set; }
-        public decimal? SpecId { get; set; }
-        public decimal? BrandId { get; set; }
-        public decimal? ItemType { get; set; }
-        public double? ItemIssueNo { get; set; }
-        public double? TotalInStock { get; set; }
-        public double? DepAmt { get; set; }
+        public int Id { get; set; }
+        public float? Minimumrate { get; set; }
+        public int? LilamId { get; set; }
+        public int? Dakhilaid { get; set; }
+        public int? Nikashaid { get; set; }
+        public int? ItemId { get; set; }
+        public int? UnitId { get; set; }
+        public int? SpecId { get; set; }
+        public int? BrandId { get; set; }
+        public int? ItemType { get; set; }
+        public float? ItemIssueNo { get; set; }
+        public float? TotalInStock { get; set; }
+        public float? DepAmt { get; set; }
         public string IssueDt { get; set; }
         public string DeliveryStatus { get; set; }
         public string Remarks { get; set; }

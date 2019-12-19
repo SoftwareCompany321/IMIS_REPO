@@ -7,7 +7,7 @@ namespace IMIS_DataEntity.EntityClass
     {
         public short Sn { get; set; }
         public int? Kv { get; set; }
-        public decimal? Distanceft { get; set; }
+        public int? Distanceft { get; set; }
         public string Remarks { get; set; }
     }
 }

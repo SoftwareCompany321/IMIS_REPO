@@ -10,7 +10,7 @@ namespace IMIS_DataEntity.EntityClass
             AccWorkFundsDetail = new HashSet<AccWorkFundsDetail>();
         }
 
-        public decimal ProviderId { get; set; }
+        public int ProviderId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string Phones { get; set; }

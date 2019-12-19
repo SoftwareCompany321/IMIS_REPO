@@ -5,20 +5,20 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class AccDhrtiBillDtl
     {
-        public decimal DhrtiDtlId { get; set; }
-        public decimal? DhrtiMasterId { get; set; }
+        public int DhrtiDtlId { get; set; }
+        public int? DhrtiMasterId { get; set; }
         public string BillNo { get; set; }
         public string BillDateNp { get; set; }
-        public decimal? CounterId { get; set; }
-        public decimal? PersonId { get; set; }
-        public double? Amount { get; set; }
-        public decimal? VchrId { get; set; }
-        public decimal? AccId { get; set; }
+        public int? CounterId { get; set; }
+        public int? PersonId { get; set; }
+        public float? Amount { get; set; }
+        public int? VchrId { get; set; }
+        public int? AccId { get; set; }
         public string VchrDateNp { get; set; }
-        public decimal? OrderInBill { get; set; }
+        public int? OrderInBill { get; set; }
         public string Remarks { get; set; }
-        public decimal? BudgetSourceId { get; set; }
-        public decimal? WorkId { get; set; }
+        public int? BudgetSourceId { get; set; }
+        public int? WorkId { get; set; }
 
         public virtual AccAccMaster Acc { get; set; }
         public virtual AccVchrMaster Vchr { get; set; }

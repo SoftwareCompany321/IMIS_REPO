@@ -10,7 +10,7 @@ namespace IMIS_DataEntity.EntityClass
             PisEducation = new HashSet<PisEducation>();
         }
 
-        public decimal EduId { get; set; }
+        public int EduId { get; set; }
         public string EduName { get; set; }
 
         public virtual ICollection<PisEducation> PisEducation { get; set; }

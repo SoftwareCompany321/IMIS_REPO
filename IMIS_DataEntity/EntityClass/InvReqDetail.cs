@@ -5,12 +5,12 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvReqDetail
     {
-        public decimal Id { get; set; }
-        public decimal? ReqMastId { get; set; }
-        public decimal? ItemId { get; set; }
-        public decimal? SpecId { get; set; }
-        public decimal? BrandId { get; set; }
-        public double? Qty { get; set; }
+        public int Id { get; set; }
+        public int? ReqMastId { get; set; }
+        public int? ItemId { get; set; }
+        public int? SpecId { get; set; }
+        public int? BrandId { get; set; }
+        public float? Qty { get; set; }
         public string Remarks { get; set; }
         public string IsActive { get; set; }
 

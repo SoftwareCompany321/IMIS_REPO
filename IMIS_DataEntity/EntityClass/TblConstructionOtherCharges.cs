@@ -5,14 +5,14 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class TblConstructionOtherCharges
     {
-        public decimal Id { get; set; }
-        public decimal? Rateid { get; set; }
-        public decimal? Accode { get; set; }
-        public decimal? AccId { get; set; }
-        public double? PercentOfTax { get; set; }
-        public decimal? FlatChargeRate { get; set; }
+        public int Id { get; set; }
+        public int? Rateid { get; set; }
+        public int? Accode { get; set; }
+        public int? AccId { get; set; }
+        public float? PercentOfTax { get; set; }
+        public int? FlatChargeRate { get; set; }
         public string FiscalYear { get; set; }
-        public decimal? ServiceChargeCalculation { get; set; }
+        public int? ServiceChargeCalculation { get; set; }
 
         public virtual AccAccMaster Acc { get; set; }
     }

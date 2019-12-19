@@ -5,10 +5,10 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvYrlyPurPlan
     {
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public double? ApproxAmt { get; set; }
+        public float? ApproxAmt { get; set; }
         public string PurType { get; set; }
         public string AgreementType { get; set; }
         public string AprxAmtAcptDate { get; set; }

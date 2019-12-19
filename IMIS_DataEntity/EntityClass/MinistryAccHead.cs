@@ -10,10 +10,10 @@ namespace IMIS_DataEntity.EntityClass
             AccBudjetSource = new HashSet<AccBudjetSource>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? MinistryId { get; set; }
-        public decimal? AccId { get; set; }
-        public decimal? SubHeadId { get; set; }
+        public int Id { get; set; }
+        public int? MinistryId { get; set; }
+        public int? AccId { get; set; }
+        public int? SubHeadId { get; set; }
         public string FiscalYear { get; set; }
         public string Remarks { get; set; }
 

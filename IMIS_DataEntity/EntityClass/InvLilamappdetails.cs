@@ -5,16 +5,16 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvLilamappdetails
     {
-        public decimal Id { get; set; }
-        public decimal? Lilamappliid { get; set; }
-        public decimal? Dakhilaid { get; set; }
-        public decimal? Nikashaid { get; set; }
-        public decimal? Itemid { get; set; }
-        public decimal? Unitid { get; set; }
-        public decimal? Brandid { get; set; }
-        public decimal? Specid { get; set; }
-        public decimal? Lilamqty { get; set; }
-        public double? Lilamtotalamt { get; set; }
+        public int Id { get; set; }
+        public int? Lilamappliid { get; set; }
+        public int? Dakhilaid { get; set; }
+        public int? Nikashaid { get; set; }
+        public int? Itemid { get; set; }
+        public int? Unitid { get; set; }
+        public int? Brandid { get; set; }
+        public int? Specid { get; set; }
+        public int? Lilamqty { get; set; }
+        public float? Lilamtotalamt { get; set; }
 
         public virtual InvLilamAppmaster Lilamappli { get; set; }
     }

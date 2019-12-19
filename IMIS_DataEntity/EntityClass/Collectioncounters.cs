@@ -10,10 +10,10 @@ namespace IMIS_DataEntity.EntityClass
             TaxThliIssuedCntr = new HashSet<TaxThliIssuedCntr>();
         }
 
-        public decimal Counterid { get; set; }
+        public int Counterid { get; set; }
         public string Nepname { get; set; }
-        public decimal? Counterheadid { get; set; }
-        public decimal? Wardno { get; set; }
+        public int? Counterheadid { get; set; }
+        public int? Wardno { get; set; }
         public string Location { get; set; }
         public string Specialnotes { get; set; }
         public string CmptrName { get; set; }

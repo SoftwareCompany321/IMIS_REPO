@@ -5,18 +5,18 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class AccAsuliBibaran
     {
-        public decimal AsuliId { get; set; }
-        public decimal? PersonTypeId { get; set; }
-        public decimal? PaymentPersonId { get; set; }
+        public int AsuliId { get; set; }
+        public int? PersonTypeId { get; set; }
+        public int? PaymentPersonId { get; set; }
         public string PersonName { get; set; }
         public string WorkName { get; set; }
-        public double? AmtTaken { get; set; }
+        public float? AmtTaken { get; set; }
         public string ResponsiveTaken { get; set; }
         public string CollectReason { get; set; }
-        public double? PeskiAmt { get; set; }
-        public decimal? PeskiEmployeeId { get; set; }
+        public float? PeskiAmt { get; set; }
+        public int? PeskiEmployeeId { get; set; }
         public string PropertyDetails { get; set; }
-        public decimal? PropertyEmployeeId { get; set; }
+        public int? PropertyEmployeeId { get; set; }
         public string PropertyRoka { get; set; }
 
         public virtual PersonTypeMaster PersonType { get; set; }

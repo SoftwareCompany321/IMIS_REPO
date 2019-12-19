@@ -5,23 +5,23 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class AccExpensesDetails
     {
-        public decimal ExpenseId { get; set; }
-        public decimal? TransTypeId { get; set; }
-        public decimal? PersonTypeId { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? PadadhikariId { get; set; }
-        public decimal? OrgId { get; set; }
-        public decimal? UcId { get; set; }
-        public decimal? WardId { get; set; }
-        public decimal? WorkId { get; set; }
-        public decimal? AccId { get; set; }
-        public double? DrAmt { get; set; }
-        public double? CrAmt { get; set; }
-        public double? VatAmt { get; set; }
-        public decimal? PaymentSlipId { get; set; }
-        public decimal? VchrId { get; set; }
+        public int ExpenseId { get; set; }
+        public int? TransTypeId { get; set; }
+        public int? PersonTypeId { get; set; }
+        public int? EmpId { get; set; }
+        public int? PadadhikariId { get; set; }
+        public int? OrgId { get; set; }
+        public int? UcId { get; set; }
+        public int? WardId { get; set; }
+        public int? WorkId { get; set; }
+        public int? AccId { get; set; }
+        public float? DrAmt { get; set; }
+        public float? CrAmt { get; set; }
+        public float? VatAmt { get; set; }
+        public int? PaymentSlipId { get; set; }
+        public int? VchrId { get; set; }
         public string VchrDateNp { get; set; }
-        public decimal? OrderInPaymentSlip { get; set; }
+        public int? OrderInPaymentSlip { get; set; }
         public string Advexptype { get; set; }
         public string IsOfLastYear { get; set; }
 
