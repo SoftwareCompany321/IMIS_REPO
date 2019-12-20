@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/ItemMasterCreate.html")]
-        public IActionResult ItemMasterCreate(ItemMasterVM model)
+        public async Task<IActionResult> ItemMasterCreate(ItemMasterVM model)
         {
+            var response = await _ItemMaster.AddEditSave(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemMasterlist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/{Id}/ItemMasterCreate.html")]
+        public async Task<IActionResult> ItemMasterEdit(int Id)
+        {
+            return View(await _ItemMaster.ViewEdit(Id));
+        }
+
+        [HttpPost]
+        [Route("ItemMasterEdit.html")]
+        public async Task<IActionResult> ItemMasterEdit(ItemMasterVM model, int Id)
+        {
+            var response = await _ItemMaster.AddEditSave(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemMasterlist.html");
+            }
             return View();
         }
     }

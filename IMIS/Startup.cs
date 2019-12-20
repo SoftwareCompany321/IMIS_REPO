@@ -35,6 +35,7 @@ using IMIS_Service.Setup.IIncomeRecordKeeping;
 using IMIS_Service.Setup.IReceiptDistribution;
 using IMIS_Service.Setup.ITaxRate;
 using IMIS_Service.Setup.IItemPurMasterPlan;
+using AutoMapper;
 
 namespace IMIS
 {
@@ -125,7 +126,8 @@ namespace IMIS
             services.AddScoped<IReceiptDistribution, ReceiptDistribution>();
             services.AddScoped<ITaxRate, TaxRate>();
             services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
-
+            //adding the auto mapper in service layer class
+            services.AddAutoMapper(typeof(Startup)); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

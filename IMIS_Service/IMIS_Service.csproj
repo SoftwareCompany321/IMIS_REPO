@@ -15,4 +15,8 @@
     <ProjectReference Include="..\IMIS_DataEntity\IMIS_DataEntity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+  </ItemGroup>
+
 </Project>
