@@ -22,6 +22,7 @@ using IMIS_Service.GlobalFunction;
 using IMIS_Service.Setup.IItemUnit;
 using IMIS_Service.Setup.IItemBrand;
 using AutoMapper;
+using IMIS_Service.Setup.IItemMaster;
 
 namespace IMIS
 {
@@ -92,6 +93,7 @@ namespace IMIS
                 options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
             });
             //Add service for accessing current HttpContext
+            //need do work  all this classs to take seprate class
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<MenuService>();
             services.AddScoped<GlobalFunction>();
@@ -99,7 +101,10 @@ namespace IMIS
             services.AddScoped<IItemUnit, ItemUnit>();
             services.AddScoped<IItemBrand, ItemBrand>();
             //adding the auto mapper in service layer class
-            services.AddAutoMapper(typeof(Startup)); 
+            services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IItemMaster, ItemMaster>();
+              
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
