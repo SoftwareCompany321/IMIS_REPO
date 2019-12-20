@@ -300,6 +300,12 @@ namespace IMIS_DataEntity.Data
             base.OnModelCreating(modelBuilder); 
             modelBuilder.Entity<ImisMenu>().ToTable("Imis_Menu");
             modelBuilder.Entity<Usermaster>().ToTable("Usermaster");
+            modelBuilder.Entity<IdentityRole>().ToTable("IMISRole");
+            modelBuilder.Entity<IdentityUserRole<string>>().ToTable("IMISUserRole");
+            modelBuilder.Entity<IdentityUserClaim<string>>().ToTable("IMISUserClaim");
+            modelBuilder.Entity<IdentityUserLogin<string>>().ToTable("IMISUserLogin");
+            modelBuilder.Entity<IdentityUserToken<string>>().ToTable("IMISUserToken");
+            modelBuilder.Entity<IdentityRoleClaim<string>>().ToTable("IMISRoleClaim");
             modelBuilder.Entity<AccAccMaster>(entity =>
             {
                 entity.HasKey(e => e.AccId)

@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IMIS_DataEntity.Migrations
 {
     [DbContext(typeof(IMISDbContext))]
-    [Migration("20191220060315_Phase1")]
+    [Migration("20191220064402_Phase1")]
     partial class Phase1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -15740,7 +15740,7 @@ namespace IMIS_DataEntity.Migrations
                         .IsUnique()
                         .HasName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("IMISRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -15764,7 +15764,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("IMISRoleClaim");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -15788,7 +15788,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("IMISUserClaim");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -15812,7 +15812,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("IMISUserLogin");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -15827,7 +15827,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("IMISUserRole");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -15848,7 +15848,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("IMISUserToken");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccAccMaster", b =>
