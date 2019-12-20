@@ -12,6 +12,7 @@ namespace IMIS_Service.ModelMapper
         public AutoMapper()
         {
             CreateMap<InvItemMst, ItemMasterVM>();
+            CreateMap<ItemMasterVM, InvItemMst>();
         }
     }
 }

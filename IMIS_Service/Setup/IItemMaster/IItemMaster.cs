@@ -35,42 +35,44 @@ namespace IMIS_Service.Setup.IItemMaster
             try
             {
 
-                var item = new InvItemMst()
-                {
-                    AccId = model.AccId,
-                    AreaInsqFeets = model.AreaInsqFeets,
-                    BudgetAccId = model.BudgetAccId,
-                    Code = model.Code,
-                    Companyname = model.Companyname,
-                    Constructontype = model.Constructontype,
-                    Countryid = model.Countryid,
-                    Depmaxrate = model.Depmaxrate,
-                    Depreciation = model.Depreciation,
-                    Gussage = model.Gussage,
-                    Remarks = model.Remarks,
-                    Sizes = model.Sizes,
-                    Source = model.Source,
-                    ItemId = model.ItemId,
-                    ItemMainClass = model.ItemMainClass,
-                    ItemNature = model.ItemNature,
-                    KittaNo = model.KittaNo,
-                    ItemType = model.ItemType,
-                    Landid = model.Landid,
-                    LandAreaInsqFeets = model.LandAreaInsqFeets,
-                    LandLocation = model.LandLocation,
-                    LandMarketRate = model.LandMarketRate,
-                    LandUnitRate = model.LandUnitRate,
-                    Maxl = model.Maxl,
-                    Minl = model.Minl,
-                    Minrate = model.Minrate,
-                    NameEn = model.NameEn,
-                    NameNp = model.NameNp,
-                    Propertytype = model.Propertytype,
-                    Rmaxl = model.Rmaxl,
-                    Rminl = model.Rminl,
-                    UnitId = model.UnitId,
-                    VehiclePartsId = model.VehiclePartsId
-                };
+                //var item = new InvItemMst()
+                //{
+                //    AccId = model.AccId,
+                //    AreaInsqFeets = model.AreaInsqFeets,
+                //    BudgetAccId = model.BudgetAccId,
+                //    Code = model.Code,
+                //    Companyname = model.Companyname,
+                //    Constructontype = model.Constructontype,
+                //    Countryid = model.Countryid,
+                //    Depmaxrate = model.Depmaxrate,
+                //    Depreciation = model.Depreciation,
+                //    Gussage = model.Gussage,
+                //    Remarks = model.Remarks,
+                //    Sizes = model.Sizes,
+                //    Source = model.Source,
+                //    ItemId = model.ItemId,
+                //    ItemMainClass = model.ItemMainClass,
+                //    ItemNature = model.ItemNature,
+                //    KittaNo = model.KittaNo,
+                //    ItemType = model.ItemType,
+                //    Landid = model.Landid,
+                //    LandAreaInsqFeets = model.LandAreaInsqFeets,
+                //    LandLocation = model.LandLocation,
+                //    LandMarketRate = model.LandMarketRate,
+                //    LandUnitRate = model.LandUnitRate,
+                //    Maxl = model.Maxl,
+                //    Minl = model.Minl,
+                //    Minrate = model.Minrate,
+                //    NameEn = model.NameEn,
+                //    NameNp = model.NameNp,
+                //    Propertytype = model.Propertytype,
+                //    Rmaxl = model.Rmaxl,
+                //    Rminl = model.Rminl,
+                //    UnitId = model.UnitId,
+                //    VehiclePartsId = model.VehiclePartsId
+                //};
+
+                var item = _mapper.Map<InvItemMst>(model);
                 if (model.AccId == 0)
                 {
                     await _db.AddAsync(item);
