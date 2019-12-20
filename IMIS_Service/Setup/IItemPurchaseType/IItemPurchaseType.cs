@@ -40,7 +40,9 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                     Remarks = model.Remarks
                 };
                 if (model.Id == 0)
-                {
+                { 
+                    int count =await _db.InvPurType.CountAsync(); 
+                    item.Id = count + 1; 
                     await _db.AddAsync(item);
                 }
                 else
@@ -49,7 +51,7 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                 }
                 await _db.SaveChangesAsync(true);
 
-                return ("", 0);
+                return ("success", 0);
 
             }
             catch (Exception)
