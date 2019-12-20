@@ -284,16 +284,16 @@ namespace IMIS_DataEntity.Data
         public virtual DbSet<Usermaster> Usermaster { get; set; }
         public virtual DbSet<Vdc> Vdc { get; set; }
         public virtual DbSet<WardMaster> WardMaster { get; set; }
-        public virtual DbSet<Zone> Zone { get; set; }
-
-//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-//        {
-//            if (!optionsBuilder.IsConfigured)
-//            {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseNpgsql("User ID=postgres;Password=admin;Host=localhost;Port=5432;Database=IMIS;Pooling=true");
-//            }
-//        }
+        public virtual DbSet<Zone> Zone { get; set; } 
+        
+        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //        {
+        //            if (!optionsBuilder.IsConfigured)
+        //            {
+        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+        //                optionsBuilder.UseNpgsql("User ID=postgres;Password=admin;Host=localhost;Port=5432;Database=IMIS;Pooling=true");
+        //            }
+        //        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

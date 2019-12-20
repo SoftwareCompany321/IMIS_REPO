@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IMIS_DataEntity.Migrations
 {
     [DbContext(typeof(IMISDbContext))]
-    [Migration("20191219181237_Phase1_Initial")]
-    partial class Phase1_Initial
+    [Migration("20191220060315_Phase1")]
+    partial class Phase1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
