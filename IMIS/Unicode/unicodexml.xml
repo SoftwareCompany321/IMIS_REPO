@@ -1293,31 +1293,31 @@
     <B>विदा(नेपालीमा)</B>
   </row>
   <row>
-    <A>EMPLOYEE CATEGORY</A>
+    <A>EMPLOYEE Specification</A>
     <B>कर्मचारीको किसिम</B>
   </row>
   <row>
-    <A>OFFICE CATEGORY</A>
+    <A>OFFICE Specification</A>
     <B>कार्यालयको किसिम</B>
   </row>
   <row>
-    <A>OFFICE CATEGORY(IN ENGLISH)</A>
+    <A>OFFICE Specification(IN ENGLISH)</A>
     <B>कार्यालयको किसिम (अंग्रेजीमा)</B>
   </row>
   <row>
-    <A>OFFICE CATEGORY(IN NEPALI)</A>
+    <A>OFFICE Specification(IN NEPALI)</A>
     <B>कार्यालयको किसिम (नेपालीमा)</B>
   </row>
   <row>
-    <A>EMPLOYEE CATEGORY (IN NEPALI)</A>
+    <A>EMPLOYEE Specification (IN NEPALI)</A>
     <B>कर्मचारीको किसिम(नेपालीमा)</B>
   </row>
   <row>
-    <A>EMPLOYEE CATEGORY CODE</A>
+    <A>EMPLOYEE Specification CODE</A>
     <B>कर्मचारीको किसिम कोड</B>
   </row>
   <row>
-    <A>EMPLOYEE CATEGORY (IN ENGLISH)</A>
+    <A>EMPLOYEE Specification (IN ENGLISH)</A>
     <B>कर्मचारीको किसिम (अंग्रेजीमा)</B>
   </row>
   <row>
@@ -3961,31 +3961,31 @@
     <B>संगठनात्मक सम्रचना</B>
   </row>
   <row>
-    <A>CATEGORY</A>
+    <A>Specification</A>
     <B>प्रकार</B>
   </row>
   <row>
-    <A>CATEGORY NAME</A>
+    <A>Specification NAME</A>
     <B>प्रकारको नाम</B>
   </row>
   <row>
-    <A>ADD CATEGORY</A>
+    <A>ADD Specification</A>
     <B>नया प्रकार थप्नुहोस्</B>
   </row>
   <row>
-    <A>CATEGORY CODE</A>
+    <A>Specification CODE</A>
     <B>प्रकार कोड</B>
   </row>
   <row>
-    <A>CATEGORY (IN ENGLISH)</A>
+    <A>Specification (IN ENGLISH)</A>
     <B>प्रकार (अंग्रेजीमा)</B>
   </row>
   <row>
-    <A>CATEGORY (IN NEPALI)</A>
+    <A>Specification (IN NEPALI)</A>
     <B>प्रकार (नेपालीमा)</B>
   </row>
   <row>
-    <A>UPDATE CATEGORY</A>
+    <A>UPDATE Specification</A>
     <B>प्रकार अपडेट गर्नुहोस्</B>
   </row>
   <row>
@@ -4125,11 +4125,11 @@
     <B>संक्षिप्तमा नाम (नेपालीमा)</B>
   </row>
   <row>
-    <A>ADD OFFICE CATEGORY</A>
+    <A>ADD OFFICE Specification</A>
     <B>नया कार्यालयको प्रकार थप्नुहोस्</B>
   </row>
   <row>
-    <A>UPDATE OFFICE CATEGORY</A>
+    <A>UPDATE OFFICE Specification</A>
     <B>कार्यालयको प्रकार अपडेट गर्नुहोस्</B>
   </row>
   <row>
@@ -4341,7 +4341,7 @@
     <B>तालिम थप्नुहोस्</B>
   </row>
   <row>
-    <A>TRAINING CATEGORY</A>
+    <A>TRAINING Specification</A>
     <B>तालिमको प्रकार</B>
   </row>
   <row>
@@ -4517,11 +4517,11 @@
     <B>सेवा</B>
   </row>
   <row>
-    <A>SERVICE CATEGORY</A>
+    <A>SERVICE Specification</A>
     <B>सेवा श्रेणी </B>
   </row>
   <row>
-    <A>SERVICE CATEGORY (IN NEPALI)</A>
+    <A>SERVICE Specification (IN NEPALI)</A>
     <B>सेवा श्रेणी (नेपालीमा)</B>
   </row>
   <row>
@@ -4709,7 +4709,7 @@
     <B>परिमाणको सूची</B>
   </row>
   <row>
-    <A>JOB BY JOB CATEGORY</A>
+    <A>JOB BY JOB Specification</A>
     <B>जागीरको प्रकार अनुसारका जागीरहरु </B>
   </row>
   <row>
@@ -5430,7 +5430,7 @@
     <B>घरको बिबरण</B>
   </row>
   <row>
-    <A>CONFLICT CATEGORY</A>
+    <A>CONFLICT Specification</A>
     <B>नीति कार्यक्रम को व्यहोरा</B>
   </row>
   <row>
@@ -6638,7 +6638,7 @@
     <B>बेरुजु प्रकार</B>
   </row>
   <row>
-    <A>BERUJU CATEGORY</A>
+    <A>BERUJU Specification</A>
     <B>बेरुजु बर्गीकरण</B>
   </row>
   <row>
@@ -7290,7 +7290,7 @@
     <B>बजेट/शीर्षक (अंग्रेजीमा)</B>
   </row>
   <row>
-    <A>HEAD/SUBHEAD CATEGORY</A>
+    <A>HEAD/SUBHEAD Specification</A>
     <B>शीर्षक/उपशीर्षक प्रकार</B>
   </row>
   <row>
@@ -7310,7 +7310,7 @@
     <B>रसीद नं.</B>
   </row>
   <row>
-    <A>INCOME CATEGORY</A>
+    <A>INCOME Specification</A>
     <B>खर्च शीर्षक</B>
   </row>
   <row>
@@ -20546,7 +20546,7 @@
     <B>गुनासो दर्ता</B>
   </row>
   <row>
-    <A>CASE CATEGORY</A>
+    <A>CASE Specification</A>
     <B>गुनासो किसिम</B>
   </row>
   <row>
@@ -20566,7 +20566,7 @@
     <B>समाधान</B>
   </row>
   <row>
-    <A>SELECT CATEGORY OF GRIEVANCE</A>
+    <A>SELECT Specification OF GRIEVANCE</A>
     <B>गुनासो किसिम छान्नुहोस्</B>
   </row>
   <row>

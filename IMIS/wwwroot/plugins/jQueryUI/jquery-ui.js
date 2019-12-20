@@ -22,7 +22,7 @@
  * Released under the MIT license.
  * http://jquery.org/license
  *
- * http://api.jqueryui.com/category/ui-core/
+ * http://api.jqueryui.com/Specification/ui-core/
  */
 
 
@@ -9352,7 +9352,7 @@ var droppable = $.ui.droppable;
  * Released under the MIT license.
  * http://jquery.org/license
  *
- * http://api.jqueryui.com/category/effects-core/
+ * http://api.jqueryui.com/Specification/effects-core/
  */
 
 

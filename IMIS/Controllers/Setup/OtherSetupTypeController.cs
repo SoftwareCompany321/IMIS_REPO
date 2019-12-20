@@ -37,7 +37,7 @@ namespace IMIS.Controllers.Setup
             });
         }
 
-        [HttpGet]
+        [HttpGet]        
         [Route("/OtherSetupTypelist.html")]
         public IActionResult OtherSetupTypeList()
         {

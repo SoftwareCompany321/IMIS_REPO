@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using IMIS_CORE.Utility;
 using IMIS_Service.Setup.IRoomDetials;
 using IMIS_Service.ViewModel;
@@ -45,17 +42,46 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/RoomDetialsCreate.html")]
+        [Route("/RoomDetailsCreate.html")]
         public IActionResult RoomDetialsCreate()
         {
             return View();
         }
 
+        
         [HttpPost]
-        [Route("/RoomDetialsCreate.html")]
-        public IActionResult RoomDetialsCreate(RoomDetialsVM model)
+        [Route("/RoomDetailsCreate.html")]
+        public async Task<IActionResult> RoomDetailsCreate(RoomDetialsVM model)
         {
+            var response = await _RoomDetials.AddEdit(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/RoomDetailsList.html");
+            }
             return View();
         }
+        [HttpGet]
+
+        [Route("{SpecificationId}/RoomDetailsEdit.html")]
+        public async Task<IActionResult> RoomDetailsEdit(int SpecificationId)
+        {
+            return View(await _RoomDetials.ViewOrEditData(SpecificationId));
+        }
+        [HttpPost]
+        [Route("{SpecificationId}/RoomDetailsEdit.html")]
+        public async Task<IActionResult> RoomDetailsEdit(RoomDetialsVM model, int SpecificationId)
+        {
+            var response = await _RoomDetials.AddEdit(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/RoomDetailslist.html");
+            }
+            return View();
+        }
+
     }
 }

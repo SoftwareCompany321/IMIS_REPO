@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace IMIS_Service.Setup.IRoomDetials
     public interface IRoomDetials
     {
         Task<DataTableResponse> RoomDetialsFetchData(DataTableVm model);
+        Task<(string message, int Id)> AddEdit(RoomDetialsVM Model);
+
+        Task<RoomDetialsVM> ViewOrEditData(int Id);
     }
     public class RoomDetials : IRoomDetials
     {
@@ -86,6 +91,64 @@ namespace IMIS_Service.Setup.IRoomDetials
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<(string message, int Id)> AddEdit(RoomDetialsVM Model)
+        {
+            try
+            {
+                var AddEdit = new InvRoomMst()
+                {
+                    RoomId = Model.RoomId,
+                    DescEn = Model.DescEn,
+                    DescNp = Model.DescNp 
+
+                };
+
+                if (Model.RoomId == 0)
+                {
+                    int countrow = await _db.InvUnit.CountAsync();
+                    AddEdit.RoomId = countrow + 1;
+                    await _db.AddAsync(AddEdit);
+                }
+                else
+                {
+                    _db.Entry(AddEdit).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<RoomDetialsVM> ViewOrEditData(int UnitId)
+        {
+            try
+            {
+                var data = await _db.InvRoomMst.Where(x => x.RoomId == UnitId).FirstOrDefaultAsync();
+                if (data != null)
+                {
+                    return new RoomDetialsVM()
+                    {
+                        DeptId = data.RoomId,
+                        DescNp = data.DescNp,
+                        DescEn = data.DescEn 
+                    };
+                }
+                else
+                {
+                    return new RoomDetialsVM();
+                }
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
