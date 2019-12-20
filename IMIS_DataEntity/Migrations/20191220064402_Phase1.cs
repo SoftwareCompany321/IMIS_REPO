@@ -397,20 +397,6 @@ namespace IMIS_DataEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetRoles",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BANKMASTER",
                 columns: table => new
                 {
@@ -713,6 +699,20 @@ namespace IMIS_DataEntity.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Imis_Menu", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IMISRole",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IMISRole", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -3698,27 +3698,6 @@ namespace IMIS_DataEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetRoleClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    RoleId = table.Column<string>(nullable: false),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "BANK_BRANCH",
                 columns: table => new
                 {
@@ -3765,6 +3744,27 @@ namespace IMIS_DataEntity.Migrations
                         principalTable: "ACC_SUB_MODULE_TYPE",
                         principalColumn: "SUB_MODULE_ID",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IMISRoleClaim",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RoleId = table.Column<string>(nullable: false),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IMISRoleClaim", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_IMISRoleClaim_IMISRole_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "IMISRole",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -4209,7 +4209,7 @@ namespace IMIS_DataEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
+                name: "IMISUserClaim",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -4220,9 +4220,9 @@ namespace IMIS_DataEntity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.PrimaryKey("PK_IMISUserClaim", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUserClaims_Usermaster_UserId",
+                        name: "FK_IMISUserClaim_Usermaster_UserId",
                         column: x => x.UserId,
                         principalTable: "Usermaster",
                         principalColumn: "Id",
@@ -4230,7 +4230,7 @@ namespace IMIS_DataEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
+                name: "IMISUserLogin",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
@@ -4240,9 +4240,9 @@ namespace IMIS_DataEntity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_IMISUserLogin", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_AspNetUserLogins_Usermaster_UserId",
+                        name: "FK_IMISUserLogin_Usermaster_UserId",
                         column: x => x.UserId,
                         principalTable: "Usermaster",
                         principalColumn: "Id",
@@ -4250,7 +4250,7 @@ namespace IMIS_DataEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
+                name: "IMISUserRole",
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
@@ -4258,15 +4258,15 @@ namespace IMIS_DataEntity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_IMISUserRole", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        name: "FK_IMISUserRole_IMISRole_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
+                        principalTable: "IMISRole",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_Usermaster_UserId",
+                        name: "FK_IMISUserRole_Usermaster_UserId",
                         column: x => x.UserId,
                         principalTable: "Usermaster",
                         principalColumn: "Id",
@@ -4274,7 +4274,7 @@ namespace IMIS_DataEntity.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
+                name: "IMISUserToken",
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
@@ -4284,9 +4284,9 @@ namespace IMIS_DataEntity.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.PrimaryKey("PK_IMISUserToken", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_AspNetUserTokens_Usermaster_UserId",
+                        name: "FK_IMISUserToken_Usermaster_UserId",
                         column: x => x.UserId,
                         principalTable: "Usermaster",
                         principalColumn: "Id",
@@ -7547,32 +7547,6 @@ namespace IMIS_DataEntity.Migrations
                 column: "WORK_ID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetRoleClaims_RoleId",
-                table: "AspNetRoleClaims",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
-                name: "RoleNameIndex",
-                table: "AspNetRoles",
-                column: "NormalizedName",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserClaims_UserId",
-                table: "AspNetUserClaims",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserLogins_UserId",
-                table: "AspNetUserLogins",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_RoleId",
-                table: "AspNetUserRoles",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BANK_BRANCH_BANKID",
                 table: "BANK_BRANCH",
                 column: "BANKID");
@@ -7611,6 +7585,32 @@ namespace IMIS_DataEntity.Migrations
                 name: "IX_FIREBRIGADESTATE_ACC_ID",
                 table: "FIREBRIGADESTATE",
                 column: "ACC_ID");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "IMISRole",
+                column: "NormalizedName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IMISRoleClaim_RoleId",
+                table: "IMISRoleClaim",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IMISUserClaim_UserId",
+                table: "IMISUserClaim",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IMISUserLogin_UserId",
+                table: "IMISUserLogin",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IMISUserRole_RoleId",
+                table: "IMISUserRole",
+                column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_INCOMEBILLDETAILS_ACC_ID",
@@ -8570,21 +8570,6 @@ namespace IMIS_DataEntity.Migrations
                 name: "APPLICATION_CONFIGURATION");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
                 name: "BANKTRANSACTIONS");
 
             migrationBuilder.DropTable(
@@ -8631,6 +8616,21 @@ namespace IMIS_DataEntity.Migrations
 
             migrationBuilder.DropTable(
                 name: "Imis_Menu");
+
+            migrationBuilder.DropTable(
+                name: "IMISRoleClaim");
+
+            migrationBuilder.DropTable(
+                name: "IMISUserClaim");
+
+            migrationBuilder.DropTable(
+                name: "IMISUserLogin");
+
+            migrationBuilder.DropTable(
+                name: "IMISUserRole");
+
+            migrationBuilder.DropTable(
+                name: "IMISUserToken");
 
             migrationBuilder.DropTable(
                 name: "INCOMEBILLDETAILS");
@@ -9134,13 +9134,13 @@ namespace IMIS_DataEntity.Migrations
                 name: "ACC_FUND_PROVIDR_MSTR");
 
             migrationBuilder.DropTable(
-                name: "AspNetRoles");
+                name: "ACC_DHRTI_BILL_MASTER");
+
+            migrationBuilder.DropTable(
+                name: "IMISRole");
 
             migrationBuilder.DropTable(
                 name: "Usermaster");
-
-            migrationBuilder.DropTable(
-                name: "ACC_DHRTI_BILL_MASTER");
 
             migrationBuilder.DropTable(
                 name: "INV_GOODS_REC_MAST");
