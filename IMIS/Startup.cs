@@ -21,6 +21,7 @@ using IMIS_Service.IAccountHead;
 using IMIS_Service.GlobalFunction;
 using IMIS_Service.Setup.IItemUnit;
 using IMIS_Service.Setup.IItemBrand;
+using AutoMapper;
 
 namespace IMIS
 {
@@ -97,6 +98,8 @@ namespace IMIS
             services.AddScoped<IAccountHead, AccountHead>();
             services.AddScoped<IItemUnit, ItemUnit>();
             services.AddScoped<IItemBrand, ItemBrand>();
+            //adding the auto mapper in service layer class
+            services.AddAutoMapper(typeof(Startup)); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
