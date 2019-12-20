@@ -7,13 +7,15 @@
 
 <div>
     <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">Description(English)<span class="requried">*</span></label>
+        <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Description(English)")<span class="requried">*</span></label>
         <div class="col-md-9">
             <input type="text" class="form-control" asp-for="NepEng">
         </div>
     </div>
     <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">Description(Nepali)<span class="requried">*</span></label>
+        <label for="region" class="col-md-2 control-label">
+            @Utils.GetLabel("Description(Nepali)")<span class="requried">*</span>
+        </label>
         <div class="col-md-9">
             <input type="text" class="form-control" asp-for="NepName">
         </div>

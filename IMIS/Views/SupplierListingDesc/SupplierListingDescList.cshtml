@@ -1,6 +1,6 @@
 ﻿@using IMIS_CORE.Core
 @{
-    ViewData["Title"] = "SupplierListingDescList";
+    ViewData["Title"] = "ItemCategoryList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">Supplier Listing List</a> </li>
+                    <li class="active"><a href="#region-tab">Item Category List</a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -21,7 +21,7 @@
                     <!-- tab 1: region starts -->
                     <div class="tab-pane fade active in" id="region-tab">
                         <!-- generic add button for all the "add" forms | Add region -->
-                        <a href="@Url.Content("~/SupplierListingDescCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                        <a href="@Url.Content("~/ItemCategoryCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
                         <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
 
                         <!-- search filters -->
@@ -42,12 +42,13 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="20px">Id</th>
-                                        <th>Code</th>
-                                        <th>Name(Nep)</th>
-                                        <th>Name(Eng)</th>
-                                        <th>Display</th>
-                                        <th>AccCode</th>
+                                        <th>@Utils.GetLabel("Id")</th>
+
+                                        <th>@Utils.GetLabel("Description(Nepali)")</th>
+
+                                        <th>@Utils.GetLabel("Description(English)")</th>
+
+                                        <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
 
@@ -98,7 +99,7 @@
                             </div>
 
                             <div class="col-lg-6">
-                                <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/SupplierListingDescCreate.html")">Create Account Header</a>
+                                <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/ItemCategoryCreate.html")">Create Account Header</a>
 
                                 <input type="text" id="usersearch" placeholder="Search" class="grid-search" />
 
@@ -141,7 +142,7 @@
                 "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
                 'searching': true,//recordsFiltered
 				"ajax": {
-                   "url": "@Url.Content("~/SupplierListingDescFetchData.html")", "type": "GET", "data": function (d) {
+                   "url": "@Url.Content("~/ItemCategoryFetchData.html")", "type": "GET", "data": function (d) {
                     d.search = $("#usersearch").val();
                 }
                 },

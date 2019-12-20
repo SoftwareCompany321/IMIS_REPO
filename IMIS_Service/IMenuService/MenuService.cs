@@ -38,6 +38,7 @@ namespace IMIS_Service.IMenuService
 
             try
             {
+                
                 return (await (from m in _db.ImisMenu
                                where m.ParentMenuId == 0
                                select new MenuVM

@@ -13,13 +13,16 @@
         <div class="container-fluid">
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#sub11">Create Item Category</a> </li>
+                    <li class="active"><a href="#sub11">@Utils.GetLabel("Create Item Category")</a> </li>
 
                 </ul>
                 <div class="tab-content">
                     <a asp-action="ItemPurchaseTypeList" asp-controller="ItemPurchaseType" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
                     <div class="tab-pane fade active in" id="sub111">
-                        <h2 class="form-title">Item Brand Entry From</h2>
+                        <h2 class="form-title">
+                            @Utils.GetLabel("Edit Item Category")
+                        </h2>
+
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="well">
@@ -28,8 +31,12 @@
                                         @await Html.PartialAsync("~/Views/ItemPurchaseType/_partialPurchase.cshtml", Model)
                                         <div class="form-group form-action">
                                             <div class="col-md-10 col-md-offset-2">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <button type="button" class="btn btn-default">Cancel</button>
+                                                <button type="submit" class="btn btn-primary">
+                                                    @Utils.GetLabel("Submit")
+                                                </button>
+
+                                                <button type="button" class="btn btn-default">@Utils.GetLabel("Cancel")</button>
+
                                             </div>
                                         </div>
                                     </form>
