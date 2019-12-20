@@ -160,8 +160,7 @@ namespace IMIS_Service.Setup.IItemMaster
         {
             try
             {
-                var response = await _db.InvItemMst.Where(x => x.AccId == Id).FirstOrDefaultAsync();
-
+                var response = await _db.InvItemMst.Where(x => x.AccId == Id).FirstOrDefaultAsync(); 
                 if (response != null)
                 {
                     return _mapper.Map<ItemMasterVM>(response);
