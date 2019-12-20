@@ -20,13 +20,13 @@
                     <a asp-action="ItemPurchaseTypeList" asp-controller="ItemPurchaseType" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
                     <div class="tab-pane fade active in" id="sub111">
                         <h2 class="form-title">
-                            @Utils.GetLabel("Edit Item Category")
+                            @Utils.GetLabel("Edit Purchase Type")
                         </h2>
 
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="well">
-                                    <form method="post" asp-action="ItemPurchaseTypeEdit" asp-controller="ItemCategory">
+                                    <form method="post" asp-action="ItemPurchaseTypeEdit" asp-controller="ItemPurchaseType">
                                         @Html.AntiForgeryToken()
                                         @await Html.PartialAsync("~/Views/ItemPurchaseType/_partialPurchase.cshtml", Model)
                                         <div class="form-group form-action">
