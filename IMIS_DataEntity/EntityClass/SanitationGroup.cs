@@ -11,7 +11,7 @@ namespace IMIS_DataEntity.EntityClass
             SanitationSubgroup = new HashSet<SanitationSubgroup>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string Groupname { get; set; }
 
         public virtual ICollection<SanitationRate> SanitationRate { get; set; }

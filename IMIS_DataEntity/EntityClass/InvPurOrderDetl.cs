@@ -5,17 +5,17 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvPurOrderDetl
     {
-        public decimal Id { get; set; }
-        public decimal? PurMstId { get; set; }
-        public decimal? ItemId { get; set; }
-        public decimal? UnitId { get; set; }
-        public decimal? SpecId { get; set; }
-        public decimal? BrandId { get; set; }
-        public decimal? ItemType { get; set; }
-        public double? Qty { get; set; }
-        public double? ItemRate { get; set; }
-        public double? TotalAmt { get; set; }
-        public double? TaxAmt { get; set; }
+        public int Id { get; set; }
+        public int? PurMstId { get; set; }
+        public int? ItemId { get; set; }
+        public int? UnitId { get; set; }
+        public int? SpecId { get; set; }
+        public int? BrandId { get; set; }
+        public int? ItemType { get; set; }
+        public float? Qty { get; set; }
+        public float? ItemRate { get; set; }
+        public float? TotalAmt { get; set; }
+        public float? TaxAmt { get; set; }
         public string Remarks { get; set; }
         public string Isdakhila { get; set; }
 

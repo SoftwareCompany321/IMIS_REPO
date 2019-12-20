@@ -27,18 +27,18 @@ namespace IMIS_DataEntity.EntityClass
             PisWorkshop = new HashSet<PisWorkshop>();
         }
 
-        public decimal LocalPostId { get; set; }
+        public int LocalPostId { get; set; }
         public string LocalPostName { get; set; }
         public string LocalPostNameEn { get; set; }
-        public decimal? PostId { get; set; }
+        public int? PostId { get; set; }
         public string PostDuties { get; set; }
-        public double? BasicSalary { get; set; }
-        public double? GradeRate { get; set; }
-        public double? Allwance { get; set; }
-        public double? InsuranceAddAmt { get; set; }
-        public decimal? PayrollOrder { get; set; }
-        public double? Alllwance { get; set; }
-        public double? Allowance { get; set; }
+        public float? BasicSalary { get; set; }
+        public float? GradeRate { get; set; }
+        public float? Allwance { get; set; }
+        public float? InsuranceAddAmt { get; set; }
+        public int? PayrollOrder { get; set; }
+        public float? Alllwance { get; set; }
+        public float? Allowance { get; set; }
 
         public virtual PisPostMaster Post { get; set; }
         public virtual ICollection<PisAwards> PisAwards { get; set; }

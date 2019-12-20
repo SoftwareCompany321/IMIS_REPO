@@ -11,15 +11,15 @@ namespace IMIS_DataEntity.EntityClass
             Tblfywisempotassrate = new HashSet<Tblfywisempotassrate>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? Groupid { get; set; }
-        public decimal? Subgroupid { get; set; }
+        public int Id { get; set; }
+        public int? Groupid { get; set; }
+        public int? Subgroupid { get; set; }
         public string Nepname { get; set; }
-        public decimal? Rateperunit { get; set; }
+        public int? Rateperunit { get; set; }
         public string Description { get; set; }
-        public decimal? AreaUpto { get; set; }
-        public decimal? ForEachArea { get; set; }
-        public decimal? EachAreaRate { get; set; }
+        public int? AreaUpto { get; set; }
+        public int? ForEachArea { get; set; }
+        public int? EachAreaRate { get; set; }
 
         public virtual Tblmalpotgroup Group { get; set; }
         public virtual Tblmalpotsubgroup Subgroup { get; set; }

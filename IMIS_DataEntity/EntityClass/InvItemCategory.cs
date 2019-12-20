@@ -11,25 +11,25 @@ namespace IMIS_DataEntity.EntityClass
             InvPurOrderDetl = new HashSet<InvPurOrderDetl>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public decimal? ParentId { get; set; }
-        public decimal? GrpLevel { get; set; }
-        public decimal? IsHeader { get; set; }
+        public int? ParentId { get; set; }
+        public int? GrpLevel { get; set; }
+        public int? IsHeader { get; set; }
         public short? Isexp { get; set; }
         public short? Islast { get; set; }
         public string Code { get; set; }
-        public decimal? Unit { get; set; }
-        public decimal? Minl { get; set; }
-        public decimal? Maxl { get; set; }
-        public decimal? Rminl { get; set; }
-        public decimal? Rmaxl { get; set; }
-        public double? DepreciationPer { get; set; }
-        public double? DepreciationMin { get; set; }
-        public double? DepreciationMax { get; set; }
+        public int? Unit { get; set; }
+        public int? Minl { get; set; }
+        public int? Maxl { get; set; }
+        public int? Rminl { get; set; }
+        public int? Rmaxl { get; set; }
+        public decimal? DepreciationPer { get; set; }
+        public decimal? DepreciationMin { get; set; }
+        public decimal? DepreciationMax { get; set; }
         public string Remarks { get; set; }
-        public decimal? ItemId { get; set; }
+        public int? ItemId { get; set; }
 
         public virtual ICollection<InvIssueDetail> InvIssueDetail { get; set; }
         public virtual ICollection<InvPurOrderDetl> InvPurOrderDetl { get; set; }

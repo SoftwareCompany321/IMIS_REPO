@@ -10,12 +10,12 @@ namespace IMIS_DataEntity.EntityClass
             TblBgtMgmtExpOrg = new HashSet<TblBgtMgmtExpOrg>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string FiscalYear { get; set; }
-        public decimal? MinistryId { get; set; }
-        public decimal? OrgId { get; set; }
-        public decimal? BgtSubHeadId { get; set; }
-        public double? TotalBgtAmtOrg { get; set; }
+        public int? MinistryId { get; set; }
+        public int? OrgId { get; set; }
+        public int? BgtSubHeadId { get; set; }
+        public float? TotalBgtAmtOrg { get; set; }
         public string Remarks { get; set; }
 
         public virtual ICollection<TblBgtMgmtExpOrg> TblBgtMgmtExpOrg { get; set; }

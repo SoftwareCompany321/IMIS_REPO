@@ -14,7 +14,6 @@ namespace IMIS_DataEntity.Data
 
         }
 
-        public virtual DbSet<ImisMenu> ImisMenu { get; set; }
         public virtual DbSet<AccAccMaster> AccAccMaster { get; set; }
         public virtual DbSet<AccAsuliBibaran> AccAsuliBibaran { get; set; }
         public virtual DbSet<AccBankGrnty> AccBankGrnty { get; set; }
@@ -76,6 +75,7 @@ namespace IMIS_DataEntity.Data
         public virtual DbSet<Fiscalyears> Fiscalyears { get; set; }
         public virtual DbSet<Fywiserentdarrate> Fywiserentdarrate { get; set; }
         public virtual DbSet<FywisesanitationRate> FywisesanitationRate { get; set; }
+        public virtual DbSet<ImisMenu> ImisMenu { get; set; }
         public virtual DbSet<Incomebilldetails> Incomebilldetails { get; set; }
         public virtual DbSet<IncomebilldetailsHistory> IncomebilldetailsHistory { get; set; }
         public virtual DbSet<Incomebillmaster> Incomebillmaster { get; set; }
@@ -286,24 +286,20 @@ namespace IMIS_DataEntity.Data
         public virtual DbSet<WardMaster> WardMaster { get; set; }
         public virtual DbSet<Zone> Zone { get; set; }
 
-        //        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //        {
-        //            if (!optionsBuilder.IsConfigured)
-        //            {
-        //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        //                optionsBuilder.UseNpgsql("User ID=postgres;Password=admin;Host=localhost;Port=5432;Database=IMIS1;Pooling=true");
-        //            }
-        //        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseNpgsql("User ID=postgres;Password=admin;Host=localhost;Port=5432;Database=IMIS;Pooling=true");
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            base.OnModelCreating(modelBuilder);
-
-
+            base.OnModelCreating(modelBuilder); 
             modelBuilder.Entity<ImisMenu>().ToTable("Imis_Menu");
             modelBuilder.Entity<Usermaster>().ToTable("Usermaster");
-            ///  default table to be customise 
             modelBuilder.Entity<AccAccMaster>(entity =>
             {
                 entity.HasKey(e => e.AccId)
@@ -311,9 +307,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_ACC_MASTER");
 
+                entity.HasIndex(e => e.TypeId);
+
                 entity.Property(e => e.AccId)
                     .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AccCode)
                     .HasColumnName("ACC_CODE")
@@ -362,25 +360,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("IS_TRANSACTABLE")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.Iscapitalcurrent)
-                    .HasColumnName("ISCAPITALCURRENT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iscapitalcurrent).HasColumnName("ISCAPITALCURRENT");
 
                 entity.Property(e => e.NepName)
                     .HasColumnName("NEP_NAME")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.ParentAccId)
-                    .HasColumnName("PARENT_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ParentAccId).HasColumnName("PARENT_ACC_ID");
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
-                entity.Property(e => e.TypeId)
-                    .HasColumnName("TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TypeId).HasColumnName("TYPE_ID");
 
                 entity.HasOne(d => d.Type)
                     .WithMany(p => p.AccAccMaster)
@@ -395,9 +385,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_ASULI_BIBARAN");
 
+                entity.HasIndex(e => e.PersonTypeId);
+
                 entity.Property(e => e.AsuliId)
                     .HasColumnName("ASULI_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AmtTaken).HasColumnName("AMT_TAKEN");
 
@@ -405,31 +397,23 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("COLLECT_REASON")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.PaymentPersonId)
-                    .HasColumnName("PAYMENT_PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentPersonId).HasColumnName("PAYMENT_PERSON_ID");
 
                 entity.Property(e => e.PersonName)
                     .HasColumnName("PERSON_NAME")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.PersonTypeId)
-                    .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonTypeId).HasColumnName("PERSON_TYPE_ID");
 
                 entity.Property(e => e.PeskiAmt).HasColumnName("PESKI_AMT");
 
-                entity.Property(e => e.PeskiEmployeeId)
-                    .HasColumnName("PESKI_EMPLOYEE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PeskiEmployeeId).HasColumnName("PESKI_EMPLOYEE_ID");
 
                 entity.Property(e => e.PropertyDetails)
                     .HasColumnName("PROPERTY_DETAILS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.PropertyEmployeeId)
-                    .HasColumnName("PROPERTY_EMPLOYEE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PropertyEmployeeId).HasColumnName("PROPERTY_EMPLOYEE_ID");
 
                 entity.Property(e => e.PropertyRoka)
                     .HasColumnName("PROPERTY_ROKA")
@@ -456,17 +440,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_BANK_GRNTY");
 
+                entity.HasIndex(e => e.PersonId);
+
+                entity.HasIndex(e => e.WorkId);
+
                 entity.Property(e => e.GrntyId)
                     .HasColumnName("GRNTY_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.BankName)
                     .HasColumnName("BANK_NAME")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.EntryDatetime)
-                    .HasColumnName("ENTRY_DATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.EntryDatetime).HasColumnName("ENTRY_DATETIME");
 
                 entity.Property(e => e.ExpryVsDate)
                     .HasColumnName("EXPRY_VS_DATE")
@@ -498,9 +484,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("MAG_VS_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.PersonId)
-                    .HasColumnName("PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonId).HasColumnName("PERSON_ID");
 
                 entity.Property(e => e.PhukuwaCn)
                     .HasColumnName("PHUKUWA_CN")
@@ -514,9 +498,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PHUKUWA_VS_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
 
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.AccBankGrnty)
@@ -539,9 +521,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.BankId).HasColumnName("BANK_ID");
 
-                entity.Property(e => e.BankTransactionId)
-                    .HasColumnName("BANK_TRANSACTION_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BankTransactionId).HasColumnName("BANK_TRANSACTION_ID");
 
                 entity.Property(e => e.ChequeNo)
                     .HasColumnName("CHEQUE_NO")
@@ -555,17 +535,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.DrAmt).HasColumnName("DR_AMT");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.TransactionDate)
                     .HasColumnName("TRANSACTION_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.TransactionDateEn)
-                    .HasColumnName("TRANSACTION_DATE_EN")
-                    .HasColumnType("date");
+                entity.Property(e => e.TransactionDateEn).HasColumnName("TRANSACTION_DATE_EN");
             });
 
             modelBuilder.Entity<AccBankTrans>(entity =>
@@ -575,21 +551,23 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_BANK_TRANS");
 
+                entity.HasIndex(e => e.BankId);
+
+                entity.HasIndex(e => e.BillId);
+
+                entity.HasIndex(e => e.VchrId);
+
                 entity.Property(e => e.BankTransId)
                     .HasColumnName("BANK_TRANS_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BankId)
-                    .HasColumnName("BANK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BankId).HasColumnName("BANK_ID");
 
-                entity.Property(e => e.BillId)
-                    .HasColumnName("BILL_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BillId).HasColumnName("BILL_ID");
 
                 entity.Property(e => e.CrAmt)
                     .HasColumnName("CR_AMT")
-                    .HasDefaultValueSql("'0'::double precision");
+                    .HasDefaultValueSql("'0'::real");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -597,23 +575,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.DrAmt)
                     .HasColumnName("DR_AMT")
-                    .HasDefaultValueSql("'0'::double precision");
+                    .HasDefaultValueSql("'0'::real");
 
                 entity.Property(e => e.IsOfLastyear)
                     .HasColumnName("IS_OF_LASTYEAR")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.TransTypeId)
-                    .HasColumnName("TRANS_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TransTypeId).HasColumnName("TRANS_TYPE_ID");
 
                 entity.Property(e => e.VchrDateNep)
                     .HasColumnName("VCHR_DATE_NEP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
                 entity.HasOne(d => d.Bank)
                     .WithMany(p => p.AccBankTrans)
@@ -640,11 +614,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.BgtAllocateId)
                     .HasColumnName("BGT_ALLOCATE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.AllocatedDateNp)
                     .HasColumnName("ALLOCATED_DATE_NP")
@@ -652,17 +624,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
-                entity.Property(e => e.EntryDatetime)
-                    .HasColumnName("ENTRY_DATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.EntryDatetime).HasColumnName("ENTRY_DATETIME");
 
-                entity.Property(e => e.EntryUserId)
-                    .HasColumnName("ENTRY_USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EntryUserId).HasColumnName("ENTRY_USER_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
@@ -670,32 +636,26 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.RevisedAmount).HasColumnName("REVISED_AMOUNT");
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
-                entity.Property(e => e.UpdateDatetime)
-                    .HasColumnName("UPDATE_DATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.UpdateDatetime).HasColumnName("UPDATE_DATETIME");
 
-                entity.Property(e => e.UpdateUserId)
-                    .HasColumnName("UPDATE_USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UpdateUserId).HasColumnName("UPDATE_USER_ID");
             });
 
             modelBuilder.Entity<AccBgtRvsn>(entity =>
             {
                 entity.ToTable("ACC_BGT_RVSN");
 
+                entity.HasIndex(e => e.BgtAlctnId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.BgtAlctnId)
-                    .HasColumnName("BGT_ALCTN_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtAlctnId).HasColumnName("BGT_ALCTN_ID");
 
                 entity.Property(e => e.RvsnDateNp)
                     .HasColumnName("RVSN_DATE_NP")
@@ -705,13 +665,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("RVSN_REASON")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.UpdateDatetime)
-                    .HasColumnName("UPDATE_DATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.UpdateDatetime).HasColumnName("UPDATE_DATETIME");
 
-                entity.Property(e => e.UpdateUserId)
-                    .HasColumnName("UPDATE_USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UpdateUserId).HasColumnName("UPDATE_USER_ID");
 
                 entity.HasOne(d => d.BgtAlctn)
                     .WithMany(p => p.AccBgtRvsn)
@@ -723,23 +679,23 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("ACC_BGT_TRANSFER");
 
+                entity.HasIndex(e => e.BgtAlctnId);
+
+                entity.HasIndex(e => e.FromAccId);
+
+                entity.HasIndex(e => e.ToAccId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.BgtAlctnId)
-                    .HasColumnName("BGT_ALCTN_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtAlctnId).HasColumnName("BGT_ALCTN_ID");
 
-                entity.Property(e => e.FromAccId)
-                    .HasColumnName("FROM_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FromAccId).HasColumnName("FROM_ACC_ID");
 
-                entity.Property(e => e.ToAccId)
-                    .HasColumnName("TO_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ToAccId).HasColumnName("TO_ACC_ID");
 
                 entity.Property(e => e.TrnsfrDateNp)
                     .HasColumnName("TRNSFR_DATE_NP")
@@ -749,13 +705,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TRNSFR_REASON")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.UpdateDatetime)
-                    .HasColumnName("UPDATE_DATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.UpdateDatetime).HasColumnName("UPDATE_DATETIME");
 
-                entity.Property(e => e.UpdateUserId)
-                    .HasColumnName("UPDATE_USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UpdateUserId).HasColumnName("UPDATE_USER_ID");
 
                 entity.HasOne(d => d.BgtAlctn)
                     .WithMany(p => p.AccBgtTransfer)
@@ -775,30 +727,25 @@ namespace IMIS_DataEntity.Data
 
             modelBuilder.Entity<AccBudjetSource>(entity =>
             {
-                entity.HasKey(e => e.Id)
-                  .HasName("ACC_BUDJET_SOURCE_pkey");
-
                 entity.ToTable("ACC_BUDJET_SOURCE");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("AMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.MinAccId);
+
+                entity.HasIndex(e => e.SourceId);
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.MinAccId)
-                    .HasColumnName("MIN_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Amount).HasColumnName("AMOUNT");
+
+                entity.Property(e => e.MinAccId).HasColumnName("MIN_ACC_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.SourceId)
-                    .HasColumnName("SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SourceId).HasColumnName("SOURCE_ID");
 
                 entity.HasOne(d => d.MinAcc)
                     .WithMany(p => p.AccBudjetSource)
@@ -819,17 +766,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_CASH_TRANS");
 
+                entity.HasIndex(e => e.BillId);
+
+                entity.HasIndex(e => e.VchrId);
+
                 entity.Property(e => e.CashTransId)
                     .HasColumnName("CASH_TRANS_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BillId)
-                    .HasColumnName("BILL_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BillId).HasColumnName("BILL_ID");
 
                 entity.Property(e => e.CrAmt)
                     .HasColumnName("CR_AMT")
-                    .HasDefaultValueSql("'0'::double precision");
+                    .HasDefaultValueSql("'0'::real");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -837,11 +786,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.DrAmt)
                     .HasColumnName("DR_AMT")
-                    .HasDefaultValueSql("'0'::double precision");
+                    .HasDefaultValueSql("'0'::real");
 
-                entity.Property(e => e.IncomeExpTypeId)
-                    .HasColumnName("INCOME_EXP_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IncomeExpTypeId).HasColumnName("INCOME_EXP_TYPE_ID");
 
                 entity.Property(e => e.IsOfLastyear)
                     .HasColumnName("IS_OF_LASTYEAR")
@@ -851,9 +798,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VCHR_DATE_NEP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
                 entity.HasOne(d => d.Bill)
                     .WithMany(p => p.AccCashTrans)
@@ -888,7 +833,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.EngName).HasColumnName("ENG_NAME");
 
@@ -903,13 +848,13 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("ACC_CURRENCTY_RATE");
 
+                entity.HasIndex(e => e.CurrencyId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.CurrencyId)
-                    .HasColumnName("CURRENCY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CurrencyId).HasColumnName("CURRENCY_ID");
 
                 entity.Property(e => e.NpDate)
                     .HasColumnName("NP_DATE")
@@ -930,13 +875,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_DHRTI_BILL_DTL");
 
+                entity.HasIndex(e => e.AccId);
+
+                entity.HasIndex(e => e.VchrId);
+
+                entity.HasIndex(e => e.WorkId);
+
                 entity.Property(e => e.DhrtiDtlId)
                     .HasColumnName("DHRTI_DTL_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
@@ -948,25 +897,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BILL_NO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
-                entity.Property(e => e.CounterId)
-                    .HasColumnName("COUNTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CounterId).HasColumnName("COUNTER_ID");
 
-                entity.Property(e => e.DhrtiMasterId)
-                    .HasColumnName("DHRTI_MASTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DhrtiMasterId).HasColumnName("DHRTI_MASTER_ID");
 
-                entity.Property(e => e.OrderInBill)
-                    .HasColumnName("ORDER_IN_BILL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrderInBill).HasColumnName("ORDER_IN_BILL");
 
-                entity.Property(e => e.PersonId)
-                    .HasColumnName("PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonId).HasColumnName("PERSON_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -976,13 +915,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
 
                 entity.HasOne(d => d.Acc)
                     .WithMany(p => p.AccDhrtiBillDtl)
@@ -1007,9 +942,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_DHRTI_BILL_MASTER");
 
+                entity.HasIndex(e => e.Billtypeid);
+
+                entity.HasIndex(e => e.SubModuleId);
+
+                entity.HasIndex(e => e.VchrId);
+
+                entity.HasIndex(e => e.WorkId);
+
                 entity.Property(e => e.DhrtiMasterId)
                     .HasColumnName("DHRTI_MASTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
@@ -1025,9 +968,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BILL_NO_MANUAL")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Billtypeid)
-                    .HasColumnName("BILLTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billtypeid).HasColumnName("BILLTYPEID");
 
                 entity.Property(e => e.BllDateNp)
                     .HasColumnName("BLL_DATE_NP")
@@ -1043,17 +984,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.CashAmt).HasColumnName("CASH_AMT");
 
-                entity.Property(e => e.CounterId)
-                    .HasColumnName("COUNTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CounterId).HasColumnName("COUNTER_ID");
 
-                entity.Property(e => e.DateEditTime)
-                    .HasColumnName("DATE_EDIT_TIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.DateEditTime).HasColumnName("DATE_EDIT_TIME");
 
-                entity.Property(e => e.DateEntryTime)
-                    .HasColumnName("DATE_ENTRY_TIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.DateEntryTime).HasColumnName("DATE_ENTRY_TIME");
 
                 entity.Property(e => e.DateEntryVsDate)
                     .HasColumnName("DATE_ENTRY_VS_DATE")
@@ -1071,35 +1006,23 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.PersonId)
-                    .HasColumnName("PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonId).HasColumnName("PERSON_ID");
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
                 entity.Property(e => e.VchrDateNp)
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
                 entity.Property(e => e.WardNo).HasColumnName("WARD_NO");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
 
                 entity.HasOne(d => d.Billtype)
                     .WithMany(p => p.AccDhrtiBillMaster)
@@ -1129,13 +1052,21 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_EXPENSES_DETAILS");
 
+                entity.HasIndex(e => e.AccId);
+
+                entity.HasIndex(e => e.PaymentSlipId);
+
+                entity.HasIndex(e => e.PersonTypeId);
+
+                entity.HasIndex(e => e.TransTypeId);
+
+                entity.HasIndex(e => e.WorkId);
+
                 entity.Property(e => e.ExpenseId)
                     .HasColumnName("EXPENSE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Advexptype)
                     .HasColumnName("ADVEXPTYPE")
@@ -1145,41 +1076,25 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.DrAmt).HasColumnName("DR_AMT");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.IsOfLastYear)
                     .HasColumnName("IS_OF_LAST_YEAR")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.OrderInPaymentSlip)
-                    .HasColumnName("ORDER_IN_PAYMENT_SLIP")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrderInPaymentSlip).HasColumnName("ORDER_IN_PAYMENT_SLIP");
 
-                entity.Property(e => e.OrgId)
-                    .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgId).HasColumnName("ORG_ID");
 
-                entity.Property(e => e.PadadhikariId)
-                    .HasColumnName("PADADHIKARI_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PadadhikariId).HasColumnName("PADADHIKARI_ID");
 
-                entity.Property(e => e.PaymentSlipId)
-                    .HasColumnName("PAYMENT_SLIP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentSlipId).HasColumnName("PAYMENT_SLIP_ID");
 
-                entity.Property(e => e.PersonTypeId)
-                    .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonTypeId).HasColumnName("PERSON_TYPE_ID");
 
-                entity.Property(e => e.TransTypeId)
-                    .HasColumnName("TRANS_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TransTypeId).HasColumnName("TRANS_TYPE_ID");
 
-                entity.Property(e => e.UcId)
-                    .HasColumnName("UC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UcId).HasColumnName("UC_ID");
 
                 entity.Property(e => e.VatAmt).HasColumnName("VAT_AMT");
 
@@ -1187,17 +1102,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
-                entity.Property(e => e.WardId)
-                    .HasColumnName("WARD_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WardId).HasColumnName("WARD_ID");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
 
                 entity.HasOne(d => d.Acc)
                     .WithMany(p => p.AccExpensesDetails)
@@ -1234,7 +1143,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.ProviderId)
                     .HasColumnName("PROVIDER_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Chairman)
                     .HasColumnName("CHAIRMAN")
@@ -1272,19 +1181,15 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.RateId)
                     .HasColumnName("RATE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Rate)
-                    .HasColumnName("RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rate).HasColumnName("RATE");
             });
 
             modelBuilder.Entity<AccLastYrPeski>(entity =>
@@ -1296,23 +1201,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AdvanceType)
                     .HasColumnName("ADVANCE_TYPE")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.PersonId)
-                    .HasColumnName("PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonId).HasColumnName("PERSON_ID");
 
-                entity.Property(e => e.PersonTypeId)
-                    .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonTypeId).HasColumnName("PERSON_TYPE_ID");
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
                 entity.Property(e => e.TotalPesRem).HasColumnName("TOTAL_PES_REM");
             });
@@ -1323,27 +1222,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.AddDate)
                     .HasColumnName("ADD_DATE")
                     .HasMaxLength(15);
 
-                entity.Property(e => e.AddUserId)
-                    .HasColumnName("ADD_USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AddUserId).HasColumnName("ADD_USER_ID");
 
-                entity.Property(e => e.BudgetAccId)
-                    .HasColumnName("BUDGET_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetAccId).HasColumnName("BUDGET_ACC_ID");
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
                 entity.Property(e => e.DrAmount).HasColumnName("DR_AMOUNT");
 
@@ -1351,21 +1242,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(15);
 
-                entity.Property(e => e.LastYrPeskiId)
-                    .HasColumnName("LAST_YR_PESKI_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LastYrPeskiId).HasColumnName("LAST_YR_PESKI_ID");
 
-                entity.Property(e => e.PaymentId)
-                    .HasColumnName("PAYMENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentId).HasColumnName("PAYMENT_ID");
 
-                entity.Property(e => e.PaymentTypeId)
-                    .HasColumnName("PAYMENT_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentTypeId).HasColumnName("PAYMENT_TYPE_ID");
 
-                entity.Property(e => e.PersonId)
-                    .HasColumnName("PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonId).HasColumnName("PERSON_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -1375,9 +1258,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("STATUS")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.VhcrId)
-                    .HasColumnName("VHCR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VhcrId).HasColumnName("VHCR_ID");
 
                 entity.Property(e => e.VoucherDate)
                     .HasColumnName("VOUCHER_DATE")
@@ -1387,9 +1268,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VOUCHER_NO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
             });
 
             modelBuilder.Entity<AccOrgMaster>(entity =>
@@ -1401,7 +1280,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.OrgId)
                     .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
@@ -1411,9 +1290,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CODE")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.District)
-                    .HasColumnName("DISTRICT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.District).HasColumnName("DISTRICT");
 
                 entity.Property(e => e.Emails)
                     .HasColumnName("EMAILS")
@@ -1423,9 +1300,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("HEAD")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Ministry)
-                    .HasColumnName("MINISTRY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Ministry).HasColumnName("MINISTRY");
 
                 entity.Property(e => e.MobileNo)
                     .HasColumnName("MOBILE_NO")
@@ -1439,13 +1314,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.OrcAccTypeId)
-                    .HasColumnName("ORC_ACC_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrcAccTypeId).HasColumnName("ORC_ACC_TYPE_ID");
 
-                entity.Property(e => e.OrgMasterId)
-                    .HasColumnName("ORG_MASTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgMasterId).HasColumnName("ORG_MASTER_ID");
 
                 entity.Property(e => e.PanNo)
                     .HasColumnName("PAN_NO")
@@ -1471,13 +1342,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VAT_NO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Vdc)
-                    .HasColumnName("VDC")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Vdc).HasColumnName("VDC");
 
-                entity.Property(e => e.Zone)
-                    .HasColumnName("ZONE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Zone).HasColumnName("ZONE");
             });
 
             modelBuilder.Entity<AccPadadhikariMstr>(entity =>
@@ -1487,9 +1354,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_PADADHIKARI_MSTR");
 
+                entity.HasIndex(e => e.PostId);
+
                 entity.Property(e => e.PadadikariId)
                     .HasColumnName("PADADIKARI_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
@@ -1503,21 +1372,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CITZN_ISSUED_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.CitznIssuedDistrId)
-                    .HasColumnName("CITZN_ISSUED_DISTR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CitznIssuedDistrId).HasColumnName("CITZN_ISSUED_DISTR_ID");
 
                 entity.Property(e => e.CurrentPostAppointDate)
                     .HasColumnName("CURRENT_POST_APPOINT_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.DataEditAdDate)
-                    .HasColumnName("DATA_EDIT_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEditAdDate).HasColumnName("DATA_EDIT_AD_DATE");
 
-                entity.Property(e => e.DataEntryAdDate)
-                    .HasColumnName("DATA_ENTRY_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEntryAdDate).HasColumnName("DATA_ENTRY_AD_DATE");
 
                 entity.Property(e => e.DataEntryVsDate)
                     .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -1527,13 +1390,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DATE_OF_BIRTH")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.DateOfBirthAd)
-                    .HasColumnName("DATE_OF_BIRTH_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.DateOfBirthAd).HasColumnName("DATE_OF_BIRTH_AD");
 
-                entity.Property(e => e.DistrictId)
-                    .HasColumnName("DISTRICT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DistrictId).HasColumnName("DISTRICT_ID");
 
                 entity.Property(e => e.ElectedDateNp)
                     .HasColumnName("ELECTED_DATE_NP")
@@ -1547,17 +1406,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FIRST_APPOINT_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.FirstAppointPostId)
-                    .HasColumnName("FIRST_APPOINT_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FirstAppointPostId).HasColumnName("FIRST_APPOINT_POST_ID");
 
                 entity.Property(e => e.Gender)
                     .HasColumnName("GENDER")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.GfOcupation)
-                    .HasColumnName("GF_OCUPATION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.GfOcupation).HasColumnName("GF_OCUPATION");
 
                 entity.Property(e => e.GrandfatherName)
                     .HasColumnName("GRANDFATHER_NAME")
@@ -1587,9 +1442,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("MOBILE_NO")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.MotherLangId)
-                    .HasColumnName("MOTHER_LANG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MotherLangId).HasColumnName("MOTHER_LANG_ID");
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -1599,17 +1452,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.NoOfDaughter)
-                    .HasColumnName("NO_OF_DAUGHTER")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NoOfDaughter).HasColumnName("NO_OF_DAUGHTER");
 
-                entity.Property(e => e.NoOfSon)
-                    .HasColumnName("NO_OF_SON")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NoOfSon).HasColumnName("NO_OF_SON");
 
-                entity.Property(e => e.POcupation)
-                    .HasColumnName("P_OCUPATION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.POcupation).HasColumnName("P_OCUPATION");
 
                 entity.Property(e => e.ParentName)
                     .HasColumnName("PARENT_NAME")
@@ -1619,9 +1466,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PHONES")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.PostId)
-                    .HasColumnName("POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PostId).HasColumnName("POST_ID");
 
                 entity.Property(e => e.PreExperience)
                     .HasColumnName("PRE_EXPERIENCE")
@@ -1631,17 +1476,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("QUALIFICATION")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.ReligionId)
-                    .HasColumnName("RELIGION_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReligionId).HasColumnName("RELIGION_ID");
 
                 entity.Property(e => e.RetireDate)
                     .HasColumnName("RETIRE_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.SOcupation)
-                    .HasColumnName("S_OCUPATION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SOcupation).HasColumnName("S_OCUPATION");
 
                 entity.Property(e => e.SpecialNotes)
                     .HasColumnName("SPECIAL_NOTES")
@@ -1659,29 +1500,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TITLE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.TrackId)
-                    .HasColumnName("TRACK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TrackId).HasColumnName("TRACK_ID");
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
-                entity.Property(e => e.UserIde)
-                    .HasColumnName("USER_IDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIde).HasColumnName("USER_IDE");
 
-                entity.Property(e => e.VdcId)
-                    .HasColumnName("VDC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VdcId).HasColumnName("VDC_ID");
 
-                entity.Property(e => e.WardNo)
-                    .HasColumnName("WARD_NO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WardNo).HasColumnName("WARD_NO");
 
-                entity.Property(e => e.ZoneId)
-                    .HasColumnName("ZONE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ZoneId).HasColumnName("ZONE_ID");
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.AccPadadhikariMstr)
@@ -1698,11 +1527,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.PostId)
                     .HasColumnName("POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.DurationInYrs)
-                    .HasColumnName("DURATION_IN_YRS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DurationInYrs).HasColumnName("DURATION_IN_YRS");
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -1712,40 +1539,34 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.PostLevel)
-                    .HasColumnName("POST_LEVEL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PostLevel).HasColumnName("POST_LEVEL");
             });
 
             modelBuilder.Entity<AccPaymentClearance>(entity =>
             {
                 entity.ToTable("ACC_PAYMENT_CLEARANCE");
 
+                entity.HasIndex(e => e.AccId);
+
+                entity.HasIndex(e => e.BudgetAccId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.BudgetAccId)
-                    .HasColumnName("BUDGET_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetAccId).HasColumnName("BUDGET_ACC_ID");
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
                 entity.Property(e => e.IsOfLastYear)
                     .HasColumnName("IS_OF_LAST_YEAR")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.PaymentId)
-                    .HasColumnName("PAYMENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentId).HasColumnName("PAYMENT_ID");
 
                 entity.HasOne(d => d.Acc)
                     .WithMany(p => p.AccPaymentClearanceAcc)
@@ -1764,62 +1585,50 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_PAYMENT_CREDIT");
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.BudgetAccId)
-                    .HasColumnName("BUDGET_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetAccId).HasColumnName("BUDGET_ACC_ID");
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.IsOfLastYear)
                     .HasColumnName("IS_OF_LAST_YEAR")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.PaymentId)
-                    .HasColumnName("PAYMENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentId).HasColumnName("PAYMENT_ID");
             });
 
             modelBuilder.Entity<AccPaymentDeduction>(entity =>
             {
                 entity.ToTable("ACC_PAYMENT_DEDUCTION");
 
+                entity.HasIndex(e => e.AccId);
+
+                entity.HasIndex(e => e.BudgetAccId);
+
+                entity.HasIndex(e => e.PaymentId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.BudgetAccId)
-                    .HasColumnName("BUDGET_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetAccId).HasColumnName("BUDGET_ACC_ID");
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
                 entity.Property(e => e.Deductiontype)
                     .HasColumnName("DEDUCTIONTYPE")
                     .HasMaxLength(5);
 
-                entity.Property(e => e.PaymentId)
-                    .HasColumnName("PAYMENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentId).HasColumnName("PAYMENT_ID");
 
                 entity.Property(e => e.Status)
                     .HasColumnName("STATUS")
@@ -1848,13 +1657,25 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_PAYMENT_DETAILS");
 
+                entity.HasIndex(e => e.AccId);
+
+                entity.HasIndex(e => e.BudgetAccId);
+
+                entity.HasIndex(e => e.PaymentId);
+
+                entity.HasIndex(e => e.PersonTypeId);
+
+                entity.HasIndex(e => e.TransTypeId);
+
+                entity.HasIndex(e => e.VchrId);
+
+                entity.HasIndex(e => e.WorkId);
+
                 entity.Property(e => e.PaymentDetailId)
                     .HasColumnName("PAYMENT_DETAIL_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.AdvanceType)
                     .HasColumnName("ADVANCE_TYPE")
@@ -1864,25 +1685,19 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ADVEXPTYPE")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.BudgetAccId)
-                    .HasColumnName("BUDGET_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetAccId).HasColumnName("BUDGET_ACC_ID");
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
                 entity.Property(e => e.CrAmt)
                     .HasColumnName("CR_AMT")
-                    .HasDefaultValueSql("'0'::double precision");
+                    .HasDefaultValueSql("'0'::real");
 
                 entity.Property(e => e.DrAmt)
                     .HasColumnName("DR_AMT")
-                    .HasDefaultValueSql("'0'::double precision");
+                    .HasDefaultValueSql("'0'::real");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.ExpireDateNp)
                     .HasColumnName("EXPIRE_DATE_NP")
@@ -1896,45 +1711,25 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("IS_OF_LAST_YEAR")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.OrderInPaymentSlip)
-                    .HasColumnName("ORDER_IN_PAYMENT_SLIP")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrderInPaymentSlip).HasColumnName("ORDER_IN_PAYMENT_SLIP");
 
-                entity.Property(e => e.OrgId)
-                    .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgId).HasColumnName("ORG_ID");
 
-                entity.Property(e => e.PadadhikariId)
-                    .HasColumnName("PADADHIKARI_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PadadhikariId).HasColumnName("PADADHIKARI_ID");
 
-                entity.Property(e => e.PaymentId)
-                    .HasColumnName("PAYMENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentId).HasColumnName("PAYMENT_ID");
 
-                entity.Property(e => e.PaymentSlipId)
-                    .HasColumnName("PAYMENT_SLIP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentSlipId).HasColumnName("PAYMENT_SLIP_ID");
 
-                entity.Property(e => e.PersonTypeId)
-                    .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonTypeId).HasColumnName("PERSON_TYPE_ID");
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
-                entity.Property(e => e.SupplierId)
-                    .HasColumnName("SUPPLIER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SupplierId).HasColumnName("SUPPLIER_ID");
 
-                entity.Property(e => e.TransTypeId)
-                    .HasColumnName("TRANS_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TransTypeId).HasColumnName("TRANS_TYPE_ID");
 
-                entity.Property(e => e.UcId)
-                    .HasColumnName("UC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UcId).HasColumnName("UC_ID");
 
                 entity.Property(e => e.VatAmt).HasColumnName("VAT_AMT");
 
@@ -1942,17 +1737,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
-                entity.Property(e => e.WardId)
-                    .HasColumnName("WARD_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WardId).HasColumnName("WARD_ID");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
 
                 entity.HasOne(d => d.Acc)
                     .WithMany(p => p.AccPaymentDetailsAcc)
@@ -1997,17 +1786,25 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_PAYMENT_MASTER");
 
+                entity.HasIndex(e => e.PersonTypeId);
+
+                entity.HasIndex(e => e.SubModuleId);
+
+                entity.HasIndex(e => e.TransTypeId);
+
+                entity.HasIndex(e => e.VchrId);
+
+                entity.HasIndex(e => e.WorkId);
+
                 entity.Property(e => e.PaymentId)
                     .HasColumnName("PAYMENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AccDeductDepVchrDate)
                     .HasColumnName("ACC_DEDUCT_DEP_VCHR_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.AccDeductDepVchrId)
-                    .HasColumnName("ACC_DEDUCT_DEP_VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccDeductDepVchrId).HasColumnName("ACC_DEDUCT_DEP_VCHR_ID");
 
                 entity.Property(e => e.AdvClearedFromBank).HasColumnName("ADV_CLEARED_FROM_BANK");
 
@@ -2037,9 +1834,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DEDUCT_DEP_VCHR_DATE_NEP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.DeductDepVchrId)
-                    .HasColumnName("DEDUCT_DEP_VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DeductDepVchrId).HasColumnName("DEDUCT_DEP_VCHR_ID");
 
                 entity.Property(e => e.ExpireDateNp)
                     .HasColumnName("EXPIRE_DATE_NP")
@@ -2069,27 +1864,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PAYMENT_DESCRIPTION")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.PersonId)
-                    .HasColumnName("PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonId).HasColumnName("PERSON_ID");
 
-                entity.Property(e => e.PersonTypeId)
-                    .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonTypeId).HasColumnName("PERSON_TYPE_ID");
 
                 entity.Property(e => e.RetentionMoneyEduction).HasColumnName("RETENTION_MONEY_EDUCTION");
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
-                entity.Property(e => e.SubjectAreaId)
-                    .HasColumnName("SUBJECT_AREA_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubjectAreaId).HasColumnName("SUBJECT_AREA_ID");
 
-                entity.Property(e => e.TransTypeId)
-                    .HasColumnName("TRANS_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TransTypeId).HasColumnName("TRANS_TYPE_ID");
 
                 entity.Property(e => e.VatAmt).HasColumnName("VAT_AMT");
 
@@ -2099,13 +1884,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
 
                 entity.HasOne(d => d.PersonType)
                     .WithMany(p => p.AccPaymentMaster)
@@ -2151,13 +1932,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Reductionalcharges).HasColumnName("REDUCTIONALCHARGES");
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
 
-                entity.Property(e => e.Taxpayerid)
-                    .HasColumnName("TAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpayerid).HasColumnName("TAXPAYERID");
 
                 entity.Property(e => e.Taxtype)
                     .HasColumnName("TAXTYPE")
@@ -2169,9 +1946,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VCHR_DATE")
                     .HasMaxLength(12);
 
-                entity.Property(e => e.Vchrid)
-                    .HasColumnName("VCHRID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Vchrid).HasColumnName("VCHRID");
             });
 
             modelBuilder.Entity<AccSubModuleType>(entity =>
@@ -2183,7 +1958,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.SubModuleId)
                     .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AccExpencesCode)
                     .HasColumnName("ACC_EXPENCES_CODE")
@@ -2197,13 +1972,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CODE")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Iscapital)
-                    .HasColumnName("ISCAPITAL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iscapital).HasColumnName("ISCAPITAL");
 
-                entity.Property(e => e.Isexpences)
-                    .HasColumnName("ISEXPENCES")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Isexpences).HasColumnName("ISEXPENCES");
 
                 entity.Property(e => e.Module)
                     .IsRequired()
@@ -2230,7 +2001,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.TypeId)
                     .HasColumnName("TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.EngName)
                     .HasColumnName("ENG_NAME")
@@ -2261,15 +2032,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.UnauthorisedId)
                     .HasColumnName("UNAUTHORISED_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.FilledbyEmpid)
-                    .HasColumnName("FILLEDBY_EMPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FilledbyEmpid).HasColumnName("FILLEDBY_EMPID");
 
-                entity.Property(e => e.InspectAmt)
-                    .HasColumnName("INSPECT_AMT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.InspectAmt).HasColumnName("INSPECT_AMT");
 
                 entity.Property(e => e.InspectDate)
                     .HasColumnName("INSPECT_DATE")
@@ -2279,25 +2046,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("INSPECT_DETAILS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
-                entity.Property(e => e.UnauthorisedAmt)
-                    .HasColumnName("UNAUTHORISED_AMT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnauthorisedAmt).HasColumnName("UNAUTHORISED_AMT");
 
-                entity.Property(e => e.UnauthorisedDafaId)
-                    .HasColumnName("UNAUTHORISED_DAFA_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnauthorisedDafaId).HasColumnName("UNAUTHORISED_DAFA_ID");
 
-                entity.Property(e => e.VerifiedbyEmpid)
-                    .HasColumnName("VERIFIEDBY_EMPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VerifiedbyEmpid).HasColumnName("VERIFIEDBY_EMPID");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
             });
 
             modelBuilder.Entity<AccUserComiteMstr>(entity =>
@@ -2306,7 +2063,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
@@ -2340,9 +2097,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PHONES")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Ward)
-                    .HasColumnName("WARD")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Ward).HasColumnName("WARD");
             });
 
             modelBuilder.Entity<AccVchrDetails>(entity =>
@@ -2352,42 +2107,42 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_VCHR_DETAILS");
 
+                entity.HasIndex(e => e.SubModuleId);
+
+                entity.HasIndex(e => e.TransTypeId);
+
+                entity.HasIndex(e => e.VchrId);
+
+                entity.HasIndex(e => e.VchrTypeId);
+
+                entity.HasIndex(e => e.WorkId);
+
                 entity.Property(e => e.VchrDetailId)
                     .HasColumnName("VCHR_DETAIL_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.AccType)
                     .IsRequired()
                     .HasColumnName("ACC_TYPE")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.Bankid)
-                    .HasColumnName("BANKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Bankid).HasColumnName("BANKID");
 
-                entity.Property(e => e.BillId)
-                    .HasColumnName("BILL_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BillId).HasColumnName("BILL_ID");
 
-                entity.Property(e => e.BudgetAccId)
-                    .HasColumnName("BUDGET_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetAccId).HasColumnName("BUDGET_ACC_ID");
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
                 entity.Property(e => e.CrAmt)
                     .HasColumnName("CR_AMT")
-                    .HasDefaultValueSql("'0'::double precision");
+                    .HasDefaultValueSql("'0'::real");
 
                 entity.Property(e => e.DrAmt)
                     .HasColumnName("DR_AMT")
-                    .HasDefaultValueSql("'0'::double precision");
+                    .HasDefaultValueSql("'0'::real");
 
                 entity.Property(e => e.ExpireDateNp)
                     .HasColumnName("EXPIRE_DATE_NP")
@@ -2412,41 +2167,27 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("MODULE")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.OrgId)
-                    .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgId).HasColumnName("ORG_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
-                entity.Property(e => e.TransTypeId)
-                    .HasColumnName("TRANS_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TransTypeId).HasColumnName("TRANS_TYPE_ID");
 
-                entity.Property(e => e.VchrDateEng)
-                    .HasColumnName("VCHR_DATE_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.VchrDateEng).HasColumnName("VCHR_DATE_ENG");
 
                 entity.Property(e => e.VchrDateNep)
                     .HasColumnName("VCHR_DATE_NEP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
-                entity.Property(e => e.VchrTypeId)
-                    .HasColumnName("VCHR_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrTypeId).HasColumnName("VCHR_TYPE_ID");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
 
                 entity.HasOne(d => d.SubModule)
                     .WithMany(p => p.AccVchrDetails)
@@ -2482,19 +2223,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_VCHR_MASTER");
 
+                entity.HasIndex(e => e.SubModuleId);
+
+                entity.HasIndex(e => e.VchrTypeId);
+
                 entity.Property(e => e.VchrId)
                     .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AcceptBy)
-                    .HasColumnName("ACCEPT_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AcceptBy).HasColumnName("ACCEPT_BY");
 
                 entity.Property(e => e.AsuliAmt).HasColumnName("ASULI_AMT");
 
-                entity.Property(e => e.CheckBy)
-                    .HasColumnName("CHECK_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CheckBy).HasColumnName("CHECK_BY");
 
                 entity.Property(e => e.ChequeTypeId).HasColumnName("CHEQUE_TYPE_ID");
 
@@ -2547,25 +2288,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.NiyamitAmt).HasColumnName("NIYAMIT_AMT");
 
-                entity.Property(e => e.PrepBy)
-                    .HasColumnName("PREP_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PrepBy).HasColumnName("PREP_BY");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
-                entity.Property(e => e.UpdateDate)
-                    .HasColumnName("UPDATE_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.UpdateDate).HasColumnName("UPDATE_DATE");
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
                 entity.Property(e => e.ValidAmt).HasColumnName("VALID_AMT");
 
@@ -2573,13 +2306,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VCHR_DATE_NEP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrNo)
-                    .HasColumnName("VCHR_NO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrNo).HasColumnName("VCHR_NO");
 
-                entity.Property(e => e.VchrTypeId)
-                    .HasColumnName("VCHR_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrTypeId).HasColumnName("VCHR_TYPE_ID");
 
                 entity.Property(e => e.Wardno)
                     .HasColumnName("WARDNO")
@@ -2605,7 +2334,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.VchrTypeId)
                     .HasColumnName("VCHR_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.EngName)
                     .HasColumnName("ENG_NAME")
@@ -2636,29 +2365,25 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_WORK_FUNDS_DETAIL");
 
+                entity.HasIndex(e => e.ProviderId);
+
+                entity.HasIndex(e => e.WorkId);
+
                 entity.Property(e => e.FundDetailId)
                     .HasColumnName("FUND_DETAIL_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.FundedAmt).HasColumnName("FUNDED_AMT");
 
                 entity.Property(e => e.FundedPercent).HasColumnName("FUNDED_PERCENT");
 
-                entity.Property(e => e.Isjanasaramdha)
-                    .HasColumnName("ISJANASARAMDHA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Isjanasaramdha).HasColumnName("ISJANASARAMDHA");
 
-                entity.Property(e => e.Isownoffice)
-                    .HasColumnName("ISOWNOFFICE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Isownoffice).HasColumnName("ISOWNOFFICE");
 
-                entity.Property(e => e.ProviderId)
-                    .HasColumnName("PROVIDER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ProviderId).HasColumnName("PROVIDER_ID");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
 
                 entity.HasOne(d => d.Provider)
                     .WithMany(p => p.AccWorkFundsDetail)
@@ -2680,7 +2405,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.WorkId)
                     .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AgreementAmt).HasColumnName("AGREEMENT_AMT");
 
@@ -2702,9 +2427,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.BankGuaranteeAmt).HasColumnName("BANK_GUARANTEE_AMT");
 
-                entity.Property(e => e.Bankid)
-                    .HasColumnName("BANKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Bankid).HasColumnName("BANKID");
 
                 entity.Property(e => e.CorrectedAmt).HasColumnName("CORRECTED_AMT");
 
@@ -2722,17 +2445,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DEPOSIT_RELEASED_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.DepositsAccId)
-                    .HasColumnName("DEPOSITS_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DepositsAccId).HasColumnName("DEPOSITS_ACC_ID");
 
-                entity.Property(e => e.DepositsForfeitAccId)
-                    .HasColumnName("DEPOSITS_FORFEIT_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DepositsForfeitAccId).HasColumnName("DEPOSITS_FORFEIT_ACC_ID");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.EstimatedAmt).HasColumnName("ESTIMATED_AMT");
 
@@ -2758,21 +2475,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.PartyId)
-                    .HasColumnName("PARTY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PartyId).HasColumnName("PARTY_ID");
 
-                entity.Property(e => e.PartyPersontypeid)
-                    .HasColumnName("PARTY_PERSONTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PartyPersontypeid).HasColumnName("PARTY_PERSONTYPEID");
 
-                entity.Property(e => e.PersonId)
-                    .HasColumnName("PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonId).HasColumnName("PERSON_ID");
 
-                entity.Property(e => e.PersonPersontypeid)
-                    .HasColumnName("PERSON_PERSONTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonPersontypeid).HasColumnName("PERSON_PERSONTYPEID");
 
                 entity.Property(e => e.TotalActualCost).HasColumnName("TOTAL_ACTUAL_COST");
 
@@ -2782,17 +2491,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.VariationAmt).HasColumnName("VARIATION_AMT");
 
-                entity.Property(e => e.WardNo)
-                    .HasColumnName("WARD_NO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WardNo).HasColumnName("WARD_NO");
 
                 entity.Property(e => e.WorkCompleteDate)
                     .HasColumnName("WORK_COMPLETE_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.YojanaNaturId)
-                    .HasColumnName("YOJANA_NATUR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.YojanaNaturId).HasColumnName("YOJANA_NATUR_ID");
             });
 
             modelBuilder.Entity<AccWorkPaymntTrans>(entity =>
@@ -2802,15 +2507,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("ACC_WORK_PAYMNT_TRANS");
 
+                entity.HasIndex(e => e.PersonTypeId);
+
+                entity.HasIndex(e => e.VchrId);
+
+                entity.HasIndex(e => e.WorkId);
+
                 entity.Property(e => e.TransId)
                     .HasColumnName("TRANS_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.BillAmt).HasColumnName("BILL_AMT");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
@@ -2820,25 +2529,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("IS_OF_LAST_YEAR")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.OrgId)
-                    .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgId).HasColumnName("ORG_ID");
 
-                entity.Property(e => e.PadadhikariId)
-                    .HasColumnName("PADADHIKARI_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PadadhikariId).HasColumnName("PADADHIKARI_ID");
 
-                entity.Property(e => e.PaymentSlipId)
-                    .HasColumnName("PAYMENT_SLIP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentSlipId).HasColumnName("PAYMENT_SLIP_ID");
 
-                entity.Property(e => e.PersonTypeId)
-                    .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonTypeId).HasColumnName("PERSON_TYPE_ID");
 
-                entity.Property(e => e.UcId)
-                    .HasColumnName("UC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UcId).HasColumnName("UC_ID");
 
                 entity.Property(e => e.VatAmt).HasColumnName("VAT_AMT");
 
@@ -2846,13 +2545,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
 
                 entity.HasOne(d => d.PersonType)
                     .WithMany(p => p.AccWorkPaymntTrans)
@@ -2879,15 +2574,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Accode1)
                     .HasColumnName("ACCODE")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Engname)
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Grcode)
-                    .HasColumnName("GRCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Grcode).HasColumnName("GRCODE");
 
                 entity.Property(e => e.Isassigned)
                     .HasColumnName("ISASSIGNED")
@@ -2905,9 +2598,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.Sbcode)
-                    .HasColumnName("SBCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sbcode).HasColumnName("SBCODE");
 
                 entity.Property(e => e.Trantype)
                     .HasColumnName("TRANTYPE")
@@ -2941,17 +2632,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("BANK_BRANCH");
 
+                entity.HasIndex(e => e.Bankid);
+
                 entity.Property(e => e.BranchId)
                     .HasColumnName("BRANCH_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Bankid)
-                    .HasColumnName("BANKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Bankid).HasColumnName("BANKID");
 
                 entity.Property(e => e.BranchCode)
                     .HasColumnName("BRANCH_CODE")
@@ -2992,7 +2683,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Bankid)
                     .HasColumnName("BANKID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Accountnumber)
                     .HasColumnName("ACCOUNTNUMBER")
@@ -3028,9 +2719,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.FinancelInstituteId)
-                    .HasColumnName("FINANCEL_INSTITUTE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FinancelInstituteId).HasColumnName("FINANCEL_INSTITUTE_ID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
@@ -3040,9 +2729,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PHONES")
                     .HasMaxLength(40);
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
                 entity.Property(e => e.Trancode)
                     .HasColumnName("TRANCODE")
@@ -3052,43 +2739,39 @@ namespace IMIS_DataEntity.Data
             modelBuilder.Entity<Banktransactions>(entity =>
             {
                 entity.HasKey(e => e.Sn)
-                   .HasName("BANKTRANSACTIONS_pkey");
+                    .HasName("BANKTRANSACTIONS_pkey");
 
                 entity.ToTable("BANKTRANSACTIONS");
 
-                entity.Property(e => e.Bankid)
-                    .HasColumnName("BANKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.DhrtiMasterId);
 
-                entity.Property(e => e.Billid)
-                    .HasColumnName("BILLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.SubmoduleTypeId);
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.VchrId);
 
-                entity.Property(e => e.ChequeTypeId)
-                    .HasColumnName("CHEQUE_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn)
+                    .HasColumnName("SN")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Bankid).HasColumnName("BANKID");
+
+                entity.Property(e => e.Billid).HasColumnName("BILLID");
+
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
+
+                entity.Property(e => e.ChequeTypeId).HasColumnName("CHEQUE_TYPE_ID");
 
                 entity.Property(e => e.Cramount).HasColumnName("CRAMOUNT");
 
                 entity.Property(e => e.Description).HasColumnName("DESCRIPTION");
 
-                entity.Property(e => e.DhrtiMasterId)
-                    .HasColumnName("DHRTI_MASTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DhrtiMasterId).HasColumnName("DHRTI_MASTER_ID");
 
                 entity.Property(e => e.Dramount).HasColumnName("DRAMOUNT");
 
-                entity.Property(e => e.ExpSlipId)
-                    .HasColumnName("EXP_SLIP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ExpSlipId).HasColumnName("EXP_SLIP_ID");
 
-                entity.Property(e => e.Incomeexptypeid)
-                    .HasColumnName("INCOMEEXPTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Incomeexptypeid).HasColumnName("INCOMEEXPTYPEID");
 
                 entity.Property(e => e.Isoflastyear)
                     .HasColumnName("ISOFLASTYEAR")
@@ -3098,9 +2781,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("MODULE")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.Orderinpaymentslip)
-                    .HasColumnName("ORDERINPAYMENTSLIP")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Orderinpaymentslip).HasColumnName("ORDERINPAYMENTSLIP");
 
                 entity.Property(e => e.Payeename).HasColumnName("PAYEENAME");
 
@@ -3110,21 +2791,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PAYMENT_ORDER_NO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
-
-                entity.Property(e => e.SubmoduleTypeId)
-                    .HasColumnName("SUBMODULE_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubmoduleTypeId).HasColumnName("SUBMODULE_TYPE_ID");
 
                 entity.Property(e => e.VchrDateNp)
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
                 entity.HasOne(d => d.DhrtiMaster)
                     .WithMany(p => p.Banktransactions)
@@ -3148,7 +2821,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
@@ -3158,9 +2831,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CODE")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.CountryId)
-                    .HasColumnName("COUNTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CountryId).HasColumnName("COUNTRY_ID");
 
                 entity.Property(e => e.Email)
                     .HasColumnName("EMAIL")
@@ -3174,9 +2845,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NEP_NAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.ParentId)
-                    .HasColumnName("PARENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ParentId).HasColumnName("PARENT_ID");
 
                 entity.Property(e => e.Phone)
                     .HasColumnName("PHONE")
@@ -3193,10 +2862,6 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("BUDJET_SUB_HEAD");
 
-                entity.HasIndex(e => e.Code)
-                    .HasName("BUDJET_SUB_HEAD_CODE_key")
-                    .IsUnique();
-
                 entity.Property(e => e.Code)
                     .HasColumnName("CODE")
                     .HasMaxLength(70);
@@ -3209,25 +2874,19 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.MinistryCode)
                     .HasColumnName("MINISTRY_CODE")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.MinistryId)
-                    .HasColumnName("MINISTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MinistryId).HasColumnName("MINISTRY_ID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.ParentCode)
-                    .HasColumnName("PARENT_CODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ParentCode).HasColumnName("PARENT_CODE");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -3240,17 +2899,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("BUSINESSMASTER_HISTORY");
 
-                entity.Property(e => e.AddDate)
-                    .HasColumnName("ADD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.AddDate).HasColumnName("ADD_DATE");
 
-                entity.Property(e => e.BizId)
-                    .HasColumnName("BIZ_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BizId).HasColumnName("BIZ_ID");
 
-                entity.Property(e => e.Businessgroupid)
-                    .HasColumnName("BUSINESSGROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Businessgroupid).HasColumnName("BUSINESSGROUPID");
 
                 entity.Property(e => e.ComputerName)
                     .HasColumnName("COMPUTER_NAME")
@@ -3260,17 +2913,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DATA_STATUS")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.Taxpayerid)
-                    .HasColumnName("TAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpayerid).HasColumnName("TAXPAYERID");
 
                 entity.Property(e => e.TranTime)
                     .HasColumnName("TRAN_TIME")
@@ -3284,39 +2933,35 @@ namespace IMIS_DataEntity.Data
             modelBuilder.Entity<Cashtransaction>(entity =>
             {
                 entity.HasKey(e => e.Sn)
-                     .HasName("CASHTRANSACTION_pkey");
+                    .HasName("CASHTRANSACTION_pkey");
 
                 entity.ToTable("CASHTRANSACTION");
 
-                entity.Property(e => e.Billid)
-                    .HasColumnName("BILLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.DhrtiMasterId);
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.SubmoduleTypeId);
 
-                entity.Property(e => e.Cramount)
-                    .HasColumnName("CRAMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.VchrId);
+
+                entity.Property(e => e.Sn)
+                    .HasColumnName("SN")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Billid).HasColumnName("BILLID");
+
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
+
+                entity.Property(e => e.Cramount).HasColumnName("CRAMOUNT");
 
                 entity.Property(e => e.Description).HasColumnName("DESCRIPTION");
 
-                entity.Property(e => e.DhrtiMasterId)
-                    .HasColumnName("DHRTI_MASTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DhrtiMasterId).HasColumnName("DHRTI_MASTER_ID");
 
-                entity.Property(e => e.Dramount)
-                    .HasColumnName("DRAMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Dramount).HasColumnName("DRAMOUNT");
 
-                entity.Property(e => e.ExpSlipId)
-                    .HasColumnName("EXP_SLIP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ExpSlipId).HasColumnName("EXP_SLIP_ID");
 
-                entity.Property(e => e.Incomeexptypeid)
-                    .HasColumnName("INCOMEEXPTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Incomeexptypeid).HasColumnName("INCOMEEXPTYPEID");
 
                 entity.Property(e => e.Isoflastyear)
                     .HasColumnName("ISOFLASTYEAR")
@@ -3326,21 +2971,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("MODULE")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
-
-                entity.Property(e => e.SubmoduleTypeId)
-                    .HasColumnName("SUBMODULE_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubmoduleTypeId).HasColumnName("SUBMODULE_TYPE_ID");
 
                 entity.Property(e => e.VchrDateNp)
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
                 entity.HasOne(d => d.DhrtiMaster)
                     .WithMany(p => p.Cashtransaction)
@@ -3364,89 +3001,53 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("CELEDGER20682069");
 
-                entity.Property(e => e.Calculatedvalue)
-                    .HasColumnName("CALCULATEDVALUE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Calculatedvalue).HasColumnName("CALCULATEDVALUE");
 
-                entity.Property(e => e.Constructionid)
-                    .HasColumnName("CONSTRUCTIONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Constructionid).HasColumnName("CONSTRUCTIONID");
 
-                entity.Property(e => e.Constructiontypeid)
-                    .HasColumnName("CONSTRUCTIONTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Constructiontypeid).HasColumnName("CONSTRUCTIONTYPEID");
 
-                entity.Property(e => e.Deppercent)
-                    .HasColumnName("DEPPERCENT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Deppercent).HasColumnName("DEPPERCENT");
 
-                entity.Property(e => e.Depreciationamount)
-                    .HasColumnName("DEPRECIATIONAMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Depreciationamount).HasColumnName("DEPRECIATIONAMOUNT");
 
-                entity.Property(e => e.Houseid)
-                    .HasColumnName("HOUSEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Houseid).HasColumnName("HOUSEID");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
-                entity.Property(e => e.Netcalculatedvalue)
-                    .HasColumnName("NETCALCULATEDVALUE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Netcalculatedvalue).HasColumnName("NETCALCULATEDVALUE");
 
-                entity.Property(e => e.Noncompletionreasonid)
-                    .HasColumnName("NONCOMPLETIONREASONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Noncompletionreasonid).HasColumnName("NONCOMPLETIONREASONID");
 
                 entity.Property(e => e.Noncompletionreasons)
                     .HasColumnName("NONCOMPLETIONREASONS")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Otherminusinevaluations)
-                    .HasColumnName("OTHERMINUSINEVALUATIONS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Otherminusinevaluations).HasColumnName("OTHERMINUSINEVALUATIONS");
 
-                entity.Property(e => e.Otherplusinevaluations)
-                    .HasColumnName("OTHERPLUSINEVALUATIONS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Otherplusinevaluations).HasColumnName("OTHERPLUSINEVALUATIONS");
 
                 entity.Property(e => e.Otherplusminusdescriptions)
                     .HasColumnName("OTHERPLUSMINUSDESCRIPTIONS")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
-                entity.Property(e => e.Rateperunit)
-                    .HasColumnName("RATEPERUNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateperunit).HasColumnName("RATEPERUNIT");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
 
-                entity.Property(e => e.Spacemeasuringunit)
-                    .HasColumnName("SPACEMEASURINGUNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Spacemeasuringunit).HasColumnName("SPACEMEASURINGUNIT");
 
-                entity.Property(e => e.Talanumber)
-                    .HasColumnName("TALANUMBER")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Talanumber).HasColumnName("TALANUMBER");
 
-                entity.Property(e => e.Taxed)
-                    .HasColumnName("TAXED")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxed).HasColumnName("TAXED");
 
-                entity.Property(e => e.Totalarea)
-                    .HasColumnName("TOTALAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Totalarea).HasColumnName("TOTALAREA");
 
                 entity.Property(e => e.Vsdateofmade)
                     .HasColumnName("VSDATEOFMADE")
@@ -3462,15 +3063,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Counterid)
                     .HasColumnName("COUNTERID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.CmptrName)
                     .HasColumnName("CMPTR_NAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Counterheadid)
-                    .HasColumnName("COUNTERHEADID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Counterheadid).HasColumnName("COUNTERHEADID");
 
                 entity.Property(e => e.Location)
                     .HasColumnName("LOCATION")
@@ -3488,9 +3087,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SPECIALNOTES")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Wardno)
-                    .HasColumnName("WARDNO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Wardno).HasColumnName("WARDNO");
             });
 
             modelBuilder.Entity<Constantvalues>(entity =>
@@ -3499,9 +3096,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("CONSTANTVALUES");
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
 
                 entity.Property(e => e.Strvalue).HasColumnName("STRVALUE");
 
@@ -3516,15 +3111,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Code)
                     .HasColumnName("CODE")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Districtid)
-                    .HasColumnName("DISTRICTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Districtid).HasColumnName("DISTRICTID");
 
                 entity.Property(e => e.Engname)
                     .HasColumnName("ENGNAME")
@@ -3554,9 +3147,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nepname)
                     .IsRequired()
@@ -3578,18 +3169,14 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CODE")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Districtid)
-                    .HasColumnName("DISTRICTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Districtid).HasColumnName("DISTRICTID");
 
                 entity.Property(e => e.Engname)
                     .IsRequired()
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nepname)
                     .IsRequired()
@@ -3616,9 +3203,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nepname)
                     .IsRequired()
@@ -3640,9 +3225,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CODE")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Districtid)
-                    .HasColumnName("DISTRICTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Districtid).HasColumnName("DISTRICTID");
 
                 entity.Property(e => e.Engname)
                     .IsRequired()
@@ -3658,9 +3241,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Zoneid)
-                    .HasColumnName("ZONEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Zoneid).HasColumnName("ZONEID");
             });
 
             modelBuilder.Entity<EmpGrp>(entity =>
@@ -3669,7 +3250,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Engname)
                     .HasColumnName("ENGNAME")
@@ -3684,33 +3265,27 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("FIREBRIGADESTATE");
 
+                entity.HasIndex(e => e.AccId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Minimumservicecharge)
-                    .HasColumnName("MINIMUMSERVICECHARGE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Minimumservicecharge).HasColumnName("MINIMUMSERVICECHARGE");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
-                entity.Property(e => e.Servicechargerate)
-                    .HasColumnName("SERVICECHARGERATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Servicechargerate).HasColumnName("SERVICECHARGERATE");
 
                 entity.Property(e => e.Type).HasColumnName("TYPE");
 
@@ -3738,9 +3313,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(9);
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
             });
 
             modelBuilder.Entity<Fywiserentdarrate>(entity =>
@@ -3749,15 +3322,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
                 entity.Property(e => e.Ratename)
                     .HasColumnName("RATENAME")
@@ -3765,9 +3336,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.RentPer).HasColumnName("RENT_PER");
 
-                entity.Property(e => e.RentTypeid)
-                    .HasColumnName("RENT_TYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RentTypeid).HasColumnName("RENT_TYPEID");
             });
 
             modelBuilder.Entity<FywisesanitationRate>(entity =>
@@ -3776,46 +3345,31 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("FYWISESANITATION_RATE");
 
-                entity.Property(e => e.AreaUpto)
-                    .HasColumnName("AREA_UPTO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AreaUpto).HasColumnName("AREA_UPTO");
 
-                entity.Property(e => e.EachAreaRate)
-                    .HasColumnName("EACH_AREA_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EachAreaRate).HasColumnName("EACH_AREA_RATE");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ForEachArea)
-                    .HasColumnName("FOR_EACH_AREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ForEachArea).HasColumnName("FOR_EACH_AREA");
 
-                entity.Property(e => e.Groupid)
-                    .HasColumnName("GROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Groupid).HasColumnName("GROUPID");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Rate).HasColumnName("RATE");
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
                 entity.Property(e => e.Ratename).HasColumnName("RATENAME");
 
-                entity.Property(e => e.RoadTypeid)
-                    .HasColumnName("ROAD_TYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RoadTypeid).HasColumnName("ROAD_TYPEID");
 
-                entity.Property(e => e.Subgroupid)
-                    .HasColumnName("SUBGROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Subgroupid).HasColumnName("SUBGROUPID");
             });
+             
 
             modelBuilder.Entity<Incomebilldetails>(entity =>
             {
@@ -3824,85 +3378,65 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("INCOMEBILLDETAILS");
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.AccId);
 
-                entity.Property(e => e.Accode)
-                    .HasColumnName("ACCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.VchrId);
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("AMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn)
+                    .HasColumnName("SN")
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BackupPersonid)
-                    .HasColumnName("BACKUP_PERSONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
+
+                entity.Property(e => e.Accode).HasColumnName("ACCODE");
+
+                entity.Property(e => e.Amount).HasColumnName("AMOUNT");
+
+                entity.Property(e => e.BackupPersonid).HasColumnName("BACKUP_PERSONID");
 
                 entity.Property(e => e.Billdate)
                     .HasColumnName("BILLDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Billid)
-                    .HasColumnName("BILLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billid).HasColumnName("BILLID");
 
                 entity.Property(e => e.Billno)
                     .HasColumnName("BILLNO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
-                entity.Property(e => e.Counterid)
-                    .HasColumnName("COUNTERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Counterid).HasColumnName("COUNTERID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Orderinbill)
-                    .HasColumnName("ORDERINBILL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Orderinbill).HasColumnName("ORDERINBILL");
 
-                entity.Property(e => e.Personid)
-                    .HasColumnName("PERSONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Personid).HasColumnName("PERSONID");
 
                 entity.Property(e => e.Project)
                     .HasColumnName("PROJECT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Qty)
-                    .HasColumnName("QTY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Qty).HasColumnName("QTY");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
-
                 entity.Property(e => e.TaxType)
                     .HasColumnName("TAX_TYPE")
                     .HasMaxLength(5);
 
-                entity.Property(e => e.Taxaddtnlid)
-                    .HasColumnName("TAXADDTNLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxaddtnlid).HasColumnName("TAXADDTNLID");
 
                 entity.Property(e => e.VchrDateNp)
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
                 entity.HasOne(d => d.Acc)
                     .WithMany(p => p.Incomebilldetails)
@@ -3921,49 +3455,33 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("INCOMEBILLDETAILS_HISTORY");
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
-                entity.Property(e => e.Accode)
-                    .HasColumnName("ACCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Accode).HasColumnName("ACCODE");
 
-                entity.Property(e => e.AddDate)
-                    .HasColumnName("ADD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.AddDate).HasColumnName("ADD_DATE");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("AMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.BackupPersonid)
-                    .HasColumnName("BACKUP_PERSONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BackupPersonid).HasColumnName("BACKUP_PERSONID");
 
                 entity.Property(e => e.Billdate)
                     .HasColumnName("BILLDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Billid)
-                    .HasColumnName("BILLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billid).HasColumnName("BILLID");
 
                 entity.Property(e => e.Billno)
                     .HasColumnName("BILLNO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
                 entity.Property(e => e.ComputerName)
                     .HasColumnName("COMPUTER_NAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Counterid)
-                    .HasColumnName("COUNTERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Counterid).HasColumnName("COUNTERID");
 
                 entity.Property(e => e.DataStatus)
                     .HasColumnName("DATA_STATUS")
@@ -3973,41 +3491,29 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Orderinbill)
-                    .HasColumnName("ORDERINBILL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Orderinbill).HasColumnName("ORDERINBILL");
 
-                entity.Property(e => e.Personid)
-                    .HasColumnName("PERSONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Personid).HasColumnName("PERSONID");
 
                 entity.Property(e => e.Project)
                     .HasColumnName("PROJECT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Qty)
-                    .HasColumnName("QTY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Qty).HasColumnName("QTY");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
 
-                entity.Property(e => e.SnIncomebilldtl)
-                    .HasColumnName("SN_INCOMEBILLDTL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SnIncomebilldtl).HasColumnName("SN_INCOMEBILLDTL");
 
                 entity.Property(e => e.TaxType)
                     .HasColumnName("TAX_TYPE")
                     .HasMaxLength(5);
 
-                entity.Property(e => e.Taxaddtnlid)
-                    .HasColumnName("TAXADDTNLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxaddtnlid).HasColumnName("TAXADDTNLID");
 
                 entity.Property(e => e.TranTime)
                     .HasColumnName("TRAN_TIME")
@@ -4017,13 +3523,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
-                entity.Property(e => e.Vrno)
-                    .HasColumnName("VRNO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Vrno).HasColumnName("VRNO");
 
                 entity.Property(e => e.WindowsUser)
                     .HasColumnName("WINDOWS_USER")
@@ -4037,21 +3539,23 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("INCOMEBILLMASTER");
 
+                entity.HasIndex(e => e.Billtypeid);
+
+                entity.HasIndex(e => e.SubModuleId);
+
+                entity.HasIndex(e => e.VchrId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.BackupPersonid)
-                    .HasColumnName("BACKUP_PERSONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BackupPersonid).HasColumnName("BACKUP_PERSONID");
 
-                entity.Property(e => e.Bankamount)
-                    .HasColumnName("BANKAMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Bankamount).HasColumnName("BANKAMOUNT");
 
                 entity.Property(e => e.BillNoManual)
                     .HasColumnName("BILL_NO_MANUAL")
@@ -4065,9 +3569,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BILLNO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Billtypeid)
-                    .HasColumnName("BILLTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billtypeid).HasColumnName("BILLTYPEID");
 
                 entity.Property(e => e.CancelDate)
                     .HasColumnName("CANCEL_DATE")
@@ -4077,25 +3579,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CANCEL_REASON")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Cashamount)
-                    .HasColumnName("CASHAMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Cashamount).HasColumnName("CASHAMOUNT");
 
-                entity.Property(e => e.Counterid)
-                    .HasColumnName("COUNTERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Counterid).HasColumnName("COUNTERID");
 
-                entity.Property(e => e.CurrencyId)
-                    .HasColumnName("CURRENCY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CurrencyId).HasColumnName("CURRENCY_ID");
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -4109,37 +3601,27 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Name).HasColumnName("NAME");
 
-                entity.Property(e => e.Personid)
-                    .HasColumnName("PERSONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Personid).HasColumnName("PERSONID");
 
                 entity.Property(e => e.Project)
                     .HasColumnName("PROJECT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
                 entity.Property(e => e.Taxincometype)
                     .HasColumnName("TAXINCOMETYPE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
                 entity.Property(e => e.VchrDateNp)
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
 
                 entity.Property(e => e.WardNo).HasColumnName("WARD_NO");
 
@@ -4165,17 +3647,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.Applicantid)
-                    .HasColumnName("APPLICANTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Applicantid).HasColumnName("APPLICANTID");
 
-                entity.Property(e => e.ItemDetailId)
-                    .HasColumnName("ITEM_DETAIL_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemDetailId).HasColumnName("ITEM_DETAIL_ID");
             });
 
             modelBuilder.Entity<InvBrand>(entity =>
@@ -4187,7 +3665,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.BrandId)
                     .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("IS_ACTIVE")
@@ -4209,15 +3687,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.DakhilaId)
-                    .HasColumnName("DAKHILA_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DakhilaId).HasColumnName("DAKHILA_ID");
 
                 entity.Property(e => e.DeductAmt).HasColumnName("DEDUCT_AMT");
 
@@ -4225,17 +3699,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.DepreDuraton).HasColumnName("DEPRE_DURATON");
 
-                entity.Property(e => e.DeprePer)
-                    .HasColumnName("DEPRE_PER")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DeprePer).HasColumnName("DEPRE_PER");
 
                 entity.Property(e => e.Fiscalyear)
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
                 entity.Property(e => e.MaxDepreAmt).HasColumnName("MAX_DEPRE_AMT");
 
@@ -4251,13 +3721,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Qty).HasColumnName("QTY");
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
-                entity.Property(e => e.UnitId)
-                    .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnitId).HasColumnName("UNIT_ID");
             });
 
             modelBuilder.Entity<InvDepreciation>(entity =>
@@ -4266,19 +3732,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.DakhilaId)
-                    .HasColumnName("DAKHILA_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DakhilaId).HasColumnName("DAKHILA_ID");
 
-                entity.Property(e => e.DeprePer)
-                    .HasColumnName("DEPRE_PER")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DeprePer).HasColumnName("DEPRE_PER");
 
                 entity.Property(e => e.DepreRate).HasColumnName("DEPRE_RATE");
 
@@ -4286,21 +3746,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
                 entity.Property(e => e.OrginalRate).HasColumnName("ORGINAL_RATE");
 
                 entity.Property(e => e.Qty).HasColumnName("QTY");
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
-                entity.Property(e => e.UnitId)
-                    .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnitId).HasColumnName("UNIT_ID");
             });
 
             modelBuilder.Entity<InvDept>(entity =>
@@ -4312,7 +3766,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.DeptId)
                     .HasColumnName("DEPT_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("IS_ACTIVE")
@@ -4327,34 +3781,36 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.OfficeId)
-                    .HasColumnName("OFFICE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OfficeId).HasColumnName("OFFICE_ID");
             });
 
             modelBuilder.Entity<InvGoodsAdjust>(entity =>
             {
                 entity.ToTable("INV_GOODS_ADJUST");
 
+                entity.HasIndex(e => e.AcceptBy);
+
+                entity.HasIndex(e => e.BrandId);
+
+                entity.HasIndex(e => e.ItemId);
+
+                entity.HasIndex(e => e.PrepBy);
+
+                entity.HasIndex(e => e.SpecId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AcceptBy)
-                    .HasColumnName("ACCEPT_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AcceptBy).HasColumnName("ACCEPT_BY");
 
-                entity.Property(e => e.AcceptDtEng)
-                    .HasColumnName("ACCEPT_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.AcceptDtEng).HasColumnName("ACCEPT_DT_ENG");
 
                 entity.Property(e => e.AcceptDtNp)
                     .HasColumnName("ACCEPT_DT_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.AdjDtEng)
-                    .HasColumnName("ADJ_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.AdjDtEng).HasColumnName("ADJ_DT_ENG");
 
                 entity.Property(e => e.AdjDtNp)
                     .HasColumnName("ADJ_DT_NP")
@@ -4362,21 +3818,15 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.AdjQty).HasColumnName("ADJ_QTY");
 
-                entity.Property(e => e.AdjTypeId)
-                    .HasColumnName("ADJ_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AdjTypeId).HasColumnName("ADJ_TYPE_ID");
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
                 entity.Property(e => e.BudgetYear)
                     .HasColumnName("BUDGET_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.DakhilaId)
-                    .HasColumnName("DAKHILA_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DakhilaId).HasColumnName("DAKHILA_ID");
 
                 entity.Property(e => e.GdAdjId)
                     .IsRequired()
@@ -4385,25 +3835,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.ItemAdjRate).HasColumnName("ITEM_ADJ_RATE");
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
-                entity.Property(e => e.ItemType)
-                    .HasColumnName("ITEM_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemType).HasColumnName("ITEM_TYPE");
 
                 entity.Property(e => e.Month)
                     .HasColumnName("MONTH")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.PrepBy)
-                    .HasColumnName("PREP_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PrepBy).HasColumnName("PREP_BY");
 
-                entity.Property(e => e.PrepDtEng)
-                    .HasColumnName("PREP_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.PrepDtEng).HasColumnName("PREP_DT_ENG");
 
                 entity.Property(e => e.PrepDtNp)
                     .HasColumnName("PREP_DT_NP")
@@ -4413,9 +3855,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
                 entity.HasOne(d => d.AcceptByNavigation)
                     .WithMany(p => p.InvGoodsAdjustAcceptByNavigation)
@@ -4447,32 +3887,34 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("INV_GOODS_REC_DETL");
 
+                entity.HasIndex(e => e.BrandId);
+
+                entity.HasIndex(e => e.GoodsMasterId);
+
+                entity.HasIndex(e => e.ItemId);
+
+                entity.HasIndex(e => e.SpecId);
+
+                entity.HasIndex(e => e.UnitId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.DakhilaDtEng)
-                    .HasColumnName("DAKHILA_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.DakhilaDtEng).HasColumnName("DAKHILA_DT_ENG");
 
                 entity.Property(e => e.DiscAmt).HasColumnName("DISC_AMT");
 
-                entity.Property(e => e.GoodsMasterId)
-                    .HasColumnName("GOODS_MASTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.GoodsMasterId).HasColumnName("GOODS_MASTER_ID");
 
                 entity.Property(e => e.Isnumbered)
                     .HasColumnName("ISNUMBERED")
                     .HasMaxLength(1)
-                    .HasDefaultValueSql("'0'::character varying");
+                    .HasDefaultValueSql("'N'::character varying");
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
                 entity.Property(e => e.NetAmt).HasColumnName("NET_AMT");
 
@@ -4488,15 +3930,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
                 entity.Property(e => e.TaxPerUnitAmt).HasColumnName("TAX_PER_UNIT_AMT");
 
-                entity.Property(e => e.UnitId)
-                    .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnitId).HasColumnName("UNIT_ID");
 
                 entity.Property(e => e.WhetherTax)
                     .HasColumnName("WHETHER_TAX")
@@ -4532,41 +3970,37 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("INV_GOODS_REC_MAST");
 
+                entity.HasIndex(e => e.AcceptBy);
+
+                entity.HasIndex(e => e.CheckBy);
+
+                entity.HasIndex(e => e.PrepBy);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AcceptBy)
-                    .HasColumnName("ACCEPT_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AcceptBy).HasColumnName("ACCEPT_BY");
 
                 entity.Property(e => e.AcceptDt)
                     .HasColumnName("ACCEPT_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.AcceptDtEng)
-                    .HasColumnName("ACCEPT_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.AcceptDtEng).HasColumnName("ACCEPT_DT_ENG");
 
-                entity.Property(e => e.CheckBy)
-                    .HasColumnName("CHECK_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CheckBy).HasColumnName("CHECK_BY");
 
                 entity.Property(e => e.CheckDt)
                     .HasColumnName("CHECK_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.CheckDtEng)
-                    .HasColumnName("CHECK_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.CheckDtEng).HasColumnName("CHECK_DT_ENG");
 
                 entity.Property(e => e.DakhilaDt)
                     .HasColumnName("DAKHILA_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.DakhilaDtEng)
-                    .HasColumnName("DAKHILA_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.DakhilaDtEng).HasColumnName("DAKHILA_DT_ENG");
 
                 entity.Property(e => e.DakhilaId)
                     .IsRequired()
@@ -4593,37 +4027,23 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("INV_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.InvDateEng)
-                    .HasColumnName("INV_DATE_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.InvDateEng).HasColumnName("INV_DATE_ENG");
 
-                entity.Property(e => e.PaymentId)
-                    .HasColumnName("PAYMENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentId).HasColumnName("PAYMENT_ID");
 
-                entity.Property(e => e.PrepBy)
-                    .HasColumnName("PREP_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PrepBy).HasColumnName("PREP_BY");
 
                 entity.Property(e => e.PrepDt)
                     .HasColumnName("PREP_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.PrepDtEng)
-                    .HasColumnName("PREP_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.PrepDtEng).HasColumnName("PREP_DT_ENG");
 
-                entity.Property(e => e.PurMasterId)
-                    .HasColumnName("PUR_MASTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PurMasterId).HasColumnName("PUR_MASTER_ID");
 
-                entity.Property(e => e.RepairId)
-                    .HasColumnName("REPAIR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RepairId).HasColumnName("REPAIR_ID");
 
-                entity.Property(e => e.WarehouseId)
-                    .HasColumnName("WAREHOUSE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WarehouseId).HasColumnName("WAREHOUSE_ID");
 
                 entity.HasOne(d => d.AcceptByNavigation)
                     .WithMany(p => p.InvGoodsRecMastAcceptByNavigation)
@@ -4647,29 +4067,21 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.DakhilaId)
-                    .HasColumnName("DAKHILA_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DakhilaId).HasColumnName("DAKHILA_ID");
 
                 entity.Property(e => e.Fiscalyear)
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
-                entity.Property(e => e.NumId)
-                    .HasColumnName("NUM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NumId).HasColumnName("NUM_ID");
 
                 entity.Property(e => e.PurchaseDate)
                     .HasColumnName("PURCHASE_DATE")
@@ -4677,15 +4089,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.ScapAmount).HasColumnName("SCAP_AMOUNT");
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
                 entity.Property(e => e.StockQty).HasColumnName("STOCK_QTY");
 
-                entity.Property(e => e.UnitId)
-                    .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnitId).HasColumnName("UNIT_ID");
             });
 
             modelBuilder.Entity<InvIssueDakhila>(entity =>
@@ -4694,52 +4102,44 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.DakhilaId)
-                    .HasColumnName("DAKHILA_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DakhilaId).HasColumnName("DAKHILA_ID");
 
-                entity.Property(e => e.IssuMasterId)
-                    .HasColumnName("ISSU_MASTER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IssuMasterId).HasColumnName("ISSU_MASTER_ID");
 
-                entity.Property(e => e.IssueDetailId)
-                    .HasColumnName("ISSUE_DETAIL_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IssueDetailId).HasColumnName("ISSUE_DETAIL_ID");
 
                 entity.Property(e => e.IssueNo).HasColumnName("ISSUE_NO");
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
                 entity.Property(e => e.Remarks).HasColumnName("REMARKS");
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
-                entity.Property(e => e.UnitId)
-                    .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnitId).HasColumnName("UNIT_ID");
             });
 
             modelBuilder.Entity<InvIssueDetail>(entity =>
             {
                 entity.ToTable("INV_ISSUE_DETAIL");
 
+                entity.HasIndex(e => e.BrandId);
+
+                entity.HasIndex(e => e.ItemId);
+
+                entity.HasIndex(e => e.ItemType);
+
+                entity.HasIndex(e => e.SpecId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
                 entity.Property(e => e.DeliveryStatus)
                     .HasColumnName("DELIVERY_STATUS")
@@ -4749,33 +4149,23 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ISSUE_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.IssueDtEng)
-                    .HasColumnName("ISSUE_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.IssueDtEng).HasColumnName("ISSUE_DT_ENG");
 
-                entity.Property(e => e.IssueMastId)
-                    .HasColumnName("ISSUE_MAST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IssueMastId).HasColumnName("ISSUE_MAST_ID");
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
                 entity.Property(e => e.ItemIssueNo).HasColumnName("ITEM_ISSUE_NO");
 
                 entity.Property(e => e.ItemReqNo).HasColumnName("ITEM_REQ_NO");
 
-                entity.Property(e => e.ItemType)
-                    .HasColumnName("ITEM_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemType).HasColumnName("ITEM_TYPE");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
                 entity.HasOne(d => d.Brand)
                     .WithMany(p => p.InvIssueDetail)
@@ -4802,13 +4192,21 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("INV_ISSUE_MASTER");
 
+                entity.HasIndex(e => e.AcceptBy);
+
+                entity.HasIndex(e => e.CheckBy);
+
+                entity.HasIndex(e => e.IssueBy);
+
+                entity.HasIndex(e => e.PrepBy);
+
+                entity.HasIndex(e => e.RequestId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AcceptBy)
-                    .HasColumnName("ACCEPT_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AcceptBy).HasColumnName("ACCEPT_BY");
 
                 entity.Property(e => e.AcceptDt)
                     .HasColumnName("ACCEPT_DT")
@@ -4818,9 +4216,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BUDGET_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.CheckBy)
-                    .HasColumnName("CHECK_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CheckBy).HasColumnName("CHECK_BY");
 
                 entity.Property(e => e.CheckDt)
                     .HasColumnName("CHECK_DT")
@@ -4834,9 +4230,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("HO_POST")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.IssueBy)
-                    .HasColumnName("ISSUE_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IssueBy).HasColumnName("ISSUE_BY");
 
                 entity.Property(e => e.IssueByCat)
                     .HasColumnName("ISSUE_BY_CAT")
@@ -4851,29 +4245,21 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ISSUE_NO")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.IssueReceive)
-                    .HasColumnName("ISSUE_RECEIVE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IssueReceive).HasColumnName("ISSUE_RECEIVE");
 
-                entity.Property(e => e.PrepBy)
-                    .HasColumnName("PREP_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PrepBy).HasColumnName("PREP_BY");
 
                 entity.Property(e => e.PrepDt)
                     .HasColumnName("PREP_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ReceiveEmpId)
-                    .HasColumnName("RECEIVE_EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReceiveEmpId).HasColumnName("RECEIVE_EMP_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.RequestId)
-                    .HasColumnName("REQUEST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RequestId).HasColumnName("REQUEST_ID");
 
                 entity.Property(e => e.TransferDecisionDate)
                     .HasColumnName("TRANSFER_DECISION_DATE")
@@ -4883,9 +4269,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TRANSFER_DECISION_NO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Type)
-                    .HasColumnName("TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Type).HasColumnName("TYPE");
 
                 entity.HasOne(d => d.AcceptByNavigation)
                     .WithMany(p => p.InvIssueMasterAcceptByNavigation)
@@ -4919,7 +4303,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AddSub)
                     .HasColumnName("ADD_SUB")
@@ -4945,7 +4329,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Code)
                     .HasColumnName("CODE")
@@ -4957,29 +4341,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.DepreciationPer).HasColumnName("DEPRECIATION_PER");
 
-                entity.Property(e => e.GrpLevel)
-                    .HasColumnName("GRP_LEVEL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.GrpLevel).HasColumnName("GRP_LEVEL");
 
-                entity.Property(e => e.IsHeader)
-                    .HasColumnName("IS_HEADER")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IsHeader).HasColumnName("IS_HEADER");
 
                 entity.Property(e => e.Isexp).HasColumnName("ISEXP");
 
                 entity.Property(e => e.Islast).HasColumnName("ISLAST");
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
-                entity.Property(e => e.Maxl)
-                    .HasColumnName("MAXL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Maxl).HasColumnName("MAXL");
 
-                entity.Property(e => e.Minl)
-                    .HasColumnName("MINL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Minl).HasColumnName("MINL");
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -4990,25 +4364,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.ParentId)
-                    .HasColumnName("PARENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ParentId).HasColumnName("PARENT_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Rmaxl)
-                    .HasColumnName("RMAXL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rmaxl).HasColumnName("RMAXL");
 
-                entity.Property(e => e.Rminl)
-                    .HasColumnName("RMINL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rminl).HasColumnName("RMINL");
 
-                entity.Property(e => e.Unit)
-                    .HasColumnName("UNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Unit).HasColumnName("UNIT");
             });
 
             modelBuilder.Entity<InvItemDetails>(entity =>
@@ -5018,25 +4384,35 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("INV_ITEM_DETAILS");
 
+                entity.HasIndex(e => e.AcceptBy);
+
+                entity.HasIndex(e => e.BrandId);
+
+                entity.HasIndex(e => e.CheckBy);
+
+                entity.HasIndex(e => e.DakhilaId);
+
+                entity.HasIndex(e => e.GdAdjId);
+
+                entity.HasIndex(e => e.ItemId);
+
+                entity.HasIndex(e => e.PrepBy);
+
+                entity.HasIndex(e => e.SpecId);
+
                 entity.Property(e => e.ItemDtlId)
                     .HasColumnName("ITEM_DTL_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AcceptBy)
-                    .HasColumnName("ACCEPT_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AcceptBy).HasColumnName("ACCEPT_BY");
 
                 entity.Property(e => e.AcceptDt)
                     .HasColumnName("ACCEPT_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.AdjType)
-                    .HasColumnName("ADJ_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AdjType).HasColumnName("ADJ_TYPE");
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
                 entity.Property(e => e.BudgetYear)
                     .HasColumnName("BUDGET_YEAR")
@@ -5046,17 +4422,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CHASIS_NO")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.CheckBy)
-                    .HasColumnName("CHECK_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CheckBy).HasColumnName("CHECK_BY");
 
                 entity.Property(e => e.CheckDt)
                     .HasColumnName("CHECK_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.DakhilaId)
-                    .HasColumnName("DAKHILA_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DakhilaId).HasColumnName("DAKHILA_ID");
 
                 entity.Property(e => e.EngineNo)
                     .HasColumnName("ENGINE_NO")
@@ -5066,21 +4438,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ENTRY_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.GdAdjId)
-                    .HasColumnName("GD_ADJ_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.GdAdjId).HasColumnName("GD_ADJ_ID");
 
                 entity.Property(e => e.IssueDt)
                     .HasColumnName("ISSUE_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.IssueId)
-                    .HasColumnName("ISSUE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IssueId).HasColumnName("ISSUE_ID");
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
                 entity.Property(e => e.ItemRate).HasColumnName("ITEM_RATE");
 
@@ -5092,17 +4458,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("LILAM_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.LilamId)
-                    .HasColumnName("LILAM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LilamId).HasColumnName("LILAM_ID");
 
                 entity.Property(e => e.ModelNo)
                     .HasColumnName("MODEL_NO")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.PrepBy)
-                    .HasColumnName("PREP_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PrepBy).HasColumnName("PREP_BY");
 
                 entity.Property(e => e.PrepDt)
                     .HasColumnName("PREP_DT")
@@ -5120,25 +4482,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REL_UNIT")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
                 entity.Property(e => e.StokRtDt)
                     .HasColumnName("STOK_RT_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.StokRtId)
-                    .HasColumnName("STOK_RT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.StokRtId).HasColumnName("STOK_RT_ID");
 
-                entity.Property(e => e.Unit)
-                    .HasColumnName("UNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Unit).HasColumnName("UNIT");
 
-                entity.Property(e => e.WeightVeh)
-                    .HasColumnName("WEIGHT_VEH")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WeightVeh).HasColumnName("WEIGHT_VEH");
 
                 entity.HasOne(d => d.AcceptByNavigation)
                     .WithMany(p => p.InvItemDetailsAcceptByNavigation)
@@ -5191,21 +4545,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("INV_ITEM_MST");
 
+                entity.HasIndex(e => e.UnitId);
+
                 entity.Property(e => e.ItemId)
                     .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
-                entity.Property(e => e.AreaInsqFeets)
-                    .HasColumnName("AREA_INSQ_FEETS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AreaInsqFeets).HasColumnName("AREA_INSQ_FEETS");
 
-                entity.Property(e => e.BudgetAccId)
-                    .HasColumnName("BUDGET_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetAccId).HasColumnName("BUDGET_ACC_ID");
 
                 entity.Property(e => e.Code)
                     .HasColumnName("CODE")
@@ -5219,61 +4569,39 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CONSTRUCTONTYPE")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.Countryid)
-                    .HasColumnName("COUNTRYID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Countryid).HasColumnName("COUNTRYID");
 
                 entity.Property(e => e.Depmaxrate).HasColumnName("DEPMAXRATE");
 
                 entity.Property(e => e.Depreciation).HasColumnName("DEPRECIATION");
 
-                entity.Property(e => e.Gussage)
-                    .HasColumnName("GUSSAGE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Gussage).HasColumnName("GUSSAGE");
 
-                entity.Property(e => e.ItemMainClass)
-                    .HasColumnName("ITEM_MAIN_CLASS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemMainClass).HasColumnName("ITEM_MAIN_CLASS");
 
-                entity.Property(e => e.ItemNature)
-                    .HasColumnName("ITEM_NATURE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemNature).HasColumnName("ITEM_NATURE");
 
-                entity.Property(e => e.ItemType)
-                    .HasColumnName("ITEM_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemType).HasColumnName("ITEM_TYPE");
 
                 entity.Property(e => e.KittaNo)
                     .HasColumnName("KITTA_NO")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.LandAreaInsqFeets)
-                    .HasColumnName("LAND_AREA_INSQ_FEETS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LandAreaInsqFeets).HasColumnName("LAND_AREA_INSQ_FEETS");
 
                 entity.Property(e => e.LandLocation)
                     .HasColumnName("LAND_LOCATION")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.LandMarketRate)
-                    .HasColumnName("LAND_MARKET_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LandMarketRate).HasColumnName("LAND_MARKET_RATE");
 
-                entity.Property(e => e.LandUnitRate)
-                    .HasColumnName("LAND_UNIT_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LandUnitRate).HasColumnName("LAND_UNIT_RATE");
 
-                entity.Property(e => e.Landid)
-                    .HasColumnName("LANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landid).HasColumnName("LANDID");
 
-                entity.Property(e => e.Maxl)
-                    .HasColumnName("MAXL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Maxl).HasColumnName("MAXL");
 
-                entity.Property(e => e.Minl)
-                    .HasColumnName("MINL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Minl).HasColumnName("MINL");
 
                 entity.Property(e => e.Minrate).HasColumnName("MINRATE");
 
@@ -5286,37 +4614,25 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Propertytype)
-                    .HasColumnName("PROPERTYTYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Propertytype).HasColumnName("PROPERTYTYPE");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Rmaxl)
-                    .HasColumnName("RMAXL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rmaxl).HasColumnName("RMAXL");
 
-                entity.Property(e => e.Rminl)
-                    .HasColumnName("RMINL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rminl).HasColumnName("RMINL");
 
-                entity.Property(e => e.Sizes)
-                    .HasColumnName("SIZES")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sizes).HasColumnName("SIZES");
 
                 entity.Property(e => e.Source)
                     .HasColumnName("SOURCE")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.UnitId)
-                    .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnitId).HasColumnName("UNIT_ID");
 
-                entity.Property(e => e.VehiclePartsId)
-                    .HasColumnName("VEHICLE_PARTS_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VehiclePartsId).HasColumnName("VEHICLE_PARTS_ID");
 
                 entity.HasOne(d => d.Unit)
                     .WithMany(p => p.InvItemMst)
@@ -5333,7 +4649,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.SpecId)
                     .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("IS_ACTIVE")
@@ -5353,29 +4669,33 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("INV_ITEM_STATUSCHECK");
 
+                entity.HasIndex(e => e.AcceptedBy);
+
+                entity.HasIndex(e => e.BrandId);
+
+                entity.HasIndex(e => e.ItemId);
+
+                entity.HasIndex(e => e.PrepBy);
+
+                entity.HasIndex(e => e.SpecId);
+
+                entity.HasIndex(e => e.TallyBy);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AcceptedBy)
-                    .HasColumnName("ACCEPTED_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AcceptedBy).HasColumnName("ACCEPTED_BY");
 
                 entity.Property(e => e.AcceptedDate)
                     .HasColumnName("ACCEPTED_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.AcceptedDateEng)
-                    .HasColumnName("ACCEPTED_DATE_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.AcceptedDateEng).HasColumnName("ACCEPTED_DATE_ENG");
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.CheckQty)
-                    .HasColumnName("CHECK_QTY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CheckQty).HasColumnName("CHECK_QTY");
 
                 entity.Property(e => e.CheckStatus)
                     .HasColumnName("CHECK_STATUS")
@@ -5385,9 +4705,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CHECKED_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.CheckedDateEng)
-                    .HasColumnName("CHECKED_DATE_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.CheckedDateEng).HasColumnName("CHECKED_DATE_ENG");
 
                 entity.Property(e => e.CountUpDown)
                     .HasColumnName("COUNT_UP_DOWN")
@@ -5405,77 +4723,53 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("INSP_ED_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.InspEdDateEng)
-                    .HasColumnName("INSP_ED_DATE_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.InspEdDateEng).HasColumnName("INSP_ED_DATE_ENG");
 
                 entity.Property(e => e.InspStDate)
                     .HasColumnName("INSP_ST_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.InspStDateEng)
-                    .HasColumnName("INSP_ST_DATE_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.InspStDateEng).HasColumnName("INSP_ST_DATE_ENG");
 
                 entity.Property(e => e.InspectDate)
                     .HasColumnName("INSPECT_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.InspectDateEng)
-                    .HasColumnName("INSPECT_DATE_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.InspectDateEng).HasColumnName("INSPECT_DATE_ENG");
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("IS_ACTIVE")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
-                entity.Property(e => e.PrepBy)
-                    .HasColumnName("PREP_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PrepBy).HasColumnName("PREP_BY");
 
                 entity.Property(e => e.PrepDate)
                     .HasColumnName("PREP_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.PrepDateEng)
-                    .HasColumnName("PREP_DATE_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.PrepDateEng).HasColumnName("PREP_DATE_ENG");
 
-                entity.Property(e => e.Rate)
-                    .HasColumnName("RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rate).HasColumnName("RATE");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
-                entity.Property(e => e.StkCurCount)
-                    .HasColumnName("STK_CUR_COUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.StkCurCount).HasColumnName("STK_CUR_COUNT");
 
-                entity.Property(e => e.StkMstCount)
-                    .HasColumnName("STK_MST_COUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.StkMstCount).HasColumnName("STK_MST_COUNT");
 
-                entity.Property(e => e.TallyBy)
-                    .HasColumnName("TALLY_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TallyBy).HasColumnName("TALLY_BY");
 
                 entity.Property(e => e.UpDownDetail)
                     .HasColumnName("UP_DOWN_DETAIL")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.UpDownNo)
-                    .HasColumnName("UP_DOWN_NO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UpDownNo).HasColumnName("UP_DOWN_NO");
 
                 entity.HasOne(d => d.AcceptedByNavigation)
                     .WithMany(p => p.InvItemStatuscheckAcceptedByNavigation)
@@ -5514,23 +4808,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Applydate)
                     .HasColumnName("APPLYDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Applyengdate)
-                    .HasColumnName("APPLYENGDATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.Applyengdate).HasColumnName("APPLYENGDATE");
 
-                entity.Property(e => e.Applylilamid)
-                    .HasColumnName("APPLYLILAMID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Applylilamid).HasColumnName("APPLYLILAMID");
 
-                entity.Property(e => e.Appno)
-                    .HasColumnName("APPNO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Appno).HasColumnName("APPNO");
 
                 entity.Property(e => e.Orgapplicantname)
                     .HasColumnName("ORGAPPLICANTNAME")
@@ -5540,9 +4828,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ORGAPPLICANTPOST")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Projid)
-                    .HasColumnName("PROJID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Projid).HasColumnName("PROJID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -5555,15 +4841,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.Dakhilaid)
-                    .HasColumnName("DAKHILAID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Dakhilaid).HasColumnName("DAKHILAID");
 
                 entity.Property(e => e.DeliveryStatus)
                     .HasColumnName("DELIVERY_STATUS")
@@ -5575,41 +4857,27 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ISSUE_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.IssueDtEng)
-                    .HasColumnName("ISSUE_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.IssueDtEng).HasColumnName("ISSUE_DT_ENG");
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
                 entity.Property(e => e.ItemIssueNo).HasColumnName("ITEM_ISSUE_NO");
 
-                entity.Property(e => e.ItemType)
-                    .HasColumnName("ITEM_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemType).HasColumnName("ITEM_TYPE");
 
-                entity.Property(e => e.LilamId)
-                    .HasColumnName("LILAM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LilamId).HasColumnName("LILAM_ID");
 
                 entity.Property(e => e.Minimumrate).HasColumnName("MINIMUMRATE");
 
-                entity.Property(e => e.Nikashaid)
-                    .HasColumnName("NIKASHAID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Nikashaid).HasColumnName("NIKASHAID");
 
                 entity.Property(e => e.Remarks).HasColumnName("REMARKS");
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
                 entity.Property(e => e.TotalInStock).HasColumnName("TOTAL_IN_STOCK");
 
-                entity.Property(e => e.UnitId)
-                    .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnitId).HasColumnName("UNIT_ID");
             });
 
             modelBuilder.Entity<InvLilamMast>(entity =>
@@ -5618,37 +4886,27 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AcceptBy)
-                    .HasColumnName("ACCEPT_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AcceptBy).HasColumnName("ACCEPT_BY");
 
                 entity.Property(e => e.AcceptDt)
                     .HasColumnName("ACCEPT_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.AcceptDtEng)
-                    .HasColumnName("ACCEPT_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.AcceptDtEng).HasColumnName("ACCEPT_DT_ENG");
 
                 entity.Property(e => e.AcceptPercent).HasColumnName("ACCEPT_PERCENT");
 
-                entity.Property(e => e.Bankid)
-                    .HasColumnName("BANKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Bankid).HasColumnName("BANKID");
 
-                entity.Property(e => e.CheckBy)
-                    .HasColumnName("CHECK_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CheckBy).HasColumnName("CHECK_BY");
 
                 entity.Property(e => e.CheckDt)
                     .HasColumnName("CHECK_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.CheckDtEng)
-                    .HasColumnName("CHECK_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.CheckDtEng).HasColumnName("CHECK_DT_ENG");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -5662,26 +4920,20 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCALYEAR_CHUKTA")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.IssueBy)
-                    .HasColumnName("ISSUE_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IssueBy).HasColumnName("ISSUE_BY");
 
                 entity.Property(e => e.IssueDt)
                     .HasColumnName("ISSUE_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.IssueDtEng)
-                    .HasColumnName("ISSUE_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.IssueDtEng).HasColumnName("ISSUE_DT_ENG");
 
                 entity.Property(e => e.LilamNo)
                     .IsRequired()
                     .HasColumnName("LILAM_NO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Lilamtype)
-                    .HasColumnName("LILAMTYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Lilamtype).HasColumnName("LILAMTYPE");
 
                 entity.Property(e => e.NewspaperName)
                     .HasColumnName("NEWSPAPER_NAME")
@@ -5693,25 +4945,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.PernewsRate).HasColumnName("PERNEWS_RATE");
 
-                entity.Property(e => e.PrepBy)
-                    .HasColumnName("PREP_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PrepBy).HasColumnName("PREP_BY");
 
                 entity.Property(e => e.PrepDt)
                     .HasColumnName("PREP_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.PrepDtEng)
-                    .HasColumnName("PREP_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.PrepDtEng).HasColumnName("PREP_DT_ENG");
 
                 entity.Property(e => e.PublishDate)
                     .HasColumnName("PUBLISH_DATE")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.ReceiveBy)
-                    .HasColumnName("RECEIVE_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReceiveBy).HasColumnName("RECEIVE_BY");
 
                 entity.Property(e => e.ReceivePersonName)
                     .HasColumnName("RECEIVE_PERSON_NAME")
@@ -5727,9 +4973,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Remarks).HasColumnName("REMARKS");
 
-                entity.Property(e => e.ValidDays)
-                    .HasColumnName("VALID_DAYS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ValidDays).HasColumnName("VALID_DAYS");
             });
 
             modelBuilder.Entity<InvLilamRecList>(entity =>
@@ -5738,68 +4982,46 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("INV_LILAM_REC_LIST");
 
-                entity.Property(e => e.Applicantid)
-                    .HasColumnName("APPLICANTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Applicantid).HasColumnName("APPLICANTID");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.RecDateNp)
                     .HasColumnName("REC_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
             });
 
             modelBuilder.Entity<InvLilamappdetails>(entity =>
             {
                 entity.ToTable("INV_LILAMAPPDETAILS");
 
+                entity.HasIndex(e => e.Lilamappliid);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.Brandid)
-                    .HasColumnName("BRANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Brandid).HasColumnName("BRANDID");
 
-                entity.Property(e => e.Dakhilaid)
-                    .HasColumnName("DAKHILAID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Dakhilaid).HasColumnName("DAKHILAID");
 
-                entity.Property(e => e.Itemid)
-                    .HasColumnName("ITEMID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Itemid).HasColumnName("ITEMID");
 
-                entity.Property(e => e.Lilamappliid)
-                    .HasColumnName("LILAMAPPLIID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Lilamappliid).HasColumnName("LILAMAPPLIID");
 
-                entity.Property(e => e.Lilamqty)
-                    .HasColumnName("LILAMQTY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Lilamqty).HasColumnName("LILAMQTY");
 
                 entity.Property(e => e.Lilamtotalamt).HasColumnName("LILAMTOTALAMT");
 
-                entity.Property(e => e.Nikashaid)
-                    .HasColumnName("NIKASHAID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Nikashaid).HasColumnName("NIKASHAID");
 
-                entity.Property(e => e.Specid)
-                    .HasColumnName("SPECID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Specid).HasColumnName("SPECID");
 
-                entity.Property(e => e.Unitid)
-                    .HasColumnName("UNITID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Unitid).HasColumnName("UNITID");
 
                 entity.HasOne(d => d.Lilamappli)
                     .WithMany(p => p.InvLilamappdetails)
@@ -5813,7 +5035,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("IS_ACTIVE")
@@ -5838,7 +5060,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.ProjectId)
                     .HasColumnName("PROJECT_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("IS_ACTIVE")
@@ -5860,7 +5082,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AgreementType)
                     .HasColumnName("AGREEMENT_TYPE")
@@ -5907,48 +5129,48 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("WORK_END_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.WorkEndDateAd)
-                    .HasColumnName("WORK_END_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.WorkEndDateAd).HasColumnName("WORK_END_DATE_AD");
 
                 entity.Property(e => e.WorkStDate)
                     .HasColumnName("WORK_ST_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.WorkStDateAd)
-                    .HasColumnName("WORK_ST_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.WorkStDateAd).HasColumnName("WORK_ST_DATE_AD");
             });
 
             modelBuilder.Entity<InvPurOrderDetl>(entity =>
             {
                 entity.ToTable("INV_PUR_ORDER_DETL");
 
+                entity.HasIndex(e => e.BrandId);
+
+                entity.HasIndex(e => e.ItemId);
+
+                entity.HasIndex(e => e.ItemType);
+
+                entity.HasIndex(e => e.PurMstId);
+
+                entity.HasIndex(e => e.SpecId);
+
+                entity.HasIndex(e => e.UnitId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
                 entity.Property(e => e.Isdakhila)
                     .HasColumnName("ISDAKHILA")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
                 entity.Property(e => e.ItemRate).HasColumnName("ITEM_RATE");
 
-                entity.Property(e => e.ItemType)
-                    .HasColumnName("ITEM_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemType).HasColumnName("ITEM_TYPE");
 
-                entity.Property(e => e.PurMstId)
-                    .HasColumnName("PUR_MST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PurMstId).HasColumnName("PUR_MST_ID");
 
                 entity.Property(e => e.Qty).HasColumnName("QTY");
 
@@ -5956,17 +5178,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
                 entity.Property(e => e.TaxAmt).HasColumnName("TAX_AMT");
 
                 entity.Property(e => e.TotalAmt).HasColumnName("TOTAL_AMT");
 
-                entity.Property(e => e.UnitId)
-                    .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnitId).HasColumnName("UNIT_ID");
 
                 entity.HasOne(d => d.Brand)
                     .WithMany(p => p.InvPurOrderDetl)
@@ -6003,41 +5221,39 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("INV_PUR_ORDER_MAST");
 
+                entity.HasIndex(e => e.AcceptedBy);
+
+                entity.HasIndex(e => e.CheckedBy);
+
+                entity.HasIndex(e => e.PreparedBy);
+
+                entity.HasIndex(e => e.SuppId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AcceptedBy)
-                    .HasColumnName("ACCEPTED_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AcceptedBy).HasColumnName("ACCEPTED_BY");
 
                 entity.Property(e => e.AcceptedDt)
                     .HasColumnName("ACCEPTED_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.AcceptedDtEng)
-                    .HasColumnName("ACCEPTED_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.AcceptedDtEng).HasColumnName("ACCEPTED_DT_ENG");
 
-                entity.Property(e => e.Accountid)
-                    .HasColumnName("ACCOUNTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Accountid).HasColumnName("ACCOUNTID");
 
                 entity.Property(e => e.BudgetYear)
                     .HasColumnName("BUDGET_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.CheckedBy)
-                    .HasColumnName("CHECKED_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CheckedBy).HasColumnName("CHECKED_BY");
 
                 entity.Property(e => e.CheckedDt)
                     .HasColumnName("CHECKED_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.CheckedDtEng)
-                    .HasColumnName("CHECKED_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.CheckedDtEng).HasColumnName("CHECKED_DT_ENG");
 
                 entity.Property(e => e.CustomOrderNo)
                     .HasColumnName("CUSTOM_ORDER_NO")
@@ -6055,37 +5271,27 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("LETTER_ORDER_NO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.PreparedBy)
-                    .HasColumnName("PREPARED_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PreparedBy).HasColumnName("PREPARED_BY");
 
                 entity.Property(e => e.PreparedDt)
                     .HasColumnName("PREPARED_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.PreparedDtEng)
-                    .HasColumnName("PREPARED_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.PreparedDtEng).HasColumnName("PREPARED_DT_ENG");
 
                 entity.Property(e => e.PurOrderDt)
                     .HasColumnName("PUR_ORDER_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.PurOrderDtEng)
-                    .HasColumnName("PUR_ORDER_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.PurOrderDtEng).HasColumnName("PUR_ORDER_DT_ENG");
 
                 entity.Property(e => e.PurOrderNo)
                     .HasColumnName("PUR_ORDER_NO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.PurOrderType)
-                    .HasColumnName("PUR_ORDER_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PurOrderType).HasColumnName("PUR_ORDER_TYPE");
 
-                entity.Property(e => e.PurType)
-                    .HasColumnName("PUR_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PurType).HasColumnName("PUR_TYPE");
 
                 entity.Property(e => e.PurchaseDecisionDate)
                     .HasColumnName("PURCHASE_DECISION_DATE")
@@ -6103,21 +5309,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REPAIR_ORDER_NO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.ReqId)
-                    .HasColumnName("REQ_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReqId).HasColumnName("REQ_ID");
 
                 entity.Property(e => e.ReturnItemDt)
                     .HasColumnName("RETURN_ITEM_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ReturnItemDtEng)
-                    .HasColumnName("RETURN_ITEM_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.ReturnItemDtEng).HasColumnName("RETURN_ITEM_DT_ENG");
 
-                entity.Property(e => e.SuppId)
-                    .HasColumnName("SUPP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SuppId).HasColumnName("SUPP_ID");
 
                 entity.HasOne(d => d.AcceptedByNavigation)
                     .WithMany(p => p.InvPurOrderMastAcceptedByNavigation)
@@ -6146,46 +5346,46 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("INV_PUR_TYPE");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Isdefault)
-                    .HasColumnName("ISDEFAULT")
-                    .HasMaxLength(1);
+                entity.Property(e => e.Isdefault).HasColumnName("ISDEFAULT");
 
                 entity.Property(e => e.NepEng)
                     .HasColumnName("NEP_ENG")
-                    .HasMaxLength(50);
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.NepName)
                     .HasColumnName("NEP_NAME")
-                    .HasMaxLength(50);
+                    .HasMaxLength(100);
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
-                    .HasMaxLength(50);
+                    .HasMaxLength(100);
             });
 
             modelBuilder.Entity<InvReqDetail>(entity =>
             {
                 entity.ToTable("INV_REQ_DETAIL");
 
+                entity.HasIndex(e => e.BrandId);
+
+                entity.HasIndex(e => e.ItemId);
+
+                entity.HasIndex(e => e.ReqMastId);
+
+                entity.HasIndex(e => e.SpecId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("IS_ACTIVE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
                 entity.Property(e => e.Qty).HasColumnName("QTY");
 
@@ -6193,13 +5393,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.ReqMastId)
-                    .HasColumnName("REQ_MAST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReqMastId).HasColumnName("REQ_MAST_ID");
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
                 entity.HasOne(d => d.Brand)
                     .WithMany(p => p.InvReqDetail)
@@ -6226,53 +5422,49 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("INV_REQUISITION_MAST");
 
+                entity.HasIndex(e => e.AcceptBy);
+
+                entity.HasIndex(e => e.CheckBy);
+
+                entity.HasIndex(e => e.ItemId);
+
+                entity.HasIndex(e => e.PrepBy);
+
+                entity.HasIndex(e => e.ProjId);
+
+                entity.HasIndex(e => e.ReqBy);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AcceptBy)
-                    .HasColumnName("ACCEPT_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AcceptBy).HasColumnName("ACCEPT_BY");
 
                 entity.Property(e => e.AcceptDt)
                     .HasColumnName("ACCEPT_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.AcceptDtEng)
-                    .HasColumnName("ACCEPT_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.AcceptDtEng).HasColumnName("ACCEPT_DT_ENG");
 
-                entity.Property(e => e.CheckBy)
-                    .HasColumnName("CHECK_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CheckBy).HasColumnName("CHECK_BY");
 
                 entity.Property(e => e.CheckDt)
                     .HasColumnName("CHECK_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.CheckDtEng)
-                    .HasColumnName("CHECK_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.CheckDtEng).HasColumnName("CHECK_DT_ENG");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.HandoverId)
-                    .HasColumnName("HANDOVER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.HandoverId).HasColumnName("HANDOVER_ID");
 
-                entity.Property(e => e.HandoverRoomId)
-                    .HasColumnName("HANDOVER_ROOM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.HandoverRoomId).HasColumnName("HANDOVER_ROOM_ID");
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
-                entity.Property(e => e.MaintainItemId)
-                    .HasColumnName("MAINTAIN_ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MaintainItemId).HasColumnName("MAINTAIN_ITEM_ID");
 
                 entity.Property(e => e.Orgstaffname)
                     .HasColumnName("ORGSTAFFNAME")
@@ -6282,21 +5474,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ORGSTAFFPOST")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.PrepBy)
-                    .HasColumnName("PREP_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PrepBy).HasColumnName("PREP_BY");
 
                 entity.Property(e => e.PrepDt)
                     .HasColumnName("PREP_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.PrepDtEng)
-                    .HasColumnName("PREP_DT_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.PrepDtEng).HasColumnName("PREP_DT_ENG");
 
-                entity.Property(e => e.ProjId)
-                    .HasColumnName("PROJ_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ProjId).HasColumnName("PROJ_ID");
 
                 entity.Property(e => e.PurchaseGive)
                     .HasColumnName("PURCHASE_GIVE")
@@ -6308,13 +5494,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.ReqBy)
-                    .HasColumnName("REQ_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReqBy).HasColumnName("REQ_BY");
 
-                entity.Property(e => e.ReqDateEng)
-                    .HasColumnName("REQ_DATE_ENG")
-                    .HasColumnType("date");
+                entity.Property(e => e.ReqDateEng).HasColumnName("REQ_DATE_ENG");
 
                 entity.Property(e => e.ReqDateNep)
                     .HasColumnName("REQ_DATE_NEP")
@@ -6324,25 +5506,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REQ_ID")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ReqType)
-                    .HasColumnName("REQ_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReqType).HasColumnName("REQ_TYPE");
 
                 entity.Property(e => e.StockGive)
                     .HasColumnName("STOCK_GIVE")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.TypeId)
-                    .HasColumnName("TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TypeId).HasColumnName("TYPE_ID");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.VehicleId)
-                    .HasColumnName("VEHICLE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VehicleId).HasColumnName("VEHICLE_ID");
 
                 entity.HasOne(d => d.AcceptByNavigation)
                     .WithMany(p => p.InvRequisitionMastAcceptByNavigation)
@@ -6382,17 +5556,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("INV_ROOM_MST");
 
+                entity.HasIndex(e => e.DeptId);
+
                 entity.Property(e => e.RoomId)
                     .HasColumnName("ROOM_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.BlockNo)
                     .HasColumnName("BLOCK_NO")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.DeptId)
-                    .HasColumnName("DEPT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DeptId).HasColumnName("DEPT_ID");
 
                 entity.Property(e => e.DescEn)
                     .HasColumnName("DESC_EN")
@@ -6402,9 +5576,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESC_NP")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.FloorNo)
-                    .HasColumnName("FLOOR_NO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FloorNo).HasColumnName("FLOOR_NO");
 
                 entity.HasOne(d => d.Dept)
                     .WithMany(p => p.InvRoomMst)
@@ -6416,25 +5588,25 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("INV_STATUS_DETAIL");
 
+                entity.HasIndex(e => e.Acceptby);
+
+                entity.HasIndex(e => e.Checkedby);
+
+                entity.HasIndex(e => e.Preby);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.Acceptby)
-                    .HasColumnName("ACCEPTBY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Acceptby).HasColumnName("ACCEPTBY");
 
                 entity.Property(e => e.Acceptvsdate)
                     .HasColumnName("ACCEPTVSDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.Checkedby)
-                    .HasColumnName("CHECKEDBY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Checkedby).HasColumnName("CHECKEDBY");
 
                 entity.Property(e => e.Checkvsdate)
                     .HasColumnName("CHECKVSDATE")
@@ -6448,21 +5620,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
-                entity.Property(e => e.ItemStatusId)
-                    .HasColumnName("ITEM_STATUS_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemStatusId).HasColumnName("ITEM_STATUS_ID");
 
-                entity.Property(e => e.MainId)
-                    .HasColumnName("MAIN_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MainId).HasColumnName("MAIN_ID");
 
-                entity.Property(e => e.Preby)
-                    .HasColumnName("PREBY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Preby).HasColumnName("PREBY");
 
                 entity.Property(e => e.Prevsdate)
                     .HasColumnName("PREVSDATE")
@@ -6472,21 +5636,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
-                entity.Property(e => e.Statusdatead)
-                    .HasColumnName("STATUSDATEAD")
-                    .HasColumnType("date");
+                entity.Property(e => e.Statusdatead).HasColumnName("STATUSDATEAD");
 
                 entity.Property(e => e.Statusdatevs)
                     .HasColumnName("STATUSDATEVS")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Totalqty)
-                    .HasColumnName("TOTALQTY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Totalqty).HasColumnName("TOTALQTY");
 
                 entity.HasOne(d => d.AcceptbyNavigation)
                     .WithMany(p => p.InvStatusDetailAcceptbyNavigation)
@@ -6510,31 +5668,21 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
-                entity.Property(e => e.Qty)
-                    .HasColumnName("QTY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Qty).HasColumnName("QTY");
 
-                entity.Property(e => e.Rate)
-                    .HasColumnName("RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rate).HasColumnName("RATE");
 
-                entity.Property(e => e.SupId)
-                    .HasColumnName("SUP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SupId).HasColumnName("SUP_ID");
             });
 
             modelBuilder.Entity<InvSupplier>(entity =>
@@ -6546,7 +5694,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.SupId)
                     .HasColumnName("SUP_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
@@ -6560,9 +5708,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("COMPANY_NAME_NP")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.DateAd)
-                    .HasColumnName("DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.DateAd).HasColumnName("DATE_AD");
 
                 entity.Property(e => e.DateVs)
                     .HasColumnName("DATE_VS")
@@ -6585,9 +5731,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.OrgId)
-                    .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgId).HasColumnName("ORG_ID");
 
                 entity.Property(e => e.OrgType)
                     .HasColumnName("ORG_TYPE")
@@ -6620,15 +5764,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(15);
 
-                entity.Property(e => e.SupId)
-                    .HasColumnName("SUP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SupId).HasColumnName("SUP_ID");
             });
 
             modelBuilder.Entity<InvTaxRate>(entity =>
@@ -6640,7 +5782,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.TaxRateId)
                     .HasColumnName("TAX_RATE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -6660,7 +5802,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.DescEn)
                     .HasColumnName("DESC_EN")
@@ -6675,9 +5817,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("IS_ACTIVE")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.TypeId)
-                    .HasColumnName("TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TypeId).HasColumnName("TYPE_ID");
             });
 
             modelBuilder.Entity<InvUnit>(entity =>
@@ -6689,7 +5829,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.UnitId)
                     .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.DescEn)
                     .HasColumnName("DESC_EN")
@@ -6704,13 +5844,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("IS_ACTIVE")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.MulFactor)
-                    .HasColumnName("MUL_FACTOR")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MulFactor).HasColumnName("MUL_FACTOR");
 
-                entity.Property(e => e.NoOfUnits)
-                    .HasColumnName("NO_OF_UNITS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NoOfUnits).HasColumnName("NO_OF_UNITS");
 
                 entity.Property(e => e.RelatedTo)
                     .HasColumnName("RELATED_TO")
@@ -6726,7 +5862,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.WarehouseId)
                     .HasColumnName("WAREHOUSE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.IsActive)
                     .HasColumnName("IS_ACTIVE")
@@ -6748,19 +5884,15 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AgreementDtAd)
-                    .HasColumnName("AGREEMENT_DT_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.AgreementDtAd).HasColumnName("AGREEMENT_DT_AD");
 
                 entity.Property(e => e.AgreementType)
                     .HasColumnName("AGREEMENT_TYPE")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.AnlysisDsgnDtAd)
-                    .HasColumnName("ANLYSIS_DSGN_DT_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.AnlysisDsgnDtAd).HasColumnName("ANLYSIS_DSGN_DT_AD");
 
                 entity.Property(e => e.ApproxAmt).HasColumnName("APPROX_AMT");
 
@@ -6768,9 +5900,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("APRX_AMT_ACPT_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.AprxAmtAcptDtAd)
-                    .HasColumnName("APRX_AMT_ACPT_DT_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.AprxAmtAcptDtAd).HasColumnName("APRX_AMT_ACPT_DT_AD");
 
                 entity.Property(e => e.FormEntryDate)
                     .HasColumnName("FORM_ENTRY_DATE")
@@ -6801,37 +5931,27 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TENDR_ACCEPT_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.TendrAcceptDtAd)
-                    .HasColumnName("TENDR_ACCEPT_DT_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.TendrAcceptDtAd).HasColumnName("TENDR_ACCEPT_DT_AD");
 
-                entity.Property(e => e.TendrCallDtAd)
-                    .HasColumnName("TENDR_CALL_DT_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.TendrCallDtAd).HasColumnName("TENDR_CALL_DT_AD");
 
                 entity.Property(e => e.TendrOpenDate)
                     .HasColumnName("TENDR_OPEN_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.TendrOpenDtAd)
-                    .HasColumnName("TENDR_OPEN_DT_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.TendrOpenDtAd).HasColumnName("TENDR_OPEN_DT_AD");
 
                 entity.Property(e => e.TendrSaleDate)
                     .HasColumnName("TENDR_SALE_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Wrk2FinDtAd)
-                    .HasColumnName("WRK_2_FIN_DT_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.Wrk2FinDtAd).HasColumnName("WRK_2_FIN_DT_AD");
 
                 entity.Property(e => e.WrkAcmplshDate)
                     .HasColumnName("WRK_ACMPLSH_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.WrkAcmplshDtAd)
-                    .HasColumnName("WRK_ACMPLSH_DT_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.WrkAcmplshDtAd).HasColumnName("WRK_ACMPLSH_DT_AD");
 
                 entity.Property(e => e.WrkOrderDate)
                     .HasColumnName("WRK_ORDER_DATE")
@@ -6844,17 +5964,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("IPTTAXSUMMARY_HISTORY");
 
-                entity.Property(e => e.AddDate)
-                    .HasColumnName("ADD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.AddDate).HasColumnName("ADD_DATE");
 
-                entity.Property(e => e.Additionalcharges)
-                    .HasColumnName("ADDITIONALCHARGES")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Additionalcharges).HasColumnName("ADDITIONALCHARGES");
 
-                entity.Property(e => e.Billid)
-                    .HasColumnName("BILLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billid).HasColumnName("BILLID");
 
                 entity.Property(e => e.Billno)
                     .HasColumnName("BILLNO")
@@ -6868,13 +5982,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DATA_STATUS")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -6884,35 +5994,23 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DATEPAID")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Fineamount)
-                    .HasColumnName("FINEAMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Fineamount).HasColumnName("FINEAMOUNT");
 
                 entity.Property(e => e.Fiscalyear)
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(9);
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
-                entity.Property(e => e.Isthisfromrevenueaccount)
-                    .HasColumnName("ISTHISFROMREVENUEACCOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Isthisfromrevenueaccount).HasColumnName("ISTHISFROMREVENUEACCOUNT");
 
                 entity.Property(e => e.LastTaxPaidAmount).HasColumnName("LAST_TAX_PAID_AMOUNT");
 
-                entity.Property(e => e.Month)
-                    .HasColumnName("MONTH")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Month).HasColumnName("MONTH");
 
-                entity.Property(e => e.Nettaxamount)
-                    .HasColumnName("NETTAXAMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Nettaxamount).HasColumnName("NETTAXAMOUNT");
 
-                entity.Property(e => e.Reductionalcharges)
-                    .HasColumnName("REDUCTIONALCHARGES")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Reductionalcharges).HasColumnName("REDUCTIONALCHARGES");
 
                 entity.Property(e => e.RemHlFineAmount).HasColumnName("REM_HL_FINE_AMOUNT");
 
@@ -6930,9 +6028,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.RemIptPaidAmount).HasColumnName("REM_IPT_PAID_AMOUNT");
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
 
                 entity.Property(e => e.Specialnotes).HasColumnName("SPECIALNOTES");
 
@@ -6940,29 +6036,21 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TAX_TYPE")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.Taxpaidamount)
-                    .HasColumnName("TAXPAIDAMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpaidamount).HasColumnName("TAXPAIDAMOUNT");
 
                 entity.Property(e => e.TranTime)
                     .HasColumnName("TRAN_TIME")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
                 entity.Property(e => e.WindowsUser)
                     .HasColumnName("WINDOWS_USER")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Year)
-                    .HasColumnName("YEAR")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Year).HasColumnName("YEAR");
             });
 
             modelBuilder.Entity<Issuedbills>(entity =>
@@ -6979,29 +6067,21 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BILLNOTO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Counterid)
-                    .HasColumnName("COUNTERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Counterid).HasColumnName("COUNTERID");
 
                 entity.Property(e => e.Dateissued)
                     .HasColumnName("DATEISSUED")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
 
                 entity.Property(e => e.Specialnotes)
                     .HasColumnName("SPECIALNOTES")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Thelino)
-                    .HasColumnName("THELINO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Thelino).HasColumnName("THELINO");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
             });
 
             modelBuilder.Entity<Landmeasuringunits>(entity =>
@@ -7010,13 +6090,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("LANDMEASURINGUNITS");
 
-                entity.Property(e => e.Sqftperunit)
-                    .HasColumnName("SQFTPERUNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sqftperunit).HasColumnName("SQFTPERUNIT");
 
-                entity.Property(e => e.Unitid)
-                    .HasColumnName("UNITID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Unitid).HasColumnName("UNITID");
 
                 entity.Property(e => e.Unitname)
                     .HasColumnName("UNITNAME")
@@ -7029,29 +6105,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("LANDSMULTIEVALUATIONDETAIL");
 
-                entity.Property(e => e.Areainsqft)
-                    .HasColumnName("AREAINSQFT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Areainsqft).HasColumnName("AREAINSQFT");
 
-                entity.Property(e => e.Generalrateid)
-                    .HasColumnName("GENERALRATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Generalrateid).HasColumnName("GENERALRATEID");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
                 entity.Property(e => e.Kittanumber)
                     .HasColumnName("KITTANUMBER")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Landid)
-                    .HasColumnName("LANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landid).HasColumnName("LANDID");
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
             });
 
             modelBuilder.Entity<Leledger20682069>(entity =>
@@ -7060,97 +6126,59 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("LELEDGER20682069");
 
-                entity.Property(e => e.Appliedvalue)
-                    .HasColumnName("APPLIEDVALUE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Appliedvalue).HasColumnName("APPLIEDVALUE");
 
-                entity.Property(e => e.Calculatedvalue)
-                    .HasColumnName("CALCULATEDVALUE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Calculatedvalue).HasColumnName("CALCULATEDVALUE");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
                 entity.Property(e => e.Kittanumber)
                     .HasColumnName("KITTANUMBER")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Landid)
-                    .HasColumnName("LANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landid).HasColumnName("LANDID");
 
-                entity.Property(e => e.Landmeasuringunit)
-                    .HasColumnName("LANDMEASURINGUNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landmeasuringunit).HasColumnName("LANDMEASURINGUNIT");
 
-                entity.Property(e => e.Netcalculatedvalue)
-                    .HasColumnName("NETCALCULATEDVALUE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Netcalculatedvalue).HasColumnName("NETCALCULATEDVALUE");
 
-                entity.Property(e => e.Netevaluatingarea)
-                    .HasColumnName("NETEVALUATINGAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Netevaluatingarea).HasColumnName("NETEVALUATINGAREA");
 
-                entity.Property(e => e.Noncompletionreasonid)
-                    .HasColumnName("NONCOMPLETIONREASONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Noncompletionreasonid).HasColumnName("NONCOMPLETIONREASONID");
 
                 entity.Property(e => e.Noncompletionreasons)
                     .HasColumnName("NONCOMPLETIONREASONS")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Nonevaluatedarea)
-                    .HasColumnName("NONEVALUATEDAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Nonevaluatedarea).HasColumnName("NONEVALUATEDAREA");
 
-                entity.Property(e => e.Otherminusinevaluations)
-                    .HasColumnName("OTHERMINUSINEVALUATIONS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Otherminusinevaluations).HasColumnName("OTHERMINUSINEVALUATIONS");
 
-                entity.Property(e => e.Otherplusinevaluations)
-                    .HasColumnName("OTHERPLUSINEVALUATIONS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Otherplusinevaluations).HasColumnName("OTHERPLUSINEVALUATIONS");
 
                 entity.Property(e => e.Otherplusminusdescriptions)
                     .HasColumnName("OTHERPLUSMINUSDESCRIPTIONS")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
-                entity.Property(e => e.Rateperunit)
-                    .HasColumnName("RATEPERUNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateperunit).HasColumnName("RATEPERUNIT");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Selfdeclaredvalue)
-                    .HasColumnName("SELFDECLAREDVALUE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Selfdeclaredvalue).HasColumnName("SELFDECLAREDVALUE");
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
 
-                entity.Property(e => e.Taxed)
-                    .HasColumnName("TAXED")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxed).HasColumnName("TAXED");
 
-                entity.Property(e => e.Totalarea)
-                    .HasColumnName("TOTALAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Totalarea).HasColumnName("TOTALAREA");
 
-                entity.Property(e => e.Trackid)
-                    .HasColumnName("TRACKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Trackid).HasColumnName("TRACKID");
 
-                entity.Property(e => e.Wardno)
-                    .HasColumnName("WARDNO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Wardno).HasColumnName("WARDNO");
             });
 
             modelBuilder.Entity<MalpotLands>(entity =>
@@ -7159,15 +6187,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AddDate)
                     .HasColumnName("ADD_DATE")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.AddUserid)
-                    .HasColumnName("ADD_USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AddUserid).HasColumnName("ADD_USERID");
 
                 entity.Property(e => e.Areainsqft).HasColumnName("AREAINSQFT");
 
@@ -7175,21 +6201,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("EDIT_DATE")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.EditUserid)
-                    .HasColumnName("EDIT_USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EditUserid).HasColumnName("EDIT_USERID");
 
                 entity.Property(e => e.Eid)
                     .HasColumnName("EID")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
-                entity.Property(e => e.IsIpt)
-                    .HasColumnName("IS_IPT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IsIpt).HasColumnName("IS_IPT");
 
                 entity.Property(e => e.Kittanumber)
                     .HasColumnName("KITTANUMBER")
@@ -7209,26 +6229,22 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NP_LASTNAME")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Oldvdcid)
-                    .HasColumnName("OLDVDCID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Oldvdcid).HasColumnName("OLDVDCID");
 
                 entity.Property(e => e.Oldwordno)
                     .HasColumnName("OLDWORDNO")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Vdcid)
-                    .HasColumnName("VDCID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Vdcid).HasColumnName("VDCID");
 
-                entity.Property(e => e.Wordno)
-                    .HasColumnName("WORDNO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Wordno).HasColumnName("WORDNO");
             });
 
             modelBuilder.Entity<MapAreaGndCov>(entity =>
             {
                 entity.ToTable("MAP_AREA_GND_COV");
+
+                entity.HasIndex(e => e.Regionid);
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -7238,9 +6254,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.GroundCov).HasColumnName("GROUND_COV");
 
-                entity.Property(e => e.Regionid)
-                    .HasColumnName("REGIONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Regionid).HasColumnName("REGIONID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -7255,10 +6269,6 @@ namespace IMIS_DataEntity.Data
             modelBuilder.Entity<MapConstrctionKind>(entity =>
             {
                 entity.ToTable("MAP_CONSTRCTION_KIND");
-
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_CONSTRCTION_KIND_NAME_NP_key")
-                    .IsUnique();
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -7281,10 +6291,6 @@ namespace IMIS_DataEntity.Data
             modelBuilder.Entity<MapDesignerDtl>(entity =>
             {
                 entity.ToTable("MAP_DESIGNER_DTL");
-
-                entity.HasIndex(e => e.RegNo)
-                    .HasName("MAP_DESIGNER_DTL_REG_NO_key")
-                    .IsUnique();
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -7332,10 +6338,6 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("MAP_DIRECTION");
 
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_DIRECTION_NAME_NP_key")
-                    .IsUnique();
-
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
@@ -7357,10 +6359,6 @@ namespace IMIS_DataEntity.Data
             modelBuilder.Entity<MapDrainType>(entity =>
             {
                 entity.ToTable("MAP_DRAIN_TYPE");
-
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_DRAIN_TYPE_NAME_NP_key")
-                    .IsUnique();
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -7384,10 +6382,6 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("MAP_FLOOR");
 
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_FLOOR_NAME_NP_key")
-                    .IsUnique();
-
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
@@ -7409,10 +6403,6 @@ namespace IMIS_DataEntity.Data
             modelBuilder.Entity<MapHouseuseType>(entity =>
             {
                 entity.ToTable("MAP_HOUSEUSE_TYPE");
-
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_HOUSEUSE_TYPE_NAME_NP_key")
-                    .IsUnique();
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -7443,9 +6433,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SN")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Distanceft)
-                    .HasColumnName("DISTANCEFT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Distanceft).HasColumnName("DISTANCEFT");
 
                 entity.Property(e => e.Kv).HasColumnName("KV");
 
@@ -7458,17 +6446,13 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("MAP_INCOME_TYPE");
 
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_INCOME_TYPE_NAME_NP_key")
-                    .IsUnique();
+                entity.HasIndex(e => e.AccId);
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -7493,10 +6477,6 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("MAP_LAND_OWNER_TYPE");
 
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_LAND_OWNER_TYPE_NAME_NP_key")
-                    .IsUnique();
-
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
@@ -7518,10 +6498,6 @@ namespace IMIS_DataEntity.Data
             modelBuilder.Entity<MapNeighbourType>(entity =>
             {
                 entity.ToTable("MAP_NEIGHBOUR_TYPE");
-
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_NEIGHBOUR_TYPE_NAME_NP_key")
-                    .IsUnique();
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -7547,7 +6523,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.DepositeRatePermit).HasColumnName("DEPOSITE_RATE_PERMIT");
 
@@ -7561,26 +6537,22 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.RatePermit).HasColumnName("RATE_PERMIT");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
             });
 
             modelBuilder.Entity<MapRegionFar>(entity =>
             {
                 entity.ToTable("MAP_REGION_FAR");
 
+                entity.HasIndex(e => e.Regionid);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.AreaFrom)
-                    .HasColumnName("AREA_FROM")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AreaFrom).HasColumnName("AREA_FROM");
 
-                entity.Property(e => e.AreaTo)
-                    .HasColumnName("AREA_TO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AreaTo).HasColumnName("AREA_TO");
 
                 entity.Property(e => e.Far).HasColumnName("FAR");
 
@@ -7588,9 +6560,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Regionid)
-                    .HasColumnName("REGIONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Regionid).HasColumnName("REGIONID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -7605,10 +6575,6 @@ namespace IMIS_DataEntity.Data
             modelBuilder.Entity<MapRoofCnstrctType>(entity =>
             {
                 entity.ToTable("MAP_ROOF_CNSTRCT_TYPE");
-
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_ROOF_CNSTRCT_TYPE_NAME_NP_key")
-                    .IsUnique();
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -7631,10 +6597,6 @@ namespace IMIS_DataEntity.Data
             modelBuilder.Entity<MapRoofType>(entity =>
             {
                 entity.ToTable("MAP_ROOF_TYPE");
-
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_ROOF_TYPE_NAME_NP_key")
-                    .IsUnique();
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
@@ -7663,15 +6625,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Area).HasColumnName("AREA");
 
                 entity.Property(e => e.Landshape).HasColumnName("LANDSHAPE");
 
-                entity.Property(e => e.Permitid)
-                    .HasColumnName("PERMITID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Permitid).HasColumnName("PERMITID");
 
                 entity.Property(e => e.SideA).HasColumnName("SIDE_A");
 
@@ -7705,13 +6665,9 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("MAP_STOREYS");
 
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_STOREYS_NAME_NP_key")
-                    .IsUnique();
-
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -7731,13 +6687,9 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("MAP_STRUCTURE_TYPE");
 
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_STRUCTURE_TYPE_NAME_NP_key")
-                    .IsUnique();
-
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -7757,13 +6709,9 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("MAP_ZONE");
 
-                entity.HasIndex(e => e.NameNp)
-                    .HasName("MAP_ZONE_NAME_NP_key")
-                    .IsUnique();
-
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -7785,10 +6733,6 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("MINISTRY");
 
-                entity.HasIndex(e => e.Code)
-                    .HasName("MINISTRY_CODE_key")
-                    .IsUnique();
-
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
                     .HasMaxLength(150);
@@ -7797,17 +6741,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CODE")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.District)
-                    .HasColumnName("DISTRICT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.District).HasColumnName("DISTRICT");
 
                 entity.Property(e => e.Engname)
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
@@ -7821,13 +6761,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Vdc)
-                    .HasColumnName("VDC")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Vdc).HasColumnName("VDC");
 
-                entity.Property(e => e.Zone)
-                    .HasColumnName("ZONE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Zone).HasColumnName("ZONE");
             });
 
             modelBuilder.Entity<MinistryAccHead>(entity =>
@@ -7836,27 +6772,21 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.MinistryId)
-                    .HasColumnName("MINISTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MinistryId).HasColumnName("MINISTRY_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.SubHeadId)
-                    .HasColumnName("SUB_HEAD_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubHeadId).HasColumnName("SUB_HEAD_ID");
             });
 
             modelBuilder.Entity<Nationalities>(entity =>
@@ -7877,9 +6807,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Nationalityid)
-                    .HasColumnName("NATIONALITYID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Nationalityid).HasColumnName("NATIONALITYID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
@@ -7895,7 +6823,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Fiscalyear)
                     .HasColumnName("FISCALYEAR")
@@ -7905,9 +6833,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Fromtaxamount).HasColumnName("FROMTAXAMOUNT");
 
-                entity.Property(e => e.Ratesn)
-                    .HasColumnName("RATESN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Ratesn).HasColumnName("RATESN");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -7926,7 +6852,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.OfficeTypeId)
                     .HasColumnName("OFFICE_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.OfficeType1)
                     .IsRequired()
@@ -7938,9 +6864,15 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("ORG_BANK_ACCOUNT");
 
+                entity.HasIndex(e => e.BankAccntTypeId);
+
+                entity.HasIndex(e => e.BranchId);
+
+                entity.HasIndex(e => e.OrgId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AccName)
                     .HasColumnName("ACC_NAME")
@@ -7950,21 +6882,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ACC_NO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.BankAccntTypeId)
-                    .HasColumnName("BANK_ACCNT_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BankAccntTypeId).HasColumnName("BANK_ACCNT_TYPE_ID");
 
-                entity.Property(e => e.Bankid)
-                    .HasColumnName("BANKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Bankid).HasColumnName("BANKID");
 
-                entity.Property(e => e.BranchId)
-                    .HasColumnName("BRANCH_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BranchId).HasColumnName("BRANCH_ID");
 
-                entity.Property(e => e.OrgId)
-                    .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgId).HasColumnName("ORG_ID");
 
                 entity.HasOne(d => d.BankAccntType)
                     .WithMany(p => p.OrgBankAccount)
@@ -7986,21 +6910,21 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("ORGANIZATION_TREE");
 
+                entity.HasIndex(e => e.GeoRegion);
+
+                entity.HasIndex(e => e.ParentId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.ContainsDarbandi)
-                    .HasColumnName("CONTAINS_DARBANDI")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ContainsDarbandi).HasColumnName("CONTAINS_DARBANDI");
 
                 entity.Property(e => e.EngName)
                     .HasColumnName("ENG_NAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.GeoRegion)
-                    .HasColumnName("GEO_REGION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.GeoRegion).HasColumnName("GEO_REGION");
 
                 entity.Property(e => e.GrpLevel).HasColumnName("GRP_LEVEL");
 
@@ -8008,9 +6932,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NEP_NAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.ParentId)
-                    .HasColumnName("PARENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ParentId).HasColumnName("PARENT_ID");
 
                 entity.HasOne(d => d.GeoRegionNavigation)
                     .WithMany(p => p.OrganizationTree)
@@ -8032,7 +6954,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.PaymentSlipId)
                     .HasColumnName("PAYMENT_SLIP_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AdvClearedFromBank).HasColumnName("ADV_CLEARED_FROM_BANK");
 
@@ -8068,19 +6990,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PAYMENT_DESCRIPTION")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.PersonId)
-                    .HasColumnName("PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonId).HasColumnName("PERSON_ID");
 
-                entity.Property(e => e.PersonTypeId)
-                    .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonTypeId).HasColumnName("PERSON_TYPE_ID");
 
                 entity.Property(e => e.RetentionMoneyEduction).HasColumnName("RETENTION_MONEY_EDUCTION");
 
-                entity.Property(e => e.TransactionTypeid)
-                    .HasColumnName("TRANSACTION_TYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TransactionTypeid).HasColumnName("TRANSACTION_TYPEID");
 
                 entity.Property(e => e.VatAmt).HasColumnName("VAT_AMT");
 
@@ -8090,13 +7006,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VR_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VrNo)
-                    .HasColumnName("VR_NO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VrNo).HasColumnName("VR_NO");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
             });
 
             modelBuilder.Entity<PersonTypeMaster>(entity =>
@@ -8108,7 +7020,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.PersonTypeId)
                     .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Isfixed)
                     .HasColumnName("ISFIXED")
@@ -8125,7 +7037,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -8146,7 +7058,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
@@ -8168,9 +7080,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_AWARDS");
 
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
@@ -8180,25 +7094,19 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.LevelDesc)
                     .HasColumnName("LEVEL_DESC")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.NepName)
                     .HasColumnName("NEP_NAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.RcvdDateAd)
-                    .HasColumnName("RCVD_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.RcvdDateAd).HasColumnName("RCVD_DATE_AD");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -8225,9 +7133,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_BANK_PAYROLL");
 
+                entity.HasIndex(e => e.BankId);
+
+                entity.HasIndex(e => e.EmpId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AccountNo)
                     .HasColumnName("ACCOUNT_NO")
@@ -8237,13 +7149,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BANK_FOLIO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.BankId)
-                    .HasColumnName("BANK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BankId).HasColumnName("BANK_ID");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.HasOne(d => d.Bank)
                     .WithMany(p => p.PisBankPayroll)
@@ -8263,29 +7171,25 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_DARBANDI");
 
+                entity.HasIndex(e => e.LocalPostId);
+
+                entity.HasIndex(e => e.OfficeId);
+
+                entity.HasIndex(e => e.PostId);
+
                 entity.Property(e => e.DarbandiId)
                     .HasColumnName("DARBANDI_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
-                entity.Property(e => e.NoOfPost)
-                    .HasColumnName("NO_OF_POST")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NoOfPost).HasColumnName("NO_OF_POST");
 
-                entity.Property(e => e.OfficeId)
-                    .HasColumnName("OFFICE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OfficeId).HasColumnName("OFFICE_ID");
 
-                entity.Property(e => e.PostId)
-                    .HasColumnName("POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PostId).HasColumnName("POST_ID");
 
-                entity.Property(e => e.PostLevel)
-                    .HasColumnName("POST_LEVEL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PostLevel).HasColumnName("POST_LEVEL");
 
                 entity.Property(e => e.SewaSamuhaUpasamuha)
                     .HasColumnName("SEWA_SAMUHA_UPASAMUHA")
@@ -8314,37 +7218,33 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_DELETD_FRM_FULFILD_DARB");
 
+                entity.HasIndex(e => e.FrmDarbandiId);
+
+                entity.HasIndex(e => e.FrmOfficeId);
+
+                entity.HasIndex(e => e.FrmSnInFd);
+
+                entity.HasIndex(e => e.ToSnInFd);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.FrmAppointmntType)
-                    .HasColumnName("FRM_APPOINTMNT_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FrmAppointmntType).HasColumnName("FRM_APPOINTMNT_TYPE");
 
-                entity.Property(e => e.FrmDarbandiId)
-                    .HasColumnName("FRM_DARBANDI_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FrmDarbandiId).HasColumnName("FRM_DARBANDI_ID");
 
                 entity.Property(e => e.FrmDateFulfilled)
                     .HasColumnName("FRM_DATE_FULFILLED")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.FrmOfficeId)
-                    .HasColumnName("FRM_OFFICE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FrmOfficeId).HasColumnName("FRM_OFFICE_ID");
 
-                entity.Property(e => e.FrmSnInFd)
-                    .HasColumnName("FRM_SN_IN_FD")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FrmSnInFd).HasColumnName("FRM_SN_IN_FD");
 
-                entity.Property(e => e.ToSnInFd)
-                    .HasColumnName("TO_SN_IN_FD")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ToSnInFd).HasColumnName("TO_SN_IN_FD");
 
                 entity.HasOne(d => d.FrmDarbandi)
                     .WithMany(p => p.PisDeletdFrmFulfildDarb)
@@ -8373,11 +7273,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.CountryId)
-                    .HasColumnName("COUNTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CountryId).HasColumnName("COUNTRY_ID");
 
                 entity.Property(e => e.NameEng)
                     .HasColumnName("NAME_ENG")
@@ -8401,7 +7299,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.EduId)
                     .HasColumnName("EDU_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.EduName)
                     .HasColumnName("EDU_NAME")
@@ -8415,21 +7313,21 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_EDUCATION");
 
+                entity.HasIndex(e => e.BoardId);
+
+                entity.HasIndex(e => e.EduLevelId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.BoardId)
-                    .HasColumnName("BOARD_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BoardId).HasColumnName("BOARD_ID");
 
-                entity.Property(e => e.CompletionYrAd)
-                    .HasColumnName("COMPLETION_YR_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.CompletionYrAd).HasColumnName("COMPLETION_YR_AD");
 
                 entity.Property(e => e.CompletionYrVs)
                     .HasColumnName("COMPLETION_YR_VS")
@@ -8439,17 +7337,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DIVISION")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.EduLevelId)
-                    .HasColumnName("EDU_LEVEL_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EduLevelId).HasColumnName("EDU_LEVEL_ID");
 
                 entity.Property(e => e.EduName)
                     .HasColumnName("EDU_NAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.Institute)
                     .HasColumnName("INSTITUTE")
@@ -8463,9 +7357,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SUBJECTS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.ValidForEval)
-                    .HasColumnName("VALID_FOR_EVAL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ValidForEval).HasColumnName("VALID_FOR_EVAL");
 
                 entity.HasOne(d => d.Board)
                     .WithMany(p => p.PisEducation)
@@ -8482,21 +7374,19 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("PIS_EMP_ADV_DED_DTL");
 
+                entity.HasIndex(e => e.EmpId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.AmountCur).HasColumnName("AMOUNT_CUR");
 
                 entity.Property(e => e.AmountPrev).HasColumnName("AMOUNT_PREV");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.HasOne(d => d.Emp)
                     .WithMany(p => p.PisEmpAdvDedDtl)
@@ -8510,7 +7400,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -8534,51 +7424,31 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.DeptId)
                     .HasColumnName("DEPT_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AbsntKattiAccId)
-                    .HasColumnName("ABSNT_KATTI_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AbsntKattiAccId).HasColumnName("ABSNT_KATTI_ACC_ID");
 
-                entity.Property(e => e.AddInsrnceAccId)
-                    .HasColumnName("ADD_INSRNCE_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AddInsrnceAccId).HasColumnName("ADD_INSRNCE_ACC_ID");
 
-                entity.Property(e => e.AddPfAccId)
-                    .HasColumnName("ADD_PF_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AddPfAccId).HasColumnName("ADD_PF_ACC_ID");
 
-                entity.Property(e => e.AllowanceAccId)
-                    .HasColumnName("ALLOWANCE_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AllowanceAccId).HasColumnName("ALLOWANCE_ACC_ID");
 
-                entity.Property(e => e.BhattaAccId)
-                    .HasColumnName("BHATTA_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BhattaAccId).HasColumnName("BHATTA_ACC_ID");
 
-                entity.Property(e => e.BudgetSourceId)
-                    .HasColumnName("BUDGET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudgetSourceId).HasColumnName("BUDGET_SOURCE_ID");
 
-                entity.Property(e => e.BudjetSourceId)
-                    .HasColumnName("BUDJET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudjetSourceId).HasColumnName("BUDJET_SOURCE_ID");
 
-                entity.Property(e => e.CitAccId)
-                    .HasColumnName("CIT_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CitAccId).HasColumnName("CIT_ACC_ID");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.IncmeTaxAccId)
-                    .HasColumnName("INCME_TAX_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IncmeTaxAccId).HasColumnName("INCME_TAX_ACC_ID");
 
-                entity.Property(e => e.LendPfDAccId)
-                    .HasColumnName("LEND_PF_D_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LendPfDAccId).HasColumnName("LEND_PF_D_ACC_ID");
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -8589,57 +7459,39 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.OthrKattiAccId)
-                    .HasColumnName("OTHR_KATTI_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OthrKattiAccId).HasColumnName("OTHR_KATTI_ACC_ID");
 
-                entity.Property(e => e.PeskiKattiAccId)
-                    .HasColumnName("PESKI_KATTI_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PeskiKattiAccId).HasColumnName("PESKI_KATTI_ACC_ID");
 
-                entity.Property(e => e.SalaryAccId)
-                    .HasColumnName("SALARY_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SalaryAccId).HasColumnName("SALARY_ACC_ID");
 
-                entity.Property(e => e.SapatiKattiAccId)
-                    .HasColumnName("SAPATI_KATTI_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SapatiKattiAccId).HasColumnName("SAPATI_KATTI_ACC_ID");
 
-                entity.Property(e => e.SocSecTax)
-                    .HasColumnName("SOC_SEC_TAX")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SocSecTax).HasColumnName("SOC_SEC_TAX");
 
-                entity.Property(e => e.SubInsrnceAccId)
-                    .HasColumnName("SUB_INSRNCE_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubInsrnceAccId).HasColumnName("SUB_INSRNCE_ACC_ID");
 
-                entity.Property(e => e.SubPfAccId)
-                    .HasColumnName("SUB_PF_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SubPfAccId).HasColumnName("SUB_PF_ACC_ID");
 
-                entity.Property(e => e.TdsAccId)
-                    .HasColumnName("TDS_ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TdsAccId).HasColumnName("TDS_ACC_ID");
 
-                entity.Property(e => e.WorkId)
-                    .HasColumnName("WORK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WorkId).HasColumnName("WORK_ID");
             });
 
             modelBuilder.Entity<PisEmpDepSource>(entity =>
             {
                 entity.HasKey(e => e.DeptId)
-                     .HasName("PIS_EMP_DEP_SOURCE_pkey");
+                    .HasName("PIS_EMP_DEP_SOURCE_pkey");
 
                 entity.ToTable("PIS_EMP_DEP_SOURCE");
 
-                entity.Property(e => e.BudjetSourceId)
-                    .HasColumnName("BUDJET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.BudjetSourceId);
 
                 entity.Property(e => e.DeptId)
                     .HasColumnName("DEPT_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.BudjetSourceId).HasColumnName("BUDJET_SOURCE_ID");
 
                 entity.HasOne(d => d.BudjetSource)
                     .WithMany(p => p.PisEmpDepSource)
@@ -8648,8 +7500,8 @@ namespace IMIS_DataEntity.Data
                     .HasConstraintName("SYS_C004356");
 
                 entity.HasOne(d => d.Dept)
-                    .WithMany(p => p.PisEmpDepSource)
-                    .HasForeignKey(d => d.DeptId)
+                    .WithOne(p => p.PisEmpDepSource)
+                    .HasForeignKey<PisEmpDepSource>(d => d.DeptId)
                     .HasConstraintName("SYS_C004447");
             });
 
@@ -8659,13 +7511,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
@@ -8681,21 +7531,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_EMP_LOANS");
 
+                entity.HasIndex(e => e.EmpId);
+
                 entity.Property(e => e.LoanId)
                     .HasColumnName("LOAN_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Cleared)
                     .HasColumnName("CLEARED")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.InstallmentAmt).HasColumnName("INSTALLMENT_AMT");
 
@@ -8724,13 +7572,15 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_EMP_LONG_LEAVES");
 
+                entity.HasIndex(e => e.EmpId);
+
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.FromDateVs)
                     .HasColumnName("FROM_DATE_VS")
@@ -8740,9 +7590,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("LEAVE_NAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -8774,21 +7622,21 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_EMP_MED_EXPENSE");
 
+                entity.HasIndex(e => e.EmpId);
+
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.IssuedDate)
                     .HasColumnName("ISSUED_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.RegularAmt).HasColumnName("REGULAR_AMT");
 
@@ -8820,17 +7668,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_EMP_PUNISHMNTS");
 
+                entity.HasIndex(e => e.EmpId);
+
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.PunishDate)
                     .HasColumnName("PUNISH_DATE")
@@ -8866,13 +7714,15 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_EMP_SRVC_DTLS");
 
+                entity.HasIndex(e => e.EmpId);
+
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AppointmentType)
-                    .HasColumnName("APPOINTMENT_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AppointmentType).HasColumnName("APPOINTMENT_TYPE");
 
                 entity.Property(e => e.DateFrom)
                     .HasColumnName("DATE_FROM")
@@ -8882,17 +7732,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DATE_TO")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.GeoRegion)
-                    .HasColumnName("GEO_REGION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.GeoRegion).HasColumnName("GEO_REGION");
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.OfficeDetail)
                     .HasColumnName("OFFICE_DETAIL")
@@ -8920,21 +7764,21 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_EMP_SUSPENDS");
 
+                entity.HasIndex(e => e.EmpId);
+
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.FromDateVs)
                     .HasColumnName("FROM_DATE_VS")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.NameNp)
                     .HasColumnName("NAME_NP")
@@ -8970,31 +7814,27 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_EMP_TRNSFR_REC");
 
+                entity.HasIndex(e => e.EmpId);
+
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AmtTaken).HasColumnName("AMT_TAKEN");
 
-                entity.Property(e => e.DataEditAdDate)
-                    .HasColumnName("DATA_EDIT_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEditAdDate).HasColumnName("DATA_EDIT_AD_DATE");
 
-                entity.Property(e => e.DataEntryAdDate)
-                    .HasColumnName("DATA_ENTRY_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEntryAdDate).HasColumnName("DATA_ENTRY_AD_DATE");
 
                 entity.Property(e => e.DataEntryVsDate)
                     .HasColumnName("DATA_ENTRY_VS_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.MovedDate)
                     .HasColumnName("MOVED_DATE")
@@ -9016,13 +7856,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TRNSFRD_OFFICE")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
-                entity.Property(e => e.UserIde)
-                    .HasColumnName("USER_IDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIde).HasColumnName("USER_IDE");
 
                 entity.HasOne(d => d.Emp)
                     .WithMany(p => p.PisEmpTrnsfrRec)
@@ -9042,17 +7878,25 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_EMPLOYEE_MASTER");
 
+                entity.HasIndex(e => e.DeptId);
+
+                entity.HasIndex(e => e.FirstAppointPostId);
+
+                entity.HasIndex(e => e.LocalPostId);
+
+                entity.HasIndex(e => e.PayementBankId);
+
+                entity.HasIndex(e => e.PostId);
+
                 entity.Property(e => e.EmpId)
                     .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.AppoinmentType)
-                    .HasColumnName("APPOINMENT_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AppoinmentType).HasColumnName("APPOINMENT_TYPE");
 
                 entity.Property(e => e.CitCode)
                     .HasColumnName("CIT_CODE")
@@ -9062,9 +7906,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CIT_ID")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.CitPercent)
-                    .HasColumnName("CIT_PERCENT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CitPercent).HasColumnName("CIT_PERCENT");
 
                 entity.Property(e => e.CitizenshipNo)
                     .HasColumnName("CITIZENSHIP_NO")
@@ -9078,9 +7920,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CS_ISSUED_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.CsIssuedDistrict)
-                    .HasColumnName("CS_ISSUED_DISTRICT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CsIssuedDistrict).HasColumnName("CS_ISSUED_DISTRICT");
 
                 entity.Property(e => e.CurrentPostAppointDate)
                     .HasColumnName("CURRENT_POST_APPOINT_DATE")
@@ -9090,21 +7930,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DATE_OF_BIRTH")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.DateOfBirthAd)
-                    .HasColumnName("DATE_OF_BIRTH_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.DateOfBirthAd).HasColumnName("DATE_OF_BIRTH_AD");
 
                 entity.Property(e => e.DeductAbsent)
                     .HasColumnName("DEDUCT_ABSENT")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.DeptId)
-                    .HasColumnName("DEPT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DeptId).HasColumnName("DEPT_ID");
 
-                entity.Property(e => e.DistrictId)
-                    .HasColumnName("DISTRICT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DistrictId).HasColumnName("DISTRICT_ID");
 
                 entity.Property(e => e.Emails)
                     .HasColumnName("EMAILS")
@@ -9118,9 +7952,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FIRST_APPOINT_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.FirstAppointPostId)
-                    .HasColumnName("FIRST_APPOINT_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FirstAppointPostId).HasColumnName("FIRST_APPOINT_POST_ID");
 
                 entity.Property(e => e.FirstNameEn)
                     .HasColumnName("FIRST_NAME_EN")
@@ -9138,17 +7970,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("GF_NAME")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.GfOcupation)
-                    .HasColumnName("GF_OCUPATION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.GfOcupation).HasColumnName("GF_OCUPATION");
 
                 entity.Property(e => e.GovtEmpId)
                     .HasColumnName("GOVT_EMP_ID")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Grades)
-                    .HasColumnName("GRADES")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Grades).HasColumnName("GRADES");
 
                 entity.Property(e => e.HusbandName)
                     .HasColumnName("HUSBAND_NAME")
@@ -9174,9 +8002,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("LEKHA_NO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.MailAddress)
                     .HasColumnName("MAIL_ADDRESS")
@@ -9190,13 +8016,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("MOBILE_NO")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.ParentOcupation)
-                    .HasColumnName("PARENT_OCUPATION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ParentOcupation).HasColumnName("PARENT_OCUPATION");
 
-                entity.Property(e => e.PayementBankId)
-                    .HasColumnName("PAYEMENT_BANK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PayementBankId).HasColumnName("PAYEMENT_BANK_ID");
 
                 entity.Property(e => e.Paymode)
                     .HasColumnName("PAYMODE")
@@ -9214,13 +8036,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PHONES")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.PostId)
-                    .HasColumnName("POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PostId).HasColumnName("POST_ID");
 
-                entity.Property(e => e.PostLevel)
-                    .HasColumnName("POST_LEVEL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PostLevel).HasColumnName("POST_LEVEL");
 
                 entity.Property(e => e.PostStatus)
                     .HasColumnName("POST_STATUS")
@@ -9230,17 +8048,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REL_WITH_WILL_PERSON")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Religion)
-                    .HasColumnName("RELIGION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Religion).HasColumnName("RELIGION");
 
                 entity.Property(e => e.RetireDate)
                     .HasColumnName("RETIRE_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.RoomId)
-                    .HasColumnName("ROOM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RoomId).HasColumnName("ROOM_ID");
 
                 entity.Property(e => e.ServiceGroup)
                     .HasColumnName("SERVICE_GROUP")
@@ -9250,29 +8064,21 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SERVICE_STATUS")
                     .HasMaxLength(40);
 
-                entity.Property(e => e.SpouseOcupation)
-                    .HasColumnName("SPOUSE_OCUPATION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpouseOcupation).HasColumnName("SPOUSE_OCUPATION");
 
                 entity.Property(e => e.Title)
                     .HasColumnName("TITLE")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.VdcId)
-                    .HasColumnName("VDC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VdcId).HasColumnName("VDC_ID");
 
-                entity.Property(e => e.WardNo)
-                    .HasColumnName("WARD_NO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WardNo).HasColumnName("WARD_NO");
 
                 entity.Property(e => e.WillPerson)
                     .HasColumnName("WILL_PERSON")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.ZoneId)
-                    .HasColumnName("ZONE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ZoneId).HasColumnName("ZONE_ID");
 
                 entity.HasOne(d => d.Dept)
                     .WithMany(p => p.PisEmployeeMaster)
@@ -9307,21 +8113,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_FOREIGN_VISITS");
 
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.FromDateAd)
-                    .HasColumnName("FROM_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.FromDateAd).HasColumnName("FROM_DATE_AD");
 
                 entity.Property(e => e.FromDateVs)
                     .HasColumnName("FROM_DATE_VS")
@@ -9331,17 +8135,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FUNDED_BY")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.ToDateAd)
-                    .HasColumnName("TO_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.ToDateAd).HasColumnName("TO_DATE_AD");
 
                 entity.Property(e => e.ToDateVs)
                     .HasColumnName("TO_DATE_VS")
@@ -9368,37 +8168,31 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_FULFILLED_DARBANDI");
 
+                entity.HasIndex(e => e.DarbandiId);
+
+                entity.HasIndex(e => e.LocalPostId);
+
+                entity.HasIndex(e => e.OfficeId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AppointmntType)
-                    .HasColumnName("APPOINTMNT_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AppointmntType).HasColumnName("APPOINTMNT_TYPE");
 
-                entity.Property(e => e.DarbandiId)
-                    .HasColumnName("DARBANDI_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DarbandiId).HasColumnName("DARBANDI_ID");
 
                 entity.Property(e => e.DateFulfilled)
                     .HasColumnName("DATE_FULFILLED")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
-                entity.Property(e => e.OfficeId)
-                    .HasColumnName("OFFICE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OfficeId).HasColumnName("OFFICE_ID");
 
-                entity.Property(e => e.PersonTypeId)
-                    .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonTypeId).HasColumnName("PERSON_TYPE_ID");
 
                 entity.HasOne(d => d.Darbandi)
                     .WithMany(p => p.PisFulfilledDarbandi)
@@ -9422,7 +8216,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Details).HasColumnName("DETAILS");
 
@@ -9446,59 +8240,33 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.Betalabis)
-                    .HasColumnName("BETALABIS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Betalabis).HasColumnName("BETALABIS");
 
-                entity.Property(e => e.Bibis)
-                    .HasColumnName("BIBIS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Bibis).HasColumnName("BIBIS");
 
-                entity.Property(e => e.Cabis)
-                    .HasColumnName("CABIS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Cabis).HasColumnName("CABIS");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.Gayal)
-                    .HasColumnName("GAYAL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Gayal).HasColumnName("GAYAL");
 
-                entity.Property(e => e.Ghabis)
-                    .HasColumnName("GHABIS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Ghabis).HasColumnName("GHABIS");
 
-                entity.Property(e => e.HajiriDays)
-                    .HasColumnName("HAJIRI_DAYS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.HajiriDays).HasColumnName("HAJIRI_DAYS");
 
-                entity.Property(e => e.LocalPost)
-                    .HasColumnName("LOCAL_POST")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPost).HasColumnName("LOCAL_POST");
 
-                entity.Property(e => e.Month)
-                    .HasColumnName("MONTH")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Month).HasColumnName("MONTH");
 
-                entity.Property(e => e.Other)
-                    .HasColumnName("OTHER")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Other).HasColumnName("OTHER");
 
-                entity.Property(e => e.PublicHolidays)
-                    .HasColumnName("PUBLIC_HOLIDAYS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PublicHolidays).HasColumnName("PUBLIC_HOLIDAYS");
 
-                entity.Property(e => e.TotalDays)
-                    .HasColumnName("TOTAL_DAYS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TotalDays).HasColumnName("TOTAL_DAYS");
 
-                entity.Property(e => e.Year)
-                    .HasColumnName("YEAR")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Year).HasColumnName("YEAR");
             });
 
             modelBuilder.Entity<PisInternalTransfer>(entity =>
@@ -9508,17 +8276,27 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_INTERNAL_TRANSFER");
 
+                entity.HasIndex(e => e.AppointmntType);
+
+                entity.HasIndex(e => e.DarbandiId);
+
+                entity.HasIndex(e => e.EmpId);
+
+                entity.HasIndex(e => e.OfficeId);
+
+                entity.HasIndex(e => e.ToAppointmntType);
+
+                entity.HasIndex(e => e.ToLocalPostId);
+
+                entity.HasIndex(e => e.ToOfficeId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AppointmntType)
-                    .HasColumnName("APPOINTMNT_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AppointmntType).HasColumnName("APPOINTMNT_TYPE");
 
-                entity.Property(e => e.DarbandiId)
-                    .HasColumnName("DARBANDI_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DarbandiId).HasColumnName("DARBANDI_ID");
 
                 entity.Property(e => e.DateFrom)
                     .HasColumnName("DATE_FROM")
@@ -9536,33 +8314,21 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DECISION_REFERENCE")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.OfficeId)
-                    .HasColumnName("OFFICE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OfficeId).HasColumnName("OFFICE_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.ReplacedEmpId)
-                    .HasColumnName("REPLACED_EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReplacedEmpId).HasColumnName("REPLACED_EMP_ID");
 
-                entity.Property(e => e.ToAppointmntType)
-                    .HasColumnName("TO_APPOINTMNT_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ToAppointmntType).HasColumnName("TO_APPOINTMNT_TYPE");
 
-                entity.Property(e => e.ToLocalPostId)
-                    .HasColumnName("TO_LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ToLocalPostId).HasColumnName("TO_LOCAL_POST_ID");
 
-                entity.Property(e => e.ToOfficeId)
-                    .HasColumnName("TO_OFFICE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ToOfficeId).HasColumnName("TO_OFFICE_ID");
 
                 entity.HasOne(d => d.AppointmntTypeNavigation)
                     .WithMany(p => p.PisInternalTransferAppointmntTypeNavigation)
@@ -9609,23 +8375,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.AquisitionTypeId)
-                    .HasColumnName("AQUISITION_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AquisitionTypeId).HasColumnName("AQUISITION_TYPE_ID");
 
-                entity.Property(e => e.DataEditAdDate)
-                    .HasColumnName("DATA_EDIT_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEditAdDate).HasColumnName("DATA_EDIT_AD_DATE");
 
-                entity.Property(e => e.DataEntryAdDate)
-                    .HasColumnName("DATA_ENTRY_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEntryAdDate).HasColumnName("DATA_ENTRY_AD_DATE");
 
                 entity.Property(e => e.DataEntryVsDate)
                     .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -9635,21 +8395,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.DistrictId)
-                    .HasColumnName("DISTRICT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DistrictId).HasColumnName("DISTRICT_ID");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.OwnershipDetails)
                     .HasColumnName("OWNERSHIP_DETAILS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.RoadId)
-                    .HasColumnName("ROAD_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RoadId).HasColumnName("ROAD_ID");
 
                 entity.Property(e => e.SpecialNotes)
                     .HasColumnName("SPECIAL_NOTES")
@@ -9663,25 +8417,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("UNIT_DESC")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
-                entity.Property(e => e.UserIde)
-                    .HasColumnName("USER_IDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIde).HasColumnName("USER_IDE");
 
-                entity.Property(e => e.VdcId)
-                    .HasColumnName("VDC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VdcId).HasColumnName("VDC_ID");
 
                 entity.Property(e => e.WardNo)
                     .HasColumnName("WARD_NO")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ZoneId)
-                    .HasColumnName("ZONE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ZoneId).HasColumnName("ZONE_ID");
             });
 
             modelBuilder.Entity<PisLoanDhitoGiven>(entity =>
@@ -9693,19 +8439,15 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.DataEditAdDate)
-                    .HasColumnName("DATA_EDIT_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEditAdDate).HasColumnName("DATA_EDIT_AD_DATE");
 
-                entity.Property(e => e.DataEntryAdDate)
-                    .HasColumnName("DATA_ENTRY_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEntryAdDate).HasColumnName("DATA_ENTRY_AD_DATE");
 
                 entity.Property(e => e.DataEntryVsDate)
                     .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -9715,9 +8457,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.ReasonToTake)
                     .HasColumnName("REASON_TO_TAKE")
@@ -9735,13 +8475,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TRANS_DESC")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
-                entity.Property(e => e.UserIde)
-                    .HasColumnName("USER_IDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIde).HasColumnName("USER_IDE");
 
                 entity.Property(e => e.ValueInNrs).HasColumnName("VALUE_IN_NRS");
             });
@@ -9755,19 +8491,15 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.DataEditAdDate)
-                    .HasColumnName("DATA_EDIT_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEditAdDate).HasColumnName("DATA_EDIT_AD_DATE");
 
-                entity.Property(e => e.DataEntryAdDate)
-                    .HasColumnName("DATA_ENTRY_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEntryAdDate).HasColumnName("DATA_ENTRY_AD_DATE");
 
                 entity.Property(e => e.DataEntryVsDate)
                     .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -9777,9 +8509,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.ReasonToTake)
                     .HasColumnName("REASON_TO_TAKE")
@@ -9797,13 +8527,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TRANS_DESC")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
-                entity.Property(e => e.UserIde)
-                    .HasColumnName("USER_IDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIde).HasColumnName("USER_IDE");
 
                 entity.Property(e => e.ValueInNrs).HasColumnName("VALUE_IN_NRS");
             });
@@ -9815,9 +8541,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_LOCAL_POST_MASTER");
 
+                entity.HasIndex(e => e.PostId);
+
                 entity.Property(e => e.LocalPostId)
                     .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Alllwance).HasColumnName("ALLLWANCE");
 
@@ -9839,15 +8567,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("LOCAL_POST_NAME_EN")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.PayrollOrder)
-                    .HasColumnName("PAYROLL_ORDER")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PayrollOrder).HasColumnName("PAYROLL_ORDER");
 
                 entity.Property(e => e.PostDuties).HasColumnName("POST_DUTIES");
 
-                entity.Property(e => e.PostId)
-                    .HasColumnName("POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PostId).HasColumnName("POST_ID");
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.PisLocalPostMaster)
@@ -9859,13 +8583,13 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("PIS_NIJAMATI_SEWA_SAMUHA");
 
+                entity.HasIndex(e => e.ParentId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.GrpLevel)
-                    .HasColumnName("GRP_LEVEL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.GrpLevel).HasColumnName("GRP_LEVEL");
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -9875,9 +8599,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.ParentId)
-                    .HasColumnName("PARENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ParentId).HasColumnName("PARENT_ID");
 
                 entity.HasOne(d => d.Parent)
                     .WithMany(p => p.InverseParent)
@@ -9894,23 +8616,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.AquisitionTypeId)
-                    .HasColumnName("AQUISITION_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AquisitionTypeId).HasColumnName("AQUISITION_TYPE_ID");
 
-                entity.Property(e => e.DataEditAdDate)
-                    .HasColumnName("DATA_EDIT_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEditAdDate).HasColumnName("DATA_EDIT_AD_DATE");
 
-                entity.Property(e => e.DataEntryAdDate)
-                    .HasColumnName("DATA_ENTRY_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEntryAdDate).HasColumnName("DATA_ENTRY_AD_DATE");
 
                 entity.Property(e => e.DataEntryVsDate)
                     .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -9920,9 +8636,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.SpecialNotes)
                     .HasColumnName("SPECIAL_NOTES")
@@ -9932,26 +8646,22 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("UNIT_DESC")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
-                entity.Property(e => e.UserIde)
-                    .HasColumnName("USER_IDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIde).HasColumnName("USER_IDE");
             });
 
             modelBuilder.Entity<PisOtherAddSub>(entity =>
             {
                 entity.ToTable("PIS_OTHER_ADD_SUB");
 
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.AddSub)
                     .HasColumnName("ADD_SUB")
@@ -9963,9 +8673,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(80);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.HasOne(d => d.LocalPost)
                     .WithMany(p => p.PisOtherAddSub)
@@ -9979,11 +8687,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AbsentDays)
-                    .HasColumnName("ABSENT_DAYS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AbsentDays).HasColumnName("ABSENT_DAYS");
 
                 entity.Property(e => e.AbsentDeductAmt).HasColumnName("ABSENT_DEDUCT_AMT");
 
@@ -10001,9 +8707,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DEDUCT_DEP_VCHR_DATE_NEP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.DeductDepVchrId)
-                    .HasColumnName("DEDUCT_DEP_VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DeductDepVchrId).HasColumnName("DEDUCT_DEP_VCHR_ID");
 
                 entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
@@ -10015,9 +8719,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FESTIVE_VCHR_DATE_NEP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.FestiveVchrId)
-                    .HasColumnName("FESTIVE_VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FestiveVchrId).HasColumnName("FESTIVE_VCHR_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
@@ -10039,9 +8741,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("LOCAL_POST")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.Month).HasColumnName("MONTH");
 
@@ -10051,21 +8751,15 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.OtherDeductTotal).HasColumnName("OTHER_DEDUCT_TOTAL");
 
-                entity.Property(e => e.PayBankId)
-                    .HasColumnName("PAY_BANK_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PayBankId).HasColumnName("PAY_BANK_ID");
 
                 entity.Property(e => e.Paymode)
                     .HasColumnName("PAYMODE")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.PensionkoshAddAmt)
-                    .HasColumnName("PENSIONKOSH_ADD_AMT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PensionkoshAddAmt).HasColumnName("PENSIONKOSH_ADD_AMT");
 
-                entity.Property(e => e.PensionkoshDedAmt)
-                    .HasColumnName("PENSIONKOSH_DED_AMT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PensionkoshDedAmt).HasColumnName("PENSIONKOSH_DED_AMT");
 
                 entity.Property(e => e.PfAddAmt).HasColumnName("PF_ADD_AMT");
 
@@ -10075,9 +8769,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("POST_IN_SHORT")
                     .HasMaxLength(40);
 
-                entity.Property(e => e.PostLevel)
-                    .HasColumnName("POST_LEVEL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PostLevel).HasColumnName("POST_LEVEL");
 
                 entity.Property(e => e.RateOfGrade).HasColumnName("RATE_OF_GRADE");
 
@@ -10091,17 +8783,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.TotalPayableSalary).HasColumnName("TOTAL_PAYABLE_SALARY");
 
-                entity.Property(e => e.TransTpeId)
-                    .HasColumnName("TRANS_TPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TransTpeId).HasColumnName("TRANS_TPE_ID");
 
                 entity.Property(e => e.VchrDateNp)
                     .HasColumnName("VCHR_DATE_NP")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.VchrId)
-                    .HasColumnName("VCHR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VchrId).HasColumnName("VCHR_ID");
             });
 
             modelBuilder.Entity<PisPdOrgInvlvmnt>(entity =>
@@ -10113,27 +8801,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.DataEditAdDate)
-                    .HasColumnName("DATA_EDIT_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEditAdDate).HasColumnName("DATA_EDIT_AD_DATE");
 
-                entity.Property(e => e.DataEntryAdDate)
-                    .HasColumnName("DATA_ENTRY_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEntryAdDate).HasColumnName("DATA_ENTRY_AD_DATE");
 
                 entity.Property(e => e.DataEntryVsDate)
                     .HasColumnName("DATA_ENTRY_VS_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.NoOfBenificPopln)
-                    .HasColumnName("NO_OF_BENIFIC_POPLN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NoOfBenificPopln).HasColumnName("NO_OF_BENIFIC_POPLN");
 
                 entity.Property(e => e.OrgAcheivmnts)
                     .HasColumnName("ORG_ACHEIVMNTS")
@@ -10175,13 +8855,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("RESPNSBLTY_IN_ORG")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
-                entity.Property(e => e.UserIde)
-                    .HasColumnName("USER_IDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIde).HasColumnName("USER_IDE");
             });
 
             modelBuilder.Entity<PisPdSrvcDtls>(entity =>
@@ -10193,15 +8869,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AppointmntLevel)
                     .HasColumnName("APPOINTMNT_LEVEL")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.AppointmntType)
-                    .HasColumnName("APPOINTMNT_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AppointmntType).HasColumnName("APPOINTMNT_TYPE");
 
                 entity.Property(e => e.DateFrom)
                     .HasColumnName("DATE_FROM")
@@ -10211,13 +8885,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DATE_TO")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.OfficeDetail)
                     .HasColumnName("OFFICE_DETAIL")
@@ -10237,17 +8907,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AmountTaken).HasColumnName("AMOUNT_TAKEN");
 
-                entity.Property(e => e.DataEditAdDate)
-                    .HasColumnName("DATA_EDIT_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEditAdDate).HasColumnName("DATA_EDIT_AD_DATE");
 
-                entity.Property(e => e.DataEntryAdDate)
-                    .HasColumnName("DATA_ENTRY_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEntryAdDate).HasColumnName("DATA_ENTRY_AD_DATE");
 
                 entity.Property(e => e.DataEntryVsDate)
                     .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -10261,9 +8927,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("JOB_DETAILS")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.PersonId)
-                    .HasColumnName("PERSON_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonId).HasColumnName("PERSON_ID");
 
                 entity.Property(e => e.PersonName)
                     .HasColumnName("PERSON_NAME")
@@ -10273,9 +8937,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PERSON_POST")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.PersonTypeId)
-                    .HasColumnName("PERSON_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PersonTypeId).HasColumnName("PERSON_TYPE_ID");
 
                 entity.Property(e => e.RefNo)
                     .HasColumnName("REF_NO")
@@ -10289,13 +8951,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TO_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
-                entity.Property(e => e.UserIde)
-                    .HasColumnName("USER_IDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIde).HasColumnName("USER_IDE");
 
                 entity.Property(e => e.VisitLocation)
                     .HasColumnName("VISIT_LOCATION")
@@ -10311,7 +8969,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.PostId)
                     .HasColumnName("POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.BasicSalary).HasColumnName("BASIC_SALARY");
 
@@ -10323,21 +8981,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("GENERAL_POST_SHORT")
                     .HasMaxLength(40);
 
-                entity.Property(e => e.MaxGradeRate)
-                    .HasColumnName("MAX_GRADE_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MaxGradeRate).HasColumnName("MAX_GRADE_RATE");
 
-                entity.Property(e => e.PostLevel)
-                    .HasColumnName("POST_LEVEL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PostLevel).HasColumnName("POST_LEVEL");
 
-                entity.Property(e => e.PrabidikOrPrasasan)
-                    .HasColumnName("PRABIDIK_OR_PRASASAN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PrabidikOrPrasasan).HasColumnName("PRABIDIK_OR_PRASASAN");
 
-                entity.Property(e => e.RateOfGrade)
-                    .HasColumnName("RATE_OF_GRADE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RateOfGrade).HasColumnName("RATE_OF_GRADE");
             });
 
             modelBuilder.Entity<PisPrizes>(entity =>
@@ -10347,9 +8997,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_PRIZES");
 
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
@@ -10369,17 +9021,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.IssuedDate)
                     .HasColumnName("ISSUED_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.NameNp)
                     .HasColumnName("NAME_NP")
@@ -10406,9 +9054,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_PUBLICATION");
 
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
@@ -10418,13 +9068,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.NepName)
                     .HasColumnName("NEP_NAME")
@@ -10434,9 +9080,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PUBLISHER")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.PublshDateAd)
-                    .HasColumnName("PUBLSH_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.PublshDateAd).HasColumnName("PUBLSH_DATE_AD");
 
                 entity.Property(e => e.PublshDateVs)
                     .HasColumnName("PUBLSH_DATE_VS")
@@ -10460,29 +9104,31 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("PIS_PYROLL_LOAN_DTLS");
 
+                entity.HasIndex(e => e.AccId);
+
+                entity.HasIndex(e => e.EmpId);
+
+                entity.HasIndex(e => e.LoandId);
+
+                entity.HasIndex(e => e.PayrollId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Cleared)
                     .HasColumnName("CLEARED")
                     .HasMaxLength(1);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.InstallmentAmt).HasColumnName("INSTALLMENT_AMT");
 
                 entity.Property(e => e.LoandAmt).HasColumnName("LOAND_AMT");
 
-                entity.Property(e => e.LoandId)
-                    .HasColumnName("LOAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LoandId).HasColumnName("LOAND_ID");
 
                 entity.Property(e => e.Month).HasColumnName("MONTH");
 
@@ -10490,9 +9136,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAME_NP")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.PayrollId)
-                    .HasColumnName("PAYROLL_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PayrollId).HasColumnName("PAYROLL_ID");
 
                 entity.HasOne(d => d.Acc)
                     .WithMany(p => p.PisPyrollLoanDtls)
@@ -10519,13 +9163,15 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("PIS_PYROLL_OTHR_DTLS");
 
+                entity.HasIndex(e => e.EmployeeId);
+
+                entity.HasIndex(e => e.PayrollId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.AddSub)
                     .HasColumnName("ADD_SUB")
@@ -10537,15 +9183,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.EmployeeId)
-                    .HasColumnName("EMPLOYEE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmployeeId).HasColumnName("EMPLOYEE_ID");
 
                 entity.Property(e => e.Month).HasColumnName("MONTH");
 
-                entity.Property(e => e.PayrollId)
-                    .HasColumnName("PAYROLL_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PayrollId).HasColumnName("PAYROLL_ID");
 
                 entity.Property(e => e.SourceType)
                     .HasColumnName("SOURCE_TYPE")
@@ -10569,17 +9211,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_REPLACED_IN_DARBANDI");
 
+                entity.HasIndex(e => e.DarbandiId);
+
+                entity.HasIndex(e => e.EntrySnInFd);
+
+                entity.HasIndex(e => e.OfficeId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AppointmntType)
-                    .HasColumnName("APPOINTMNT_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AppointmntType).HasColumnName("APPOINTMNT_TYPE");
 
-                entity.Property(e => e.DarbandiId)
-                    .HasColumnName("DARBANDI_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.DarbandiId).HasColumnName("DARBANDI_ID");
 
                 entity.Property(e => e.DateFulfilled)
                     .HasColumnName("DATE_FULFILLED")
@@ -10597,29 +9241,19 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DECISION_REFERENCE")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.EntrySnInFd)
-                    .HasColumnName("ENTRY_SN_IN_FD")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EntrySnInFd).HasColumnName("ENTRY_SN_IN_FD");
 
-                entity.Property(e => e.IsPlacedInDarbandi)
-                    .HasColumnName("IS_PLACED_IN_DARBANDI")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IsPlacedInDarbandi).HasColumnName("IS_PLACED_IN_DARBANDI");
 
-                entity.Property(e => e.OfficeId)
-                    .HasColumnName("OFFICE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OfficeId).HasColumnName("OFFICE_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.ReplacedBy)
-                    .HasColumnName("REPLACED_BY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReplacedBy).HasColumnName("REPLACED_BY");
 
                 entity.HasOne(d => d.Darbandi)
                     .WithMany(p => p.PisReplacedInDarbandi)
@@ -10643,7 +9277,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -10665,9 +9299,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_SGNFCNT_WORK");
 
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
@@ -10681,21 +9317,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DURATION")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.FromDateAd)
-                    .HasColumnName("FROM_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.FromDateAd).HasColumnName("FROM_DATE_AD");
 
                 entity.Property(e => e.FromDateVs)
                     .HasColumnName("FROM_DATE_VS")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.NameNp)
                     .HasColumnName("NAME_NP")
@@ -10705,9 +9335,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.ToDateAd)
-                    .HasColumnName("TO_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.ToDateAd).HasColumnName("TO_DATE_AD");
 
                 entity.Property(e => e.ToDateVs)
                     .HasColumnName("TO_DATE_VS")
@@ -10732,27 +9360,21 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.AquisitionTypeId)
-                    .HasColumnName("AQUISITION_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AquisitionTypeId).HasColumnName("AQUISITION_TYPE_ID");
 
                 entity.Property(e => e.CompanyOrBank)
                     .HasColumnName("COMPANY_OR_BANK")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.DataEditAdDate)
-                    .HasColumnName("DATA_EDIT_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEditAdDate).HasColumnName("DATA_EDIT_AD_DATE");
 
-                entity.Property(e => e.DataEntryAdDate)
-                    .HasColumnName("DATA_ENTRY_AD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.DataEntryAdDate).HasColumnName("DATA_ENTRY_AD_DATE");
 
                 entity.Property(e => e.DataEntryVsDate)
                     .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -10762,9 +9384,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
                 entity.Property(e => e.OwnershipDetails)
                     .HasColumnName("OWNERSHIP_DETAILS")
@@ -10774,13 +9394,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SPECIAL_NOTES")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("USER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserId).HasColumnName("USER_ID");
 
-                entity.Property(e => e.UserIde)
-                    .HasColumnName("USER_IDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIde).HasColumnName("USER_IDE");
 
                 entity.Property(e => e.ValueInNrs).HasColumnName("VALUE_IN_NRS");
             });
@@ -10792,17 +9408,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_TRAINING");
 
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.CountryId)
-                    .HasColumnName("COUNTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CountryId).HasColumnName("COUNTRY_ID");
 
                 entity.Property(e => e.Division)
                     .HasColumnName("DIVISION")
@@ -10812,13 +9428,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DURATION")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.FrmDateAd)
-                    .HasColumnName("FRM_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.FrmDateAd).HasColumnName("FRM_DATE_AD");
 
                 entity.Property(e => e.FrmDateVs)
                     .HasColumnName("FRM_DATE_VS")
@@ -10828,15 +9440,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("INSTITUTE")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.MarksObtnd).HasColumnName("MARKS_OBTND");
 
-                entity.Property(e => e.ToDateAd)
-                    .HasColumnName("TO_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.ToDateAd).HasColumnName("TO_DATE_AD");
 
                 entity.Property(e => e.ToDateVs)
                     .HasColumnName("TO_DATE_VS")
@@ -10850,9 +9458,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TRAINING_TYPE")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.ValidForEval)
-                    .HasColumnName("VALID_FOR_EVAL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ValidForEval).HasColumnName("VALID_FOR_EVAL");
 
                 entity.HasOne(d => d.LocalPost)
                     .WithMany(p => p.PisTraining)
@@ -10867,25 +9473,21 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_VISITED_COUNTRIES");
 
+                entity.HasIndex(e => e.VisitId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.CountryId)
-                    .HasColumnName("COUNTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CountryId).HasColumnName("COUNTRY_ID");
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.VisitId)
-                    .HasColumnName("VISIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VisitId).HasColumnName("VISIT_ID");
 
                 entity.HasOne(d => d.Visit)
                     .WithMany(p => p.PisVisitedCountries)
@@ -10900,17 +9502,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("PIS_WORKSHOP");
 
+                entity.HasIndex(e => e.LocalPostId);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApplyTo)
                     .HasColumnName("APPLY_TO")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.CountryId)
-                    .HasColumnName("COUNTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CountryId).HasColumnName("COUNTRY_ID");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -10920,21 +9522,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DURATION")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EmpId).HasColumnName("EMP_ID");
 
-                entity.Property(e => e.FromDateAd)
-                    .HasColumnName("FROM_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.FromDateAd).HasColumnName("FROM_DATE_AD");
 
                 entity.Property(e => e.FromDateVs)
                     .HasColumnName("FROM_DATE_VS")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.LocalPostId)
-                    .HasColumnName("LOCAL_POST_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LocalPostId).HasColumnName("LOCAL_POST_ID");
 
                 entity.Property(e => e.NepName)
                     .HasColumnName("NEP_NAME")
@@ -10948,9 +9544,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.ToDateAd)
-                    .HasColumnName("TO_DATE_AD")
-                    .HasColumnType("date");
+                entity.Property(e => e.ToDateAd).HasColumnName("TO_DATE_AD");
 
                 entity.Property(e => e.ToDateVs)
                     .HasColumnName("TO_DATE_VS")
@@ -10972,7 +9566,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.YojtypeNameEng)
                     .HasColumnName("YOJTYPE_NAME_ENG")
@@ -10994,7 +9588,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Ratename)
                     .HasColumnName("RATENAME")
@@ -11002,9 +9596,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.RentPer).HasColumnName("RENT_PER");
 
-                entity.Property(e => e.RentTypeid)
-                    .HasColumnName("RENT_TYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RentTypeid).HasColumnName("RENT_TYPEID");
             });
 
             modelBuilder.Entity<Renttype>(entity =>
@@ -11017,9 +9609,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
@@ -11044,9 +9634,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ANUSUCHI_HEAD")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.OfficeTypeId)
-                    .HasColumnName("OFFICE_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OfficeTypeId).HasColumnName("OFFICE_TYPE_ID");
 
                 entity.Property(e => e.ReportFor)
                     .HasColumnName("REPORT_FOR")
@@ -11056,9 +9644,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REPORT_HEADING")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.ReportId)
-                    .HasColumnName("REPORT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReportId).HasColumnName("REPORT_ID");
 
                 entity.Property(e => e.ReportName)
                     .HasColumnName("REPORT_NAME")
@@ -11071,7 +9657,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Groupname)
                     .HasColumnName("GROUPNAME")
@@ -11082,41 +9668,33 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("SANITATION_RATE");
 
+                entity.HasIndex(e => e.Groupid);
+
+                entity.HasIndex(e => e.Subgroupid);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AreaUpto)
-                    .HasColumnName("AREA_UPTO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AreaUpto).HasColumnName("AREA_UPTO");
 
-                entity.Property(e => e.EachAreaRate)
-                    .HasColumnName("EACH_AREA_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EachAreaRate).HasColumnName("EACH_AREA_RATE");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ForEachArea)
-                    .HasColumnName("FOR_EACH_AREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ForEachArea).HasColumnName("FOR_EACH_AREA");
 
-                entity.Property(e => e.Groupid)
-                    .HasColumnName("GROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Groupid).HasColumnName("GROUPID");
 
                 entity.Property(e => e.Rate).HasColumnName("RATE");
 
                 entity.Property(e => e.Ratename).HasColumnName("RATENAME");
 
-                entity.Property(e => e.RoadTypeid)
-                    .HasColumnName("ROAD_TYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RoadTypeid).HasColumnName("ROAD_TYPEID");
 
-                entity.Property(e => e.Subgroupid)
-                    .HasColumnName("SUBGROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Subgroupid).HasColumnName("SUBGROUPID");
 
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.SanitationRate)
@@ -11133,13 +9711,13 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("SANITATION_SUBGROUP");
 
+                entity.HasIndex(e => e.Groupid);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.Groupid)
-                    .HasColumnName("GROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Groupid).HasColumnName("GROUPID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -11159,13 +9737,13 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("SERVICE_CHARGE_MASTER");
 
+                entity.HasIndex(e => e.AccId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Accode).HasColumnName("ACCODE");
 
@@ -11189,13 +9767,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("SPACEMEASURINGUNITS");
 
-                entity.Property(e => e.Sqftperunit)
-                    .HasColumnName("SQFTPERUNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sqftperunit).HasColumnName("SQFTPERUNIT");
 
-                entity.Property(e => e.Unitid)
-                    .HasColumnName("UNITID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Unitid).HasColumnName("UNITID");
 
                 entity.Property(e => e.Unitname)
                     .HasColumnName("UNITNAME")
@@ -11209,9 +9783,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("STOREDBILLS");
 
+                entity.HasIndex(e => e.Billtypeid);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Billnofrom)
                     .HasColumnName("BILLNOFROM")
@@ -11221,13 +9797,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BILLNOTO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Billtypeid)
-                    .HasColumnName("BILLTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billtypeid).HasColumnName("BILLTYPEID");
 
-                entity.Property(e => e.Code)
-                    .HasColumnName("CODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Code).HasColumnName("CODE");
 
                 entity.Property(e => e.Dateissued)
                     .HasColumnName("DATEISSUED")
@@ -11245,18 +9817,16 @@ namespace IMIS_DataEntity.Data
 
             modelBuilder.Entity<SubModuleSource>(entity =>
             {
-                entity.HasKey(e => new { e.SubModuleId, e.BudjetSourceId })
+                entity.HasKey(e => new { e.BudjetSourceId, e.SubModuleId })
                     .HasName("SUB_MODULE_SOURCE_pkey");
 
                 entity.ToTable("SUB_MODULE_SOURCE");
 
-                entity.Property(e => e.SubModuleId)
-                    .HasColumnName("SUB_MODULE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.BudjetSourceId);
 
-                entity.Property(e => e.BudjetSourceId)
-                    .HasColumnName("BUDJET_SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BudjetSourceId).HasColumnName("BUDJET_SOURCE_ID");
+
+                entity.Property(e => e.SubModuleId).HasColumnName("SUB_MODULE_ID");
 
                 entity.HasOne(d => d.BudjetSource)
                     .WithMany(p => p.SubModuleSource)
@@ -11277,7 +9847,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Code)
                     .HasColumnName("CODE")
@@ -11289,9 +9859,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.NepName).HasColumnName("NEP_NAME");
 
-                entity.Property(e => e.ParentId)
-                    .HasColumnName("PARENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ParentId).HasColumnName("PARENT_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -11304,25 +9872,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Addresschange)
                     .HasColumnName("ADDRESSCHANGE")
                     .HasMaxLength(12);
 
-                entity.Property(e => e.Areainsquarefeets)
-                    .HasColumnName("AREAINSQUAREFEETS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Areainsquarefeets).HasColumnName("AREAINSQUAREFEETS");
 
                 entity.Property(e => e.BusinessStatus).HasColumnName("BUSINESS_STATUS");
 
-                entity.Property(e => e.Businessgroupid)
-                    .HasColumnName("BUSINESSGROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Businessgroupid).HasColumnName("BUSINESSGROUPID");
 
-                entity.Property(e => e.BusinessownertaxIid)
-                    .HasColumnName("BUSINESSOWNERTAX_IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BusinessownertaxIid).HasColumnName("BUSINESSOWNERTAX_IID");
 
                 entity.Property(e => e.Businessstartingdate)
                     .HasColumnName("BUSINESSSTARTINGDATE")
@@ -11340,13 +9902,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CONTENTOFSIGNBOARD")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -11356,21 +9914,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.Districtid)
-                    .HasColumnName("DISTRICTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Districtid).HasColumnName("DISTRICTID");
 
                 entity.Property(e => e.Emails)
                     .HasColumnName("EMAILS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Generalrateid)
-                    .HasColumnName("GENERALRATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Generalrateid).HasColumnName("GENERALRATEID");
 
-                entity.Property(e => e.Houseid)
-                    .HasColumnName("HOUSEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Houseid).HasColumnName("HOUSEID");
 
                 entity.Property(e => e.Houseno)
                     .HasColumnName("HOUSENO")
@@ -11380,9 +9932,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("HOUSEOWNER")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.Initialcapital)
-                    .HasColumnName("INITIALCAPITAL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Initialcapital).HasColumnName("INITIALCAPITAL");
 
                 entity.Property(e => e.Initialregdate)
                     .HasColumnName("INITIALREGDATE")
@@ -11398,9 +9948,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Isinrent).HasColumnName("ISINRENT");
 
-                entity.Property(e => e.Lengthofsignboard)
-                    .HasColumnName("LENGTHOFSIGNBOARD")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Lengthofsignboard).HasColumnName("LENGTHOFSIGNBOARD");
 
                 entity.Property(e => e.MailAddress)
                     .HasColumnName("MAIL_ADDRESS")
@@ -11408,9 +9956,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Maxcapital).HasColumnName("MAXCAPITAL");
 
-                entity.Property(e => e.Monthlyrent)
-                    .HasColumnName("MONTHLYRENT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Monthlyrent).HasColumnName("MONTHLYRENT");
 
                 entity.Property(e => e.Municipallregdate)
                     .HasColumnName("MUNICIPALLREGDATE")
@@ -11432,67 +9978,43 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PHONES")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Sanitationid)
-                    .HasColumnName("SANITATIONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sanitationid).HasColumnName("SANITATIONID");
 
                 entity.Property(e => e.Shiftdate)
                     .HasColumnName("SHIFTDATE")
                     .HasMaxLength(12);
 
-                entity.Property(e => e.Shifttaxpayerid)
-                    .HasColumnName("SHIFTTAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Shifttaxpayerid).HasColumnName("SHIFTTAXPAYERID");
 
                 entity.Property(e => e.Specialnotes)
                     .HasColumnName("SPECIALNOTES")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Sqfeetsofsignboard)
-                    .HasColumnName("SQFEETSOFSIGNBOARD")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sqfeetsofsignboard).HasColumnName("SQFEETSOFSIGNBOARD");
 
                 entity.Property(e => e.Street)
                     .HasColumnName("STREET")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.Taxpayerid)
-                    .HasColumnName("TAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpayerid).HasColumnName("TAXPAYERID");
 
-                entity.Property(e => e.Trackid)
-                    .HasColumnName("TRACKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Trackid).HasColumnName("TRACKID");
 
-                entity.Property(e => e.Typeid)
-                    .HasColumnName("TYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Typeid).HasColumnName("TYPEID");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
-                entity.Property(e => e.Vdcid)
-                    .HasColumnName("VDCID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Vdcid).HasColumnName("VDCID");
 
-                entity.Property(e => e.Wardno)
-                    .HasColumnName("WARDNO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Wardno).HasColumnName("WARDNO");
 
-                entity.Property(e => e.Widthofsignboard)
-                    .HasColumnName("WIDTHOFSIGNBOARD")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Widthofsignboard).HasColumnName("WIDTHOFSIGNBOARD");
 
                 entity.Property(e => e.YearlyTranAmount).HasColumnName("YEARLY_TRAN_AMOUNT");
 
-                entity.Property(e => e.Zoneid)
-                    .HasColumnName("ZONEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Zoneid).HasColumnName("ZONEID");
             });
 
             modelBuilder.Entity<SvConstructions>(entity =>
@@ -11501,53 +10023,33 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.Areainsqfeet)
-                    .HasColumnName("AREAINSQFEET")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Areainsqfeet).HasColumnName("AREAINSQFEET");
 
-                entity.Property(e => e.Constructiontypeid)
-                    .HasColumnName("CONSTRUCTIONTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Constructiontypeid).HasColumnName("CONSTRUCTIONTYPEID");
 
-                entity.Property(e => e.Constructionusestypeid)
-                    .HasColumnName("CONSTRUCTIONUSESTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Constructionusestypeid).HasColumnName("CONSTRUCTIONUSESTYPEID");
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Generalrateid)
-                    .HasColumnName("GENERALRATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Generalrateid).HasColumnName("GENERALRATEID");
 
-                entity.Property(e => e.Heightinfeet)
-                    .HasColumnName("HEIGHTINFEET")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Heightinfeet).HasColumnName("HEIGHTINFEET");
 
-                entity.Property(e => e.Houseid)
-                    .HasColumnName("HOUSEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Houseid).HasColumnName("HOUSEID");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
                 entity.Property(e => e.Includeinevaluation).HasColumnName("INCLUDEINEVALUATION");
 
-                entity.Property(e => e.Lengthinfeet)
-                    .HasColumnName("LENGTHINFEET")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Lengthinfeet).HasColumnName("LENGTHINFEET");
 
                 entity.Property(e => e.Selfuseorinrent).HasColumnName("SELFUSEORINRENT");
 
@@ -11555,21 +10057,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SPECIALNOTE")
                     .HasMaxLength(90);
 
-                entity.Property(e => e.Talanumber)
-                    .HasColumnName("TALANUMBER")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Talanumber).HasColumnName("TALANUMBER");
 
-                entity.Property(e => e.TaxpayerDefineAmount)
-                    .HasColumnName("TAXPAYER_DEFINE_AMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TaxpayerDefineAmount).HasColumnName("TAXPAYER_DEFINE_AMOUNT");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
                 entity.Property(e => e.Vsdateofmade)
                     .HasColumnName("VSDATEOFMADE")
@@ -11579,9 +10073,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VSMAPPDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Widththinfeet)
-                    .HasColumnName("WIDTHTHINFEET")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Widththinfeet).HasColumnName("WIDTHTHINFEET");
             });
 
             modelBuilder.Entity<SvHouses>(entity =>
@@ -11590,35 +10082,25 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Aquisitiondate)
                     .HasColumnName("AQUISITIONDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Areainsqfeets)
-                    .HasColumnName("AREAINSQFEETS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Areainsqfeets).HasColumnName("AREAINSQFEETS");
 
-                entity.Property(e => e.Areaofconstructionsinsqfeets)
-                    .HasColumnName("AREAOFCONSTRUCTIONSINSQFEETS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Areaofconstructionsinsqfeets).HasColumnName("AREAOFCONSTRUCTIONSINSQFEETS");
 
-                entity.Property(e => e.BinGis)
-                    .HasColumnName("BIN_GIS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BinGis).HasColumnName("BIN_GIS");
 
                 entity.Property(e => e.Buildingcode)
                     .HasColumnName("BUILDINGCODE")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -11628,73 +10110,49 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Hasmapregistered).HasColumnName("HASMAPREGISTERED");
 
-                entity.Property(e => e.Heightinfeets)
-                    .HasColumnName("HEIGHTINFEETS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Heightinfeets).HasColumnName("HEIGHTINFEETS");
 
-                entity.Property(e => e.Houseconstructiontypeid)
-                    .HasColumnName("HOUSECONSTRUCTIONTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Houseconstructiontypeid).HasColumnName("HOUSECONSTRUCTIONTYPEID");
 
                 entity.Property(e => e.Housenumber)
                     .HasColumnName("HOUSENUMBER")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Housetypeid)
-                    .HasColumnName("HOUSETYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Housetypeid).HasColumnName("HOUSETYPEID");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
                 entity.Property(e => e.Includeinevaluation).HasColumnName("INCLUDEINEVALUATION");
 
-                entity.Property(e => e.Landid)
-                    .HasColumnName("LANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landid).HasColumnName("LANDID");
 
-                entity.Property(e => e.Lengthinfeets)
-                    .HasColumnName("LENGTHINFEETS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Lengthinfeets).HasColumnName("LENGTHINFEETS");
 
                 entity.Property(e => e.Mapregistereddate)
                     .HasColumnName("MAPREGISTEREDDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Numoftalas)
-                    .HasColumnName("NUMOFTALAS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Numoftalas).HasColumnName("NUMOFTALAS");
 
                 entity.Property(e => e.SalesDt)
                     .HasColumnName("SALES_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Sanitationrateid)
-                    .HasColumnName("SANITATIONRATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sanitationrateid).HasColumnName("SANITATIONRATEID");
 
                 entity.Property(e => e.Specialnote).HasColumnName("SPECIALNOTE");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
-                entity.Property(e => e.Usestypeid)
-                    .HasColumnName("USESTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Usestypeid).HasColumnName("USESTYPEID");
 
                 entity.Property(e => e.Vsdateofmade)
                     .HasColumnName("VSDATEOFMADE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Widthinfeets)
-                    .HasColumnName("WIDTHINFEETS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Widthinfeets).HasColumnName("WIDTHINFEETS");
             });
 
             modelBuilder.Entity<SvLands>(entity =>
@@ -11703,35 +10161,23 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Aquisitiondate)
                     .HasColumnName("AQUISITIONDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Aquisitiontypeid)
-                    .HasColumnName("AQUISITIONTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Aquisitiontypeid).HasColumnName("AQUISITIONTYPEID");
 
-                entity.Property(e => e.AreaTypeId)
-                    .HasColumnName("AREA_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AreaTypeId).HasColumnName("AREA_TYPE_ID");
 
-                entity.Property(e => e.Areainsqft)
-                    .HasColumnName("AREAINSQFT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Areainsqft).HasColumnName("AREAINSQFT");
 
-                entity.Property(e => e.AreainsqftField)
-                    .HasColumnName("AREAINSQFT_FIELD")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AreainsqftField).HasColumnName("AREAINSQFT_FIELD");
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -11753,13 +10199,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("EASTRUNFT")
                     .HasMaxLength(5);
 
-                entity.Property(e => e.Evalexclusionreasonid)
-                    .HasColumnName("EVALEXCLUSIONREASONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Evalexclusionreasonid).HasColumnName("EVALEXCLUSIONREASONID");
 
-                entity.Property(e => e.Generalrateid)
-                    .HasColumnName("GENERALRATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Generalrateid).HasColumnName("GENERALRATEID");
 
                 entity.Property(e => e.GridNo)
                     .HasColumnName("GRID_NO")
@@ -11767,9 +10209,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Hastrack).HasColumnName("HASTRACK");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
                 entity.Property(e => e.Includeinevaluation).HasColumnName("INCLUDEINEVALUATION");
 
@@ -11781,29 +10221,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.LandRules).HasColumnName("LAND_RULES");
 
-                entity.Property(e => e.Landmeasuringunitid)
-                    .HasColumnName("LANDMEASURINGUNITID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landmeasuringunitid).HasColumnName("LANDMEASURINGUNITID");
 
-                entity.Property(e => e.Landnatureid)
-                    .HasColumnName("LANDNATUREID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landnatureid).HasColumnName("LANDNATUREID");
 
-                entity.Property(e => e.Landtype)
-                    .HasColumnName("LANDTYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landtype).HasColumnName("LANDTYPE");
 
-                entity.Property(e => e.Locationfactorid)
-                    .HasColumnName("LOCATIONFACTORID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Locationfactorid).HasColumnName("LOCATIONFACTORID");
 
-                entity.Property(e => e.Lqtypeid)
-                    .HasColumnName("LQTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Lqtypeid).HasColumnName("LQTYPEID");
 
-                entity.Property(e => e.Malpotrate)
-                    .HasColumnName("MALPOTRATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Malpotrate).HasColumnName("MALPOTRATE");
 
                 entity.Property(e => e.Mapnumber)
                     .HasColumnName("MAPNUMBER")
@@ -11813,29 +10241,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("MOTHNUMBER")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.NominationArea)
-                    .HasColumnName("NOMINATION_AREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NominationArea).HasColumnName("NOMINATION_AREA");
 
-                entity.Property(e => e.NominationBreadth)
-                    .HasColumnName("NOMINATION_BREADTH")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NominationBreadth).HasColumnName("NOMINATION_BREADTH");
 
-                entity.Property(e => e.NominationDirection)
-                    .HasColumnName("NOMINATION_DIRECTION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NominationDirection).HasColumnName("NOMINATION_DIRECTION");
 
-                entity.Property(e => e.NominationLength)
-                    .HasColumnName("NOMINATION_LENGTH")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NominationLength).HasColumnName("NOMINATION_LENGTH");
 
-                entity.Property(e => e.NominationTf)
-                    .HasColumnName("NOMINATION_TF")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NominationTf).HasColumnName("NOMINATION_TF");
 
-                entity.Property(e => e.Nonfunctionalareainsqft)
-                    .HasColumnName("NONFUNCTIONALAREAINSQFT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Nonfunctionalareainsqft).HasColumnName("NONFUNCTIONALAREAINSQFT");
 
                 entity.Property(e => e.NorthboundaryKitta)
                     .HasColumnName("NORTHBOUNDARY_KITTA")
@@ -11849,9 +10265,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NORTHTBOUNDARY")
                     .HasMaxLength(70);
 
-                entity.Property(e => e.Oldvdcid)
-                    .HasColumnName("OLDVDCID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Oldvdcid).HasColumnName("OLDVDCID");
 
                 entity.Property(e => e.Oldwardno)
                     .HasColumnName("OLDWARDNO")
@@ -11861,9 +10275,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SALES_DT")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Selfdeclaredvalueinrs)
-                    .HasColumnName("SELFDECLAREDVALUEINRS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Selfdeclaredvalueinrs).HasColumnName("SELFDECLAREDVALUEINRS");
 
                 entity.Property(e => e.SheetNo)
                     .HasColumnName("SHEET_NO")
@@ -11893,33 +10305,19 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TOLENAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Trackid)
-                    .HasColumnName("TRACKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Trackid).HasColumnName("TRACKID");
 
-                entity.Property(e => e.Trackrelationid)
-                    .HasColumnName("TRACKRELATIONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Trackrelationid).HasColumnName("TRACKRELATIONID");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
-                entity.Property(e => e.Usestypeid)
-                    .HasColumnName("USESTYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Usestypeid).HasColumnName("USESTYPEID");
 
-                entity.Property(e => e.Valueinrsonaquisition)
-                    .HasColumnName("VALUEINRSONAQUISITION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Valueinrsonaquisition).HasColumnName("VALUEINRSONAQUISITION");
 
-                entity.Property(e => e.Wardno)
-                    .HasColumnName("WARDNO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Wardno).HasColumnName("WARDNO");
 
                 entity.Property(e => e.Westboundary)
                     .HasColumnName("WESTBOUNDARY")
@@ -11940,29 +10338,19 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("SV_LANDSMULTIEVALUATIONDETAIL");
 
-                entity.Property(e => e.Areainsqft)
-                    .HasColumnName("AREAINSQFT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Areainsqft).HasColumnName("AREAINSQFT");
 
-                entity.Property(e => e.Generalrateid)
-                    .HasColumnName("GENERALRATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Generalrateid).HasColumnName("GENERALRATEID");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
                 entity.Property(e => e.Kittanumber)
                     .HasColumnName("KITTANUMBER")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Landid)
-                    .HasColumnName("LANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landid).HasColumnName("LANDID");
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
             });
 
             modelBuilder.Entity<SvPeople>(entity =>
@@ -11974,7 +10362,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Iid)
                     .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.CancelDate)
                     .HasColumnName("CANCEL_DATE")
@@ -11986,9 +10374,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CCISSUEDDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Ccissueddristictid)
-                    .HasColumnName("CCISSUEDDRISTICTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Ccissueddristictid).HasColumnName("CCISSUEDDRISTICTID");
 
                 entity.Property(e => e.Ccnumber)
                     .HasColumnName("CCNUMBER")
@@ -12010,25 +10396,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CORESPADDRESSLINE4")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Countryid)
-                    .HasColumnName("COUNTRYID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Countryid).HasColumnName("COUNTRYID");
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Districtid)
-                    .HasColumnName("DISTRICTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Districtid).HasColumnName("DISTRICTID");
 
                 entity.Property(e => e.Dob)
                     .HasColumnName("DOB")
@@ -12070,9 +10448,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("HOUSENO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Individualtype)
-                    .HasColumnName("INDIVIDUALTYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Individualtype).HasColumnName("INDIVIDUALTYPE");
 
                 entity.Property(e => e.IptUnpaidAmount).HasColumnName("IPT_UNPAID_AMOUNT");
 
@@ -12100,17 +10476,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("MOBILES")
                     .HasMaxLength(60);
 
-                entity.Property(e => e.Motherlanguageid)
-                    .HasColumnName("MOTHERLANGUAGEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Motherlanguageid).HasColumnName("MOTHERLANGUAGEID");
 
-                entity.Property(e => e.Nationalityid)
-                    .HasColumnName("NATIONALITYID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Nationalityid).HasColumnName("NATIONALITYID");
 
-                entity.Property(e => e.Ocupationid)
-                    .HasColumnName("OCUPATIONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Ocupationid).HasColumnName("OCUPATIONID");
 
                 entity.Property(e => e.Otherdetails)
                     .HasColumnName("OTHERDETAILS")
@@ -12122,9 +10492,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Photo).HasColumnName("PHOTO");
 
-                entity.Property(e => e.Religionid)
-                    .HasColumnName("RELIGIONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Religionid).HasColumnName("RELIGIONID");
 
                 entity.Property(e => e.Sex).HasColumnName("SEX");
 
@@ -12132,33 +10500,19 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("STREETNAME")
                     .HasMaxLength(60);
 
-                entity.Property(e => e.Tolbikashid)
-                    .HasColumnName("TOLBIKASHID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Tolbikashid).HasColumnName("TOLBIKASHID");
 
-                entity.Property(e => e.Trackid)
-                    .HasColumnName("TRACKID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Trackid).HasColumnName("TRACKID");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
-                entity.Property(e => e.Vdcid)
-                    .HasColumnName("VDCID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Vdcid).HasColumnName("VDCID");
 
-                entity.Property(e => e.Wardno)
-                    .HasColumnName("WARDNO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Wardno).HasColumnName("WARDNO");
 
-                entity.Property(e => e.Zoneid)
-                    .HasColumnName("ZONEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Zoneid).HasColumnName("ZONEID");
             });
 
             modelBuilder.Entity<SvTbhousekittanumber>(entity =>
@@ -12167,17 +10521,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("SV_TBHOUSEKITTANUMBER");
 
-                entity.Property(e => e.Houseid)
-                    .HasColumnName("HOUSEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Houseid).HasColumnName("HOUSEID");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
-                entity.Property(e => e.Landid)
-                    .HasColumnName("LANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landid).HasColumnName("LANDID");
             });
 
             modelBuilder.Entity<SvVehiclemaster>(entity =>
@@ -12189,7 +10537,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Aquiredfrom)
                     .HasColumnName("AQUIREDFROM")
@@ -12199,9 +10547,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("AQUISITIONDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Aquisitiontype)
-                    .HasColumnName("AQUISITIONTYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Aquisitiontype).HasColumnName("AQUISITIONTYPE");
 
                 entity.Property(e => e.Ccorhprspower)
                     .HasColumnName("CCORHPRSPOWER")
@@ -12223,13 +10569,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("COLOR")
                     .HasMaxLength(30);
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -12259,9 +10601,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NAMASARIMITI")
                     .HasMaxLength(12);
 
-                entity.Property(e => e.Namasaritaxpayerid)
-                    .HasColumnName("NAMASARITAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Namasaritaxpayerid).HasColumnName("NAMASARITAXPAYERID");
 
                 entity.Property(e => e.Noofcilenders)
                     .HasColumnName("NOOFCILENDERS")
@@ -12287,25 +10627,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SPECIALNOTES")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Taxpayerid)
-                    .HasColumnName("TAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpayerid).HasColumnName("TAXPAYERID");
 
-                entity.Property(e => e.Usedfuel)
-                    .HasColumnName("USEDFUEL")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Usedfuel).HasColumnName("USEDFUEL");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
-                entity.Property(e => e.Usestype)
-                    .HasColumnName("USESTYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Usestype).HasColumnName("USESTYPE");
 
                 entity.Property(e => e.VehicleStatus).HasColumnName("VEHICLE_STATUS");
 
@@ -12317,9 +10647,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("VEHICLENO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Vehicletype)
-                    .HasColumnName("VEHICLETYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Vehicletype).HasColumnName("VEHICLETYPE");
             });
 
             modelBuilder.Entity<TaxAddtnlChrgDtls>(entity =>
@@ -12329,29 +10657,23 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("TAX_ADDTNL_CHRG_DTLS");
 
+                entity.HasIndex(e => e.AccId);
+
+                entity.HasIndex(e => e.Accode);
+
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
-                entity.Property(e => e.Accode)
-                    .HasColumnName("ACCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Accode).HasColumnName("ACCODE");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("AMOUNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
-                entity.Property(e => e.BillId)
-                    .HasColumnName("BILL_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BillId).HasColumnName("BILL_ID");
 
-                entity.Property(e => e.BillNo)
-                    .HasColumnName("BILL_NO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BillNo).HasColumnName("BILL_NO");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
@@ -12359,9 +10681,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.FlatChargeRate).HasColumnName("FLAT_CHARGE_RATE");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
                 entity.Property(e => e.Isapplicableforhouse).HasColumnName("ISAPPLICABLEFORHOUSE");
 
@@ -12369,13 +10689,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ISREGISTATIONFEE")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.LandId)
-                    .HasColumnName("LAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LandId).HasColumnName("LAND_ID");
 
-                entity.Property(e => e.RentId)
-                    .HasColumnName("RENT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RentId).HasColumnName("RENT_ID");
 
                 entity.Property(e => e.ServiceChargePercent).HasColumnName("SERVICE_CHARGE_PERCENT");
 
@@ -12410,25 +10726,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BILLDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Billid)
-                    .HasColumnName("BILLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billid).HasColumnName("BILLID");
 
                 entity.Property(e => e.Billno)
                     .HasColumnName("BILLNO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Counterid)
-                    .HasColumnName("COUNTERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Counterid).HasColumnName("COUNTERID");
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -12440,27 +10748,19 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(9);
 
-                entity.Property(e => e.Generalrateid)
-                    .HasColumnName("GENERALRATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Generalrateid).HasColumnName("GENERALRATEID");
 
                 entity.Property(e => e.Kittanumber).HasColumnName("KITTANUMBER");
 
-                entity.Property(e => e.Landid)
-                    .HasColumnName("LANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landid).HasColumnName("LANDID");
 
                 entity.Property(e => e.LastTaxPaidAmount).HasColumnName("LAST_TAX_PAID_AMOUNT");
 
-                entity.Property(e => e.Netevaluatingarea)
-                    .HasColumnName("NETEVALUATINGAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Netevaluatingarea).HasColumnName("NETEVALUATINGAREA");
 
                 entity.Property(e => e.Nettaxamount).HasColumnName("NETTAXAMOUNT");
 
-                entity.Property(e => e.Nonevaluatedarea)
-                    .HasColumnName("NONEVALUATEDAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Nonevaluatedarea).HasColumnName("NONEVALUATEDAREA");
 
                 entity.Property(e => e.Rateperunit).HasColumnName("RATEPERUNIT");
 
@@ -12472,21 +10772,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Taxpaidamount).HasColumnName("TAXPAIDAMOUNT");
 
-                entity.Property(e => e.Taxpayerid)
-                    .HasColumnName("TAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpayerid).HasColumnName("TAXPAYERID");
 
-                entity.Property(e => e.Totalarea)
-                    .HasColumnName("TOTALAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Totalarea).HasColumnName("TOTALAREA");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
             });
 
             modelBuilder.Entity<TaxMalpotHistory>(entity =>
@@ -12501,25 +10793,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BILLDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Billid)
-                    .HasColumnName("BILLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billid).HasColumnName("BILLID");
 
                 entity.Property(e => e.Billno)
                     .HasColumnName("BILLNO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Counterid)
-                    .HasColumnName("COUNTERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Counterid).HasColumnName("COUNTERID");
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -12531,29 +10815,21 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(9);
 
-                entity.Property(e => e.Generalrateid)
-                    .HasColumnName("GENERALRATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Generalrateid).HasColumnName("GENERALRATEID");
 
                 entity.Property(e => e.Kittanumber).HasColumnName("KITTANUMBER");
 
-                entity.Property(e => e.Landid)
-                    .HasColumnName("LANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landid).HasColumnName("LANDID");
 
                 entity.Property(e => e.LastTaxPaidAmount).HasColumnName("LAST_TAX_PAID_AMOUNT");
 
                 entity.Property(e => e.MalpotId).HasColumnName("MALPOT_ID");
 
-                entity.Property(e => e.Netevaluatingarea)
-                    .HasColumnName("NETEVALUATINGAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Netevaluatingarea).HasColumnName("NETEVALUATINGAREA");
 
                 entity.Property(e => e.Nettaxamount).HasColumnName("NETTAXAMOUNT");
 
-                entity.Property(e => e.Nonevaluatedarea)
-                    .HasColumnName("NONEVALUATEDAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Nonevaluatedarea).HasColumnName("NONEVALUATEDAREA");
 
                 entity.Property(e => e.Rateperunit).HasColumnName("RATEPERUNIT");
 
@@ -12565,21 +10841,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Taxpaidamount).HasColumnName("TAXPAIDAMOUNT");
 
-                entity.Property(e => e.Taxpayerid)
-                    .HasColumnName("TAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpayerid).HasColumnName("TAXPAYERID");
 
-                entity.Property(e => e.Totalarea)
-                    .HasColumnName("TOTALAREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Totalarea).HasColumnName("TOTALAREA");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
             });
 
             modelBuilder.Entity<TaxRateCeiling>(entity =>
@@ -12588,7 +10856,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.MarriedStatus)
                     .HasColumnName("MARRIED_STATUS")
@@ -12617,25 +10885,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BILLDATE")
                     .HasMaxLength(12);
 
-                entity.Property(e => e.Billid)
-                    .HasColumnName("BILLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billid).HasColumnName("BILLID");
 
                 entity.Property(e => e.Billno)
                     .HasColumnName("BILLNO")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Constructionid)
-                    .HasColumnName("CONSTRUCTIONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Constructionid).HasColumnName("CONSTRUCTIONID");
 
-                entity.Property(e => e.Counterid)
-                    .HasColumnName("COUNTERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Counterid).HasColumnName("COUNTERID");
 
-                entity.Property(e => e.Dataentryaddate)
-                    .HasColumnName("DATAENTRYADDATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddate).HasColumnName("DATAENTRYADDATE");
 
                 entity.Property(e => e.Dateentryvsdate)
                     .HasColumnName("DATEENTRYVSDATE")
@@ -12647,43 +10907,29 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.LastTaxPaidAmount).HasColumnName("LAST_TAX_PAID_AMOUNT");
 
-                entity.Property(e => e.Month)
-                    .HasColumnName("MONTH")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Month).HasColumnName("MONTH");
 
                 entity.Property(e => e.Nettaxamount).HasColumnName("NETTAXAMOUNT");
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
                 entity.Property(e => e.Reductionalcharges).HasColumnName("REDUCTIONALCHARGES");
 
                 entity.Property(e => e.Remarks).HasColumnName("REMARKS");
 
-                entity.Property(e => e.Rentid)
-                    .HasColumnName("RENTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rentid).HasColumnName("RENTID");
 
                 entity.Property(e => e.Taxpaidamount).HasColumnName("TAXPAIDAMOUNT");
 
-                entity.Property(e => e.Taxpayerid)
-                    .HasColumnName("TAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpayerid).HasColumnName("TAXPAYERID");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Year)
-                    .HasColumnName("YEAR")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Year).HasColumnName("YEAR");
             });
 
             modelBuilder.Entity<TaxRtRentdtl>(entity =>
@@ -12698,21 +10944,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.AnualRentIncome).HasColumnName("ANUAL_RENT_INCOME");
 
-                entity.Property(e => e.Businessid)
-                    .HasColumnName("BUSINESSID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Businessid).HasColumnName("BUSINESSID");
 
-                entity.Property(e => e.ConstructionId)
-                    .HasColumnName("CONSTRUCTION_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ConstructionId).HasColumnName("CONSTRUCTION_ID");
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -12722,47 +10960,33 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.IsTaxPaidBusinessPerson)
                     .HasColumnName("IS_TAX_PAID_BUSINESS_PERSON")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
                 entity.Property(e => e.Remarks).HasColumnName("REMARKS");
 
-                entity.Property(e => e.RentInsqfeet)
-                    .HasColumnName("RENT_INSQFEET")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RentInsqfeet).HasColumnName("RENT_INSQFEET");
 
                 entity.Property(e => e.RentStatus)
                     .HasColumnName("RENT_STATUS")
                     .HasMaxLength(5);
 
-                entity.Property(e => e.RentTypeId)
-                    .HasColumnName("RENT_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.RentTypeId).HasColumnName("RENT_TYPE_ID");
 
                 entity.Property(e => e.Rname)
                     .HasColumnName("RNAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Taxpayerid)
-                    .HasColumnName("TAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpayerid).HasColumnName("TAXPAYERID");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
                 entity.Property(e => e.ValidUntil)
                     .HasColumnName("VALID_UNTIL")
@@ -12779,25 +11003,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BILLDATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Billid)
-                    .HasColumnName("BILLID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Billid).HasColumnName("BILLID");
 
                 entity.Property(e => e.Billno)
                     .HasColumnName("BILLNO")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Counterid)
-                    .HasColumnName("COUNTERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Counterid).HasColumnName("COUNTERID");
 
-                entity.Property(e => e.Dataeditaddatetime)
-                    .HasColumnName("DATAEDITADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataeditaddatetime).HasColumnName("DATAEDITADDATETIME");
 
-                entity.Property(e => e.Dataentryaddatetime)
-                    .HasColumnName("DATAENTRYADDATETIME")
-                    .HasColumnType("date");
+                entity.Property(e => e.Dataentryaddatetime).HasColumnName("DATAENTRYADDATETIME");
 
                 entity.Property(e => e.Dataentryvsdate)
                     .HasColumnName("DATAENTRYVSDATE")
@@ -12809,21 +11025,15 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.Houseid)
-                    .HasColumnName("HOUSEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Houseid).HasColumnName("HOUSEID");
 
                 entity.Property(e => e.LastTaxPaidAmount).HasColumnName("LAST_TAX_PAID_AMOUNT");
 
-                entity.Property(e => e.Month)
-                    .HasColumnName("MONTH")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Month).HasColumnName("MONTH");
 
                 entity.Property(e => e.Nettaxamount).HasColumnName("NETTAXAMOUNT");
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
                 entity.Property(e => e.Reductionalcharges).HasColumnName("REDUCTIONALCHARGES");
 
@@ -12831,49 +11041,36 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SERVICETYPE")
                     .HasMaxLength(5);
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
 
                 entity.Property(e => e.Specialnotes).HasColumnName("SPECIALNOTES");
 
                 entity.Property(e => e.Taxpaidamount).HasColumnName("TAXPAIDAMOUNT");
 
-                entity.Property(e => e.Taxpayerid)
-                    .HasColumnName("TAXPAYERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxpayerid).HasColumnName("TAXPAYERID");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
 
-                entity.Property(e => e.Useride)
-                    .HasColumnName("USERIDE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Useride).HasColumnName("USERIDE");
 
-                entity.Property(e => e.Year)
-                    .HasColumnName("YEAR")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Year).HasColumnName("YEAR");
             });
 
             modelBuilder.Entity<TaxThliIssuedCntr>(entity =>
             {
-                entity.HasKey(e => e.Id)
-                     .HasName("TAX_THLI_ISSUED_CNTR_pkey");
-
                 entity.ToTable("TAX_THLI_ISSUED_CNTR");
 
-                entity.Property(e => e.CntrId)
-                    .HasColumnName("CNTR_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.HasIndex(e => e.CntrId);
+
+                entity.HasIndex(e => e.TheliId);
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.TheliId)
-                    .HasColumnName("THELI_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CntrId).HasColumnName("CNTR_ID");
+
+                entity.Property(e => e.TheliId).HasColumnName("THELI_ID");
 
                 entity.HasOne(d => d.Cntr)
                     .WithMany(p => p.TaxThliIssuedCntr)
@@ -12892,17 +11089,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("TBHOUSEKITTANUMBER");
 
-                entity.Property(e => e.Houseid)
-                    .HasColumnName("HOUSEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Houseid).HasColumnName("HOUSEID");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
-                entity.Property(e => e.Landid)
-                    .HasColumnName("LANDID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Landid).HasColumnName("LANDID");
             });
 
             modelBuilder.Entity<TblBankAccntType>(entity =>
@@ -12911,7 +11102,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Engname)
                     .HasColumnName("ENGNAME")
@@ -12932,7 +11123,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AccountName).HasColumnName("ACCOUNT_NAME");
 
@@ -12951,19 +11142,15 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BgtSubHeadId)
-                    .HasColumnName("BGT_SUB_HEAD_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtSubHeadId).HasColumnName("BGT_SUB_HEAD_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.MinistryId)
-                    .HasColumnName("MINISTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MinistryId).HasColumnName("MINISTRY_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -12976,19 +11163,17 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_BGT_MGMT_EXP");
 
+                entity.HasIndex(e => e.BgtMgmtId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.BgtAmt).HasColumnName("BGT_AMT");
 
-                entity.Property(e => e.BgtMgmtId)
-                    .HasColumnName("BGT_MGMT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtMgmtId).HasColumnName("BGT_MGMT_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -13004,19 +11189,17 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_BGT_MGMT_EXP_ORG");
 
+                entity.HasIndex(e => e.BgtMgmtOrgId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.BgtAmtOrg).HasColumnName("BGT_AMT_ORG");
 
-                entity.Property(e => e.BgtMgmtOrgId)
-                    .HasColumnName("BGT_MGMT_ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtMgmtOrgId).HasColumnName("BGT_MGMT_ORG_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -13032,19 +11215,17 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_BGT_MGMT_EXP_RELEASE");
 
+                entity.HasIndex(e => e.BgtMgmtReleaseId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Amt).HasColumnName("AMT");
 
-                entity.Property(e => e.BgtMgmtReleaseId)
-                    .HasColumnName("BGT_MGMT_RELEASE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtMgmtReleaseId).HasColumnName("BGT_MGMT_RELEASE_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -13062,23 +11243,17 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BgtSubHeadId)
-                    .HasColumnName("BGT_SUB_HEAD_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtSubHeadId).HasColumnName("BGT_SUB_HEAD_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.MinistryId)
-                    .HasColumnName("MINISTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MinistryId).HasColumnName("MINISTRY_ID");
 
-                entity.Property(e => e.OrgId)
-                    .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgId).HasColumnName("ORG_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -13091,31 +11266,25 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_BGT_MGMT_RELEASE");
 
+                entity.HasIndex(e => e.BgtReleaseId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amt).HasColumnName("AMT");
 
-                entity.Property(e => e.BgtReleaseId)
-                    .HasColumnName("BGT_RELEASE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtReleaseId).HasColumnName("BGT_RELEASE_ID");
 
-                entity.Property(e => e.BgtSubHeadId)
-                    .HasColumnName("BGT_SUB_HEAD_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtSubHeadId).HasColumnName("BGT_SUB_HEAD_ID");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.MinistryId)
-                    .HasColumnName("MINISTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MinistryId).HasColumnName("MINISTRY_ID");
 
-                entity.Property(e => e.OrgId)
-                    .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgId).HasColumnName("ORG_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
@@ -13131,31 +11300,25 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_BGT_MGMT_SRC");
 
+                entity.HasIndex(e => e.BgtMgmtExpId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amt).HasColumnName("AMT");
 
-                entity.Property(e => e.BgtMgmtExpId)
-                    .HasColumnName("BGT_MGMT_EXP_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtMgmtExpId).HasColumnName("BGT_MGMT_EXP_ID");
 
-                entity.Property(e => e.PaymentProcessId)
-                    .HasColumnName("PAYMENT_PROCESS_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentProcessId).HasColumnName("PAYMENT_PROCESS_ID");
 
-                entity.Property(e => e.PaymentTypeId)
-                    .HasColumnName("PAYMENT_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentTypeId).HasColumnName("PAYMENT_TYPE_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.SourceId)
-                    .HasColumnName("SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SourceId).HasColumnName("SOURCE_ID");
 
                 entity.HasOne(d => d.BgtMgmtExp)
                     .WithMany(p => p.TblBgtMgmtSrc)
@@ -13167,39 +11330,33 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_BGT_MGMT_SRC_ORG");
 
+                entity.HasIndex(e => e.BgtMgmtExpOrgId);
+
+                entity.HasIndex(e => e.CcId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amt).HasColumnName("AMT");
 
-                entity.Property(e => e.BgtMgmtExpOrgId)
-                    .HasColumnName("BGT_MGMT_EXP_ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtMgmtExpOrgId).HasColumnName("BGT_MGMT_EXP_ORG_ID");
 
                 entity.Property(e => e.CcActive)
                     .HasColumnName("CC_ACTIVE")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.CcId)
-                    .HasColumnName("CC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CcId).HasColumnName("CC_ID");
 
-                entity.Property(e => e.PaymentProcessId)
-                    .HasColumnName("PAYMENT_PROCESS_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentProcessId).HasColumnName("PAYMENT_PROCESS_ID");
 
-                entity.Property(e => e.PaymentTypeId)
-                    .HasColumnName("PAYMENT_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentTypeId).HasColumnName("PAYMENT_TYPE_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.SourceId)
-                    .HasColumnName("SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SourceId).HasColumnName("SOURCE_ID");
 
                 entity.HasOne(d => d.BgtMgmtExpOrg)
                     .WithMany(p => p.TblBgtMgmtSrcOrg)
@@ -13216,39 +11373,33 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_BGT_MGMT_SRC_RELEASE");
 
+                entity.HasIndex(e => e.BgtMgmtExpReleaseId);
+
+                entity.HasIndex(e => e.CcId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Amt).HasColumnName("AMT");
 
-                entity.Property(e => e.BgtMgmtExpReleaseId)
-                    .HasColumnName("BGT_MGMT_EXP_RELEASE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BgtMgmtExpReleaseId).HasColumnName("BGT_MGMT_EXP_RELEASE_ID");
 
                 entity.Property(e => e.CcActive)
                     .HasColumnName("CC_ACTIVE")
                     .HasMaxLength(2);
 
-                entity.Property(e => e.CcId)
-                    .HasColumnName("CC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.CcId).HasColumnName("CC_ID");
 
-                entity.Property(e => e.PaymentProcessId)
-                    .HasColumnName("PAYMENT_PROCESS_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentProcessId).HasColumnName("PAYMENT_PROCESS_ID");
 
-                entity.Property(e => e.PaymentTypeId)
-                    .HasColumnName("PAYMENT_TYPE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentTypeId).HasColumnName("PAYMENT_TYPE_ID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.SourceId)
-                    .HasColumnName("SOURCE_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SourceId).HasColumnName("SOURCE_ID");
 
                 entity.HasOne(d => d.BgtMgmtExpRelease)
                     .WithMany(p => p.TblBgtMgmtSrcRelease)
@@ -13265,9 +11416,11 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_BGT_RELEASE");
 
+                entity.HasIndex(e => e.OrgId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.ApprovedBgtYearly).HasColumnName("APPROVED_BGT_YEARLY");
 
@@ -13283,13 +11436,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("LETTER_SN")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.MinistryId)
-                    .HasColumnName("MINISTRY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.MinistryId).HasColumnName("MINISTRY_ID");
 
-                entity.Property(e => e.OrgId)
-                    .HasColumnName("ORG_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.OrgId).HasColumnName("ORG_ID");
 
                 entity.Property(e => e.PreviousReleaseAmt).HasColumnName("PREVIOUS_RELEASE_AMT");
 
@@ -13299,9 +11448,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("RELEASE_DATE")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.ReleaseType)
-                    .HasColumnName("RELEASE_TYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ReleaseType).HasColumnName("RELEASE_TYPE");
 
                 entity.Property(e => e.SpecialTippani).HasColumnName("SPECIAL_TIPPANI");
 
@@ -13315,35 +11462,27 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_CONSTRUCTION_OTHER_CHARGES");
 
+                entity.HasIndex(e => e.AccId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
-                entity.Property(e => e.Accode)
-                    .HasColumnName("ACCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Accode).HasColumnName("ACCODE");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.FlatChargeRate)
-                    .HasColumnName("FLAT_CHARGE_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FlatChargeRate).HasColumnName("FLAT_CHARGE_RATE");
 
                 entity.Property(e => e.PercentOfTax).HasColumnName("PERCENT_OF_TAX");
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
-                entity.Property(e => e.ServiceChargeCalculation)
-                    .HasColumnName("SERVICE_CHARGE_CALCULATION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ServiceChargeCalculation).HasColumnName("SERVICE_CHARGE_CALCULATION");
 
                 entity.HasOne(d => d.Acc)
                     .WithMany(p => p.TblConstructionOtherCharges)
@@ -13357,11 +11496,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AddDate)
-                    .HasColumnName("ADD_DATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.AddDate).HasColumnName("ADD_DATE");
 
                 entity.Property(e => e.ComputerName)
                     .HasColumnName("COMPUTER_NAME")
@@ -13389,9 +11526,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("TRAN_TIME")
                     .HasMaxLength(20);
 
-                entity.Property(e => e.UserIdA)
-                    .HasColumnName("USER_ID_A")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UserIdA).HasColumnName("USER_ID_A");
 
                 entity.Property(e => e.WindowsUser)
                     .HasColumnName("WINDOWS_USER")
@@ -13404,15 +11539,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.EngName)
                     .HasColumnName("ENG_NAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.IsFullDegister)
-                    .HasColumnName("IS_FULL_DEGISTER")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.IsFullDegister).HasColumnName("IS_FULL_DEGISTER");
 
                 entity.Property(e => e.NpName)
                     .HasColumnName("NP_NAME")
@@ -13427,7 +11560,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.EngName)
                     .HasColumnName("ENG_NAME")
@@ -13442,35 +11575,27 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_LAND_OTHER_CHARGES");
 
+                entity.HasIndex(e => e.AccId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
-                entity.Property(e => e.Accode)
-                    .HasColumnName("ACCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Accode).HasColumnName("ACCODE");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.FlatChargeRate)
-                    .HasColumnName("FLAT_CHARGE_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FlatChargeRate).HasColumnName("FLAT_CHARGE_RATE");
 
                 entity.Property(e => e.PercentOfTax).HasColumnName("PERCENT_OF_TAX");
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
-                entity.Property(e => e.ServiceChargeCalculation)
-                    .HasColumnName("SERVICE_CHARGE_CALCULATION")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ServiceChargeCalculation).HasColumnName("SERVICE_CHARGE_CALCULATION");
 
                 entity.HasOne(d => d.Acc)
                     .WithMany(p => p.TblLandOtherCharges)
@@ -13482,31 +11607,27 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_MALPOT_OTHER_CHARGES");
 
+                entity.HasIndex(e => e.AccId);
+
+                entity.HasIndex(e => e.Rateid);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
-                entity.Property(e => e.Accode)
-                    .HasColumnName("ACCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Accode).HasColumnName("ACCODE");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.FlatChargeRate)
-                    .HasColumnName("FLAT_CHARGE_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FlatChargeRate).HasColumnName("FLAT_CHARGE_RATE");
 
                 entity.Property(e => e.PercentOfTax).HasColumnName("PERCENT_OF_TAX");
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
                 entity.HasOne(d => d.Acc)
                     .WithMany(p => p.TblMalpotOtherCharges)
@@ -13525,7 +11646,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -13546,7 +11667,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Descriptiong).HasColumnName("DESCRIPTIONG");
 
@@ -13563,7 +11684,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.DateBs)
                     .HasColumnName("DATE_BS")
@@ -13584,25 +11705,21 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBL_PAYMENT_ORDER_DETAILS");
 
+                entity.HasIndex(e => e.PaymentOrderId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.LinkVoucherId)
-                    .HasColumnName("LINK_VOUCHER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.LinkVoucherId).HasColumnName("LINK_VOUCHER_ID");
 
-                entity.Property(e => e.PaymentOrderId)
-                    .HasColumnName("PAYMENT_ORDER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PaymentOrderId).HasColumnName("PAYMENT_ORDER_ID");
 
                 entity.Property(e => e.PaymentPermissNo)
                     .HasColumnName("PAYMENT_PERMISS_NO")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.VoucherId)
-                    .HasColumnName("VOUCHER_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.VoucherId).HasColumnName("VOUCHER_ID");
 
                 entity.HasOne(d => d.PaymentOrder)
                     .WithMany(p => p.TblPaymentOrderDetails)
@@ -13616,7 +11733,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.PaymentProcess)
                     .HasColumnName("PAYMENT_PROCESS")
@@ -13637,7 +11754,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.PaymentType)
                     .HasColumnName("PAYMENT_TYPE")
@@ -13658,7 +11775,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
@@ -13666,9 +11783,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.HouseLandAmount).HasColumnName("HOUSE_LAND_AMOUNT");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
                 entity.Property(e => e.MalpotAmount).HasColumnName("MALPOT_AMOUNT");
 
@@ -13687,9 +11802,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("TBL_SANITAION_TAX");
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Amount).HasColumnName("AMOUNT");
 
@@ -13699,9 +11812,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.FromArea).HasColumnName("FROM_AREA");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.IsApartment)
                     .HasColumnName("IS_APARTMENT")
@@ -13718,19 +11829,13 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.BrandId)
-                    .HasColumnName("BRAND_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.ItemId)
-                    .HasColumnName("ITEM_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
-                entity.Property(e => e.Masterid)
-                    .HasColumnName("MASTERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Masterid).HasColumnName("MASTERID");
 
                 entity.Property(e => e.NotRepairQty).HasColumnName("NOT_REPAIR_QTY");
 
@@ -13740,15 +11845,11 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.RepairQty).HasColumnName("REPAIR_QTY");
 
-                entity.Property(e => e.SpecId)
-                    .HasColumnName("SPEC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.SpecId).HasColumnName("SPEC_ID");
 
                 entity.Property(e => e.StockQty).HasColumnName("STOCK_QTY");
 
-                entity.Property(e => e.UnitId)
-                    .HasColumnName("UNIT_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UnitId).HasColumnName("UNIT_ID");
 
                 entity.Property(e => e.UseInQty).HasColumnName("USE_IN_QTY");
             });
@@ -13759,11 +11860,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
                 entity.Property(e => e.Code)
                     .HasColumnName("CODE")
@@ -13787,43 +11886,27 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Taxsrcid)
                     .HasColumnName("TAXSRCID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.Amountnotcollected)
-                    .HasColumnName("AMOUNTNOTCOLLECTED")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Amountnotcollected).HasColumnName("AMOUNTNOTCOLLECTED");
 
                 entity.Property(e => e.Fiscalyear)
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.NetincomeCurfy)
-                    .HasColumnName("NETINCOME_CURFY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NetincomeCurfy).HasColumnName("NETINCOME_CURFY");
 
-                entity.Property(e => e.NetincomeLastfy)
-                    .HasColumnName("NETINCOME_LASTFY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NetincomeLastfy).HasColumnName("NETINCOME_LASTFY");
 
-                entity.Property(e => e.Recordtype)
-                    .HasColumnName("RECORDTYPE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Recordtype).HasColumnName("RECORDTYPE");
 
-                entity.Property(e => e.Taxnotpaidtaxpayercnt)
-                    .HasColumnName("TAXNOTPAIDTAXPAYERCNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Taxnotpaidtaxpayercnt).HasColumnName("TAXNOTPAIDTAXPAYERCNT");
 
-                entity.Property(e => e.TaxpaidtaxpayercntCurfy)
-                    .HasColumnName("TAXPAIDTAXPAYERCNT_CURFY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TaxpaidtaxpayercntCurfy).HasColumnName("TAXPAIDTAXPAYERCNT_CURFY");
 
-                entity.Property(e => e.TaxpaidtaxpayercntLastfy)
-                    .HasColumnName("TAXPAIDTAXPAYERCNT_LASTFY")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.TaxpaidtaxpayercntLastfy).HasColumnName("TAXPAIDTAXPAYERCNT_LASTFY");
 
-                entity.Property(e => e.Totaltaxpayercnt)
-                    .HasColumnName("TOTALTAXPAYERCNT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Totaltaxpayercnt).HasColumnName("TOTALTAXPAYERCNT");
             });
 
             modelBuilder.Entity<TblTolabikasaOrg>(entity =>
@@ -13832,7 +11915,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
@@ -13862,9 +11945,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SACHIBA")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Wardno)
-                    .HasColumnName("WARDNO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Wardno).HasColumnName("WARDNO");
             });
 
             modelBuilder.Entity<TblVehicleParts>(entity =>
@@ -13876,7 +11957,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.EngName)
                     .HasColumnName("ENG_NAME")
@@ -13895,7 +11976,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -13914,17 +11995,15 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBLBUSINESS_SERVICE_CH_MST");
 
+                entity.HasIndex(e => e.AccId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
-                entity.Property(e => e.Accode)
-                    .HasColumnName("ACCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Accode).HasColumnName("ACCODE");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
@@ -13932,9 +12011,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Flatchargerate).HasColumnName("FLATCHARGERATE");
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
                 entity.Property(e => e.Servicechargepercent).HasColumnName("SERVICECHARGEPERCENT");
 
@@ -13950,13 +12027,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("TBLEXEVERSION");
 
-                entity.Property(e => e.Exedate)
-                    .HasColumnName("EXEDATE")
-                    .HasColumnType("date");
+                entity.Property(e => e.Exedate).HasColumnName("EXEDATE");
 
-                entity.Property(e => e.Exeid)
-                    .HasColumnName("EXEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Exeid).HasColumnName("EXEID");
             });
 
             modelBuilder.Entity<Tblfywisebtrates>(entity =>
@@ -13973,78 +12046,58 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(9);
 
-                entity.Property(e => e.Groupid)
-                    .HasColumnName("GROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Groupid).HasColumnName("GROUPID");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
-                entity.Property(e => e.Rateperunit)
-                    .HasColumnName("RATEPERUNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateperunit).HasColumnName("RATEPERUNIT");
 
-                entity.Property(e => e.Snsubgroup)
-                    .HasColumnName("SNSUBGROUP")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Snsubgroup).HasColumnName("SNSUBGROUP");
 
-                entity.Property(e => e.Subgroupid)
-                    .HasColumnName("SUBGROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Subgroupid).HasColumnName("SUBGROUPID");
             });
 
             modelBuilder.Entity<Tblfywisempotassrate>(entity =>
             {
                 entity.ToTable("TBLFYWISEMPOTASSRATE");
 
+                entity.HasIndex(e => e.Groupid);
+
+                entity.HasIndex(e => e.Rateid);
+
+                entity.HasIndex(e => e.Subgroupid);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AreaUpto)
-                    .HasColumnName("AREA_UPTO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AreaUpto).HasColumnName("AREA_UPTO");
 
-                entity.Property(e => e.EachAreaRate)
-                    .HasColumnName("EACH_AREA_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EachAreaRate).HasColumnName("EACH_AREA_RATE");
 
                 entity.Property(e => e.Fiscalyear)
                     .HasColumnName("FISCALYEAR")
                     .HasMaxLength(9);
 
-                entity.Property(e => e.ForEachArea)
-                    .HasColumnName("FOR_EACH_AREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ForEachArea).HasColumnName("FOR_EACH_AREA");
 
-                entity.Property(e => e.Groupid)
-                    .HasColumnName("GROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Groupid).HasColumnName("GROUPID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
-                entity.Property(e => e.Rateperunit)
-                    .HasColumnName("RATEPERUNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateperunit).HasColumnName("RATEPERUNIT");
 
-                entity.Property(e => e.Subgroupid)
-                    .HasColumnName("SUBGROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Subgroupid).HasColumnName("SUBGROUPID");
 
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.Tblfywisempotassrate)
@@ -14071,7 +12124,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.AddFlag)
                     .HasColumnName("ADD_FLAG")
@@ -14085,15 +12138,11 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.FlatRate)
-                    .HasColumnName("FLAT_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FlatRate).HasColumnName("FLAT_RATE");
 
                 entity.Property(e => e.RatePercent).HasColumnName("RATE_PERCENT");
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
             });
 
             modelBuilder.Entity<TbllandTypeArea>(entity =>
@@ -14102,7 +12151,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Code)
                     .IsRequired()
@@ -14124,7 +12173,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
@@ -14139,41 +12188,33 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBLMALPOTRATES");
 
+                entity.HasIndex(e => e.Groupid);
+
+                entity.HasIndex(e => e.Subgroupid);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AreaUpto)
-                    .HasColumnName("AREA_UPTO")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AreaUpto).HasColumnName("AREA_UPTO");
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.EachAreaRate)
-                    .HasColumnName("EACH_AREA_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.EachAreaRate).HasColumnName("EACH_AREA_RATE");
 
-                entity.Property(e => e.ForEachArea)
-                    .HasColumnName("FOR_EACH_AREA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.ForEachArea).HasColumnName("FOR_EACH_AREA");
 
-                entity.Property(e => e.Groupid)
-                    .HasColumnName("GROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Groupid).HasColumnName("GROUPID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Rateperunit)
-                    .HasColumnName("RATEPERUNIT")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateperunit).HasColumnName("RATEPERUNIT");
 
-                entity.Property(e => e.Subgroupid)
-                    .HasColumnName("SUBGROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Subgroupid).HasColumnName("SUBGROUPID");
 
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.Tblmalpotrates)
@@ -14190,25 +12231,23 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBLMALPOTSUBGROUP");
 
+                entity.HasIndex(e => e.Groupid);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Description)
                     .HasColumnName("DESCRIPTION")
                     .HasMaxLength(150);
 
-                entity.Property(e => e.Groupid)
-                    .HasColumnName("GROUPID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Groupid).HasColumnName("GROUPID");
 
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Worda)
-                    .HasColumnName("WORDA")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Worda).HasColumnName("WORDA");
 
                 entity.HasOne(d => d.Group)
                     .WithMany(p => p.Tblmalpotsubgroup)
@@ -14225,7 +12264,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.Sn)
                     .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.DurationInYears).HasColumnName("DURATION_IN_YEARS");
 
@@ -14233,9 +12272,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("FISCAL_YEAR")
                     .HasMaxLength(10);
 
-                entity.Property(e => e.FlatRate)
-                    .HasColumnName("FLAT_RATE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.FlatRate).HasColumnName("FLAT_RATE");
 
                 entity.Property(e => e.RatePercent).HasColumnName("RATE_PERCENT");
 
@@ -14254,13 +12291,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("TBLTAXCALCULATIONROKA");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Iid)
-                    .HasColumnName("IID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Iid).HasColumnName("IID");
 
                 entity.Property(e => e.Reason)
                     .HasColumnName("REASON")
@@ -14275,17 +12308,15 @@ namespace IMIS_DataEntity.Data
             {
                 entity.ToTable("TBLVEH_SER_CH_MSTR");
 
+                entity.HasIndex(e => e.AccId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
-                entity.Property(e => e.AccId)
-                    .HasColumnName("ACC_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.AccId).HasColumnName("ACC_ID");
 
-                entity.Property(e => e.Accode)
-                    .HasColumnName("ACCODE")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Accode).HasColumnName("ACCODE");
 
                 entity.Property(e => e.FiscalYear)
                     .HasColumnName("FISCAL_YEAR")
@@ -14293,9 +12324,7 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.FlatChargeRate).HasColumnName("FLAT_CHARGE_RATE");
 
-                entity.Property(e => e.Rateid)
-                    .HasColumnName("RATEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rateid).HasColumnName("RATEID");
 
                 entity.Property(e => e.ServiceChargePercent).HasColumnName("SERVICE_CHARGE_PERCENT");
 
@@ -14311,13 +12340,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("TBUSERSECURITYRIGHTS");
 
-                entity.Property(e => e.Rightsid)
-                    .HasColumnName("RIGHTSID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Rightsid).HasColumnName("RIGHTSID");
 
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Userid).HasColumnName("USERID");
             });
 
             modelBuilder.Entity<Types>(entity =>
@@ -14335,9 +12360,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Nepname)
                     .IsRequired()
@@ -14355,6 +12378,38 @@ namespace IMIS_DataEntity.Data
 
                 entity.ToTable("USERASSIGNMENTS");
 
+                entity.Property(e => e.Active).HasColumnName("ACTIVE");
+
+                entity.Property(e => e.Createdat)
+                    .HasColumnName("CREATEDAT")
+                    .HasDefaultValueSql("'2001-01-01 00:00:00'::timestamp without time zone");
+
+                entity.Property(e => e.Createdby)
+                    .HasColumnName("CREATEDBY")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Displayname)
+                    .HasColumnName("DISPLAYNAME")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Icon)
+                    .HasColumnName("ICON")
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Islocked).HasColumnName("ISLOCKED");
+
+                entity.Property(e => e.Menuname)
+                    .HasColumnName("MENUNAME")
+                    .HasMaxLength(100);
+
+                entity.Property(e => e.Menuorder)
+                    .HasColumnName("MENUORDER")
+                    .HasDefaultValueSql("'0'::smallint");
+
+                entity.Property(e => e.Menuurl)
+                    .HasColumnName("MENUURL")
+                    .HasMaxLength(500);
+
                 entity.Property(e => e.Module)
                     .HasColumnName("MODULE")
                     .HasMaxLength(5);
@@ -14363,28 +12418,17 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(90);
 
+                entity.Property(e => e.Parentmenuid).HasColumnName("PARENTMENUID");
+
                 entity.Property(e => e.Rightsname)
                     .HasColumnName("RIGHTSNAME")
                     .HasMaxLength(200);
 
-                entity.Property(e => e.Sn)
-                    .HasColumnName("SN")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Sn).HasColumnName("SN");
 
-                entity.Property(e => e.MenuName).HasColumnName("MENUNAME").HasMaxLength(100);
-                entity.Property(e => e.MenuUrl).HasColumnName("MENUURL").HasMaxLength(500);
-                entity.Property(e => e.DisplayName).HasColumnName("DISPLAYNAME").HasMaxLength(100);
-                entity.Property(e => e.ParentMenuId).HasColumnName("PARENTMENUID").HasColumnType("numeric(22,0)");
-                entity.Property(e => e.Active).HasColumnName("ACTIVE").HasColumnType("boolean");
-                entity.Property(e => e.IsLocked).HasColumnName("ISLOCKED").HasColumnType("boolean");
-                entity.Property(e => e.Visible).HasColumnName("VISIBLE").HasColumnType("boolean");
-                entity.Property(e => e.Icon).HasColumnName("ICON").HasMaxLength(50);
-                entity.Property(e => e.MenuOrder).HasColumnName("MENUORDER").HasColumnType("smallint");
-                entity.Property(e => e.CreatedBy).HasColumnName("CREATEDBY").HasMaxLength(100);
-                entity.Property(e => e.CreatedAt).HasColumnName("CREATEDAT").HasColumnType("TIMESTAMP");  
+                entity.Property(e => e.Visible).HasColumnName("VISIBLE");
             });
-
-
+              
             modelBuilder.Entity<Vdc>(entity =>
             {
                 entity.HasNoKey();
@@ -14395,9 +12439,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("CODE")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Districtid)
-                    .HasColumnName("DISTRICTID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Districtid).HasColumnName("DISTRICTID");
 
                 entity.Property(e => e.Engname)
                     .IsRequired()
@@ -14413,22 +12455,24 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Typeid)
-                    .HasColumnName("TYPEID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Typeid).HasColumnName("TYPEID");
 
-                entity.Property(e => e.Vdcid)
-                    .HasColumnName("VDCID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Vdcid).HasColumnName("VDCID");
             });
 
             modelBuilder.Entity<WardMaster>(entity =>
             {
                 entity.ToTable("WARD_MASTER");
 
+                entity.HasIndex(e => e.PramukhId);
+
+                entity.HasIndex(e => e.UppramukhId);
+
+                entity.HasIndex(e => e.WardSecretaryId);
+
                 entity.Property(e => e.Id)
                     .HasColumnName("ID")
-                    .HasColumnType("numeric(22,0)");
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Address)
                     .HasColumnName("ADDRESS")
@@ -14446,21 +12490,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NEP_NAME")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.NumberOfMembers)
-                    .HasColumnName("NUMBER_OF_MEMBERS")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.NumberOfMembers).HasColumnName("NUMBER_OF_MEMBERS");
 
-                entity.Property(e => e.PramukhId)
-                    .HasColumnName("PRAMUKH_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.PramukhId).HasColumnName("PRAMUKH_ID");
 
-                entity.Property(e => e.UppramukhId)
-                    .HasColumnName("UPPRAMUKH_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.UppramukhId).HasColumnName("UPPRAMUKH_ID");
 
-                entity.Property(e => e.WardSecretaryId)
-                    .HasColumnName("WARD_SECRETARY_ID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.WardSecretaryId).HasColumnName("WARD_SECRETARY_ID");
 
                 entity.HasOne(d => d.Pramukh)
                     .WithMany(p => p.WardMasterPramukh)
@@ -14498,83 +12534,13 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.Regionid)
-                    .HasColumnName("REGIONID")
-                    .HasColumnType("numeric(22,0)");
+                entity.Property(e => e.Regionid).HasColumnName("REGIONID");
 
                 entity.Property(e => e.Remarks)
                     .HasColumnName("REMARKS")
                     .HasMaxLength(100);
 
-                entity.Property(e => e.Zoneid)
-                    .HasColumnName("ZONEID")
-                    .HasColumnType("numeric(22,0)");
-            });
-
-
-            modelBuilder.Entity<Usermaster>(entity =>
-            { 
-                entity.Property(e => e.Code)
-                    .HasColumnName("CODE")
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.EmpId)
-                    .HasColumnName("EMP_ID")
-                    .HasColumnType("numeric(22,0)");
-
-                entity.Property(e => e.Engname)
-                    .HasColumnName("ENGNAME")
-                    .HasMaxLength(60);
-
-                entity.Property(e => e.FiscalYear)
-                    .HasColumnName("FISCAL_YEAR")
-                    .HasMaxLength(12);
-
-                entity.Property(e => e.FromCentral)
-                    .HasColumnName("FROM_CENTRAL")
-                    .HasMaxLength(1);
-
-                entity.Property(e => e.Grants)
-                    .HasColumnName("GRANTS")
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.Lastloggedon)
-                    .HasColumnName("LASTLOGGEDON")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.Lastloggedout)
-                    .HasColumnName("LASTLOGGEDOUT")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.Nepname)
-                    .HasColumnName("NEPNAME")
-                    .HasMaxLength(70);
-
-                entity.Property(e => e.OrgCode)
-                    .HasColumnName("ORG_CODE")
-                    .HasMaxLength(10);
-
-                entity.Property(e => e.PwdChangedDate)
-                    .HasColumnName("PWD_CHANGED_DATE")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.Updatedby)
-                    .HasColumnName("UPDATEDBY")
-                    .HasColumnType("numeric(22,0)");
-
-                entity.Property(e => e.Userid)
-                    .HasColumnName("USERID")
-                    .HasMaxLength(20);
-
-                entity.Property(e => e.Userpassword)
-                    .HasColumnName("USERPASSWORD")
-                    .HasMaxLength(200);
-
-                entity.Property(e => e.Userstatus).HasColumnName("USERSTATUS");
-
-                entity.Property(e => e.WardNo)
-                    .HasColumnName("WARD_NO")
-                    .HasMaxLength(10);
+                entity.Property(e => e.Zoneid).HasColumnName("ZONEID");
             });
 
             OnModelCreatingPartial(modelBuilder);

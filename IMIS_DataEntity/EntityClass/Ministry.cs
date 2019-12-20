@@ -5,11 +5,11 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class Ministry
     {
-        public decimal? Id { get; set; }
+        public int? Id { get; set; }
         public string Code { get; set; }
-        public decimal? Zone { get; set; }
-        public decimal? District { get; set; }
-        public decimal? Vdc { get; set; }
+        public int? Zone { get; set; }
+        public int? District { get; set; }
+        public int? Vdc { get; set; }
         public string Phone { get; set; }
         public string Address { get; set; }
         public string Nepname { get; set; }

@@ -11,18 +11,18 @@ namespace IMIS_DataEntity.EntityClass
             Cashtransaction = new HashSet<Cashtransaction>();
         }
 
-        public decimal DhrtiMasterId { get; set; }
+        public int DhrtiMasterId { get; set; }
         public string BillNo { get; set; }
         public string Description { get; set; }
-        public decimal? CounterId { get; set; }
-        public decimal? PersonId { get; set; }
+        public int? CounterId { get; set; }
+        public int? PersonId { get; set; }
         public string BllDateNp { get; set; }
-        public double? CashAmt { get; set; }
-        public double? BankAmt { get; set; }
-        public decimal? VchrId { get; set; }
+        public float? CashAmt { get; set; }
+        public float? BankAmt { get; set; }
+        public int? VchrId { get; set; }
         public string VchrDateNp { get; set; }
-        public decimal? Userid { get; set; }
-        public decimal? Useride { get; set; }
+        public int? Userid { get; set; }
+        public int? Useride { get; set; }
         public string DateEntryVsDate { get; set; }
         public DateTime? DateEntryTime { get; set; }
         public DateTime? DateEditTime { get; set; }
@@ -33,9 +33,9 @@ namespace IMIS_DataEntity.EntityClass
         public string CancelReason { get; set; }
         public string BillNoManual { get; set; }
         public string FiscalYear { get; set; }
-        public decimal? Billtypeid { get; set; }
-        public decimal? SubModuleId { get; set; }
-        public decimal? WorkId { get; set; }
+        public int? Billtypeid { get; set; }
+        public int? SubModuleId { get; set; }
+        public int? WorkId { get; set; }
 
         public virtual Tblbilltype Billtype { get; set; }
         public virtual AccSubModuleType SubModule { get; set; }

@@ -16,12 +16,12 @@ namespace IMIS_DataEntity.EntityClass
             PisReplacedInDarbandi = new HashSet<PisReplacedInDarbandi>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? ParentId { get; set; }
+        public int Id { get; set; }
+        public int? ParentId { get; set; }
         public string NepName { get; set; }
         public string EngName { get; set; }
-        public decimal? ContainsDarbandi { get; set; }
-        public decimal? GeoRegion { get; set; }
+        public int? ContainsDarbandi { get; set; }
+        public int? GeoRegion { get; set; }
         public int? GrpLevel { get; set; }
 
         public virtual PisGeoRegion GeoRegionNavigation { get; set; }

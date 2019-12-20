@@ -18,38 +18,38 @@ namespace IMIS_DataEntity.EntityClass
             AccWorkPaymntTrans = new HashSet<AccWorkPaymntTrans>();
         }
 
-        public decimal WorkId { get; set; }
+        public int WorkId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public double? EstimatedAmt { get; set; }
-        public double? VariationAmt { get; set; }
-        public double? CorrectedAmt { get; set; }
-        public double? FinalActualAmtTobePaid { get; set; }
-        public double? TotalActualCost { get; set; }
+        public float? EstimatedAmt { get; set; }
+        public float? VariationAmt { get; set; }
+        public float? CorrectedAmt { get; set; }
+        public float? FinalActualAmtTobePaid { get; set; }
+        public float? TotalActualCost { get; set; }
         public string AgreementParty { get; set; }
-        public double? AgreementAmt { get; set; }
+        public float? AgreementAmt { get; set; }
         public string AgreementDate { get; set; }
         public string AgreementExpiryDate { get; set; }
         public string WorkCompleteDate { get; set; }
         public string MeasureBookNo { get; set; }
-        public double? DepositAmt { get; set; }
-        public double? BankGuaranteeAmt { get; set; }
+        public float? DepositAmt { get; set; }
+        public float? BankGuaranteeAmt { get; set; }
         public string DepositReleaseDate { get; set; }
         public string DepositReleasedDate { get; set; }
-        public decimal? WardNo { get; set; }
+        public int? WardNo { get; set; }
         public string IsCompleted { get; set; }
         public string DeadlineDate { get; set; }
         public string TpNo { get; set; }
-        public decimal? Bankid { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? PartyPersontypeid { get; set; }
-        public decimal? PartyId { get; set; }
-        public decimal? PersonPersontypeid { get; set; }
-        public decimal? PersonId { get; set; }
-        public decimal? DepositsAccId { get; set; }
-        public decimal? DepositsForfeitAccId { get; set; }
+        public int? Bankid { get; set; }
+        public int? EmpId { get; set; }
+        public int? PartyPersontypeid { get; set; }
+        public int? PartyId { get; set; }
+        public int? PersonPersontypeid { get; set; }
+        public int? PersonId { get; set; }
+        public int? DepositsAccId { get; set; }
+        public int? DepositsForfeitAccId { get; set; }
         public string IsKramagat { get; set; }
-        public decimal? YojanaNaturId { get; set; }
+        public int? YojanaNaturId { get; set; }
         public string AgreementSigningPerson { get; set; }
 
         public virtual ICollection<AccBankGrnty> AccBankGrnty { get; set; }

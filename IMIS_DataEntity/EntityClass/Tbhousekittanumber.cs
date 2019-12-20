@@ -5,8 +5,8 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class Tbhousekittanumber
     {
-        public decimal? Iid { get; set; }
-        public decimal? Houseid { get; set; }
-        public decimal? Landid { get; set; }
+        public int? Iid { get; set; }
+        public int? Houseid { get; set; }
+        public int? Landid { get; set; }
     }
 }

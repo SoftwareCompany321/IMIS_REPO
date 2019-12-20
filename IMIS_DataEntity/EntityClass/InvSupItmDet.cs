@@ -5,12 +5,12 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvSupItmDet
     {
-        public decimal Id { get; set; }
-        public decimal? ItemId { get; set; }
-        public decimal? SupId { get; set; }
-        public decimal? Qty { get; set; }
-        public decimal? Rate { get; set; }
-        public decimal? AccId { get; set; }
+        public int Id { get; set; }
+        public int? ItemId { get; set; }
+        public int? SupId { get; set; }
+        public int? Qty { get; set; }
+        public int? Rate { get; set; }
+        public int? AccId { get; set; }
         public string FiscalYear { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace IMIS_DataEntity.EntityClass
             AccWorkPaymntTrans = new HashSet<AccWorkPaymntTrans>();
         }
 
-        public decimal PersonTypeId { get; set; }
+        public int PersonTypeId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string Isfixed { get; set; }

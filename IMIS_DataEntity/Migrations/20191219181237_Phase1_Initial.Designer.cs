@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace IMIS_DataEntity.Migrations
 {
     [DbContext(typeof(IMISDbContext))]
-    [Migration("20191211175612_phase4")]
-    partial class phase4
+    [Migration("20191219181237_Phase1_Initial")]
+    partial class Phase1_Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,9 +23,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccAccMaster", b =>
                 {
-                    b.Property<decimal>("AccId")
+                    b.Property<int>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AccCode")
                         .HasColumnName("ACC_CODE")
@@ -87,26 +87,26 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("Iscapitalcurrent")
+                    b.Property<int?>("Iscapitalcurrent")
                         .HasColumnName("ISCAPITALCURRENT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NepName")
                         .HasColumnName("NEP_NAME")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("ParentAccId")
+                    b.Property<int?>("ParentAccId")
                         .HasColumnName("PARENT_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TypeId")
+                    b.Property<int?>("TypeId")
                         .HasColumnName("TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("AccId")
                         .HasName("ACC_ACC_MASTER_pkey");
@@ -118,48 +118,48 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccAsuliBibaran", b =>
                 {
-                    b.Property<decimal>("AsuliId")
+                    b.Property<int>("AsuliId")
                         .HasColumnName("ASULI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("AmtTaken")
+                    b.Property<float?>("AmtTaken")
                         .HasColumnName("AMT_TAKEN")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("CollectReason")
                         .HasColumnName("COLLECT_REASON")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("PaymentPersonId")
+                    b.Property<int?>("PaymentPersonId")
                         .HasColumnName("PAYMENT_PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PersonName")
                         .HasColumnName("PERSON_NAME")
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("PersonTypeId")
+                    b.Property<int?>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("PeskiAmt")
+                    b.Property<float?>("PeskiAmt")
                         .HasColumnName("PESKI_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("PeskiEmployeeId")
+                    b.Property<int?>("PeskiEmployeeId")
                         .HasColumnName("PESKI_EMPLOYEE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PropertyDetails")
                         .HasColumnName("PROPERTY_DETAILS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("PropertyEmployeeId")
+                    b.Property<int?>("PropertyEmployeeId")
                         .HasColumnName("PROPERTY_EMPLOYEE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PropertyRoka")
                         .HasColumnName("PROPERTY_ROKA")
@@ -186,9 +186,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccBankGrnty", b =>
                 {
-                    b.Property<decimal>("GrntyId")
+                    b.Property<int>("GrntyId")
                         .HasColumnName("GRNTY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("BankName")
                         .HasColumnName("BANK_NAME")
@@ -197,16 +197,16 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("EntryDatetime")
                         .HasColumnName("ENTRY_DATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ExpryVsDate")
                         .HasColumnName("EXPRY_VS_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("GrntyAmount")
+                    b.Property<float?>("GrntyAmount")
                         .HasColumnName("GRNTY_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("GrntyNo")
                         .HasColumnName("GRNTY_NO")
@@ -238,9 +238,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PhukuwaCn")
                         .HasColumnName("PHUKUWA_CN")
@@ -257,9 +257,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("GrntyId")
                         .HasName("ACC_BANK_GRNTY_pkey");
@@ -273,39 +273,39 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccBankStatement", b =>
                 {
-                    b.Property<double?>("Balance")
+                    b.Property<float?>("Balance")
                         .HasColumnName("BALANCE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<int?>("BankId")
                         .HasColumnName("BANK_ID")
                         .HasColumnType("integer");
 
-                    b.Property<decimal?>("BankTransactionId")
+                    b.Property<int?>("BankTransactionId")
                         .HasColumnName("BANK_TRANSACTION_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ChequeNo")
                         .HasColumnName("CHEQUE_NO")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<double?>("CrAmt")
+                    b.Property<float?>("CrAmt")
                         .HasColumnName("CR_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<double?>("DrAmt")
+                    b.Property<float?>("DrAmt")
                         .HasColumnName("DR_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("TransactionDate")
                         .HasColumnName("TRANSACTION_DATE")
@@ -314,59 +314,59 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("TransactionDateEn")
                         .HasColumnName("TRANSACTION_DATE_EN")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.ToTable("ACC_BANK_STATEMENT");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccBankTrans", b =>
                 {
-                    b.Property<decimal>("BankTransId")
+                    b.Property<int>("BankTransId")
                         .HasColumnName("BANK_TRANS_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BankId")
+                    b.Property<int?>("BankId")
                         .HasColumnName("BANK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BillId")
+                    b.Property<int?>("BillId")
                         .HasColumnName("BILL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("CrAmt")
+                    b.Property<float?>("CrAmt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CR_AMT")
-                        .HasColumnType("double precision")
-                        .HasDefaultValueSql("'0'::double precision");
+                        .HasColumnType("real")
+                        .HasDefaultValueSql("'0'::real");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<double?>("DrAmt")
+                    b.Property<float?>("DrAmt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("DR_AMT")
-                        .HasColumnType("double precision")
-                        .HasDefaultValueSql("'0'::double precision");
+                        .HasColumnType("real")
+                        .HasDefaultValueSql("'0'::real");
 
                     b.Property<string>("IsOfLastyear")
                         .HasColumnName("IS_OF_LASTYEAR")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("TransTypeId")
+                    b.Property<int?>("TransTypeId")
                         .HasColumnName("TRANS_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("VchrDateNep")
                         .HasColumnName("VCHR_DATE_NEP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("BankTransId")
                         .HasName("ACC_BANK_TRANS_pkey");
@@ -382,55 +382,55 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccBgtAllocate", b =>
                 {
-                    b.Property<decimal>("BgtAllocateId")
+                    b.Property<int>("BgtAllocateId")
                         .HasColumnName("BGT_ALLOCATE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AllocatedDateNp")
                         .HasColumnName("ALLOCATED_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("EntryDatetime")
                         .HasColumnName("ENTRY_DATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("EntryUserId")
+                    b.Property<int?>("EntryUserId")
                         .HasColumnName("ENTRY_USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("RevisedAmount")
+                    b.Property<float?>("RevisedAmount")
                         .HasColumnName("REVISED_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdateDatetime")
                         .HasColumnName("UPDATE_DATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("UpdateUserId")
+                    b.Property<int?>("UpdateUserId")
                         .HasColumnName("UPDATE_USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("BgtAllocateId")
                         .HasName("ACC_BGT_ALLOCATE_pkey");
@@ -440,17 +440,17 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccBgtRvsn", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BgtAlctnId")
+                    b.Property<int?>("BgtAlctnId")
                         .HasColumnName("BGT_ALCTN_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("RvsnDateNp")
                         .HasColumnName("RVSN_DATE_NP")
@@ -464,11 +464,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("UpdateDatetime")
                         .HasColumnName("UPDATE_DATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("UpdateUserId")
+                    b.Property<int?>("UpdateUserId")
                         .HasColumnName("UPDATE_USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -479,25 +479,25 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccBgtTransfer", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BgtAlctnId")
+                    b.Property<int?>("BgtAlctnId")
                         .HasColumnName("BGT_ALCTN_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("FromAccId")
+                    b.Property<int?>("FromAccId")
                         .HasColumnName("FROM_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ToAccId")
+                    b.Property<int?>("ToAccId")
                         .HasColumnName("TO_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("TrnsfrDateNp")
                         .HasColumnName("TRNSFR_DATE_NP")
@@ -511,11 +511,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("UpdateDatetime")
                         .HasColumnName("UPDATE_DATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("UpdateUserId")
+                    b.Property<int?>("UpdateUserId")
                         .HasColumnName("UPDATE_USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -530,29 +530,28 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccBudjetSource", b =>
                 {
-                    b.Property<decimal?>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Amount")
+                    b.Property<int?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("MinAccId")
+                    b.Property<int?>("MinAccId")
                         .HasColumnName("MIN_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("SourceId")
+                    b.Property<int?>("SourceId")
                         .HasColumnName("SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id")
-                        .HasName("ACC_BUDJET_SOURCE_pkey");
+                    b.HasKey("Id");
 
                     b.HasIndex("MinAccId");
 
@@ -563,34 +562,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccCashTrans", b =>
                 {
-                    b.Property<decimal>("CashTransId")
+                    b.Property<int>("CashTransId")
                         .HasColumnName("CASH_TRANS_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BillId")
+                    b.Property<int?>("BillId")
                         .HasColumnName("BILL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("CrAmt")
+                    b.Property<float?>("CrAmt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CR_AMT")
-                        .HasColumnType("double precision")
-                        .HasDefaultValueSql("'0'::double precision");
+                        .HasColumnType("real")
+                        .HasDefaultValueSql("'0'::real");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<double?>("DrAmt")
+                    b.Property<float?>("DrAmt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("DR_AMT")
-                        .HasColumnType("double precision")
-                        .HasDefaultValueSql("'0'::double precision");
+                        .HasColumnType("real")
+                        .HasDefaultValueSql("'0'::real");
 
-                    b.Property<decimal?>("IncomeExpTypeId")
+                    b.Property<int?>("IncomeExpTypeId")
                         .HasColumnName("INCOME_EXP_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsOfLastyear")
                         .HasColumnName("IS_OF_LASTYEAR")
@@ -602,9 +601,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("CashTransId")
                         .HasName("ACC_CASH_TRANS_pkey");
@@ -635,9 +634,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccCurrencty", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
@@ -659,22 +658,22 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccCurrenctyRate", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("CurrencyId")
+                    b.Property<int?>("CurrencyId")
                         .HasColumnName("CURRENCY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NpDate")
                         .HasColumnName("NP_DATE")
                         .HasColumnType("character varying(15)")
                         .HasMaxLength(15);
 
-                    b.Property<double?>("Rate")
+                    b.Property<float?>("Rate")
                         .HasColumnName("RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -685,17 +684,17 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccDhrtiBillDtl", b =>
                 {
-                    b.Property<decimal>("DhrtiDtlId")
+                    b.Property<int>("DhrtiDtlId")
                         .HasColumnName("DHRTI_DTL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("BillDateNp")
                         .HasColumnName("BILL_DATE_NP")
@@ -707,25 +706,25 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("CounterId")
+                    b.Property<int?>("CounterId")
                         .HasColumnName("COUNTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DhrtiMasterId")
+                    b.Property<int?>("DhrtiMasterId")
                         .HasColumnName("DHRTI_MASTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OrderInBill")
+                    b.Property<int?>("OrderInBill")
                         .HasColumnName("ORDER_IN_BILL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -737,13 +736,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("DhrtiDtlId")
                         .HasName("ACC_DHRTI_BILL_DTL_pkey");
@@ -759,18 +758,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccDhrtiBillMaster", b =>
                 {
-                    b.Property<decimal>("DhrtiMasterId")
+                    b.Property<int>("DhrtiMasterId")
                         .HasColumnName("DHRTI_MASTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<double?>("BankAmt")
+                    b.Property<float?>("BankAmt")
                         .HasColumnName("BANK_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("BillNo")
                         .HasColumnName("BILL_NO")
@@ -782,9 +781,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Billtypeid")
+                    b.Property<int?>("Billtypeid")
                         .HasColumnName("BILLTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("BllDateNp")
                         .HasColumnName("BLL_DATE_NP")
@@ -801,21 +800,21 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<double?>("CashAmt")
+                    b.Property<float?>("CashAmt")
                         .HasColumnName("CASH_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("CounterId")
+                    b.Property<int?>("CounterId")
                         .HasColumnName("COUNTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("DateEditTime")
                         .HasColumnName("DATE_EDIT_TIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateEntryTime")
                         .HasColumnName("DATE_ENTRY_TIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DateEntryVsDate")
                         .HasColumnName("DATE_ENTRY_VS_DATE")
@@ -837,38 +836,38 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("WardNo")
                         .HasColumnName("WARD_NO")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("DhrtiMasterId")
                         .HasName("ACC_DHRTI_BILL_MASTER_pkey");
@@ -886,84 +885,84 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccExpensesDetails", b =>
                 {
-                    b.Property<decimal>("ExpenseId")
+                    b.Property<int>("ExpenseId")
                         .HasColumnName("EXPENSE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Advexptype")
                         .HasColumnName("ADVEXPTYPE")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<double?>("CrAmt")
+                    b.Property<float?>("CrAmt")
                         .HasColumnName("CR_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("DrAmt")
+                    b.Property<float?>("DrAmt")
                         .HasColumnName("DR_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsOfLastYear")
                         .HasColumnName("IS_OF_LAST_YEAR")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("OrderInPaymentSlip")
+                    b.Property<int?>("OrderInPaymentSlip")
                         .HasColumnName("ORDER_IN_PAYMENT_SLIP")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OrgId")
+                    b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PadadhikariId")
+                    b.Property<int?>("PadadhikariId")
                         .HasColumnName("PADADHIKARI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentSlipId")
+                    b.Property<int?>("PaymentSlipId")
                         .HasColumnName("PAYMENT_SLIP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonTypeId")
+                    b.Property<int?>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TransTypeId")
+                    b.Property<int?>("TransTypeId")
                         .HasColumnName("TRANS_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UcId")
+                    b.Property<int?>("UcId")
                         .HasColumnName("UC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("VatAmt")
+                    b.Property<float?>("VatAmt")
                         .HasColumnName("VAT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WardId")
+                    b.Property<int?>("WardId")
                         .HasColumnName("WARD_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("ExpenseId")
                         .HasName("ACC_EXPENSES_DETAILS_pkey");
@@ -983,9 +982,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccFundProvidrMstr", b =>
                 {
-                    b.Property<decimal>("ProviderId")
+                    b.Property<int>("ProviderId")
                         .HasColumnName("PROVIDER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Chairman")
                         .HasColumnName("CHAIRMAN")
@@ -1027,22 +1026,22 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccIncomeRate", b =>
                 {
-                    b.Property<decimal>("RateId")
+                    b.Property<int>("RateId")
                         .HasColumnName("RATE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Rate")
+                    b.Property<int?>("Rate")
                         .HasColumnName("RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("RateId")
                         .HasName("ACC_INCOME_RATE_pkey");
@@ -1052,30 +1051,30 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccLastYrPeski", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AdvanceType")
                         .HasColumnName("ADVANCE_TYPE")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonTypeId")
+                    b.Property<int?>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("TotalPesRem")
+                    b.Property<float?>("TotalPesRem")
                         .HasColumnName("TOTAL_PES_REM")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Sn")
                         .HasName("ACC_LAST_YR_PESKI_pkey");
@@ -1085,55 +1084,55 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccLastyearAdvDetails", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AddDate")
                         .HasColumnName("ADD_DATE")
                         .HasColumnType("character varying(15)")
                         .HasMaxLength(15);
 
-                    b.Property<decimal?>("AddUserId")
+                    b.Property<int?>("AddUserId")
                         .HasColumnName("ADD_USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetAccId")
+                    b.Property<int?>("BudgetAccId")
                         .HasColumnName("BUDGET_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("DrAmount")
+                    b.Property<float?>("DrAmount")
                         .HasColumnName("DR_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(15)")
                         .HasMaxLength(15);
 
-                    b.Property<decimal?>("LastYrPeskiId")
+                    b.Property<int?>("LastYrPeskiId")
                         .HasColumnName("LAST_YR_PESKI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnName("PAYMENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentTypeId")
+                    b.Property<int?>("PaymentTypeId")
                         .HasColumnName("PAYMENT_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -1145,9 +1144,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("VhcrId")
+                    b.Property<int?>("VhcrId")
                         .HasColumnName("VHCR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("VoucherDate")
                         .HasColumnName("VOUCHER_DATE")
@@ -1159,9 +1158,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -1170,9 +1169,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccOrgMaster", b =>
                 {
-                    b.Property<decimal>("OrgId")
+                    b.Property<int>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
@@ -1184,9 +1183,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal?>("District")
+                    b.Property<int?>("District")
                         .HasColumnName("DISTRICT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Emails")
                         .HasColumnName("EMAILS")
@@ -1198,9 +1197,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Ministry")
+                    b.Property<int?>("Ministry")
                         .HasColumnName("MINISTRY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("MobileNo")
                         .HasColumnName("MOBILE_NO")
@@ -1217,13 +1216,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("OrcAccTypeId")
+                    b.Property<int?>("OrcAccTypeId")
                         .HasColumnName("ORC_ACC_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OrgMasterId")
+                    b.Property<int?>("OrgMasterId")
                         .HasColumnName("ORG_MASTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PanNo")
                         .HasColumnName("PAN_NO")
@@ -1255,13 +1254,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Vdc")
+                    b.Property<int?>("Vdc")
                         .HasColumnName("VDC")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Zone")
+                    b.Property<int?>("Zone")
                         .HasColumnName("ZONE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("OrgId")
                         .HasName("ACC_ORG_MASTER_pkey");
@@ -1271,9 +1270,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccPadadhikariMstr", b =>
                 {
-                    b.Property<decimal>("PadadikariId")
+                    b.Property<int>("PadadikariId")
                         .HasColumnName("PADADIKARI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
@@ -1290,9 +1289,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("CitznIssuedDistrId")
+                    b.Property<int?>("CitznIssuedDistrId")
                         .HasColumnName("CITZN_ISSUED_DISTR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CurrentPostAppointDate")
                         .HasColumnName("CURRENT_POST_APPOINT_DATE")
@@ -1301,11 +1300,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DataEntryAdDate")
                         .HasColumnName("DATA_ENTRY_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataEntryVsDate")
                         .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -1319,11 +1318,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("DateOfBirthAd")
                         .HasColumnName("DATE_OF_BIRTH_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("DistrictId")
+                    b.Property<int?>("DistrictId")
                         .HasColumnName("DISTRICT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ElectedDateNp")
                         .HasColumnName("ELECTED_DATE_NP")
@@ -1340,18 +1339,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("FirstAppointPostId")
+                    b.Property<int?>("FirstAppointPostId")
                         .HasColumnName("FIRST_APPOINT_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Gender")
                         .HasColumnName("GENDER")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("GfOcupation")
+                    b.Property<int?>("GfOcupation")
                         .HasColumnName("GF_OCUPATION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("GrandfatherName")
                         .HasColumnName("GRANDFATHER_NAME")
@@ -1388,9 +1387,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<decimal?>("MotherLangId")
+                    b.Property<int?>("MotherLangId")
                         .HasColumnName("MOTHER_LANG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -1402,17 +1401,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("NoOfDaughter")
+                    b.Property<int?>("NoOfDaughter")
                         .HasColumnName("NO_OF_DAUGHTER")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NoOfSon")
+                    b.Property<int?>("NoOfSon")
                         .HasColumnName("NO_OF_SON")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("POcupation")
+                    b.Property<int?>("POcupation")
                         .HasColumnName("P_OCUPATION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ParentName")
                         .HasColumnName("PARENT_NAME")
@@ -1424,9 +1423,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("PostId")
+                    b.Property<int?>("PostId")
                         .HasColumnName("POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PreExperience")
                         .HasColumnName("PRE_EXPERIENCE")
@@ -1438,18 +1437,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("ReligionId")
+                    b.Property<int?>("ReligionId")
                         .HasColumnName("RELIGION_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("RetireDate")
                         .HasColumnName("RETIRE_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("SOcupation")
+                    b.Property<int?>("SOcupation")
                         .HasColumnName("S_OCUPATION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("SpecialNotes")
                         .HasColumnName("SPECIAL_NOTES")
@@ -1471,29 +1470,29 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("TrackId")
+                    b.Property<int?>("TrackId")
                         .HasColumnName("TRACK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserIde")
+                    b.Property<int?>("UserIde")
                         .HasColumnName("USER_IDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("VdcId")
+                    b.Property<int?>("VdcId")
                         .HasColumnName("VDC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WardNo")
+                    b.Property<int?>("WardNo")
                         .HasColumnName("WARD_NO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ZoneId")
+                    b.Property<int?>("ZoneId")
                         .HasColumnName("ZONE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("PadadikariId")
                         .HasName("ACC_PADADHIKARI_MSTR_pkey");
@@ -1505,13 +1504,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccPadadhikariPost", b =>
                 {
-                    b.Property<decimal>("PostId")
+                    b.Property<int>("PostId")
                         .HasColumnName("POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DurationInYrs")
+                    b.Property<int?>("DurationInYrs")
                         .HasColumnName("DURATION_IN_YRS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -1523,9 +1522,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("PostLevel")
+                    b.Property<int?>("PostLevel")
                         .HasColumnName("POST_LEVEL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("PostId")
                         .HasName("ACC_PADADHIKARI_POST_pkey");
@@ -1535,34 +1534,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccPaymentClearance", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BudgetAccId")
+                    b.Property<int?>("BudgetAccId")
                         .HasColumnName("BUDGET_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsOfLastYear")
                         .HasColumnName("IS_OF_LAST_YEAR")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnName("PAYMENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -1575,68 +1574,68 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccPaymentCredit", b =>
                 {
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BudgetAccId")
+                    b.Property<int?>("BudgetAccId")
                         .HasColumnName("BUDGET_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsOfLastYear")
                         .HasColumnName("IS_OF_LAST_YEAR")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnName("PAYMENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("ACC_PAYMENT_CREDIT");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccPaymentDeduction", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BudgetAccId")
+                    b.Property<int?>("BudgetAccId")
                         .HasColumnName("BUDGET_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Deductiontype")
                         .HasColumnName("DEDUCTIONTYPE")
                         .HasColumnType("character varying(5)")
                         .HasMaxLength(5);
 
-                    b.Property<decimal?>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnName("PAYMENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Status")
                         .HasColumnName("STATUS")
@@ -1656,13 +1655,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccPaymentDetails", b =>
                 {
-                    b.Property<decimal>("PaymentDetailId")
+                    b.Property<int>("PaymentDetailId")
                         .HasColumnName("PAYMENT_DETAIL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AdvanceType")
                         .HasColumnName("ADVANCE_TYPE")
@@ -1674,29 +1673,29 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("BudgetAccId")
+                    b.Property<int?>("BudgetAccId")
                         .HasColumnName("BUDGET_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("CrAmt")
+                    b.Property<float?>("CrAmt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CR_AMT")
-                        .HasColumnType("double precision")
-                        .HasDefaultValueSql("'0'::double precision");
+                        .HasColumnType("real")
+                        .HasDefaultValueSql("'0'::real");
 
-                    b.Property<double?>("DrAmt")
+                    b.Property<float?>("DrAmt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("DR_AMT")
-                        .HasColumnType("double precision")
-                        .HasDefaultValueSql("'0'::double precision");
+                        .HasColumnType("real")
+                        .HasDefaultValueSql("'0'::real");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ExpireDateNp")
                         .HasColumnName("EXPIRE_DATE_NP")
@@ -1713,66 +1712,66 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("OrderInPaymentSlip")
+                    b.Property<int?>("OrderInPaymentSlip")
                         .HasColumnName("ORDER_IN_PAYMENT_SLIP")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OrgId")
+                    b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PadadhikariId")
+                    b.Property<int?>("PadadhikariId")
                         .HasColumnName("PADADHIKARI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnName("PAYMENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentSlipId")
+                    b.Property<int?>("PaymentSlipId")
                         .HasColumnName("PAYMENT_SLIP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonTypeId")
+                    b.Property<int?>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SupplierId")
+                    b.Property<int?>("SupplierId")
                         .HasColumnName("SUPPLIER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TransTypeId")
+                    b.Property<int?>("TransTypeId")
                         .HasColumnName("TRANS_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UcId")
+                    b.Property<int?>("UcId")
                         .HasColumnName("UC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("VatAmt")
+                    b.Property<float?>("VatAmt")
                         .HasColumnName("VAT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WardId")
+                    b.Property<int?>("WardId")
                         .HasColumnName("WARD_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("PaymentDetailId")
                         .HasName("ACC_PAYMENT_DETAILS_pkey");
@@ -1796,69 +1795,69 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccPaymentMaster", b =>
                 {
-                    b.Property<decimal>("PaymentId")
+                    b.Property<int>("PaymentId")
                         .HasColumnName("PAYMENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AccDeductDepVchrDate")
                         .HasColumnName("ACC_DEDUCT_DEP_VCHR_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("AccDeductDepVchrId")
+                    b.Property<int?>("AccDeductDepVchrId")
                         .HasColumnName("ACC_DEDUCT_DEP_VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("AdvClearedFromBank")
+                    b.Property<float?>("AdvClearedFromBank")
                         .HasColumnName("ADV_CLEARED_FROM_BANK")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("AdvClearedFromBill")
+                    b.Property<float?>("AdvClearedFromBill")
                         .HasColumnName("ADV_CLEARED_FROM_BILL")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("AdvClearedFromCash")
+                    b.Property<float?>("AdvClearedFromCash")
                         .HasColumnName("ADV_CLEARED_FROM_CASH")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Advexptype")
                         .HasColumnName("ADVEXPTYPE")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<double?>("BillAmt")
+                    b.Property<float?>("BillAmt")
                         .HasColumnName("BILL_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("BillNo")
                         .HasColumnName("BILL_NO")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<double?>("CashPayment")
+                    b.Property<float?>("CashPayment")
                         .HasColumnName("CASH_PAYMENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("ChequePayment")
+                    b.Property<float?>("ChequePayment")
                         .HasColumnName("CHEQUE_PAYMENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("ContractTaxDeduction")
+                    b.Property<float?>("ContractTaxDeduction")
                         .HasColumnName("CONTRACT_TAX_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("CrAmount")
+                    b.Property<float?>("CrAmount")
                         .HasColumnName("CR_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("DeductDepVchrDateNep")
                         .HasColumnName("DEDUCT_DEP_VCHR_DATE_NEP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("DeductDepVchrId")
+                    b.Property<int?>("DeductDepVchrId")
                         .HasColumnName("DEDUCT_DEP_VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ExpireDateNp")
                         .HasColumnName("EXPIRE_DATE_NP")
@@ -1870,84 +1869,84 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("IncomeTaxDeduction")
+                    b.Property<float?>("IncomeTaxDeduction")
                         .HasColumnName("INCOME_TAX_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Ispeski")
                         .HasColumnName("ISPESKI")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<double?>("LastYearsAdvDeduction")
+                    b.Property<float?>("LastYearsAdvDeduction")
                         .HasColumnName("LAST_YEARS_ADV_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("LyAdvClearedFromBank")
+                    b.Property<float?>("LyAdvClearedFromBank")
                         .HasColumnName("LY_ADV_CLEARED_FROM_BANK")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("LyAdvClearedFromBill")
+                    b.Property<float?>("LyAdvClearedFromBill")
                         .HasColumnName("LY_ADV_CLEARED_FROM_BILL")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("LyAdvClearedFromCash")
+                    b.Property<float?>("LyAdvClearedFromCash")
                         .HasColumnName("LY_ADV_CLEARED_FROM_CASH")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("OtherDeduction")
+                    b.Property<float?>("OtherDeduction")
                         .HasColumnName("OTHER_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("PaymentDescription")
                         .HasColumnName("PAYMENT_DESCRIPTION")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonTypeId")
+                    b.Property<int?>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("RetentionMoneyEduction")
+                    b.Property<float?>("RetentionMoneyEduction")
                         .HasColumnName("RETENTION_MONEY_EDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SubjectAreaId")
+                    b.Property<int?>("SubjectAreaId")
                         .HasColumnName("SUBJECT_AREA_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TransTypeId")
+                    b.Property<int?>("TransTypeId")
                         .HasColumnName("TRANS_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("VatAmt")
+                    b.Property<float?>("VatAmt")
                         .HasColumnName("VAT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("VatDeduction")
+                    b.Property<float?>("VatDeduction")
                         .HasColumnName("VAT_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("PaymentId")
                         .HasName("ACC_PAYMENT_MASTER_pkey");
@@ -1967,34 +1966,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccReceivable", b =>
                 {
-                    b.Property<double?>("Additionalcharges")
+                    b.Property<float?>("Additionalcharges")
                         .HasColumnName("ADDITIONALCHARGES")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Fineamount")
+                    b.Property<float?>("Fineamount")
                         .HasColumnName("FINEAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("Nettaxamount")
+                    b.Property<float?>("Nettaxamount")
                         .HasColumnName("NETTAXAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Reductionalcharges")
+                    b.Property<float?>("Reductionalcharges")
                         .HasColumnName("REDUCTIONALCHARGES")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Taxpayerid")
+                    b.Property<int?>("Taxpayerid")
                         .HasColumnName("TAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Taxtype")
                         .HasColumnName("TAXTYPE")
@@ -2010,18 +2009,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(12)")
                         .HasMaxLength(12);
 
-                    b.Property<decimal?>("Vchrid")
+                    b.Property<int?>("Vchrid")
                         .HasColumnName("VCHRID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("ACC_RECEIVABLE");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccSubModuleType", b =>
                 {
-                    b.Property<decimal>("SubModuleId")
+                    b.Property<int>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AccExpencesCode")
                         .HasColumnName("ACC_EXPENCES_CODE")
@@ -2038,13 +2037,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Iscapital")
+                    b.Property<int?>("Iscapital")
                         .HasColumnName("ISCAPITAL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Isexpences")
+                    b.Property<int?>("Isexpences")
                         .HasColumnName("ISEXPENCES")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Module")
                         .IsRequired()
@@ -2072,9 +2071,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccTransType", b =>
                 {
-                    b.Property<decimal>("TypeId")
+                    b.Property<int>("TypeId")
                         .HasColumnName("TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
@@ -2107,17 +2106,17 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccUnauthorised", b =>
                 {
-                    b.Property<decimal>("UnauthorisedId")
+                    b.Property<int>("UnauthorisedId")
                         .HasColumnName("UNAUTHORISED_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("FilledbyEmpid")
+                    b.Property<int?>("FilledbyEmpid")
                         .HasColumnName("FILLEDBY_EMPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("InspectAmt")
+                    b.Property<int?>("InspectAmt")
                         .HasColumnName("INSPECT_AMT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("InspectDate")
                         .HasColumnName("INSPECT_DATE")
@@ -2129,25 +2128,25 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UnauthorisedAmt")
+                    b.Property<int?>("UnauthorisedAmt")
                         .HasColumnName("UNAUTHORISED_AMT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UnauthorisedDafaId")
+                    b.Property<int?>("UnauthorisedDafaId")
                         .HasColumnName("UNAUTHORISED_DAFA_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("VerifiedbyEmpid")
+                    b.Property<int?>("VerifiedbyEmpid")
                         .HasColumnName("VERIFIEDBY_EMPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("UnauthorisedId")
                         .HasName("ACC_UNAUTHORISED_pkey");
@@ -2157,9 +2156,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccUserComiteMstr", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
@@ -2201,9 +2200,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Ward")
+                    b.Property<int?>("Ward")
                         .HasColumnName("WARD")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -2212,13 +2211,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccVchrDetails", b =>
                 {
-                    b.Property<decimal>("VchrDetailId")
+                    b.Property<int>("VchrDetailId")
                         .HasColumnName("VCHR_DETAIL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AccType")
                         .IsRequired()
@@ -2226,33 +2225,33 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("Bankid")
+                    b.Property<int?>("Bankid")
                         .HasColumnName("BANKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BillId")
+                    b.Property<int?>("BillId")
                         .HasColumnName("BILL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetAccId")
+                    b.Property<int?>("BudgetAccId")
                         .HasColumnName("BUDGET_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("CrAmt")
+                    b.Property<float?>("CrAmt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("CR_AMT")
-                        .HasColumnType("double precision")
-                        .HasDefaultValueSql("'0'::double precision");
+                        .HasColumnType("real")
+                        .HasDefaultValueSql("'0'::real");
 
-                    b.Property<double?>("DrAmt")
+                    b.Property<float?>("DrAmt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("DR_AMT")
-                        .HasColumnType("double precision")
-                        .HasDefaultValueSql("'0'::double precision");
+                        .HasColumnType("real")
+                        .HasDefaultValueSql("'0'::real");
 
                     b.Property<string>("ExpireDateNp")
                         .HasColumnName("EXPIRE_DATE_NP")
@@ -2284,43 +2283,43 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("OrgId")
+                    b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal>("SubModuleId")
+                    b.Property<int>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TransTypeId")
+                    b.Property<int?>("TransTypeId")
                         .HasColumnName("TRANS_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("VchrDateEng")
                         .HasColumnName("VCHR_DATE_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("VchrDateNep")
                         .HasColumnName("VCHR_DATE_NEP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("VchrTypeId")
+                    b.Property<int?>("VchrTypeId")
                         .HasColumnName("VCHR_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("VchrDetailId")
                         .HasName("ACC_VCHR_DETAILS_pkey");
@@ -2340,21 +2339,21 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccVchrMaster", b =>
                 {
-                    b.Property<decimal>("VchrId")
+                    b.Property<int>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AcceptBy")
+                    b.Property<int?>("AcceptBy")
                         .HasColumnName("ACCEPT_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("AsuliAmt")
+                    b.Property<float?>("AsuliAmt")
                         .HasColumnName("ASULI_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("CheckBy")
+                    b.Property<int?>("CheckBy")
                         .HasColumnName("CHECK_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("ChequeTypeId")
                         .HasColumnName("CHEQUE_TYPE_ID")
@@ -2406,9 +2405,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<double?>("NValidAmt")
+                    b.Property<float?>("NValidAmt")
                         .HasColumnName("N_VALID_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("NameChequePayee")
                         .HasColumnName("NAME_CHEQUE_PAYEE")
@@ -2420,47 +2419,47 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<double?>("NiyamitAmt")
+                    b.Property<float?>("NiyamitAmt")
                         .HasColumnName("NIYAMIT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("PrepBy")
+                    b.Property<int?>("PrepBy")
                         .HasColumnName("PREP_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnName("UPDATE_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ValidAmt")
+                    b.Property<float?>("ValidAmt")
                         .HasColumnName("VALID_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("VchrDateNep")
                         .HasColumnName("VCHR_DATE_NEP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrNo")
+                    b.Property<int?>("VchrNo")
                         .HasColumnName("VCHR_NO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("VchrTypeId")
+                    b.Property<int?>("VchrTypeId")
                         .HasColumnName("VCHR_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Wardno")
                         .HasColumnName("WARDNO")
@@ -2479,9 +2478,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccVchrTypeMaster", b =>
                 {
-                    b.Property<decimal>("VchrTypeId")
+                    b.Property<int>("VchrTypeId")
                         .HasColumnName("VCHR_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
@@ -2517,33 +2516,33 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccWorkFundsDetail", b =>
                 {
-                    b.Property<decimal>("FundDetailId")
+                    b.Property<int>("FundDetailId")
                         .HasColumnName("FUND_DETAIL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("FundedAmt")
+                    b.Property<float?>("FundedAmt")
                         .HasColumnName("FUNDED_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("FundedPercent")
+                    b.Property<float?>("FundedPercent")
                         .HasColumnName("FUNDED_PERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Isjanasaramdha")
+                    b.Property<int?>("Isjanasaramdha")
                         .HasColumnName("ISJANASARAMDHA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Isownoffice")
+                    b.Property<int?>("Isownoffice")
                         .HasColumnName("ISOWNOFFICE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ProviderId")
+                    b.Property<int?>("ProviderId")
                         .HasColumnName("PROVIDER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("FundDetailId")
                         .HasName("ACC_WORK_FUNDS_DETAIL_pkey");
@@ -2557,13 +2556,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccWorkMaster", b =>
                 {
-                    b.Property<decimal>("WorkId")
+                    b.Property<int>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("AgreementAmt")
+                    b.Property<float?>("AgreementAmt")
                         .HasColumnName("AGREEMENT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("AgreementDate")
                         .HasColumnName("AGREEMENT_DATE")
@@ -2585,26 +2584,26 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<double?>("BankGuaranteeAmt")
+                    b.Property<float?>("BankGuaranteeAmt")
                         .HasColumnName("BANK_GUARANTEE_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Bankid")
+                    b.Property<int?>("Bankid")
                         .HasColumnName("BANKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("CorrectedAmt")
+                    b.Property<float?>("CorrectedAmt")
                         .HasColumnName("CORRECTED_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("DeadlineDate")
                         .HasColumnName("DEADLINE_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("DepositAmt")
+                    b.Property<float?>("DepositAmt")
                         .HasColumnName("DEPOSIT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("DepositReleaseDate")
                         .HasColumnName("DEPOSIT_RELEASE_DATE")
@@ -2616,25 +2615,25 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("DepositsAccId")
+                    b.Property<int?>("DepositsAccId")
                         .HasColumnName("DEPOSITS_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DepositsForfeitAccId")
+                    b.Property<int?>("DepositsForfeitAccId")
                         .HasColumnName("DEPOSITS_FORFEIT_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("EstimatedAmt")
+                    b.Property<float?>("EstimatedAmt")
                         .HasColumnName("ESTIMATED_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("FinalActualAmtTobePaid")
+                    b.Property<float?>("FinalActualAmtTobePaid")
                         .HasColumnName("FINAL_ACTUAL_AMT_TOBE_PAID")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("IsCompleted")
                         .HasColumnName("IS_COMPLETED")
@@ -2661,47 +2660,47 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("PartyId")
+                    b.Property<int?>("PartyId")
                         .HasColumnName("PARTY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PartyPersontypeid")
+                    b.Property<int?>("PartyPersontypeid")
                         .HasColumnName("PARTY_PERSONTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonPersontypeid")
+                    b.Property<int?>("PersonPersontypeid")
                         .HasColumnName("PERSON_PERSONTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("TotalActualCost")
+                    b.Property<float?>("TotalActualCost")
                         .HasColumnName("TOTAL_ACTUAL_COST")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("TpNo")
                         .HasColumnName("TP_NO")
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<double?>("VariationAmt")
+                    b.Property<float?>("VariationAmt")
                         .HasColumnName("VARIATION_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("WardNo")
+                    b.Property<int?>("WardNo")
                         .HasColumnName("WARD_NO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("WorkCompleteDate")
                         .HasColumnName("WORK_COMPLETE_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("YojanaNaturId")
+                    b.Property<int?>("YojanaNaturId")
                         .HasColumnName("YOJANA_NATUR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("WorkId")
                         .HasName("ACC_WORK_MASTER_pkey");
@@ -2711,17 +2710,17 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.AccWorkPaymntTrans", b =>
                 {
-                    b.Property<decimal>("TransId")
+                    b.Property<int>("TransId")
                         .HasColumnName("TRANS_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("BillAmt")
+                    b.Property<float?>("BillAmt")
                         .HasColumnName("BILL_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -2733,42 +2732,42 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("OrgId")
+                    b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PadadhikariId")
+                    b.Property<int?>("PadadhikariId")
                         .HasColumnName("PADADHIKARI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentSlipId")
+                    b.Property<int?>("PaymentSlipId")
                         .HasColumnName("PAYMENT_SLIP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonTypeId")
+                    b.Property<int?>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UcId")
+                    b.Property<int?>("UcId")
                         .HasColumnName("UC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("VatAmt")
+                    b.Property<float?>("VatAmt")
                         .HasColumnName("VAT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("TransId")
                         .HasName("ACC_WORK_PAYMNT_TRANS_pkey");
@@ -2784,18 +2783,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Accode", b =>
                 {
-                    b.Property<decimal>("Accode1")
+                    b.Property<int>("Accode1")
                         .HasColumnName("ACCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Engname")
                         .HasColumnName("ENGNAME")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Grcode")
+                    b.Property<int?>("Grcode")
                         .HasColumnName("GRCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Isassigned")
                         .HasColumnName("ISASSIGNED")
@@ -2817,9 +2816,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("Sbcode")
+                    b.Property<int?>("Sbcode")
                         .HasColumnName("SBCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Trantype")
                         .HasColumnName("TRANTYPE")
@@ -2856,18 +2855,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.BankBranch", b =>
                 {
-                    b.Property<decimal>("BranchId")
+                    b.Property<int>("BranchId")
                         .HasColumnName("BRANCH_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("Bankid")
+                    b.Property<int?>("Bankid")
                         .HasColumnName("BANKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("BranchCode")
                         .HasColumnName("BRANCH_CODE")
@@ -2909,9 +2908,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Bankmaster", b =>
                 {
-                    b.Property<decimal>("Bankid")
+                    b.Property<int>("Bankid")
                         .HasColumnName("BANKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Accountnumber")
                         .HasColumnName("ACCOUNTNUMBER")
@@ -2957,9 +2956,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("FinancelInstituteId")
+                    b.Property<int?>("FinancelInstituteId")
                         .HasColumnName("FINANCEL_INSTITUTE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
@@ -2971,9 +2970,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(40)")
                         .HasMaxLength(40);
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Trancode")
                         .HasColumnName("TRANCODE")
@@ -2988,49 +2987,49 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Banktransactions", b =>
                 {
-                    b.Property<decimal?>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Bankid")
+                    b.Property<int?>("Bankid")
                         .HasColumnName("BANKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Billid")
+                    b.Property<int?>("Billid")
                         .HasColumnName("BILLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ChequeTypeId")
+                    b.Property<int?>("ChequeTypeId")
                         .HasColumnName("CHEQUE_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Cramount")
+                    b.Property<float?>("Cramount")
                         .HasColumnName("CRAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("DhrtiMasterId")
+                    b.Property<int?>("DhrtiMasterId")
                         .HasColumnName("DHRTI_MASTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Dramount")
+                    b.Property<float?>("Dramount")
                         .HasColumnName("DRAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("ExpSlipId")
+                    b.Property<int?>("ExpSlipId")
                         .HasColumnName("EXP_SLIP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Incomeexptypeid")
+                    b.Property<int?>("Incomeexptypeid")
                         .HasColumnName("INCOMEEXPTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Isoflastyear")
                         .HasColumnName("ISOFLASTYEAR")
@@ -3042,9 +3041,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("Orderinpaymentslip")
+                    b.Property<int?>("Orderinpaymentslip")
                         .HasColumnName("ORDERINPAYMENTSLIP")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Payeename")
                         .HasColumnName("PAYEENAME")
@@ -3059,18 +3058,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("SubmoduleTypeId")
+                    b.Property<int?>("SubmoduleTypeId")
                         .HasColumnName("SUBMODULE_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("BANKTRANSACTIONS_pkey");
@@ -3086,9 +3085,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.BudjetSource", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
@@ -3100,9 +3099,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnName("COUNTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .HasColumnName("EMAIL")
@@ -3119,9 +3118,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("ParentId")
+                    b.Property<int?>("ParentId")
                         .HasColumnName("PARENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Phone")
                         .HasColumnName("PHONE")
@@ -3155,36 +3154,32 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("MinistryCode")
                         .HasColumnName("MINISTRY_CODE")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("MinistryId")
+                    b.Property<int?>("MinistryId")
                         .HasColumnName("MINISTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("ParentCode")
+                    b.Property<int?>("ParentCode")
                         .HasColumnName("PARENT_CODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
-
-                    b.HasIndex("Code")
-                        .IsUnique()
-                        .HasName("BUDJET_SUB_HEAD_CODE_key");
 
                     b.ToTable("BUDJET_SUB_HEAD");
                 });
@@ -3193,15 +3188,15 @@ namespace IMIS_DataEntity.Migrations
                 {
                     b.Property<DateTime?>("AddDate")
                         .HasColumnName("ADD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("BizId")
+                    b.Property<int?>("BizId")
                         .HasColumnName("BIZ_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Businessgroupid")
+                    b.Property<int?>("Businessgroupid")
                         .HasColumnName("BUSINESSGROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ComputerName")
                         .HasColumnName("COMPUTER_NAME")
@@ -3213,18 +3208,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("Taxpayerid")
+                    b.Property<int?>("Taxpayerid")
                         .HasColumnName("TAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("TranTime")
                         .HasColumnName("TRAN_TIME")
@@ -3241,41 +3236,41 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Cashtransaction", b =>
                 {
-                    b.Property<decimal?>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Billid")
+                    b.Property<int?>("Billid")
                         .HasColumnName("BILLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Cramount")
+                    b.Property<int?>("Cramount")
                         .HasColumnName("CRAMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("DhrtiMasterId")
+                    b.Property<int?>("DhrtiMasterId")
                         .HasColumnName("DHRTI_MASTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Dramount")
+                    b.Property<int?>("Dramount")
                         .HasColumnName("DRAMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ExpSlipId")
+                    b.Property<int?>("ExpSlipId")
                         .HasColumnName("EXP_SLIP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Incomeexptypeid")
+                    b.Property<int?>("Incomeexptypeid")
                         .HasColumnName("INCOMEEXPTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Isoflastyear")
                         .HasColumnName("ISOFLASTYEAR")
@@ -3287,18 +3282,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("SubmoduleTypeId")
+                    b.Property<int?>("SubmoduleTypeId")
                         .HasColumnName("SUBMODULE_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("CASHTRANSACTION_pkey");
@@ -3314,92 +3309,92 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Celedger20682069", b =>
                 {
-                    b.Property<decimal?>("Calculatedvalue")
+                    b.Property<int?>("Calculatedvalue")
                         .HasColumnName("CALCULATEDVALUE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Constructionid")
+                    b.Property<int?>("Constructionid")
                         .HasColumnName("CONSTRUCTIONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Constructiontypeid")
+                    b.Property<int?>("Constructiontypeid")
                         .HasColumnName("CONSTRUCTIONTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Deppercent")
+                    b.Property<int?>("Deppercent")
                         .HasColumnName("DEPPERCENT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Depreciationamount")
+                    b.Property<int?>("Depreciationamount")
                         .HasColumnName("DEPRECIATIONAMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Houseid")
+                    b.Property<int?>("Houseid")
                         .HasColumnName("HOUSEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Netcalculatedvalue")
+                    b.Property<int?>("Netcalculatedvalue")
                         .HasColumnName("NETCALCULATEDVALUE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Noncompletionreasonid")
+                    b.Property<int?>("Noncompletionreasonid")
                         .HasColumnName("NONCOMPLETIONREASONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Noncompletionreasons")
                         .HasColumnName("NONCOMPLETIONREASONS")
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("Otherminusinevaluations")
+                    b.Property<int?>("Otherminusinevaluations")
                         .HasColumnName("OTHERMINUSINEVALUATIONS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Otherplusinevaluations")
+                    b.Property<int?>("Otherplusinevaluations")
                         .HasColumnName("OTHERPLUSINEVALUATIONS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Otherplusminusdescriptions")
                         .HasColumnName("OTHERPLUSMINUSDESCRIPTIONS")
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Rateperunit")
+                    b.Property<int?>("Rateperunit")
                         .HasColumnName("RATEPERUNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Spacemeasuringunit")
+                    b.Property<int?>("Spacemeasuringunit")
                         .HasColumnName("SPACEMEASURINGUNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Talanumber")
+                    b.Property<int?>("Talanumber")
                         .HasColumnName("TALANUMBER")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Taxed")
+                    b.Property<int?>("Taxed")
                         .HasColumnName("TAXED")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Totalarea")
+                    b.Property<int?>("Totalarea")
                         .HasColumnName("TOTALAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Vsdateofmade")
                         .HasColumnName("VSDATEOFMADE")
@@ -3411,18 +3406,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Collectioncounters", b =>
                 {
-                    b.Property<decimal>("Counterid")
+                    b.Property<int>("Counterid")
                         .HasColumnName("COUNTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CmptrName")
                         .HasColumnName("CMPTR_NAME")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Counterheadid")
+                    b.Property<int?>("Counterheadid")
                         .HasColumnName("COUNTERHEADID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Location")
                         .HasColumnName("LOCATION")
@@ -3444,9 +3439,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("Wardno")
+                    b.Property<int?>("Wardno")
                         .HasColumnName("WARDNO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Counterid")
                         .HasName("COLLECTIONCOUNTERS_pkey");
@@ -3456,9 +3451,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Constantvalues", b =>
                 {
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Strvalue")
                         .HasColumnName("STRVALUE")
@@ -3474,18 +3469,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Contacts", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Code")
                         .HasColumnName("CODE")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Districtid")
+                    b.Property<int?>("Districtid")
                         .HasColumnName("DISTRICTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Engname")
                         .HasColumnName("ENGNAME")
@@ -3520,9 +3515,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .IsRequired()
@@ -3545,9 +3540,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Districtid")
+                    b.Property<int?>("Districtid")
                         .HasColumnName("DISTRICTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Engname")
                         .IsRequired()
@@ -3555,9 +3550,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .IsRequired()
@@ -3586,9 +3581,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .IsRequired()
@@ -3611,9 +3606,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Districtid")
+                    b.Property<int?>("Districtid")
                         .HasColumnName("DISTRICTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Engname")
                         .IsRequired()
@@ -3632,18 +3627,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Zoneid")
+                    b.Property<int?>("Zoneid")
                         .HasColumnName("ZONEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("DISTRICT");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.EmpGrp", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Engname")
                         .HasColumnName("ENGNAME")
@@ -3662,35 +3657,35 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Firebrigadestate", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Minimumservicecharge")
+                    b.Property<int?>("Minimumservicecharge")
                         .HasColumnName("MINIMUMSERVICECHARGE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Servicechargerate")
+                    b.Property<int?>("Servicechargerate")
                         .HasColumnName("SERVICECHARGERATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Type")
                         .HasColumnName("TYPE")
@@ -3720,40 +3715,40 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(9)")
                         .HasMaxLength(9);
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("FISCALYEARS");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Fywiserentdarrate", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Ratename")
                         .HasColumnName("RATENAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<double?>("RentPer")
+                    b.Property<float?>("RentPer")
                         .HasColumnName("RENT_PER")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("RentTypeid")
+                    b.Property<int?>("RentTypeid")
                         .HasColumnName("RENT_TYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -3762,50 +3757,50 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.FywisesanitationRate", b =>
                 {
-                    b.Property<decimal?>("AreaUpto")
+                    b.Property<int?>("AreaUpto")
                         .HasColumnName("AREA_UPTO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EachAreaRate")
+                    b.Property<int?>("EachAreaRate")
                         .HasColumnName("EACH_AREA_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ForEachArea")
+                    b.Property<int?>("ForEachArea")
                         .HasColumnName("FOR_EACH_AREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Groupid")
+                    b.Property<int?>("Groupid")
                         .HasColumnName("GROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Rate")
+                    b.Property<float?>("Rate")
                         .HasColumnName("RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Ratename")
                         .HasColumnName("RATENAME")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("RoadTypeid")
+                    b.Property<int?>("RoadTypeid")
                         .HasColumnName("ROAD_TYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Subgroupid")
+                    b.Property<int?>("Subgroupid")
                         .HasColumnName("SUBGROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("FYWISESANITATION_RATE");
                 });
@@ -3820,35 +3815,41 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<string>("CreatedBy")
-                        .HasColumnType("varchar(450)");
+                        .HasColumnType("text");
 
                     b.Property<string>("DisplayName")
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("text");
 
-                    b.Property<string>("DisplayNameNep")
+                    b.Property<string>("DisplayNepName")
                         .HasColumnType("text");
 
                     b.Property<string>("Icon")
-                        .HasColumnType("varchar(250)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("IsLocked")
                         .HasColumnType("boolean");
 
                     b.Property<string>("MenuName")
-                        .HasColumnType("varchar(250)");
+                        .HasColumnType("text");
 
                     b.Property<int>("MenuOrder")
                         .HasColumnType("integer");
 
                     b.Property<string>("MenuUrl")
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("text");
 
                     b.Property<int>("ParentMenuId")
                         .HasColumnType("integer");
 
                     b.Property<string>("UpdateBy")
-                        .HasColumnType("varchar(450)");
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("Visible")
                         .HasColumnType("boolean");
@@ -3860,69 +3861,69 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Incomebilldetails", b =>
                 {
-                    b.Property<decimal?>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Accode")
+                    b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Amount")
+                    b.Property<int?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BackupPersonid")
+                    b.Property<int?>("BackupPersonid")
                         .HasColumnName("BACKUP_PERSONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billdate")
                         .HasColumnName("BILLDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Billid")
+                    b.Property<int?>("Billid")
                         .HasColumnName("BILLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billno")
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Counterid")
+                    b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Orderinbill")
+                    b.Property<int?>("Orderinbill")
                         .HasColumnName("ORDERINBILL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Personid")
+                    b.Property<int?>("Personid")
                         .HasColumnName("PERSONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Project")
                         .HasColumnName("PROJECT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Qty")
+                    b.Property<int?>("Qty")
                         .HasColumnName("QTY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -3934,18 +3935,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(5)")
                         .HasMaxLength(5);
 
-                    b.Property<decimal?>("Taxaddtnlid")
+                    b.Property<int?>("Taxaddtnlid")
                         .HasColumnName("TAXADDTNLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("INCOMEBILLDETAILS_pkey");
@@ -3959,52 +3960,52 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.IncomebilldetailsHistory", b =>
                 {
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Accode")
+                    b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("AddDate")
                         .HasColumnName("ADD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("Amount")
+                    b.Property<int?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BackupPersonid")
+                    b.Property<int?>("BackupPersonid")
                         .HasColumnName("BACKUP_PERSONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billdate")
                         .HasColumnName("BILLDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Billid")
+                    b.Property<int?>("Billid")
                         .HasColumnName("BILLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billno")
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ComputerName")
                         .HasColumnName("COMPUTER_NAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Counterid")
+                    b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DataStatus")
                         .HasColumnName("DATA_STATUS")
@@ -4016,44 +4017,44 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Orderinbill")
+                    b.Property<int?>("Orderinbill")
                         .HasColumnName("ORDERINBILL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Personid")
+                    b.Property<int?>("Personid")
                         .HasColumnName("PERSONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Project")
                         .HasColumnName("PROJECT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Qty")
+                    b.Property<int?>("Qty")
                         .HasColumnName("QTY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SnIncomebilldtl")
+                    b.Property<int?>("SnIncomebilldtl")
                         .HasColumnName("SN_INCOMEBILLDTL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("TaxType")
                         .HasColumnName("TAX_TYPE")
                         .HasColumnType("character varying(5)")
                         .HasMaxLength(5);
 
-                    b.Property<decimal?>("Taxaddtnlid")
+                    b.Property<int?>("Taxaddtnlid")
                         .HasColumnName("TAXADDTNLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("TranTime")
                         .HasColumnName("TRAN_TIME")
@@ -4065,13 +4066,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Vrno")
+                    b.Property<int?>("Vrno")
                         .HasColumnName("VRNO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("WindowsUser")
                         .HasColumnName("WINDOWS_USER")
@@ -4083,22 +4084,22 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Incomebillmaster", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("BackupPersonid")
+                    b.Property<int?>("BackupPersonid")
                         .HasColumnName("BACKUP_PERSONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Bankamount")
+                    b.Property<int?>("Bankamount")
                         .HasColumnName("BANKAMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("BillNoManual")
                         .HasColumnName("BILL_NO_MANUAL")
@@ -4115,9 +4116,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Billtypeid")
+                    b.Property<int?>("Billtypeid")
                         .HasColumnName("BILLTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CancelDate")
                         .HasColumnName("CANCEL_DATE")
@@ -4129,25 +4130,25 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("Cashamount")
+                    b.Property<int?>("Cashamount")
                         .HasColumnName("CASHAMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Counterid")
+                    b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("CurrencyId")
+                    b.Property<int?>("CurrencyId")
                         .HasColumnName("CURRENCY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
@@ -4167,40 +4168,40 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("NAME")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("Personid")
+                    b.Property<int?>("Personid")
                         .HasColumnName("PERSONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Project")
                         .HasColumnName("PROJECT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("SubModuleId")
+                    b.Property<int?>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Taxincometype")
                         .HasColumnName("TAXINCOMETYPE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("WardNo")
                         .HasColumnName("WARD_NO")
@@ -4220,21 +4221,21 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvApplicantRate", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Applicantid")
+                    b.Property<int?>("Applicantid")
                         .HasColumnName("APPLICANTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ItemDetailId")
+                    b.Property<int?>("ItemDetailId")
                         .HasColumnName("ITEM_DETAIL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -4243,9 +4244,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvBrand", b =>
                 {
-                    b.Property<decimal>("BrandId")
+                    b.Property<int>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsActive")
                         .HasColumnName("IS_ACTIVE")
@@ -4271,75 +4272,75 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvDeplist", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DakhilaId")
+                    b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("DeductAmt")
+                    b.Property<float?>("DeductAmt")
                         .HasColumnName("DEDUCT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("DepreAmt")
+                    b.Property<float?>("DepreAmt")
                         .HasColumnName("DEPRE_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("DepreDuraton")
+                    b.Property<float?>("DepreDuraton")
                         .HasColumnName("DEPRE_DURATON")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("DeprePer")
+                    b.Property<int?>("DeprePer")
                         .HasColumnName("DEPRE_PER")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("MaxDepreAmt")
+                    b.Property<float?>("MaxDepreAmt")
                         .HasColumnName("MAX_DEPRE_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("MinDepreAmt")
+                    b.Property<float?>("MinDepreAmt")
                         .HasColumnName("MIN_DEPRE_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("NetAmt")
+                    b.Property<float?>("NetAmt")
                         .HasColumnName("NET_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("PurchaseAmt")
+                    b.Property<float?>("PurchaseAmt")
                         .HasColumnName("PURCHASE_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("PurchaseDate")
                         .HasColumnName("PURCHASE_DATE")
                         .HasColumnType("character varying(15)")
                         .HasMaxLength(15);
 
-                    b.Property<double?>("Qty")
+                    b.Property<float?>("Qty")
                         .HasColumnName("QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -4348,50 +4349,50 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvDepreciation", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DakhilaId")
+                    b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DeprePer")
+                    b.Property<int?>("DeprePer")
                         .HasColumnName("DEPRE_PER")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("DepreRate")
+                    b.Property<float?>("DepreRate")
                         .HasColumnName("DEPRE_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("OrginalRate")
+                    b.Property<float?>("OrginalRate")
                         .HasColumnName("ORGINAL_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Qty")
+                    b.Property<float?>("Qty")
                         .HasColumnName("QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -4400,9 +4401,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvDept", b =>
                 {
-                    b.Property<decimal>("DeptId")
+                    b.Property<int>("DeptId")
                         .HasColumnName("DEPT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsActive")
                         .HasColumnName("IS_ACTIVE")
@@ -4420,9 +4421,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("OfficeId")
+                    b.Property<int?>("OfficeId")
                         .HasColumnName("OFFICE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("DeptId")
                         .HasName("INV_DEPT_pkey");
@@ -4432,17 +4433,17 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvGoodsAdjust", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AcceptBy")
+                    b.Property<int?>("AcceptBy")
                         .HasColumnName("ACCEPT_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("AcceptDtEng")
                         .HasColumnName("ACCEPT_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("AcceptDtNp")
                         .HasColumnName("ACCEPT_DT_NP")
@@ -4451,33 +4452,33 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("AdjDtEng")
                         .HasColumnName("ADJ_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("AdjDtNp")
                         .HasColumnName("ADJ_DT_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("AdjQty")
+                    b.Property<float?>("AdjQty")
                         .HasColumnName("ADJ_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("AdjTypeId")
+                    b.Property<int?>("AdjTypeId")
                         .HasColumnName("ADJ_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("BudgetYear")
                         .HasColumnName("BUDGET_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("DakhilaId")
+                    b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("GdAdjId")
                         .IsRequired()
@@ -4485,30 +4486,30 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("ItemAdjRate")
+                    b.Property<float?>("ItemAdjRate")
                         .HasColumnName("ITEM_ADJ_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ItemType")
+                    b.Property<int?>("ItemType")
                         .HasColumnName("ITEM_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Month")
                         .HasColumnName("MONTH")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("PrepBy")
+                    b.Property<int?>("PrepBy")
                         .HasColumnName("PREP_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("PrepDtEng")
                         .HasColumnName("PREP_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PrepDtNp")
                         .HasColumnName("PREP_DT_NP")
@@ -4520,9 +4521,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -4541,73 +4542,73 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvGoodsRecDetl", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("DakhilaDtEng")
                         .HasColumnName("DAKHILA_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<double?>("DiscAmt")
+                    b.Property<float?>("DiscAmt")
                         .HasColumnName("DISC_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("GoodsMasterId")
+                    b.Property<int?>("GoodsMasterId")
                         .HasColumnName("GOODS_MASTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Isnumbered")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("ISNUMBERED")
                         .HasColumnType("character varying(1)")
-                        .HasDefaultValueSql("'0'::character varying")
+                        .HasDefaultValueSql("'N'::character varying")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("NetAmt")
+                    b.Property<float?>("NetAmt")
                         .HasColumnName("NET_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("OtherExpencesAmt")
+                    b.Property<float?>("OtherExpencesAmt")
                         .HasColumnName("OTHER_EXPENCES_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("PurQty")
+                    b.Property<float?>("PurQty")
                         .HasColumnName("PUR_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Rate")
+                    b.Property<float?>("Rate")
                         .HasColumnName("RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("RecvQty")
+                    b.Property<float?>("RecvQty")
                         .HasColumnName("RECV_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("TaxPerUnitAmt")
+                    b.Property<float?>("TaxPerUnitAmt")
                         .HasColumnName("TAX_PER_UNIT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("WhetherTax")
                         .HasColumnName("WHETHER_TAX")
@@ -4631,13 +4632,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvGoodsRecMast", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AcceptBy")
+                    b.Property<int?>("AcceptBy")
                         .HasColumnName("ACCEPT_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AcceptDt")
                         .HasColumnName("ACCEPT_DT")
@@ -4646,11 +4647,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("AcceptDtEng")
                         .HasColumnName("ACCEPT_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("CheckBy")
+                    b.Property<int?>("CheckBy")
                         .HasColumnName("CHECK_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CheckDt")
                         .HasColumnName("CHECK_DT")
@@ -4659,7 +4660,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("CheckDtEng")
                         .HasColumnName("CHECK_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DakhilaDt")
                         .HasColumnName("DAKHILA_DT")
@@ -4668,7 +4669,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("DakhilaDtEng")
                         .HasColumnName("DAKHILA_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DakhilaId")
                         .IsRequired()
@@ -4703,15 +4704,15 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("InvDateEng")
                         .HasColumnName("INV_DATE_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("PaymentId")
+                    b.Property<int?>("PaymentId")
                         .HasColumnName("PAYMENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PrepBy")
+                    b.Property<int?>("PrepBy")
                         .HasColumnName("PREP_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PrepDt")
                         .HasColumnName("PREP_DT")
@@ -4720,19 +4721,19 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("PrepDtEng")
                         .HasColumnName("PREP_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("PurMasterId")
+                    b.Property<int?>("PurMasterId")
                         .HasColumnName("PUR_MASTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("RepairId")
+                    b.Property<int?>("RepairId")
                         .HasColumnName("REPAIR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WarehouseId")
+                    b.Property<int?>("WarehouseId")
                         .HasColumnName("WAREHOUSE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -4747,55 +4748,55 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvIncreaseDecrease", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DakhilaId")
+                    b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NumId")
+                    b.Property<int?>("NumId")
                         .HasColumnName("NUM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PurchaseDate")
                         .HasColumnName("PURCHASE_DATE")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<double?>("ScapAmount")
+                    b.Property<float?>("ScapAmount")
                         .HasColumnName("SCAP_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("StockQty")
+                    b.Property<float?>("StockQty")
                         .HasColumnName("STOCK_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -4804,45 +4805,45 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvIssueDakhila", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DakhilaId")
+                    b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("IssuMasterId")
+                    b.Property<int?>("IssuMasterId")
                         .HasColumnName("ISSU_MASTER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("IssueDetailId")
+                    b.Property<int?>("IssueDetailId")
                         .HasColumnName("ISSUE_DETAIL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("IssueNo")
+                    b.Property<float?>("IssueNo")
                         .HasColumnName("ISSUE_NO")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -4851,13 +4852,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvIssueDetail", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DeliveryStatus")
                         .HasColumnName("DELIVERY_STATUS")
@@ -4871,36 +4872,36 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("IssueDtEng")
                         .HasColumnName("ISSUE_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("IssueMastId")
+                    b.Property<int?>("IssueMastId")
                         .HasColumnName("ISSUE_MAST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ItemIssueNo")
+                    b.Property<float?>("ItemIssueNo")
                         .HasColumnName("ITEM_ISSUE_NO")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("ItemReqNo")
+                    b.Property<float?>("ItemReqNo")
                         .HasColumnName("ITEM_REQ_NO")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("ItemType")
+                    b.Property<int?>("ItemType")
                         .HasColumnName("ITEM_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -4917,13 +4918,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvIssueMaster", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AcceptBy")
+                    b.Property<int?>("AcceptBy")
                         .HasColumnName("ACCEPT_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AcceptDt")
                         .HasColumnName("ACCEPT_DT")
@@ -4935,9 +4936,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("CheckBy")
+                    b.Property<int?>("CheckBy")
                         .HasColumnName("CHECK_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CheckDt")
                         .HasColumnName("CHECK_DT")
@@ -4954,9 +4955,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal?>("IssueBy")
+                    b.Property<int?>("IssueBy")
                         .HasColumnName("ISSUE_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IssueByCat")
                         .HasColumnName("ISSUE_BY_CAT")
@@ -4974,31 +4975,31 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("IssueReceive")
+                    b.Property<int?>("IssueReceive")
                         .HasColumnName("ISSUE_RECEIVE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PrepBy")
+                    b.Property<int?>("PrepBy")
                         .HasColumnName("PREP_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PrepDt")
                         .HasColumnName("PREP_DT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ReceiveEmpId")
+                    b.Property<int?>("ReceiveEmpId")
                         .HasColumnName("RECEIVE_EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("RequestId")
+                    b.Property<int?>("RequestId")
                         .HasColumnName("REQUEST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("TransferDecisionDate")
                         .HasColumnName("TRANSFER_DECISION_DATE")
@@ -5010,9 +5011,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Type")
+                    b.Property<int?>("Type")
                         .HasColumnName("TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -5031,9 +5032,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvItemAdjType", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AddSub")
                         .HasColumnName("ADD_SUB")
@@ -5063,34 +5064,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvItemCategory", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Code")
                         .HasColumnName("CODE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("DepreciationMax")
+                    b.Property<decimal?>("DepreciationMax")
                         .HasColumnName("DEPRECIATION_MAX")
-                        .HasColumnType("double precision");
+                        .HasColumnType("numeric");
 
-                    b.Property<double?>("DepreciationMin")
+                    b.Property<decimal?>("DepreciationMin")
                         .HasColumnName("DEPRECIATION_MIN")
-                        .HasColumnType("double precision");
+                        .HasColumnType("numeric");
 
-                    b.Property<double?>("DepreciationPer")
+                    b.Property<decimal?>("DepreciationPer")
                         .HasColumnName("DEPRECIATION_PER")
-                        .HasColumnType("double precision");
+                        .HasColumnType("numeric");
 
-                    b.Property<decimal?>("GrpLevel")
+                    b.Property<int?>("GrpLevel")
                         .HasColumnName("GRP_LEVEL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("IsHeader")
+                    b.Property<int?>("IsHeader")
                         .HasColumnName("IS_HEADER")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Isexp")
                         .HasColumnName("ISEXP")
@@ -5100,17 +5101,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ISLAST")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Maxl")
+                    b.Property<int?>("Maxl")
                         .HasColumnName("MAXL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Minl")
+                    b.Property<int?>("Minl")
                         .HasColumnName("MINL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -5123,26 +5124,26 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("ParentId")
+                    b.Property<int?>("ParentId")
                         .HasColumnName("PARENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Rmaxl")
+                    b.Property<int?>("Rmaxl")
                         .HasColumnName("RMAXL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Rminl")
+                    b.Property<int?>("Rminl")
                         .HasColumnName("RMINL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Unit")
+                    b.Property<int?>("Unit")
                         .HasColumnName("UNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -5151,26 +5152,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvItemDetails", b =>
                 {
-                    b.Property<decimal>("ItemDtlId")
+                    b.Property<int>("ItemDtlId")
                         .HasColumnName("ITEM_DTL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AcceptBy")
+                    b.Property<int?>("AcceptBy")
                         .HasColumnName("ACCEPT_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AcceptDt")
                         .HasColumnName("ACCEPT_DT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("AdjType")
+                    b.Property<int?>("AdjType")
                         .HasColumnName("ADJ_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal>("BrandId")
+                    b.Property<int>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("BudgetYear")
                         .HasColumnName("BUDGET_YEAR")
@@ -5182,18 +5183,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<decimal?>("CheckBy")
+                    b.Property<int?>("CheckBy")
                         .HasColumnName("CHECK_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CheckDt")
                         .HasColumnName("CHECK_DT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("DakhilaId")
+                    b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EngineNo")
                         .HasColumnName("ENGINE_NO")
@@ -5205,26 +5206,26 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("GdAdjId")
+                    b.Property<int?>("GdAdjId")
                         .HasColumnName("GD_ADJ_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IssueDt")
                         .HasColumnName("ISSUE_DT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("IssueId")
+                    b.Property<int?>("IssueId")
                         .HasColumnName("ISSUE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal>("ItemId")
+                    b.Property<int>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ItemRate")
+                    b.Property<float?>("ItemRate")
                         .HasColumnName("ITEM_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("ItemStatus")
                         .HasColumnName("ITEM_STATUS")
@@ -5236,62 +5237,62 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("LilamId")
+                    b.Property<int?>("LilamId")
                         .HasColumnName("LILAM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ModelNo")
                         .HasColumnName("MODEL_NO")
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<decimal?>("PrepBy")
+                    b.Property<int?>("PrepBy")
                         .HasColumnName("PREP_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PrepDt")
                         .HasColumnName("PREP_DT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("Qty")
+                    b.Property<float?>("Qty")
                         .HasColumnName("QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("RegNo")
                         .HasColumnName("REG_NO")
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<double?>("RelQty")
+                    b.Property<float?>("RelQty")
                         .HasColumnName("REL_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("RelUnit")
                         .HasColumnName("REL_UNIT")
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<decimal>("SpecId")
+                    b.Property<int>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("StokRtDt")
                         .HasColumnName("STOK_RT_DT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("StokRtId")
+                    b.Property<int?>("StokRtId")
                         .HasColumnName("STOK_RT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Unit")
+                    b.Property<int?>("Unit")
                         .HasColumnName("UNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WeightVeh")
+                    b.Property<int?>("WeightVeh")
                         .HasColumnName("WEIGHT_VEH")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("ItemDtlId")
                         .HasName("INV_ITEM_DETAILS_pkey");
@@ -5317,21 +5318,21 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvItemMst", b =>
                 {
-                    b.Property<decimal>("ItemId")
+                    b.Property<int>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AreaInsqFeets")
+                    b.Property<int?>("AreaInsqFeets")
                         .HasColumnName("AREA_INSQ_FEETS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetAccId")
+                    b.Property<int?>("BudgetAccId")
                         .HasColumnName("BUDGET_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Code")
                         .HasColumnName("CODE")
@@ -5348,71 +5349,71 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("Countryid")
+                    b.Property<int?>("Countryid")
                         .HasColumnName("COUNTRYID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Depmaxrate")
+                    b.Property<float?>("Depmaxrate")
                         .HasColumnName("DEPMAXRATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Depreciation")
+                    b.Property<float?>("Depreciation")
                         .HasColumnName("DEPRECIATION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Gussage")
+                    b.Property<int?>("Gussage")
                         .HasColumnName("GUSSAGE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ItemMainClass")
+                    b.Property<int?>("ItemMainClass")
                         .HasColumnName("ITEM_MAIN_CLASS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ItemNature")
+                    b.Property<int?>("ItemNature")
                         .HasColumnName("ITEM_NATURE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ItemType")
+                    b.Property<int?>("ItemType")
                         .HasColumnName("ITEM_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("KittaNo")
                         .HasColumnName("KITTA_NO")
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("LandAreaInsqFeets")
+                    b.Property<int?>("LandAreaInsqFeets")
                         .HasColumnName("LAND_AREA_INSQ_FEETS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("LandLocation")
                         .HasColumnName("LAND_LOCATION")
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("LandMarketRate")
+                    b.Property<int?>("LandMarketRate")
                         .HasColumnName("LAND_MARKET_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LandUnitRate")
+                    b.Property<int?>("LandUnitRate")
                         .HasColumnName("LAND_UNIT_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Landid")
+                    b.Property<int?>("Landid")
                         .HasColumnName("LANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Maxl")
+                    b.Property<int?>("Maxl")
                         .HasColumnName("MAXL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Minl")
+                    b.Property<int?>("Minl")
                         .HasColumnName("MINL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Minrate")
+                    b.Property<float?>("Minrate")
                         .HasColumnName("MINRATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -5425,39 +5426,39 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Propertytype")
+                    b.Property<int?>("Propertytype")
                         .HasColumnName("PROPERTYTYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Rmaxl")
+                    b.Property<int?>("Rmaxl")
                         .HasColumnName("RMAXL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Rminl")
+                    b.Property<int?>("Rminl")
                         .HasColumnName("RMINL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Sizes")
+                    b.Property<int?>("Sizes")
                         .HasColumnName("SIZES")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Source")
                         .HasColumnName("SOURCE")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("VehiclePartsId")
+                    b.Property<int?>("VehiclePartsId")
                         .HasColumnName("VEHICLE_PARTS_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("ItemId")
                         .HasName("INV_ITEM_MST_pkey");
@@ -5469,9 +5470,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvItemSpec", b =>
                 {
-                    b.Property<decimal>("SpecId")
+                    b.Property<int>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsActive")
                         .HasColumnName("IS_ACTIVE")
@@ -5497,13 +5498,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvItemStatuscheck", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AcceptedBy")
+                    b.Property<int?>("AcceptedBy")
                         .HasColumnName("ACCEPTED_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AcceptedDate")
                         .HasColumnName("ACCEPTED_DATE")
@@ -5512,15 +5513,15 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("AcceptedDateEng")
                         .HasColumnName("ACCEPTED_DATE_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("CheckQty")
+                    b.Property<int?>("CheckQty")
                         .HasColumnName("CHECK_QTY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CheckStatus")
                         .HasColumnName("CHECK_STATUS")
@@ -5534,7 +5535,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("CheckedDateEng")
                         .HasColumnName("CHECKED_DATE_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CountUpDown")
                         .HasColumnName("COUNT_UP_DOWN")
@@ -5558,7 +5559,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("InspEdDateEng")
                         .HasColumnName("INSP_ED_DATE_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("InspStDate")
                         .HasColumnName("INSP_ST_DATE")
@@ -5567,7 +5568,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("InspStDateEng")
                         .HasColumnName("INSP_ST_DATE_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("InspectDate")
                         .HasColumnName("INSPECT_DATE")
@@ -5576,20 +5577,20 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("InspectDateEng")
                         .HasColumnName("INSPECT_DATE_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("IsActive")
                         .HasColumnName("IS_ACTIVE")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PrepBy")
+                    b.Property<int?>("PrepBy")
                         .HasColumnName("PREP_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PrepDate")
                         .HasColumnName("PREP_DATE")
@@ -5598,41 +5599,41 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("PrepDateEng")
                         .HasColumnName("PREP_DATE_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("Rate")
+                    b.Property<int?>("Rate")
                         .HasColumnName("RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("StkCurCount")
+                    b.Property<int?>("StkCurCount")
                         .HasColumnName("STK_CUR_COUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("StkMstCount")
+                    b.Property<int?>("StkMstCount")
                         .HasColumnName("STK_MST_COUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TallyBy")
+                    b.Property<int?>("TallyBy")
                         .HasColumnName("TALLY_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("UpDownDetail")
                         .HasColumnName("UP_DOWN_DETAIL")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal?>("UpDownNo")
+                    b.Property<int?>("UpDownNo")
                         .HasColumnName("UP_DOWN_NO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -5653,9 +5654,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvLilamAppmaster", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Applydate")
                         .HasColumnName("APPLYDATE")
@@ -5664,15 +5665,15 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("Applyengdate")
                         .HasColumnName("APPLYENGDATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("Applylilamid")
+                    b.Property<int?>("Applylilamid")
                         .HasColumnName("APPLYLILAMID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Appno")
+                    b.Property<int?>("Appno")
                         .HasColumnName("APPNO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Orgapplicantname")
                         .HasColumnName("ORGAPPLICANTNAME")
@@ -5684,9 +5685,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Projid")
+                    b.Property<int?>("Projid")
                         .HasColumnName("PROJID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -5700,26 +5701,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvLilamDetail", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Dakhilaid")
+                    b.Property<int?>("Dakhilaid")
                         .HasColumnName("DAKHILAID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DeliveryStatus")
                         .HasColumnName("DELIVERY_STATUS")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<double?>("DepAmt")
+                    b.Property<float?>("DepAmt")
                         .HasColumnName("DEP_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("IssueDt")
                         .HasColumnName("ISSUE_DT")
@@ -5728,47 +5729,47 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("IssueDtEng")
                         .HasColumnName("ISSUE_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ItemIssueNo")
+                    b.Property<float?>("ItemIssueNo")
                         .HasColumnName("ITEM_ISSUE_NO")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("ItemType")
+                    b.Property<int?>("ItemType")
                         .HasColumnName("ITEM_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LilamId")
+                    b.Property<int?>("LilamId")
                         .HasColumnName("LILAM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Minimumrate")
+                    b.Property<float?>("Minimumrate")
                         .HasColumnName("MINIMUMRATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Nikashaid")
+                    b.Property<int?>("Nikashaid")
                         .HasColumnName("NIKASHAID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("TotalInStock")
+                    b.Property<float?>("TotalInStock")
                         .HasColumnName("TOTAL_IN_STOCK")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -5777,13 +5778,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvLilamMast", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AcceptBy")
+                    b.Property<int?>("AcceptBy")
                         .HasColumnName("ACCEPT_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AcceptDt")
                         .HasColumnName("ACCEPT_DT")
@@ -5792,19 +5793,19 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("AcceptDtEng")
                         .HasColumnName("ACCEPT_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<double?>("AcceptPercent")
+                    b.Property<float?>("AcceptPercent")
                         .HasColumnName("ACCEPT_PERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Bankid")
+                    b.Property<int?>("Bankid")
                         .HasColumnName("BANKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("CheckBy")
+                    b.Property<int?>("CheckBy")
                         .HasColumnName("CHECK_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CheckDt")
                         .HasColumnName("CHECK_DT")
@@ -5813,7 +5814,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("CheckDtEng")
                         .HasColumnName("CHECK_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -5830,9 +5831,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("IssueBy")
+                    b.Property<int?>("IssueBy")
                         .HasColumnName("ISSUE_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IssueDt")
                         .HasColumnName("ISSUE_DT")
@@ -5841,7 +5842,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("IssueDtEng")
                         .HasColumnName("ISSUE_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("LilamNo")
                         .IsRequired()
@@ -5849,9 +5850,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Lilamtype")
+                    b.Property<int?>("Lilamtype")
                         .HasColumnName("LILAMTYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NewspaperName")
                         .HasColumnName("NEWSPAPER_NAME")
@@ -5863,13 +5864,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<double?>("PernewsRate")
+                    b.Property<float?>("PernewsRate")
                         .HasColumnName("PERNEWS_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("PrepBy")
+                    b.Property<int?>("PrepBy")
                         .HasColumnName("PREP_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PrepDt")
                         .HasColumnName("PREP_DT")
@@ -5878,16 +5879,16 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("PrepDtEng")
                         .HasColumnName("PREP_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PublishDate")
                         .HasColumnName("PUBLISH_DATE")
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<decimal?>("ReceiveBy")
+                    b.Property<int?>("ReceiveBy")
                         .HasColumnName("RECEIVE_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ReceivePersonName")
                         .HasColumnName("RECEIVE_PERSON_NAME")
@@ -5908,9 +5909,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("REMARKS")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("ValidDays")
+                    b.Property<int?>("ValidDays")
                         .HasColumnName("VALID_DAYS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -5919,71 +5920,71 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvLilamRecList", b =>
                 {
-                    b.Property<decimal?>("Applicantid")
+                    b.Property<int?>("Applicantid")
                         .HasColumnName("APPLICANTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("RecDateNp")
                         .HasColumnName("REC_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("INV_LILAM_REC_LIST");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvLilamappdetails", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Brandid")
+                    b.Property<int?>("Brandid")
                         .HasColumnName("BRANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Dakhilaid")
+                    b.Property<int?>("Dakhilaid")
                         .HasColumnName("DAKHILAID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Itemid")
+                    b.Property<int?>("Itemid")
                         .HasColumnName("ITEMID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Lilamappliid")
+                    b.Property<int?>("Lilamappliid")
                         .HasColumnName("LILAMAPPLIID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Lilamqty")
+                    b.Property<int?>("Lilamqty")
                         .HasColumnName("LILAMQTY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Lilamtotalamt")
+                    b.Property<float?>("Lilamtotalamt")
                         .HasColumnName("LILAMTOTALAMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Nikashaid")
+                    b.Property<int?>("Nikashaid")
                         .HasColumnName("NIKASHAID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Specid")
+                    b.Property<int?>("Specid")
                         .HasColumnName("SPECID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Unitid")
+                    b.Property<int?>("Unitid")
                         .HasColumnName("UNITID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -5994,9 +5995,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvOrgType", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsActive")
                         .HasColumnName("IS_ACTIVE")
@@ -6021,9 +6022,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvProject", b =>
                 {
-                    b.Property<decimal>("ProjectId")
+                    b.Property<int>("ProjectId")
                         .HasColumnName("PROJECT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsActive")
                         .HasColumnName("IS_ACTIVE")
@@ -6049,30 +6050,30 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvPurMastPlan", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AgreementType")
                         .HasColumnName("AGREEMENT_TYPE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("ApproxAmt")
+                    b.Property<float?>("ApproxAmt")
                         .HasColumnName("APPROX_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Budget1year")
+                    b.Property<float?>("Budget1year")
                         .HasColumnName("BUDGET1YEAR")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Budget2year")
+                    b.Property<float?>("Budget2year")
                         .HasColumnName("BUDGET2YEAR")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Budget3year")
+                    b.Property<float?>("Budget3year")
                         .HasColumnName("BUDGET3YEAR")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("BudgetResource")
                         .HasColumnName("BUDGET_RESOURCE")
@@ -6117,7 +6118,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("WorkEndDateAd")
                         .HasColumnName("WORK_END_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WorkStDate")
                         .HasColumnName("WORK_ST_DATE")
@@ -6126,7 +6127,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("WorkStDateAd")
                         .HasColumnName("WORK_ST_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id");
 
@@ -6135,59 +6136,59 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvPurOrderDetl", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Isdakhila")
                         .HasColumnName("ISDAKHILA")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ItemRate")
+                    b.Property<float?>("ItemRate")
                         .HasColumnName("ITEM_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("ItemType")
+                    b.Property<int?>("ItemType")
                         .HasColumnName("ITEM_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PurMstId")
+                    b.Property<int?>("PurMstId")
                         .HasColumnName("PUR_MST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Qty")
+                    b.Property<float?>("Qty")
                         .HasColumnName("QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("TaxAmt")
+                    b.Property<float?>("TaxAmt")
                         .HasColumnName("TAX_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("TotalAmt")
+                    b.Property<float?>("TotalAmt")
                         .HasColumnName("TOTAL_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -6208,13 +6209,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvPurOrderMast", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AcceptedBy")
+                    b.Property<int?>("AcceptedBy")
                         .HasColumnName("ACCEPTED_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AcceptedDt")
                         .HasColumnName("ACCEPTED_DT")
@@ -6223,20 +6224,20 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("AcceptedDtEng")
                         .HasColumnName("ACCEPTED_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("Accountid")
+                    b.Property<int?>("Accountid")
                         .HasColumnName("ACCOUNTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("BudgetYear")
                         .HasColumnName("BUDGET_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("CheckedBy")
+                    b.Property<int?>("CheckedBy")
                         .HasColumnName("CHECKED_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CheckedDt")
                         .HasColumnName("CHECKED_DT")
@@ -6245,7 +6246,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("CheckedDtEng")
                         .HasColumnName("CHECKED_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CustomOrderNo")
                         .HasColumnName("CUSTOM_ORDER_NO")
@@ -6267,9 +6268,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("PreparedBy")
+                    b.Property<int?>("PreparedBy")
                         .HasColumnName("PREPARED_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PreparedDt")
                         .HasColumnName("PREPARED_DT")
@@ -6278,7 +6279,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("PreparedDtEng")
                         .HasColumnName("PREPARED_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PurOrderDt")
                         .HasColumnName("PUR_ORDER_DT")
@@ -6287,20 +6288,20 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("PurOrderDtEng")
                         .HasColumnName("PUR_ORDER_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PurOrderNo")
                         .HasColumnName("PUR_ORDER_NO")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("PurOrderType")
+                    b.Property<int?>("PurOrderType")
                         .HasColumnName("PUR_ORDER_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PurType")
+                    b.Property<int?>("PurType")
                         .HasColumnName("PUR_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PurchaseDecisionDate")
                         .HasColumnName("PURCHASE_DECISION_DATE")
@@ -6322,9 +6323,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("ReqId")
+                    b.Property<int?>("ReqId")
                         .HasColumnName("REQ_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ReturnItemDt")
                         .HasColumnName("RETURN_ITEM_DT")
@@ -6333,11 +6334,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("ReturnItemDtEng")
                         .HasColumnName("RETURN_ITEM_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("SuppId")
+                    b.Property<int?>("SuppId")
                         .HasColumnName("SUPP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -6354,68 +6355,67 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvPurType", b =>
                 {
-                    b.Property<decimal?>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<string>("Isdefault")
+                    b.Property<char?>("Isdefault")
                         .HasColumnName("ISDEFAULT")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                        .HasColumnType("character(1)");
 
                     b.Property<string>("NepEng")
                         .HasColumnName("NEP_ENG")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("NepName")
                         .HasColumnName("NEP_NAME")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<string>("Remarks")
-                        .HasColumnName("REMARKS")
-                        .HasColumnType("character varying(50)")
-                        .HasMaxLength(50);
-
-                    b.ToTable("INV_PUR_TYPE");
-                });
-
-            modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvReqDetail", b =>
-                {
-                    b.Property<decimal>("Id")
-                        .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
-
-                    b.Property<decimal?>("BrandId")
-                        .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
-
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(10)")
-                        .HasMaxLength(10);
-
-                    b.Property<decimal?>("ItemId")
-                        .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
-
-                    b.Property<double?>("Qty")
-                        .HasColumnName("QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(100);
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("ReqMastId")
-                        .HasColumnName("REQ_MAST_ID")
-                        .HasColumnType("numeric(22,0)");
+                    b.ToTable("INV_PUR_TYPE");
+                });
 
-                    b.Property<decimal?>("SpecId")
+            modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvReqDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnName("ID")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("BrandId")
+                        .HasColumnName("BRAND_ID")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("IsActive")
+                        .HasColumnName("IS_ACTIVE")
+                        .HasColumnType("character varying(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<int?>("ItemId")
+                        .HasColumnName("ITEM_ID")
+                        .HasColumnType("integer");
+
+                    b.Property<float?>("Qty")
+                        .HasColumnName("QTY")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnName("REMARKS")
+                        .HasColumnType("character varying(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int?>("ReqMastId")
+                        .HasColumnName("REQ_MAST_ID")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -6432,13 +6432,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvRequisitionMast", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AcceptBy")
+                    b.Property<int?>("AcceptBy")
                         .HasColumnName("ACCEPT_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AcceptDt")
                         .HasColumnName("ACCEPT_DT")
@@ -6447,11 +6447,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("AcceptDtEng")
                         .HasColumnName("ACCEPT_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("CheckBy")
+                    b.Property<int?>("CheckBy")
                         .HasColumnName("CHECK_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CheckDt")
                         .HasColumnName("CHECK_DT")
@@ -6460,28 +6460,28 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("CheckDtEng")
                         .HasColumnName("CHECK_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("HandoverId")
+                    b.Property<int?>("HandoverId")
                         .HasColumnName("HANDOVER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("HandoverRoomId")
+                    b.Property<int?>("HandoverRoomId")
                         .HasColumnName("HANDOVER_ROOM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("MaintainItemId")
+                    b.Property<int?>("MaintainItemId")
                         .HasColumnName("MAINTAIN_ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Orgstaffname")
                         .HasColumnName("ORGSTAFFNAME")
@@ -6493,9 +6493,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("PrepBy")
+                    b.Property<int?>("PrepBy")
                         .HasColumnName("PREP_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PrepDt")
                         .HasColumnName("PREP_DT")
@@ -6504,11 +6504,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("PrepDtEng")
                         .HasColumnName("PREP_DT_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("ProjId")
+                    b.Property<int?>("ProjId")
                         .HasColumnName("PROJ_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PurchaseGive")
                         .HasColumnName("PURCHASE_GIVE")
@@ -6524,13 +6524,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("ReqBy")
+                    b.Property<int?>("ReqBy")
                         .HasColumnName("REQ_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("ReqDateEng")
                         .HasColumnName("REQ_DATE_ENG")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ReqDateNep")
                         .HasColumnName("REQ_DATE_NEP")
@@ -6542,26 +6542,26 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ReqType")
+                    b.Property<int?>("ReqType")
                         .HasColumnName("REQ_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("StockGive")
                         .HasColumnName("STOCK_GIVE")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("TypeId")
+                    b.Property<int?>("TypeId")
                         .HasColumnName("TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("VehicleId")
+                    b.Property<int?>("VehicleId")
                         .HasColumnName("VEHICLE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -6582,18 +6582,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvRoomMst", b =>
                 {
-                    b.Property<decimal>("RoomId")
+                    b.Property<int>("RoomId")
                         .HasColumnName("ROOM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("BlockNo")
                         .HasColumnName("BLOCK_NO")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("DeptId")
+                    b.Property<int?>("DeptId")
                         .HasColumnName("DEPT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DescEn")
                         .HasColumnName("DESC_EN")
@@ -6605,9 +6605,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("FloorNo")
+                    b.Property<int?>("FloorNo")
                         .HasColumnName("FLOOR_NO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("RoomId")
                         .HasName("INV_ROOM_MST_pkey");
@@ -6619,26 +6619,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvStatusDetail", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Acceptby")
+                    b.Property<int?>("Acceptby")
                         .HasColumnName("ACCEPTBY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Acceptvsdate")
                         .HasColumnName("ACCEPTVSDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Checkedby")
+                    b.Property<int?>("Checkedby")
                         .HasColumnName("CHECKEDBY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Checkvsdate")
                         .HasColumnName("CHECKVSDATE")
@@ -6655,21 +6655,21 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ItemStatusId")
+                    b.Property<int?>("ItemStatusId")
                         .HasColumnName("ITEM_STATUS_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("MainId")
+                    b.Property<int?>("MainId")
                         .HasColumnName("MAIN_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Preby")
+                    b.Property<int?>("Preby")
                         .HasColumnName("PREBY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Prevsdate")
                         .HasColumnName("PREVSDATE")
@@ -6681,22 +6681,22 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(255)")
                         .HasMaxLength(255);
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Statusdatead")
                         .HasColumnName("STATUSDATEAD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Statusdatevs")
                         .HasColumnName("STATUSDATEVS")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Totalqty")
+                    b.Property<int?>("Totalqty")
                         .HasColumnName("TOTALQTY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -6711,34 +6711,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvSupItmDet", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Qty")
+                    b.Property<int?>("Qty")
                         .HasColumnName("QTY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Rate")
+                    b.Property<int?>("Rate")
                         .HasColumnName("RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SupId")
+                    b.Property<int?>("SupId")
                         .HasColumnName("SUP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -6747,9 +6747,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvSupplier", b =>
                 {
-                    b.Property<decimal>("SupId")
+                    b.Property<int>("SupId")
                         .HasColumnName("SUP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
@@ -6768,7 +6768,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("DateAd")
                         .HasColumnName("DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DateVs")
                         .HasColumnName("DATE_VS")
@@ -6796,9 +6796,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("OrgId")
+                    b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("OrgType")
                         .HasColumnName("ORG_TYPE")
@@ -6838,18 +6838,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvSupplierFiscalyear", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(15)")
                         .HasMaxLength(15);
 
-                    b.Property<decimal?>("SupId")
+                    b.Property<int?>("SupId")
                         .HasColumnName("SUP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -6858,9 +6858,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvTaxRate", b =>
                 {
-                    b.Property<decimal>("TaxRateId")
+                    b.Property<int>("TaxRateId")
                         .HasColumnName("TAX_RATE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -6873,9 +6873,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<double>("TaxRate")
+                    b.Property<float>("TaxRate")
                         .HasColumnName("TAX_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("TaxRateId")
                         .HasName("INV_TAX_RATE_pkey");
@@ -6885,9 +6885,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvTypeSetup", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DescEn")
                         .HasColumnName("DESC_EN")
@@ -6905,9 +6905,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("TypeId")
+                    b.Property<int?>("TypeId")
                         .HasColumnName("TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -6916,9 +6916,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvUnit", b =>
                 {
-                    b.Property<decimal>("UnitId")
+                    b.Property<int>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DescEn")
                         .HasColumnName("DESC_EN")
@@ -6936,13 +6936,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("MulFactor")
+                    b.Property<int?>("MulFactor")
                         .HasColumnName("MUL_FACTOR")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NoOfUnits")
+                    b.Property<int?>("NoOfUnits")
                         .HasColumnName("NO_OF_UNITS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("RelatedTo")
                         .HasColumnName("RELATED_TO")
@@ -6957,9 +6957,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvWarehouse", b =>
                 {
-                    b.Property<decimal>("WarehouseId")
+                    b.Property<int>("WarehouseId")
                         .HasColumnName("WAREHOUSE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsActive")
                         .HasColumnName("IS_ACTIVE")
@@ -6985,13 +6985,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvYrlyPurPlan", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("AgreementDtAd")
                         .HasColumnName("AGREEMENT_DT_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("AgreementType")
                         .HasColumnName("AGREEMENT_TYPE")
@@ -7000,11 +7000,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("AnlysisDsgnDtAd")
                         .HasColumnName("ANLYSIS_DSGN_DT_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<double?>("ApproxAmt")
+                    b.Property<float?>("ApproxAmt")
                         .HasColumnName("APPROX_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("AprxAmtAcptDate")
                         .HasColumnName("APRX_AMT_ACPT_DATE")
@@ -7013,7 +7013,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("AprxAmtAcptDtAd")
                         .HasColumnName("APRX_AMT_ACPT_DT_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FormEntryDate")
                         .HasColumnName("FORM_ENTRY_DATE")
@@ -7053,11 +7053,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("TendrAcceptDtAd")
                         .HasColumnName("TENDR_ACCEPT_DT_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("TendrCallDtAd")
                         .HasColumnName("TENDR_CALL_DT_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("TendrOpenDate")
                         .HasColumnName("TENDR_OPEN_DATE")
@@ -7066,7 +7066,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("TendrOpenDtAd")
                         .HasColumnName("TENDR_OPEN_DT_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("TendrSaleDate")
                         .HasColumnName("TENDR_SALE_DATE")
@@ -7075,7 +7075,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("Wrk2FinDtAd")
                         .HasColumnName("WRK_2_FIN_DT_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WrkAcmplshDate")
                         .HasColumnName("WRK_ACMPLSH_DATE")
@@ -7084,7 +7084,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("WrkAcmplshDtAd")
                         .HasColumnName("WRK_ACMPLSH_DT_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("WrkOrderDate")
                         .HasColumnName("WRK_ORDER_DATE")
@@ -7100,15 +7100,15 @@ namespace IMIS_DataEntity.Migrations
                 {
                     b.Property<DateTime?>("AddDate")
                         .HasColumnName("ADD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("Additionalcharges")
+                    b.Property<int?>("Additionalcharges")
                         .HasColumnName("ADDITIONALCHARGES")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Billid")
+                    b.Property<int?>("Billid")
                         .HasColumnName("BILLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billno")
                         .HasColumnName("BILLNO")
@@ -7127,11 +7127,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
@@ -7143,68 +7143,68 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Fineamount")
+                    b.Property<int?>("Fineamount")
                         .HasColumnName("FINEAMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(9)")
                         .HasMaxLength(9);
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Isthisfromrevenueaccount")
+                    b.Property<int?>("Isthisfromrevenueaccount")
                         .HasColumnName("ISTHISFROMREVENUEACCOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("LastTaxPaidAmount")
+                    b.Property<float?>("LastTaxPaidAmount")
                         .HasColumnName("LAST_TAX_PAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Month")
+                    b.Property<int?>("Month")
                         .HasColumnName("MONTH")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Nettaxamount")
+                    b.Property<int?>("Nettaxamount")
                         .HasColumnName("NETTAXAMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Reductionalcharges")
+                    b.Property<int?>("Reductionalcharges")
                         .HasColumnName("REDUCTIONALCHARGES")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("RemHlFineAmount")
+                    b.Property<float?>("RemHlFineAmount")
                         .HasColumnName("REM_HL_FINE_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("RemHlFineStatus")
                         .HasColumnName("REM_HL_FINE_STATUS")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<double?>("RemHlPaidAmount")
+                    b.Property<float?>("RemHlPaidAmount")
                         .HasColumnName("REM_HL_PAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("RemIptFineAmount")
+                    b.Property<float?>("RemIptFineAmount")
                         .HasColumnName("REM_IPT_FINE_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("RemIptFineStatus")
                         .HasColumnName("REM_IPT_FINE_STATUS")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<double?>("RemIptPaidAmount")
+                    b.Property<float?>("RemIptPaidAmount")
                         .HasColumnName("REM_IPT_PAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Specialnotes")
                         .HasColumnName("SPECIALNOTES")
@@ -7215,31 +7215,31 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("Taxpaidamount")
+                    b.Property<int?>("Taxpaidamount")
                         .HasColumnName("TAXPAIDAMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("TranTime")
                         .HasColumnName("TRAN_TIME")
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("WindowsUser")
                         .HasColumnName("WINDOWS_USER")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Year")
+                    b.Property<int?>("Year")
                         .HasColumnName("YEAR")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("IPTTAXSUMMARY_HISTORY");
                 });
@@ -7256,44 +7256,44 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Counterid")
+                    b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Dateissued")
                         .HasColumnName("DATEISSUED")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Specialnotes")
                         .HasColumnName("SPECIALNOTES")
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("Thelino")
+                    b.Property<int?>("Thelino")
                         .HasColumnName("THELINO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("ISSUEDBILLS");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Landmeasuringunits", b =>
                 {
-                    b.Property<decimal?>("Sqftperunit")
+                    b.Property<int?>("Sqftperunit")
                         .HasColumnName("SQFTPERUNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Unitid")
+                    b.Property<int?>("Unitid")
                         .HasColumnName("UNITID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Unitname")
                         .HasColumnName("UNITNAME")
@@ -7305,175 +7305,175 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Landsmultievaluationdetail", b =>
                 {
-                    b.Property<decimal?>("Areainsqft")
+                    b.Property<int?>("Areainsqft")
                         .HasColumnName("AREAINSQFT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Generalrateid")
+                    b.Property<int?>("Generalrateid")
                         .HasColumnName("GENERALRATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Kittanumber")
                         .HasColumnName("KITTANUMBER")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Landid")
+                    b.Property<int?>("Landid")
                         .HasColumnName("LANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("LANDSMULTIEVALUATIONDETAIL");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Leledger20682069", b =>
                 {
-                    b.Property<decimal?>("Appliedvalue")
+                    b.Property<int?>("Appliedvalue")
                         .HasColumnName("APPLIEDVALUE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Calculatedvalue")
+                    b.Property<int?>("Calculatedvalue")
                         .HasColumnName("CALCULATEDVALUE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Kittanumber")
                         .HasColumnName("KITTANUMBER")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Landid")
+                    b.Property<int?>("Landid")
                         .HasColumnName("LANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Landmeasuringunit")
+                    b.Property<int?>("Landmeasuringunit")
                         .HasColumnName("LANDMEASURINGUNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Netcalculatedvalue")
+                    b.Property<int?>("Netcalculatedvalue")
                         .HasColumnName("NETCALCULATEDVALUE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Netevaluatingarea")
+                    b.Property<int?>("Netevaluatingarea")
                         .HasColumnName("NETEVALUATINGAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Noncompletionreasonid")
+                    b.Property<int?>("Noncompletionreasonid")
                         .HasColumnName("NONCOMPLETIONREASONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Noncompletionreasons")
                         .HasColumnName("NONCOMPLETIONREASONS")
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("Nonevaluatedarea")
+                    b.Property<int?>("Nonevaluatedarea")
                         .HasColumnName("NONEVALUATEDAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Otherminusinevaluations")
+                    b.Property<int?>("Otherminusinevaluations")
                         .HasColumnName("OTHERMINUSINEVALUATIONS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Otherplusinevaluations")
+                    b.Property<int?>("Otherplusinevaluations")
                         .HasColumnName("OTHERPLUSINEVALUATIONS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Otherplusminusdescriptions")
                         .HasColumnName("OTHERPLUSMINUSDESCRIPTIONS")
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Rateperunit")
+                    b.Property<int?>("Rateperunit")
                         .HasColumnName("RATEPERUNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("Selfdeclaredvalue")
+                    b.Property<int?>("Selfdeclaredvalue")
                         .HasColumnName("SELFDECLAREDVALUE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Taxed")
+                    b.Property<int?>("Taxed")
                         .HasColumnName("TAXED")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Totalarea")
+                    b.Property<int?>("Totalarea")
                         .HasColumnName("TOTALAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Trackid")
+                    b.Property<int?>("Trackid")
                         .HasColumnName("TRACKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Wardno")
+                    b.Property<int?>("Wardno")
                         .HasColumnName("WARDNO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("LELEDGER20682069");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.MalpotLands", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AddDate")
                         .HasColumnName("ADD_DATE")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal?>("AddUserid")
+                    b.Property<int?>("AddUserid")
                         .HasColumnName("ADD_USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Areainsqft")
+                    b.Property<float?>("Areainsqft")
                         .HasColumnName("AREAINSQFT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("EditDate")
                         .HasColumnName("EDIT_DATE")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal?>("EditUserid")
+                    b.Property<int?>("EditUserid")
                         .HasColumnName("EDIT_USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Eid")
                         .HasColumnName("EID")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("IsIpt")
+                    b.Property<int?>("IsIpt")
                         .HasColumnName("IS_IPT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Kittanumber")
                         .HasColumnName("KITTANUMBER")
@@ -7485,9 +7485,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<double?>("Nonfunctionalareainsqft")
+                    b.Property<float?>("Nonfunctionalareainsqft")
                         .HasColumnName("NONFUNCTIONALAREAINSQFT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("NpFirstname")
                         .HasColumnName("NP_FIRSTNAME")
@@ -7499,22 +7499,22 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("Oldvdcid")
+                    b.Property<int?>("Oldvdcid")
                         .HasColumnName("OLDVDCID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Oldwordno")
                         .HasColumnName("OLDWORDNO")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Vdcid")
+                    b.Property<int?>("Vdcid")
                         .HasColumnName("VDCID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Wordno")
+                    b.Property<int?>("Wordno")
                         .HasColumnName("WORDNO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -7531,13 +7531,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AREA")
                         .HasColumnType("bigint");
 
-                    b.Property<double?>("GroundCov")
+                    b.Property<float?>("GroundCov")
                         .HasColumnName("GROUND_COV")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Regionid")
+                    b.Property<int?>("Regionid")
                         .HasColumnName("REGIONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -7574,10 +7574,6 @@ namespace IMIS_DataEntity.Migrations
                         .HasMaxLength(70);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_CONSTRCTION_KIND_NAME_NP_key");
 
                     b.ToTable("MAP_CONSTRCTION_KIND");
                 });
@@ -7636,10 +7632,6 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RegNo")
-                        .IsUnique()
-                        .HasName("MAP_DESIGNER_DTL_REG_NO_key");
-
                     b.ToTable("MAP_DESIGNER_DTL");
                 });
 
@@ -7666,10 +7658,6 @@ namespace IMIS_DataEntity.Migrations
                         .HasMaxLength(70);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_DIRECTION_NAME_NP_key");
 
                     b.ToTable("MAP_DIRECTION");
                 });
@@ -7698,10 +7686,6 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_DRAIN_TYPE_NAME_NP_key");
-
                     b.ToTable("MAP_DRAIN_TYPE");
                 });
 
@@ -7728,10 +7712,6 @@ namespace IMIS_DataEntity.Migrations
                         .HasMaxLength(70);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_FLOOR_NAME_NP_key");
 
                     b.ToTable("MAP_FLOOR");
                 });
@@ -7760,10 +7740,6 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_HOUSEUSE_TYPE_NAME_NP_key");
-
                     b.ToTable("MAP_HOUSEUSE_TYPE");
                 });
 
@@ -7773,9 +7749,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SN")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("Distanceft")
+                    b.Property<int?>("Distanceft")
                         .HasColumnName("DISTANCEFT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("Kv")
                         .HasColumnName("KV")
@@ -7798,9 +7774,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -7821,10 +7797,6 @@ namespace IMIS_DataEntity.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AccId");
-
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_INCOME_TYPE_NAME_NP_key");
 
                     b.ToTable("MAP_INCOME_TYPE");
                 });
@@ -7853,10 +7825,6 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_LAND_OWNER_TYPE_NAME_NP_key");
-
                     b.ToTable("MAP_LAND_OWNER_TYPE");
                 });
 
@@ -7884,22 +7852,18 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_NEIGHBOUR_TYPE_NAME_NP_key");
-
                     b.ToTable("MAP_NEIGHBOUR_TYPE");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.MapRate", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("DepositeRatePermit")
+                    b.Property<float?>("DepositeRatePermit")
                         .HasColumnName("DEPOSITE_RATE_PERMIT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -7911,13 +7875,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("RatePermit")
+                    b.Property<float?>("RatePermit")
                         .HasColumnName("RATE_PERMIT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -7930,26 +7894,26 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("AreaFrom")
+                    b.Property<int?>("AreaFrom")
                         .HasColumnName("AREA_FROM")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AreaTo")
+                    b.Property<int?>("AreaTo")
                         .HasColumnName("AREA_TO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Far")
+                    b.Property<float?>("Far")
                         .HasColumnName("FAR")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Regionid")
+                    b.Property<int?>("Regionid")
                         .HasColumnName("REGIONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -7987,10 +7951,6 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_ROOF_CNSTRCT_TYPE_NAME_NP_key");
-
                     b.ToTable("MAP_ROOF_CNSTRCT_TYPE");
                 });
 
@@ -8018,42 +7978,38 @@ namespace IMIS_DataEntity.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_ROOF_TYPE_NAME_NP_key");
-
                     b.ToTable("MAP_ROOF_TYPE");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.MapSite", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Area")
+                    b.Property<float?>("Area")
                         .HasColumnName("AREA")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<short?>("Landshape")
                         .HasColumnName("LANDSHAPE")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("Permitid")
+                    b.Property<int?>("Permitid")
                         .HasColumnName("PERMITID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("SideA")
+                    b.Property<float?>("SideA")
                         .HasColumnName("SIDE_A")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("SideB")
+                    b.Property<float?>("SideB")
                         .HasColumnName("SIDE_B")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("SideC")
+                    b.Property<float?>("SideC")
                         .HasColumnName("SIDE_C")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Sn")
                         .HasName("MAP_SITE_pkey");
@@ -8072,18 +8028,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("HouseHeight")
+                    b.Property<float?>("HouseHeight")
                         .HasColumnName("HOUSE_HEIGHT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<double?>("RoadWidth")
+                    b.Property<float?>("RoadWidth")
                         .HasColumnName("ROAD_WIDTH")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -8092,9 +8048,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.MapStoreys", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -8113,19 +8069,15 @@ namespace IMIS_DataEntity.Migrations
                         .HasMaxLength(70);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_STOREYS_NAME_NP_key");
 
                     b.ToTable("MAP_STOREYS");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.MapStructureType", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -8144,19 +8096,15 @@ namespace IMIS_DataEntity.Migrations
                         .HasMaxLength(70);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_STRUCTURE_TYPE_NAME_NP_key");
 
                     b.ToTable("MAP_STRUCTURE_TYPE");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.MapZone", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -8175,10 +8123,6 @@ namespace IMIS_DataEntity.Migrations
                         .HasMaxLength(70);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("NameNp")
-                        .IsUnique()
-                        .HasName("MAP_ZONE_NAME_NP_key");
 
                     b.ToTable("MAP_ZONE");
                 });
@@ -8195,18 +8139,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("District")
+                    b.Property<int?>("District")
                         .HasColumnName("DISTRICT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Engname")
                         .HasColumnName("ENGNAME")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
@@ -8223,48 +8167,44 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("Vdc")
+                    b.Property<int?>("Vdc")
                         .HasColumnName("VDC")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Zone")
+                    b.Property<int?>("Zone")
                         .HasColumnName("ZONE")
-                        .HasColumnType("numeric(22,0)");
-
-                    b.HasIndex("Code")
-                        .IsUnique()
-                        .HasName("MINISTRY_CODE_key");
+                        .HasColumnType("integer");
 
                     b.ToTable("MINISTRY");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.MinistryAccHead", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("MinistryId")
+                    b.Property<int?>("MinistryId")
                         .HasColumnName("MINISTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("SubHeadId")
+                    b.Property<int?>("SubHeadId")
                         .HasColumnName("SUB_HEAD_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -8288,9 +8228,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Nationalityid")
+                    b.Property<int?>("Nationalityid")
                         .HasColumnName("NATIONALITYID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
@@ -8302,43 +8242,43 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.NewPropertyTaxtable", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("Frompropertyvalue")
+                    b.Property<float?>("Frompropertyvalue")
                         .HasColumnName("FROMPROPERTYVALUE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Fromtaxamount")
+                    b.Property<float?>("Fromtaxamount")
                         .HasColumnName("FROMTAXAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Ratesn")
+                    b.Property<int?>("Ratesn")
                         .HasColumnName("RATESN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(190)")
                         .HasMaxLength(190);
 
-                    b.Property<double?>("TaxPercent")
+                    b.Property<float?>("TaxPercent")
                         .HasColumnName("TAX_PERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Topropertyvalue")
+                    b.Property<float?>("Topropertyvalue")
                         .HasColumnName("TOPROPERTYVALUE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Totaxamount")
+                    b.Property<float?>("Totaxamount")
                         .HasColumnName("TOTAXAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Sn")
                         .HasName("NEW_PROPERTY_TAXTABLE_pkey");
@@ -8348,9 +8288,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.OfficeType", b =>
                 {
-                    b.Property<decimal>("OfficeTypeId")
+                    b.Property<int>("OfficeTypeId")
                         .HasColumnName("OFFICE_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("OfficeType1")
                         .IsRequired()
@@ -8365,9 +8305,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.OrgBankAccount", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AccName")
                         .HasColumnName("ACC_NAME")
@@ -8379,21 +8319,21 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("BankAccntTypeId")
+                    b.Property<int?>("BankAccntTypeId")
                         .HasColumnName("BANK_ACCNT_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Bankid")
+                    b.Property<int?>("Bankid")
                         .HasColumnName("BANKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BranchId")
+                    b.Property<int?>("BranchId")
                         .HasColumnName("BRANCH_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OrgId")
+                    b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -8408,22 +8348,22 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.OrganizationTree", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ContainsDarbandi")
+                    b.Property<int?>("ContainsDarbandi")
                         .HasColumnName("CONTAINS_DARBANDI")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("GeoRegion")
+                    b.Property<int?>("GeoRegion")
                         .HasColumnName("GEO_REGION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("GrpLevel")
                         .HasColumnName("GRP_LEVEL")
@@ -8434,9 +8374,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("ParentId")
+                    b.Property<int?>("ParentId")
                         .HasColumnName("PARENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -8449,108 +8389,108 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PaymentSlipMaster", b =>
                 {
-                    b.Property<decimal>("PaymentSlipId")
+                    b.Property<int>("PaymentSlipId")
                         .HasColumnName("PAYMENT_SLIP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("AdvClearedFromBank")
+                    b.Property<float?>("AdvClearedFromBank")
                         .HasColumnName("ADV_CLEARED_FROM_BANK")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("AdvClearedFromBill")
+                    b.Property<float?>("AdvClearedFromBill")
                         .HasColumnName("ADV_CLEARED_FROM_BILL")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("AdvClearedFromCash")
+                    b.Property<float?>("AdvClearedFromCash")
                         .HasColumnName("ADV_CLEARED_FROM_CASH")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("BillAmt")
+                    b.Property<float?>("BillAmt")
                         .HasColumnName("BILL_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("CashPayment")
+                    b.Property<float?>("CashPayment")
                         .HasColumnName("CASH_PAYMENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("ChequePayment")
+                    b.Property<float?>("ChequePayment")
                         .HasColumnName("CHEQUE_PAYMENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("ContractTaxDeduction")
+                    b.Property<float?>("ContractTaxDeduction")
                         .HasColumnName("CONTRACT_TAX_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("IncomeTaxDeduction")
+                    b.Property<float?>("IncomeTaxDeduction")
                         .HasColumnName("INCOME_TAX_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("IsPeski")
                         .HasColumnName("IS_PESKI")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<double?>("LastYearsAdvDeduction")
+                    b.Property<float?>("LastYearsAdvDeduction")
                         .HasColumnName("LAST_YEARS_ADV_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("LyAdvClearedFromBank")
+                    b.Property<float?>("LyAdvClearedFromBank")
                         .HasColumnName("LY_ADV_CLEARED_FROM_BANK")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("LyAdvClearedFromBill")
+                    b.Property<float?>("LyAdvClearedFromBill")
                         .HasColumnName("LY_ADV_CLEARED_FROM_BILL")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("LyAdvClearedFromCash")
+                    b.Property<float?>("LyAdvClearedFromCash")
                         .HasColumnName("LY_ADV_CLEARED_FROM_CASH")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("OtherDeduction")
+                    b.Property<float?>("OtherDeduction")
                         .HasColumnName("OTHER_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("PaymentDescription")
                         .HasColumnName("PAYMENT_DESCRIPTION")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonTypeId")
+                    b.Property<int?>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("RetentionMoneyEduction")
+                    b.Property<float?>("RetentionMoneyEduction")
                         .HasColumnName("RETENTION_MONEY_EDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("TransactionTypeid")
+                    b.Property<int?>("TransactionTypeid")
                         .HasColumnName("TRANSACTION_TYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("VatAmt")
+                    b.Property<float?>("VatAmt")
                         .HasColumnName("VAT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("VatDeduction")
+                    b.Property<float?>("VatDeduction")
                         .HasColumnName("VAT_DEDUCTION")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("VrDate")
                         .HasColumnName("VR_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VrNo")
+                    b.Property<int?>("VrNo")
                         .HasColumnName("VR_NO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("PaymentSlipId")
                         .HasName("PAYMENT_SLIP_MASTER_pkey");
@@ -8560,9 +8500,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PersonTypeMaster", b =>
                 {
-                    b.Property<decimal>("PersonTypeId")
+                    b.Property<int>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Isfixed")
                         .HasColumnName("ISFIXED")
@@ -8585,9 +8525,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisAppointmentType", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -8611,9 +8551,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisAttributes", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
@@ -8637,9 +8577,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisAwards", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
@@ -8651,18 +8591,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("LevelDesc")
                         .HasColumnName("LEVEL_DESC")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NepName")
                         .HasColumnName("NEP_NAME")
@@ -8671,7 +8611,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("RcvdDateAd")
                         .HasColumnName("RCVD_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -8698,9 +8638,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisBankPayroll", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AccountNo")
                         .HasColumnName("ACCOUNT_NO")
@@ -8712,13 +8652,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("BankId")
+                    b.Property<int?>("BankId")
                         .HasColumnName("BANK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_BANK_PAYROLL_pkey");
@@ -8732,29 +8672,29 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisDarbandi", b =>
                 {
-                    b.Property<decimal>("DarbandiId")
+                    b.Property<int>("DarbandiId")
                         .HasColumnName("DARBANDI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NoOfPost")
+                    b.Property<int?>("NoOfPost")
                         .HasColumnName("NO_OF_POST")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OfficeId")
+                    b.Property<int?>("OfficeId")
                         .HasColumnName("OFFICE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PostId")
+                    b.Property<int?>("PostId")
                         .HasColumnName("POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PostLevel")
+                    b.Property<int?>("PostLevel")
                         .HasColumnName("POST_LEVEL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("SewaSamuhaUpasamuha")
                         .HasColumnName("SEWA_SAMUHA_UPASAMUHA")
@@ -8775,38 +8715,38 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisDeletdFrmFulfildDarb", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("FrmAppointmntType")
+                    b.Property<int?>("FrmAppointmntType")
                         .HasColumnName("FRM_APPOINTMNT_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("FrmDarbandiId")
+                    b.Property<int?>("FrmDarbandiId")
                         .HasColumnName("FRM_DARBANDI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FrmDateFulfilled")
                         .HasColumnName("FRM_DATE_FULFILLED")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("FrmOfficeId")
+                    b.Property<int?>("FrmOfficeId")
                         .HasColumnName("FRM_OFFICE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("FrmSnInFd")
+                    b.Property<int?>("FrmSnInFd")
                         .HasColumnName("FRM_SN_IN_FD")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ToSnInFd")
+                    b.Property<int?>("ToSnInFd")
                         .HasColumnName("TO_SN_IN_FD")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_DELETD_FRM_FULFILD_DARB_pkey");
@@ -8824,13 +8764,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEduBoard", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnName("COUNTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameEng")
                         .HasColumnName("NAME_ENG")
@@ -8854,9 +8794,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEduLevel", b =>
                 {
-                    b.Property<decimal>("EduId")
+                    b.Property<int>("EduId")
                         .HasColumnName("EDU_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EduName")
                         .HasColumnName("EDU_NAME")
@@ -8871,22 +8811,22 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEducation", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("BoardId")
+                    b.Property<int?>("BoardId")
                         .HasColumnName("BOARD_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("CompletionYrAd")
                         .HasColumnName("COMPLETION_YR_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("CompletionYrVs")
                         .HasColumnName("COMPLETION_YR_VS")
@@ -8898,40 +8838,40 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("EduLevelId")
+                    b.Property<int?>("EduLevelId")
                         .HasColumnName("EDU_LEVEL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EduName")
                         .HasColumnName("EDU_NAME")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Institute")
                         .HasColumnName("INSTITUTE")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<double?>("MarksGrade")
+                    b.Property<float?>("MarksGrade")
                         .HasColumnName("MARKS_GRADE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("MarksPercnt")
+                    b.Property<float?>("MarksPercnt")
                         .HasColumnName("MARKS_PERCNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Subjects")
                         .HasColumnName("SUBJECTS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("ValidForEval")
+                    b.Property<int?>("ValidForEval")
                         .HasColumnName("VALID_FOR_EVAL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_EDUCATION_pkey");
@@ -8945,25 +8885,25 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpAdvDedDtl", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("AmountCur")
+                    b.Property<float?>("AmountCur")
                         .HasColumnName("AMOUNT_CUR")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("AmountPrev")
+                    b.Property<float?>("AmountPrev")
                         .HasColumnName("AMOUNT_PREV")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -8974,9 +8914,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpBarga", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -9000,54 +8940,54 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpDep", b =>
                 {
-                    b.Property<decimal>("DeptId")
+                    b.Property<int>("DeptId")
                         .HasColumnName("DEPT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AbsntKattiAccId")
+                    b.Property<int?>("AbsntKattiAccId")
                         .HasColumnName("ABSNT_KATTI_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AddInsrnceAccId")
+                    b.Property<int?>("AddInsrnceAccId")
                         .HasColumnName("ADD_INSRNCE_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AddPfAccId")
+                    b.Property<int?>("AddPfAccId")
                         .HasColumnName("ADD_PF_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AllowanceAccId")
+                    b.Property<int?>("AllowanceAccId")
                         .HasColumnName("ALLOWANCE_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BhattaAccId")
+                    b.Property<int?>("BhattaAccId")
                         .HasColumnName("BHATTA_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudgetSourceId")
+                    b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BudjetSourceId")
+                    b.Property<int?>("BudjetSourceId")
                         .HasColumnName("BUDJET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("CitAccId")
+                    b.Property<int?>("CitAccId")
                         .HasColumnName("CIT_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("IncmeTaxAccId")
+                    b.Property<int?>("IncmeTaxAccId")
                         .HasColumnName("INCME_TAX_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LendPfDAccId")
+                    b.Property<int?>("LendPfDAccId")
                         .HasColumnName("LEND_PF_D_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -9060,41 +9000,41 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("OthrKattiAccId")
+                    b.Property<int?>("OthrKattiAccId")
                         .HasColumnName("OTHR_KATTI_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PeskiKattiAccId")
+                    b.Property<int?>("PeskiKattiAccId")
                         .HasColumnName("PESKI_KATTI_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal>("SalaryAccId")
+                    b.Property<int>("SalaryAccId")
                         .HasColumnName("SALARY_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SapatiKattiAccId")
+                    b.Property<int?>("SapatiKattiAccId")
                         .HasColumnName("SAPATI_KATTI_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SocSecTax")
+                    b.Property<int?>("SocSecTax")
                         .HasColumnName("SOC_SEC_TAX")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SubInsrnceAccId")
+                    b.Property<int?>("SubInsrnceAccId")
                         .HasColumnName("SUB_INSRNCE_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("SubPfAccId")
+                    b.Property<int?>("SubPfAccId")
                         .HasColumnName("SUB_PF_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TdsAccId")
+                    b.Property<int?>("TdsAccId")
                         .HasColumnName("TDS_ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WorkId")
+                    b.Property<int?>("WorkId")
                         .HasColumnName("WORK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("DeptId")
                         .HasName("PIS_EMP_DEP_pkey");
@@ -9104,13 +9044,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpDepSource", b =>
                 {
-                    b.Property<decimal?>("DeptId")
+                    b.Property<int>("DeptId")
                         .HasColumnName("DEPT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal>("BudjetSourceId")
+                    b.Property<int>("BudjetSourceId")
                         .HasColumnName("BUDJET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("DeptId")
                         .HasName("PIS_EMP_DEP_SOURCE_pkey");
@@ -9122,17 +9062,17 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpInsurancePaid", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -9150,30 +9090,30 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpLoans", b =>
                 {
-                    b.Property<decimal>("LoanId")
+                    b.Property<int>("LoanId")
                         .HasColumnName("LOAN_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Cleared")
                         .HasColumnName("CLEARED")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("InstallmentAmt")
+                    b.Property<float?>("InstallmentAmt")
                         .HasColumnName("INSTALLMENT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("LoanAmt")
+                    b.Property<float?>("LoanAmt")
                         .HasColumnName("LOAN_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -9185,9 +9125,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<double?>("PaidAmount")
+                    b.Property<float?>("PaidAmount")
                         .HasColumnName("PAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("LoanId")
                         .HasName("PIS_EMP_LOANS_pkey");
@@ -9199,13 +9139,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpLongLeaves", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FromDateVs")
                         .HasColumnName("FROM_DATE_VS")
@@ -9217,9 +9157,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -9248,35 +9188,35 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpMedExpense", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IssuedDate")
                         .HasColumnName("ISSUED_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("RegularAmt")
+                    b.Property<float?>("RegularAmt")
                         .HasColumnName("REGULAR_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<double?>("SpecialAmt")
+                    b.Property<float?>("SpecialAmt")
                         .HasColumnName("SPECIAL_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("WorkingOffice")
                         .HasColumnName("WORKING_OFFICE")
@@ -9295,17 +9235,17 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpPunishmnts", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PunishDate")
                         .HasColumnName("PUNISH_DATE")
@@ -9339,13 +9279,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpSrvcDtls", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AppointmentType")
+                    b.Property<int?>("AppointmentType")
                         .HasColumnName("APPOINTMENT_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DateFrom")
                         .HasColumnName("DATE_FROM")
@@ -9357,17 +9297,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("GeoRegion")
+                    b.Property<int?>("GeoRegion")
                         .HasColumnName("GEO_REGION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("OfficeDetail")
                         .HasColumnName("OFFICE_DETAIL")
@@ -9391,22 +9331,22 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpSuspends", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FromDateVs")
                         .HasColumnName("FROM_DATE_VS")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameNp")
                         .HasColumnName("NAME_NP")
@@ -9440,34 +9380,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmpTrnsfrRec", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("AmtTaken")
+                    b.Property<float?>("AmtTaken")
                         .HasColumnName("AMT_TAKEN")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DataEntryAdDate")
                         .HasColumnName("DATA_ENTRY_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataEntryVsDate")
                         .HasColumnName("DATA_ENTRY_VS_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("MovedDate")
                         .HasColumnName("MOVED_DATE")
@@ -9494,13 +9434,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserIde")
+                    b.Property<int?>("UserIde")
                         .HasColumnName("USER_IDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_EMP_TRNSFR_REC_pkey");
@@ -9514,18 +9454,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisEmployeeMaster", b =>
                 {
-                    b.Property<decimal>("EmpId")
+                    b.Property<int>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("AppoinmentType")
+                    b.Property<int?>("AppoinmentType")
                         .HasColumnName("APPOINMENT_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CitCode")
                         .HasColumnName("CIT_CODE")
@@ -9537,9 +9477,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("CitPercent")
+                    b.Property<int?>("CitPercent")
                         .HasColumnName("CIT_PERCENT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CitizenshipNo")
                         .HasColumnName("CITIZENSHIP_NO")
@@ -9556,9 +9496,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("CsIssuedDistrict")
+                    b.Property<int?>("CsIssuedDistrict")
                         .HasColumnName("CS_ISSUED_DISTRICT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CurrentPostAppointDate")
                         .HasColumnName("CURRENT_POST_APPOINT_DATE")
@@ -9572,20 +9512,20 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("DateOfBirthAd")
                         .HasColumnName("DATE_OF_BIRTH_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DeductAbsent")
                         .HasColumnName("DEDUCT_ABSENT")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("DeptId")
+                    b.Property<int?>("DeptId")
                         .HasColumnName("DEPT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DistrictId")
+                    b.Property<int?>("DistrictId")
                         .HasColumnName("DISTRICT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Emails")
                         .HasColumnName("EMAILS")
@@ -9602,9 +9542,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("FirstAppointPostId")
+                    b.Property<int?>("FirstAppointPostId")
                         .HasColumnName("FIRST_APPOINT_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FirstNameEn")
                         .HasColumnName("FIRST_NAME_EN")
@@ -9626,18 +9566,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("GfOcupation")
+                    b.Property<int?>("GfOcupation")
                         .HasColumnName("GF_OCUPATION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("GovtEmpId")
                         .HasColumnName("GOVT_EMP_ID")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Grades")
+                    b.Property<int?>("Grades")
                         .HasColumnName("GRADES")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("HusbandName")
                         .HasColumnName("HUSBAND_NAME")
@@ -9669,9 +9609,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("MailAddress")
                         .HasColumnName("MAIL_ADDRESS")
@@ -9688,13 +9628,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<decimal?>("ParentOcupation")
+                    b.Property<int?>("ParentOcupation")
                         .HasColumnName("PARENT_OCUPATION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PayementBankId")
+                    b.Property<int?>("PayementBankId")
                         .HasColumnName("PAYEMENT_BANK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Paymode")
                         .HasColumnName("PAYMODE")
@@ -9716,13 +9656,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("PostId")
+                    b.Property<int?>("PostId")
                         .HasColumnName("POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PostLevel")
+                    b.Property<int?>("PostLevel")
                         .HasColumnName("POST_LEVEL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PostStatus")
                         .HasColumnName("POST_STATUS")
@@ -9734,18 +9674,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Religion")
+                    b.Property<int?>("Religion")
                         .HasColumnName("RELIGION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("RetireDate")
                         .HasColumnName("RETIRE_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("RoomId")
+                    b.Property<int?>("RoomId")
                         .HasColumnName("ROOM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ServiceGroup")
                         .HasColumnName("SERVICE_GROUP")
@@ -9757,31 +9697,31 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(40)")
                         .HasMaxLength(40);
 
-                    b.Property<decimal?>("SpouseOcupation")
+                    b.Property<int?>("SpouseOcupation")
                         .HasColumnName("SPOUSE_OCUPATION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .HasColumnName("TITLE")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal?>("VdcId")
+                    b.Property<int?>("VdcId")
                         .HasColumnName("VDC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WardNo")
+                    b.Property<int?>("WardNo")
                         .HasColumnName("WARD_NO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("WillPerson")
                         .HasColumnName("WILL_PERSON")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("ZoneId")
+                    b.Property<int?>("ZoneId")
                         .HasColumnName("ZONE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("EmpId")
                         .HasName("PIS_EMPLOYEE_MASTER_pkey");
@@ -9801,22 +9741,22 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisForeignVisits", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("FromDateAd")
                         .HasColumnName("FROM_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FromDateVs")
                         .HasColumnName("FROM_DATE_VS")
@@ -9828,9 +9768,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -9839,7 +9779,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("ToDateAd")
                         .HasColumnName("TO_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ToDateVs")
                         .HasColumnName("TO_DATE_VS")
@@ -9866,38 +9806,38 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisFulfilledDarbandi", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AppointmntType")
+                    b.Property<int?>("AppointmntType")
                         .HasColumnName("APPOINTMNT_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DarbandiId")
+                    b.Property<int?>("DarbandiId")
                         .HasColumnName("DARBANDI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DateFulfilled")
                         .HasColumnName("DATE_FULFILLED")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OfficeId")
+                    b.Property<int?>("OfficeId")
                         .HasColumnName("OFFICE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PersonTypeId")
+                    b.Property<int?>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_FULFILLED_DARBANDI_pkey");
@@ -9913,9 +9853,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisGeoRegion", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Details")
                         .HasColumnName("DETAILS")
@@ -9931,9 +9871,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<double?>("MarksPerYear")
+                    b.Property<float?>("MarksPerYear")
                         .HasColumnName("MARKS_PER_YEAR")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -9942,61 +9882,61 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisHajiri", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Betalabis")
+                    b.Property<int?>("Betalabis")
                         .HasColumnName("BETALABIS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Bibis")
+                    b.Property<int?>("Bibis")
                         .HasColumnName("BIBIS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Cabis")
+                    b.Property<int?>("Cabis")
                         .HasColumnName("CABIS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Gayal")
+                    b.Property<int?>("Gayal")
                         .HasColumnName("GAYAL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Ghabis")
+                    b.Property<int?>("Ghabis")
                         .HasColumnName("GHABIS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("HajiriDays")
+                    b.Property<int?>("HajiriDays")
                         .HasColumnName("HAJIRI_DAYS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LocalPost")
+                    b.Property<int?>("LocalPost")
                         .HasColumnName("LOCAL_POST")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Month")
+                    b.Property<int?>("Month")
                         .HasColumnName("MONTH")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Other")
+                    b.Property<int?>("Other")
                         .HasColumnName("OTHER")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PublicHolidays")
+                    b.Property<int?>("PublicHolidays")
                         .HasColumnName("PUBLIC_HOLIDAYS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TotalDays")
+                    b.Property<int?>("TotalDays")
                         .HasColumnName("TOTAL_DAYS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Year")
+                    b.Property<int?>("Year")
                         .HasColumnName("YEAR")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_HAJIRI_pkey");
@@ -10006,17 +9946,17 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisInternalTransfer", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AppointmntType")
+                    b.Property<int?>("AppointmntType")
                         .HasColumnName("APPOINTMNT_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DarbandiId")
+                    b.Property<int?>("DarbandiId")
                         .HasColumnName("DARBANDI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DateFrom")
                         .HasColumnName("DATE_FROM")
@@ -10038,34 +9978,34 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OfficeId")
+                    b.Property<int?>("OfficeId")
                         .HasColumnName("OFFICE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("ReplacedEmpId")
+                    b.Property<int?>("ReplacedEmpId")
                         .HasColumnName("REPLACED_EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ToAppointmntType")
+                    b.Property<int?>("ToAppointmntType")
                         .HasColumnName("TO_APPOINTMNT_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ToLocalPostId")
+                    b.Property<int?>("ToLocalPostId")
                         .HasColumnName("TO_LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ToOfficeId")
+                    b.Property<int?>("ToOfficeId")
                         .HasColumnName("TO_OFFICE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_INTERNAL_TRANSFER_pkey");
@@ -10089,26 +10029,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisLandBldngs", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("AquisitionTypeId")
+                    b.Property<int?>("AquisitionTypeId")
                         .HasColumnName("AQUISITION_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DataEntryAdDate")
                         .HasColumnName("DATA_ENTRY_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataEntryVsDate")
                         .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -10120,22 +10060,22 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("DistrictId")
+                    b.Property<int?>("DistrictId")
                         .HasColumnName("DISTRICT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("OwnershipDetails")
                         .HasColumnName("OWNERSHIP_DETAILS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("RoadId")
+                    b.Property<int?>("RoadId")
                         .HasColumnName("ROAD_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("SpecialNotes")
                         .HasColumnName("SPECIAL_NOTES")
@@ -10152,26 +10092,26 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserIde")
+                    b.Property<int?>("UserIde")
                         .HasColumnName("USER_IDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("VdcId")
+                    b.Property<int?>("VdcId")
                         .HasColumnName("VDC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("WardNo")
                         .HasColumnName("WARD_NO")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ZoneId")
+                    b.Property<int?>("ZoneId")
                         .HasColumnName("ZONE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_LAND_BLDNGS_pkey");
@@ -10181,9 +10121,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisLoanDhitoGiven", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
@@ -10192,11 +10132,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DataEntryAdDate")
                         .HasColumnName("DATA_ENTRY_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataEntryVsDate")
                         .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -10208,9 +10148,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ReasonToTake")
                         .HasColumnName("REASON_TO_TAKE")
@@ -10232,17 +10172,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserIde")
+                    b.Property<int?>("UserIde")
                         .HasColumnName("USER_IDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ValueInNrs")
+                    b.Property<float?>("ValueInNrs")
                         .HasColumnName("VALUE_IN_NRS")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Sn")
                         .HasName("PIS_LOAN_DHITO_GIVEN_pkey");
@@ -10252,9 +10192,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisLoanDhitoTaken", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
@@ -10263,11 +10203,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DataEntryAdDate")
                         .HasColumnName("DATA_ENTRY_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataEntryVsDate")
                         .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -10279,9 +10219,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ReasonToTake")
                         .HasColumnName("REASON_TO_TAKE")
@@ -10303,17 +10243,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserIde")
+                    b.Property<int?>("UserIde")
                         .HasColumnName("USER_IDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ValueInNrs")
+                    b.Property<float?>("ValueInNrs")
                         .HasColumnName("VALUE_IN_NRS")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Sn")
                         .HasName("PIS_LOAN_DHITO_TAKEN_pkey");
@@ -10323,33 +10263,33 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisLocalPostMaster", b =>
                 {
-                    b.Property<decimal>("LocalPostId")
+                    b.Property<int>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Alllwance")
+                    b.Property<float?>("Alllwance")
                         .HasColumnName("ALLLWANCE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Allowance")
+                    b.Property<float?>("Allowance")
                         .HasColumnName("ALLOWANCE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Allwance")
+                    b.Property<float?>("Allwance")
                         .HasColumnName("ALLWANCE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("BasicSalary")
+                    b.Property<float?>("BasicSalary")
                         .HasColumnName("BASIC_SALARY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("GradeRate")
+                    b.Property<float?>("GradeRate")
                         .HasColumnName("GRADE_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("InsuranceAddAmt")
+                    b.Property<float?>("InsuranceAddAmt")
                         .HasColumnName("INSURANCE_ADD_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("LocalPostName")
                         .HasColumnName("LOCAL_POST_NAME")
@@ -10361,17 +10301,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("PayrollOrder")
+                    b.Property<int?>("PayrollOrder")
                         .HasColumnName("PAYROLL_ORDER")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PostDuties")
                         .HasColumnName("POST_DUTIES")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("PostId")
+                    b.Property<int?>("PostId")
                         .HasColumnName("POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("LocalPostId")
                         .HasName("PIS_LOCAL_POST_MASTER_pkey");
@@ -10383,13 +10323,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisNijamatiSewaSamuha", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("GrpLevel")
+                    b.Property<int?>("GrpLevel")
                         .HasColumnName("GRP_LEVEL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -10401,9 +10341,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("ParentId")
+                    b.Property<int?>("ParentId")
                         .HasColumnName("PARENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -10414,26 +10354,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisOrnaments", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("AquisitionTypeId")
+                    b.Property<int?>("AquisitionTypeId")
                         .HasColumnName("AQUISITION_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DataEntryAdDate")
                         .HasColumnName("DATA_ENTRY_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataEntryVsDate")
                         .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -10445,9 +10385,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("SpecialNotes")
                         .HasColumnName("SPECIAL_NOTES")
@@ -10459,13 +10399,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserIde")
+                    b.Property<int?>("UserIde")
                         .HasColumnName("USER_IDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_ORNAMENTS_pkey");
@@ -10475,31 +10415,31 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisOtherAddSub", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AddSub")
                         .HasColumnName("ADD_SUB")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(80)")
                         .HasMaxLength(80);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -10510,46 +10450,46 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisPayrolls", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AbsentDays")
+                    b.Property<int?>("AbsentDays")
                         .HasColumnName("ABSENT_DAYS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("AbsentDeductAmt")
+                    b.Property<float?>("AbsentDeductAmt")
                         .HasColumnName("ABSENT_DEDUCT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("AdvanceDeductAmt")
+                    b.Property<float?>("AdvanceDeductAmt")
                         .HasColumnName("ADVANCE_DEDUCT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("AllowanceAmt")
+                    b.Property<float?>("AllowanceAmt")
                         .HasColumnName("ALLOWANCE_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("BasicSalary")
+                    b.Property<float?>("BasicSalary")
                         .HasColumnName("BASIC_SALARY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("CitAmt")
+                    b.Property<float?>("CitAmt")
                         .HasColumnName("CIT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("CitPercent")
+                    b.Property<float?>("CitPercent")
                         .HasColumnName("CIT_PERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("DeductDepVchrDateNep")
                         .HasColumnName("DEDUCT_DEP_VCHR_DATE_NEP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("DeductDepVchrId")
+                    b.Property<int?>("DeductDepVchrId")
                         .HasColumnName("DEDUCT_DEP_VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<int>("EmpId")
                         .HasColumnName("EMP_ID")
@@ -10565,131 +10505,131 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("FestiveVchrId")
+                    b.Property<int?>("FestiveVchrId")
                         .HasColumnName("FESTIVE_VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(9)")
                         .HasMaxLength(9);
 
-                    b.Property<double?>("GradeAmount")
+                    b.Property<float?>("GradeAmount")
                         .HasColumnName("GRADE_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<short?>("GradeIncMonth")
                         .HasColumnName("GRADE_INC_MONTH")
                         .HasColumnType("smallint");
 
-                    b.Property<double?>("GradeSalaryTotal")
+                    b.Property<float?>("GradeSalaryTotal")
                         .HasColumnName("GRADE_SALARY_TOTAL")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("InsuranceAddAmt")
+                    b.Property<float?>("InsuranceAddAmt")
                         .HasColumnName("INSURANCE_ADD_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("InsuranceDeductAmt")
+                    b.Property<float?>("InsuranceDeductAmt")
                         .HasColumnName("INSURANCE_DEDUCT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("LoanDeductAmt")
+                    b.Property<float?>("LoanDeductAmt")
                         .HasColumnName("LOAN_DEDUCT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("LocalPost")
                         .HasColumnName("LOCAL_POST")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Month")
                         .HasColumnName("MONTH")
                         .HasColumnType("smallint");
 
-                    b.Property<double?>("NetSalary")
+                    b.Property<float?>("NetSalary")
                         .HasColumnName("NET_SALARY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("OtherAllowanceAmt")
+                    b.Property<float?>("OtherAllowanceAmt")
                         .HasColumnName("OTHER_ALLOWANCE_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("OtherDeductTotal")
+                    b.Property<float?>("OtherDeductTotal")
                         .HasColumnName("OTHER_DEDUCT_TOTAL")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("PayBankId")
+                    b.Property<int?>("PayBankId")
                         .HasColumnName("PAY_BANK_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Paymode")
                         .HasColumnName("PAYMODE")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal?>("PensionkoshAddAmt")
+                    b.Property<int?>("PensionkoshAddAmt")
                         .HasColumnName("PENSIONKOSH_ADD_AMT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PensionkoshDedAmt")
+                    b.Property<int?>("PensionkoshDedAmt")
                         .HasColumnName("PENSIONKOSH_DED_AMT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("PfAddAmt")
+                    b.Property<float?>("PfAddAmt")
                         .HasColumnName("PF_ADD_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("PfDeductAmt")
+                    b.Property<float?>("PfDeductAmt")
                         .HasColumnName("PF_DEDUCT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("PostInShort")
                         .HasColumnName("POST_IN_SHORT")
                         .HasColumnType("character varying(40)")
                         .HasMaxLength(40);
 
-                    b.Property<decimal?>("PostLevel")
+                    b.Property<int?>("PostLevel")
                         .HasColumnName("POST_LEVEL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("RateOfGrade")
+                    b.Property<float?>("RateOfGrade")
                         .HasColumnName("RATE_OF_GRADE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<double?>("TaxAmt")
+                    b.Property<float?>("TaxAmt")
                         .HasColumnName("TAX_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("TdsAmt")
+                    b.Property<float?>("TdsAmt")
                         .HasColumnName("TDS_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("TotalPayableSalary")
+                    b.Property<float?>("TotalPayableSalary")
                         .HasColumnName("TOTAL_PAYABLE_SALARY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("TransTpeId")
+                    b.Property<int?>("TransTpeId")
                         .HasColumnName("TRANS_TPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("VchrDateNp")
                         .HasColumnName("VCHR_DATE_NP")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("VchrId")
+                    b.Property<int?>("VchrId")
                         .HasColumnName("VCHR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -10698,30 +10638,30 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisPdOrgInvlvmnt", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DataEntryAdDate")
                         .HasColumnName("DATA_ENTRY_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataEntryVsDate")
                         .HasColumnName("DATA_ENTRY_VS_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NoOfBenificPopln")
+                    b.Property<int?>("NoOfBenificPopln")
                         .HasColumnName("NO_OF_BENIFIC_POPLN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("OrgAcheivmnts")
                         .HasColumnName("ORG_ACHEIVMNTS")
@@ -10773,13 +10713,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserIde")
+                    b.Property<int?>("UserIde")
                         .HasColumnName("USER_IDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_PD_ORG_INVLVMNT_pkey");
@@ -10789,18 +10729,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisPdSrvcDtls", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AppointmntLevel")
                         .HasColumnName("APPOINTMNT_LEVEL")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("AppointmntType")
+                    b.Property<int?>("AppointmntType")
                         .HasColumnName("APPOINTMNT_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DateFrom")
                         .HasColumnName("DATE_FROM")
@@ -10812,13 +10752,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("OfficeDetail")
                         .HasColumnName("OFFICE_DETAIL")
@@ -10838,21 +10778,21 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisPersonVisitRecrd", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("AmountTaken")
+                    b.Property<float?>("AmountTaken")
                         .HasColumnName("AMOUNT_TAKEN")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DataEntryAdDate")
                         .HasColumnName("DATA_ENTRY_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataEntryVsDate")
                         .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -10869,9 +10809,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("PersonId")
+                    b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PersonName")
                         .HasColumnName("PERSON_NAME")
@@ -10883,9 +10823,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("PersonTypeId")
+                    b.Property<int?>("PersonTypeId")
                         .HasColumnName("PERSON_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("RefNo")
                         .HasColumnName("REF_NO")
@@ -10902,13 +10842,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserIde")
+                    b.Property<int?>("UserIde")
                         .HasColumnName("USER_IDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("VisitLocation")
                         .HasColumnName("VISIT_LOCATION")
@@ -10923,13 +10863,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisPostMaster", b =>
                 {
-                    b.Property<decimal>("PostId")
+                    b.Property<int>("PostId")
                         .HasColumnName("POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("BasicSalary")
+                    b.Property<float?>("BasicSalary")
                         .HasColumnName("BASIC_SALARY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("GeneralPost")
                         .HasColumnName("GENERAL_POST")
@@ -10941,21 +10881,21 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(40)")
                         .HasMaxLength(40);
 
-                    b.Property<decimal?>("MaxGradeRate")
+                    b.Property<int?>("MaxGradeRate")
                         .HasColumnName("MAX_GRADE_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PostLevel")
+                    b.Property<int?>("PostLevel")
                         .HasColumnName("POST_LEVEL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PrabidikOrPrasasan")
+                    b.Property<int?>("PrabidikOrPrasasan")
                         .HasColumnName("PRABIDIK_OR_PRASASAN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("RateOfGrade")
+                    b.Property<int?>("RateOfGrade")
                         .HasColumnName("RATE_OF_GRADE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("PostId")
                         .HasName("PIS_POST_MASTER_pkey");
@@ -10965,13 +10905,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisPrizes", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
@@ -10993,18 +10933,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IssuedDate")
                         .HasColumnName("ISSUED_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameNp")
                         .HasColumnName("NAME_NP")
@@ -11031,9 +10971,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisPublication", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
@@ -11045,13 +10985,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NepName")
                         .HasColumnName("NEP_NAME")
@@ -11065,7 +11005,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("PublshDateAd")
                         .HasColumnName("PUBLSH_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PublshDateVs")
                         .HasColumnName("PUBLSH_DATE_VS")
@@ -11092,34 +11032,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisPyrollLoanDtls", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Cleared")
                         .HasColumnName("CLEARED")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("InstallmentAmt")
+                    b.Property<float?>("InstallmentAmt")
                         .HasColumnName("INSTALLMENT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("LoandAmt")
+                    b.Property<float?>("LoandAmt")
                         .HasColumnName("LOAND_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("LoandId")
+                    b.Property<int?>("LoandId")
                         .HasColumnName("LOAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Month")
                         .HasColumnName("MONTH")
@@ -11130,9 +11070,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("PayrollId")
+                    b.Property<int?>("PayrollId")
                         .HasColumnName("PAYROLL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -11149,39 +11089,39 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisPyrollOthrDtls", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AddSub")
                         .HasColumnName("ADD_SUB")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("EmployeeId")
+                    b.Property<int?>("EmployeeId")
                         .HasColumnName("EMPLOYEE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Month")
                         .HasColumnName("MONTH")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("PayrollId")
+                    b.Property<int?>("PayrollId")
                         .HasColumnName("PAYROLL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("SourceType")
                         .HasColumnName("SOURCE_TYPE")
@@ -11199,17 +11139,17 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisReplacedInDarbandi", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AppointmntType")
+                    b.Property<int?>("AppointmntType")
                         .HasColumnName("APPOINTMNT_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("DarbandiId")
+                    b.Property<int?>("DarbandiId")
                         .HasColumnName("DARBANDI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DateFulfilled")
                         .HasColumnName("DATE_FULFILLED")
@@ -11231,30 +11171,30 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EntrySnInFd")
+                    b.Property<int?>("EntrySnInFd")
                         .HasColumnName("ENTRY_SN_IN_FD")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("IsPlacedInDarbandi")
+                    b.Property<int?>("IsPlacedInDarbandi")
                         .HasColumnName("IS_PLACED_IN_DARBANDI")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OfficeId")
+                    b.Property<int?>("OfficeId")
                         .HasColumnName("OFFICE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("ReplacedBy")
+                    b.Property<int?>("ReplacedBy")
                         .HasColumnName("REPLACED_BY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_REPLACED_IN_DARBANDI_pkey");
@@ -11270,9 +11210,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisServiceStatus", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -11296,9 +11236,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisSgnfcntWork", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
@@ -11315,22 +11255,22 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("FromDateAd")
                         .HasColumnName("FROM_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FromDateVs")
                         .HasColumnName("FROM_DATE_VS")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NameNp")
                         .HasColumnName("NAME_NP")
@@ -11344,7 +11284,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("ToDateAd")
                         .HasColumnName("TO_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ToDateVs")
                         .HasColumnName("TO_DATE_VS")
@@ -11366,18 +11306,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisShareBankbalance", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("AquisitionTypeId")
+                    b.Property<int?>("AquisitionTypeId")
                         .HasColumnName("AQUISITION_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CompanyOrBank")
                         .HasColumnName("COMPANY_OR_BANK")
@@ -11386,11 +11326,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DataEntryAdDate")
                         .HasColumnName("DATA_ENTRY_AD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("DataEntryVsDate")
                         .HasColumnName("DATA_ENTRY_VS_DATE")
@@ -11402,9 +11342,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("OwnershipDetails")
                         .HasColumnName("OWNERSHIP_DETAILS")
@@ -11416,17 +11356,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnName("USER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UserIde")
+                    b.Property<int?>("UserIde")
                         .HasColumnName("USER_IDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ValueInNrs")
+                    b.Property<float?>("ValueInNrs")
                         .HasColumnName("VALUE_IN_NRS")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Sn")
                         .HasName("PIS_SHARE_BANKBALANCE_pkey");
@@ -11436,18 +11376,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisTraining", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnName("COUNTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Division")
                         .HasColumnName("DIVISION")
@@ -11459,13 +11399,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("FrmDateAd")
                         .HasColumnName("FRM_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FrmDateVs")
                         .HasColumnName("FRM_DATE_VS")
@@ -11477,17 +11417,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("MarksObtnd")
+                    b.Property<float?>("MarksObtnd")
                         .HasColumnName("MARKS_OBTND")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<DateTime?>("ToDateAd")
                         .HasColumnName("TO_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ToDateVs")
                         .HasColumnName("TO_DATE_VS")
@@ -11504,9 +11444,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("ValidForEval")
+                    b.Property<int?>("ValidForEval")
                         .HasColumnName("VALID_FOR_EVAL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_TRAINING_pkey");
@@ -11518,26 +11458,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisVisitedCountries", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnName("COUNTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("VisitId")
+                    b.Property<int?>("VisitId")
                         .HasColumnName("VISIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("PIS_VISITED_COUNTRIES_pkey");
@@ -11549,18 +11489,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PisWorkshop", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ApplyTo")
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("CountryId")
+                    b.Property<int?>("CountryId")
                         .HasColumnName("COUNTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -11572,22 +11512,22 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("EmpId")
+                    b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("FromDateAd")
                         .HasColumnName("FROM_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FromDateVs")
                         .HasColumnName("FROM_DATE_VS")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("LocalPostId")
+                    b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NepName")
                         .HasColumnName("NEP_NAME")
@@ -11606,7 +11546,7 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("ToDateAd")
                         .HasColumnName("TO_DATE_AD")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ToDateVs")
                         .HasColumnName("TO_DATE_VS")
@@ -11628,9 +11568,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.PmsYojtype", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("YojtypeNameEng")
                         .HasColumnName("YOJTYPE_NAME_ENG")
@@ -11655,22 +11595,22 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.RentDarRate", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Ratename")
                         .HasColumnName("RATENAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<double?>("RentPer")
+                    b.Property<float?>("RentPer")
                         .HasColumnName("RENT_PER")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("RentTypeid")
+                    b.Property<int?>("RentTypeid")
                         .HasColumnName("RENT_TYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -11684,9 +11624,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
@@ -11713,9 +11653,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
-                    b.Property<decimal?>("OfficeTypeId")
+                    b.Property<int?>("OfficeTypeId")
                         .HasColumnName("OFFICE_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ReportFor")
                         .HasColumnName("REPORT_FOR")
@@ -11727,9 +11667,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("ReportId")
+                    b.Property<int?>("ReportId")
                         .HasColumnName("REPORT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ReportName")
                         .HasColumnName("REPORT_NAME")
@@ -11741,9 +11681,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SanitationGroup", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Groupname")
                         .HasColumnName("GROUPNAME")
@@ -11757,46 +11697,46 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SanitationRate", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AreaUpto")
+                    b.Property<int?>("AreaUpto")
                         .HasColumnName("AREA_UPTO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EachAreaRate")
+                    b.Property<int?>("EachAreaRate")
                         .HasColumnName("EACH_AREA_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ForEachArea")
+                    b.Property<int?>("ForEachArea")
                         .HasColumnName("FOR_EACH_AREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Groupid")
+                    b.Property<int?>("Groupid")
                         .HasColumnName("GROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Rate")
+                    b.Property<float?>("Rate")
                         .HasColumnName("RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Ratename")
                         .HasColumnName("RATENAME")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("RoadTypeid")
+                    b.Property<int?>("RoadTypeid")
                         .HasColumnName("ROAD_TYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Subgroupid")
+                    b.Property<int?>("Subgroupid")
                         .HasColumnName("SUBGROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -11809,13 +11749,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SanitationSubgroup", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Groupid")
+                    b.Property<int?>("Groupid")
                         .HasColumnName("GROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -11840,17 +11780,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
                         .HasColumnType("integer");
 
-                    b.Property<double?>("FlatChargeRate")
+                    b.Property<float?>("FlatChargeRate")
                         .HasColumnName("FLAT_CHARGE_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<short?>("Isapplicableforhouse")
                         .HasColumnName("ISAPPLICABLEFORHOUSE")
@@ -11860,9 +11800,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("RATEID")
                         .HasColumnType("integer");
 
-                    b.Property<double?>("ServiceChargePercent")
+                    b.Property<float?>("ServiceChargePercent")
                         .HasColumnName("SERVICE_CHARGE_PERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -11873,13 +11813,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Spacemeasuringunits", b =>
                 {
-                    b.Property<decimal?>("Sqftperunit")
+                    b.Property<int?>("Sqftperunit")
                         .HasColumnName("SQFTPERUNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Unitid")
+                    b.Property<int?>("Unitid")
                         .HasColumnName("UNITID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Unitname")
                         .HasColumnName("UNITNAME")
@@ -11891,9 +11831,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Storedbills", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billnofrom")
                         .HasColumnName("BILLNOFROM")
@@ -11905,13 +11845,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Billtypeid")
+                    b.Property<int?>("Billtypeid")
                         .HasColumnName("BILLTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Code")
+                    b.Property<int?>("Code")
                         .HasColumnName("CODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Dateissued")
                         .HasColumnName("DATEISSUED")
@@ -11933,27 +11873,29 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SubModuleSource", b =>
                 {
-                    b.Property<decimal>("SubModuleId")
-                        .HasColumnName("SUB_MODULE_ID")
-                        .HasColumnType("numeric(22,0)");
-
-                    b.Property<decimal>("BudjetSourceId")
+                    b.Property<int>("BudjetSourceId")
                         .HasColumnName("BUDJET_SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.HasKey("SubModuleId", "BudjetSourceId")
+                    b.Property<int>("SubModuleId")
+                        .HasColumnName("SUB_MODULE_ID")
+                        .HasColumnType("integer");
+
+                    b.HasKey("BudjetSourceId", "SubModuleId")
                         .HasName("SUB_MODULE_SOURCE_pkey");
 
                     b.HasIndex("BudjetSourceId");
+
+                    b.HasIndex("SubModuleId");
 
                     b.ToTable("SUB_MODULE_SOURCE");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SubjectArea", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Code")
                         .HasColumnName("CODE")
@@ -11969,9 +11911,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("NEP_NAME")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("ParentId")
+                    b.Property<int?>("ParentId")
                         .HasColumnName("PARENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -11985,30 +11927,30 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SvBusinessmaster", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Addresschange")
                         .HasColumnName("ADDRESSCHANGE")
                         .HasColumnType("character varying(12)")
                         .HasMaxLength(12);
 
-                    b.Property<decimal?>("Areainsquarefeets")
+                    b.Property<int?>("Areainsquarefeets")
                         .HasColumnName("AREAINSQUAREFEETS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("BusinessStatus")
                         .HasColumnName("BUSINESS_STATUS")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("Businessgroupid")
+                    b.Property<int?>("Businessgroupid")
                         .HasColumnName("BUSINESSGROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BusinessownertaxIid")
+                    b.Property<int?>("BusinessownertaxIid")
                         .HasColumnName("BUSINESSOWNERTAX_IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Businessstartingdate")
                         .HasColumnName("BUSINESSSTARTINGDATE")
@@ -12032,11 +11974,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
@@ -12048,22 +11990,22 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("Districtid")
+                    b.Property<int?>("Districtid")
                         .HasColumnName("DISTRICTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Emails")
                         .HasColumnName("EMAILS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Generalrateid")
+                    b.Property<int?>("Generalrateid")
                         .HasColumnName("GENERALRATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Houseid")
+                    b.Property<int?>("Houseid")
                         .HasColumnName("HOUSEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Houseno")
                         .HasColumnName("HOUSENO")
@@ -12075,9 +12017,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("Initialcapital")
+                    b.Property<int?>("Initialcapital")
                         .HasColumnName("INITIALCAPITAL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Initialregdate")
                         .HasColumnName("INITIALREGDATE")
@@ -12098,22 +12040,22 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ISINRENT")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("Lengthofsignboard")
+                    b.Property<int?>("Lengthofsignboard")
                         .HasColumnName("LENGTHOFSIGNBOARD")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("MailAddress")
                         .HasColumnName("MAIL_ADDRESS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<double?>("Maxcapital")
+                    b.Property<float?>("Maxcapital")
                         .HasColumnName("MAXCAPITAL")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Monthlyrent")
+                    b.Property<int?>("Monthlyrent")
                         .HasColumnName("MONTHLYRENT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Municipallregdate")
                         .HasColumnName("MUNICIPALLREGDATE")
@@ -12140,72 +12082,72 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Sanitationid")
+                    b.Property<int?>("Sanitationid")
                         .HasColumnName("SANITATIONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Shiftdate")
                         .HasColumnName("SHIFTDATE")
                         .HasColumnType("character varying(12)")
                         .HasMaxLength(12);
 
-                    b.Property<decimal?>("Shifttaxpayerid")
+                    b.Property<int?>("Shifttaxpayerid")
                         .HasColumnName("SHIFTTAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Specialnotes")
                         .HasColumnName("SPECIALNOTES")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Sqfeetsofsignboard")
+                    b.Property<int?>("Sqfeetsofsignboard")
                         .HasColumnName("SQFEETSOFSIGNBOARD")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Street")
                         .HasColumnName("STREET")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("Taxpayerid")
+                    b.Property<int?>("Taxpayerid")
                         .HasColumnName("TAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Trackid")
+                    b.Property<int?>("Trackid")
                         .HasColumnName("TRACKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Typeid")
+                    b.Property<int?>("Typeid")
                         .HasColumnName("TYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Vdcid")
+                    b.Property<int?>("Vdcid")
                         .HasColumnName("VDCID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Wardno")
+                    b.Property<int?>("Wardno")
                         .HasColumnName("WARDNO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Widthofsignboard")
+                    b.Property<int?>("Widthofsignboard")
                         .HasColumnName("WIDTHOFSIGNBOARD")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("YearlyTranAmount")
+                    b.Property<float?>("YearlyTranAmount")
                         .HasColumnName("YEARLY_TRAN_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Zoneid")
+                    b.Property<int?>("Zoneid")
                         .HasColumnName("ZONEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -12214,58 +12156,58 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SvConstructions", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Areainsqfeet")
+                    b.Property<int?>("Areainsqfeet")
                         .HasColumnName("AREAINSQFEET")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Constructiontypeid")
+                    b.Property<int?>("Constructiontypeid")
                         .HasColumnName("CONSTRUCTIONTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Constructionusestypeid")
+                    b.Property<int?>("Constructionusestypeid")
                         .HasColumnName("CONSTRUCTIONUSESTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Generalrateid")
+                    b.Property<int?>("Generalrateid")
                         .HasColumnName("GENERALRATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Heightinfeet")
+                    b.Property<int?>("Heightinfeet")
                         .HasColumnName("HEIGHTINFEET")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Houseid")
+                    b.Property<int?>("Houseid")
                         .HasColumnName("HOUSEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Includeinevaluation")
                         .HasColumnName("INCLUDEINEVALUATION")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("Lengthinfeet")
+                    b.Property<int?>("Lengthinfeet")
                         .HasColumnName("LENGTHINFEET")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Selfuseorinrent")
                         .HasColumnName("SELFUSEORINRENT")
@@ -12276,21 +12218,21 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal?>("Talanumber")
+                    b.Property<int?>("Talanumber")
                         .HasColumnName("TALANUMBER")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TaxpayerDefineAmount")
+                    b.Property<int?>("TaxpayerDefineAmount")
                         .HasColumnName("TAXPAYER_DEFINE_AMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Vsdateofmade")
                         .HasColumnName("VSDATEOFMADE")
@@ -12302,9 +12244,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Widththinfeet")
+                    b.Property<int?>("Widththinfeet")
                         .HasColumnName("WIDTHTHINFEET")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -12313,26 +12255,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SvHouses", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Aquisitiondate")
                         .HasColumnName("AQUISITIONDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Areainsqfeets")
+                    b.Property<int?>("Areainsqfeets")
                         .HasColumnName("AREAINSQFEETS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Areaofconstructionsinsqfeets")
+                    b.Property<int?>("Areaofconstructionsinsqfeets")
                         .HasColumnName("AREAOFCONSTRUCTIONSINSQFEETS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BinGis")
+                    b.Property<int?>("BinGis")
                         .HasColumnName("BIN_GIS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Buildingcode")
                         .HasColumnName("BUILDINGCODE")
@@ -12341,100 +12283,100 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("DefineAmt")
+                    b.Property<float?>("DefineAmt")
                         .HasColumnName("DEFINE_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<short?>("Hasmapregistered")
                         .HasColumnName("HASMAPREGISTERED")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("Heightinfeets")
+                    b.Property<int?>("Heightinfeets")
                         .HasColumnName("HEIGHTINFEETS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Houseconstructiontypeid")
+                    b.Property<int?>("Houseconstructiontypeid")
                         .HasColumnName("HOUSECONSTRUCTIONTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Housenumber")
                         .HasColumnName("HOUSENUMBER")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Housetypeid")
+                    b.Property<int?>("Housetypeid")
                         .HasColumnName("HOUSETYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Includeinevaluation")
                         .HasColumnName("INCLUDEINEVALUATION")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("Landid")
+                    b.Property<int?>("Landid")
                         .HasColumnName("LANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Lengthinfeets")
+                    b.Property<int?>("Lengthinfeets")
                         .HasColumnName("LENGTHINFEETS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Mapregistereddate")
                         .HasColumnName("MAPREGISTEREDDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Numoftalas")
+                    b.Property<int?>("Numoftalas")
                         .HasColumnName("NUMOFTALAS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("SalesDt")
                         .HasColumnName("SALES_DT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Sanitationrateid")
+                    b.Property<int?>("Sanitationrateid")
                         .HasColumnName("SANITATIONRATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Specialnote")
                         .HasColumnName("SPECIALNOTE")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Usestypeid")
+                    b.Property<int?>("Usestypeid")
                         .HasColumnName("USESTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Vsdateofmade")
                         .HasColumnName("VSDATEOFMADE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Widthinfeets")
+                    b.Property<int?>("Widthinfeets")
                         .HasColumnName("WIDTHINFEETS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -12443,38 +12385,38 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SvLands", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Aquisitiondate")
                         .HasColumnName("AQUISITIONDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Aquisitiontypeid")
+                    b.Property<int?>("Aquisitiontypeid")
                         .HasColumnName("AQUISITIONTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AreaTypeId")
+                    b.Property<int?>("AreaTypeId")
                         .HasColumnName("AREA_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Areainsqft")
+                    b.Property<int?>("Areainsqft")
                         .HasColumnName("AREAINSQFT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AreainsqftField")
+                    b.Property<int?>("AreainsqftField")
                         .HasColumnName("AREAINSQFT_FIELD")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
@@ -12501,13 +12443,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(5)")
                         .HasMaxLength(5);
 
-                    b.Property<decimal?>("Evalexclusionreasonid")
+                    b.Property<int?>("Evalexclusionreasonid")
                         .HasColumnName("EVALEXCLUSIONREASONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Generalrateid")
+                    b.Property<int?>("Generalrateid")
                         .HasColumnName("GENERALRATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("GridNo")
                         .HasColumnName("GRID_NO")
@@ -12518,9 +12460,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("HASTRACK")
                         .HasColumnType("smallint");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Includeinevaluation")
                         .HasColumnName("INCLUDEINEVALUATION")
@@ -12539,29 +12481,29 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("LAND_RULES")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("Landmeasuringunitid")
+                    b.Property<int?>("Landmeasuringunitid")
                         .HasColumnName("LANDMEASURINGUNITID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Landnatureid")
+                    b.Property<int?>("Landnatureid")
                         .HasColumnName("LANDNATUREID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Landtype")
+                    b.Property<int?>("Landtype")
                         .HasColumnName("LANDTYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Locationfactorid")
+                    b.Property<int?>("Locationfactorid")
                         .HasColumnName("LOCATIONFACTORID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Lqtypeid")
+                    b.Property<int?>("Lqtypeid")
                         .HasColumnName("LQTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Malpotrate")
+                    b.Property<int?>("Malpotrate")
                         .HasColumnName("MALPOTRATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Mapnumber")
                         .HasColumnName("MAPNUMBER")
@@ -12573,29 +12515,29 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("NominationArea")
+                    b.Property<int?>("NominationArea")
                         .HasColumnName("NOMINATION_AREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NominationBreadth")
+                    b.Property<int?>("NominationBreadth")
                         .HasColumnName("NOMINATION_BREADTH")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NominationDirection")
+                    b.Property<int?>("NominationDirection")
                         .HasColumnName("NOMINATION_DIRECTION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NominationLength")
+                    b.Property<int?>("NominationLength")
                         .HasColumnName("NOMINATION_LENGTH")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NominationTf")
+                    b.Property<int?>("NominationTf")
                         .HasColumnName("NOMINATION_TF")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Nonfunctionalareainsqft")
+                    b.Property<int?>("Nonfunctionalareainsqft")
                         .HasColumnName("NONFUNCTIONALAREAINSQFT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NorthboundaryKitta")
                         .HasColumnName("NORTHBOUNDARY_KITTA")
@@ -12612,9 +12554,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
-                    b.Property<decimal?>("Oldvdcid")
+                    b.Property<int?>("Oldvdcid")
                         .HasColumnName("OLDVDCID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Oldwardno")
                         .HasColumnName("OLDWARDNO")
@@ -12626,9 +12568,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Selfdeclaredvalueinrs")
+                    b.Property<int?>("Selfdeclaredvalueinrs")
                         .HasColumnName("SELFDECLAREDVALUEINRS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("SheetNo")
                         .HasColumnName("SHEET_NO")
@@ -12665,33 +12607,33 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Trackid")
+                    b.Property<int?>("Trackid")
                         .HasColumnName("TRACKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Trackrelationid")
+                    b.Property<int?>("Trackrelationid")
                         .HasColumnName("TRACKRELATIONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Usestypeid")
+                    b.Property<int?>("Usestypeid")
                         .HasColumnName("USESTYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Valueinrsonaquisition")
+                    b.Property<int?>("Valueinrsonaquisition")
                         .HasColumnName("VALUEINRSONAQUISITION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Wardno")
+                    b.Property<int?>("Wardno")
                         .HasColumnName("WARDNO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Westboundary")
                         .HasColumnName("WESTBOUNDARY")
@@ -12715,39 +12657,39 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SvLandsmultievaluationdetail", b =>
                 {
-                    b.Property<decimal?>("Areainsqft")
+                    b.Property<int?>("Areainsqft")
                         .HasColumnName("AREAINSQFT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Generalrateid")
+                    b.Property<int?>("Generalrateid")
                         .HasColumnName("GENERALRATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Kittanumber")
                         .HasColumnName("KITTANUMBER")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Landid")
+                    b.Property<int?>("Landid")
                         .HasColumnName("LANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("SV_LANDSMULTIEVALUATIONDETAIL");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SvPeople", b =>
                 {
-                    b.Property<decimal>("Iid")
+                    b.Property<int>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CancelDate")
                         .HasColumnName("CANCEL_DATE")
@@ -12763,9 +12705,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Ccissueddristictid")
+                    b.Property<int?>("Ccissueddristictid")
                         .HasColumnName("CCISSUEDDRISTICTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Ccnumber")
                         .HasColumnName("CCNUMBER")
@@ -12792,26 +12734,26 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Countryid")
+                    b.Property<int?>("Countryid")
                         .HasColumnName("COUNTRYID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Districtid")
+                    b.Property<int?>("Districtid")
                         .HasColumnName("DISTRICTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Dob")
                         .HasColumnName("DOB")
@@ -12852,9 +12794,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("HASCC")
                         .HasColumnType("smallint");
 
-                    b.Property<double?>("HltUnpaidAmount")
+                    b.Property<float?>("HltUnpaidAmount")
                         .HasColumnName("HLT_UNPAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("HltUnpaidFiscalYear")
                         .HasColumnName("HLT_UNPAID_FISCAL_YEAR")
@@ -12866,13 +12808,13 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Individualtype")
+                    b.Property<int?>("Individualtype")
                         .HasColumnName("INDIVIDUALTYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("IptUnpaidAmount")
+                    b.Property<float?>("IptUnpaidAmount")
                         .HasColumnName("IPT_UNPAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("IptUnpaidFiscalYear")
                         .HasColumnName("IPT_UNPAID_FISCAL_YEAR")
@@ -12904,17 +12846,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(60)")
                         .HasMaxLength(60);
 
-                    b.Property<decimal?>("Motherlanguageid")
+                    b.Property<int?>("Motherlanguageid")
                         .HasColumnName("MOTHERLANGUAGEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Nationalityid")
+                    b.Property<int?>("Nationalityid")
                         .HasColumnName("NATIONALITYID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Ocupationid")
+                    b.Property<int?>("Ocupationid")
                         .HasColumnName("OCUPATIONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Otherdetails")
                         .HasColumnName("OTHERDETAILS")
@@ -12930,9 +12872,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("PHOTO")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("Religionid")
+                    b.Property<int?>("Religionid")
                         .HasColumnName("RELIGIONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Sex")
                         .HasColumnName("SEX")
@@ -12943,33 +12885,33 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(60)")
                         .HasMaxLength(60);
 
-                    b.Property<decimal?>("Tolbikashid")
+                    b.Property<int?>("Tolbikashid")
                         .HasColumnName("TOLBIKASHID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Trackid")
+                    b.Property<int?>("Trackid")
                         .HasColumnName("TRACKID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Vdcid")
+                    b.Property<int?>("Vdcid")
                         .HasColumnName("VDCID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Wardno")
+                    b.Property<int?>("Wardno")
                         .HasColumnName("WARDNO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Zoneid")
+                    b.Property<int?>("Zoneid")
                         .HasColumnName("ZONEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Iid")
                         .HasName("SV_PEOPLE_pkey");
@@ -12979,26 +12921,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SvTbhousekittanumber", b =>
                 {
-                    b.Property<decimal?>("Houseid")
+                    b.Property<int?>("Houseid")
                         .HasColumnName("HOUSEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Landid")
+                    b.Property<int?>("Landid")
                         .HasColumnName("LANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("SV_TBHOUSEKITTANUMBER");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SvVehiclemaster", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Aquiredfrom")
                         .HasColumnName("AQUIREDFROM")
@@ -13010,9 +12952,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Aquisitiontype")
+                    b.Property<int?>("Aquisitiontype")
                         .HasColumnName("AQUISITIONTYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Ccorhprspower")
                         .HasColumnName("CCORHPRSPOWER")
@@ -13041,11 +12983,11 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
@@ -13082,9 +13024,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(12)")
                         .HasMaxLength(12);
 
-                    b.Property<decimal?>("Namasaritaxpayerid")
+                    b.Property<int?>("Namasaritaxpayerid")
                         .HasColumnName("NAMASARITAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Noofcilenders")
                         .HasColumnName("NOOFCILENDERS")
@@ -13116,25 +13058,25 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Taxpayerid")
+                    b.Property<int?>("Taxpayerid")
                         .HasColumnName("TAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Usedfuel")
+                    b.Property<int?>("Usedfuel")
                         .HasColumnName("USEDFUEL")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Usestype")
+                    b.Property<int?>("Usestype")
                         .HasColumnName("USESTYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("VehicleStatus")
                         .HasColumnName("VEHICLE_STATUS")
@@ -13150,9 +13092,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Vehicletype")
+                    b.Property<int?>("Vehicletype")
                         .HasColumnName("VEHICLETYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("SV_VEHICLEMASTER_pkey");
@@ -13162,42 +13104,42 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TaxAddtnlChrgDtls", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Accode")
+                    b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Amount")
+                    b.Property<int?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BillId")
+                    b.Property<int?>("BillId")
                         .HasColumnName("BILL_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BillNo")
+                    b.Property<int?>("BillNo")
                         .HasColumnName("BILL_NO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(9)")
                         .HasMaxLength(9);
 
-                    b.Property<double?>("FlatChargeRate")
+                    b.Property<float?>("FlatChargeRate")
                         .HasColumnName("FLAT_CHARGE_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<short?>("Isapplicableforhouse")
                         .HasColumnName("ISAPPLICABLEFORHOUSE")
@@ -13208,17 +13150,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("LandId")
+                    b.Property<int?>("LandId")
                         .HasColumnName("LAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("RentId")
+                    b.Property<int?>("RentId")
                         .HasColumnName("RENT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ServiceChargePercent")
+                    b.Property<float?>("ServiceChargePercent")
                         .HasColumnName("SERVICE_CHARGE_PERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("ServiceChargeType")
                         .HasColumnName("SERVICE_CHARGE_TYPE")
@@ -13242,85 +13184,85 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TaxMalpot", b =>
                 {
-                    b.Property<double?>("Additionalcharges")
+                    b.Property<float?>("Additionalcharges")
                         .HasColumnName("ADDITIONALCHARGES")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Billdate")
                         .HasColumnName("BILLDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Billid")
+                    b.Property<int?>("Billid")
                         .HasColumnName("BILLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billno")
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Counterid")
+                    b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("Fineamount")
+                    b.Property<float?>("Fineamount")
                         .HasColumnName("FINEAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(9)")
                         .HasMaxLength(9);
 
-                    b.Property<decimal?>("Generalrateid")
+                    b.Property<int?>("Generalrateid")
                         .HasColumnName("GENERALRATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Kittanumber")
                         .HasColumnName("KITTANUMBER")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("Landid")
+                    b.Property<int?>("Landid")
                         .HasColumnName("LANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("LastTaxPaidAmount")
+                    b.Property<float?>("LastTaxPaidAmount")
                         .HasColumnName("LAST_TAX_PAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Netevaluatingarea")
+                    b.Property<int?>("Netevaluatingarea")
                         .HasColumnName("NETEVALUATINGAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Nettaxamount")
+                    b.Property<float?>("Nettaxamount")
                         .HasColumnName("NETTAXAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Nonevaluatedarea")
+                    b.Property<int?>("Nonevaluatedarea")
                         .HasColumnName("NONEVALUATEDAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Rateperunit")
+                    b.Property<float?>("Rateperunit")
                         .HasColumnName("RATEPERUNIT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Reductionalcharges")
+                    b.Property<float?>("Reductionalcharges")
                         .HasColumnName("REDUCTIONALCHARGES")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<long?>("Sn")
                         .HasColumnName("SN")
@@ -13330,114 +13272,114 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SPECIALNOTES")
                         .HasColumnType("text");
 
-                    b.Property<double?>("Taxpaidamount")
+                    b.Property<float?>("Taxpaidamount")
                         .HasColumnName("TAXPAIDAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Taxpayerid")
+                    b.Property<int?>("Taxpayerid")
                         .HasColumnName("TAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Totalarea")
+                    b.Property<int?>("Totalarea")
                         .HasColumnName("TOTALAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("TAX_MALPOT");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TaxMalpotHistory", b =>
                 {
-                    b.Property<double?>("Additionalcharges")
+                    b.Property<float?>("Additionalcharges")
                         .HasColumnName("ADDITIONALCHARGES")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Billdate")
                         .HasColumnName("BILLDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Billid")
+                    b.Property<int?>("Billid")
                         .HasColumnName("BILLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billno")
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Counterid")
+                    b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("Fineamount")
+                    b.Property<float?>("Fineamount")
                         .HasColumnName("FINEAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(9)")
                         .HasMaxLength(9);
 
-                    b.Property<decimal?>("Generalrateid")
+                    b.Property<int?>("Generalrateid")
                         .HasColumnName("GENERALRATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Kittanumber")
                         .HasColumnName("KITTANUMBER")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("Landid")
+                    b.Property<int?>("Landid")
                         .HasColumnName("LANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("LastTaxPaidAmount")
+                    b.Property<float?>("LastTaxPaidAmount")
                         .HasColumnName("LAST_TAX_PAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<long?>("MalpotId")
                         .HasColumnName("MALPOT_ID")
                         .HasColumnType("bigint");
 
-                    b.Property<decimal?>("Netevaluatingarea")
+                    b.Property<int?>("Netevaluatingarea")
                         .HasColumnName("NETEVALUATINGAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Nettaxamount")
+                    b.Property<float?>("Nettaxamount")
                         .HasColumnName("NETTAXAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Nonevaluatedarea")
+                    b.Property<int?>("Nonevaluatedarea")
                         .HasColumnName("NONEVALUATEDAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Rateperunit")
+                    b.Property<float?>("Rateperunit")
                         .HasColumnName("RATEPERUNIT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Reductionalcharges")
+                    b.Property<float?>("Reductionalcharges")
                         .HasColumnName("REDUCTIONALCHARGES")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<long?>("Sn")
                         .HasColumnName("SN")
@@ -13447,34 +13389,34 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SPECIALNOTES")
                         .HasColumnType("text");
 
-                    b.Property<double?>("Taxpaidamount")
+                    b.Property<float?>("Taxpaidamount")
                         .HasColumnName("TAXPAIDAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Taxpayerid")
+                    b.Property<int?>("Taxpayerid")
                         .HasColumnName("TAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Totalarea")
+                    b.Property<int?>("Totalarea")
                         .HasColumnName("TOTALAREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("TAX_MALPOT_HISTORY");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TaxRateCeiling", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("MarriedStatus")
                         .HasColumnName("MARRIED_STATUS")
@@ -13491,9 +13433,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(15)")
                         .HasMaxLength(15);
 
-                    b.Property<double?>("TaxRate")
+                    b.Property<float?>("TaxRate")
                         .HasColumnName("TAX_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -13502,97 +13444,97 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TaxRental", b =>
                 {
-                    b.Property<double?>("Additionalcharges")
+                    b.Property<float?>("Additionalcharges")
                         .HasColumnName("ADDITIONALCHARGES")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Billdate")
                         .HasColumnName("BILLDATE")
                         .HasColumnType("character varying(12)")
                         .HasMaxLength(12);
 
-                    b.Property<decimal?>("Billid")
+                    b.Property<int?>("Billid")
                         .HasColumnName("BILLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billno")
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Constructionid")
+                    b.Property<int?>("Constructionid")
                         .HasColumnName("CONSTRUCTIONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Counterid")
+                    b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Dataentryaddate")
                         .HasColumnName("DATAENTRYADDATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dateentryvsdate")
                         .HasColumnName("DATEENTRYVSDATE")
                         .HasColumnType("character varying(12)")
                         .HasMaxLength(12);
 
-                    b.Property<double?>("Fineamount")
+                    b.Property<float?>("Fineamount")
                         .HasColumnName("FINEAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("LastTaxPaidAmount")
+                    b.Property<float?>("LastTaxPaidAmount")
                         .HasColumnName("LAST_TAX_PAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Month")
+                    b.Property<int?>("Month")
                         .HasColumnName("MONTH")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Nettaxamount")
+                    b.Property<float?>("Nettaxamount")
                         .HasColumnName("NETTAXAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Reductionalcharges")
+                    b.Property<float?>("Reductionalcharges")
                         .HasColumnName("REDUCTIONALCHARGES")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("Rentid")
+                    b.Property<int?>("Rentid")
                         .HasColumnName("RENTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Taxpaidamount")
+                    b.Property<float?>("Taxpaidamount")
                         .HasColumnName("TAXPAIDAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Taxpayerid")
+                    b.Property<int?>("Taxpayerid")
                         .HasColumnName("TAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Year")
+                    b.Property<int?>("Year")
                         .HasColumnName("YEAR")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("TAX_RENTAL");
                 });
@@ -13604,25 +13546,25 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("AnualRentIncome")
+                    b.Property<float?>("AnualRentIncome")
                         .HasColumnName("ANUAL_RENT_INCOME")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Businessid")
+                    b.Property<int?>("Businessid")
                         .HasColumnName("BUSINESSID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ConstructionId")
+                    b.Property<int?>("ConstructionId")
                         .HasColumnName("CONSTRUCTION_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
@@ -13634,52 +13576,52 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsTaxPaidBusinessPerson")
                         .HasColumnName("IS_TAX_PAID_BUSINESS_PERSON")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("text");
 
-                    b.Property<decimal?>("RentInsqfeet")
+                    b.Property<int?>("RentInsqfeet")
                         .HasColumnName("RENT_INSQFEET")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("RentStatus")
                         .HasColumnName("RENT_STATUS")
                         .HasColumnType("character varying(5)")
                         .HasMaxLength(5);
 
-                    b.Property<decimal?>("RentTypeId")
+                    b.Property<int?>("RentTypeId")
                         .HasColumnName("RENT_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Rname")
                         .HasColumnName("RNAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Taxpayerid")
+                    b.Property<int?>("Taxpayerid")
                         .HasColumnName("TAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("ValidUntil")
                         .HasColumnName("VALID_UNTIL")
@@ -13696,117 +13638,116 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Billid")
+                    b.Property<int?>("Billid")
                         .HasColumnName("BILLID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Billno")
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
-                    b.Property<decimal?>("Counterid")
+                    b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Dataentryaddatetime")
                         .HasColumnName("DATAENTRYADDATETIME")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Dataentryvsdate")
                         .HasColumnName("DATAENTRYVSDATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("Fineamount")
+                    b.Property<float?>("Fineamount")
                         .HasColumnName("FINEAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("Houseid")
+                    b.Property<int?>("Houseid")
                         .HasColumnName("HOUSEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("LastTaxPaidAmount")
+                    b.Property<float?>("LastTaxPaidAmount")
                         .HasColumnName("LAST_TAX_PAID_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Month")
+                    b.Property<int?>("Month")
                         .HasColumnName("MONTH")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Nettaxamount")
+                    b.Property<float?>("Nettaxamount")
                         .HasColumnName("NETTAXAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Reductionalcharges")
+                    b.Property<float?>("Reductionalcharges")
                         .HasColumnName("REDUCTIONALCHARGES")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("Servicetype")
                         .HasColumnName("SERVICETYPE")
                         .HasColumnType("character varying(5)")
                         .HasMaxLength(5);
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Specialnotes")
                         .HasColumnName("SPECIALNOTES")
                         .HasColumnType("text");
 
-                    b.Property<double?>("Taxpaidamount")
+                    b.Property<float?>("Taxpaidamount")
                         .HasColumnName("TAXPAIDAMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Taxpayerid")
+                    b.Property<int?>("Taxpayerid")
                         .HasColumnName("TAXPAYERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Useride")
+                    b.Property<int?>("Useride")
                         .HasColumnName("USERIDE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Year")
+                    b.Property<int?>("Year")
                         .HasColumnName("YEAR")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("TAX_SANITATION");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TaxThliIssuedCntr", b =>
                 {
-                    b.Property<decimal?>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("CntrId")
+                    b.Property<int?>("CntrId")
                         .HasColumnName("CNTR_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TheliId")
+                    b.Property<int?>("TheliId")
                         .HasColumnName("THELI_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id")
-                        .HasName("TAX_THLI_ISSUED_CNTR_pkey");
+                    b.HasKey("Id");
 
                     b.HasIndex("CntrId");
 
@@ -13817,26 +13758,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tbhousekittanumber", b =>
                 {
-                    b.Property<decimal?>("Houseid")
+                    b.Property<int?>("Houseid")
                         .HasColumnName("HOUSEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Landid")
+                    b.Property<int?>("Landid")
                         .HasColumnName("LANDID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("TBHOUSEKITTANUMBER");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBankAccntType", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Engname")
                         .HasColumnName("ENGNAME")
@@ -13860,9 +13801,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBankFinanceInstitutue", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AccountName")
                         .HasColumnName("ACCOUNT_NAME")
@@ -13888,31 +13829,31 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtMgmt", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BgtSubHeadId")
+                    b.Property<int?>("BgtSubHeadId")
                         .HasColumnName("BGT_SUB_HEAD_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("MinistryId")
+                    b.Property<int?>("MinistryId")
                         .HasColumnName("MINISTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<double?>("TotalBgtAmt")
+                    b.Property<float?>("TotalBgtAmt")
                         .HasColumnName("TOTAL_BGT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -13921,21 +13862,21 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtMgmtExp", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("BgtAmt")
+                    b.Property<float?>("BgtAmt")
                         .HasColumnName("BGT_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BgtMgmtId")
+                    b.Property<int?>("BgtMgmtId")
                         .HasColumnName("BGT_MGMT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -13951,21 +13892,21 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtMgmtExpOrg", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("BgtAmtOrg")
+                    b.Property<float?>("BgtAmtOrg")
                         .HasColumnName("BGT_AMT_ORG")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BgtMgmtOrgId")
+                    b.Property<int?>("BgtMgmtOrgId")
                         .HasColumnName("BGT_MGMT_ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -13981,21 +13922,21 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtMgmtExpRelease", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amt")
+                    b.Property<float?>("Amt")
                         .HasColumnName("AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BgtMgmtReleaseId")
+                    b.Property<int?>("BgtMgmtReleaseId")
                         .HasColumnName("BGT_MGMT_RELEASE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -14011,35 +13952,35 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtMgmtOrg", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BgtSubHeadId")
+                    b.Property<int?>("BgtSubHeadId")
                         .HasColumnName("BGT_SUB_HEAD_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("MinistryId")
+                    b.Property<int?>("MinistryId")
                         .HasColumnName("MINISTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OrgId")
+                    b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<double?>("TotalBgtAmtOrg")
+                    b.Property<float?>("TotalBgtAmtOrg")
                         .HasColumnName("TOTAL_BGT_AMT_ORG")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -14048,34 +13989,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtMgmtRelease", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amt")
+                    b.Property<float?>("Amt")
                         .HasColumnName("AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BgtReleaseId")
+                    b.Property<int?>("BgtReleaseId")
                         .HasColumnName("BGT_RELEASE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BgtSubHeadId")
+                    b.Property<int?>("BgtSubHeadId")
                         .HasColumnName("BGT_SUB_HEAD_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("MinistryId")
+                    b.Property<int?>("MinistryId")
                         .HasColumnName("MINISTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OrgId")
+                    b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -14091,34 +14032,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtMgmtSrc", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amt")
+                    b.Property<float?>("Amt")
                         .HasColumnName("AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BgtMgmtExpId")
+                    b.Property<int?>("BgtMgmtExpId")
                         .HasColumnName("BGT_MGMT_EXP_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentProcessId")
+                    b.Property<int?>("PaymentProcessId")
                         .HasColumnName("PAYMENT_PROCESS_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentTypeId")
+                    b.Property<int?>("PaymentTypeId")
                         .HasColumnName("PAYMENT_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("SourceId")
+                    b.Property<int?>("SourceId")
                         .HasColumnName("SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -14129,43 +14070,43 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtMgmtSrcOrg", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amt")
+                    b.Property<float?>("Amt")
                         .HasColumnName("AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BgtMgmtExpOrgId")
+                    b.Property<int?>("BgtMgmtExpOrgId")
                         .HasColumnName("BGT_MGMT_EXP_ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CcActive")
                         .HasColumnName("CC_ACTIVE")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("CcId")
+                    b.Property<int?>("CcId")
                         .HasColumnName("CC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentProcessId")
+                    b.Property<int?>("PaymentProcessId")
                         .HasColumnName("PAYMENT_PROCESS_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentTypeId")
+                    b.Property<int?>("PaymentTypeId")
                         .HasColumnName("PAYMENT_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("SourceId")
+                    b.Property<int?>("SourceId")
                         .HasColumnName("SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -14178,43 +14119,43 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtMgmtSrcRelease", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amt")
+                    b.Property<float?>("Amt")
                         .HasColumnName("AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("BgtMgmtExpReleaseId")
+                    b.Property<int?>("BgtMgmtExpReleaseId")
                         .HasColumnName("BGT_MGMT_EXP_RELEASE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("CcActive")
                         .HasColumnName("CC_ACTIVE")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
-                    b.Property<decimal?>("CcId")
+                    b.Property<int?>("CcId")
                         .HasColumnName("CC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentProcessId")
+                    b.Property<int?>("PaymentProcessId")
                         .HasColumnName("PAYMENT_PROCESS_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentTypeId")
+                    b.Property<int?>("PaymentTypeId")
                         .HasColumnName("PAYMENT_TYPE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("SourceId")
+                    b.Property<int?>("SourceId")
                         .HasColumnName("SOURCE_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -14227,13 +14168,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblBgtRelease", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ApprovedBgtYearly")
+                    b.Property<float?>("ApprovedBgtYearly")
                         .HasColumnName("APPROVED_BGT_YEARLY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("ChalaniNo")
                         .HasColumnName("CHALANI_NO")
@@ -14250,30 +14191,30 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("MinistryId")
+                    b.Property<int?>("MinistryId")
                         .HasColumnName("MINISTRY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("OrgId")
+                    b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("PreviousReleaseAmt")
+                    b.Property<float?>("PreviousReleaseAmt")
                         .HasColumnName("PREVIOUS_RELEASE_AMT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("ReleaseAmount")
+                    b.Property<float?>("ReleaseAmount")
                         .HasColumnName("RELEASE_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("ReleaseDate")
                         .HasColumnName("RELEASE_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("ReleaseType")
+                    b.Property<int?>("ReleaseType")
                         .HasColumnName("RELEASE_TYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("SpecialTippani")
                         .HasColumnName("SPECIAL_TIPPANI")
@@ -14288,38 +14229,38 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblConstructionOtherCharges", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Accode")
+                    b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("FlatChargeRate")
+                    b.Property<int?>("FlatChargeRate")
                         .HasColumnName("FLAT_CHARGE_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("PercentOfTax")
+                    b.Property<float?>("PercentOfTax")
                         .HasColumnName("PERCENT_OF_TAX")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ServiceChargeCalculation")
+                    b.Property<int?>("ServiceChargeCalculation")
                         .HasColumnName("SERVICE_CHARGE_CALCULATION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -14330,13 +14271,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblDataHistory", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime?>("AddDate")
                         .HasColumnName("ADD_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ComputerName")
                         .HasColumnName("COMPUTER_NAME")
@@ -14372,9 +14313,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(20)")
                         .HasMaxLength(20);
 
-                    b.Property<decimal?>("UserIdA")
+                    b.Property<int?>("UserIdA")
                         .HasColumnName("USER_ID_A")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("WindowsUser")
                         .HasColumnName("WINDOWS_USER")
@@ -14388,18 +14329,18 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblDegister", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("IsFullDegister")
+                    b.Property<int?>("IsFullDegister")
                         .HasColumnName("IS_FULL_DEGISTER")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("NpName")
                         .HasColumnName("NP_NAME")
@@ -14417,9 +14358,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblKharidaAadash", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
@@ -14438,38 +14379,38 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblLandOtherCharges", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Accode")
+                    b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("FlatChargeRate")
+                    b.Property<int?>("FlatChargeRate")
                         .HasColumnName("FLAT_CHARGE_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("PercentOfTax")
+                    b.Property<float?>("PercentOfTax")
                         .HasColumnName("PERCENT_OF_TAX")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ServiceChargeCalculation")
+                    b.Property<int?>("ServiceChargeCalculation")
                         .HasColumnName("SERVICE_CHARGE_CALCULATION")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -14480,34 +14421,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblMalpotOtherCharges", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Accode")
+                    b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("FlatChargeRate")
+                    b.Property<int?>("FlatChargeRate")
                         .HasColumnName("FLAT_CHARGE_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("PercentOfTax")
+                    b.Property<float?>("PercentOfTax")
                         .HasColumnName("PERCENT_OF_TAX")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -14520,9 +14461,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblNaliType", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -14546,9 +14487,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblOrganizationmaster", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Descriptiong")
                         .HasColumnName("DESCRIPTIONG")
@@ -14570,9 +14511,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblPaymentOrder", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("DateBs")
                         .HasColumnName("DATE_BS")
@@ -14600,26 +14541,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblPaymentOrderDetails", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("LinkVoucherId")
+                    b.Property<int?>("LinkVoucherId")
                         .HasColumnName("LINK_VOUCHER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PaymentOrderId")
+                    b.Property<int?>("PaymentOrderId")
                         .HasColumnName("PAYMENT_ORDER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PaymentPermissNo")
                         .HasColumnName("PAYMENT_PERMISS_NO")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("VoucherId")
+                    b.Property<int?>("VoucherId")
                         .HasColumnName("VOUCHER_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -14630,9 +14571,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblPaymentProcess", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PaymentProcess")
                         .HasColumnName("PAYMENT_PROCESS")
@@ -14656,9 +14597,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblPaymentType", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("PaymentType")
                         .HasColumnName("PAYMENT_TYPE")
@@ -14682,26 +14623,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblPropertyTax", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(12)")
                         .HasMaxLength(12);
 
-                    b.Property<double?>("HouseLandAmount")
+                    b.Property<float?>("HouseLandAmount")
                         .HasColumnName("HOUSE_LAND_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("MalpotAmount")
+                    b.Property<float?>("MalpotAmount")
                         .HasColumnName("MALPOT_AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("NpEntryDate")
                         .HasColumnName("NP_ENTRY_DATE")
@@ -14712,9 +14653,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("REMARKS")
                         .HasColumnType("text");
 
-                    b.Property<double?>("TotalTax")
+                    b.Property<float?>("TotalTax")
                         .HasColumnName("TOTAL_TAX")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -14723,26 +14664,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblSanitaionTax", b =>
                 {
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Amount")
+                    b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(15)")
                         .HasMaxLength(15);
 
-                    b.Property<double?>("FromArea")
+                    b.Property<float?>("FromArea")
                         .HasColumnName("FROM_AREA")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("IsApartment")
                         .HasColumnName("IS_APARTMENT")
@@ -14753,62 +14694,62 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("REMARKS")
                         .HasColumnType("text");
 
-                    b.Property<double?>("ToArea")
+                    b.Property<float?>("ToArea")
                         .HasColumnName("TO_AREA")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.ToTable("TBL_SANITAION_TAX");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblStatusDetails", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("BrandId")
+                    b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ItemId")
+                    b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Masterid")
+                    b.Property<int?>("Masterid")
                         .HasColumnName("MASTERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("NotRepairQty")
+                    b.Property<float?>("NotRepairQty")
                         .HasColumnName("NOT_REPAIR_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("NotUseInQty")
+                    b.Property<float?>("NotUseInQty")
                         .HasColumnName("NOT_USE_IN_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("Rate")
+                    b.Property<float?>("Rate")
                         .HasColumnName("RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<double?>("RepairQty")
+                    b.Property<float?>("RepairQty")
                         .HasColumnName("REPAIR_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("SpecId")
+                    b.Property<int?>("SpecId")
                         .HasColumnName("SPEC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("StockQty")
+                    b.Property<float?>("StockQty")
                         .HasColumnName("STOCK_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("UnitId")
+                    b.Property<int?>("UnitId")
                         .HasColumnName("UNIT_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("UseInQty")
+                    b.Property<float?>("UseInQty")
                         .HasColumnName("USE_IN_QTY")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -14817,13 +14758,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblTaxType", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Code")
                         .HasColumnName("CODE")
@@ -14850,46 +14791,46 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblTaxsourcerecordnew", b =>
                 {
-                    b.Property<decimal>("Taxsrcid")
+                    b.Property<int>("Taxsrcid")
                         .HasColumnName("TAXSRCID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Amountnotcollected")
+                    b.Property<int?>("Amountnotcollected")
                         .HasColumnName("AMOUNTNOTCOLLECTED")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("NetincomeCurfy")
+                    b.Property<int?>("NetincomeCurfy")
                         .HasColumnName("NETINCOME_CURFY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("NetincomeLastfy")
+                    b.Property<int?>("NetincomeLastfy")
                         .HasColumnName("NETINCOME_LASTFY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Recordtype")
+                    b.Property<int?>("Recordtype")
                         .HasColumnName("RECORDTYPE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Taxnotpaidtaxpayercnt")
+                    b.Property<int?>("Taxnotpaidtaxpayercnt")
                         .HasColumnName("TAXNOTPAIDTAXPAYERCNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TaxpaidtaxpayercntCurfy")
+                    b.Property<int?>("TaxpaidtaxpayercntCurfy")
                         .HasColumnName("TAXPAIDTAXPAYERCNT_CURFY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("TaxpaidtaxpayercntLastfy")
+                    b.Property<int?>("TaxpaidtaxpayercntLastfy")
                         .HasColumnName("TAXPAIDTAXPAYERCNT_LASTFY")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Totaltaxpayercnt")
+                    b.Property<int?>("Totaltaxpayercnt")
                         .HasColumnName("TOTALTAXPAYERCNT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Taxsrcid")
                         .HasName("TBL_TAXSOURCERECORDNEW_pkey");
@@ -14899,9 +14840,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblTolabikasaOrg", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
@@ -14938,9 +14879,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Wardno")
+                    b.Property<int?>("Wardno")
                         .HasColumnName("WARDNO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -14949,9 +14890,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblVehicleParts", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
@@ -14975,9 +14916,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tblbilltype", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -15001,34 +14942,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblbusinessServiceChMst", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Accode")
+                    b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("Flatchargerate")
+                    b.Property<float?>("Flatchargerate")
                         .HasColumnName("FLATCHARGERATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("Servicechargepercent")
+                    b.Property<float?>("Servicechargepercent")
                         .HasColumnName("SERVICECHARGEPERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -15041,11 +14982,11 @@ namespace IMIS_DataEntity.Migrations
                 {
                     b.Property<DateTime?>("Exedate")
                         .HasColumnName("EXEDATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
-                    b.Property<decimal?>("Exeid")
+                    b.Property<int?>("Exeid")
                         .HasColumnName("EXEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("TBLEXEVERSION");
                 });
@@ -15062,81 +15003,81 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(9)")
                         .HasMaxLength(9);
 
-                    b.Property<decimal?>("Groupid")
+                    b.Property<int?>("Groupid")
                         .HasColumnName("GROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Rateperunit")
+                    b.Property<int?>("Rateperunit")
                         .HasColumnName("RATEPERUNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Snsubgroup")
+                    b.Property<int?>("Snsubgroup")
                         .HasColumnName("SNSUBGROUP")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Subgroupid")
+                    b.Property<int?>("Subgroupid")
                         .HasColumnName("SUBGROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("TBLFYWISEBTRATES");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tblfywisempotassrate", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AreaUpto")
+                    b.Property<int?>("AreaUpto")
                         .HasColumnName("AREA_UPTO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("EachAreaRate")
+                    b.Property<int?>("EachAreaRate")
                         .HasColumnName("EACH_AREA_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(9)")
                         .HasMaxLength(9);
 
-                    b.Property<decimal?>("ForEachArea")
+                    b.Property<int?>("ForEachArea")
                         .HasColumnName("FOR_EACH_AREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Groupid")
+                    b.Property<int?>("Groupid")
                         .HasColumnName("GROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Rateperunit")
+                    b.Property<int?>("Rateperunit")
                         .HasColumnName("RATEPERUNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Subgroupid")
+                    b.Property<int?>("Subgroupid")
                         .HasColumnName("SUBGROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -15151,9 +15092,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblhlAddSubtract", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("AddFlag")
                         .HasColumnName("ADD_FLAG")
@@ -15170,17 +15111,17 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("FlatRate")
+                    b.Property<int?>("FlatRate")
                         .HasColumnName("FLAT_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("RatePercent")
+                    b.Property<float?>("RatePercent")
                         .HasColumnName("RATE_PERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Sn")
                         .HasName("TBLHL_ADD_SUBTRACT_pkey");
@@ -15190,9 +15131,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TbllandTypeArea", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Code")
                         .IsRequired()
@@ -15217,9 +15158,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tblmalpotgroup", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -15238,43 +15179,43 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tblmalpotrates", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AreaUpto")
+                    b.Property<int?>("AreaUpto")
                         .HasColumnName("AREA_UPTO")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("EachAreaRate")
+                    b.Property<int?>("EachAreaRate")
                         .HasColumnName("EACH_AREA_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("ForEachArea")
+                    b.Property<int?>("ForEachArea")
                         .HasColumnName("FOR_EACH_AREA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Groupid")
+                    b.Property<int?>("Groupid")
                         .HasColumnName("GROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Rateperunit")
+                    b.Property<int?>("Rateperunit")
                         .HasColumnName("RATEPERUNIT")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Subgroupid")
+                    b.Property<int?>("Subgroupid")
                         .HasColumnName("SUBGROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -15287,27 +15228,27 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tblmalpotsubgroup", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(150)")
                         .HasMaxLength(150);
 
-                    b.Property<decimal?>("Groupid")
+                    b.Property<int?>("Groupid")
                         .HasColumnName("GROUPID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Worda")
+                    b.Property<int?>("Worda")
                         .HasColumnName("WORDA")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -15318,26 +15259,26 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TbltaxFineRebate", b =>
                 {
-                    b.Property<decimal>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("DurationInYears")
+                    b.Property<float?>("DurationInYears")
                         .HasColumnName("DURATION_IN_YEARS")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<decimal?>("FlatRate")
+                    b.Property<int?>("FlatRate")
                         .HasColumnName("FLAT_RATE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("RatePercent")
+                    b.Property<float?>("RatePercent")
                         .HasColumnName("RATE_PERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.Property<string>("RebateFlag")
                         .HasColumnName("REBATE_FLAG")
@@ -15357,13 +15298,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tbltaxcalculationroka", b =>
                 {
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Iid")
+                    b.Property<int?>("Iid")
                         .HasColumnName("IID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Reason")
                         .HasColumnName("REASON")
@@ -15380,34 +15321,34 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.TblvehSerChMstr", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("AccId")
+                    b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Accode")
+                    b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
-                    b.Property<double?>("FlatChargeRate")
+                    b.Property<float?>("FlatChargeRate")
                         .HasColumnName("FLAT_CHARGE_RATE")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
-                    b.Property<decimal?>("Rateid")
+                    b.Property<int?>("Rateid")
                         .HasColumnName("RATEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<double?>("ServiceChargePercent")
+                    b.Property<float?>("ServiceChargePercent")
                         .HasColumnName("SERVICE_CHARGE_PERCENT")
-                        .HasColumnType("double precision");
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -15418,13 +15359,13 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tbusersecurityrights", b =>
                 {
-                    b.Property<decimal?>("Rightsid")
+                    b.Property<int?>("Rightsid")
                         .HasColumnName("RIGHTSID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Userid")
+                    b.Property<int?>("Userid")
                         .HasColumnName("USERID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("TBUSERSECURITYRIGHTS");
                 });
@@ -15442,9 +15383,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Id")
+                    b.Property<int?>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Nepname")
                         .IsRequired()
@@ -15466,16 +15407,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACTIVE")
                         .HasColumnType("boolean");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime>("Createdat")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("CREATEDAT")
-                        .HasColumnType("TIMESTAMP");
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("'2001-01-01 00:00:00'::timestamp without time zone");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("Createdby")
                         .HasColumnName("CREATEDBY")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<string>("DisplayName")
+                    b.Property<string>("Displayname")
                         .HasColumnName("DISPLAYNAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
@@ -15485,20 +15428,22 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<bool>("IsLocked")
+                    b.Property<bool>("Islocked")
                         .HasColumnName("ISLOCKED")
                         .HasColumnType("boolean");
 
-                    b.Property<string>("MenuName")
+                    b.Property<string>("Menuname")
                         .HasColumnName("MENUNAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<short>("MenuOrder")
+                    b.Property<short>("Menuorder")
+                        .ValueGeneratedOnAdd()
                         .HasColumnName("MENUORDER")
-                        .HasColumnType("smallint");
+                        .HasColumnType("smallint")
+                        .HasDefaultValueSql("'0'::smallint");
 
-                    b.Property<string>("MenuUrl")
+                    b.Property<string>("Menuurl")
                         .HasColumnName("MENUURL")
                         .HasColumnType("character varying(500)")
                         .HasMaxLength(500);
@@ -15513,18 +15458,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(90)")
                         .HasMaxLength(90);
 
-                    b.Property<decimal>("ParentMenuId")
+                    b.Property<int>("Parentmenuid")
                         .HasColumnName("PARENTMENUID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Rightsname")
                         .HasColumnName("RIGHTSNAME")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
-                    b.Property<decimal?>("Sn")
+                    b.Property<int?>("Sn")
                         .HasColumnName("SN")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<bool>("Visible")
                         .HasColumnName("VISIBLE")
@@ -15542,9 +15487,7 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Code")
-                        .HasColumnName("CODE")
-                        .HasColumnType("character varying(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -15557,37 +15500,26 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
-                    b.Property<decimal?>("EmpId")
-                        .HasColumnName("EMP_ID")
-                        .HasColumnType("numeric(22,0)");
+                    b.Property<int?>("EmpId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Engname")
-                        .HasColumnName("ENGNAME")
-                        .HasColumnType("character varying(60)")
-                        .HasMaxLength(60);
+                        .HasColumnType("text");
 
                     b.Property<string>("FiscalYear")
-                        .HasColumnName("FISCAL_YEAR")
-                        .HasColumnType("character varying(12)")
-                        .HasMaxLength(12);
+                        .HasColumnType("text");
 
                     b.Property<string>("FromCentral")
-                        .HasColumnName("FROM_CENTRAL")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                        .HasColumnType("text");
 
                     b.Property<string>("Grants")
-                        .HasColumnName("GRANTS")
-                        .HasColumnType("character varying(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("Lastloggedon")
-                        .HasColumnName("LASTLOGGEDON")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("Lastloggedout")
-                        .HasColumnName("LASTLOGGEDOUT")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -15596,9 +15528,7 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Nepname")
-                        .HasColumnName("NEPNAME")
-                        .HasColumnType("character varying(70)")
-                        .HasMaxLength(70);
+                        .HasColumnType("text");
 
                     b.Property<string>("NormalizedEmail")
                         .HasColumnType("character varying(256)")
@@ -15609,9 +15539,7 @@ namespace IMIS_DataEntity.Migrations
                         .HasMaxLength(256);
 
                     b.Property<string>("OrgCode")
-                        .HasColumnName("ORG_CODE")
-                        .HasColumnType("character varying(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("text");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("text");
@@ -15623,8 +15551,7 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<DateTime?>("PwdChangedDate")
-                        .HasColumnName("PWD_CHANGED_DATE")
-                        .HasColumnType("date");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
@@ -15632,32 +15559,24 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
-                    b.Property<decimal?>("Updatedby")
-                        .HasColumnName("UPDATEDBY")
-                        .HasColumnType("numeric(22,0)");
+                    b.Property<int?>("Updatedby")
+                        .HasColumnType("integer");
 
                     b.Property<string>("UserName")
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
 
                     b.Property<string>("Userid")
-                        .HasColumnName("USERID")
-                        .HasColumnType("character varying(20)")
-                        .HasMaxLength(20);
+                        .HasColumnType("text");
 
                     b.Property<string>("Userpassword")
-                        .HasColumnName("USERPASSWORD")
-                        .HasColumnType("character varying(200)")
-                        .HasMaxLength(200);
+                        .HasColumnType("text");
 
                     b.Property<short?>("Userstatus")
-                        .HasColumnName("USERSTATUS")
                         .HasColumnType("smallint");
 
                     b.Property<string>("WardNo")
-                        .HasColumnName("WARD_NO")
-                        .HasColumnType("character varying(10)")
-                        .HasMaxLength(10);
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -15678,9 +15597,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Districtid")
+                    b.Property<int?>("Districtid")
                         .HasColumnName("DISTRICTID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Engname")
                         .IsRequired()
@@ -15699,22 +15618,22 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Typeid")
+                    b.Property<int?>("Typeid")
                         .HasColumnName("TYPEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("Vdcid")
+                    b.Property<int?>("Vdcid")
                         .HasColumnName("VDCID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("VDC");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.WardMaster", b =>
                 {
-                    b.Property<decimal>("Id")
+                    b.Property<int>("Id")
                         .HasColumnName("ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Address")
                         .HasColumnName("ADDRESS")
@@ -15736,21 +15655,21 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("NumberOfMembers")
+                    b.Property<int?>("NumberOfMembers")
                         .HasColumnName("NUMBER_OF_MEMBERS")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("PramukhId")
+                    b.Property<int?>("PramukhId")
                         .HasColumnName("PRAMUKH_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("UppramukhId")
+                    b.Property<int?>("UppramukhId")
                         .HasColumnName("UPPRAMUKH_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
-                    b.Property<decimal?>("WardSecretaryId")
+                    b.Property<int?>("WardSecretaryId")
                         .HasColumnName("WARD_SECRETARY_ID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -15782,18 +15701,18 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<decimal?>("Regionid")
+                    b.Property<int?>("Regionid")
                         .HasColumnName("REGIONID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
-                    b.Property<decimal?>("Zoneid")
+                    b.Property<int?>("Zoneid")
                         .HasColumnName("ZONEID")
-                        .HasColumnType("numeric(22,0)");
+                        .HasColumnType("integer");
 
                     b.ToTable("ZONE");
                 });
@@ -16875,8 +16794,8 @@ namespace IMIS_DataEntity.Migrations
                         .IsRequired();
 
                     b.HasOne("IMIS_DataEntity.EntityClass.PisEmpDep", "Dept")
-                        .WithMany("PisEmpDepSource")
-                        .HasForeignKey("DeptId")
+                        .WithOne("PisEmpDepSource")
+                        .HasForeignKey("IMIS_DataEntity.EntityClass.PisEmpDepSource", "DeptId")
                         .HasConstraintName("SYS_C004447")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

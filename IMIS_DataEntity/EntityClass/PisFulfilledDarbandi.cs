@@ -12,14 +12,14 @@ namespace IMIS_DataEntity.EntityClass
             PisReplacedInDarbandi = new HashSet<PisReplacedInDarbandi>();
         }
 
-        public decimal Sn { get; set; }
-        public decimal? OfficeId { get; set; }
-        public decimal? DarbandiId { get; set; }
-        public decimal? PersonTypeId { get; set; }
-        public decimal? EmpId { get; set; }
+        public int Sn { get; set; }
+        public int? OfficeId { get; set; }
+        public int? DarbandiId { get; set; }
+        public int? PersonTypeId { get; set; }
+        public int? EmpId { get; set; }
         public string DateFulfilled { get; set; }
-        public decimal? AppointmntType { get; set; }
-        public decimal? LocalPostId { get; set; }
+        public int? AppointmntType { get; set; }
+        public int? LocalPostId { get; set; }
 
         public virtual PisDarbandi Darbandi { get; set; }
         public virtual PisLocalPostMaster LocalPost { get; set; }

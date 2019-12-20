@@ -11,11 +11,11 @@ namespace IMIS_DataEntity.EntityClass
             TblBgtMgmtSrcRelease = new HashSet<TblBgtMgmtSrcRelease>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string Nepname { get; set; }
         public string Engname { get; set; }
         public string Code { get; set; }
-        public decimal? Districtid { get; set; }
+        public int? Districtid { get; set; }
         public string Remarks { get; set; }
 
         public virtual ICollection<TblBgtMgmtSrcOrg> TblBgtMgmtSrcOrg { get; set; }

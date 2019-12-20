@@ -5,27 +5,27 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class Celedger20682069
     {
-        public decimal? Sn { get; set; }
-        public decimal? Iid { get; set; }
-        public decimal? Houseid { get; set; }
-        public decimal? Constructiontypeid { get; set; }
-        public decimal? Constructionid { get; set; }
-        public decimal? Talanumber { get; set; }
-        public decimal? Totalarea { get; set; }
-        public decimal? Rateid { get; set; }
-        public decimal? Rateperunit { get; set; }
-        public decimal? Calculatedvalue { get; set; }
+        public int? Sn { get; set; }
+        public int? Iid { get; set; }
+        public int? Houseid { get; set; }
+        public int? Constructiontypeid { get; set; }
+        public int? Constructionid { get; set; }
+        public int? Talanumber { get; set; }
+        public int? Totalarea { get; set; }
+        public int? Rateid { get; set; }
+        public int? Rateperunit { get; set; }
+        public int? Calculatedvalue { get; set; }
         public string Vsdateofmade { get; set; }
-        public decimal? Deppercent { get; set; }
-        public decimal? Depreciationamount { get; set; }
-        public decimal? Otherplusinevaluations { get; set; }
-        public decimal? Otherminusinevaluations { get; set; }
+        public int? Deppercent { get; set; }
+        public int? Depreciationamount { get; set; }
+        public int? Otherplusinevaluations { get; set; }
+        public int? Otherminusinevaluations { get; set; }
         public string Otherplusminusdescriptions { get; set; }
-        public decimal? Netcalculatedvalue { get; set; }
-        public decimal? Noncompletionreasonid { get; set; }
+        public int? Netcalculatedvalue { get; set; }
+        public int? Noncompletionreasonid { get; set; }
         public string Noncompletionreasons { get; set; }
         public string Remarks { get; set; }
-        public decimal? Spacemeasuringunit { get; set; }
-        public decimal? Taxed { get; set; }
+        public int? Spacemeasuringunit { get; set; }
+        public int? Taxed { get; set; }
     }
 }

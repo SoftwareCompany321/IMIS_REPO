@@ -30,11 +30,11 @@ namespace IMIS_DataEntity.EntityClass
             TblvehSerChMstr = new HashSet<TblvehSerChMstr>();
         }
 
-        public decimal AccId { get; set; }
+        public int AccId { get; set; }
         public string Code { get; set; }
         public string NepName { get; set; }
         public string EngName { get; set; }
-        public decimal? ParentAccId { get; set; }
+        public int? ParentAccId { get; set; }
         public int? GrpLevel { get; set; }
         public string IsFixed { get; set; }
         public string IsTransactable { get; set; }
@@ -42,12 +42,12 @@ namespace IMIS_DataEntity.EntityClass
         public string DispCode { get; set; }
         public string DispName { get; set; }
         public string AccType { get; set; }
-        public decimal? TypeId { get; set; }
+        public int? TypeId { get; set; }
         public string AccCode { get; set; }
-        public decimal? SubModuleId { get; set; }
+        public int? SubModuleId { get; set; }
         public string FiscalYear { get; set; }
         public string IsHide { get; set; }
-        public decimal? Iscapitalcurrent { get; set; }
+        public int? Iscapitalcurrent { get; set; }
 
         public virtual AccTransType Type { get; set; }
         public virtual ICollection<AccBgtTransfer> AccBgtTransferFromAcc { get; set; }

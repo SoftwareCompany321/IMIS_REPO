@@ -7,35 +7,34 @@ namespace IMIS_DataEntity.EntityClass
     {
         public PisEmpDep()
         {
-            PisEmpDepSource = new HashSet<PisEmpDepSource>();
             PisEmployeeMaster = new HashSet<PisEmployeeMaster>();
         }
 
-        public decimal DeptId { get; set; }
+        public int DeptId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string Description { get; set; }
-        public decimal SalaryAccId { get; set; }
-        public decimal? AllowanceAccId { get; set; }
-        public decimal? AddPfAccId { get; set; }
-        public decimal? AddInsrnceAccId { get; set; }
-        public decimal? SubPfAccId { get; set; }
-        public decimal? SubInsrnceAccId { get; set; }
-        public decimal? CitAccId { get; set; }
-        public decimal? IncmeTaxAccId { get; set; }
-        public decimal? LendPfDAccId { get; set; }
-        public decimal? SocSecTax { get; set; }
-        public decimal? BhattaAccId { get; set; }
-        public decimal? PeskiKattiAccId { get; set; }
-        public decimal? OthrKattiAccId { get; set; }
-        public decimal? AbsntKattiAccId { get; set; }
-        public decimal? SapatiKattiAccId { get; set; }
-        public decimal? BudgetSourceId { get; set; }
-        public decimal? TdsAccId { get; set; }
-        public decimal? WorkId { get; set; }
-        public decimal? BudjetSourceId { get; set; }
+        public int SalaryAccId { get; set; }
+        public int? AllowanceAccId { get; set; }
+        public int? AddPfAccId { get; set; }
+        public int? AddInsrnceAccId { get; set; }
+        public int? SubPfAccId { get; set; }
+        public int? SubInsrnceAccId { get; set; }
+        public int? CitAccId { get; set; }
+        public int? IncmeTaxAccId { get; set; }
+        public int? LendPfDAccId { get; set; }
+        public int? SocSecTax { get; set; }
+        public int? BhattaAccId { get; set; }
+        public int? PeskiKattiAccId { get; set; }
+        public int? OthrKattiAccId { get; set; }
+        public int? AbsntKattiAccId { get; set; }
+        public int? SapatiKattiAccId { get; set; }
+        public int? BudgetSourceId { get; set; }
+        public int? TdsAccId { get; set; }
+        public int? WorkId { get; set; }
+        public int? BudjetSourceId { get; set; }
 
-        public virtual ICollection<PisEmpDepSource> PisEmpDepSource { get; set; }
+        public virtual PisEmpDepSource PisEmpDepSource { get; set; }
         public virtual ICollection<PisEmployeeMaster> PisEmployeeMaster { get; set; }
     }
 }

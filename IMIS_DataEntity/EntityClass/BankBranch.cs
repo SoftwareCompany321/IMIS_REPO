@@ -10,8 +10,8 @@ namespace IMIS_DataEntity.EntityClass
             OrgBankAccount = new HashSet<OrgBankAccount>();
         }
 
-        public decimal BranchId { get; set; }
-        public decimal? Bankid { get; set; }
+        public int BranchId { get; set; }
+        public int? Bankid { get; set; }
         public string Nepname { get; set; }
         public string Engname { get; set; }
         public string BranchCode { get; set; }

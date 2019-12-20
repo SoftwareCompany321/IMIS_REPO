@@ -21,3 +21,6 @@ The generated UI requires MVC. To add MVC to your app:
 
 Apps that use ASP.NET Core Identity should also use HTTPS. To enable HTTPS see https://go.microsoft.com/fwlink/?linkid=848054.
 
+
+COPY PUBLIC."ACC_ACC_MASTER" FROM 'E:\IMISDATA\accmaster.csv' WITH CSV HEADER;
+ALTER TABLE public."Imis_Menu" ADD COLUMN Id SERIAL PRIMARY KEY;

@@ -5,14 +5,14 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class WardMaster
     {
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string NepName { get; set; }
         public string EngName { get; set; }
         public string Address { get; set; }
-        public decimal? PramukhId { get; set; }
-        public decimal? UppramukhId { get; set; }
-        public decimal? NumberOfMembers { get; set; }
-        public decimal? WardSecretaryId { get; set; }
+        public int? PramukhId { get; set; }
+        public int? UppramukhId { get; set; }
+        public int? NumberOfMembers { get; set; }
+        public int? WardSecretaryId { get; set; }
         public string MobileNo { get; set; }
 
         public virtual AccPadadhikariMstr Pramukh { get; set; }

@@ -5,34 +5,34 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class SvHouses
     {
-        public decimal Id { get; set; }
-        public decimal? Iid { get; set; }
-        public decimal? Landid { get; set; }
+        public int Id { get; set; }
+        public int? Iid { get; set; }
+        public int? Landid { get; set; }
         public string Housenumber { get; set; }
-        public decimal? Housetypeid { get; set; }
-        public decimal? Houseconstructiontypeid { get; set; }
+        public int? Housetypeid { get; set; }
+        public int? Houseconstructiontypeid { get; set; }
         public string SalesDt { get; set; }
         public string Vsdateofmade { get; set; }
         public string Aquisitiondate { get; set; }
-        public decimal? Usestypeid { get; set; }
+        public int? Usestypeid { get; set; }
         public short? Hasmapregistered { get; set; }
         public string Mapregistereddate { get; set; }
-        public decimal? Numoftalas { get; set; }
-        public decimal? Heightinfeets { get; set; }
-        public decimal? Lengthinfeets { get; set; }
-        public decimal? Widthinfeets { get; set; }
-        public decimal? Areainsqfeets { get; set; }
+        public int? Numoftalas { get; set; }
+        public int? Heightinfeets { get; set; }
+        public int? Lengthinfeets { get; set; }
+        public int? Widthinfeets { get; set; }
+        public int? Areainsqfeets { get; set; }
         public string Specialnote { get; set; }
         public short? Includeinevaluation { get; set; }
-        public decimal? Areaofconstructionsinsqfeets { get; set; }
-        public decimal? Userid { get; set; }
-        public decimal? Useride { get; set; }
+        public int? Areaofconstructionsinsqfeets { get; set; }
+        public int? Userid { get; set; }
+        public int? Useride { get; set; }
         public string Dataentryvsdate { get; set; }
         public DateTime? Dataentryaddatetime { get; set; }
         public DateTime? Dataeditaddatetime { get; set; }
-        public double? DefineAmt { get; set; }
-        public decimal? Sanitationrateid { get; set; }
+        public float? DefineAmt { get; set; }
+        public int? Sanitationrateid { get; set; }
         public string Buildingcode { get; set; }
-        public decimal? BinGis { get; set; }
+        public int? BinGis { get; set; }
     }
 }

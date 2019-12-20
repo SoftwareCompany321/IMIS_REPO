@@ -5,14 +5,14 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class TblBgtMgmtSrcRelease
     {
-        public decimal Id { get; set; }
-        public decimal? BgtMgmtExpReleaseId { get; set; }
-        public decimal? SourceId { get; set; }
-        public double? Amt { get; set; }
-        public decimal? CcId { get; set; }
+        public int Id { get; set; }
+        public int? BgtMgmtExpReleaseId { get; set; }
+        public int? SourceId { get; set; }
+        public float? Amt { get; set; }
+        public int? CcId { get; set; }
         public string CcActive { get; set; }
-        public decimal? PaymentTypeId { get; set; }
-        public decimal? PaymentProcessId { get; set; }
+        public int? PaymentTypeId { get; set; }
+        public int? PaymentProcessId { get; set; }
         public string Remarks { get; set; }
 
         public virtual TblBgtMgmtExpRelease BgtMgmtExpRelease { get; set; }

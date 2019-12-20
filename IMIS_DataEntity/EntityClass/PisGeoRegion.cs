@@ -10,10 +10,10 @@ namespace IMIS_DataEntity.EntityClass
             OrganizationTree = new HashSet<OrganizationTree>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string GrId { get; set; }
         public string GrName { get; set; }
-        public double? MarksPerYear { get; set; }
+        public float? MarksPerYear { get; set; }
         public string Details { get; set; }
 
         public virtual ICollection<OrganizationTree> OrganizationTree { get; set; }

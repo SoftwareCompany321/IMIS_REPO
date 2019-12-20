@@ -10,9 +10,9 @@ namespace IMIS_DataEntity.EntityClass
             PisVisitedCountries = new HashSet<PisVisitedCountries>();
         }
 
-        public decimal Sn { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? LocalPostId { get; set; }
+        public int Sn { get; set; }
+        public int? EmpId { get; set; }
+        public int? LocalPostId { get; set; }
         public string WorkingOffice { get; set; }
         public string FromDateVs { get; set; }
         public string ToDateVs { get; set; }

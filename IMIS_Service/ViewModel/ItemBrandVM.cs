@@ -6,7 +6,7 @@ namespace IMIS_Service.ViewModel
 {
     public class ItemBrandVM
     {
-        public decimal BrandId { get; set; }
+        public int BrandId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string IsActive { get; set; }

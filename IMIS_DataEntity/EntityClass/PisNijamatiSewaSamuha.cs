@@ -10,11 +10,11 @@ namespace IMIS_DataEntity.EntityClass
             InverseParent = new HashSet<PisNijamatiSewaSamuha>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? ParentId { get; set; }
+        public int Id { get; set; }
+        public int? ParentId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public decimal? GrpLevel { get; set; }
+        public int? GrpLevel { get; set; }
 
         public virtual PisNijamatiSewaSamuha Parent { get; set; }
         public virtual ICollection<PisNijamatiSewaSamuha> InverseParent { get; set; }

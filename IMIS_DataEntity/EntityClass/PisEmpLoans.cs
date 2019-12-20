@@ -10,14 +10,14 @@ namespace IMIS_DataEntity.EntityClass
             PisPyrollLoanDtls = new HashSet<PisPyrollLoanDtls>();
         }
 
-        public decimal LoanId { get; set; }
+        public int LoanId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? AccId { get; set; }
-        public double? LoanAmt { get; set; }
-        public double? InstallmentAmt { get; set; }
-        public double? PaidAmount { get; set; }
+        public int? EmpId { get; set; }
+        public int? AccId { get; set; }
+        public float? LoanAmt { get; set; }
+        public float? InstallmentAmt { get; set; }
+        public float? PaidAmount { get; set; }
         public string Cleared { get; set; }
 
         public virtual PisEmployeeMaster Emp { get; set; }

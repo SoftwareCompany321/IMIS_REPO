@@ -10,7 +10,7 @@ namespace IMIS_DataEntity.EntityClass
             AccCurrenctyRate = new HashSet<AccCurrenctyRate>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string NpName { get; set; }
         public string EngName { get; set; }
         public string Symbol { get; set; }

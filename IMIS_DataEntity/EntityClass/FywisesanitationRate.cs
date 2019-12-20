@@ -5,16 +5,16 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class FywisesanitationRate
     {
-        public decimal Id { get; set; }
-        public decimal? Rateid { get; set; }
-        public decimal? Groupid { get; set; }
-        public decimal? Subgroupid { get; set; }
-        public decimal? RoadTypeid { get; set; }
+        public int Id { get; set; }
+        public int? Rateid { get; set; }
+        public int? Groupid { get; set; }
+        public int? Subgroupid { get; set; }
+        public int? RoadTypeid { get; set; }
         public string Ratename { get; set; }
-        public double? Rate { get; set; }
+        public float? Rate { get; set; }
         public string FiscalYear { get; set; }
-        public decimal? AreaUpto { get; set; }
-        public decimal? ForEachArea { get; set; }
-        public decimal? EachAreaRate { get; set; }
+        public int? AreaUpto { get; set; }
+        public int? ForEachArea { get; set; }
+        public int? EachAreaRate { get; set; }
     }
 }

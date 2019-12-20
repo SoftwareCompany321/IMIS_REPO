@@ -5,13 +5,13 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class TblPropertyTax
     {
-        public decimal Id { get; set; }
-        public decimal? Iid { get; set; }
+        public int Id { get; set; }
+        public int? Iid { get; set; }
         public string NpEntryDate { get; set; }
         public string FiscalYear { get; set; }
-        public double? HouseLandAmount { get; set; }
-        public double? MalpotAmount { get; set; }
-        public double? TotalTax { get; set; }
+        public float? HouseLandAmount { get; set; }
+        public float? MalpotAmount { get; set; }
+        public float? TotalTax { get; set; }
         public string Remarks { get; set; }
     }
 }

@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic; 
+using Microsoft.AspNetCore.Identity;
 
 namespace IMIS_DataEntity.EntityClass
 {
-    public partial class Usermaster:IdentityUser
+    public partial class Usermaster: IdentityUser
     { 
         public string Userid { get; set; }
         public string Userpassword { get; set; }
@@ -14,8 +14,8 @@ namespace IMIS_DataEntity.EntityClass
         public DateTime? Lastloggedon { get; set; }
         public DateTime? Lastloggedout { get; set; }
         public string Grants { get; set; }
-        public decimal? Updatedby { get; set; }
-        public decimal? EmpId { get; set; }
+        public int? Updatedby { get; set; }
+        public int? EmpId { get; set; }
         public string OrgCode { get; set; }
         public string Code { get; set; }
         public string FromCentral { get; set; }

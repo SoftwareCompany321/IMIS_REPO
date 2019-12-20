@@ -5,38 +5,38 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class InvItemDetails
     {
-        public decimal ItemDtlId { get; set; }
-        public decimal ItemId { get; set; }
-        public decimal BrandId { get; set; }
-        public decimal SpecId { get; set; }
-        public double? Qty { get; set; }
-        public double? ItemRate { get; set; }
+        public int ItemDtlId { get; set; }
+        public int ItemId { get; set; }
+        public int BrandId { get; set; }
+        public int SpecId { get; set; }
+        public float? Qty { get; set; }
+        public float? ItemRate { get; set; }
         public string ItemStatus { get; set; }
         public string BudgetYear { get; set; }
-        public decimal? DakhilaId { get; set; }
+        public int? DakhilaId { get; set; }
         public string EntryDt { get; set; }
-        public decimal? IssueId { get; set; }
+        public int? IssueId { get; set; }
         public string IssueDt { get; set; }
-        public decimal? GdAdjId { get; set; }
-        public decimal? AdjType { get; set; }
-        public decimal? LilamId { get; set; }
+        public int? GdAdjId { get; set; }
+        public int? AdjType { get; set; }
+        public int? LilamId { get; set; }
         public string LilamDt { get; set; }
-        public decimal? StokRtId { get; set; }
+        public int? StokRtId { get; set; }
         public string StokRtDt { get; set; }
         public string EngineNo { get; set; }
         public string ChasisNo { get; set; }
         public string ModelNo { get; set; }
         public string RegNo { get; set; }
-        public decimal? WeightVeh { get; set; }
-        public decimal? PrepBy { get; set; }
+        public int? WeightVeh { get; set; }
+        public int? PrepBy { get; set; }
         public string PrepDt { get; set; }
-        public decimal? CheckBy { get; set; }
+        public int? CheckBy { get; set; }
         public string CheckDt { get; set; }
-        public decimal? AcceptBy { get; set; }
+        public int? AcceptBy { get; set; }
         public string AcceptDt { get; set; }
-        public decimal? Unit { get; set; }
+        public int? Unit { get; set; }
         public string RelUnit { get; set; }
-        public double? RelQty { get; set; }
+        public float? RelQty { get; set; }
 
         public virtual PisEmployeeMaster AcceptByNavigation { get; set; }
         public virtual InvBrand Brand { get; set; }

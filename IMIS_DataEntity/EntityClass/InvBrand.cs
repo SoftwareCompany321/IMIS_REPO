@@ -16,7 +16,7 @@ namespace IMIS_DataEntity.EntityClass
             InvReqDetail = new HashSet<InvReqDetail>();
         }
 
-        public decimal BrandId { get; set; }
+        public int BrandId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string IsActive { get; set; }

@@ -10,11 +10,11 @@ namespace IMIS_DataEntity.EntityClass
             AccPadadhikariMstr = new HashSet<AccPadadhikariMstr>();
         }
 
-        public decimal PostId { get; set; }
+        public int PostId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public decimal? DurationInYrs { get; set; }
-        public decimal? PostLevel { get; set; }
+        public int? DurationInYrs { get; set; }
+        public int? PostLevel { get; set; }
 
         public virtual ICollection<AccPadadhikariMstr> AccPadadhikariMstr { get; set; }
     }

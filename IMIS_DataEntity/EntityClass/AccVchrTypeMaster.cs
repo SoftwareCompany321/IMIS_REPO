@@ -11,7 +11,7 @@ namespace IMIS_DataEntity.EntityClass
             AccVchrMaster = new HashSet<AccVchrMaster>();
         }
 
-        public decimal VchrTypeId { get; set; }
+        public int VchrTypeId { get; set; }
         public string NepName { get; set; }
         public string EngName { get; set; }
         public string Module { get; set; }

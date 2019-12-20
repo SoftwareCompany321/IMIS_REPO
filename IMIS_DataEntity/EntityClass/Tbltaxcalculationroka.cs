@@ -5,8 +5,8 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class Tbltaxcalculationroka
     {
-        public decimal? Id { get; set; }
-        public decimal? Iid { get; set; }
+        public int? Id { get; set; }
+        public int? Iid { get; set; }
         public string Reason { get; set; }
         public string RokaDate { get; set; }
     }

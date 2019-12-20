@@ -5,7 +5,7 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class PisServiceStatus
     {
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string Description { get; set; }

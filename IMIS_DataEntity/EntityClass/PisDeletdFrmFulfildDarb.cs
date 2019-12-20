@@ -5,14 +5,14 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class PisDeletdFrmFulfildDarb
     {
-        public decimal Sn { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? FrmSnInFd { get; set; }
-        public decimal? FrmOfficeId { get; set; }
-        public decimal? FrmDarbandiId { get; set; }
+        public int Sn { get; set; }
+        public int? EmpId { get; set; }
+        public int? FrmSnInFd { get; set; }
+        public int? FrmOfficeId { get; set; }
+        public int? FrmDarbandiId { get; set; }
         public string FrmDateFulfilled { get; set; }
-        public decimal? FrmAppointmntType { get; set; }
-        public decimal? ToSnInFd { get; set; }
+        public int? FrmAppointmntType { get; set; }
+        public int? ToSnInFd { get; set; }
 
         public virtual PisDarbandi FrmDarbandi { get; set; }
         public virtual OrganizationTree FrmOffice { get; set; }

@@ -5,11 +5,11 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class PisEmpAdvDedDtl
     {
-        public decimal Id { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? AccId { get; set; }
-        public double? AmountCur { get; set; }
-        public double? AmountPrev { get; set; }
+        public int Id { get; set; }
+        public int? EmpId { get; set; }
+        public int? AccId { get; set; }
+        public float? AmountCur { get; set; }
+        public float? AmountPrev { get; set; }
 
         public virtual PisEmployeeMaster Emp { get; set; }
     }

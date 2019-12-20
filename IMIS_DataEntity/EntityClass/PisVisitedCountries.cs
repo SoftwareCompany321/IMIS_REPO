@@ -5,10 +5,10 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class PisVisitedCountries
     {
-        public decimal Sn { get; set; }
-        public decimal? VisitId { get; set; }
-        public decimal? EmpId { get; set; }
-        public decimal? CountryId { get; set; }
+        public int Sn { get; set; }
+        public int? VisitId { get; set; }
+        public int? EmpId { get; set; }
+        public int? CountryId { get; set; }
         public string ApplyTo { get; set; }
 
         public virtual PisForeignVisits Visit { get; set; }

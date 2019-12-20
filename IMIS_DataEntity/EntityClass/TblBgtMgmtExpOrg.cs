@@ -10,10 +10,10 @@ namespace IMIS_DataEntity.EntityClass
             TblBgtMgmtSrcOrg = new HashSet<TblBgtMgmtSrcOrg>();
         }
 
-        public decimal Id { get; set; }
-        public decimal? BgtMgmtOrgId { get; set; }
-        public decimal? AccId { get; set; }
-        public double? BgtAmtOrg { get; set; }
+        public int Id { get; set; }
+        public int? BgtMgmtOrgId { get; set; }
+        public int? AccId { get; set; }
+        public float? BgtAmtOrg { get; set; }
         public string Remarks { get; set; }
 
         public virtual TblBgtMgmtOrg BgtMgmtOrg { get; set; }

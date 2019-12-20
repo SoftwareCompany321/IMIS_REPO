@@ -10,7 +10,7 @@ namespace IMIS_DataEntity.EntityClass
             TblPaymentOrderDetails = new HashSet<TblPaymentOrderDetails>();
         }
 
-        public decimal Id { get; set; }
+        public int Id { get; set; }
         public string OrderCode { get; set; }
         public string DateBs { get; set; }
         public string TokenNo { get; set; }
