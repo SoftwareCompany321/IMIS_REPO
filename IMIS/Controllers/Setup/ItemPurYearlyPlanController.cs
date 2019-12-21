@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/ItemPurYearlyPlanCreate.html")]
-        public IActionResult ItemPurYearlyPlanCreate(ItemPurYearlyPlanVM model)
+        public async Task<IActionResult> ItemPurYearlyPlanCreate(ItemPurYearlyPlanVM model)
         {
+            var response = await _ItemPurYearlyPlan.AddEditItemPurYearlyPlan(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemPurYearlyPlanlist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/ItemPurYearlyPlanEdit.html")]
+        public async Task<IActionResult> ItemPurYearlyPlanEdit(decimal id)
+        {
+            return View(await _ItemPurYearlyPlan.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/ItemPurYearlyPlanEdit.html")]
+        public async Task<IActionResult> ItemPurYearlyPlanEdit(ItemPurYearlyPlanVM model, int id)
+        {
+            var response = await _ItemPurYearlyPlan.AddEditItemPurYearlyPlan(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemPurYearlyPlanlist.html");
+            }
             return View();
         }
     }

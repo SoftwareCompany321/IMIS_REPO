@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/TaxRateCreate.html")]
-        public IActionResult TaxRateCreate(TaxRateVM model)
+        public async Task<IActionResult> TaxRateCreate(TaxRateVM model)
         {
+            var response = await _TaxRate.AddEditTaxRate(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/TaxRatelist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/TaxRateEdit.html")]
+        public async Task<IActionResult> TaxRateEdit(decimal id)
+        {
+            return View(await _TaxRate.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/TaxRateEdit.html")]
+        public async Task<IActionResult> TaxRateEdit(TaxRateVM model, int id)
+        {
+            var response = await _TaxRate.AddEditTaxRate(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/TaxRatelist.html");
+            }
             return View();
         }
     }

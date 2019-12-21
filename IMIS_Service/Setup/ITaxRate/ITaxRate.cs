@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace IMIS_Service.Setup.ITaxRate
     public interface ITaxRate
     {
         Task<DataTableResponse> TaxRateFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditTaxRate(TaxRateVM model);
+
+        Task<TaxRateVM> ViewEdit(decimal Id);
     }
     public class TaxRate : ITaxRate
     {
@@ -83,6 +88,66 @@ namespace IMIS_Service.Setup.ITaxRate
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<(string message, int id)> AddEditTaxRate(TaxRateVM model)
+        {
+            try
+            {
+                var item = new InvTaxRate()
+                {
+                    TaxRateId = model.TaxRateId,
+                    NameEn = model.NameEn,
+                    NameNp = model.NameNp,
+                    TaxRate=model.TaxRate
+                };
+                if (model.TaxRateId == 0)
+                {
+                    int id = await _db.InvTaxRate.CountAsync();
+                    item.TaxRateId = id + 1;
+                    _db.InvTaxRate.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<TaxRateVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.InvTaxRate.Where(x => x.TaxRateId == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new TaxRateVM()
+                    {
+                        TaxRateId = response.TaxRateId,
+                        NameEn = response.NameEn,
+                        NameNp = response.NameNp,
+                        TaxRate=response.TaxRate
+
+                    });
+                }
+                else
+                {
+                    return new TaxRateVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

@@ -6,23 +6,28 @@ namespace IMIS_Service.ViewModel
 {
     public class ItemPurYearlyPlanVM
     {
-        public decimal AccId { get; set; }
-        public string Code { get; set; }
-        public string NepName { get; set; }
-        public string EngName { get; set; }
-        public decimal? ParentAccId { get; set; }
-        public int? GrpLevel { get; set; }
-        public string IsFixed { get; set; }
-        public string IsTransactable { get; set; }
-        public string IsBudgetable { get; set; }
-        public string DispCode { get; set; }
-        public string DispName { get; set; }
-        public string AccType { get; set; }
-        public decimal? TypeId { get; set; }
-        public string AccCode { get; set; }
-        public decimal? SubModuleId { get; set; }
-        public string FiscalYear { get; set; }
-        public string IsHide { get; set; }
-        public decimal? Iscapitalcurrent { get; set; }
+        public int Id { get; set; }
+        public string NameNp { get; set; }
+        public string NameEn { get; set; }
+        public float? ApproxAmt { get; set; }
+        public string PurType { get; set; }
+        public string AgreementType { get; set; }
+        public string AprxAmtAcptDate { get; set; }
+        public string InfoPublishDate { get; set; }
+        public string TendrSaleDate { get; set; }
+        public string FormEntryDate { get; set; }
+        public string TendrOpenDate { get; set; }
+        public string TendrAcceptDate { get; set; }
+        public string WrkOrderDate { get; set; }
+        public string WrkAcmplshDate { get; set; }
+        public DateTime? AnlysisDsgnDtAd { get; set; }
+        public DateTime? AprxAmtAcptDtAd { get; set; }
+        public DateTime? TendrAcceptDtAd { get; set; }
+        public DateTime? TendrCallDtAd { get; set; }
+        public DateTime? TendrOpenDtAd { get; set; }
+        public DateTime? AgreementDtAd { get; set; }
+        public DateTime? Wrk2FinDtAd { get; set; }
+        public DateTime? WrkAcmplshDtAd { get; set; }
+        public string Remarks { get; set; }
     }
 }

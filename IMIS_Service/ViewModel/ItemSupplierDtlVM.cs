@@ -6,23 +6,22 @@ namespace IMIS_Service.ViewModel
 {
     public class ItemSupplierDtlVM
     {
-        public decimal AccId { get; set; }
-        public string Code { get; set; }
-        public string NepName { get; set; }
-        public string EngName { get; set; }
-        public decimal? ParentAccId { get; set; }
-        public int? GrpLevel { get; set; }
-        public string IsFixed { get; set; }
-        public string IsTransactable { get; set; }
-        public string IsBudgetable { get; set; }
-        public string DispCode { get; set; }
-        public string DispName { get; set; }
-        public string AccType { get; set; }
-        public decimal? TypeId { get; set; }
-        public string AccCode { get; set; }
-        public decimal? SubModuleId { get; set; }
-        public string FiscalYear { get; set; }
-        public string IsHide { get; set; }
-        public decimal? Iscapitalcurrent { get; set; }
+        public int SupId { get; set; }
+        public string NameNp { get; set; }
+        public string NameEn { get; set; }
+        public string CompanyNameNp { get; set; }
+        public string CompanyNameEn { get; set; }
+        public string RegiType { get; set; }
+        public string TpinPanNo { get; set; }
+        public string Address { get; set; }
+        public string PhoneNo { get; set; }
+        public string Email { get; set; }
+        public string DateVs { get; set; }
+        public DateTime? DateAd { get; set; }
+        public string OrgType { get; set; }
+        public int? OrgId { get; set; }
+        public string IsSelected { get; set; }
+        public string RegNo { get; set; }
+        public string SupType { get; set; }
     }
 }

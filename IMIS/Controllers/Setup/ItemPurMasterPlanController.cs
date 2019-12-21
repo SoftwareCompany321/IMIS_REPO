@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/ItemPurMasterPlanCreate.html")]
-        public IActionResult ItemPurMasterPlanCreate(ItemPurMasterPlanVM model)
+        public async Task<IActionResult> ItemPurMasterPlanCreate(ItemPurMasterPlanVM model)
         {
+            var response = await _ItemPurMasterPlan.AddEditItemPurMasterPlan(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemPurMasterPlanlist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/ItemPurMasterPlanEdit.html")]
+        public async Task<IActionResult> ItemPurMasterPlanEdit(decimal id)
+        {
+            return View(await _ItemPurMasterPlan.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/ItemPurMasterPlanEdit.html")]
+        public async Task<IActionResult> ItemPurMasterPlanEdit(ItemPurMasterPlanVM model, int id)
+        {
+            var response = await _ItemPurMasterPlan.AddEditItemPurMasterPlan(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemPurMasterPlanlist.html");
+            }
             return View();
         }
     }
