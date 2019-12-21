@@ -7,7 +7,7 @@
             <label for="code" class="col-md-2" control-label">
                 @Utils.GetLabel("Inv ID")<span class="requried">*</span></label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" placeholder="Code">
+                            <input type="text" asp-for="ItemId" class="form-control" placeholder="Code">
                         </div>
 </div>
         <div class="col-md-6">
@@ -27,14 +27,14 @@
             <label for="code" class="col-md-2" control-label">
                 @Utils.GetLabel("Inv Acc No")<span class="requried">*</span></label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" asp-for="AccId">
+                            <input type="text" class="form-control" asp-for="Code">
                         </div>
 </div>
         <div class="col-md-6">
             <label for="code" class="col-md-2" control-label">
                 @Utils.GetLabel("Description")<span class="requried">*</span></label>
                         <div class="col-md-9">
-                            <input type="text" />
+                            <input type="text" asp-for="NameNp" />
                         </div>
 </div>
     </div>
