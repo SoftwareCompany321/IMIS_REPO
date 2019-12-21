@@ -37,6 +37,7 @@ using IMIS_Service.Setup.ITaxRate;
 using IMIS_Service.Setup.IItemPurMasterPlan;
 using AutoMapper;
 using IMIS_Service.Setup.IItemMaster;
+using IMIS_Service.Setup.IOrgFormDtl;
 
 namespace IMIS
 {
@@ -128,6 +129,21 @@ namespace IMIS
             services.AddScoped<IReceiptDistribution, ReceiptDistribution>();
             services.AddScoped<ITaxRate, TaxRate>();
             services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //
+            services.AddScoped<IOrgFormDtl, OrgFormDtl>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            //
+
             //adding the auto mapper in service layer class
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IItemMaster, ItemMaster>();

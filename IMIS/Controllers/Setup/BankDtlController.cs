@@ -46,15 +46,43 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/BankDtlCreate.html")]
-        public IActionResult BankDtlerCreate()
+        public IActionResult BankDtlCreate()
         {
             return View();
         }
 
         [HttpPost]
         [Route("/BankDtlCreate.html")]
-        public IActionResult BankDtlerCreate(BankDtlVM model)
+        public async Task<IActionResult> BankDtlCreate(BankDtlVM model)
         {
+            var response = await _BankDtl.AddEditBankDtl(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/BankDtllist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/BankDtlEdit.html")]
+        public async Task<IActionResult> BankDtlEdit(decimal id)
+        {
+            return View(await _BankDtl.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/BankDtlEdit.html")]
+        public async Task<IActionResult> BankDtlEdit(BankDtlVM model, int id)
+        {
+            var response = await _BankDtl.AddEditBankDtl(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/BankDtllist.html");
+            }
             return View();
         }
     }

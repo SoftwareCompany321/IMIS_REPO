@@ -1,55 +1,74 @@
 ﻿@using IMIS_CORE.Core
  
-@model IMIS_Service.ViewModel.ItemCategoriesVM
-<div>
+@model IMIS_Service.ViewModel.BankDtlVM
     <div>
-        Upper Level
+
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Bank Name")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Bankname">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Sub Module")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="SubModuleId">
+            </div>
+        </div>
+
+
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Acc. No.")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Accountnumber">
+            </div>
+
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Name(Eng)")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Engname">
+            </div>
+
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Address")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Address">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Phone No.")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Phones">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("E-mail")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Emails">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Branch")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Branchcode">
+            </div>
+        </div>
     </div>
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Description(English)")<span class="requried">*</span></label>
-<div class="col-md-9">
-<input type = "text" class="form-control" asp-for="NameEn">
-</div>
-</div>
-<div class="form-group is-empty">
-    <label for="region" class="col-md-2 control-label">
-        @Utils.GetLabel("Description(Nepali)")<span class="requried">*</span></label>
-<div class="col-md-9">
-<input type = "text" class="form-control" asp-for="NameNp">
-</div>
-</div>
-    @*<div class="form-group is-empty">
-        <label for="short-name" class="col-md-2 control-label">Code</label>
-        <div class="col-md-6">
-            <input type="text" class="form-control" asp-for="Code">
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" asp-for="Isexp" value="1" />
-        </div>
-    </div>*@
-
-    <div class="form-group is-empty">
-        <label for="short-name" class="col-md-2 control-label">
-            @Utils.GetLabel("XXXX")</label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" asp-for="DepreciationMax">
-                </div>
-
-</div>
-    <div class="form-group is-empty">
-        <label for="short-name" class="col-md-2 control-label">
-            @Utils.GetLabel("Nutuam has kati mulya")</label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" asp-for="Rminl">
-                </div>
-
-</div>
-    <div class="form-group is-empty">
-        <label for="short-name" class="col-md-2 control-label">
-            @Utils.GetLabel("Atikam has kati mulya")</label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" asp-for="Rmaxl">
-                </div>
-</div>
-</div>

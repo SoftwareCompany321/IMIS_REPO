@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/CountryDtlCreate.html")]
-        public IActionResult CountryDtlCreate(CountryDtlVM model)
+        public async Task<IActionResult> CountryDtlCreate(CountryDtlVM model)
         {
+            var response = await _CountryDtl.AddEditCountryDtl(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/CountryDtllist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/CountryDtlEdit.html")]
+        public async Task<IActionResult> CountryDtlEdit(decimal id)
+        {
+            return View(await _CountryDtl.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/CountryDtlEdit.html")]
+        public async Task<IActionResult> CountryDtlEdit(CountryDtlVM model, int id)
+        {
+            var response = await _CountryDtl.AddEditCountryDtl(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/CountryDtllist.html");
+            }
             return View();
         }
     }

@@ -6,23 +6,25 @@ namespace IMIS_Service.ViewModel
 {
     public class OrgFormDtlVM
     {
-        public decimal AccId { get; set; }
+        public int OrgId { get; set; }
+        public string NameNp { get; set; }
+        public string NameEn { get; set; }
+        public string Address { get; set; }
+        public string Phones { get; set; }
+        public string Emails { get; set; }
+        public string RegNo { get; set; }
+        public string VatNo { get; set; }
+        public string PanNo { get; set; }
+        public int? Zone { get; set; }
+        public int? District { get; set; }
+        public int? Vdc { get; set; }
+        public int? Ministry { get; set; }
         public string Code { get; set; }
-        public string NepName { get; set; }
-        public string EngName { get; set; }
-        public decimal? ParentAccId { get; set; }
-        public int? GrpLevel { get; set; }
-        public string IsFixed { get; set; }
-        public string IsTransactable { get; set; }
-        public string IsBudgetable { get; set; }
-        public string DispCode { get; set; }
-        public string DispName { get; set; }
-        public string AccType { get; set; }
-        public decimal? TypeId { get; set; }
-        public string AccCode { get; set; }
-        public decimal? SubModuleId { get; set; }
-        public string FiscalYear { get; set; }
-        public string IsHide { get; set; }
-        public decimal? Iscapitalcurrent { get; set; }
+        public string Head { get; set; }
+        public string MobileNo { get; set; }
+        public string RelatedPerson { get; set; }
+        public int? OrgMasterId { get; set; }
+        public string Sapati { get; set; }
+        public int? OrcAccTypeId { get; set; }
     }
 }

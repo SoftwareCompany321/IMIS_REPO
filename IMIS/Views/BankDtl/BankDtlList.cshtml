@@ -1,6 +1,6 @@
 ﻿@using IMIS_CORE.Core
 @{
-    ViewData["Title"] = "ItemSpecificationList";
+    ViewData["Title"] = "BankDtlList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">Item Specification List</a> </li>
+                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Bank Detail List")</a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -21,7 +21,7 @@
                     <!-- tab 1: region starts -->
                     <div class="tab-pane fade active in" id="region-tab">
                         <!-- generic add button for all the "add" forms | Add region -->
-                        <a href="@Url.Content("~/ItemSpecificationCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                        <a href="@Url.Content("~/BankDtlCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
                         <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
 
                         <!-- search filters -->
@@ -69,68 +69,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 </body>
-
-
-
-@*<section class="content-header">
-        <h1>
-            Account Header List
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="@Url.Content("~/home.html")" class="active"><i class="fa fa-th-large"></i> Home</a></li>
-            <li class="active"> Account Header List</li>
-        </ol>
-    </section>
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                     /.box-header
-                    <div class="box-body">
-
-                        @if (ViewBag.Message != null || ViewBag.Message == "")
-                        {
-                            <div message-content="@ViewBag.Message" message-class="@ViewBag.Class"></div>
-                        }
-                        <div class="row">
-
-                            <div class="col-lg-6">
-
-                            </div>
-
-                            <div class="col-lg-6">
-                                <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/ItemSpecificationCreate.html")">Create Account Header</a>
-
-                                <input type="text" id="usersearch" placeholder="Search" class="grid-search" />
-
-                            </div>
-                        </div>
-                        <div class="table-responsive" style="overflow:auto;width:100%">
-                            <table id="account" class="table table-bordered table-hover action-b-th-0">
-                                <thead>
-                                    <tr>
-
-                                        <th width="20px">Id</th>
-                                        <th>Code</th>
-                                        <th>Name(Nep)</th>
-                                        <th>Name(Eng)</th>
-                                        <th>Display</th>
-                                        <th>AccCode</th>
-                                    </tr>
-                                </thead>
-
-                            </table>
-                        </div>
-                    </div>
-                     /.box-body
-                </div>
-                 /.box
-            </div>
-
-             /.col
-        </div>
-         /.row
-    </section>*@
+ 
 
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {
@@ -142,7 +81,7 @@
                 "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
                 'searching': true,//recordsFiltered
 				"ajax": {
-                   "url": "@Url.Content("~/ItemSpecificationFetchData.html")", "type": "GET", "data": function (d) {
+                   "url": "@Url.Content("~/BankDtlFetchData.html")", "type": "GET", "data": function (d) {
                     d.search = $("#usersearch").val();
                 }
                 },
@@ -150,22 +89,7 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-                //'select': {
-                //    info: false
-                //},
-                // 'columnDefs': [AccId
-                //    {
-                //        'targets': 0,
-                //        'checkboxes': {
-                //            'selectRow': true,
-                //            'selectAll': true,
-                //            'className': 'select-checkbox',
-                //        }
-                //    }
-                //],
-                //'select': {
-                //    'style': 'multi'
-                //},
+              
 
                 "columns": [
                 { "data": "accId", "orderable": true },

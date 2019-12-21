@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace IMIS_Service.Setup.IOrgFormDtl
     public interface IOrgFormDtl
     {
         Task<DataTableResponse> OrgFormDtlFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditOrgFormDtl(OrgFormDtlVM model);
+
+        Task<OrgFormDtlVM> ViewEdit(decimal Id);
     }
     public class OrgFormDtl : IOrgFormDtl
     {
@@ -45,7 +50,16 @@ namespace IMIS_Service.Setup.IOrgFormDtl
                                         {
                                             aom.OrgId,
                                             aom.NameNp,
-                                            aom.NameEn 
+                                            aom.NameEn,
+                                            aom.RegNo,
+                                            aom.Address,
+                                            aom.Emails,
+                                            aom.MobileNo,
+                                            aom.PanNo,
+                                            aom.VatNo,
+                                            aom.RelatedPerson,
+                                            aom.Sapati
+
                                         });
                 ///filter count for the total; record
                 ///
@@ -82,6 +96,79 @@ namespace IMIS_Service.Setup.IOrgFormDtl
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+        public async Task<(string message, int id)> AddEditOrgFormDtl(OrgFormDtlVM model)
+        {
+            try
+            {
+                var item = new AccOrgMaster()
+                {
+                    OrgId =         model.OrgId,
+                    NameNp =        model.NameNp,
+                    NameEn =        model.NameEn,
+                    RegNo=          model.RegNo,
+                    Address=        model.Address,
+                    Emails=         model.Emails,
+                    MobileNo=       model.MobileNo,
+                    PanNo=          model.PanNo,
+                    VatNo=          model.VatNo,
+                    RelatedPerson=  model.RelatedPerson,
+                    Sapati=         model.Sapati
+                };
+                if (model.OrgId == 0)
+                {
+                    int id = await _db.AccOrgMaster.CountAsync();
+                    item.OrgId = id + 1;
+                    _db.AccOrgMaster.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<OrgFormDtlVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.AccOrgMaster.Where(x => x.OrgId == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new OrgFormDtlVM()
+                    {
+                        OrgId = response.OrgId,
+                        NameNp = response.NameNp,
+                        NameEn = response.NameEn,
+                        RegNo = response.RegNo,
+                        Address = response.Address,
+                        Emails = response.Emails,
+                        MobileNo = response.MobileNo,
+                        PanNo = response.PanNo,
+                        VatNo = response.VatNo,
+                        RelatedPerson = response.RelatedPerson,
+                        Sapati = response.Sapati
+
+                    });
+                }
+                else
+                {
+                    return new OrgFormDtlVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

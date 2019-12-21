@@ -1,55 +1,52 @@
 ﻿@using IMIS_CORE.Core
  
-@model IMIS_Service.ViewModel.ItemCategoriesVM
+@model IMIS_Service.ViewModel.IncomeRecordKeepingVM
 <div>
-    <div>
-        Upper Level
+    @*dropdown*@
+    <div class="form-group is-empty">
+        <label for="region" class="col-md-2 control-label">
+            @Utils.GetLabel("Receipt Type")<span class="requried">*</span>
+        </label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="Billtypeid">
+        </div>
     </div>
     <div class="form-group is-empty">
         <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Description(English)")<span class="requried">*</span></label>
+            @Utils.GetLabel("Receipt No.")<span class="requried">*</span></label>
 <div class="col-md-9">
-<input type = "text" class="form-control" asp-for="NameEn">
+<input type = "text" class="form-control" asp-for="Sn">
 </div>
 </div>
 <div class="form-group is-empty">
     <label for="region" class="col-md-2 control-label">
-        @Utils.GetLabel("Description(Nepali)")<span class="requried">*</span></label>
+        @Utils.GetLabel("Received Date")<span class="requried">*</span></label>
 <div class="col-md-9">
-<input type = "text" class="form-control" asp-for="NameNp">
+<input type = "text" class="form-control" asp-for="Dateissued">
 </div>
 </div>
-    @*<div class="form-group is-empty">
-        <label for="short-name" class="col-md-2 control-label">Code</label>
-        <div class="col-md-6">
-            <input type="text" class="form-control" asp-for="Code">
-        </div>
-        <div class="col-md-6">
-            <input type="checkbox" asp-for="Isexp" value="1" />
-        </div>
-    </div>*@
-
+     
     <div class="form-group is-empty">
         <label for="short-name" class="col-md-2 control-label">
-            @Utils.GetLabel("XXXX")</label>
+            @Utils.GetLabel("Receipt No. From")</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" asp-for="DepreciationMax">
+                    <input type="text" class="form-control" asp-for="Billnofrom">
                 </div>
 
 </div>
     <div class="form-group is-empty">
         <label for="short-name" class="col-md-2 control-label">
-            @Utils.GetLabel("Nutuam has kati mulya")</label>
+            @Utils.GetLabel("Receipt No. To")</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" asp-for="Rminl">
+                    <input type="text" class="form-control" asp-for="Billnoto">
                 </div>
 
 </div>
     <div class="form-group is-empty">
         <label for="short-name" class="col-md-2 control-label">
-            @Utils.GetLabel("Atikam has kati mulya")</label>
+            @Utils.GetLabel("Description")</label>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" asp-for="Rmaxl">
+                    <input type="text" class="form-control" asp-for="Description">
                 </div>
 </div>
 </div>

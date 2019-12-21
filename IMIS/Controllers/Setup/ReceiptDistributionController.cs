@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/ReceiptDistributionCreate.html")]
-        public IActionResult ReceiptDistributionCreate(ReceiptDistributionVM model)
+        public async Task<IActionResult> ReceiptDistributionCreate(ReceiptDistributionVM model)
         {
+            var response = await _ReceiptDistribution.AddEditReceiptDistribution(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ReceiptDistributionlist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/ReceiptDistributionEdit.html")]
+        public async Task<IActionResult> ReceiptDistributionEdit(decimal id)
+        {
+            return View(await _ReceiptDistribution.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/ReceiptDistributionEdit.html")]
+        public async Task<IActionResult> ReceiptDistributionEdit(ReceiptDistributionVM model, int id)
+        {
+            var response = await _ReceiptDistribution.AddEditReceiptDistribution(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ReceiptDistributionlist.html");
+            }
             return View();
         }
     }

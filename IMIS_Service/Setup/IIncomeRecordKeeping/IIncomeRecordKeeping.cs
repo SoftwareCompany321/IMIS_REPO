@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace IMIS_Service.Setup.IIncomeRecordKeeping
     public interface IIncomeRecordKeeping
     {
         Task<DataTableResponse> IncomeRecordKeepingFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditIncomeRecordKeeping(IncomeRecordKeepingVM model);
+
+        Task<IncomeRecordKeepingVM> ViewEdit(decimal Id);
     }
     public class IncomeRecordKeeping : IIncomeRecordKeeping
     {
@@ -77,6 +82,60 @@ namespace IMIS_Service.Setup.IIncomeRecordKeeping
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<(string message, int id)> AddEditIncomeRecordKeeping(IncomeRecordKeepingVM model)
+        {
+            try
+            {
+                var item = new Storedbills()
+                {
+                    Sn = model.Sn 
+                };
+                if (model.Sn == 0)
+                {
+                    int id = await _db.Storedbills.CountAsync();
+                    item.Sn = id + 1;
+                    _db.Storedbills.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<IncomeRecordKeepingVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.Storedbills.Where(x => x.Sn == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new IncomeRecordKeepingVM()
+                    {
+                        Sn = response.Sn 
+
+                    });
+                }
+                else
+                {
+                    return new IncomeRecordKeepingVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace IMIS_Service.Setup.IReceiptDistribution
     public interface IReceiptDistribution
     {
         Task<DataTableResponse> ReceiptDistributionFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditReceiptDistribution(ReceiptDistributionVM model);
+
+        Task<ReceiptDistributionVM> ViewEdit(decimal Id);
     }
     public class ReceiptDistribution : IReceiptDistribution
     {
@@ -84,6 +89,59 @@ namespace IMIS_Service.Setup.IReceiptDistribution
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+        public async Task<(string message, int id)> AddEditReceiptDistribution(ReceiptDistributionVM model)
+        {
+            try
+            {
+                var item = new Issuedbills()
+                {
+                    Sn = model.Sn 
+                };
+                if (model.Sn == 0)
+                {
+                    int id = await _db.Issuedbills.CountAsync();
+                    item.Sn = id + 1;
+                    _db.Issuedbills.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<ReceiptDistributionVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.Issuedbills.Where(x => x.Sn == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new ReceiptDistributionVM()
+                    {
+                        Sn = response.Sn
+
+                    });
+                }
+                else
+                {
+                    return new ReceiptDistributionVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

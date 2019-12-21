@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace IMIS_Service.Setup.ICountryDtl
     public interface ICountryDtl
     {
         Task<DataTableResponse> CountryDtlFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditCountryDtl(CountryDtlVM model);
+
+        Task<CountryDtlVM> ViewEdit(decimal Id);
     }
     public class CountryDtl : ICountryDtl
     {
@@ -82,6 +87,63 @@ namespace IMIS_Service.Setup.ICountryDtl
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+        public async Task<(string message, int id)> AddEditCountryDtl(CountryDtlVM model)
+        {
+            try
+            {
+                var item = new Nationalities()
+                {
+                    Nationalityid = model.Nationalityid,
+                    Nepname = model.Nepname,
+                    Engname = model.Engname
+                };
+                if (model.Nationalityid == 0)
+                {
+                    int id = await _db.Nationalities.CountAsync();
+                    item.Nationalityid = id + 1;
+                    _db.Nationalities.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<CountryDtlVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.Nationalities.Where(x => x.Nationalityid == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new CountryDtlVM()
+                    {
+                        Nationalityid = response.Nationalityid,
+                        Engname = response.Engname,
+                        Nepname = response.Nepname,
+
+                    });
+                }
+                else
+                {
+                    return new CountryDtlVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

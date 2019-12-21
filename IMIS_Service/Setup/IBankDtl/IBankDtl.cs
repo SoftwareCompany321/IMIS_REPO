@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace IMIS_Service.Setup.IBankDtl
     public interface IBankDtl
     {
         Task<DataTableResponse> BankDtlFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditBankDtl(BankDtlVM model);
+
+        Task<BankDtlVM> ViewEdit(decimal Id);
     }
     public class BankDtl : IBankDtl
     {
@@ -82,6 +87,64 @@ namespace IMIS_Service.Setup.IBankDtl
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<(string message, int id)> AddEditBankDtl(BankDtlVM model)
+        {
+            try
+            {
+                var item = new Bankmaster()
+                {
+                    Bankid = model.Bankid,
+                    Nepname = model.Nepname,
+                    Engname = model.Engname
+                };
+                if (model.Bankid == 0)
+                {
+                    int id = await _db.Bankmaster.CountAsync();
+                    item.Bankid = id + 1;
+                    _db.Bankmaster.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<BankDtlVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.Bankmaster.Where(x => x.Bankid == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new BankDtlVM()
+                    {
+                        Bankid = response.Bankid,
+                        Engname = response.Engname,
+                        Nepname = response.Nepname,
+
+                    });
+                }
+                else
+                {
+                    return new BankDtlVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
