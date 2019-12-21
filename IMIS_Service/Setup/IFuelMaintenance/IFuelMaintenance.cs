@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace IMIS_Service.Setup.IFuelMaintenance
     public interface IFuelMaintenance
     {
         Task<DataTableResponse> FuelMaintenanceFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditFuelMaintenance(FuelMaintenanceVM model);
+
+        Task<FuelMaintenanceVM> ViewEdit(decimal Id);
     }
     public class FuelMaintenance : IFuelMaintenance
     {
@@ -82,6 +87,59 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+        public async Task<(string message, int id)> AddEditFuelMaintenance(FuelMaintenanceVM model)
+        {
+            try
+            {
+                var item = new TblVehicleParts()
+                {
+                    Sn = model.Sn
+                };
+                if (model.Sn == 0)
+                {
+                    int id = await _db.TblVehicleParts.CountAsync();
+                    item.Sn = id + 1;
+                    _db.TblVehicleParts.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<FuelMaintenanceVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.TblVehicleParts.Where(x => x.Sn == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new FuelMaintenanceVM()
+                    {
+                        Sn = response.Sn,
+
+                    });
+                }
+                else
+                {
+                    return new FuelMaintenanceVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

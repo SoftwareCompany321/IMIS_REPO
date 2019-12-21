@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/SupplierListingDescCreate.html")]
-        public IActionResult SupplierListingDescCreate(SupplierListingDescVM model)
+        public async Task<IActionResult> SupplierListingDescCreate(SupplierListingDescVM model)
         {
+            var response = await _SupplierListingDesc.AddEditSupplierListingDescType(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/SupplierListingDesclist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/SupplierListingDescEdit.html")]
+        public async Task<IActionResult> SupplierListingDescEdit(decimal id)
+        {
+            return View(await _SupplierListingDesc.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/SupplierListingDescEdit.html")]
+        public async Task<IActionResult> SupplierListingDescEdit(SupplierListingDescVM model, int id)
+        {
+            var response = await _SupplierListingDesc.AddEditSupplierListingDescType(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/SupplierListingDesclist.html");
+            }
             return View();
         }
     }

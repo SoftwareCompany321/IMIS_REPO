@@ -38,6 +38,9 @@ using IMIS_Service.Setup.IItemPurMasterPlan;
 using AutoMapper;
 using IMIS_Service.Setup.IItemMaster;
 using IMIS_Service.Setup.IOrgFormDtl;
+using IMIS_Service.Setup.IFuelMaintenance;
+using IMIS_Service.Setup.ISupplierListingDesc;
+using IMIS_Service.Setup.IPurchaseOrderType;
 
 namespace IMIS
 {
@@ -131,9 +134,9 @@ namespace IMIS
             services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
             //
             services.AddScoped<IOrgFormDtl, OrgFormDtl>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            services.AddScoped<IFuelMaintenance, FuelMaintenance>();
+            services.AddScoped<ISupplierListingDesc, SupplierListingDesc>();
+            services.AddScoped<IPurchaseOrderType, PurchaseOrderType>();
             //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
             //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
             //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();

@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/PurchaseOrderTypeCreate.html")]
-        public IActionResult PurchaseOrderTypeCreate(PurchaseOrderTypeVM model)
+        public async Task<IActionResult> PurchaseOrderTypeCreate(PurchaseOrderTypeVM model)
         {
+            var response = await _PurchaseOrderType.AddEditPurchaseOrderType(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/PurchaseOrderTypelist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/PurchaseOrderTypeEdit.html")]
+        public async Task<IActionResult> PurchaseOrderTypeEdit(decimal id)
+        {
+            return View(await _PurchaseOrderType.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/PurchaseOrderTypeEdit.html")]
+        public async Task<IActionResult> PurchaseOrderTypeEdit(PurchaseOrderTypeVM model, int id)
+        {
+            var response = await _PurchaseOrderType.AddEditPurchaseOrderType(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/PurchaseOrderTypelist.html");
+            }
             return View();
         }
     }

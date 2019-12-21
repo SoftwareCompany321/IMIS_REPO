@@ -38,9 +38,10 @@ namespace IMIS_Service.IMenuService
 
             try
             {
-                
+
                 return (await (from m in _db.ImisMenu
                                where m.ParentMenuId == 0
+                               orderby m.MenuOrder 
                                select new MenuVM
                                {
                                    Id = m.Id,
@@ -48,6 +49,7 @@ namespace IMIS_Service.IMenuService
                                    MenuUrl = m.MenuUrl,
                                    NepName = m.DisplayNepName,
                                    MenuSubMenu = (from s in _db.ImisMenu
+                                                  orderby s.MenuOrder 
                                                   where s.ParentMenuId == m.Id
                                                   select new MenuSubMenuVM
                                                   {
@@ -108,10 +110,10 @@ namespace IMIS_Service.IMenuService
                 }
                 return ("success", menuId);
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 throw ex;
-               
+
 
             }
         }

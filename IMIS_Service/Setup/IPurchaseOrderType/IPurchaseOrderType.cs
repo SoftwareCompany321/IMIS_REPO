@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,10 +14,13 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
     public interface IPurchaseOrderType
     {
         Task<DataTableResponse> PurchaseOrderTypeFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditPurchaseOrderType(PurchaseOrderTypeVM model);
+
+        Task<PurchaseOrderTypeVM> ViewEdit(decimal Id);
     }
     public class PurchaseOrderType : IPurchaseOrderType
     {
-        private readonly IMISDbContext _db;
+        private readonly IMISDbContext _db; 
         public PurchaseOrderType(IMISDbContext db)
         {
             _db = db;
@@ -82,6 +87,63 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+        public async Task<(string message, int id)> AddEditPurchaseOrderType(PurchaseOrderTypeVM model)
+        {
+            try
+            {
+                var item = new TblKharidaAadash()
+                {
+                    Id = model.Id,
+                    EngName = model.EngName,
+                    NpName = model.NpName
+                };
+                if (model.Id == 0)
+                {
+                    int id = await _db.TblKharidaAadash.CountAsync();
+                    item.Id = id + 1;
+                    _db.TblKharidaAadash.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<PurchaseOrderTypeVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.TblKharidaAadash.Where(x => x.Id == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new PurchaseOrderTypeVM()
+                    {
+                        Id = response.Id,
+                        EngName = response.EngName,
+                        NpName = response.NpName,
+
+                    });
+                }
+                else
+                {
+                    return new PurchaseOrderTypeVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
