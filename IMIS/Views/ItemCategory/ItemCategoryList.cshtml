@@ -4,6 +4,16 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <!DOCTYPE html>
+<style>
+    td.details-control {
+        background: url('https://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('https://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
+    }
+</style>
 
 <body>
 
@@ -21,7 +31,7 @@
                     <!-- tab 1: region starts -->
                     <div class="tab-pane fade active in" id="region-tab">
                         <!-- generic add button for all the "add" forms | Add region -->
-                        <a href="@Url.Content("~/ItemCategoryCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                        <a href="@Url.Content("~/{0}/ItemCategoryCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
                         <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
 
                         <!-- search filters -->
@@ -42,13 +52,13 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>@Utils.GetLabel("Id")</th>
-
-                                        <th>@Utils.GetLabel("Description(Nepali)")</th>
-
-                                        <th>@Utils.GetLabel("Description(English)")</th>
-
-                                        <th>@Utils.GetLabel("Action")</th>
+                                        <th></th>
+                                        <th>@Utils.GetLabel("Id")</th> 
+                                        <th>@Utils.GetLabel("Description(Nepali)")</th> 
+                                        <th>@Utils.GetLabel("Description(English)")</th> 
+                                        <th>@Utils.GetLabel("Code")</th>
+                                        <th>@Utils.GetLabel("Depreciation Max")</th>
+                                        <th>@Utils.GetLabel("Depreciation Min")</th>
                                     </tr>
                                 </thead>
 
@@ -61,6 +71,10 @@
         </div>
         <!-- /.container-fluid -->
     </div>
+
+    <div id="add" hidden>
+
+    </div>
     <!-- /#page-wrapper -->
     <!-- /#wrapper -->
     <!-- jQuery -->
@@ -71,67 +85,80 @@
 </body>
  
 
-<script type="text/javascript" language="javascript">
-        jQuery(document).ready(function () {
-            var table = jQuery("#account");
-            table.dataTable({
-                "bProcessing": true,
-                "processing": true,
-                "serverSide": true,
-                "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
-                'searching': true,//recordsFiltered
-				"ajax": {
-                   "url": "@Url.Content("~/ItemCategoryFetchData.html")", "type": "GET", "data": function (d) {
-                    d.search = $("#usersearch").val();
-                }
-                },
-                "language": {
-                    "infoFiltered": ""
-                },
-                'stateSave': false,
-                
 
-                "columns": [
-                { "data": "accId", "orderable": true },
-                { "data": "code", "orderable": true },
-                { "data": "nepName", "orderable": true },
-                { "data": "engName", "orderable": false },
-                { "data": "accCode", "orderable": false },
-                { "data": "accCode", "orderable": false },
-                ],
-                 "rowCallback": function (row, data, index) {
-                //jQuery('td:first-child', row).find("input").attr({ "id": "Ids", "name": "Ids", "value": data.id });
-                var url ='/' + data.unitId + '/ItemUnitEdit.html';
-                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
-                jQuery('[data-toggle="tooltip"]').tooltip();
+
+<script lang="ja" type="text/javascript">
+
+$(document).ready(function() {
+    var table = $('#account').DataTable({
+        "bProcessing": true,
+        "processing": true,
+        "serverSide": true,
+        "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-3"p>><"clear">',
+        'searching': true,//recordsFiltered
+		"ajax": {
+            "url": "@Url.Content("~/ItemCategoryFetchData.html")", "type": "GET", "data": function (d) {
+                d.search = $("#usersearch").val();
+
             },
-                order: [
+          },
+      "columns": [
+            {
+                "className":'details-control',
+                "orderable":false,
+                "data":null,
+                "defaultContent": ''
+            },
+            { "data": "id", "orderable": true }, 
+            { "data": "nameNp", "orderable": true },
+            { "data": "nameEn", "orderable": true },
+            { "data": "code", "orderable": true },
+            { "data": "rmaxl", "orderable": true },
+            { "data": "rminl", "orderable": true }, 
 
-                    [1, "desc"]
-                ],
-                "paging": true,
-                "pageLength": 10,
-                lengthMenu: [
-                    [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
-                ],
-                "fnInitComplete": function (oSettings, json) {
-					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
-				},
+        ],
+      'createdRow': function (row, data, dataIndex) {
+                $(row).attr('id', data.id);  
+                     //var button = "<input id='btnDetails' class='btn btn-success' width='20px' value='Re-Open' />";
+                     jQuery('td:last', row).after('<td><input type="button" name="addchildlevel" id=' + data.id + ' class="btn btn-success btnchild" font-size="7px" font-weight="50" width="7px" value="Add Child Level"/></td>');
+                
+            },
+	});
+    // Add event listener for opening and closing details
+    $('#account tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
 
-            });
-            jQuery('#usersearch').on("keyup", function () {
-               table.fnFilter(this.value);
-            }).on("keypress", function (e) {
-            if (e.which == 13) {
-                return false;
-            }
-            });
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            $('#add').html('').empty();
+            d = row.data();
+            var data = d.itemCatSub;
+            for (var i = 0; i < data.length; i++) {
+                var url = '/' + data[i].id + '/ItemCategoryEdit.html';
+                //jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                //jQuery('[data-toggle="tooltip"]').tooltip();
+                $('#add').append('<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;"><tr><td>Id:</td><td>' + data[i].nameEn + '</td> ' + "<td><a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a></td>" + '</tr></table>');
+             }
+            row.child($('#add').html()).show();
+            tr.addClass('shown');
+        }
+    });
 
-        });
 
+    jQuery(document).on("click", ".btnchild", function () { 
+        var parent= $(this).attr("id");  
+        window.location.href ='/' +parent +'/ItemCategoryCreate.html';  
+    })
+
+   });
 
 </script>
-
 
 
 

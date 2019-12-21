@@ -42,19 +42,22 @@ namespace IMIS.Controllers.Setup
         public IActionResult ItemCategoryList()
         {
             return View();
+           
         }
 
         [HttpGet]
-        [Route("/ItemCategoryCreate.html")]
-        public IActionResult ItemCategoryCreate()
+        [Route("/{id}/ItemCategoryCreate.html")]
+        public IActionResult ItemCategoryCreate(int id)
         {
-            return View();
+            var item = new ItemCategoriesVM();
+            item.ParentId = id;
+            return View(item);
         }
 
         [HttpPost]
         [Route("/ItemCategoryCreate.html")]
         public async Task<IActionResult> ItemCategoryCreate(ItemCategoriesVM model)
-        {
+        { 
             var response = await _ItemCategory.AddEditItemCategories(model);
             if (response.message == "success")
             {
@@ -66,8 +69,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemCategoryEdit.html")]
-        public async Task<IActionResult> ItemCategoryEdit(decimal id)
+        [Route("/{id}/ItemCategoryEdit.html")]
+        public async Task<IActionResult> ItemCategoryEdit(int id)
         {
             return View(await _ItemCategory.ViewEdit(id));
         }

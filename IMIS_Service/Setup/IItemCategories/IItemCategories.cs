@@ -17,7 +17,7 @@ namespace IMIS_Service.Setup.IItemCategories
 
         Task<(string message, int id)> AddEditItemCategories(ItemCategoriesVM model);
 
-        Task<ItemCategoriesVM> ViewEdit(decimal Id);
+        Task<ItemCategoriesVM> ViewEdit(int Id);
     }
     public class ItemCategories : IItemCategories
     {
@@ -33,13 +33,17 @@ namespace IMIS_Service.Setup.IItemCategories
             {
                 var item = new InvItemCategory()
                 {
-                    Id=model.Id,
-                    NameEn=model.NameEn,
-                    NameNp=model.NameNp,
-                    Code=model.Code,
-                    Isexp=model.Isexp,
-                    DepreciationMax=model.DepreciationMax,
-                    DepreciationMin=model.DepreciationMin,   
+                    Id = model.Id,
+                    NameEn = model.NameEn,
+                    NameNp = model.NameNp,
+                    ParentId=model.ParentId??0,
+                    Rminl=model.Rminl,
+                    Rmaxl=model.Rmaxl,
+                    Code = model.Code,
+                    Isexp = model.Isexp==true? Convert.ToSByte(1):Convert.ToSByte(0),
+                    DepreciationMax = model.DepreciationMax,
+                    DepreciationMin = model.DepreciationMin,
+                    DepreciationPer=model.DepreciationPer
                 };
                 if (model.Id == 0)
                 {
@@ -74,7 +78,6 @@ namespace IMIS_Service.Setup.IItemCategories
 
             try
             {
-
                 if (model != null)
                 {
                     searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
@@ -82,23 +85,39 @@ namespace IMIS_Service.Setup.IItemCategories
                     skip = model.start;
                     draw = model.draw;
                 }
+                var accMasters = (from iic in _db.InvItemCategory
+                                  where iic.ParentId == 0
+                                  select new ItemCategoriesVM
+                                  {
+                                      Id = iic.Id,
+                                      NameEn = iic.NameEn,
+                                      NameNp = iic.NameNp,
+                                      Code = iic.Code,
+                                      Rminl = iic.Rminl,
+                                      Rmaxl = iic.Rmaxl,
+                                 
+                                      itemCatSub = (from s in _db.InvItemCategory
+                                                    where s.ParentId == iic.Id
+                                                    select new ItemCatSub
+                                                    {
+                                                        Id = s.Id,
+                                                        NameEn = s.NameEn,
+                                                        NameNp = s.NameNp,
+                                                        Code = s.Code,
+                                                        Rminl = s.Rminl,
+                                                        Rmaxl = s.Rmaxl,
+                                                    
+                                                    }).ToList()
 
-                var accMasters =  (from iic in _db.InvItemCategory
-                                        select new
-                                        {
-                                            iic.Id,
-                                            iic.NameEn,
-                                            iic.NameNp 
-                                        });
+                                  });
                 ///filter count for the total; record
                 ///
-
                 if (accMasters != null)
                 {
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
+                        accMasters = accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
@@ -110,25 +129,25 @@ namespace IMIS_Service.Setup.IItemCategories
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =finallist
+                    data = finallist
                 };
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return new DataTableResponse
                 {
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =0
+                    data = 0
                 };
                 //add to do for the error log save in db
             }
         }
 
-        public async Task<ItemCategoriesVM> ViewEdit(decimal Id)
+        public async Task<ItemCategoriesVM> ViewEdit(int Id)
         {
             try
             {
@@ -137,14 +156,16 @@ namespace IMIS_Service.Setup.IItemCategories
                 {
                     return (new ItemCategoriesVM()
                     {
-                        Id=response.Id,
-                        Code=response.Code,
-                        DepreciationMax=response.DepreciationMax,
-                        DepreciationMin=response.DepreciationMin,
-                        Isexp=response.Isexp,
-                        NameEn=response.NameEn,
-                        NameNp=response.NameNp, 
-                        
+                        Id = response.Id,
+                        Code = response.Code,
+                        DepreciationMax = response.DepreciationMax,
+                        DepreciationMin = response.DepreciationMin,
+                        Isexp = response.Isexp==1?true:false,
+                        NameEn = response.NameEn,
+                        NameNp = response.NameNp,
+                        Rmaxl=response.Rmaxl,
+                        Rminl=response.Rminl
+
                     });
                 }
                 else
