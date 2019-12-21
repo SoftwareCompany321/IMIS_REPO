@@ -4,6 +4,7 @@ using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,15 +17,15 @@ namespace IMIS_Service.Setup.IItemMaster
     public interface IItemMaster
     {
         Task<DataTableResponse> ItemMasterFetchData(DataTableVm model);
-
         Task<(string message, int Id)> AddEditSave(ItemMasterVM model);
         Task<ItemMasterVM> ViewEdit(int Id);
+        Task<List<SelectListItem>> InvUntList();
     }
     public class ItemMaster : IItemMaster
     {
         private readonly IMISDbContext _db;
         private readonly IMapper _mapper;
-        public ItemMaster(IMISDbContext db,IMapper mapper)
+        public ItemMaster(IMISDbContext db, IMapper mapper)
         {
             _db = db;
             _mapper = mapper;
@@ -89,6 +90,31 @@ namespace IMIS_Service.Setup.IItemMaster
 
                 throw;
             }
+        }
+
+        public async Task<List<SelectListItem>> InvUntList()
+        {
+            var landlist = new List<SelectListItem>();
+
+            var list = await (from itemmaster in _db.InvItemMst
+                              join invunt in _db.InvUnit on itemmaster.UnitId equals invunt.UnitId into leftjoin
+                              from leftunit in leftjoin.DefaultIfEmpty()
+                              join invcat in _db.InvItemCategory on itemmaster.ItemType equals invcat.Id into leftjoincat
+                              from leftcat in leftjoincat.DefaultIfEmpty()
+                              select new { Id = itemmaster.ItemId, Text = itemmaster.Code + ' ' + itemmaster.NameEn + ' ' + leftcat.NameEn + ' ' + leftunit.DescEn }).ToListAsync();
+            if (list.Count > 0)
+            {
+                foreach (var item in list)
+                {
+                    SelectListItem selectListItem = new SelectListItem()
+                    {
+                        Text = item.Text,
+                        Value = item.Id.ToString()
+                    };
+                    landlist.Add(selectListItem);
+                }
+            }
+            return landlist;
         }
 
         public async Task<DataTableResponse> ItemMasterFetchData(DataTableVm model)
@@ -160,12 +186,12 @@ namespace IMIS_Service.Setup.IItemMaster
         {
             try
             {
-                var response = await _db.InvItemMst.Where(x => x.AccId == Id).FirstOrDefaultAsync(); 
+                var response = await _db.InvItemMst.Where(x => x.AccId == Id).FirstOrDefaultAsync();
                 if (response != null)
                 {
                     return _mapper.Map<ItemMasterVM>(response);
                 }
-                return new ItemMasterVM(); 
+                return new ItemMasterVM();
             }
             catch (Exception ex)
             {
