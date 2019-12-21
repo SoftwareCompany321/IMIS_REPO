@@ -42,12 +42,29 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="20px">Id</th>
-                                        <th>Code</th>
-                                        <th>Name(Nep)</th>
-                                        <th>Name(Eng)</th>
-                                        <th>Display</th>
-                                        <th>AccCode</th>
+                                        <th width="20px">@Utils.GetLabel("Code")</th>
+                                        <th>@Utils.GetLabel("Name(Nep)")</th>
+                                        <th>@Utils.GetLabel("Name(Eng)")</th>
+                                        <th>@Utils.GetLabel("Unit")</th>
+                                        <th>@Utils.GetLabel("Main Class")</th>
+                                        <th>@Utils.GetLabel("Item type")</th>
+                                        <th>@Utils.GetLabel("Item Nature")</th>
+                                        <th>@Utils.GetLabel("Country")</th>
+                                        <th>@Utils.GetLabel("Company")</th>
+                                        <th>@Utils.GetLabel("Maximum")</th>
+                                        <th>@Utils.GetLabel("Minimum")</th>
+                                        <th>@Utils.GetLabel("Current Upper Limit")</th>
+                                        <th>@Utils.GetLabel("Current Lowe Limit")</th>
+                                        <th>@Utils.GetLabel("Depreciation")</th>
+                                        <th>@Utils.GetLabel("Min Dep. Amt.")</th>
+                                        <th>@Utils.GetLabel("Max Dep. Amt.")</th>
+                                        <th>@Utils.GetLabel("Land Area")</th>
+                                        <th>@Utils.GetLabel("House Area")</th>
+                                        <th>@Utils.GetLabel("Account Title")</th>
+                                        <th>@Utils.GetLabel("Remarks")</th>
+                                        <th>@Utils.GetLabel("Kitta No")</th>
+                                        <th>@Utils.GetLabel("Structure Type")</th>
+                                        <th>@Utils.GetLabel("Fuel Repair Details")</th> 
                                     </tr>
                                 </thead>
 
@@ -69,68 +86,7 @@
     <script src="js/bootstrap.min.js"></script>
 </body>
 
-
-
-@*<section class="content-header">
-        <h1>
-            Account Header List
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="@Url.Content("~/home.html")" class="active"><i class="fa fa-th-large"></i> Home</a></li>
-            <li class="active"> Account Header List</li>
-        </ol>
-    </section>
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                     /.box-header
-                    <div class="box-body">
-
-                        @if (ViewBag.Message != null || ViewBag.Message == "")
-                        {
-                            <div message-content="@ViewBag.Message" message-class="@ViewBag.Class"></div>
-                        }
-                        <div class="row">
-
-                            <div class="col-lg-6">
-
-                            </div>
-
-                            <div class="col-lg-6">
-                                <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/ItemMasterCreate.html")">Create Account Header</a>
-
-                                <input type="text" id="usersearch" placeholder="Search" class="grid-search" />
-
-                            </div>
-                        </div>
-                        <div class="table-responsive" style="overflow:auto;width:100%">
-                            <table id="account" class="table table-bordered table-hover action-b-th-0">
-                                <thead>
-                                    <tr>
-
-                                        <th width="20px">Id</th>
-                                        <th>Code</th>
-                                        <th>Name(Nep)</th>
-                                        <th>Name(Eng)</th>
-                                        <th>Display</th>
-                                        <th>AccCode</th>
-                                    </tr>
-                                </thead>
-
-                            </table>
-                        </div>
-                    </div>
-                     /.box-body
-                </div>
-                 /.box
-            </div>
-
-             /.col
-        </div>
-         /.row
-    </section>*@
-
+ 
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {
             var table = jQuery("#account");
@@ -149,22 +105,7 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-                //'select': {
-                //    info: false
-                //},
-                // 'columnDefs': [AccId
-                //    {
-                //        'targets': 0,
-                //        'checkboxes': {
-                //            'selectRow': true,
-                //            'selectAll': true,
-                //            'className': 'select-checkbox',
-                //        }
-                //    }
-                //],
-                //'select': {
-                //    'style': 'multi'
-                //},
+                
 
                 "columns": [
                 { "data": "accId", "orderable": true },

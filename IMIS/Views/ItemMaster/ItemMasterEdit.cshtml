@@ -10,31 +10,33 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#sub11">Item Description</a> </li>
-                </ul>
+                    <li class="active"><a href="#sub11">@Utils.GetLabel("Item Description")</a> </li>
+</ul>
 
                 <div class="tab-content">
                     <a asp-action="ItemMasterList" asp-controller="ItemMaster" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
                     <div class="tab-pane fade active in" id="sub111">
-                        <h2 class="form-title">Edit Description </h2>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="well">
-                                    <form method="post" asp-action="ItemMasterEdit" asp-controller="ItemMaster">
-                                        @Html.AntiForgeryToken()
-                                        @await Html.PartialAsync("~/Views/ItemMaster/_partialItemMaster.cshtml", Model)
-                                        <div class="form-group form-action">
-                                            <div class="col-md-10 col-md-offset-2">
-                                                <button type="submit" class="btn btn-primary">@Utils.GetLabel("Submit")</button>
-                                                <button type="button" class="btn btn-default">@Utils.GetLabel("Cancel")</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                        <h2 class="form-title">
+                            @Utils.GetLabel("Edit Item Master") </h2>
 
-                        </div>
-                    </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="well">
+                                                            <form method="post" asp-action="ItemMasterEdit" asp-controller="ItemMaster">
+                                                                @Html.AntiForgeryToken()
+                                                                @await Html.PartialAsync("~/Views/ItemMaster/_partialItemMaster.cshtml", Model)
+                                                                <div class="form-group form-action">
+                                                                    <div class="col-md-10 col-md-offset-2">
+                                                                        <button type="submit" class="btn btn-primary">@Utils.GetLabel("Submit")</button>
+                                                                        <button type="button" class="btn btn-default">@Utils.GetLabel("Cancel")</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+</div>
                 </div>
             </div>
         </div>
