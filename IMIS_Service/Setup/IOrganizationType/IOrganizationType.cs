@@ -6,12 +6,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IMIS_Service.ViewModel;
+using IMIS_DataEntity.EntityClass;
 
 namespace IMIS_Service.Setup.IOrganizationType
 {
     public interface IOrganizationType
     {
         Task<DataTableResponse> OrganizationTypeFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditSave(OrganizationTypeVM model);
+
+        Task<OrganizationTypeVM> ViewEdit(int id);
     }
     public class OrganizationType : IOrganizationType
     {
@@ -82,6 +87,64 @@ namespace IMIS_Service.Setup.IOrganizationType
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<(string message, int id)> AddEditSave(OrganizationTypeVM model)
+        {
+            try
+            {
+                var item = new InvOrgType()
+                {
+                    Id = model.Id,
+                    NameEn = model.NameEn,
+                    NameNp = model.NameNp 
+                };
+                if (model.Id == 0)
+                {
+                    int count = await _db.InvOrgType.CountAsync();
+                    item.Id = count + 1;
+                    await _db.AddAsync(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<OrganizationTypeVM> ViewEdit(int id)
+        {
+            try
+            {
+                var response = await _db.InvOrgType.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+                if (response != null)
+                {
+                    return (new OrganizationTypeVM()
+                    {
+                        NameEn = response.NameEn,
+                        NameNp = response.NameNp
+                    });
+                }
+                else
+                {
+                    return new OrganizationTypeVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

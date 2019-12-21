@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/OrganizationTypeCreate.html")]
-        public IActionResult OrganizationTypeCreate(OrganizationTypeVM model)
+        public async Task<IActionResult> OrganizationTypeCreate(OrganizationTypeVM model)
         {
+            var response = await _OrganizationType.AddEditSave(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/OrganizationTypelist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/{id}OrganizationTypeEdit.html")]
+        public async Task<IActionResult> OrganizationTypeEdit(int id)
+        {
+            return View(await _OrganizationType.ViewEdit(id));
+        }
+
+        [HttpPost]
+        [Route("/OrganizationTypeEdit.html")]
+        public async Task<IActionResult> OrganizationTypeEdit(OrganizationTypeVM model)
+        {
+            var response = await _OrganizationType.AddEditSave(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Update";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/OrganizationTypelist.html");
+            }
             return View();
         }
     }

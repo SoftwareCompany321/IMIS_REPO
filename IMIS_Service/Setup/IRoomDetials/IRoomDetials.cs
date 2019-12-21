@@ -102,13 +102,16 @@ namespace IMIS_Service.Setup.IRoomDetials
                 {
                     RoomId = Model.RoomId,
                     DescEn = Model.DescEn,
-                    DescNp = Model.DescNp 
+                    DescNp = Model.DescNp ,
+                    FloorNo=Model.FloorNo,
+                    BlockNo=Model.BlockNo,
+                    DeptId=Model.DeptId
 
                 };
 
                 if (Model.RoomId == 0)
                 {
-                    int countrow = await _db.InvUnit.CountAsync();
+                    int countrow = await _db.InvRoomMst.CountAsync();
                     AddEdit.RoomId = countrow + 1;
                     await _db.AddAsync(AddEdit);
                 }
@@ -125,11 +128,11 @@ namespace IMIS_Service.Setup.IRoomDetials
                 throw;
             }
         }
-        public async Task<RoomDetialsVM> ViewOrEditData(int UnitId)
+        public async Task<RoomDetialsVM> ViewOrEditData(int roomid)
         {
             try
             {
-                var data = await _db.InvRoomMst.Where(x => x.RoomId == UnitId).FirstOrDefaultAsync();
+                var data = await _db.InvRoomMst.Where(x => x.RoomId == roomid).FirstOrDefaultAsync();
                 if (data != null)
                 {
                     return new RoomDetialsVM()

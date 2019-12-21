@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/ProjectSetupCreate.html")]
-        public IActionResult ProjectSetupCreate(ProjectSetupVM model)
+        public async Task<IActionResult> ProjectSetupCreate(ProjectSetupVM model)
         {
+            var response = await _ProjectSetup.AddEditProjectSetup(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ProjectSetuplist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/ProjectSetupEdit.html")]
+        public async Task<IActionResult> ProjectSetupEdit(decimal id)
+        {
+            return View(await _ProjectSetup.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/ProjectSetupEdit.html")]
+        public async Task<IActionResult> ProjectSetupEdit(ProjectSetupVM model, int id)
+        {
+            var response = await _ProjectSetup.AddEditProjectSetup(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ProjectSetuplist.html");
+            }
             return View();
         }
     }

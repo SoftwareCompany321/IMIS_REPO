@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/DepartmentCreate.html")]
-        public IActionResult DepartmentCreate(DepartmentVM model)
+        public async Task<IActionResult> DepartmentCreate(DepartmentVM model)
         {
+            var response = await _Department.AddEditDepartment(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/Departmentlist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/DepartmentEdit.html")]
+        public async Task<IActionResult> DepartmentEdit(decimal id)
+        {
+            return View(await _Department.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/DepartmentEdit.html")]
+        public async Task<IActionResult> DepartmentEdit(DepartmentVM model, int id)
+        {
+            var response = await _Department.AddEditDepartment(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/Departmentlist.html");
+            }
             return View();
         }
     }

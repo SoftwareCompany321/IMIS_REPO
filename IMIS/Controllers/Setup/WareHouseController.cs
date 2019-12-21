@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/WareHouseCreate.html")]
-        public IActionResult WareHouseCreate(WareHouseVM model)
+        public async Task<IActionResult> WareHouseCreate(WareHouseVM model)
         {
+            var response = await _WareHouse.AddEditWareHouse(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/WareHouselist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("/WareHouseEdit.html")]
+        public async Task<IActionResult> WareHouseEdit(decimal id)
+        {
+            return View(await _WareHouse.ViewEdit(id));
+        }
+
+        [HttpGet]
+        [Route("/WareHouseEdit.html")]
+        public async Task<IActionResult> WareHouseEdit(WareHouseVM model, int id)
+        {
+            var response = await _WareHouse.AddEditWareHouse(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/WareHouselist.html");
+            }
             return View();
         }
     }

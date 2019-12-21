@@ -1,5 +1,7 @@
 ﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,9 @@ namespace IMIS_Service.Setup.IWareHouse
     public interface IWareHouse
     {
         Task<DataTableResponse> WareHouseFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditWareHouse(WareHouseVM model);
+
+        Task<WareHouseVM> ViewEdit(decimal Id);
     }
     public class WareHouse : IWareHouse
     {
@@ -43,7 +48,9 @@ namespace IMIS_Service.Setup.IWareHouse
                 var accMasters =  (from wareHouse in _db.InvWarehouse
                                         select new
                                         {
-                                            wareHouse.NameEn 
+                                            wareHouse.WarehouseId,
+                                            wareHouse.NameEn,
+                                            wareHouse.NameNp
                                         });
                 ///filter count for the total; record
                 ///
@@ -80,6 +87,64 @@ namespace IMIS_Service.Setup.IWareHouse
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<(string message, int id)> AddEditWareHouse(WareHouseVM model)
+        {
+            try
+            {
+                var item = new InvWarehouse()
+                {
+                    WarehouseId = model.WarehouseId,
+                    NameEn = model.NameEn,
+                    NameNp = model.NameNp
+                };
+                if (model.WarehouseId == 0)
+                {
+                    int id = await _db.InvWarehouse.CountAsync();
+                    item.WarehouseId = id + 1;
+                    _db.InvWarehouse.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<WareHouseVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.InvWarehouse.Where(x => x.WarehouseId == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new WareHouseVM()
+                    {
+                        WarehouseId = response.WarehouseId,
+                        NameEn = response.NameEn,
+                        NameNp = response.NameNp,
+
+                    });
+                }
+                else
+                {
+                    return new WareHouseVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

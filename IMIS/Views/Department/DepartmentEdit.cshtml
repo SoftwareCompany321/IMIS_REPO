@@ -1,7 +1,7 @@
 ﻿@using IMIS_CORE.Core
 @model IMIS_Service.ViewModel.ItemCategoriesVM
 @{
-    ViewData["Title"] = "ItemSpecificationCreate";
+    ViewData["Title"] = "DepartmentCreate";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <body>
@@ -9,21 +9,21 @@
         <div class="container-fluid">
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#sub11">@Utils.GetLabel("Edit Item Specification")</a> </li>
+                    <li class="active"><a href="#sub11">@Utils.GetLabel("Edit Department")</a> </li>
 
 </ul>
                 <div class="tab-content">
-                    <a asp-action="ItemSpecificationList" asp-controller="ItemSpecification" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
+                    <a asp-action="DepartmentList" asp-controller="Department" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
                     <div class="tab-pane fade active in" id="sub111">
                         <h2 class="form-title">
-                            @Utils.GetLabel("Add Item Specification")</h2>
+                            @Utils.GetLabel("Add Department")</h2>
 
                                                 <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="well">
-                                                            <form method="post" asp-action="ItemSpecificationEdit" asp-controller="ItemSpecification">
+                                                            <form method="post" asp-action="DepartmentEdit" asp-controller="Department">
                                                                 @Html.AntiForgeryToken()
-                                                                @await Html.PartialAsync("~/Views/ItemSpecification/_partialItemCaterory.cshtml", Model)
+                                                                @await Html.PartialAsync("~/Views/Department/_partialDepartment.cshtml", Model)
                                                                 <div class="form-group form-action">
                                                                     <div class="col-md-10 col-md-offset-2">
                                                                         <button type="submit" class="btn btn-primary">
