@@ -48,6 +48,7 @@ namespace IMIS.Controllers.Setup
         [Route("/ItemMasterCreate.html")]
         public IActionResult ItemMasterCreate()
         {
+            ViewData["landdesc"] = _ItemMaster.InvUntList();
             return View();
         }
 
@@ -62,6 +63,8 @@ namespace IMIS.Controllers.Setup
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/ItemMasterlist.html");
             }
+
+            ViewData["landdesc"] = _ItemMaster.InvUntList();
             return View();
         }
 
@@ -69,6 +72,8 @@ namespace IMIS.Controllers.Setup
         [Route("/{Id}/ItemMasterCreate.html")]
         public async Task<IActionResult> ItemMasterEdit(int Id)
         {
+
+            ViewData["landdesc"] = _ItemMaster.InvUntList();
             return View(await _ItemMaster.ViewEdit(Id));
         }
 
@@ -83,6 +88,8 @@ namespace IMIS.Controllers.Setup
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/ItemMasterlist.html");
             }
+
+            ViewData["landdesc"] = _ItemMaster.InvUntList();
             return View();
         }
     }

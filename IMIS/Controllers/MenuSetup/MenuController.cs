@@ -68,6 +68,7 @@ namespace IMIS.Controllers.MenuSetup
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/menudatafetchlist.html");
             }
+            ViewData["ParentMenu"] = _global.GetAllParentMenu();
             return View();
         }
 
@@ -93,6 +94,7 @@ namespace IMIS.Controllers.MenuSetup
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/menudatafetchlist.html");
             }
+            ViewData["ParentMenu"] = _global.GetAllParentMenu();
             return View();
 
         }
