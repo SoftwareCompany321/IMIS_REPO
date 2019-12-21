@@ -69,68 +69,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 </body>
-
-
-
-@*<section class="content-header">
-        <h1>
-            Account Header List
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="@Url.Content("~/home.html")" class="active"><i class="fa fa-th-large"></i> Home</a></li>
-            <li class="active"> Account Header List</li>
-        </ol>
-    </section>
-    <section class="content">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                     /.box-header
-                    <div class="box-body">
-
-                        @if (ViewBag.Message != null || ViewBag.Message == "")
-                        {
-                            <div message-content="@ViewBag.Message" message-class="@ViewBag.Class"></div>
-                        }
-                        <div class="row">
-
-                            <div class="col-lg-6">
-
-                            </div>
-
-                            <div class="col-lg-6">
-                                <a class="btn btn-primary pull-right add-new-anchor" href="@Url.Content("~/ItemCategoryCreate.html")">Create Account Header</a>
-
-                                <input type="text" id="usersearch" placeholder="Search" class="grid-search" />
-
-                            </div>
-                        </div>
-                        <div class="table-responsive" style="overflow:auto;width:100%">
-                            <table id="account" class="table table-bordered table-hover action-b-th-0">
-                                <thead>
-                                    <tr>
-
-                                        <th width="20px">Id</th>
-                                        <th>Code</th>
-                                        <th>Name(Nep)</th>
-                                        <th>Name(Eng)</th>
-                                        <th>Display</th>
-                                        <th>AccCode</th>
-                                    </tr>
-                                </thead>
-
-                            </table>
-                        </div>
-                    </div>
-                     /.box-body
-                </div>
-                 /.box
-            </div>
-
-             /.col
-        </div>
-         /.row
-    </section>*@
+ 
 
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {
@@ -150,22 +89,7 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-                //'select': {
-                //    info: false
-                //},
-                // 'columnDefs': [AccId
-                //    {
-                //        'targets': 0,
-                //        'checkboxes': {
-                //            'selectRow': true,
-                //            'selectAll': true,
-                //            'className': 'select-checkbox',
-                //        }
-                //    }
-                //],
-                //'select': {
-                //    'style': 'multi'
-                //},
+                
 
                 "columns": [
                 { "data": "accId", "orderable": true },
@@ -175,6 +99,12 @@
                 { "data": "accCode", "orderable": false },
                 { "data": "accCode", "orderable": false },
                 ],
+                 "rowCallback": function (row, data, index) {
+                //jQuery('td:first-child', row).find("input").attr({ "id": "Ids", "name": "Ids", "value": data.id });
+                var url ='/' + data.unitId + '/ItemUnitEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+            },
                 order: [
 
                     [1, "desc"]

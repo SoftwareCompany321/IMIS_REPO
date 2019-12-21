@@ -97,6 +97,12 @@
                 { "data": "nameEn", "orderable": false }, 
                 { "data": "deptId", "orderable": false },
                 ],
+                 "rowCallback": function (row, data, index) {
+                //jQuery('td:first-child', row).find("input").attr({ "id": "Ids", "name": "Ids", "value": data.id });
+                var url ='/' + data.deptId + '/DepartmentEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Department' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+            },
                 order: [
 
                     [1, "desc"]

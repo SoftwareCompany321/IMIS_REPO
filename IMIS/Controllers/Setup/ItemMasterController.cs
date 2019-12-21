@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IMIS_CORE.Utility;
+﻿using IMIS_CORE.Utility;
 using IMIS_Service.Setup.IItemMaster;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace IMIS.Controllers.Setup
 {
@@ -48,8 +45,15 @@ namespace IMIS.Controllers.Setup
         [Route("/ItemMasterCreate.html")]
         public IActionResult ItemMasterCreate()
         {
-            ViewData["landdesc"] = _ItemMaster.InvUntList();
-            return View();
+            ItemMasterVM model = new ItemMasterVM();
+            model.landdesc = _ItemMaster.InvUntList();
+            model.fuelmaintenance  = _ItemMaster.FuelMaintenanceDtl();
+            model.unitlist  = _ItemMaster.UnitList();
+            model.ItemCategorylist  = _ItemMaster.ItemCategroyList();
+            model.ItemSubCategoryList  = _ItemMaster.ItemSubCategroyList(0);
+            model.othsetuplist  = _ItemMaster.OthersetupList();
+            model.CountryList  = _ItemMaster.CountryList();
+            return View(model);
         }
 
         [HttpPost]
@@ -57,6 +61,13 @@ namespace IMIS.Controllers.Setup
         public async Task<IActionResult> ItemMasterCreate(ItemMasterVM model)
         {
             var response = await _ItemMaster.AddEditSave(model);
+            model.landdesc = _ItemMaster.InvUntList();
+            model.fuelmaintenance = _ItemMaster.FuelMaintenanceDtl();
+            model.unitlist = _ItemMaster.UnitList();
+            model.ItemCategorylist = _ItemMaster.ItemCategroyList();
+            model.ItemSubCategoryList = _ItemMaster.ItemSubCategroyList(0);
+            model.othsetuplist = _ItemMaster.OthersetupList();
+            model.CountryList = _ItemMaster.CountryList();
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
@@ -64,16 +75,16 @@ namespace IMIS.Controllers.Setup
                 return Redirect("~/ItemMasterlist.html");
             }
 
-            ViewData["landdesc"] = _ItemMaster.InvUntList();
+           
             return View();
         }
 
         [HttpGet]
-        [Route("/{Id}/ItemMasterCreate.html")]
+        [Route("/{Id}/ItemMasterEdit.html")]
         public async Task<IActionResult> ItemMasterEdit(int Id)
         {
-
-            ViewData["landdesc"] = _ItemMaster.InvUntList();
+             
+           
             return View(await _ItemMaster.ViewEdit(Id));
         }
 
@@ -82,6 +93,13 @@ namespace IMIS.Controllers.Setup
         public async Task<IActionResult> ItemMasterEdit(ItemMasterVM model, int Id)
         {
             var response = await _ItemMaster.AddEditSave(model);
+            model.landdesc = _ItemMaster.InvUntList();
+            model.fuelmaintenance = _ItemMaster.FuelMaintenanceDtl();
+            model.unitlist = _ItemMaster.UnitList();
+            model.ItemCategorylist = _ItemMaster.ItemCategroyList();
+            model.ItemSubCategoryList = _ItemMaster.ItemSubCategroyList(0);
+            model.othsetuplist = _ItemMaster.OthersetupList();
+            model.CountryList = _ItemMaster.CountryList();
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
@@ -89,7 +107,7 @@ namespace IMIS.Controllers.Setup
                 return Redirect("~/ItemMasterlist.html");
             }
 
-            ViewData["landdesc"] = _ItemMaster.InvUntList();
+            
             return View();
         }
     }

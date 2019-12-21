@@ -95,7 +95,9 @@ namespace IMIS_Service.Setup.IFuelMaintenance
             {
                 var item = new TblVehicleParts()
                 {
-                    Sn = model.Sn
+                    Sn = model.Sn,
+                    EngName =model.EngName,
+                    NpName=model.NpName
                 };
                 if (model.Sn == 0)
                 {
@@ -128,7 +130,8 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                     return (new FuelMaintenanceVM()
                     {
                         Sn = response.Sn,
-
+                        EngName = response.EngName,
+                        NpName = response.NpName,
                     });
                 }
                 else

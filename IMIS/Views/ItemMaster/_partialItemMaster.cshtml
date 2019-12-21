@@ -3,170 +3,139 @@
 @using IMIS_CORE.EnumHelper
 <div>
     <div class="form-group">
+
         <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Inv ID")<span class="requried">*</span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" asp-for="ItemId" class="form-control" placeholder="Code">
-            </div>
-        </div>
-        <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Fuel Repair Details")<span class="requried">*</span>
             </label>
-            <div class="col-md-9">
-                <select>
-                    <option>
-                        A
-                    </option>
+            <div class="col-md-6">
+                <select class="form-control" asp-for="VehiclePartsId" asp-items="Model.fuelmaintenance">
                 </select>
             </div>
         </div>
-    </div>
-    <div class="form-group">
         <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Inv Acc No")<span class="requried">*</span>
             </label>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <input type="text" class="form-control" asp-for="Code">
             </div>
         </div>
+    </div>
+    <div class="form-group">
+
         <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Description")<span class="requried">*</span>
             </label>
-            <div class="col-md-9">
-                <input type="text" asp-for="NameNp" />
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="NameNp" onkeypress="return setUnicode(event,this);" />
             </div>
         </div>
-    </div>
-
-    <div class="form-group">
         <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("In English")<span class="requried">*</span>
             </label>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <input type="text" asp-for="NameEn" class="form-control">
             </div>
         </div>
-        <div class="col-md-2">
-            <label for="code" class="col-md-2" control-label">
+    </div>
+
+    <div class="form-group">
+
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Unit")<span class="requried">*</span>
             </label>
-            <div class="col-md-9">
-                <input type="text" asp-for="Unit" />
+            <div class="col-md-2">
+                <input type="text" class="form-control" asp-for="Unit" />
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="col-md-12">
-                <select>
-                    <option>
-                        A
-                    </option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-2">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Major Class")<span class="requried"></span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="ItemMainClass">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="col-md-9">
-                <select>
-                    <option>
-                        A
-                    </option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-2">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Inv Type")<span class="requried">*</span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" asp-for="ItemType" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="col-md-9">
-                <select>
-                    <option>
-                        A
-                    </option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-2">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Item Nature")<span class="requried"></span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="ItemNature">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="col-md-9">
-                <select>
-                    <option>
-                        A
-                    </option>
+            <div class="col-md-4">
+                <select class="form-control" asp-for="UnitId" asp-items="Model.unitlist">
                 </select>
             </div>
         </div>
         <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Made Country")<span class="requried">*</span>
+            <label for="code" class="col-md-3 control-label" control-label">
+                @Utils.GetLabel("Major Class")<span class="requried"></span>
             </label>
-            <div class="col-md-9">
-                <input type="text" asp-for="Countryid" />
+            <div class="col-md-2">
+                <input type="text" class="form-control" asp-for="ItemMainClass">
+            </div>
+            <div class="col-md-4">
+                <select class="form-control" asp-for="ItemMainClass" asp-items="Model.ItemCategorylist">
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
+                @Utils.GetLabel("Inv Type")<span class="requried">*</span>
+            </label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" asp-for="ItemType" />
+            </div>
+            <div class="col-md-4">
+                <select class="form-control" asp-for="ItemType" asp-items="Model.ItemSubCategoryList">
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
+                @Utils.GetLabel("Item Nature")<span class="requried"></span>
+            </label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" asp-for="ItemNature">
+            </div>
+            <div class="col-md-4">
+                <select class="form-control" asp-for="ItemNature" asp-items="Model.ItemSubCategoryList">
+                </select>
             </div>
         </div>
     </div>
 
     <div class="form-group">
-        <div class="col-md-2">
-            <label for="code" class="col-md-2" control-label">
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Made Company")<span class="requried"></span>
             </label>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <input type="text" class="form-control" asp-for="Companyname">
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="col-md-9">
-                <select>
-                    <option>
-                        A
-                    </option>
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
+                @Utils.GetLabel("Made Country")<span class="requried">*</span>
+            </label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" asp-for="Countryid" />
+            </div>
+            <div class="col-md-4">
+                <select class="form-control" asp-for="Countryid" asp-items="Model.CountryList">
                 </select>
             </div>
         </div>
+    </div>
+    <div class="form-group">
+
         <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Received Source")<span class="requried"></span>
             </label>
-            <div class="col-md-9">
-                <input type="text" asp-for="Source" />
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Source" />
             </div>
         </div>
+
     </div>
 
     <div class="form-group">
         <div class="col-md-3">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Estimated Age")<span class="requried"></span>
             </label>
             <div class="col-md-9">
@@ -174,7 +143,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Size")<span class="requried"></span>
             </label>
             <div class="col-md-9">
@@ -182,7 +151,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Upper Limit")<span class="requried"></span>
             </label>
             <div class="col-md-9">
@@ -190,7 +159,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Lower Limit")<span class="requried"></span>
             </label>
             <div class="col-md-9">
@@ -201,7 +170,7 @@
 
     <div class="form-group">
         <div class="col-md-3">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Current Upper Limit")<span class="requried"></span>
             </label>
             <div class="col-md-9">
@@ -209,7 +178,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Current Lower Limit")<span class="requried"></span>
             </label>
             <div class="col-md-9">
@@ -217,7 +186,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Depreciation") %<span class="requried"></span>
             </label>
             <div class="col-md-9">
@@ -225,7 +194,7 @@
             </div>
         </div>
         <div class="col-md-3">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Min Depre. Amt")<span class="requried"></span>
             </label>
             <div class="col-md-9">
@@ -235,363 +204,348 @@
     </div>
 
     <div class="form-group">
-        <div class="col-md-4">
-            <label for="code" class="col-md-2" control-label">
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Land Description")<span class="requried"></span>
             </label>
-            <div class="col-md-9">
-                <select class="form-group" asp-for="Landid" asp-items="@ViewData["landdesc"] as SelectList">
-
+            <div class="col-md-6">
+                <select class="form-control" asp-for="Landid" asp-items="Model.landdesc">
                 </select>
             </div>
         </div>
-        <div class="col-md-4">
-            <label for="code" class="col-md-2" control-label">
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Price of House/Land")<span class="requried"></span>
             </label>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <input type="text" class="form-control" asp-for="LandMarketRate">
             </div>
         </div>
-        <div class="col-md-4">
-            <label for="code" class="col-md-2" control-label">
+
+
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Max Depre. Amt")<span class="requried"></span>
             </label>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <input type="text" asp-for="Depmaxrate" />
             </div>
         </div>
-
-    </div>
-
-
-    <div class="form-group">
         <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Property Classification")<span class="requried"></span>
             </label>
             <div class="col-md-6">
-                <select asp-for="Propertytype" asp-items="@EnumToList.EnumSelectlist<EnumHelper.PropertyClassfication>(true)">
+                <select class="form-control" asp-for="Propertytype" asp-items="@EnumToList.EnumSelectlist<EnumHelper.PropertyClassfication>(true)">
                 </select>
             </div>
         </div>
+
+    </div>
+
+
+    <div class="form-group">
         <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Current Market Price Of House/Land")<span class="requried"></span>
             </label>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <input type="text" class="form-control">
             </div>
         </div>
-    </div>
-
-
-    <div class="form-group">
-        <div class="col-md-4">
-            <label for="code" class="col-md-2" control-label">
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
                 @Utils.GetLabel("Remarks")<span class="requried"></span>
             </label>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <input type="text" class="form-control">
             </div>
         </div>
-        <div class="col-md-4">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Kita No")<span class="requried"></span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control">
+        <div class="form-group">
+            <div class="col-md-6">
+                <label for="code" class="col-md-3 control-label" control-label">
+                    @Utils.GetLabel("Kita No")<span class="requried"></span>
+                </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="code" class="col-md-3 control-label" control-label">
+                    @Utils.GetLabel("Land Site")<span class="requried"></span>
+                </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control">
+                </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Land Site")<span class="requried"></span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control">
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <label for="code" class="col-md-3 control-label" control-label">
+                    @Utils.GetLabel("Account Title")<span class="requried"></span>
+                </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="code" class="col-md-3 control-label" control-label">
+                    @Utils.GetLabel("Budget Title")<span class="requried"></span>
+                </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control">
+                </div>
             </div>
         </div>
-    </div>
 
-
-    <div class="form-group">
-        <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Account Title")<span class="requried"></span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @Utils.GetLabel("Enter The Area Of Land")
             </div>
-        </div>
-        <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Budget Title")<span class="requried"></span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control">
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @Utils.GetLabel("Enter The Area Of Land")
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-1">
-                    <div class="form-group">
+            <div class="panel-body">
+                <div class=" col-md-12 row">
+                    <div class="form-group col-md-2">
                         <label class="font_field">
                             @Utils.GetLabel("Ropani")
                         </label>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class=" form-group col-md-2"> 
+                            <label class="font_field">
+                                @Utils.GetLabel("Aana")
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control font_value" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
 
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
+                            <label class="font_field">
+                                @Utils.GetLabel("Paisa")
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control font_value" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+
+                            <label class="font_field">
+                                @Utils.GetLabel("Dam")
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control font_value" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+
+                            <label class="font_field">
+                                @Utils.GetLabel("Bigha")
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control font_value" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+
+                            <label class="font_field">
+                                @Utils.GetLabel("Katha")
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control font_value" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+
+                            <label class="font_field">
+                                @Utils.GetLabel("Dhur")
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control font_value" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+
+                            <label class="font_field">
+                                @Utils.GetLabel("Kanwa")
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control font_value" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+
+                            <label class="font_field">
+                                @Utils.GetLabel("Kanwaen")
+                            </label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control font_value" />
+                                <span class="text-danger"></span>
+                            </div>
+                        </div>
+
                     </div>
+
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @Utils.GetLabel("Description Area of House")
+            </div>
+            <div class="panel-body">
+
+                <div class="col-md-12 row">
+                    <div class="form-group col-md-3">
+                        
+                    </div>
+                    <div class="form-group col-md-3"> 
+                            <label class="font_field">@Utils.GetLabel("Feet")</label> 
+                    </div>
+                    <div class="form-group col-md-3">
+                             <label class="font_field">@Utils.GetLabel("Inch")</label>
+                         
+                    </div>
+                    <div class="form-group col-md-3"> 
+                            <label class="font_field">@Utils.GetLabel("Meter")</label> 
+                    </div>
+
                 </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="font_field">
-                            @Utils.GetLabel("Aana")
-                        </label>
 
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
+                <div class="col-md-12 row">
+                    <div class="col-md-3 form-group">
+                        
+                            <label class="font_field">@Utils.GetLabel("Length")</label>
+                         
                     </div>
+                    <div class="form-group col-md-3">
+                        
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                        
+                    </div>
+                    <div class="form-group col-md-3">
+                         
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                       
+                    </div>
+                    <div class="form-group col-md-3"> 
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span> 
+                    </div> 
                 </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="font_field">
-                            @Utils.GetLabel("Paisa")
-                        </label>
 
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
+                <div class="col-md-12 row">
+                    <div class="form-group col-md-3">
+                       
+                            <label class="font_field">@Utils.GetLabel("Width")</label>
+                         
                     </div>
+                    <div class="form-group col-md-3">
+                        
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                         
+                    </div>
+                    <div class="form-group col-md-3">
+                        
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                         
+                    </div>
+                    <div class="form-group col-md-3">
+                        
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                         
+                    </div>
+
                 </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="font_field">
-                            @Utils.GetLabel("Dam")
-                        </label>
+                <div class="col-md-12 row">
+                    <div class="form-group col-md-3">
+                         
+                            <label class="font_field">@Utils.GetLabel("Height")</label>
 
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
+                        </div>
+                     
+                    <div class="form-group col-md-3">
+                       
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                         
                     </div>
+                    <div class="form-group col-md-3">
+                         
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                        
+                    </div>
+                    <div class="form-group col-md-3">
+                         
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                        
+                    </div>
+
                 </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="font_field">
-                            @Utils.GetLabel("Bigha")
-                        </label>
 
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
+                <div class="col-md-12 row">
+                    <div class="form-group col-md-3">
+                       
+                            <label class="font_field">@Utils.GetLabel("Area")</label>
+                         
                     </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="font_field">
-                            @Utils.GetLabel("Katha")
-                        </label>
+                    <div class="form-group col-md-3">
+                        
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                         
+                    </div>
+                    <div class="form-group col-md-3">
+                         
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                         
+                    </div>
+                    <div class="form-group col-md-3">
+                         
+                            <input type="text" class="form-control font_value" />
+                            <span class="text-danger"></span>
+                        
+                    </div>
 
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="font_field">
-                            @Utils.GetLabel("Dhur")
-                        </label>
-
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="font_field">
-                            @Utils.GetLabel("Kanwa")
-                        </label>
-
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group">
-                        <label class="font_field">
-                            @Utils.GetLabel("Kanwaen")
-                        </label>
-
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
                 </div>
 
             </div>
-
         </div>
+
+        <div class="form-group">
+            <div class="col-md-6">
+                <label for="code" class="col-md-3" control-label">
+                    @Utils.GetLabel("Structure Type")<span class="requried"></span>
+                </label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+
     </div>
-
-
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            @Utils.GetLabel("Description Area of House")
-        </div>
-        <div class="panel-body">
-
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="font_field">@Utils.GetLabel("Feet")</label>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="font_field">@Utils.GetLabel("Inch")</label>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="font_field">@Utils.GetLabel("Meter")</label>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="font_field">@Utils.GetLabel("Length")</label>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="font_field">@Utils.GetLabel("Width")</label>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="font_field">@Utils.GetLabel("Height")</label>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label class="font_field">@Utils.GetLabel("Area")</label>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control font_value" />
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-6">
-            <label for="code" class="col-md-2" control-label">
-                @Utils.GetLabel("Structure Type")<span class="requried"></span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control">
-            </div>
-        </div>
-    </div>
-
-</div>
