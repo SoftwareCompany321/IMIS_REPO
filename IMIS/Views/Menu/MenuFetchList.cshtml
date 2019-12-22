@@ -137,12 +137,16 @@ $(document).ready(function() {
             $('#add').html('').empty();
             d = row.data(); 
             var data = d.menuSubMenu;
+            
+            $("#add").append("<table id='child' class='table table-striped'><thead><tr><th>Name(English)</th><th>Name(Nepali)</th><th style='width:50px;'>Action</th></tr>");
             for (var i = 0; i < data.length; i++) {
                 var url = '/' + data[i].id + '/MenuEdit.html';
                 //jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
                 //jQuery('[data-toggle="tooltip"]').tooltip(); 
-                $('#add').append('<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;"><tr><td>Child Name:</td><td>' + data[i].displayName + '</td> ' + "<td><a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a></td>" + '</tr></table>');      
-             }   
+                $('#child').append('<tr><td>' + data[i].displayName + '</td><td>' + data[i].nepName + '</td><td><a href=' + url + ' title="Edit unit" data-toggle="tooltip"><i class="fa fa-edit"></i></a></td>');      
+            }   
+            
+            $("#add").append('</table>');
             row.child($('#add').html()).show();
             tr.addClass('shown');
         }

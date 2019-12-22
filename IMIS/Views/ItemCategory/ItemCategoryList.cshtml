@@ -59,7 +59,7 @@
                                         <th>@Utils.GetLabel("Code")</th>
                                         <th>@Utils.GetLabel("Depreciation Max")</th>
                                         <th>@Utils.GetLabel("Depreciation Min")</th>
-                                        <th style="width:80px;"></th> 
+                                        <th style="width:80px;"></th>
                                     </tr>
                                 </thead>
 
@@ -74,7 +74,7 @@
     </div>
 
     <div id="add" hidden>
-
+       
     </div>
     <!-- /#page-wrapper -->
     <!-- /#wrapper -->
@@ -144,22 +144,18 @@ $(document).ready(function() {
             $('#add').html('').empty();
             d = row.data();
             var data = d.itemCatSub;
+            $("#add").append("<table id='child' class='table table-striped'><thead><tr><th>Description(Nepali)</th><th>Description(English)</th><th>Code</th><th>Depreciation Max</th><th>Depreciation Min</th><th style='width:50px;'>Action</th></tr>");
             for (var i = 0; i < data.length; i++) {
                 var url = '/' + data[i].id + '/ItemCategoryEdit.html';
                 //jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
                 //jQuery('[data-toggle="tooltip"]').tooltip();
-                $('#add').append('<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;"><tr><td>Id:</td><td>' + data[i].nameEn + '</td> ' + "<td><a href=" + url + " title='Edit Item Child Level' data-toggle='tooltip'><i class='fa fa-edit'></i></a></td>" + '</tr></table>');
-             }
+                $('#child').append('<tr><td>' + data[i].nameNp + '</td><td>' + data[i].nameEn + '</td><td>' + data[i].code + '</td><td>' + data[i].rmaxl + '</td><td>' + data[i].rminl + '</td><td> <a href=' + url + ' title="Edit Item Child Level" data-toggle="tooltip"><i class="fa fa-edit"></i></a></td></tr>');
+            }
+            $("#add").append('</table>');
             row.child($('#add').html()).show();
             tr.addClass('shown');
         }
-    });
-
-
-    jQuery(document).on("click", ".btnchild", function () { 
-        var parent= $(this).attr("id");  
-        window.location.href ='/' +parent +'/ItemCategoryCreate.html';  
-    })
+    }); 
 
    });
 
