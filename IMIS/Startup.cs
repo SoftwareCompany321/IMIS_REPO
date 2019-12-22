@@ -35,12 +35,17 @@ using IMIS_Service.Setup.IIncomeRecordKeeping;
 using IMIS_Service.Setup.IReceiptDistribution;
 using IMIS_Service.Setup.ITaxRate;
 using IMIS_Service.Setup.IItemPurMasterPlan;
-using AutoMapper;
-using IMIS_Service.Setup.IItemMaster;
+using AutoMapper; 
 using IMIS_Service.Setup.IOrgFormDtl;
 using IMIS_Service.Setup.IFuelMaintenance;
 using IMIS_Service.Setup.ISupplierListingDesc;
 using IMIS_Service.Setup.IPurchaseOrderType;
+using IMIS_Service.EmployeeManagement.IEmployeePosition;
+using IMIS_Service.EmployeeManagement.IOfficeAppPos;
+using IMIS_Service.EmployeeManagement.IEmploymentStatus;
+using IMIS_Service.EmployeeManagement.ICivilServices;
+using IMIS_Service.EmployeeManagement.IEmployeeName;
+using IMIS_Service.EmployeeManagement.IOfficeOrgStructure;
 
 namespace IMIS
 {
@@ -137,12 +142,12 @@ namespace IMIS
             services.AddScoped<IFuelMaintenance, FuelMaintenance>();
             services.AddScoped<ISupplierListingDesc, SupplierListingDesc>();
             services.AddScoped<IPurchaseOrderType, PurchaseOrderType>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            services.AddScoped<IEmployeePosition, EmployeePosition>();
+             services.AddScoped<IOfficeAppPos, OfficeAppPos>();
+            services.AddScoped<IEmploymentStatus, EmploymentStatus>();
+            services.AddScoped<ICivilServices, CivilServices>();
+           services.AddScoped<IEmployeeName, EmployeeName>();
+            services.AddScoped<IOfficeOrgStructure, OfficeOrgStructure>();
             //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
             //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
             //
