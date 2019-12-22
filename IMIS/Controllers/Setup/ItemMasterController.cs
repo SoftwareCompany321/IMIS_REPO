@@ -61,6 +61,13 @@ namespace IMIS.Controllers.Setup
         public async Task<IActionResult> ItemMasterCreate(ItemMasterVM model)
         {
             var response = await _ItemMaster.AddEditSave(model);
+     
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemMasterlist.html");
+            }
             model.landdesc = _ItemMaster.InvUntList();
             model.fuelmaintenance = _ItemMaster.FuelMaintenanceDtl();
             model.unitlist = _ItemMaster.UnitList();
@@ -68,14 +75,7 @@ namespace IMIS.Controllers.Setup
             model.ItemSubCategoryList = _ItemMaster.ItemSubCategroyList(0);
             model.othsetuplist = _ItemMaster.OthersetupList();
             model.CountryList = _ItemMaster.CountryList();
-            if (response.message == "success")
-            {
-                TempData["Message"] = "Successfully Added";
-                TempData["Class"] = "alert alert-success ";
-                return Redirect("~/ItemMasterlist.html");
-            }
 
-           
             return View();
         }
 
@@ -93,6 +93,13 @@ namespace IMIS.Controllers.Setup
         public async Task<IActionResult> ItemMasterEdit(ItemMasterVM model, int Id)
         {
             var response = await _ItemMaster.AddEditSave(model);
+            
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemMasterlist.html");
+            }
             model.landdesc = _ItemMaster.InvUntList();
             model.fuelmaintenance = _ItemMaster.FuelMaintenanceDtl();
             model.unitlist = _ItemMaster.UnitList();
@@ -100,14 +107,7 @@ namespace IMIS.Controllers.Setup
             model.ItemSubCategoryList = _ItemMaster.ItemSubCategroyList(0);
             model.othsetuplist = _ItemMaster.OthersetupList();
             model.CountryList = _ItemMaster.CountryList();
-            if (response.message == "success")
-            {
-                TempData["Message"] = "Successfully Added";
-                TempData["Class"] = "alert alert-success ";
-                return Redirect("~/ItemMasterlist.html");
-            }
 
-            
             return View();
         }
     }

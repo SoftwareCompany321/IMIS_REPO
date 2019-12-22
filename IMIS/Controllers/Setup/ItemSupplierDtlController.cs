@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemSupplierDtlEdit.html")]
-        public async Task<IActionResult> ItemSupplierDtlEdit(decimal id)
+        [Route("/{id}/ItemSupplierDtlEdit.html")]
+        public async Task<IActionResult> ItemSupplierDtlEdit(int id)
         {
             return View(await _ItemSupplierDtl.ViewEdit(id));
         }

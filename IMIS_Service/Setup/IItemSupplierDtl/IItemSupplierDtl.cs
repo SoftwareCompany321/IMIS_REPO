@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using AutoMapper;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -21,9 +22,12 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
     public class ItemSupplierDtl : IItemSupplierDtl
     {
         private readonly IMISDbContext _db;
-        public ItemSupplierDtl(IMISDbContext db)
+        private readonly IMapper _mapper;
+        public ItemSupplierDtl(IMISDbContext db, IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
+
         }
         public async Task<DataTableResponse> ItemSupplierDtlFetchData(DataTableVm model)
         {
@@ -45,13 +49,13 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
                     draw = model.draw;
                 }
 
-                var accMasters =  (from invs in _db.InvSupplier
-                                        select new
-                                        {
-                                            invs.SupId,
-                                            invs.NameEn,
-                                            invs.NameNp 
-                                        });
+                var accMasters = (from invs in _db.InvSupplier
+                                  select new
+                                  {
+                                      invs.SupId,
+                                      invs.NameEn,
+                                      invs.NameNp
+                                  });
                 ///filter count for the total; record
                 ///
 
@@ -60,7 +64,7 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
+                        accMasters = accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
@@ -72,19 +76,19 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =finallist
+                    data = finallist
                 };
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return new DataTableResponse
                 {
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =0
+                    data = 0
                 };
                 //add to do for the error log save in db
             }
@@ -94,17 +98,13 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
         {
             try
             {
-                var item = new InvSupplier()
-                {
-                    SupId = model.SupId,
-                    NameEn = model.NameEn,
-                    NameNp = model.NameNp 
-                };
+
+                var item = _mapper.Map<InvSupplier>(model);
                 if (model.SupId == 0)
                 {
                     int id = await _db.InvSupplier.CountAsync();
                     item.SupId = id + 1;
-                    _db.InvSupplier.AddRange(item);
+                    _db.Entry(item).State = EntityState.Added;
                 }
                 else
                 {
@@ -128,13 +128,7 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
                 var response = await _db.InvSupplier.Where(x => x.SupId == Id).FirstOrDefaultAsync();
                 if (response != null)
                 {
-                    return (new ItemSupplierDtlVM()
-                    {
-                        SupId = response.SupId,
-                        NameEn = response.NameEn,
-                        NameNp = response.NameNp 
-
-                    });
+                    return (_mapper.Map<ItemSupplierDtlVM>(response));
                 }
                 else
                 {
