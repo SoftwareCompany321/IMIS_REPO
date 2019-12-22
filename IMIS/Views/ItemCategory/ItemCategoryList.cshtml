@@ -53,12 +53,13 @@
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>@Utils.GetLabel("Id")</th> 
-                                        <th>@Utils.GetLabel("Description(Nepali)")</th> 
-                                        <th>@Utils.GetLabel("Description(English)")</th> 
+                                        <th>@Utils.GetLabel("Id")</th>
+                                        <th>@Utils.GetLabel("Description(Nepali)")</th>
+                                        <th>@Utils.GetLabel("Description(English)")</th>
                                         <th>@Utils.GetLabel("Code")</th>
                                         <th>@Utils.GetLabel("Depreciation Max")</th>
                                         <th>@Utils.GetLabel("Depreciation Min")</th>
+                                        <th style="width:80px;"></th> 
                                     </tr>
                                 </thead>
 
@@ -112,14 +113,18 @@ $(document).ready(function() {
             { "data": "code", "orderable": true },
             { "data": "rmaxl", "orderable": true },
             { "data": "rminl", "orderable": true }, 
+            { "data": "id", "orderable": true }, 
+
 
         ],
       'createdRow': function (row, data, dataIndex) {
-                $(row).attr('id', data.id);  
-                     //var button = "<input id='btnDetails' class='btn btn-success' width='20px' value='Re-Open' />";
-                     jQuery('td:last', row).after('<td><input type="button" name="addchildlevel" id=' + data.id + ' class="btn btn-success btnchild" font-size="7px" font-weight="50" width="7px" value="Add Child Level"/></td>');
-                
-            },
+          $(row).attr('id', data.id);  
+             var url = '/' + data.id + '/ItemCategoryEdit.html'; //edit for the parent
+             var childurl = '/' + data.id +'/ItemCategoryCreate.html';  //add for the child for the parent
+          //var button = "<input id='btnDetails' class='btn btn-success' width='20px' value='Re-Open' />";
+          jQuery('td:last', row).html("<a href=" + url + " title='Edit Item Main Level' data-toggle='tooltip'><i class='fa fa-edit'></i></a> &nbsp;");
+          jQuery('td:last', row).append("<a href=" + childurl + " title='Add for Child Level' data-toggle='tooltip'><i class='fa fa-plus'></i></a>");  
+ },
 	});
     // Add event listener for opening and closing details
     $('#account tbody').on('click', 'td.details-control', function () {
@@ -140,7 +145,7 @@ $(document).ready(function() {
                 var url = '/' + data[i].id + '/ItemCategoryEdit.html';
                 //jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
                 //jQuery('[data-toggle="tooltip"]').tooltip();
-                $('#add').append('<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;"><tr><td>Id:</td><td>' + data[i].nameEn + '</td> ' + "<td><a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a></td>" + '</tr></table>');
+                $('#add').append('<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;"><tr><td>Id:</td><td>' + data[i].nameEn + '</td> ' + "<td><a href=" + url + " title='Edit Item Child Level' data-toggle='tooltip'><i class='fa fa-edit'></i></a></td>" + '</tr></table>');
              }
             row.child($('#add').html()).show();
             tr.addClass('shown');

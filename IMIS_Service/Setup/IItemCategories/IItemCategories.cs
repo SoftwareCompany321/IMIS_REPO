@@ -164,7 +164,8 @@ namespace IMIS_Service.Setup.IItemCategories
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
                         Rmaxl=response.Rmaxl,
-                        Rminl=response.Rminl
+                        Rminl=response.Rminl,
+                        ParentId=response.ParentId
 
                     });
                 }
