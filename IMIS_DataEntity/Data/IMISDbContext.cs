@@ -5346,28 +5346,29 @@ namespace IMIS_DataEntity.Data
                     .HasConstraintName("FK_SUPP_ID_SPPLIER");
             });
 
-            modelBuilder.Entity<InvPurType>(entity =>
-            {
-                entity.HasNoKey();
+            //modelBuilder.Entity<InvPurType>(entity =>
+            //{
+            //    entity.HasKey(e => e.Id)
+            //      .HasName("INV_PUR_TYPE_pkey");
 
-                entity.ToTable("INV_PUR_TYPE");
+            //    entity.ToTable("INV_PUR_TYPE");
 
-                entity.Property(e => e.Id).HasColumnName("ID");
+            //    entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Isdefault).HasColumnName("ISDEFAULT");
+            //    entity.Property(e => e.Isdefault).HasColumnName("ISDEFAULT");
 
-                entity.Property(e => e.NepEng)
-                    .HasColumnName("NEP_ENG")
-                    .HasMaxLength(100);
+            //    entity.Property(e => e.NepEng)
+            //        .HasColumnName("NEP_ENG")
+            //        .HasMaxLength(100);
 
-                entity.Property(e => e.NepName)
-                    .HasColumnName("NEP_NAME")
-                    .HasMaxLength(100);
+            //    entity.Property(e => e.NepName)
+            //        .HasColumnName("NEP_NAME")
+            //        .HasMaxLength(100);
 
-                entity.Property(e => e.Remarks)
-                    .HasColumnName("REMARKS")
-                    .HasMaxLength(100);
-            });
+            //    entity.Property(e => e.Remarks)
+            //        .HasColumnName("REMARKS")
+            //        .HasMaxLength(100);
+            //});
 
             modelBuilder.Entity<InvReqDetail>(entity =>
             {
