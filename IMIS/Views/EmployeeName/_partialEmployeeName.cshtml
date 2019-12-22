@@ -1,0 +1,21 @@
+﻿@using IMIS_CORE.Core
+ 
+@model IMIS_Service.ViewModel.EmployeeNameVM
+    <div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Name(Eng)")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="FirstNameEn">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Name(Nep)")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="FirstNameNp">
+            </div>
+        </div>
+    </div>

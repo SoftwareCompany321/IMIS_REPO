@@ -25,7 +25,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Controllers\EmployeeManagement\" />
     <Folder Include="Controllers\Security\" />
     <Folder Include="logs\" />
   </ItemGroup>

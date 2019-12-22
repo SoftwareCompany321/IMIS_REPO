@@ -1,0 +1,44 @@
+﻿@using IMIS_CORE.Core
+ 
+@model IMIS_Service.ViewModel.EmployeePositionVM
+    <div>
+
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Post/Grade Name")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="GeneralPost">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Post Short Name")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="GeneralPostShort">
+            </div>
+        </div>
+
+        @*DropDown*@
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Post/Grade Level")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="PostLevel">
+            </div>
+
+        </div>
+        @*DropDown*@
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Technical/Admin")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="PrabidikOrPrasasan">
+            </div>
+
+        </div>
+      
+    </div>
