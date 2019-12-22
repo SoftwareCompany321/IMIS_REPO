@@ -11,33 +11,35 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#sub11">@Utils.GetLabel("Edit Supplier Detial")</a> </li>
 
-</ul>
+                </ul>
                 <div class="tab-content">
                     <a asp-action="ItemSupplierDtlList" asp-controller="ItemSupplierDtl" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
                     <div class="tab-pane fade active in" id="sub111">
                         <h2 class="form-title">
-                            @Utils.GetLabel("Add Supplier Detial")</h2>
+                            @Utils.GetLabel("Add Supplier Detial")
+                        </h2> 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="well">
+                                    <form method="post" asp-action="ItemSupplierDtlEdit" asp-controller="ItemSupplierDtl">
+                                       <input type="hidden" asp-for="SupId"/>
+                                        @Html.AntiForgeryToken()
+                                        @await Html.PartialAsync("~/Views/ItemSupplierDtl/_partialItemSupplierDtl.cshtml", Model)
+                                        <div class="form-group form-action">
+                                            <div class="col-md-10 col-md-offset-2">
+                                                <button type="submit" class="btn btn-primary">
+                                                    @Utils.GetLabel("Submit")
+                                                </button>
 
-                                                <div class="row">
-                                                    <div class="col-md-8">
-                                                        <div class="well">
-                                                            <form method="post" asp-action="ItemSupplierDtlEdit" asp-controller="ItemSupplierDtl">
-                                                                @Html.AntiForgeryToken()
-                                                                @await Html.PartialAsync("~/Views/ItemSupplierDtl/_partialItemSupplierDtl.cshtml", Model)
-                                                                <div class="form-group form-action">
-                                                                    <div class="col-md-10 col-md-offset-2">
-                                                                        <button type="submit" class="btn btn-primary">
-                                                                            @Utils.GetLabel("Submit")</button>
+                                                <button type="button" class="btn btn-default">@Utils.GetLabel("Cancel")</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
 
-                                                                        <button type="button" class="btn btn-default">@Utils.GetLabel("Cancel")</button>
-</div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

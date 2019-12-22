@@ -7,6 +7,6 @@ namespace IMIS_Service.ViewModel
 {
     public class ItemSupplierDtlVM: InvSupplier
     {
-         
+         public bool SubT { get; set; }
     }
 }

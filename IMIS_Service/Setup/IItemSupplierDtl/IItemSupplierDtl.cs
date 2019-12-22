@@ -17,7 +17,7 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
         Task<DataTableResponse> ItemSupplierDtlFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditItemSupplierDtl(ItemSupplierDtlVM model);
 
-        Task<ItemSupplierDtlVM> ViewEdit(decimal Id);
+        Task<ItemSupplierDtlVM> ViewEdit(int Id);
     }
     public class ItemSupplierDtl : IItemSupplierDtl
     {
@@ -54,7 +54,14 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
                                   {
                                       invs.SupId,
                                       invs.NameEn,
-                                      invs.NameNp
+                                      invs.NameNp,
+                                      invs.Address,
+                                      invs.Email,
+                                      invs.RegNo,
+                                      invs.OrgType,
+                                      invs.SupType,
+                                      invs.TpinPanNo,
+
                                   });
                 ///filter count for the total; record
                 ///
@@ -68,9 +75,7 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
-
                 var finallist = await accMasters.OrderByDescending(x => x.SupId).Skip(skip).ToListAsync();
-
                 return new DataTableResponse
                 {
                     draw = draw,
@@ -78,8 +83,6 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
                     FilteredRecord = totalResultsCount,
                     data = finallist
                 };
-
-
             }
             catch (Exception)
             {
@@ -98,10 +101,20 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
         {
             try
             {
+                if (model.SubT == true)
+                {
+                    model.SupType = "Y";
+                }
+                else
+                {
+                    model.SupType = "N";
+                }
 
                 var item = _mapper.Map<InvSupplier>(model);
                 if (model.SupId == 0)
                 {
+                    item.DateVs = null;
+                    item.DateAd = DateTime.Now;
                     int id = await _db.InvSupplier.CountAsync();
                     item.SupId = id + 1;
                     _db.Entry(item).State = EntityState.Added;
@@ -111,34 +124,50 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
                     _db.Entry(item).State = EntityState.Modified;
                 }
                 await _db.SaveChangesAsync(true);
-
                 return ("success", 0);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
-        public async Task<ItemSupplierDtlVM> ViewEdit(decimal Id)
+        public async Task<ItemSupplierDtlVM> ViewEdit(int Id)
         {
             try
             {
                 var response = await _db.InvSupplier.Where(x => x.SupId == Id).FirstOrDefaultAsync();
                 if (response != null)
                 {
-                    return (_mapper.Map<ItemSupplierDtlVM>(response));
+                    // var data = _mapper.Map<ItemSupplierDtlVM>(response);
+
+                    return new ItemSupplierDtlVM()
+                    {
+                        Address = response.Address,
+                        NameNp = response.NameNp,
+                        Email = response.Email,
+                        TpinPanNo = response.TpinPanNo,
+                        PhoneNo = response.PhoneNo,
+                        OrgId = response.OrgId,
+                        SubT = response.SupType == "Y" ? true : false,
+                        RegiType=response.RegiType,
+                        RegNo=response.RegNo,
+                        SupId=response.SupId,
+                        OrgType=response.OrgType
+
+                    };
+                    // return (data);
                 }
                 else
                 {
                     return new ItemSupplierDtlVM();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
     }

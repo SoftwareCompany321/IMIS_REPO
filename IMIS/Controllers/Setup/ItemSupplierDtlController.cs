@@ -72,7 +72,7 @@ namespace IMIS.Controllers.Setup
             return View(await _ItemSupplierDtl.ViewEdit(id));
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("/ItemSupplierDtlEdit.html")]
         public async Task<IActionResult> ItemSupplierDtlEdit(ItemSupplierDtlVM model, int id)
         {

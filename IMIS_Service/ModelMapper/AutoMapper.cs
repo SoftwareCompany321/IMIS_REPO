@@ -13,8 +13,8 @@ namespace IMIS_Service.ModelMapper
         {
             CreateMap<InvItemMst, ItemMasterVM>();
             CreateMap<ItemMasterVM, InvItemMst>();
-            CreateMap<InvSupplier, ItemSupplierDtlVM>();
-            CreateMap<ItemSupplierDtlVM, InvSupplier>();
+            CreateMap<ItemSupplierDtlVM, InvSupplier>(); 
+            CreateMap<InvSupplier, ItemSupplierDtlVM>().ForMember(x=>x.SubT,src=>src.MapFrom(x=>x.SupType=="Y"?true:false));
         }
     }
 }

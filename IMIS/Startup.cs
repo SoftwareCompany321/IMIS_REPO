@@ -35,7 +35,7 @@ using IMIS_Service.Setup.IIncomeRecordKeeping;
 using IMIS_Service.Setup.IReceiptDistribution;
 using IMIS_Service.Setup.ITaxRate;
 using IMIS_Service.Setup.IItemPurMasterPlan;
-using AutoMapper; 
+using AutoMapper;
 using IMIS_Service.Setup.IOrgFormDtl;
 using IMIS_Service.Setup.IFuelMaintenance;
 using IMIS_Service.Setup.ISupplierListingDesc;
@@ -46,6 +46,7 @@ using IMIS_Service.EmployeeManagement.IEmploymentStatus;
 using IMIS_Service.EmployeeManagement.ICivilServices;
 using IMIS_Service.EmployeeManagement.IEmployeeName;
 using IMIS_Service.EmployeeManagement.IOfficeOrgStructure;
+using IMIS_Service.Setup.IItemSupplierDtl;
 
 namespace IMIS
 {
@@ -99,7 +100,7 @@ namespace IMIS
                 // Make the session cookie essential
                 options.Cookie.IsEssential = true;
             });
-          
+
             //services.AddCors(options =>
             //{
             //    options.AddPolicy("VueCorsPolicy", builder =>
@@ -143,11 +144,12 @@ namespace IMIS
             services.AddScoped<ISupplierListingDesc, SupplierListingDesc>();
             services.AddScoped<IPurchaseOrderType, PurchaseOrderType>();
             services.AddScoped<IEmployeePosition, EmployeePosition>();
-             services.AddScoped<IOfficeAppPos, OfficeAppPos>();
+            services.AddScoped<IOfficeAppPos, OfficeAppPos>();
             services.AddScoped<IEmploymentStatus, EmploymentStatus>();
             services.AddScoped<ICivilServices, CivilServices>();
-           services.AddScoped<IEmployeeName, EmployeeName>();
+            services.AddScoped<IEmployeeName, EmployeeName>();
             services.AddScoped<IOfficeOrgStructure, OfficeOrgStructure>();
+            services.AddScoped<IItemSupplierDtl, ItemSupplierDtl>();
             //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
             //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
             //
@@ -155,8 +157,8 @@ namespace IMIS
             //adding the auto mapper in service layer class
             services.AddAutoMapper(typeof(Startup));
             services.AddScoped<IItemMaster, ItemMaster>();
-              
-           
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

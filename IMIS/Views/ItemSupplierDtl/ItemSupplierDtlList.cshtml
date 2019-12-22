@@ -43,11 +43,11 @@
                                 <thead>
                                     <tr>
                                         <th>@Utils.GetLabel("Id")</th>
-
                                         <th>@Utils.GetLabel("Description(Nepali)")</th>
-
                                         <th>@Utils.GetLabel("Description(English)")</th>
-
+                                        <th>@Utils.GetLabel("Supplier Type")</th>
+                                        <th>@Utils.GetLabel("Organisation Type")</th>
+                                        <th>@Utils.GetLabel("Reg No")</th>
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
@@ -69,7 +69,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 </body>
- 
+
 
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {
@@ -89,19 +89,27 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-                
+
                 "columns": [
-                { "data": "accId", "orderable": true },
-                { "data": "code", "orderable": true },
-                { "data": "nepName", "orderable": true },
-                { "data": "engName", "orderable": false },
-                { "data": "accCode", "orderable": false },
-                { "data": "accCode", "orderable": false },
+                { "data": "supId", "orderable": true },
+                { "data": "nameNp", "orderable": true },
+                { "data": "nameEn", "orderable": true }, 
+                { "data": "supType", "orderable": false },                
+                { "data": "orgType", "orderable": false },
+                { "data": "regNo", "orderable": false },
+                { "data": "supId", "orderable": true },
+
                 ],
                 order: [
 
                     [1, "desc"]
                 ],
+                'createdRow': function (row, data, dataIndex) {
+                      $(row).attr('id', data.supId);
+                         var url = '/' + data.supId + '/ItemSupplierDtlEdit.html'; //edit for the parent  
+                      jQuery('td:last', row).html("<a href=" + url + " title='Edit Supplier' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                },
+
                 "paging": true,
                 "pageLength": 10,
                 lengthMenu: [
