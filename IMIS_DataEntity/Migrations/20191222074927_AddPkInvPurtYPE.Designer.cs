@@ -3,15 +3,17 @@ using System;
 using IMIS_DataEntity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IMIS_DataEntity.Migrations
 {
     [DbContext(typeof(IMISDbContext))]
-    partial class IMISDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191222074927_AddPkInvPurtYPE")]
+    partial class AddPkInvPurtYPE
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -6349,30 +6351,6 @@ namespace IMIS_DataEntity.Migrations
                     b.HasIndex("SuppId");
 
                     b.ToTable("INV_PUR_ORDER_MAST");
-                });
-
-            modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvPurType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<char?>("Isdefault")
-                        .HasColumnType("character(1)");
-
-                    b.Property<string>("NepEng")
-                        .HasColumnType("text");
-
-                    b.Property<string>("NepName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("InvPurType");
                 });
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvReqDetail", b =>

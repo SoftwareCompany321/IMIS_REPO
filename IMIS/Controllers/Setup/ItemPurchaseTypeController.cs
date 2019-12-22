@@ -66,7 +66,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/{id}ItemPurchaseTypeEdit.html")]
+        [Route("/{id}/ItemPurchaseTypeEdit.html")]
         public async Task<IActionResult> ItemPurchaseTypeEdit(int id)
         {
             return View(await _ItemPurchaseType.ViewEdit(id));

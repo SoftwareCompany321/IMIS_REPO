@@ -4,7 +4,20 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <!DOCTYPE html>
+
 <style>
+    td.details-control {
+        background: url('../images/icons/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('../images/icons/details_close.png') no-repeat center center;
+    }
+</style>
+
+
+@*<style>
     td.details-control {
         background: url('https://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
         cursor: pointer;
@@ -13,7 +26,7 @@
     tr.shown td.details-control {
         background: url('https://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
     }
-</style>
+</style>*@
 
 <body>
 
