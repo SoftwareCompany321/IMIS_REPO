@@ -40,42 +40,42 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
             try
             {
 
-                if (model != null)
-                {
-                    searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
-                    take = model.length;
-                    skip = model.start;
-                    draw = model.draw;
-                }
+                //if (model != null)
+                //{
+                //    searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
+                //    take = model.length;
+                //    skip = model.start;
+                //    draw = model.draw;
+                //}
 
-                var accMasters = (from iypp in _db.InvYrlyPurPlan
-                                  select new
-                                  {
-                                      iypp.Id,
-                                      iypp.NameEn,
-                                      iypp.NameNp
-                                  });
-                ///filter count for the total; record
-                ///
+                //var accMasters = (from iypp in _db.InvYrlyPurPlan
+                //                  select new
+                //                  {
+                //                      iypp.Id,
+                //                      iypp.NameEn,
+                //                      iypp.NameNp
+                //                  });
+                /////filter count for the total; record
+                /////
 
-                if (accMasters != null)
-                {
-                    totalResultsCount = await accMasters.CountAsync();
-                    if (!string.IsNullOrEmpty(searchBy))
-                    {
-                        accMasters = accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
-                    }
-                    filteredResultsCount = await accMasters.CountAsync();
-                }
+                //if (accMasters != null)
+                //{
+                //    totalResultsCount = await accMasters.CountAsync();
+                //    if (!string.IsNullOrEmpty(searchBy))
+                //    {
+                //        accMasters = accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
+                //    }
+                //    filteredResultsCount = await accMasters.CountAsync();
+                //}
 
-                var finallist = await accMasters.OrderByDescending(x => x.Id).Skip(skip).ToListAsync();
+                //var finallist = await accMasters.OrderByDescending(x => x.Id).Skip(skip).ToListAsync();
 
                 return new DataTableResponse
                 {
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data = finallist
+                    data = ""
                 };
 
 
@@ -97,18 +97,18 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
             try
             {
 
-                var item = _mapper.Map<InvYrlyPurPlan>(model);
-                if (model.Id == 0)
-                {
-                    int id = await _db.InvYrlyPurPlan.CountAsync();
-                    item.Id = id + 1;
-                    _db.InvYrlyPurPlan.AddRange(item);
-                }
-                else
-                {
-                    _db.Entry(item).State = EntityState.Modified;
-                }
-                await _db.SaveChangesAsync(true);
+                //var item = _mapper.Map<InvYrlyPurPlan>(model);
+                //if (model.Id == 0)
+                //{
+                //    int id = await _db.InvYrlyPurPlan.CountAsync();
+                //    item.Id = id + 1;
+                //    _db.InvYrlyPurPlan.AddRange(item);
+                //}
+                //else
+                //{
+                //    _db.Entry(item).State = EntityState.Modified;
+                //}
+                //await _db.SaveChangesAsync(true);
 
                 return ("success", 0);
 
@@ -123,7 +123,7 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
         {
             try
             {
-                var response = await _db.InvYrlyPurPlan.Where(x => x.Id == Id).FirstOrDefaultAsync();
+                var response = ""; //await _db.InvYrlyPurPlan.Where(x => x.Id == Id).FirstOrDefaultAsync();
                 if (response != null)
                 {
                     return (_mapper.Map<ItemPurYearlyPlanVM>(response));
