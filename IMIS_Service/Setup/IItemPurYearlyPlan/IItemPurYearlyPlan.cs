@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using AutoMapper;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -16,14 +17,16 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
         Task<DataTableResponse> ItemPurYearlyPlanFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditItemPurYearlyPlan(ItemPurYearlyPlanVM model);
 
-        Task<ItemPurYearlyPlanVM> ViewEdit(decimal Id);
+        Task<ItemPurYearlyPlanVM> ViewEdit(int Id);
     }
     public class ItemPurYearlyPlan : IItemPurYearlyPlan
     {
         private readonly IMISDbContext _db;
-        public ItemPurYearlyPlan(IMISDbContext db)
+        private readonly IMapper _mapper;
+        public ItemPurYearlyPlan(IMISDbContext db, IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
         }
         public async Task<DataTableResponse> ItemPurYearlyPlanFetchData(DataTableVm model)
         {
@@ -45,13 +48,13 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
                     draw = model.draw;
                 }
 
-                var accMasters =  (from iypp in _db.InvYrlyPurPlan
-                                        select new
-                                        {
-                                            iypp.Id,
-                                            iypp.NameEn,
-                                            iypp.NameNp 
-                                        });
+                var accMasters = (from iypp in _db.InvYrlyPurPlan
+                                  select new
+                                  {
+                                      iypp.Id,
+                                      iypp.NameEn,
+                                      iypp.NameNp
+                                  });
                 ///filter count for the total; record
                 ///
 
@@ -60,7 +63,7 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
+                        accMasters = accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
@@ -72,19 +75,19 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =finallist
+                    data = finallist
                 };
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return new DataTableResponse
                 {
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =0
+                    data = 0
                 };
                 //add to do for the error log save in db
             }
@@ -93,12 +96,8 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
         {
             try
             {
-                var item = new InvYrlyPurPlan()
-                {
-                    Id = model.Id,
-                    NameEn = model.NameEn,
-                    NameNp = model.NameNp 
-                };
+
+                var item = _mapper.Map<InvYrlyPurPlan>(model);
                 if (model.Id == 0)
                 {
                     int id = await _db.InvYrlyPurPlan.CountAsync();
@@ -120,30 +119,31 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
                 throw;
             }
         }
-        public async Task<ItemPurYearlyPlanVM> ViewEdit(decimal Id)
+        public async Task<ItemPurYearlyPlanVM> ViewEdit(int Id)
         {
             try
             {
                 var response = await _db.InvYrlyPurPlan.Where(x => x.Id == Id).FirstOrDefaultAsync();
                 if (response != null)
                 {
-                    return (new ItemPurYearlyPlanVM()
-                    {
-                        Id = response.Id,
-                        NameEn = response.NameEn,
-                        NameNp = response.NameNp 
+                    return (_mapper.Map<ItemPurYearlyPlanVM>(response));
+                    //return (new ItemPurYearlyPlanVM()
+                    //{
+                    //    Id = response.Id,
+                    //    NameEn = response.NameEn,
+                    //    NameNp = response.NameNp
 
-                    });
+                    //});
                 }
                 else
                 {
                     return new ItemPurYearlyPlanVM();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
     }
