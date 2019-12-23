@@ -119,7 +119,7 @@ namespace IMIS_DataEntity.Data
         public virtual DbSet<InvTypeSetup> InvTypeSetup { get; set; }
         public virtual DbSet<InvUnit> InvUnit { get; set; }
         public virtual DbSet<InvWarehouse> InvWarehouse { get; set; }
-       // public virtual DbSet<InvYrlyPurPlan> InvYrlyPurPlan { get; set; }
+        public virtual DbSet<InvYrlyPurPlan> InvYrlyPurPlan { get; set; }
         public virtual DbSet<IpttaxsummaryHistory> IpttaxsummaryHistory { get; set; }
         public virtual DbSet<Issuedbills> Issuedbills { get; set; }
         public virtual DbSet<Landmeasuringunits> Landmeasuringunits { get; set; }
@@ -5885,86 +5885,7 @@ namespace IMIS_DataEntity.Data
                     .HasMaxLength(50);
             });
 
-            //modelBuilder.Entity<InvYrlyPurPlan>(entity =>
-            //{
-            //    entity.ToTable("INV_YRLY_PUR_PLAN");
-
-            //    entity.Property(e => e.Id)
-            //        .HasColumnName("ID")
-            //        .ValueGeneratedNever();
-
-            //    entity.Property(e => e.AgreementDtAd).HasColumnName("AGREEMENT_DT_AD");
-
-            //    entity.Property(e => e.AgreementType)
-            //        .HasColumnName("AGREEMENT_TYPE")
-            //        .HasMaxLength(30);
-
-            //    entity.Property(e => e.AnlysisDsgnDtAd).HasColumnName("ANLYSIS_DSGN_DT_AD");
-
-            //    entity.Property(e => e.ApproxAmt).HasColumnName("APPROX_AMT");
-
-            //    entity.Property(e => e.AprxAmtAcptDate)
-            //        .HasColumnName("APRX_AMT_ACPT_DATE")
-            //        .HasMaxLength(10);
-
-            //    entity.Property(e => e.AprxAmtAcptDtAd).HasColumnName("APRX_AMT_ACPT_DT_AD");
-
-            //    entity.Property(e => e.FormEntryDate)
-            //        .HasColumnName("FORM_ENTRY_DATE")
-            //        .HasMaxLength(10);
-
-            //    entity.Property(e => e.InfoPublishDate)
-            //        .HasColumnName("INFO_PUBLISH_DATE")
-            //        .HasMaxLength(10);
-
-            //    entity.Property(e => e.NameEn)
-            //        .HasColumnName("NAME_EN")
-            //        .HasMaxLength(50);
-
-            //    entity.Property(e => e.NameNp)
-            //        .IsRequired()
-            //        .HasColumnName("NAME_NP")
-            //        .HasMaxLength(70);
-
-            //    entity.Property(e => e.PurType)
-            //        .HasColumnName("PUR_TYPE")
-            //        .HasMaxLength(10);
-
-            //    entity.Property(e => e.Remarks)
-            //        .HasColumnName("REMARKS")
-            //        .HasMaxLength(100);
-
-            //    entity.Property(e => e.TendrAcceptDate)
-            //        .HasColumnName("TENDR_ACCEPT_DATE")
-            //        .HasMaxLength(10);
-
-            //    entity.Property(e => e.TendrAcceptDtAd).HasColumnName("TENDR_ACCEPT_DT_AD");
-
-            //    entity.Property(e => e.TendrCallDtAd).HasColumnName("TENDR_CALL_DT_AD");
-
-            //    entity.Property(e => e.TendrOpenDate)
-            //        .HasColumnName("TENDR_OPEN_DATE")
-            //        .HasMaxLength(10);
-
-            //    entity.Property(e => e.TendrOpenDtAd).HasColumnName("TENDR_OPEN_DT_AD");
-
-            //    entity.Property(e => e.TendrSaleDate)
-            //        .HasColumnName("TENDR_SALE_DATE")
-            //        .HasMaxLength(10);
-
-            //    entity.Property(e => e.Wrk2FinDtAd).HasColumnName("WRK_2_FIN_DT_AD");
-
-            //    entity.Property(e => e.WrkAcmplshDate)
-            //        .HasColumnName("WRK_ACMPLSH_DATE")
-            //        .HasMaxLength(10);
-
-            //    entity.Property(e => e.WrkAcmplshDtAd).HasColumnName("WRK_ACMPLSH_DT_AD");
-
-            //    entity.Property(e => e.WrkOrderDate)
-            //        .HasColumnName("WRK_ORDER_DATE")
-            //        .HasMaxLength(10);
-            //});
-
+            
             modelBuilder.Entity<IpttaxsummaryHistory>(entity =>
             {
                 entity.HasNoKey();

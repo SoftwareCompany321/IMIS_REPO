@@ -46,8 +46,9 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/ItemPurYearlyPlanCreate.html")]
-        public IActionResult ItemPurYearlyPlanCreate()
+        public async Task<IActionResult> ItemPurYearlyPlanCreate()
         {
+            ViewData["InvType"] = await _ItemPurYearlyPlan.InVPurType();
             return View();
         }
 
@@ -62,6 +63,7 @@ namespace IMIS.Controllers.Setup
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/ItemPurYearlyPlanlist.html");
             }
+            ViewBag["InvType"] = await _ItemPurYearlyPlan.InVPurType();
             return View();
         }
 
@@ -69,6 +71,7 @@ namespace IMIS.Controllers.Setup
         [Route("/{id}/ItemPurYearlyPlanEdit.html")]
         public async Task<IActionResult> ItemPurYearlyPlanEdit(int id)
         {
+            ViewBag["InvType"] = await _ItemPurYearlyPlan.InVPurType();
             return View(await _ItemPurYearlyPlan.ViewEdit(id));
         }
 
@@ -83,6 +86,7 @@ namespace IMIS.Controllers.Setup
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/ItemPurYearlyPlanlist.html");
             }
+            ViewBag["InvType"] = await _ItemPurYearlyPlan.InVPurType();
             return View();
         }
     }
