@@ -1,5 +1,8 @@
-﻿using IMIS_CORE.Utility;
+﻿using AutoMapper;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,14 +15,51 @@ namespace IMIS_Service.Setup.IReceiptDistributionCenter
     public interface IReceiptDistributionCenter
     {
         Task<DataTableResponse> ReceiptDistributionCenterFetchData(DataTableVm model);
+
+        Task<(string message, int Id)> AddEditSave(ReceiptDistributionCenterVM model);
+
+        Task<ReceiptDistributionCenterVM> ViewEdit(int id);
     }
     public class ReceiptDistributionCenter : IReceiptDistributionCenter
     {
         private readonly IMISDbContext _db;
+        private readonly IMapper _mapper;
         public ReceiptDistributionCenter(IMISDbContext db)
         {
             _db = db;
         }
+
+        public async Task<(string message, int Id)> AddEditSave(ReceiptDistributionCenterVM model)
+        {
+
+            try
+            {
+                var response = _mapper.Map<Collectioncounters>(model);
+
+                if (model.Counterid == 0)
+                {
+                    int count =await _db.Collectioncounters.CountAsync();
+                    response.Counterid = count + 1;
+                    _db.Entry(response).State = EntityState.Added;
+                }
+                else
+                {
+                    _db.Entry(response).State = EntityState.Modified;
+                }
+
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
+        }
+
         public async Task<DataTableResponse> ReceiptDistributionCenterFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
@@ -85,6 +125,25 @@ namespace IMIS_Service.Setup.IReceiptDistributionCenter
                     data =0
                 };
                 //add to do for the error log save in db
+            }
+        }
+
+        public async Task<ReceiptDistributionCenterVM> ViewEdit(int id)
+        {
+            try
+            { 
+                var response = await _db.Collectioncounters.Where(x => x.Counterid == id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (_mapper.Map<ReceiptDistributionCenterVM>(response));
+                }
+                return new ReceiptDistributionCenterVM();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

@@ -17,6 +17,8 @@ namespace IMIS_Service.ModelMapper
             CreateMap<InvSupplier, ItemSupplierDtlVM>().ForMember(x=>x.SubT,src=>src.MapFrom(x=>x.SupType=="Y"?true:false));
             CreateMap<ItemPurYearlyPlanVM, InvYrlyPurPlan>();
             CreateMap<InvYrlyPurPlan, ItemPurYearlyPlanVM>();
+            CreateMap<Collectioncounters, ReceiptDistributionCenterVM>();
+            CreateMap<ReceiptDistributionCenterVM, Collectioncounters>();
         }
     }
 }

@@ -53,8 +53,36 @@ namespace IMIS.Controllers.Setup
 
         [HttpPost]
         [Route("/ReceiptDistributionCenterCreate.html")]
-        public IActionResult ReceiptDistributionCenterCreate(ReceiptDistributionCenterVM model)
+        public async Task<IActionResult> ReceiptDistributionCenterCreate(ReceiptDistributionCenterVM model)
         {
+            var response = await _ReceiptDistributionCenter.AddEditSave(model);
+
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ReceiptDistributionCenterlist.html");
+            }
+            return View();
+        }
+        [HttpGet]
+        [Route("{id}/ReceiptDistributionCenterEdit.html")]
+        public IActionResult ReceiptDistributionCenterEdit(int id)
+        {
+            return View(_ReceiptDistributionCenter.ViewEdit(id));
+        }
+        [HttpPost]
+        [Route("/ReceiptDistributionCenterEdit.html")]
+        public async Task<IActionResult> ReceiptDistributionCenterEdit(ReceiptDistributionCenterVM model)
+        {
+            var response = await _ReceiptDistributionCenter.AddEditSave(model);
+
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ReceiptDistributionCenterlist.html");
+            }
             return View();
         }
     }
