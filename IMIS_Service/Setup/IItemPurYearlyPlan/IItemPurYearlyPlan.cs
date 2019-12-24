@@ -57,7 +57,9 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
                                       iypp.NameNp,
                                       iypp.ApproxAmt,
                                       iypp.AgreementType,
-                                      iypp.AnlysisDsgnDtAd
+                                      iypp.PurType,
+                                      iypp.AnlysisDsgnDtAd,
+                                      iypp.WrkAcmplshDate
                                   });
                 ///filter count for the total; record
                 ///
@@ -100,8 +102,27 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
         {
             try
             {
+                var item = new InvYrlyPurPlan()
+                {
+                    Id=model.Id,
+                    NameEn=model.NameEn,
+                    NameNp=model.NameNp,
+                    TendrSaleDate=model.TendrSaleDate,
+                    AgreementType=model.AgreementType,
+                    ApproxAmt=model.ApproxAmt,
+                    FormEntryDate=model.FormEntryDate,
+                    InfoPublishDate=model.InfoPublishDate,
+                    PurType=model.PurType,
+                    TendrAcceptDate=model.TendrAcceptDate,
+                    AprxAmtAcptDate=model.AprxAmtAcptDate,
+                    WrkAcmplshDate=model.WrkAcmplshDate,
+                    TendrOpenDate=model.TendrOpenDate,
+                    WrkOrderDate=model.WrkOrderDate,
+                };
 
-                var item = _mapper.Map<InvYrlyPurPlan>(model);
+
+
+               // var item = _mapper.Map<InvYrlyPurPlan>(model);
                 if (model.Id == 0)
                 {
                     _db.Entry(item).State = EntityState.Added;
@@ -128,14 +149,24 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
                 var response = await _db.InvYrlyPurPlan.Where(x => x.Id == Id).FirstOrDefaultAsync();
                 if (response != null)
                 {
-                    return (_mapper.Map<ItemPurYearlyPlanVM>(response));
-                    //return (new ItemPurYearlyPlanVM()
-                    //{
-                    //    Id = response.Id,
-                    //    NameEn = response.NameEn,
-                    //    NameNp = response.NameNp
+                   // return (_mapper.Map<ItemPurYearlyPlanVM>(response));
+                    return (new ItemPurYearlyPlanVM()
+                    {
+                        NameEn = response.NameEn,
+                        NameNp = response.NameNp,
+                        TendrSaleDate = response.TendrSaleDate,
+                        AgreementType = response.AgreementType,
+                        ApproxAmt = response.ApproxAmt,
+                        FormEntryDate = response.FormEntryDate,
+                        InfoPublishDate = response.InfoPublishDate,
+                        PurType = response.PurType,
+                        TendrAcceptDate = response.TendrAcceptDate,
+                        AprxAmtAcptDate = response.AprxAmtAcptDate,
+                        WrkAcmplshDate = response.WrkAcmplshDate,
+                        TendrOpenDate = response.TendrOpenDate,
+                        WrkOrderDate = response.WrkOrderDate,
 
-                    //});
+                    });
                 }
                 else
                 {

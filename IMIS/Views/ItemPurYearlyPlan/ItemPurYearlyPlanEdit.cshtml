@@ -16,10 +16,10 @@
                     <a asp-action="ItemPurYearlyPlanList" asp-controller="ItemPurYearlyPlan" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
                     <div class="tab-pane fade active in" id="sub111">
                         <h2 class="form-title">
-                            @Utils.GetLabel("Add Item Category")
+                            @Utils.GetLabel("Edit Item Category")
                         </h2> 
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <div class="well">
                                     <form method="post" asp-action="ItemPurYearlyPlanEdit" asp-controller="ItemPurYearlyPlan">
                                         @Html.AntiForgeryToken()
