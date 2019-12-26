@@ -25,7 +25,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/EmployeeNameFetchData.html")]
-        public async Task<JsonResult> EmployeeNameerFetchData(DataTableVm model)
+        public async Task<JsonResult> EmployeeNameFetchData(DataTableVm model)
         {
             var response = await _EmployeeName.EmployeeNameFetchData(model);
             return Json(new
@@ -39,7 +39,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/EmployeeNamelist.html")]
-        public IActionResult EmployeeNameerList()
+        public IActionResult EmployeeNameList()
         {
             return View();
         }

@@ -1,0 +1,171 @@
+﻿@using IMIS_CORE.Core
+@{
+
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<body>
+
+    <div class="tab-content">
+
+        <!-- tab 1: region starts -->
+        <div class="tab-pane fade active in" id="region-tab">
+
+            <div class="table-responsive">
+                <table id="account" class="table table-striped">
+                    <thead>
+                        <tr>
+                           
+                            <th>@Utils.GetLabel("Id")</th>
+                            <th>@Utils.GetLabel("Description(Nepali)")</th>
+                            <th>@Utils.GetLabel("Description(English)")</th>
+                            <th>@Utils.GetLabel("Code")</th>
+                            <th>@Utils.GetLabel("Depreciation Max")</th>
+                            <th>@Utils.GetLabel("Depreciation Min")</th>
+                            <th style="width:80px;">@Utils.GetLabel("Action")</th>
+                        </tr>
+                    </thead>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+
+
+<script lang="ja" type="text/javascript">
+     jQuery(document).ready(function () {
+        var table = jQuery("#account");
+        table.dataTable({
+            "bProcessing": true,
+            "processing": true,
+            "serverSide": true,
+            "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-3"p>><"clear">',
+            'searching': true,//recordsFiltered
+            "ajax": {
+                "url": "@Url.Content("~/ItemCategoryFetchDataList.html")", "type": "GET", "data": function (d) {
+                    d.search = $("#usersearch").val();
+
+                },
+            }
+            ,
+            "language": {
+                "infoFiltered": ""
+            },
+            'stateSave': false,
+
+            "columns": [
+                { "data": "id", "orderable": true },
+            { "data": "nameNp", "orderable": true },
+            { "data": "nameEn", "orderable": true },
+            { "data": "code", "orderable": true },
+            { "data": "rmaxl", "orderable": true },
+            { "data": "rminl", "orderable": true },
+            { "data": "id", "orderable": true },
+
+
+            ],
+
+            "rowCallback": function (row, data, index) {
+                //jQuery('td:first-child', row).find("input").attr({ "id": "Ids", "name": "Ids", "value": data.id });
+                var url ='/' + data.id + '/ItemCategoryEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+            },
+
+            order: [
+
+                [1, "desc"]
+            ],
+            "paging": false,
+            "pageLength": 10,
+            lengthMenu: [
+                [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
+            ],
+            "fnInitComplete": function (oSettings, json) {
+                //jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
+            },
+
+        });
+        jQuery('#usersearch').on("keyup", function () {
+            table.fnFilter(this.value);
+        }).on("keypress", function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        })
+    });
+@*$(document).ready(function() {
+    var table = $('#account').DataTable({
+        "bProcessing": true,
+        "processing": true,
+        "serverSide": true,
+        "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-3"p>><"clear">',
+        'searching': true,//recordsFiltered
+		"ajax": {
+            "url": "@Url.Content("~/ItemCategoryFetchDataList.html")", "type": "GET", "data": function (d) {
+                d.search = $("#usersearch").val();
+
+            },
+          },
+      "columns": [
+            {
+                "className":'details-control',
+                "orderable":false,
+                "data":null,
+                "defaultContent": ''
+            },
+            { "data": "id", "orderable": true },
+            { "data": "nameNp", "orderable": true },
+            { "data": "nameEn", "orderable": true },
+            { "data": "code", "orderable": true },
+            { "data": "rmaxl", "orderable": true },
+            { "data": "rminl", "orderable": true },
+            { "data": "id", "orderable": true },
+
+
+        ],
+      'createdRow': function (row, data, dataIndex) {
+          $(row).attr('id', data.id);
+             var url = '/' + data.id + '/ItemCategoryEdit.html'; //edit for the parent
+             var childurl = '/' + data.id +'/ItemCategoryCreate.html';  //add for the child for the parent
+          //var button = "<input id='btnDetails' class='btn btn-success' width='20px' value='Re-Open' />";
+          jQuery('td:last', row).html("<a href=" + url + " title='Edit Item Main Level' data-toggle='tooltip'><i class='fa fa-edit'></i></a> &nbsp;");
+          jQuery('td:last', row).append("<a href=" + childurl + " title='Add for Child Level' data-toggle='tooltip'><i class='fa fa-plus'></i></a>");
+ },
+	});
+    // Add event listener for opening and closing details
+    $('#account tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            $('#add').html('').empty();
+            d = row.data();
+            var data = d.itemCatSub;
+            $("#add").append("<table id='child' class='table table-striped'><thead><tr><th>Description(Nepali)</th><th>Description(English)</th><th>Code</th><th>Depreciation Max</th><th>Depreciation Min</th><th style='width:50px;'>Action</th></tr>");
+            for (var i = 0; i < data.length; i++) {
+                var url = '/' + data[i].id + '/ItemCategoryEdit.html';
+                //jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                //jQuery('[data-toggle="tooltip"]').tooltip();
+                $('#child').append('<tr><td>' + data[i].nameNp + '</td><td>' + data[i].nameEn + '</td><td>' + data[i].code + '</td><td>' + data[i].rmaxl + '</td><td>' + data[i].rminl + '</td><td> <a href=' + url + ' title="Edit Item Child Level" data-toggle="tooltip"><i class="fa fa-edit"></i></a></td></tr>');
+            }
+            $("#add").append('</table>');
+            row.child($('#add').html()).show();
+            tr.addClass('shown');
+        }
+    });
+
+   });*@
+
+</script>

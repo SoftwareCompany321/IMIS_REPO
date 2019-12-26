@@ -14,12 +14,14 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
   </ItemGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\ExceptionHandler\ExceptionHandler.csproj" />
     <ProjectReference Include="..\IMIS_CORE\IMIS_CORE.csproj" />
+    <ProjectReference Include="..\IMIS_DataEntity\IMIS_DataEntity.csproj" />
     <ProjectReference Include="..\IMIS_Service\IMIS_Service.csproj" />
   </ItemGroup>
 

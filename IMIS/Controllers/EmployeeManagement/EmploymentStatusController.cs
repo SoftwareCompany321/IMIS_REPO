@@ -25,7 +25,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/EmploymentStatusFetchData.html")]
-        public async Task<JsonResult> EmploymentStatuserFetchData(DataTableVm model)
+        public async Task<JsonResult> EmploymentStatusFetchData(DataTableVm model)
         {
             var response = await _EmploymentStatus.EmploymentStatusFetchData(model);
             return Json(new
@@ -39,7 +39,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/EmploymentStatuslist.html")]
-        public IActionResult EmploymentStatuserList()
+        public IActionResult EmploymentStatusList()
         {
             return View();
         }

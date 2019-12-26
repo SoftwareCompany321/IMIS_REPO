@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using IMIS_CORE.Core;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -14,7 +15,7 @@ namespace IMIS_Service.Setup.IItemCategories
     public interface IItemCategories
     {
         Task<DataTableResponse> ItemCategoriesFetchData(DataTableVm model);
-
+        List<TreeViewContainer> ItemCategoriesFetchData1(DataTableVm model);
         Task<(string message, int id)> AddEditItemCategories(ItemCategoriesVM model);
 
         Task<ItemCategoriesVM> ViewEdit(int Id);
@@ -36,14 +37,14 @@ namespace IMIS_Service.Setup.IItemCategories
                     Id = model.Id,
                     NameEn = model.NameEn,
                     NameNp = model.NameNp,
-                    ParentId=model.ParentId??0,
-                    Rminl=model.Rminl,
-                    Rmaxl=model.Rmaxl,
+                    ParentId = model.ParentId ?? 0,
+                    Rminl = model.Rminl,
+                    Rmaxl = model.Rmaxl,
                     Code = model.Code,
-                    Isexp = model.Isexp==true? Convert.ToSByte(1):Convert.ToSByte(0),
+                    Isexp = model.Isexp == true ? Convert.ToSByte(1) : Convert.ToSByte(0),
                     DepreciationMax = model.DepreciationMax,
                     DepreciationMin = model.DepreciationMin,
-                    DepreciationPer=model.DepreciationPer
+                    DepreciationPer = model.DepreciationPer
                 };
                 if (model.Id == 0)
                 {
@@ -95,7 +96,7 @@ namespace IMIS_Service.Setup.IItemCategories
                                       Code = iic.Code,
                                       Rminl = iic.Rminl,
                                       Rmaxl = iic.Rmaxl,
-                                 
+
                                       itemCatSub = (from s in _db.InvItemCategory
                                                     where s.ParentId == iic.Id
                                                     select new ItemCatSub
@@ -106,7 +107,7 @@ namespace IMIS_Service.Setup.IItemCategories
                                                         Code = s.Code,
                                                         Rminl = s.Rminl,
                                                         Rmaxl = s.Rmaxl,
-                                                    
+
                                                     }).ToList()
 
                                   });
@@ -146,7 +147,54 @@ namespace IMIS_Service.Setup.IItemCategories
                 //add to do for the error log save in db
             }
         }
+        public List<TreeViewContainer> ItemCategoriesFetchData1(DataTableVm model)
+        {
+            string searchBy = string.Empty;
+            int skip = 0;
+            int take = 10;
+            int draw = 0;
+            List<TreeViewContainer> result = new List<TreeViewContainer>();
+            List<TreeViewVM> Datas = new List<TreeViewVM>();
+            try
+            {
+                if (model != null)
+                {
+                    searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
+                    take = model.length;
+                    skip = model.start;
+                    draw = model.draw;
+                }
+                Datas = (from iic in _db.InvItemCategory
+                         select new TreeViewVM
+                         {
+                             id = iic.Id.ConvertToString(),
+                             text = Utils.ToggleLanguage(iic.NameEn, iic.NameNp),
+                             parentId = iic.ParentId.ConvertToString(),
+                         }).ToList();
 
+
+
+                result = (from d in Datas
+                          where d.parentId == "0"
+                          select (new TreeViewContainer()
+                          {
+                              text = d.text,
+                              id = d.id,
+                              parentId = null,
+                              state = new { d.opened },
+                              opened = d.opened,
+                              a_attr = new { href = "#", onclick = "loadchildlist('" + d.id + "');", }
+                          }).AddChildrens(Datas, 0)).ToList();
+
+
+
+            }
+            catch (Exception)
+            {
+
+            }
+            return result;
+        }
         public async Task<ItemCategoriesVM> ViewEdit(int Id)
         {
             try
@@ -160,12 +208,12 @@ namespace IMIS_Service.Setup.IItemCategories
                         Code = response.Code,
                         DepreciationMax = response.DepreciationMax,
                         DepreciationMin = response.DepreciationMin,
-                        Isexp = response.Isexp==1?true:false,
+                        Isexp = response.Isexp == 1 ? true : false,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
-                        Rmaxl=response.Rmaxl,
-                        Rminl=response.Rminl,
-                        ParentId=response.ParentId
+                        Rmaxl = response.Rmaxl,
+                        Rminl = response.Rminl,
+                        ParentId = response.ParentId
 
                     });
                 }

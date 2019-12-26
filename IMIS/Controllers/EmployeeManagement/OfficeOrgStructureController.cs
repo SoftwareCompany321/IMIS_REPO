@@ -25,7 +25,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/OfficeOrgStructureFetchData.html")]
-        public async Task<JsonResult> OfficeOrgStructureerFetchData(DataTableVm model)
+        public async Task<JsonResult> OfficeOrgStructureFetchData(DataTableVm model)
         {
             var response = await _OfficeOrgStructure.OfficeOrgStructureFetchData(model);
             return Json(new
@@ -39,7 +39,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/OfficeOrgStructurelist.html")]
-        public IActionResult OfficeOrgStructureerList()
+        public IActionResult OfficeOrgStructureList()
         {
             return View();
         }

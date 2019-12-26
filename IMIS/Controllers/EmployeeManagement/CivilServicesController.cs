@@ -25,7 +25,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/CivilServicesFetchData.html")]
-        public async Task<JsonResult> CivilServiceserFetchData(DataTableVm model)
+        public async Task<JsonResult> CivilServicesFetchData(DataTableVm model)
         {
             var response = await _CivilServices.CivilServicesFetchData(model);
             return Json(new
@@ -39,7 +39,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/CivilServiceslist.html")]
-        public IActionResult CivilServiceserList()
+        public IActionResult CivilServicesList()
         {
             return View();
         }

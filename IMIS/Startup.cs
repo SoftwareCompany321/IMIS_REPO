@@ -48,6 +48,7 @@ using IMIS_Service.EmployeeManagement.IEmployeeName;
 using IMIS_Service.EmployeeManagement.IOfficeOrgStructure;
 using IMIS_Service.Setup.IItemSupplierDtl;
 using IMIS_Service.Setup.IItemPurYearlyPlan;
+using IMIS.TreeView;
 
 namespace IMIS
 {
@@ -152,7 +153,7 @@ namespace IMIS
             services.AddScoped<IOfficeOrgStructure, OfficeOrgStructure>();
             services.AddScoped<IItemSupplierDtl, ItemSupplierDtl>();
             services.AddScoped<IItemPurYearlyPlan, ItemPurYearlyPlan>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            services.AddScoped<IObjectRepositary, ObjectRepositary>();
             //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
             //
 

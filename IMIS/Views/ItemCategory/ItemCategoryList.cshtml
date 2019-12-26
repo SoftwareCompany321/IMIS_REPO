@@ -16,17 +16,8 @@
     }
 </style>
 
-
-@*<style>
-    td.details-control {
-        background: url('https://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
-        cursor: pointer;
-    }
-
-    tr.shown td.details-control {
-        background: url('https://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
-    }
-</style>*@
+<link href="~/lib/jstree/dist/themes/default/style.css" rel="stylesheet" />
+<script src="~/lib/jstree/dist/jstree.js"></script>
 
 <body>
 
@@ -43,11 +34,8 @@
 
                     <!-- tab 1: region starts -->
                     <div class="tab-pane fade active in" id="region-tab">
-                        <!-- generic add button for all the "add" forms | Add region -->
                         <a href="@Url.Content("~/{0}/ItemCategoryCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
                         <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
-
-                        <!-- search filters -->
                         <div class="collapse" id="searchCollapse">
                             <div class="well">
                                 <div class="form-group">
@@ -61,25 +49,18 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="table-responsive">
-                            <table id="account" class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>@Utils.GetLabel("Id")</th>
-                                        <th>@Utils.GetLabel("Description(Nepali)")</th>
-                                        <th>@Utils.GetLabel("Description(English)")</th>
-                                        <th>@Utils.GetLabel("Code")</th>
-                                        <th>@Utils.GetLabel("Depreciation Max")</th>
-                                        <th>@Utils.GetLabel("Depreciation Min")</th>
-                                        <th style="width:80px;"></th>
-                                    </tr>
-                                </thead>
 
-                            </table>
-                        </div>
                     </div>
+                    <div class="col-sm-4" style="float: left;">
+                        <nav class="navbar navbar-left col-sm-12" style="background-color:azure;margin-top:40px;border-right:5px solid gray">
+                            <div id="tree"></div>
+                        </nav>
+                    </div>
+                    <div  class="col-sm-8" style="float: right;"><div id="partial">
 
+</div></div>
+                   
+                    
                 </div>
             </div>
         </div>
@@ -87,94 +68,45 @@
     </div>
 
     <div id="add" hidden>
-       
+
     </div>
-    <!-- /#page-wrapper -->
-    <!-- /#wrapper -->
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-    <script src="js/plugins/script.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+
 </body>
 
+<script type="text/javascript">
+    $(function () {
+        $('#tree').jstree({
+            'core': {
+                "themes": {
+                    "icons": false,
+                    "stripes": false
+                },
+                'data': {
+                    "url": "@Url.Content("~/ItemCategoryFetchData.html")",
+                    "data": function (node) {
+                        debugger;
+                        return { "id": node.id };
+                    }
+                }
+            },
+            "plugins": ["wholerow"]
         });
->>>>>>>>> Temporary merge branch 2
+    });
 
-<script lang="ja" type="text/javascript">
-
-$(document).ready(function() {
-    var table = $('#account').DataTable({
-        "bProcessing": true,
-        "processing": true,
-        "serverSide": true,
-        "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-3"p>><"clear">',
-        'searching': true,//recordsFiltered
-		"ajax": {
-            "url": "@Url.Content("~/ItemCategoryFetchData.html")", "type": "GET", "data": function (d) {
-                d.search = $("#usersearch").val();
-
-            },
-          },
-      "columns": [
-            {
-                "className":'details-control',
-                "orderable":false,
-                "data":null,
-                "defaultContent": ''
-            },
-            { "data": "id", "orderable": true }, 
-            { "data": "nameNp", "orderable": true },
-            { "data": "nameEn", "orderable": true },
-            { "data": "code", "orderable": true },
-            { "data": "rmaxl", "orderable": true },
-            { "data": "rminl", "orderable": true }, 
-            { "data": "id", "orderable": true }, 
-
-
-        ],
-      'createdRow': function (row, data, dataIndex) {
-          $(row).attr('id', data.id);  
-             var url = '/' + data.id + '/ItemCategoryEdit.html'; //edit for the parent
-             var childurl = '/' + data.id +'/ItemCategoryCreate.html';  //add for the child for the parent
-          //var button = "<input id='btnDetails' class='btn btn-success' width='20px' value='Re-Open' />";
-          jQuery('td:last', row).html("<a href=" + url + " title='Edit Item Main Level' data-toggle='tooltip'><i class='fa fa-edit'></i></a> &nbsp;");
-          jQuery('td:last', row).append("<a href=" + childurl + " title='Add for Child Level' data-toggle='tooltip'><i class='fa fa-plus'></i></a>");  
- },
-	});
-    // Add event listener for opening and closing details
-    $('#account tbody').on('click', 'td.details-control', function () {
-        var tr = $(this).closest('tr');
-        var row = table.row( tr );
-
-        if ( row.child.isShown() ) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
+    function loadchildlist(id) {
+        debugger;
+         var url1 = '/' + id + '/ItemCategoryPartial.html';
+        $.ajax({
+        type: 'GET',
+        url: url1,
+            success: function (data) {
+                debugger;
+           $('#partial').html(data);
         }
-        else {
-            // Open this row
-            $('#add').html('').empty();
-            d = row.data();
-            var data = d.itemCatSub;
-            $("#add").append("<table id='child' class='table table-striped'><thead><tr><th>Description(Nepali)</th><th>Description(English)</th><th>Code</th><th>Depreciation Max</th><th>Depreciation Min</th><th style='width:50px;'>Action</th></tr>");
-            for (var i = 0; i < data.length; i++) {
-                var url = '/' + data[i].id + '/ItemCategoryEdit.html';
-                //jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
-                //jQuery('[data-toggle="tooltip"]').tooltip();
-                $('#child').append('<tr><td>' + data[i].nameNp + '</td><td>' + data[i].nameEn + '</td><td>' + data[i].code + '</td><td>' + data[i].rmaxl + '</td><td>' + data[i].rminl + '</td><td> <a href=' + url + ' title="Edit Item Child Level" data-toggle="tooltip"><i class="fa fa-edit"></i></a></td></tr>');
-            }
-            $("#add").append('</table>');
-            row.child($('#add').html()).show();
-            tr.addClass('shown');
-        }
-    }); 
-
-   });
+    });
+}
 
 </script>
-
-
 
 
 

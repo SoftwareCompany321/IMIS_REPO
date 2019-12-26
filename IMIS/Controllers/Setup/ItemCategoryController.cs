@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IMIS.TreeView;
 using IMIS_CORE.Utility;
 using IMIS_Service.Setup.IItemCategories;
 using IMIS_Service.ViewModel;
@@ -12,10 +13,12 @@ namespace IMIS.Controllers.Setup
     public class ItemCategoryController : Controller
     {
         private readonly IItemCategories _ItemCategory;
+        private readonly IObjectRepositary repo;
 
-        public ItemCategoryController(IItemCategories ItemCategory)
+        public ItemCategoryController(IItemCategories ItemCategory, IObjectRepositary r)
         {
             _ItemCategory = ItemCategory;
+            repo = r;
         }
         //for the account head controller 
         public IActionResult Index()
@@ -25,7 +28,18 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/ItemCategoryFetchData.html")]
-        public async Task<JsonResult> ItemCategoryFetchData(DataTableVm model)
+        public    JsonResult  ItemCategoryFetchData(DataTableVm model )
+        {
+           // var response =  _ItemCategory.ItemCategoriesFetchData1(model);
+            //return Json(repo.GetDataTree(id, TreeViewPathProvider.Instance().openedNodes));
+            return Json(_ItemCategory.ItemCategoriesFetchData1(model));
+
+
+        }
+
+        [HttpGet]
+        [Route("/ItemCategoryFetchDataList.html")]
+        public async Task<JsonResult> ItemCategoryFetchDataList(DataTableVm model)
         {
             var response = await _ItemCategory.ItemCategoriesFetchData(model);
             return Json(new
@@ -36,7 +50,6 @@ namespace IMIS.Controllers.Setup
                 data = response.data
             });
         }
-
         [HttpGet]
         [Route("/ItemCategorylist.html")]
         public IActionResult ItemCategoryList()
@@ -87,6 +100,13 @@ namespace IMIS.Controllers.Setup
                 return Redirect("~/ItemCategorylist.html");
             }
             return View();
+        }
+
+        [HttpGet]
+        [Route("/{id}/ItemCategoryPartial.html")]
+        public  IActionResult  ItemCategoryPartial(int id)
+        {
+            return View("_CategoryList");
         }
     }
 }

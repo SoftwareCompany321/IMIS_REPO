@@ -25,7 +25,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/OfficeAppPosFetchData.html")]
-        public async Task<JsonResult> OfficeAppPoserFetchData(DataTableVm model)
+        public async Task<JsonResult> OfficeAppPosFetchData(DataTableVm model)
         {
             var response = await _OfficeAppPos.OfficeAppPosFetchData(model);
             return Json(new
@@ -39,7 +39,7 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/OfficeAppPoslist.html")]
-        public IActionResult OfficeAppPoserList()
+        public IActionResult OfficeAppPosList()
         {
             return View();
         }
