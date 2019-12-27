@@ -25,7 +25,16 @@ namespace IMIS.Controllers.MenuSetup
         {
             return View();
         }
+        [HttpGet]
+        [Route("/MenuTreeFetchData.html")]
+        public JsonResult ItemCategoryFetchData(DataTableVm model)
+        {
+            // var response =  _ItemCategory.ItemCategoriesFetchData1(model);
+            //return Json(repo.GetDataTree(id, TreeViewPathProvider.Instance().openedNodes));
+            return Json(_menuService.MenuTreeFetchData(model));
 
+
+        }
         [HttpGet]
         [Route("/menudatafetchlist.html")]
         public IActionResult MenuFetchList()
@@ -34,10 +43,10 @@ namespace IMIS.Controllers.MenuSetup
         }
 
         [HttpGet]
-        [Route("/menudatagetfetchdatadatable.html")]
-        public async Task<JsonResult> menudatagetfetchdatadatable(DataTableVm model)
+        [Route("/{id}/menudatagetfetchdatadatable.html")]
+        public async Task<JsonResult> menudatagetfetchdatadatable(DataTableVm model,int id)
         {
-            var response = await _menuService.MenuDataTabel(model);
+            var response = await _menuService.MenuChildDataTabel(model,id);
             return Json(new
             {
                 draw = response.draw,
@@ -48,11 +57,11 @@ namespace IMIS.Controllers.MenuSetup
         }
 
         [HttpGet]
-        [Route("/MenuCreate.html")]
-        public IActionResult MenuCreate()
+        [Route("/{id}/MenuCreate.html")]
+        public IActionResult MenuCreate(int id)
         {
-            ViewData["ParentMenu"] = _global.GetAllParentMenu(); //calling the all parent menu
-            return View();
+            ViewData["ParentMenu"] = _global.GetParentMenu(id); //calling the all parent menu
+            return View("_partialMenu");
 
         }
 
@@ -78,29 +87,20 @@ namespace IMIS.Controllers.MenuSetup
         public async Task<IActionResult> MenuEdit(int id)
         {
             ViewData["ParentMenu"] = _global.GetAllParentMenu(); 
-            return View(await _menuService.ViewEdit(id));
+            return View("_partialMenu", await _menuService.ViewEdit(id));
 
         }
 
-        [HttpPost]
-        [Route("/{id}/MenuEdit.html")] 
-        public async Task<IActionResult> MenuEdit(MenuVM model)
+        
+
+
+        [HttpGet]
+        [Route("/{id}/MenuTreePartial.html")]
+        public IActionResult MenuTreePartial(int id)
         {
-            var result = await _menuService.MenuAddEdit(model);
-
-            if (result.message == "success")
-            {
-                TempData["Message"] = "Successfully Added";
-                TempData["Class"] = "alert alert-success ";
-                return Redirect("~/menudatafetchlist.html");
-            }
-            ViewData["ParentMenu"] = _global.GetAllParentMenu();
-            return View();
-
+            ViewData["id"] = id;
+            return View("_MenuList");
         }
-
-
-
 
     }
 }

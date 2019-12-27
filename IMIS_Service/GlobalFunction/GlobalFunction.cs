@@ -30,9 +30,14 @@ namespace IMIS_Service.GlobalFunction
             return (_httpCA.HttpContext.User.Identity.Name);
         }
 
-        public IEnumerable<SelectListItem> GetAllParentMenu()
+        public IEnumerable<SelectListItem> GetAllParentMenu(int id = 0)
         {
-            return new SelectList(_db.ImisMenu.Where(x => x.ParentMenuId == 0), "Id", "DisplayName");
+            return new SelectList(_db.ImisMenu.Where(x => x.ParentMenuId == id), "Id", "DisplayName");
+
+        }
+        public IEnumerable<SelectListItem> GetParentMenu(int id = 0)
+        {
+            return new SelectList(_db.ImisMenu.Where(x => x.Id == id), "Id", "DisplayName");
 
         }
     }

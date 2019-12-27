@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IMIS_CORE.Core;
 
 namespace IMIS_Service.IMenuService
 {
@@ -16,9 +17,9 @@ namespace IMIS_Service.IMenuService
         Task<(string message, int Id)> MenuAddEdit(MenuVM mspMenu);
         Task<IList<MenuVM>> menuVM();
         Task<DataTableResponse> MenuDataTabel(DataTableVm model);
-
+        List<TreeViewContainer> MenuTreeFetchData(DataTableVm model);
         Task<MenuVM> ViewEdit(int id);
-
+        Task<DataTableResponse> MenuChildDataTabel(DataTableVm model, int id = 0);
     }
 
     public class MenuService : IMenuService, IDisposable
@@ -41,7 +42,7 @@ namespace IMIS_Service.IMenuService
 
                 return (await (from m in _db.ImisMenu
                                where m.ParentMenuId == 0
-                               orderby m.MenuOrder 
+                               orderby m.MenuOrder
                                select new MenuVM
                                {
                                    Id = m.Id,
@@ -49,14 +50,24 @@ namespace IMIS_Service.IMenuService
                                    MenuUrl = m.MenuUrl,
                                    NepName = m.DisplayNepName,
                                    MenuSubMenu = (from s in _db.ImisMenu
-                                                  orderby s.MenuOrder 
+                                                  orderby s.MenuOrder
                                                   where s.ParentMenuId == m.Id
                                                   select new MenuSubMenuVM
                                                   {
                                                       Id = s.Id,
                                                       DisplayName = s.DisplayName,
                                                       MenuUrl = s.MenuUrl,
-                                                      NepName = s.DisplayNepName
+                                                      NepName = s.DisplayNepName,
+                                                      MenuSubMenu = (from st in _db.ImisMenu
+                                                                     orderby st.MenuOrder
+                                                                     where st.ParentMenuId == s.Id
+                                                                     select new MenuSubMenuVM
+                                                                     {
+                                                                         Id = st.Id,
+                                                                         DisplayName = st.DisplayName,
+                                                                         MenuUrl = st.MenuUrl,
+                                                                         NepName = st.DisplayNepName
+                                                                     }).ToList()
                                                   }).ToList()
                                }).ToListAsync());
             }
@@ -162,6 +173,101 @@ namespace IMIS_Service.IMenuService
             };
         }
 
+        public async Task<DataTableResponse> MenuChildDataTabel(DataTableVm model, int id = 0)
+        {
+            string searchBy = string.Empty;
+            int skip = 0;
+            int take = 10;
+            int totalResultsCount = 0;
+            int filteredResultsCount = 0;
+            int draw = 0;
+
+            if (model != null)
+            {
+                searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
+                take = model.length;
+                skip = model.start;
+                draw = model.draw;
+            }
+
+
+            var menulist = (from nt in _db.ImisMenu
+                            where nt.ParentMenuId == id
+                            select new
+                            {
+                                nt.Id,
+                                nt.DisplayName,
+                                nt.DisplayNepName,
+                                nt.MenuOrder
+                            }).ToList();
+            if (menulist.Count > 0)
+            {
+                totalResultsCount = menulist.Count();
+                if (!string.IsNullOrEmpty(searchBy))
+                {
+                    // menulist = menulist;
+                }
+                filteredResultsCount = menulist.Count();
+            }
+
+            var list = menulist.OrderByDescending(x => x.MenuOrder).Skip(skip).ToList();
+
+            return new DataTableResponse
+            {
+                draw = draw,
+                TotalRecord = filteredResultsCount,
+                FilteredRecord = totalResultsCount,
+                data = list
+            };
+        }
+        public List<TreeViewContainer> MenuTreeFetchData(DataTableVm model)
+        {
+            string searchBy = string.Empty;
+            int skip = 0;
+            int take = 10;
+            int draw = 0;
+            List<TreeViewContainer> result = new List<TreeViewContainer>();
+            List<TreeViewVM> Datas = new List<TreeViewVM>();
+            try
+            {
+                if (model != null)
+                {
+                    searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
+                    take = model.length;
+                    skip = model.start;
+                    draw = model.draw;
+                }
+                Datas = (from iic in _db.ImisMenu
+                         select new TreeViewVM
+                         {
+                             id = iic.Id.ConvertToString(),
+                             text = Utils.ToggleLanguage(iic.DisplayName, iic.DisplayNepName),
+                             parentId = iic.ParentMenuId.ConvertToString(),
+                         }).ToList();
+
+
+
+                result = (from d in Datas
+                          where d.parentId == "0"
+                          select (new TreeViewContainer()
+                          {
+                              text = d.text,
+                              id = d.id,
+                              parentId = null,
+                              state = new { d.opened },
+                              opened = d.opened,
+                              a_attr = new { href = "#", onclick = "loadchildlist('" + d.id + "');", }
+                          }).AddChildrens(Datas, 0)).ToList();
+
+
+
+            }
+            catch (Exception)
+            {
+
+            }
+            return result;
+        }
         public void Dispose()
         {
             if (_db != null)

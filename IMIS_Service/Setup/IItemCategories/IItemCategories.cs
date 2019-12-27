@@ -3,6 +3,7 @@ using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,10 @@ namespace IMIS_Service.Setup.IItemCategories
     public interface IItemCategories
     {
         Task<DataTableResponse> ItemCategoriesFetchData(DataTableVm model);
+        Task<DataTableResponse> ItemCategoriesFetchData(DataTableVm model,int id);
         List<TreeViewContainer> ItemCategoriesFetchData1(DataTableVm model);
         Task<(string message, int id)> AddEditItemCategories(ItemCategoriesVM model);
-
+        IEnumerable<SelectListItem> GetParentItemCategory(int id = 0);
         Task<ItemCategoriesVM> ViewEdit(int Id);
     }
     public class ItemCategories : IItemCategories
@@ -147,6 +149,73 @@ namespace IMIS_Service.Setup.IItemCategories
                 //add to do for the error log save in db
             }
         }
+
+        public async Task<DataTableResponse> ItemCategoriesFetchData(DataTableVm model,int id)
+        {
+            string searchBy = string.Empty;
+            int skip = 0;
+            int take = 10;
+            int totalResultsCount = 0;
+            int filteredResultsCount = 0;
+            int draw = 0;
+
+            try
+            {
+                if (model != null)
+                {
+                    searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
+                    take = model.length;
+                    skip = model.start;
+                    draw = model.draw;
+                }
+                var accMasters =await (from iic in _db.InvItemCategory
+                                  where iic.ParentId == id
+                                  select new  
+                                  {
+                                       iic.Id,
+                                        iic.NameEn,
+                                       iic.NameNp,
+                                       iic.Code,
+                                       iic.Rminl,
+                                        iic.Rmaxl,
+ 
+                                  }).ToListAsync();
+                ///filter count for the total; record
+                ///
+                if (accMasters != null)
+                {
+                    totalResultsCount = accMasters.Count();
+                    if (!string.IsNullOrEmpty(searchBy))
+                    {
+                        accMasters = accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy).ToList();
+                    }
+                    filteredResultsCount =   accMasters.Count();
+                }
+
+                var finallist =   accMasters.OrderByDescending(x => x.Id).Skip(skip).ToList();
+
+                return new DataTableResponse
+                {
+                    draw = draw,
+                    TotalRecord = filteredResultsCount,
+                    FilteredRecord = totalResultsCount,
+                    data = finallist
+                };
+
+
+            }
+            catch (Exception)
+            {
+                return new DataTableResponse
+                {
+                    draw = draw,
+                    TotalRecord = filteredResultsCount,
+                    FilteredRecord = totalResultsCount,
+                    data = 0
+                };
+                //add to do for the error log save in db
+            }
+        }
         public List<TreeViewContainer> ItemCategoriesFetchData1(DataTableVm model)
         {
             string searchBy = string.Empty;
@@ -227,6 +296,12 @@ namespace IMIS_Service.Setup.IItemCategories
 
                 throw;
             }
+        }
+
+        public IEnumerable<SelectListItem> GetParentItemCategory(int id = 0)
+        {
+            return new SelectList(_db.InvItemCategory.Where(x => x.Id == id), "Id", "DisplayName");
+
         }
     }
 }

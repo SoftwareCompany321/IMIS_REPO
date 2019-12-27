@@ -28,9 +28,9 @@ namespace IMIS.Controllers.Setup
 
         [HttpGet]
         [Route("/ItemCategoryFetchData.html")]
-        public    JsonResult  ItemCategoryFetchData(DataTableVm model )
+        public JsonResult ItemCategoryFetchData(DataTableVm model)
         {
-           // var response =  _ItemCategory.ItemCategoriesFetchData1(model);
+            // var response =  _ItemCategory.ItemCategoriesFetchData1(model);
             //return Json(repo.GetDataTree(id, TreeViewPathProvider.Instance().openedNodes));
             return Json(_ItemCategory.ItemCategoriesFetchData1(model));
 
@@ -38,10 +38,10 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemCategoryFetchDataList.html")]
-        public async Task<JsonResult> ItemCategoryFetchDataList(DataTableVm model)
+        [Route("/{id}/ItemCategoryFetchDataList.html")]
+        public async Task<JsonResult> ItemCategoryFetchDataList(DataTableVm model, int id)
         {
-            var response = await _ItemCategory.ItemCategoriesFetchData(model);
+            var response = await _ItemCategory.ItemCategoriesFetchData(model, id);
             return Json(new
             {
                 draw = response.draw,
@@ -51,11 +51,12 @@ namespace IMIS.Controllers.Setup
             });
         }
         [HttpGet]
-        [Route("/ItemCategorylist.html")]
-        public IActionResult ItemCategoryList()
+        [Route("/{id}/ItemCategorylist.html")]
+        public IActionResult ItemCategoryList(int id)
         {
-            return View();
-           
+            ViewData["ParentCategory"] = _ItemCategory.GetParentItemCategory(id); //calling the all parent menu
+            return View("_partialItemCategory");
+
         }
 
         [HttpGet]
@@ -70,27 +71,6 @@ namespace IMIS.Controllers.Setup
         [HttpPost]
         [Route("/ItemCategoryCreate.html")]
         public async Task<IActionResult> ItemCategoryCreate(ItemCategoriesVM model)
-        { 
-            var response = await _ItemCategory.AddEditItemCategories(model);
-            if (response.message == "success")
-            {
-                TempData["Message"] = "Successfully Added";
-                TempData["Class"] = "alert alert-success ";
-                return Redirect("~/ItemCategorylist.html");
-            }
-            return View(); 
-        }
-
-        [HttpGet]
-        [Route("/{id}/ItemCategoryEdit.html")]
-        public async Task<IActionResult> ItemCategoryEdit(int id)
-        {
-            return View(await _ItemCategory.ViewEdit(id));
-        }
-
-        [HttpGet]
-        [Route("/ItemCategoryEdit.html")]
-        public async Task<IActionResult> ItemCategoryEdit(ItemCategoriesVM model, int id)
         {
             var response = await _ItemCategory.AddEditItemCategories(model);
             if (response.message == "success")
@@ -103,8 +83,15 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
+        [Route("/{id}/ItemCategoryEdit.html")]
+        public async Task<IActionResult> ItemCategoryEdit(int id)
+        {
+            return View(await _ItemCategory.ViewEdit(id));
+        }
+
+        [HttpGet]
         [Route("/{id}/ItemCategoryPartial.html")]
-        public  IActionResult  ItemCategoryPartial(int id)
+        public IActionResult ItemCategoryPartial(int id)
         {
             return View("_CategoryList");
         }

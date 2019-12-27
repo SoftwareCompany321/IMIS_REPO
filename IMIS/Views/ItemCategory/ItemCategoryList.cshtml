@@ -15,10 +15,12 @@
         background: url('../images/icons/details_close.png') no-repeat center center;
     }
 </style>
-
+<script src="js/jquery.js"></script>
+<script src="js/plugins/script.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
 <link href="~/lib/jstree/dist/themes/default/style.css" rel="stylesheet" />
-<script src="~/lib/jstree/dist/jstree.js"></script>
-
+<script src="~/lib/jstree/dist/jstree.min.js"></script>
 <body>
 
     <!-- Navigation -->
@@ -56,11 +58,13 @@
                             <div id="tree"></div>
                         </nav>
                     </div>
-                    <div  class="col-sm-8" style="float: right;"><div id="partial">
+                    <div class="col-sm-8" style="float: right;">
+                        <div id="partial">
 
-</div></div>
-                   
-                    
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -84,7 +88,6 @@
                 'data': {
                     "url": "@Url.Content("~/ItemCategoryFetchData.html")",
                     "data": function (node) {
-                        debugger;
                         return { "id": node.id };
                     }
                 }
@@ -94,7 +97,6 @@
     });
 
     function loadchildlist(id) {
-        debugger;
          var url1 = '/' + id + '/ItemCategoryPartial.html';
         $.ajax({
         type: 'GET',

@@ -5,12 +5,13 @@
 
     if (mainlist.Count > 0)
     {
-        for (int i = 0; i < mainlist.Count; i++)
+        foreach (var mnuitm in mainlist)
+        //for (int i = 0; i < mainlist.Count; i++)
         {
-            string dispalyName = Utils.ToggleLanguage(mainlist[i].DisplayName, mainlist[i].NepName);
+            string dispalyName = Utils.ToggleLanguage(mnuitm.DisplayName, mnuitm.NepName);
             <li class="treeview">
                 <a>
-                    <i class="@mainlist[i].Icon"></i>@dispalyName
+                    <i class="@mnuitm.Icon"></i>@dispalyName
 
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
@@ -18,19 +19,45 @@
                 </a>
 
                 @{
-                    if (mainlist[i].MenuSubMenu.Count > 0)
+                    if (mnuitm.MenuSubMenu.Count > 0)
                     {
                         <ul class="treeview-menu">
-
-                            @for (int j = 0; j < mainlist[i].MenuSubMenu.Count; j++)
+                            @foreach (var submenuitem in mnuitm.MenuSubMenu)
                             {
-                                var menu = mainlist[i].MenuSubMenu[j].MenuUrl;
+                                 
+                                @if (submenuitem.MenuSubMenu.Count > 0)
+                                {
+                                    string dispalySubName = Utils.ToggleLanguage(submenuitem.DisplayName, submenuitem.NepName);
+                                    <li class="treeview">
+                                        <a>
+                                            <i class="@submenuitem.Icon"></i>@dispalySubName
 
-                                <li id="@mainlist[i].MenuSubMenu[j].Id" class="actMenChild">
-                                    <a href="~/@Url.Content(mainlist[i].MenuSubMenu[j].MenuUrl)">
-                                        <i class="@mainlist[i].MenuSubMenu[j].Icon"></i>@Utils.ToggleLanguage(mainlist[i].MenuSubMenu[j].DisplayName,mainlist[i].MenuSubMenu[j].NepName)
-                                    </a>
-                                </li>
+                                            <span class="pull-right-container">
+                                                <i class="fa fa-angle-left pull-right"></i>
+                                            </span>
+                                        </a>
+                                        <ul class="treeview-menu">
+                                            @foreach (var subsubmenuitem in submenuitem.MenuSubMenu)
+                                            { 
+                                                <li id="@subsubmenuitem.Id" class="actMenChild">
+                                                    <a href="~/@Url.Content(subsubmenuitem.MenuUrl)">
+                                                        <i class="@subsubmenuitem.Icon"></i>@Utils.ToggleLanguage(subsubmenuitem.DisplayName, subsubmenuitem.NepName)
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+
+                                    </li>
+                                }
+                                else
+                                { 
+                                    <li id="@submenuitem.Id" class="actMenChild">
+                                        <a href="~/@Url.Content(submenuitem.MenuUrl)">
+                                            <i class="@submenuitem.Icon"></i>@Utils.ToggleLanguage(submenuitem.DisplayName, submenuitem.NepName)
+                                        </a>
+                                    </li>
+                                }
+
 
                             }
                         </ul>
@@ -41,16 +68,3 @@
     }
 }
 
-@*<script>
-
-     $('.actMenChild').on('click', function () {
-            let this_id = $(this).attr('id');
-             localStorage.setItem("actMenChild", this_id);
-          $(this).addClass("active");
-        });
-        $('.actMen').on('click', function () {
-            let this_id = $(this).attr('id');
-            localStorage.setItem("activeParent", this_id);
-        });
-
-</script>*@

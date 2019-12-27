@@ -215,6 +215,8 @@ namespace IMIS_CORE.Core
         private static DataTable getUnicodedataTable()
         {
             var buildDir = GetApplicationRoot();
+            //string filepath = System.IO.Path.GetFullPath(buildDir + @"Unicode/unicodexml.xml");
+
             string filepath = System.IO.Path.GetFullPath(buildDir + @"\Unicode\unicodexml.xml");
             DataSet ds = new DataSet();
             ds.ReadXml(filepath);
@@ -775,6 +777,8 @@ namespace IMIS_CORE.Core
             }
             return false;
         }
+
+         
     }
 
 
