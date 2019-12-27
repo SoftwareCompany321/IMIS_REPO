@@ -107,9 +107,12 @@
             ],
 
             "rowCallback": function (row, data, index) {
-                //jQuery('td:first-child', row).find("input").attr({ "id": "Ids", "name": "Ids", "value": data.id });
+                
                 var url ='/' + data.unitId + '/ItemUnitEdit.html';
-                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.unitId + '/ItemUnitDelete.html';
+                jQuery('td:last-child', row).html("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-delete'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
             },
 

@@ -36,7 +36,7 @@ namespace IMIS_Service.Setup.IItemBrand
                    BrandId=model.BrandId,
                    NameEn=model.NameEn,
                    NameNp=model.NameNp,
-                   IsActive="Y"
+                   IsActive=true
                 };
                 if (model.BrandId == 0)
                 {

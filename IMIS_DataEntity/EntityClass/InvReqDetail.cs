@@ -12,7 +12,7 @@ namespace IMIS_DataEntity.EntityClass
         public int? BrandId { get; set; }
         public float? Qty { get; set; }
         public string Remarks { get; set; }
-        public string IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public virtual InvBrand Brand { get; set; }
         public virtual InvItemMst Item { get; set; }

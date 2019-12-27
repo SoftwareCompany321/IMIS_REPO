@@ -41,6 +41,7 @@ namespace IMIS.Controllers.Setup
         [Route("/ItemUnitlist.html")]
         public IActionResult ItemUnitList()
         {
+           
             return View();
         }
 
@@ -48,6 +49,7 @@ namespace IMIS.Controllers.Setup
         [Route("/ItemUnitCreate.html")]
         public IActionResult ItemUnitCreate()
         {
+            ViewData["MultipleFactor"] = _ItemUnit.GetItemUnitList();
             return View();
         }
         [HttpPost]
@@ -59,7 +61,7 @@ namespace IMIS.Controllers.Setup
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/ItemUnitCreate.html");
+                return Redirect("~/ItemUnitlist.html");
             }
             return View();
         }
@@ -73,6 +75,20 @@ namespace IMIS.Controllers.Setup
         [HttpPost]
         [Route("{unitId}/ItemUnitEdit.html")]
         public async Task<IActionResult> ItemUnitEdit(ItemUnitVM model, int UnitId)
+        {
+            var response = await _ItemUnit.AddEdit(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemUnitlist.html");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [Route("{unitId}/ItemUnitDelete.html")]
+        public async Task<IActionResult> ItemUnitDelete(ItemUnitVM model, int UnitId)
         {
             var response = await _ItemUnit.AddEdit(model);
             if (response.message == "success")

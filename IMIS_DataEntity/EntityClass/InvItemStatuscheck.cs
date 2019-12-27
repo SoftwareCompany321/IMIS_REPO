@@ -33,7 +33,7 @@ namespace IMIS_DataEntity.EntityClass
         public string AcceptedDate { get; set; }
         public DateTime? AcceptedDateEng { get; set; }
         public string FisicalYear { get; set; }
-        public string IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
         public int? UpDownNo { get; set; }
         public string CheckStatus { get; set; }
 

@@ -23,27 +23,13 @@
                                 <div class="well">
                                     <form method="post" asp-action="ItemUnitCreate">
                                         @Html.AntiForgeryToken()
-                                        <div class="form-group is-empty">
-                                            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Description(English)")<span class="requried">*</span></label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" asp-for="DescEn">
-                                            </div>
-                                        </div>
-                                        <div class="form-group is-empty">
-                                            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Description(Nepali)")  <span class="requried">*</span></label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" asp-for="DescNp" onkeypress = "return setUnicode(event,this);">
-                                            </div>
-                                        </div>
-                                        <div class="form-group is-empty">
-                                            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Smallest Unit No")</label>
-                                            <div class="col-md-9">
-                                                <input type="text" class="form-control" asp-for="NoOfUnits">
-                                            </div>
-                                        </div>
+                                        @await Html.PartialAsync("~/Views/ItemUnit/_partialItemUnit.cshtml", Model)
                                         <div class="form-group form-action">
                                             <div class="col-md-10 col-md-offset-2">
-                                                <button type="submit" class="btn btn-primary">@Utils.GetLabel("Submit")</button>
+                                                <button type="submit" class="btn btn-primary">
+                                                    @Utils.GetLabel("Submit")
+                                                </button>
+
                                                 <button type="button" class="btn btn-default">@Utils.GetLabel("Cancel")</button>
                                             </div>
                                         </div>

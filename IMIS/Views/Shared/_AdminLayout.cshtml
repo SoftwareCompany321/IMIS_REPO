@@ -73,20 +73,20 @@
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
-                 
+
                 <div class="brand">
                     @*<a class="sidebar-toggle"><i class="material-icons">menu</i></a>*@
                     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
                         <span class="sr-only">Toggle navigation</span>
                     </a>
-                    <a class="platform-name"  href="@Url.Action("Index", "Home")">
+                    <a class="platform-name" href="@Url.Action("Index", "Home")">
                         <figure><img src="~/images/GovLogo.png" alt="IMIS"></figure>
                         <span>@Utils.GetLabel("Inventory Management and Information System")</span>
                     </a>
                     <ul class="authority">
                         @*<li>Deputy Prime Minister's Office</li>
-            <li>Department of Social Welfare</li>
-            <li>Kingdom of Swaziland</li>*@
+                            <li>Department of Social Welfare</li>
+                            <li>Kingdom of Swaziland</li>*@
                     </ul>
                 </div>
                 <div class="navbar-custom-menu">
@@ -106,7 +106,7 @@
 
                                     <p>
                                         @User.Identity.Name
-                                        
+
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -138,7 +138,7 @@
 
                         </li>
                         <!-- Control Sidebar Toggle Button -->
-                       
+
                     </ul>
                 </div>
             </nav>
@@ -147,13 +147,13 @@
         <aside class="main-sidebar">
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-             
+
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">@Utils.GetLabel("MENU")</li>
 
-                    @await Html.PartialAsync("~/Views/PartialView/_sideMenuBar.cshtml") 
+                    @await Html.PartialAsync("~/Views/PartialView/_sideMenuBar.cshtml")
                 </ul>
             </section>
             <!-- /.sidebar -->
@@ -169,8 +169,8 @@
             <strong>Copyright &copy; 2019 <a href="">IMIS Tech Nepal Pvt.Ltd</a>.</strong> All rights
             reserved.
         </footer>
-     
-       
+
+
         <!-- Add the sidebar's background. This div must be placed
         immediately after the control sidebar -->
         <div class="control-sidebar-bg">
@@ -218,4 +218,6 @@
     <script src="@Url.Content("~/bower_components/morris.js/morris.min.js")"></script>
 
 </body>
+
 </html>
+ 

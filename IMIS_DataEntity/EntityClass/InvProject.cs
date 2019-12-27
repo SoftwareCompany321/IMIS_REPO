@@ -13,7 +13,7 @@ namespace IMIS_DataEntity.EntityClass
         public int ProjectId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public string IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public virtual ICollection<InvRequisitionMast> InvRequisitionMast { get; set; }
     }

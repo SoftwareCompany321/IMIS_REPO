@@ -14,7 +14,7 @@ namespace IMIS_DataEntity.EntityClass
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public int? OfficeId { get; set; }
-        public string IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public virtual ICollection<InvRoomMst> InvRoomMst { get; set; }
     }

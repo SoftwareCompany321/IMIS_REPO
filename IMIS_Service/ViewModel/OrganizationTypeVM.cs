@@ -9,6 +9,6 @@ namespace IMIS_Service.ViewModel
         public int Id { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public string IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

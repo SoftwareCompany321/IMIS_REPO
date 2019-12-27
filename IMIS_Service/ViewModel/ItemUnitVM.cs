@@ -12,6 +12,6 @@ namespace IMIS_Service.ViewModel
         public decimal? MulFactor { get; set; }
         public string RelatedTo { get; set; }
         public int? NoOfUnits { get; set; }
-        public string IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

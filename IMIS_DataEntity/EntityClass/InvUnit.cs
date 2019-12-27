@@ -18,7 +18,7 @@ namespace IMIS_DataEntity.EntityClass
         public int? MulFactor { get; set; }
         public string RelatedTo { get; set; }
         public int? NoOfUnits { get; set; }
-        public string IsActive { get; set; }
+        public bool IsActive { get; set; } = true;  
 
         public virtual ICollection<InvGoodsRecDetl> InvGoodsRecDetl { get; set; }
         public virtual ICollection<InvItemMst> InvItemMst { get; set; }

@@ -9,6 +9,6 @@ namespace IMIS_DataEntity.EntityClass
         public string DescNp { get; set; }
         public string DescEn { get; set; }
         public int? TypeId { get; set; }
-        public string IsActive { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
