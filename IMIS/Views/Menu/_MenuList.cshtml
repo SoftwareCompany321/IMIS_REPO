@@ -42,8 +42,8 @@
         </div>
     </div>
     <div id='myModal' class='modal'>
-        <div class="modal-dialog"> 
-                <div id='myModalContent'></div> 
+        <div class="modal-dialog">
+            <div id='myModalContent'></div>
         </div>
 
     </div>
@@ -120,16 +120,16 @@
     });
 }
   function editMenu(id) {
-         var url1 = '/' + id + '/MenuEdit.html';
-         var options = { "backdrop": "static", keyboard: true };
-        $.ajax({
-        type: 'GET',
-        url: url1,
-            success: function (data) {
-          $('#myModalContent').html(data);
-                    $('#myModal').modal(options);
-                    $('#myModal').modal('show');
-        }
-    });
+       var url1 = '/' + id + '/MenuEdit.html';
+       var options = { "backdrop": "static", keyboard: true };
+      $.ajax({
+          type: 'GET',
+          url: url1,
+          success: function (data) {
+              $('#myModalContent').html(data);
+              $('#myModal').modal(options);
+              $('#myModal').modal('show');
+          }
+      });
 }
 </script>
