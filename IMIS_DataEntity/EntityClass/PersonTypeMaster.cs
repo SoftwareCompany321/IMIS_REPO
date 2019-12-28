@@ -15,6 +15,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int PersonTypeId { get; set; }
+        public string Code { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string Isfixed { get; set; }

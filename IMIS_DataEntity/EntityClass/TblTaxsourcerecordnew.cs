@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TblTaxsourcerecordnew
     {
         public int Taxsrcid { get; set; }
+        public string Code { get; set; }
         public string Fiscalyear { get; set; }
         public int? Recordtype { get; set; }
         public int? NetincomeCurfy { get; set; }

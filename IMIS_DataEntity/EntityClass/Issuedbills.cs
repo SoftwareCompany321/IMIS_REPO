@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class Issuedbills
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public string Dateissued { get; set; }
         public int? Thelino { get; set; }
         public string Billnofrom { get; set; }

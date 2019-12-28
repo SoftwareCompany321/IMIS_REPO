@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TblhlAddSubtract
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public string FiscalYear { get; set; }
         public int? Rateid { get; set; }
         public int? FlatRate { get; set; }

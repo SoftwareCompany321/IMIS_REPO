@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class SubModuleSource
     {
         public int SubModuleId { get; set; }
+        public string Code { get; set; }
         public int BudjetSourceId { get; set; }
 
         public virtual BudjetSource BudjetSource { get; set; }

@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? ParentId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }

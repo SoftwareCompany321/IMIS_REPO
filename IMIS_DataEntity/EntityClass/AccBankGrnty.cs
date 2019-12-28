@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccBankGrnty
     {
         public int GrntyId { get; set; }
+        public string Code { get; set; }
         public string GrntyNo { get; set; }
         public string GrntyVsDate { get; set; }
         public string BankName { get; set; }

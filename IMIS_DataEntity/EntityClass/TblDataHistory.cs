@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TblDataHistory
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public string TableName { get; set; }
         public string FieldName { get; set; }
         public string NewValue { get; set; }

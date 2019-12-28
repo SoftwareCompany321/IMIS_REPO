@@ -6,6 +6,8 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccWorkFundsDetail
     {
         public int FundDetailId { get; set; }
+
+        public string Code { get; set; }
         public int? WorkId { get; set; }
         public int? ProviderId { get; set; }
         public float? FundedAmt { get; set; }

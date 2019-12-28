@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class MapSite
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? Permitid { get; set; }
         public short? Landshape { get; set; }
         public float? SideA { get; set; }

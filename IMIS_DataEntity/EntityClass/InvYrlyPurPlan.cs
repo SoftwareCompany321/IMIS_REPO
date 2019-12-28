@@ -12,6 +12,7 @@ namespace IMIS_DataEntity.EntityClass
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
+        public string Code { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public float? ApproxAmt { get; set; }

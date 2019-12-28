@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class BusinessmasterHistory
     {
         public int? Id { get; set; }
+        public string Code { get; set; }
         public int? BizId { get; set; }
         public string Nepname { get; set; }
         public int? Businessgroupid { get; set; }

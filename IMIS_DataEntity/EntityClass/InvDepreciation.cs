@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvDepreciation
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public string Fiscalyear { get; set; }
         public int? DakhilaId { get; set; }
         public int? ItemId { get; set; }

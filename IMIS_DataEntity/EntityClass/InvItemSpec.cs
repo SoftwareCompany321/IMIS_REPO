@@ -17,9 +17,10 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int SpecId { get; set; }
+        public string Code { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
 
         public virtual ICollection<InvGoodsAdjust> InvGoodsAdjust { get; set; }
         public virtual ICollection<InvGoodsRecDetl> InvGoodsRecDetl { get; set; }

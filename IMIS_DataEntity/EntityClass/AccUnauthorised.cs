@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccUnauthorised
     {
         public int UnauthorisedId { get; set; }
+        public string Code { get; set; }
         public int? SubModuleId { get; set; }
         public int? WorkId { get; set; }
         public int? UnauthorisedDafaId { get; set; }

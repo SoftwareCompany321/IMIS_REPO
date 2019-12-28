@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccVchrDetails
     {
         public int VchrDetailId { get; set; }
+        public string Code { get; set; }
         public int? VchrId { get; set; }
         public int? AccId { get; set; }
         public float? DrAmt { get; set; }

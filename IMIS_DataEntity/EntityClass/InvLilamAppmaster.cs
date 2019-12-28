@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? Appno { get; set; }
         public int? Projid { get; set; }
         public int? Applylilamid { get; set; }

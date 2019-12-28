@@ -19,6 +19,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int WorkId { get; set; }
+        public string Code { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public float? EstimatedAmt { get; set; }

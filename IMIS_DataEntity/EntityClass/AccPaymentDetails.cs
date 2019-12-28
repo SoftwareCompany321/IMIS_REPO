@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccPaymentDetails
     {
         public int PaymentDetailId { get; set; }
+        public string Code { get; set; }
         public int? PaymentId { get; set; }
         public int? TransTypeId { get; set; }
         public int? PersonTypeId { get; set; }

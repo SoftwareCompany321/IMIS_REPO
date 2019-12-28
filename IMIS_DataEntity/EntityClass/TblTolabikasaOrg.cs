@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TblTolabikasaOrg
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public string NpName { get; set; }
         public string EngName { get; set; }
         public string Address { get; set; }

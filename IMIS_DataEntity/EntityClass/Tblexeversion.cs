@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class Tblexeversion
     {
         public int? Exeid { get; set; }
+        public string Code { get; set; }
         public DateTime? Exedate { get; set; }
     }
 }

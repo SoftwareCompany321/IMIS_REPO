@@ -28,6 +28,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int LocalPostId { get; set; }
+        public string Code { get; set; }
         public string LocalPostName { get; set; }
         public string LocalPostNameEn { get; set; }
         public int? PostId { get; set; }

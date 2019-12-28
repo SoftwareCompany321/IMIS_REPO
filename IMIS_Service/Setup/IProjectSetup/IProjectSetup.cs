@@ -49,7 +49,7 @@ namespace IMIS_Service.Setup.IProjectSetup
                                         select new
                                         {
                                             ip.InvRequisitionMast,
-                                            ip.IsActive,
+                                            //ip.IsActive,
                                             ip.NameEn,
                                             ip.NameNp, 
                                             ip.ProjectId 

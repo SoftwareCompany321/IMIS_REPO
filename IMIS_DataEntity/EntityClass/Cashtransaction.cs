@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class Cashtransaction
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public string Description { get; set; }
         public int? Dramount { get; set; }
         public int? Cramount { get; set; }

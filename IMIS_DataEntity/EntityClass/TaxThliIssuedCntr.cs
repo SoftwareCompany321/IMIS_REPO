@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TaxThliIssuedCntr
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? TheliId { get; set; }
         public int? CntrId { get; set; }
 

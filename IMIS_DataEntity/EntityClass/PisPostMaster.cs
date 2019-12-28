@@ -14,6 +14,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int PostId { get; set; }
+        public string Code { get; set; }
         public string GeneralPost { get; set; }
         public string GeneralPostShort { get; set; }
         public int? PostLevel { get; set; }

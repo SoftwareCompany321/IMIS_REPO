@@ -10,7 +10,7 @@ namespace IMIS_DataEntity.EntityClass
             TaxThliIssuedCntr = new HashSet<TaxThliIssuedCntr>();
         }
 
-        public int Sn { get; set; }
+        public int Sn { get; set; } 
         public string Dateissued { get; set; }
         public string Description { get; set; }
         public string Billnofrom { get; set; }

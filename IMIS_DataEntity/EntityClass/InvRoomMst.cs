@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvRoomMst
     {
         public int RoomId { get; set; }
+        public string Code { get; set; }
         public int? FloorNo { get; set; }
         public string BlockNo { get; set; }
         public string DescNp { get; set; }

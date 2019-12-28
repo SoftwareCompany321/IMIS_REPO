@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class OrgBankAccount
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? OrgId { get; set; }
         public int? Bankid { get; set; }
         public int? BranchId { get; set; }

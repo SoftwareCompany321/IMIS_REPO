@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvItemStatuscheck
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? ItemId { get; set; }
         public int? SpecId { get; set; }
         public int? BrandId { get; set; }
@@ -33,7 +34,7 @@ namespace IMIS_DataEntity.EntityClass
         public string AcceptedDate { get; set; }
         public DateTime? AcceptedDateEng { get; set; }
         public string FisicalYear { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
         public int? UpDownNo { get; set; }
         public string CheckStatus { get; set; }
 

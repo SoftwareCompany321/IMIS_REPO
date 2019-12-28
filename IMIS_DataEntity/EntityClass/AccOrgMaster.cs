@@ -12,7 +12,7 @@ namespace IMIS_DataEntity.EntityClass
             TblBgtRelease = new HashSet<TblBgtRelease>();
         }
 
-        public int OrgId { get; set; }
+        public int OrgId { get; set; } 
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string Address { get; set; }

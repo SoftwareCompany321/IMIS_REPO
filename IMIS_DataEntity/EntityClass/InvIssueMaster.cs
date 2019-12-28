@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvIssueMaster
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public string IssueNo { get; set; }
         public int? RequestId { get; set; }
         public int? IssueBy { get; set; }

@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TaxAddtnlChrgDtls
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public string FiscalYear { get; set; }
         public int? Iid { get; set; }
         public int? Accode { get; set; }

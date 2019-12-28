@@ -3673,9 +3673,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("BRAND_ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -3774,9 +3774,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DEPT_ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -4657,9 +4657,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("SPEC_ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -4743,9 +4743,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.InspectDateEng).HasColumnName("INSPECT_DATE_ENG");
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(2);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(2);
 
                 entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
@@ -5043,9 +5043,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -5068,9 +5068,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("PROJECT_ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -5388,9 +5388,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.BrandId).HasColumnName("BRAND_ID");
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(10);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(10);
 
                 entity.Property(e => e.ItemId).HasColumnName("ITEM_ID");
 
@@ -5820,9 +5820,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESC_NP")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.TypeId).HasColumnName("TYPE_ID");
             });
@@ -5847,9 +5847,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("DESC_NP")
                     .HasMaxLength(50);
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.MulFactor).HasColumnName("MUL_FACTOR");
 
@@ -5871,9 +5871,9 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("WAREHOUSE_ID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.IsActive)
-                    .HasColumnName("IS_ACTIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.IsActive)
+                //    .HasColumnName("IS_ACTIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.NameEn)
                     .HasColumnName("NAME_EN")
@@ -5885,7 +5885,7 @@ namespace IMIS_DataEntity.Data
                     .HasMaxLength(50);
             });
 
-            
+
             modelBuilder.Entity<IpttaxsummaryHistory>(entity =>
             {
                 entity.HasNoKey();

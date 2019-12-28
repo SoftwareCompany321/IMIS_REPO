@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccBankTrans
     {
         public int BankTransId { get; set; }
+        public string Code { get; set; }
         public int? VchrId { get; set; }
         public string VchrDateNep { get; set; }
         public string Description { get; set; }

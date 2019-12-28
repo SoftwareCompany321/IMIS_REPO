@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccDhrtiBillDtl
     {
         public int DhrtiDtlId { get; set; }
+        public string Code { get; set; }
         public int? DhrtiMasterId { get; set; }
         public string BillNo { get; set; }
         public string BillDateNp { get; set; }

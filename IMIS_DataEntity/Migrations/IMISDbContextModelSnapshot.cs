@@ -124,6 +124,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AMT_TAKEN")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("CollectReason")
                         .HasColumnName("COLLECT_REASON")
                         .HasColumnType("character varying(200)")
@@ -192,6 +195,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BANK_NAME")
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("EntryDatetime")
                         .HasColumnName("ENTRY_DATETIME")
@@ -288,6 +294,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<float?>("CrAmt")
                         .HasColumnName("CR_AMT")
                         .HasColumnType("real");
@@ -330,6 +339,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BillId")
                         .HasColumnName("BILL_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("CrAmt")
                         .ValueGeneratedOnAdd()
@@ -401,6 +413,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("EntryDatetime")
                         .HasColumnName("ENTRY_DATETIME")
                         .HasColumnType("timestamp without time zone");
@@ -450,6 +465,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BGT_ALCTN_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("RvsnDateNp")
                         .HasColumnName("RVSN_DATE_NP")
                         .HasColumnType("character varying(10)")
@@ -488,6 +506,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BgtAlctnId")
                         .HasColumnName("BGT_ALCTN_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("FromAccId")
                         .HasColumnName("FROM_ACC_ID")
@@ -536,6 +557,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AMOUNT")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("MinAccId")
                         .HasColumnName("MIN_ACC_ID")
                         .HasColumnType("integer");
@@ -567,6 +591,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BillId")
                         .HasColumnName("BILL_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("CrAmt")
                         .ValueGeneratedOnAdd()
@@ -624,6 +651,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.HasKey("ChequeTypeId")
                         .HasName("ACC_CHEQUE_TYPES_pkey");
 
@@ -635,6 +665,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
@@ -659,6 +692,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("CurrencyId")
                         .HasColumnName("CURRENCY_ID")
@@ -707,6 +743,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("CounterId")
                         .HasColumnName("COUNTER_ID")
@@ -802,6 +841,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CASH_AMT")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("CounterId")
                         .HasColumnName("COUNTER_ID")
                         .HasColumnType("integer");
@@ -896,6 +938,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<float?>("CrAmt")
                         .HasColumnName("CR_AMT")
                         .HasColumnType("real");
@@ -989,6 +1034,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("ContactPerson")
                         .HasColumnName("CONTACT_PERSON")
                         .HasColumnType("character varying(70)")
@@ -1032,6 +1080,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACC_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
@@ -1057,6 +1108,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ADVANCE_TYPE")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("PersonId")
                         .HasColumnName("PERSON_ID")
@@ -1106,6 +1160,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("DrAmount")
                         .HasColumnName("DR_AMOUNT")
@@ -1290,6 +1347,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("CitznIssuedDistrId")
                         .HasColumnName("CITZN_ISSUED_DISTR_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("CurrentPostAppointDate")
                         .HasColumnName("CURRENT_POST_APPOINT_DATE")
@@ -1506,6 +1566,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("POST_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("DurationInYrs")
                         .HasColumnName("DURATION_IN_YRS")
                         .HasColumnType("integer");
@@ -1552,6 +1615,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("IsOfLastYear")
                         .HasColumnName("IS_OF_LAST_YEAR")
                         .HasColumnType("character varying(1)")
@@ -1587,6 +1653,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int>("Id")
                         .HasColumnName("ID")
@@ -1625,6 +1694,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Deductiontype")
                         .HasColumnName("DEDUCTIONTYPE")
@@ -1678,6 +1750,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("CrAmt")
                         .ValueGeneratedOnAdd()
@@ -1840,6 +1915,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CHEQUE_PAYMENT")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<float?>("ContractTaxDeduction")
                         .HasColumnName("CONTRACT_TAX_DEDUCTION")
                         .HasColumnType("real");
@@ -1968,6 +2046,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ADDITIONALCHARGES")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<float?>("Fineamount")
                         .HasColumnName("FINEAMOUNT")
                         .HasColumnType("real");
@@ -1985,7 +2066,7 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("REDUCTIONALCHARGES")
                         .HasColumnType("real");
 
-                    b.Property<int?>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("integer");
 
@@ -2073,6 +2154,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("TYPE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
                         .HasColumnType("character varying(50)")
@@ -2107,6 +2191,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("UnauthorisedId")
                         .HasColumnName("UNAUTHORISED_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("FilledbyEmpid")
                         .HasColumnName("FILLEDBY_EMPID")
@@ -2167,6 +2254,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CHAIRMAN")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcernPerson")
                         .HasColumnName("CONCERN_PERSON")
@@ -2238,6 +2328,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("CrAmt")
                         .ValueGeneratedOnAdd()
@@ -2356,6 +2449,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<short?>("ChequeTypeId")
                         .HasColumnName("CHEQUE_TYPE_ID")
                         .HasColumnType("smallint");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("ContactPhone")
                         .HasColumnName("CONTACT_PHONE")
@@ -2480,6 +2576,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("VCHR_TYPE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
                         .HasColumnType("character varying(100)")
@@ -2517,6 +2616,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("FundDetailId")
                         .HasColumnName("FUND_DETAIL_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("FundedAmt")
                         .HasColumnName("FUNDED_AMT")
@@ -2589,6 +2691,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("Bankid")
                         .HasColumnName("BANKID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("CorrectedAmt")
                         .HasColumnName("CORRECTED_AMT")
@@ -2716,6 +2821,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BILL_AMT")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
                         .HasColumnType("integer");
@@ -2785,6 +2893,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACCODE")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Engname")
                         .HasColumnName("ENGNAME")
                         .HasColumnType("character varying(50)")
@@ -2835,6 +2946,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SN")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("NameConfig")
                         .HasColumnName("NAME_CONFIG")
                         .HasColumnType("character varying(70)")
@@ -2870,6 +2984,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BRANCH_CODE")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .HasColumnName("EMAIL")
@@ -2939,6 +3056,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(200)")
                         .HasMaxLength(200);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Cycode")
                         .HasColumnName("CYCODE")
                         .HasColumnType("character varying(200)")
@@ -3004,6 +3124,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("ChequeTypeId")
                         .HasColumnName("CHEQUE_TYPE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("Cramount")
                         .HasColumnName("CRAMOUNT")
@@ -3196,6 +3319,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BUSINESSGROUPID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("ComputerName")
                         .HasColumnName("COMPUTER_NAME")
                         .HasColumnType("character varying(100)")
@@ -3245,6 +3371,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Cramount")
                         .HasColumnName("CRAMOUNT")
@@ -3310,6 +3439,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("Calculatedvalue")
                         .HasColumnName("CALCULATEDVALUE")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Constructionid")
                         .HasColumnName("CONSTRUCTIONID")
@@ -3413,6 +3545,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Counterheadid")
                         .HasColumnName("COUNTERHEADID")
                         .HasColumnType("integer");
@@ -3449,6 +3584,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Constantvalues", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("integer");
@@ -3638,6 +3776,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Engname")
                         .HasColumnName("ENGNAME")
                         .HasColumnType("character varying(80)")
@@ -3662,6 +3803,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("AccId")
                         .HasColumnName("ACC_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -3698,6 +3842,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Fiscalyears", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Datefrom")
                         .HasColumnName("DATEFROM")
                         .HasColumnType("character varying(10)")
@@ -3725,6 +3872,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -3758,6 +3908,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("AreaUpto")
                         .HasColumnName("AREA_UPTO")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EachAreaRate")
                         .HasColumnName("EACH_AREA_RATE")
@@ -3897,6 +4050,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
                         .HasColumnType("integer");
@@ -3995,6 +4151,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BudgetSourceId")
                         .HasColumnName("BUDGET_SOURCE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("ComputerName")
                         .HasColumnName("COMPUTER_NAME")
@@ -4132,6 +4291,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CASHAMOUNT")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
                         .HasColumnType("integer");
@@ -4231,6 +4393,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPLICANTID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("ItemDetailId")
                         .HasColumnName("ITEM_DETAIL_ID")
                         .HasColumnType("integer");
@@ -4246,10 +4411,11 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -4277,6 +4443,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
@@ -4355,6 +4524,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
                         .HasColumnType("integer");
@@ -4403,10 +4575,11 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("DEPT_ID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -4473,6 +4646,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BUDGET_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
@@ -4547,6 +4723,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("DakhilaDtEng")
                         .HasColumnName("DAKHILA_DT_ENG")
@@ -4660,6 +4839,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CHECK_DT_ENG")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("DakhilaDt")
                         .HasColumnName("DAKHILA_DT")
                         .HasColumnType("character varying(10)")
@@ -4758,6 +4940,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
                         .HasColumnType("integer");
@@ -4811,6 +4996,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
                         .HasColumnType("integer");
@@ -4857,6 +5045,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("DeliveryStatus")
                         .HasColumnName("DELIVERY_STATUS")
@@ -4942,6 +5133,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CHECK_DT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("HoName")
                         .HasColumnName("HO_NAME")
@@ -5043,6 +5237,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ADJ_TYPE")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -5189,6 +5386,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CHECK_DT")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("DakhilaId")
                         .HasColumnName("DAKHILA_ID")
@@ -5472,10 +5672,11 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SPEC_ID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -5535,6 +5736,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CHECKED_DATE_ENG")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("CountUpDown")
                         .HasColumnName("COUNT_UP_DOWN")
                         .HasColumnType("character varying(2)")
@@ -5577,10 +5781,8 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("INSPECT_DATE_ENG")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(2)")
-                        .HasMaxLength(2);
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
@@ -5673,6 +5875,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPNO")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Orgapplicantname")
                         .HasColumnName("ORGAPPLICANTNAME")
                         .HasColumnType("character varying(50)")
@@ -5706,6 +5911,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Dakhilaid")
                         .HasColumnName("DAKHILAID")
@@ -5813,6 +6021,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<DateTime?>("CheckDtEng")
                         .HasColumnName("CHECK_DT_ENG")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -5922,6 +6133,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPLICANTID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
                         .HasColumnType("integer");
@@ -5951,6 +6165,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("Brandid")
                         .HasColumnName("BRANDID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Dakhilaid")
                         .HasColumnName("DAKHILAID")
@@ -5997,10 +6214,11 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -6024,10 +6242,11 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("PROJECT_ID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -6082,6 +6301,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BUDGET_YEAR")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -6141,6 +6363,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Isdakhila")
                         .HasColumnName("ISDAKHILA")
@@ -6245,6 +6470,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<DateTime?>("CheckedDtEng")
                         .HasColumnName("CHECKED_DT_ENG")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("CustomOrderNo")
                         .HasColumnName("CUSTOM_ORDER_NO")
@@ -6358,6 +6586,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<char?>("Isdefault")
                         .HasColumnType("character(1)");
 
@@ -6385,10 +6616,11 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(10)")
-                        .HasMaxLength(10);
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
@@ -6455,6 +6687,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<DateTime?>("CheckDtEng")
                         .HasColumnName("CHECK_DT_ENG")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -6585,6 +6820,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("DeptId")
                         .HasColumnName("DEPT_ID")
                         .HasColumnType("integer");
@@ -6713,6 +6951,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACC_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
@@ -6749,6 +6990,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ADDRESS")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("CompanyNameEn")
                         .HasColumnName("COMPANY_NAME_EN")
@@ -6836,6 +7080,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(15)")
@@ -6855,6 +7102,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("TaxRateId")
                         .HasColumnName("TAX_RATE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -6883,6 +7133,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("DescEn")
                         .HasColumnName("DESC_EN")
                         .HasColumnType("character varying(50)")
@@ -6894,10 +7147,8 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<int?>("TypeId")
                         .HasColumnName("TYPE_ID")
@@ -6914,6 +7165,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("UNIT_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("DescEn")
                         .HasColumnName("DESC_EN")
                         .HasColumnType("character varying(50)")
@@ -6925,10 +7179,8 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<int?>("MulFactor")
                         .HasColumnName("MUL_FACTOR")
@@ -6955,10 +7207,11 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("WAREHOUSE_ID")
                         .HasColumnType("integer");
 
-                    b.Property<string>("IsActive")
-                        .HasColumnName("IS_ACTIVE")
-                        .HasColumnType("character varying(1)")
-                        .HasMaxLength(1);
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -7001,6 +7254,9 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<DateTime?>("AprxAmtAcptDtAd")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("FormEntryDate")
                         .HasColumnType("text");
@@ -7073,6 +7329,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("ComputerName")
                         .HasColumnName("COMPUTER_NAME")
@@ -7215,6 +7474,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
                         .HasColumnType("integer");
@@ -7246,11 +7508,14 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Landmeasuringunits", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Sqftperunit")
                         .HasColumnName("SQFTPERUNIT")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Unitid")
+                    b.Property<int>("Unitid")
                         .HasColumnName("UNITID")
                         .HasColumnType("integer");
 
@@ -7267,6 +7532,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("Areainsqft")
                         .HasColumnName("AREAINSQFT")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Generalrateid")
                         .HasColumnName("GENERALRATEID")
@@ -7285,7 +7553,7 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("LANDID")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("integer");
 
@@ -7301,6 +7569,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("Calculatedvalue")
                         .HasColumnName("CALCULATEDVALUE")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Iid")
                         .HasColumnName("IID")
@@ -7370,7 +7641,7 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SELFDECLAREDVALUE")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Sn")
+                    b.Property<int>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("integer");
 
@@ -7411,6 +7682,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<float?>("Areainsqft")
                         .HasColumnName("AREAINSQFT")
                         .HasColumnType("real");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("EditDate")
                         .HasColumnName("EDIT_DATE")
@@ -7490,6 +7764,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AREA")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<float?>("GroundCov")
                         .HasColumnName("GROUND_COV")
                         .HasColumnType("real");
@@ -7515,6 +7792,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<short>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -7552,6 +7832,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CLASS")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("DesignerName")
                         .HasColumnName("DESIGNER_NAME")
@@ -7600,6 +7883,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -7626,6 +7912,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<short>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -7654,6 +7943,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -7681,6 +7973,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -7707,6 +8002,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<short>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("smallint");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Distanceft")
                         .HasColumnName("DISTANCEFT")
@@ -7737,6 +8035,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACC_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -7766,6 +8067,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -7793,6 +8097,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -7819,6 +8126,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("DepositeRatePermit")
                         .HasColumnName("DEPOSITE_RATE_PERMIT")
@@ -7861,6 +8171,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AREA_TO")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<float?>("Far")
                         .HasColumnName("FAR")
                         .HasColumnType("real");
@@ -7892,6 +8205,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -7918,6 +8234,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<short>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -7949,6 +8268,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<float?>("Area")
                         .HasColumnName("AREA")
                         .HasColumnType("real");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<short?>("Landshape")
                         .HasColumnName("LANDSHAPE")
@@ -7982,6 +8304,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
@@ -8011,6 +8336,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -8038,6 +8366,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -8064,6 +8395,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -8147,6 +8481,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACC_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(70)")
@@ -8205,6 +8542,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SN")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(10)")
@@ -8251,6 +8591,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("OFFICE_TYPE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("OfficeType1")
                         .IsRequired()
                         .HasColumnName("OFFICE_TYPE")
@@ -8290,6 +8633,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BRANCH_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("OrgId")
                         .HasColumnName("ORG_ID")
                         .HasColumnType("integer");
@@ -8310,6 +8656,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("ContainsDarbandi")
                         .HasColumnName("CONTAINS_DARBANDI")
@@ -8375,6 +8724,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<float?>("ChequePayment")
                         .HasColumnName("CHEQUE_PAYMENT")
                         .HasColumnType("real");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("ContractTaxDeduction")
                         .HasColumnName("CONTRACT_TAX_DEDUCTION")
@@ -8463,6 +8815,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("PERSON_TYPE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Isfixed")
                         .HasColumnName("ISFIXED")
                         .HasColumnType("character varying(1)")
@@ -8487,6 +8842,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -8519,6 +8877,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(90)")
@@ -8544,6 +8905,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -8615,6 +8979,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BANK_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
                         .HasColumnType("integer");
@@ -8634,6 +9001,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("DarbandiId")
                         .HasColumnName("DARBANDI_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("LocalPostId")
                         .HasColumnName("LOCAL_POST_ID")
@@ -8677,6 +9047,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
@@ -8727,6 +9100,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("CountryId")
                         .HasColumnName("COUNTRY_ID")
                         .HasColumnType("integer");
@@ -8757,6 +9133,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("EDU_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("EduName")
                         .HasColumnName("EDU_NAME")
                         .HasColumnType("character varying(100)")
@@ -8782,6 +9161,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BoardId")
                         .HasColumnName("BOARD_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("CompletionYrAd")
                         .HasColumnName("COMPLETION_YR_AD")
@@ -8860,6 +9242,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AMOUNT_PREV")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
                         .HasColumnType("integer");
@@ -8876,6 +9261,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -8934,6 +9322,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("CitAccId")
                         .HasColumnName("CIT_ACC_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -9011,6 +9402,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BUDJET_SOURCE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.HasKey("DeptId")
                         .HasName("PIS_EMP_DEP_SOURCE_pkey");
 
@@ -9028,6 +9422,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<float?>("Amount")
                         .HasColumnName("AMOUNT")
                         .HasColumnType("real");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
@@ -9061,6 +9458,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CLEARED")
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
@@ -9101,6 +9501,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
@@ -9151,6 +9554,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SN")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
                         .HasColumnType("integer");
@@ -9197,6 +9603,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
@@ -9246,6 +9655,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPOINTMENT_TYPE")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("DateFrom")
                         .HasColumnName("DATE_FROM")
                         .HasColumnType("character varying(10)")
@@ -9293,6 +9705,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
@@ -9346,6 +9761,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<float?>("AmtTaken")
                         .HasColumnName("AMT_TAKEN")
                         .HasColumnType("real");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
@@ -9709,6 +10127,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
                         .HasColumnType("integer");
@@ -9773,6 +10194,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPOINTMNT_TYPE")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("DarbandiId")
                         .HasColumnName("DARBANDI_ID")
                         .HasColumnType("integer");
@@ -9816,6 +10240,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Details")
                         .HasColumnName("DETAILS")
                         .HasColumnType("text");
@@ -9856,6 +10283,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("Cabis")
                         .HasColumnName("CABIS")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
@@ -9912,6 +10342,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("AppointmntType")
                         .HasColumnName("APPOINTMNT_TYPE")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("DarbandiId")
                         .HasColumnName("DARBANDI_ID")
@@ -10001,6 +10434,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AQUISITION_TYPE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
                         .HasColumnType("timestamp without time zone");
@@ -10089,6 +10525,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
                         .HasColumnType("timestamp without time zone");
@@ -10159,6 +10598,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
@@ -10242,6 +10684,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BASIC_SALARY")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<float?>("GradeRate")
                         .HasColumnName("GRADE_RATE")
                         .HasColumnType("real");
@@ -10286,6 +10731,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("GrpLevel")
                         .HasColumnName("GRP_LEVEL")
                         .HasColumnType("integer");
@@ -10325,6 +10773,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("AquisitionTypeId")
                         .HasColumnName("AQUISITION_TYPE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
@@ -10391,6 +10842,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AMOUNT")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(80)")
@@ -10440,6 +10894,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<float?>("CitPercent")
                         .HasColumnName("CIT_PERCENT")
                         .HasColumnType("real");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("DeductDepVchrDateNep")
                         .HasColumnName("DEDUCT_DEP_VCHR_DATE_NEP")
@@ -10601,6 +11058,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SN")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
                         .HasColumnType("timestamp without time zone");
@@ -10701,6 +11161,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPOINTMNT_TYPE")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("DateFrom")
                         .HasColumnName("DATE_FROM")
                         .HasColumnType("character varying(10)")
@@ -10744,6 +11207,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<float?>("AmountTaken")
                         .HasColumnName("AMOUNT_TAKEN")
                         .HasColumnType("real");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("DataEditAdDate")
                         .HasColumnName("DATA_EDIT_AD_DATE")
@@ -10830,6 +11296,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BASIC_SALARY")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("GeneralPost")
                         .HasColumnName("GENERAL_POST")
                         .HasColumnType("character varying(70)")
@@ -10887,6 +11356,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -10938,6 +11410,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -11004,6 +11479,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(1)")
                         .HasMaxLength(1);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("EmpId")
                         .HasColumnName("EMP_ID")
                         .HasColumnType("integer");
@@ -11065,6 +11543,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AMOUNT")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(100)")
@@ -11105,6 +11586,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("AppointmntType")
                         .HasColumnName("APPOINTMNT_TYPE")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("DarbandiId")
                         .HasColumnName("DARBANDI_ID")
@@ -11173,6 +11657,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(70)")
@@ -11203,6 +11690,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -11278,6 +11768,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AQUISITION_TYPE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("CompanyOrBank")
                         .HasColumnName("COMPANY_OR_BANK")
                         .HasColumnType("character varying(70)")
@@ -11343,6 +11836,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("CountryId")
                         .HasColumnName("COUNTRY_ID")
@@ -11426,6 +11922,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("CountryId")
                         .HasColumnName("COUNTRY_ID")
                         .HasColumnType("integer");
@@ -11456,6 +11955,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("APPLY_TO")
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("CountryId")
                         .HasColumnName("COUNTRY_ID")
@@ -11531,6 +12033,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("YojtypeNameEng")
                         .HasColumnName("YOJTYPE_NAME_ENG")
                         .HasColumnType("character varying(150)")
@@ -11558,6 +12063,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Ratename")
                         .HasColumnName("RATENAME")
                         .HasColumnType("character varying(100)")
@@ -11578,6 +12086,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Renttype", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Engname")
                         .HasColumnName("ENGNAME")
                         .HasColumnType("character varying(50)")
@@ -11612,6 +12123,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("OfficeTypeId")
                         .HasColumnName("OFFICE_TYPE_ID")
                         .HasColumnType("integer");
@@ -11644,6 +12158,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Groupname")
                         .HasColumnName("GROUPNAME")
                         .HasColumnType("character varying(200)")
@@ -11663,6 +12180,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("AreaUpto")
                         .HasColumnName("AREA_UPTO")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EachAreaRate")
                         .HasColumnName("EACH_AREA_RATE")
@@ -11712,6 +12232,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Groupid")
                         .HasColumnName("GROUPID")
                         .HasColumnType("integer");
@@ -11747,6 +12270,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACCODE")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<float?>("FlatChargeRate")
                         .HasColumnName("FLAT_CHARGE_RATE")
                         .HasColumnType("real");
@@ -11772,6 +12298,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Spacemeasuringunits", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Sqftperunit")
                         .HasColumnName("SQFTPERUNIT")
                         .HasColumnType("integer");
@@ -11839,6 +12368,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("SubModuleId")
                         .HasColumnName("SUB_MODULE_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.HasKey("BudjetSourceId", "SubModuleId")
                         .HasName("SUB_MODULE_SOURCE_pkey");
@@ -11925,6 +12457,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CLOSED_VS_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Contentofsignboard")
                         .HasColumnName("CONTENTOFSIGNBOARD")
@@ -12123,6 +12658,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AREAINSQFEET")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Constructiontypeid")
                         .HasColumnName("CONSTRUCTIONTYPEID")
                         .HasColumnType("integer");
@@ -12239,6 +12777,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BUILDINGCODE")
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
@@ -12368,6 +12909,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("AreainsqftField")
                         .HasColumnName("AREAINSQFT_FIELD")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("Dataeditaddatetime")
                         .HasColumnName("DATAEDITADDATETIME")
@@ -12620,6 +13164,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AREAINSQFT")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Generalrateid")
                         .HasColumnName("GENERALRATEID")
                         .HasColumnType("integer");
@@ -12672,6 +13219,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CCNUMBER")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Corespaddressline1")
                         .HasColumnName("CORESPADDRESSLINE1")
@@ -12880,6 +13430,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.SvTbhousekittanumber", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Houseid")
                         .HasColumnName("HOUSEID")
                         .HasColumnType("integer");
@@ -12934,6 +13487,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CLOSED_VS_DATE")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Color")
                         .HasColumnName("COLOR")
@@ -13087,6 +13643,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BILL_NO")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(9)")
@@ -13160,6 +13719,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
@@ -13274,6 +13836,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
                         .HasColumnType("integer");
@@ -13377,6 +13942,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("MarriedStatus")
                         .HasColumnName("MARRIED_STATUS")
                         .HasColumnType("character varying(50)")
@@ -13420,6 +13988,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Constructionid")
                         .HasColumnName("CONSTRUCTIONID")
@@ -13513,6 +14084,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BUSINESSID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("ConstructionId")
                         .HasColumnName("CONSTRUCTION_ID")
                         .HasColumnType("integer");
@@ -13605,6 +14179,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BILLNO")
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Counterid")
                         .HasColumnName("COUNTERID")
@@ -13702,6 +14279,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CNTR_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("TheliId")
                         .HasColumnName("THELI_ID")
                         .HasColumnType("integer");
@@ -13717,6 +14297,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tbhousekittanumber", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Houseid")
                         .HasColumnName("HOUSEID")
                         .HasColumnType("integer");
@@ -13737,6 +14320,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Engname")
                         .HasColumnName("ENGNAME")
@@ -13768,6 +14354,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACCOUNT_NAME")
                         .HasColumnType("text");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Descriptiong")
                         .HasColumnName("DESCRIPTIONG")
                         .HasColumnType("text");
@@ -13795,6 +14384,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BgtSubHeadId")
                         .HasColumnName("BGT_SUB_HEAD_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -13837,6 +14429,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BGT_MGMT_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
@@ -13866,6 +14461,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BgtMgmtOrgId")
                         .HasColumnName("BGT_MGMT_ORG_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
@@ -13897,6 +14495,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BGT_MGMT_RELEASE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Remarks")
                         .HasColumnName("REMARKS")
                         .HasColumnType("character varying(200)")
@@ -13918,6 +14519,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BgtSubHeadId")
                         .HasColumnName("BGT_SUB_HEAD_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -13964,6 +14568,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("BGT_SUB_HEAD_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
@@ -14002,6 +14609,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BgtMgmtExpId")
                         .HasColumnName("BGT_MGMT_EXP_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("PaymentProcessId")
                         .HasColumnName("PAYMENT_PROCESS_ID")
@@ -14049,6 +14659,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("CcId")
                         .HasColumnName("CC_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("PaymentProcessId")
                         .HasColumnName("PAYMENT_PROCESS_ID")
@@ -14099,6 +14712,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CC_ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("PaymentProcessId")
                         .HasColumnName("PAYMENT_PROCESS_ID")
                         .HasColumnType("integer");
@@ -14139,6 +14755,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("CHALANI_NO")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -14200,6 +14819,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACCODE")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
@@ -14237,6 +14859,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<DateTime?>("AddDate")
                         .HasColumnName("ADD_DATE")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("ComputerName")
                         .HasColumnName("COMPUTER_NAME")
@@ -14292,6 +14917,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
                         .HasColumnType("character varying(100)")
@@ -14321,6 +14949,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
                         .HasColumnType("character varying(100)")
@@ -14349,6 +14980,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("Accode")
                         .HasColumnName("ACCODE")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -14392,6 +15026,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACCODE")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
@@ -14424,6 +15061,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(50)")
@@ -14449,6 +15089,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Descriptiong")
                         .HasColumnName("DESCRIPTIONG")
@@ -14504,6 +15147,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("LinkVoucherId")
                         .HasColumnName("LINK_VOUCHER_ID")
                         .HasColumnType("integer");
@@ -14534,6 +15180,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("PaymentProcess")
                         .HasColumnName("PAYMENT_PROCESS")
                         .HasColumnType("character varying(100)")
@@ -14560,6 +15209,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("PaymentType")
                         .HasColumnName("PAYMENT_TYPE")
                         .HasColumnType("character varying(100)")
@@ -14585,6 +15237,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
@@ -14631,6 +15286,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AMOUNT")
                         .HasColumnType("real");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(15)")
@@ -14669,6 +15327,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("BrandId")
                         .HasColumnName("BRAND_ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("ItemId")
                         .HasColumnName("ITEM_ID")
@@ -14758,6 +15419,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("AMOUNTNOTCOLLECTED")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Fiscalyear")
                         .HasColumnName("FISCALYEAR")
                         .HasColumnType("character varying(10)")
@@ -14813,6 +15477,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Contactno")
                         .HasColumnName("CONTACTNO")
                         .HasColumnType("character varying(50)")
@@ -14853,6 +15520,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("SN")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")
                         .HasColumnType("character varying(100)")
@@ -14878,6 +15548,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -14913,6 +15586,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ACCODE")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
@@ -14939,6 +15615,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tblexeversion", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<DateTime?>("Exedate")
                         .HasColumnName("EXEDATE")
                         .HasColumnType("timestamp without time zone");
@@ -14952,6 +15631,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tblfywisebtrates", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(20)")
@@ -15003,6 +15685,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("AreaUpto")
                         .HasColumnName("AREA_UPTO")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<int?>("EachAreaRate")
                         .HasColumnName("EACH_AREA_RATE")
@@ -15065,6 +15750,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(2)")
                         .HasMaxLength(2);
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("FiscalYear")
                         .HasColumnName("FISCAL_YEAR")
                         .HasColumnType("character varying(10)")
@@ -15121,6 +15809,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(150)")
@@ -15145,6 +15836,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("AreaUpto")
                         .HasColumnName("AREA_UPTO")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
@@ -15191,6 +15885,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ID")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<string>("Description")
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(150)")
@@ -15221,6 +15918,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int>("Sn")
                         .HasColumnName("SN")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<float?>("DurationInYears")
                         .HasColumnName("DURATION_IN_YEARS")
@@ -15257,6 +15957,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tbltaxcalculationroka", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Id")
                         .HasColumnName("ID")
                         .HasColumnType("integer");
@@ -15318,6 +16021,9 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Tbusersecurityrights", b =>
                 {
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
+
                     b.Property<int?>("Rightsid")
                         .HasColumnName("RIGHTSID")
                         .HasColumnType("integer");
@@ -15365,6 +16071,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<bool>("Active")
                         .HasColumnName("ACTIVE")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Createdat")
                         .ValueGeneratedOnAdd()
@@ -15598,6 +16307,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ADDRESS")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
+
+                    b.Property<string>("Code")
+                        .HasColumnType("text");
 
                     b.Property<string>("EngName")
                         .HasColumnName("ENG_NAME")

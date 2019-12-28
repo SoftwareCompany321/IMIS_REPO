@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class Celedger20682069
     {
         public int? Sn { get; set; }
+        public string Code { get; set; }
         public int? Iid { get; set; }
         public int? Houseid { get; set; }
         public int? Constructiontypeid { get; set; }

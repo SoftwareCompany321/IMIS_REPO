@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Accode1 { get; set; }
+        public string Code { get; set; }
         public int? Sbcode { get; set; }
         public int? Grcode { get; set; }
         public string Trantype { get; set; }

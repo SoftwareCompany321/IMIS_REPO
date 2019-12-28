@@ -12,6 +12,7 @@ namespace IMIS_DataEntity.EntityClass
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
+        public string Code { get; set; }
         public string NepName { get; set; }
         public string NepEng { get; set; }
         public string Remarks { get; set; }

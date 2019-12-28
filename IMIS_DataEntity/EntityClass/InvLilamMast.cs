@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvLilamMast
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public string LilamNo { get; set; }
         public int? IssueBy { get; set; }
         public int? Lilamtype { get; set; }

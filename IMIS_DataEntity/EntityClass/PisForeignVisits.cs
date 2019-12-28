@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? EmpId { get; set; }
         public int? LocalPostId { get; set; }
         public string WorkingOffice { get; set; }

@@ -169,7 +169,7 @@ namespace IMIS_Service.Setup.IItemUnit
             {
                 var AddEdit = new InvUnit()
                 {
-                    IsActive = false
+                    //IsActive = false
 
                 };
 

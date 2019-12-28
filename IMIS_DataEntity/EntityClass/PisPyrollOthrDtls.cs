@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class PisPyrollOthrDtls
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public short? Month { get; set; }
         public int? EmployeeId { get; set; }
         public int? PayrollId { get; set; }

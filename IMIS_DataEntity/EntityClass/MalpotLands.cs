@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class MalpotLands
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? Iid { get; set; }
         public string Eid { get; set; }
         public string NpFirstname { get; set; }

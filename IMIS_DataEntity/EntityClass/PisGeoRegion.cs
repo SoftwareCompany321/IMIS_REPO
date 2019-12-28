@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public string GrId { get; set; }
         public string GrName { get; set; }
         public float? MarksPerYear { get; set; }

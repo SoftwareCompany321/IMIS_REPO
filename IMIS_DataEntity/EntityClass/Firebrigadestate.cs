@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class Firebrigadestate
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public string Nepname { get; set; }
         public int? Servicechargerate { get; set; }
         public int? Minimumservicecharge { get; set; }

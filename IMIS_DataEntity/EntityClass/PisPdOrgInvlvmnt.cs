@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class PisPdOrgInvlvmnt
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? EmpId { get; set; }
         public string OrgName { get; set; }
         public string OrgAdd { get; set; }

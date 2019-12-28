@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvIncreaseDecrease
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? NumId { get; set; }
         public int? DakhilaId { get; set; }
         public int? ItemId { get; set; }

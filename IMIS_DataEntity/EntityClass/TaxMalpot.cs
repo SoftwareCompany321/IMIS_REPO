@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TaxMalpot
     {
         public long? Sn { get; set; }
+        public string Code { get; set; }
         public string Fiscalyear { get; set; }
         public int? Taxpayerid { get; set; }
         public int? Landid { get; set; }

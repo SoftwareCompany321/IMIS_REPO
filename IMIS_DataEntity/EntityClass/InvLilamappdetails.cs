@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvLilamappdetails
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? Lilamappliid { get; set; }
         public int? Dakhilaid { get; set; }
         public int? Nikashaid { get; set; }

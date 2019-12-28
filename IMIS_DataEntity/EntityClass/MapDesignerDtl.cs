@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class MapDesignerDtl
     {
         public short Id { get; set; }
+        public string Code { get; set; }
         public string RegNo { get; set; }
         public string EngcouncilregNo { get; set; }
         public string FirmName { get; set; }

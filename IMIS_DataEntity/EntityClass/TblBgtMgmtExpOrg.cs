@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? BgtMgmtOrgId { get; set; }
         public int? AccId { get; set; }
         public float? BgtAmtOrg { get; set; }

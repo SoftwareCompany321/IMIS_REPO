@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class IncomebilldetailsHistory
     {
         public int? Sn { get; set; }
+        public string Code { get; set; }
         public int? SnIncomebilldtl { get; set; }
         public int? Billid { get; set; }
         public string Billno { get; set; }

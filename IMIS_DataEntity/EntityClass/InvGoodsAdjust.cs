@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? DakhilaId { get; set; }
         public string GdAdjId { get; set; }
         public string BudgetYear { get; set; }

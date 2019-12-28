@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class PisHajiri
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? Year { get; set; }
         public int? Month { get; set; }
         public int? EmpId { get; set; }

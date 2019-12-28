@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Counterid { get; set; }
+        public string Code { get; set; }
         public string Nepname { get; set; }
         public int? Counterheadid { get; set; }
         public int? Wardno { get; set; }

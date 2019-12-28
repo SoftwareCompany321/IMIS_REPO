@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class Banktransactions
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? Bankid { get; set; }
         public string Description { get; set; }
         public float? Dramount { get; set; }

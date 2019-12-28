@@ -12,6 +12,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int VchrTypeId { get; set; }
+        public string Code { get; set; }
         public string NepName { get; set; }
         public string EngName { get; set; }
         public string Module { get; set; }

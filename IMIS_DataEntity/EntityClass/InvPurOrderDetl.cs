@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvPurOrderDetl
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? PurMstId { get; set; }
         public int? ItemId { get; set; }
         public int? UnitId { get; set; }

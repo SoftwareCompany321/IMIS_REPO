@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class WardMaster
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public string NepName { get; set; }
         public string EngName { get; set; }
         public string Address { get; set; }

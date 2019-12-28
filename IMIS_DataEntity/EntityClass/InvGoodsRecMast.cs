@@ -12,6 +12,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public string DakhilaId { get; set; }
         public int? PurMasterId { get; set; }
         public int? RepairId { get; set; }

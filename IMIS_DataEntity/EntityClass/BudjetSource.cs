@@ -12,7 +12,7 @@ namespace IMIS_DataEntity.EntityClass
             SubModuleSource = new HashSet<SubModuleSource>();
         }
 
-        public int Id { get; set; }
+        public int Id { get; set; } 
         public int? ParentId { get; set; }
         public int? CountryId { get; set; }
         public string Code { get; set; }

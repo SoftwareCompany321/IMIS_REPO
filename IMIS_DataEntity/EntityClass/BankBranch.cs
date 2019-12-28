@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int BranchId { get; set; }
+        public string Code { get; set; }
         public int? Bankid { get; set; }
         public string Nepname { get; set; }
         public string Engname { get; set; }

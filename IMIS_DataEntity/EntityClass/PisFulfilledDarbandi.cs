@@ -13,6 +13,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? OfficeId { get; set; }
         public int? DarbandiId { get; set; }
         public int? PersonTypeId { get; set; }

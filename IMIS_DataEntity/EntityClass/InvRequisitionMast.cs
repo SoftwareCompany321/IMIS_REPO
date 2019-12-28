@@ -12,6 +12,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public string ReqId { get; set; }
         public string ReqDateNep { get; set; }
         public int? ReqBy { get; set; }

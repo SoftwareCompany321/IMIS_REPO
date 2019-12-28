@@ -14,6 +14,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int DarbandiId { get; set; }
+        public string Code { get; set; }
         public int? OfficeId { get; set; }
         public int? PostId { get; set; }
         public int? PostLevel { get; set; }

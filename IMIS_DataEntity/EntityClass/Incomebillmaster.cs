@@ -12,6 +12,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Sn { get; set; }
+        public string Code { get; set; }
         public string Billno { get; set; }
         public string Description { get; set; }
         public int? Counterid { get; set; }

@@ -134,7 +134,7 @@ namespace IMIS_Service.Setup.IItemBrand
                     return (new ItemBrandVM()
                     {
                         BrandId = response.BrandId,
-                        IsActive = response.IsActive,
+                        //IsActive = response.IsActive,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp
                     });

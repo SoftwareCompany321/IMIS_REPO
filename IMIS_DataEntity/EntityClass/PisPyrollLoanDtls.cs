@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class PisPyrollLoanDtls
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? LoandId { get; set; }
         public short? Month { get; set; }
         public string NameNp { get; set; }

@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TblBgtMgmtSrcOrg
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? BgtMgmtExpOrgId { get; set; }
         public int? SourceId { get; set; }
         public float? Amt { get; set; }

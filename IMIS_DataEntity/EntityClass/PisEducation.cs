@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class PisEducation
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? EmpId { get; set; }
         public string EduName { get; set; }
         public int? EduLevelId { get; set; }

@@ -12,6 +12,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public short? Month { get; set; }
         public int EmpId { get; set; }
         public int? LocalPostId { get; set; }

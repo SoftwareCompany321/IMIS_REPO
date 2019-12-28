@@ -15,6 +15,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int TypeId { get; set; }
+        public string Code { get; set; }
         public string TypeCode { get; set; }
         public string NepName { get; set; }
         public string EngName { get; set; }

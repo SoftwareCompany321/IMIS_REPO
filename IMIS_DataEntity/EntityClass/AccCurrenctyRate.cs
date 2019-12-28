@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccCurrenctyRate
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? CurrencyId { get; set; }
         public string NpDate { get; set; }
         public float? Rate { get; set; }

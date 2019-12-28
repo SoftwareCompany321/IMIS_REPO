@@ -47,7 +47,7 @@ namespace IMIS_DataEntity.EntityClass
             WardMaster = new HashSet<WardMaster>();
         }
 
-        public int EmpId { get; set; }
+        public int EmpId { get; set; } 
         public string FirstNameNp { get; set; }
         public string LastNameNp { get; set; }
         public string FirstNameEn { get; set; }

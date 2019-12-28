@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int PaymentSlipId { get; set; }
+        public string Code { get; set; }
         public string PaymentDescription { get; set; }
         public int? TransactionTypeid { get; set; }
         public int? PersonTypeId { get; set; }

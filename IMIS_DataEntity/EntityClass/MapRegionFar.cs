@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class MapRegionFar
     {
         public short Id { get; set; }
+        public string Code { get; set; }
         public int? Regionid { get; set; }
         public int? AreaFrom { get; set; }
         public int? AreaTo { get; set; }

@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvGoodsRecDetl
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? GoodsMasterId { get; set; }
         public int? ItemId { get; set; }
         public int? UnitId { get; set; }

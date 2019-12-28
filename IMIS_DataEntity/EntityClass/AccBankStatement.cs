@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccBankStatement
     {
         public int? Id { get; set; }
+        public string Code { get; set; }
         public int? BankId { get; set; }
         public string TransactionDate { get; set; }
         public DateTime? TransactionDateEn { get; set; }

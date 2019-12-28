@@ -5,7 +5,8 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class AccReceivable
     {
-        public int? Sn { get; set; }
+        public int Sn { get; set; }
+        public string Code { get; set; }
         public int? Taxpayerid { get; set; }
         public string Fiscalyear { get; set; }
         public float? Nettaxamount { get; set; }

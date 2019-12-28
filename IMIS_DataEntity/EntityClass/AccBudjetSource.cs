@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccBudjetSource
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? MinAccId { get; set; }
         public int? SourceId { get; set; }
         public int? Amount { get; set; }

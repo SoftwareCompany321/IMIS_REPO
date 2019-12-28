@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int EduId { get; set; }
+        public string Code { get; set; }
         public string EduName { get; set; }
 
         public virtual ICollection<PisEducation> PisEducation { get; set; }

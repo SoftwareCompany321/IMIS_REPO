@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class SvVehiclemaster
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? Taxpayerid { get; set; }
         public string Vehiclename { get; set; }
         public int? Vehicletype { get; set; }

@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class NewPropertyTaxtable
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? Ratesn { get; set; }
         public float? Frompropertyvalue { get; set; }
         public float? Topropertyvalue { get; set; }

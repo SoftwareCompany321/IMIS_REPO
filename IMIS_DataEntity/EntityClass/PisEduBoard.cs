@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public string NameNep { get; set; }
         public string NameEng { get; set; }
         public int? CountryId { get; set; }

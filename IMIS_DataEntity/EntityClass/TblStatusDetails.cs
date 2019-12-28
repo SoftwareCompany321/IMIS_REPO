@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TblStatusDetails
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? Masterid { get; set; }
         public int? ItemId { get; set; }
         public int? BrandId { get; set; }

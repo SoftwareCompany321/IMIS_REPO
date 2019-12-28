@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public string FiscalYear { get; set; }
         public int? MinistryId { get; set; }
         public int? OrgId { get; set; }

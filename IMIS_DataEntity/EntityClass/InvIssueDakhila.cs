@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class InvIssueDakhila
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? ItemId { get; set; }
         public int? SpecId { get; set; }
         public int? BrandId { get; set; }

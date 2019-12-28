@@ -5,6 +5,7 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class AccChequeTypes
     {
+        public string Code { get; set; }
         public short ChequeTypeId { get; set; }
         public string ChequeType { get; set; }
     }

@@ -11,10 +11,11 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int DeptId { get; set; }
+        public string Code { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public int? OfficeId { get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
 
         public virtual ICollection<InvRoomMst> InvRoomMst { get; set; }
     }

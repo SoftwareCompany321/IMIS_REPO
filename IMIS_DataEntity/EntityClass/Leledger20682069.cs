@@ -5,7 +5,8 @@ namespace IMIS_DataEntity.EntityClass
 {
     public partial class Leledger20682069
     {
-        public int? Sn { get; set; }
+        public int Sn { get; set; }
+        public string Code { get; set; }
         public int? Iid { get; set; }
         public int? Landid { get; set; }
         public int? Wardno { get; set; }

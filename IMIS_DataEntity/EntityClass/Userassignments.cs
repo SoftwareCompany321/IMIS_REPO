@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class Userassignments
     {
         public int? Sn { get; set; }
+        public string Code { get; set; }
         public string Nepname { get; set; }
         public string Rightsname { get; set; }
         public string Module { get; set; }

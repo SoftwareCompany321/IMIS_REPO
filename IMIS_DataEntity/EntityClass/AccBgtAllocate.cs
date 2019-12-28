@@ -13,6 +13,7 @@ namespace IMIS_DataEntity.EntityClass
 
         public int BgtAllocateId { get; set; }
         public int? AccId { get; set; }
+        public string Code { get; set; }
         public float? RevisedAmount { get; set; }
         public float? Amount { get; set; }
         public string FiscalYear { get; set; }

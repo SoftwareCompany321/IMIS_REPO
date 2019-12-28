@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class Tblfywisempotassrate
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? Groupid { get; set; }
         public int? Subgroupid { get; set; }
         public int? Rateid { get; set; }

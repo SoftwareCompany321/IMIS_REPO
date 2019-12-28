@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class SvPeople
     {
         public int Iid { get; set; }
+        public string Code { get; set; }
         public string Eid { get; set; }
         public short? Sex { get; set; }
         public string Firstnepname { get; set; }

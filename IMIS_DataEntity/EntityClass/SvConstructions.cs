@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class SvConstructions
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? Iid { get; set; }
         public int? Houseid { get; set; }
         public int? Talanumber { get; set; }

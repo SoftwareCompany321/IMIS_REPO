@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class PisInternalTransfer
     {
         public int Sn { get; set; }
+        public string Code { get; set; }
         public int? EmpId { get; set; }
         public int? OfficeId { get; set; }
         public int? DarbandiId { get; set; }

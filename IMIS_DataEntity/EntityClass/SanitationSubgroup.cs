@@ -11,6 +11,7 @@ namespace IMIS_DataEntity.EntityClass
         }
 
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? Groupid { get; set; }
         public string Subgroupname { get; set; }
         public string Remarks { get; set; }

@@ -6,6 +6,8 @@ namespace IMIS_DataEntity.EntityClass
     public partial class AccBgtTransfer
     {
         public int Id { get; set; }
+        public string Code { get; set; }
+           
         public int? FromAccId { get; set; }
         public int? ToAccId { get; set; }
         public int? BgtAlctnId { get; set; }

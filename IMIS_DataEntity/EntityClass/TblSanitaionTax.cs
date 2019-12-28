@@ -6,6 +6,7 @@ namespace IMIS_DataEntity.EntityClass
     public partial class TblSanitaionTax
     {
         public int? Id { get; set; }
+        public string Code { get; set; }
         public float? FromArea { get; set; }
         public float? ToArea { get; set; }
         public float? Amount { get; set; }
