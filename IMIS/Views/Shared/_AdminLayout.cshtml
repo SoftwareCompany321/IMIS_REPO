@@ -114,7 +114,7 @@
                                     <div class="row">
                                         <div class="col-xs-4 text-center">
                                             <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                                <button type="submit" class="nav-link btn btn-link text-dark">@Utils.GetLabel("Logout")</button>
+                                                <button type="submit" class="nav-link btn btn-link text-dark" id="logout">@Utils.GetLabel("Logout")</button>
                                             </form>
                                         </div>
 
@@ -151,8 +151,7 @@
                 <!-- /.search form -->
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">@Utils.GetLabel("MENU")</li>
-
+                    <li class="header">@Utils.GetLabel("MENU")</li>  
                     @await Html.PartialAsync("~/Views/PartialView/_sideMenuBar.cshtml")
                 </ul>
             </section>
@@ -224,8 +223,11 @@
                 $('#myModal').modal('hide');
                 $('.modal').modal('hide');
 
-            });
+            }); 
 
+            jQuery(document).on('click', '#logout', function () {
+                localStorage.clear(); 
+            });
 
         });
 
