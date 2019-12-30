@@ -48,6 +48,7 @@ namespace IMIS_Service.Setup.IBankDtl
                 var accMasters =  (from bm in _db.Bankmaster
                                         select new
                                         {
+                                            bm.Code,
                                             bm.Bankid,
                                             bm.Nepname,
                                             bm.Engname 
