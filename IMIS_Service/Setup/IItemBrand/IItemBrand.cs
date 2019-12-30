@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMIS_DataEntity.EntityClass;
+using ExceptionHandler;
 
 namespace IMIS_Service.Setup.IItemBrand
 {
     public interface IItemBrand
     {
         Task<DataTableResponse> ItemBrandFetchData(DataTableVm model);
-
+        Task<(string message, int Id)> DeleteItemBrand(int ItemBrandid);
         Task<(string message, int id)> AddEdit(ItemBrandVM model);
 
         Task<ItemBrandVM> ViewEdit(decimal braandId);
@@ -150,6 +151,28 @@ namespace IMIS_Service.Setup.IItemBrand
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteItemBrand(int ItemBrandid)
+        {
+            try
+            {
+                var data = _db.InvBrand.Where(x => x.BrandId == ItemBrandid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

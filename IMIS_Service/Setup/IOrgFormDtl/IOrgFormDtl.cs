@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IOrgFormDtl
     {
         Task<DataTableResponse> OrgFormDtlFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditOrgFormDtl(OrgFormDtlVM model);
-
+        Task<(string message, int Id)> DeleteOrgFormDtl(int UnitId);
         Task<OrgFormDtlVM> ViewEdit(decimal Id);
     }
     public class OrgFormDtl : IOrgFormDtl
@@ -170,6 +171,28 @@ namespace IMIS_Service.Setup.IOrgFormDtl
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteOrgFormDtl(int OrgFormDtlid)
+        {
+            try
+            {
+                var data = _db.AccOrgMaster.Where(x => x.OrgId == OrgFormDtlid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

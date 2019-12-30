@@ -13,7 +13,7 @@ namespace IMIS_Service.ViewModel
         public string DescNp { get; set; }
         public string DescEn { get; set; }
         public int DeptId { get; set; }
-      
-        
+        public bool IsActive { get; set; } = true;
+
     }
 }

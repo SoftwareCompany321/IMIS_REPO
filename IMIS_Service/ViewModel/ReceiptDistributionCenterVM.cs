@@ -7,6 +7,6 @@ namespace IMIS_Service.ViewModel
 {
     public class ReceiptDistributionCenterVM : Collectioncounters
     {
-
+         
     }
 }

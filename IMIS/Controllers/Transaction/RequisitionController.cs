@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IMIS_CORE.Utility;
-using IMIS_Service.Setup.IDepartment;
+using IMIS_Service.Transaction.IRequisition;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IMIS.Controllers.Setup
+namespace IMIS.Controllers.Requisition
 {
     public class RequisitionController : Controller
     {
-        private readonly IRequisition _Department;
+        private readonly IRequisition _Requisition;
 
-        public RequisitionController(IRequisition Department)
+        public RequisitionController(IRequisition Requisition)
         {
-            _Department = Department;
+            _Requisition = Requisition;
         }
         //for the account head controller 
         public IActionResult Index()
@@ -24,10 +24,10 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/DepartmentFetchData.html")]
-        public async Task<JsonResult> DepartmentFetchData(DataTableVm model)
+        [Route("/RequisitionFetchData.html")]
+        public async Task<JsonResult> RequisitionFetchData(DataTableVm model)
         {
-            var response = await _Department.DepartmentFetchData(model);
+            var response = await _Requisition.RequisitionFetchData(model);
             return Json(new
             {
                 draw = response.draw,
@@ -38,50 +38,50 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/Departmentlist.html")]
-        public IActionResult DepartmentList()
+        [Route("/Requisitionlist.html")]
+        public IActionResult RequisitionList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/DepartmentCreate.html")]
-        public IActionResult DepartmentCreate()
+        [Route("/RequisitionCreate.html")]
+        public IActionResult RequisitionCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/DepartmentCreate.html")]
-        public async Task<IActionResult> DepartmentCreate(DepartmentVM model)
+        [Route("/RequisitionCreate.html")]
+        public async Task<IActionResult> RequisitionCreate(RequisitionVM model)
         {
-            var response = await _Department.AddEditDepartment(model);
+            var response = await _Requisition.AddEditRequisition(model);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/Departmentlist.html");
+                return Redirect("~/Requisitionlist.html");
             }
             return View();
         }
 
         [HttpGet]
-        [Route("/DepartmentEdit.html")]
-        public async Task<IActionResult> DepartmentEdit(decimal id)
+        [Route("/RequisitionEdit.html")]
+        public async Task<IActionResult> RequisitionEdit(decimal id)
         {
-            return View(await _Department.ViewEdit(id));
+            return View(await _Requisition.ViewEdit(id));
         }
 
         [HttpGet]
-        [Route("/DepartmentEdit.html")]
-        public async Task<IActionResult> DepartmentEdit(DepartmentVM model, int id)
+        [Route("/RequisitionEdit.html")]
+        public async Task<IActionResult> RequisitionEdit(RequisitionVM model, int id)
         {
-            var response = await _Department.AddEditDepartment(model);
+            var response = await _Requisition.AddEditRequisition(model);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/Departmentlist.html");
+                return Redirect("~/Requisitionlist.html");
             }
             return View();
         }

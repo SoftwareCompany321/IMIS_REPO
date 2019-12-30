@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IItemPurMasterPlan
     {
         Task<DataTableResponse> ItemPurMasterPlanFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditItemPurMasterPlan(ItemPurMasterPlanVM model);
-
+        Task<(string message, int Id)> DeleteItemPurMasterPlan(int ItemPurMasterPlanid);
         Task<ItemPurMasterPlanVM> ViewEdit(decimal Id);
     }
     public class ItemPurMasterPlan : IItemPurMasterPlan
@@ -145,6 +146,27 @@ namespace IMIS_Service.Setup.IItemPurMasterPlan
 
                 throw;
             }
+        }
+        public async Task<(string message, int Id)> DeleteItemPurMasterPlan(int ItemPurMasterPlanid)
+        {
+            try
+            {
+                var data = _db.InvPurMastPlan.Where(x => x.Id == ItemPurMasterPlanid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

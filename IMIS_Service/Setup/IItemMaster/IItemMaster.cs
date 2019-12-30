@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IMIS_CORE.Core;
+using ExceptionHandler;
 
 namespace IMIS_Service.Setup.IItemMaster
 {
@@ -27,6 +28,7 @@ namespace IMIS_Service.Setup.IItemMaster
         List<SelectListItem> ItemSubCategroyList(int id);
         List<SelectListItem> OthersetupList();
         List<SelectListItem> CountryList();
+        Task<(string message, int Id)> DeleteItemMaster(int ItemMasterid);
     }
     public class ItemMaster : IItemMaster
     {
@@ -333,6 +335,28 @@ namespace IMIS_Service.Setup.IItemMaster
 
                 throw ex;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteItemMaster(int ItemMasterid)
+        {
+            try
+            {
+                var data = _db.InvItemMst.Where(x => x.AccId == ItemMasterid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

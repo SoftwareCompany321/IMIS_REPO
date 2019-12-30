@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExceptionHandler;
 using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
@@ -16,7 +17,7 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
     {
         Task<DataTableResponse> ItemSupplierDtlFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditItemSupplierDtl(ItemSupplierDtlVM model);
-
+        Task<(string message, int Id)> DeleteItemSupplierDtl(int UnitId);
         Task<ItemSupplierDtlVM> ViewEdit(int Id);
     }
     public class ItemSupplierDtl : IItemSupplierDtl
@@ -169,6 +170,28 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
 
                 throw ex;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteItemSupplierDtl(int ItemSupplierDtlid)
+        {
+            try
+            {
+                var data = _db.InvSupplier.Where(x => x.SupId == ItemSupplierDtlid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

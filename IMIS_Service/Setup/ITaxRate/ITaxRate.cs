@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.ITaxRate
     {
         Task<DataTableResponse> TaxRateFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditTaxRate(TaxRateVM model);
-
+        Task<(string message, int Id)> DeleteTaxRate(int UnitId);
         Task<TaxRateVM> ViewEdit(decimal Id);
     }
     public class TaxRate : ITaxRate
@@ -149,6 +150,28 @@ namespace IMIS_Service.Setup.ITaxRate
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteTaxRate(int taxrateid)
+        {
+            try
+            {
+                var data = _db.InvTaxRate.Where(x => x.TaxRateId == taxrateid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

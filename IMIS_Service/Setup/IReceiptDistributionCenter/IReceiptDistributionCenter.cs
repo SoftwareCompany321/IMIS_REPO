@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExceptionHandler;
 using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
@@ -17,7 +18,7 @@ namespace IMIS_Service.Setup.IReceiptDistributionCenter
         Task<DataTableResponse> ReceiptDistributionCenterFetchData(DataTableVm model);
 
         Task<(string message, int Id)> AddEditSave(ReceiptDistributionCenterVM model);
-
+        Task<(string message, int Id)> DeleteReceiptDistributionCenter(int ReceiptDistributionCenterid);
         Task<ReceiptDistributionCenterVM> ViewEdit(int id);
     }
     public class ReceiptDistributionCenter : IReceiptDistributionCenter
@@ -145,6 +146,28 @@ namespace IMIS_Service.Setup.IReceiptDistributionCenter
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteReceiptDistributionCenter(int ReceiptDistributionCenterid)
+        {
+            try
+            {
+                var data = _db.Collectioncounters.Where(x => x.Counterid == ReceiptDistributionCenterid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

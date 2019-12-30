@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -16,7 +17,7 @@ namespace IMIS_Service.Setup.IItemPurchaseType
         Task<DataTableResponse> ItemPurchaseTypeFetchData(DataTableVm model);
 
         Task<(string message, int id)> AddEditSave(ItemPurchaseTypeVM model);
-
+        Task<(string message, int Id)> DeleteItemPurchaseType(int ItemPurchaseTypeid);
         Task<ItemPurchaseTypeVM> ViewEdit(int id);
     }
     public class ItemPurchaseType : IItemPurchaseType
@@ -148,6 +149,27 @@ namespace IMIS_Service.Setup.IItemPurchaseType
 
                 throw;
             }
+        }
+        public async Task<(string message, int Id)> DeleteItemPurchaseType(int ItemPurchaseTypeid)
+        {
+            try
+            {
+                var data = _db.InvPurType.Where(x => x.Id == ItemPurchaseTypeid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

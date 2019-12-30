@@ -1,5 +1,4 @@
-﻿using ExceptionHandler;
-using IMIS_CORE.Utility;
+﻿using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -10,23 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMIS_Service.Setup.IDepartment
+namespace IMIS_Service.Transaction.IRequisition
 {
     public interface IRequisition
     {
-        Task<DataTableResponse> DepartmentFetchData(DataTableVm model);
-        Task<(string message, int id)> AddEditDepartment(DepartmentVM model);
-        Task<(string message, int Id)> DeleteDepartment(int UnitId);
-        Task<DepartmentVM> ViewEdit(decimal Id);
+        Task<DataTableResponse> RequisitionFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditRequisition(RequisitionVM model);
+
+        Task<RequisitionVM> ViewEdit(decimal Id);
     }
-    public class Department : IRequisition
+    public class Requisition : IRequisition
     {
         private readonly IMISDbContext _db;
-        public Department(IMISDbContext db)
+        public Requisition(IMISDbContext db)
         {
             _db = db;
         }
-        public async Task<DataTableResponse> DepartmentFetchData(DataTableVm model)
+        public async Task<DataTableResponse> RequisitionFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;
@@ -90,26 +89,26 @@ namespace IMIS_Service.Setup.IDepartment
                 //add to do for the error log save in db
             }
         }
-        public async Task<(string message, int id)> AddEditDepartment(DepartmentVM model)
+        public async Task<(string message, int id)> AddEditRequisition(RequisitionVM model)
         {
             try
             {
-                var item = new InvDept()
-                {
-                    DeptId = model.DeptId,
-                    NameEn = model.NameEn,
-                    NameNp = model.NameNp 
-                };
-                if (model.DeptId == 0)
-                {
-                    int id = await _db.InvDept.CountAsync();
-                    item.DeptId = id + 1;
-                    _db.InvDept.AddRange(item);
-                }
-                else
-                {
-                    _db.Entry(item).State = EntityState.Modified;
-                }
+                //var item = new InvDept()
+                //{
+                //    DeptId = model.DeptId,
+                //    NameEn = model.NameEn,
+                //    NameNp = model.NameNp 
+                //};
+                //if (model.DeptId == 0)
+                //{
+                //    int id = await _db.InvDept.CountAsync();
+                //    item.DeptId = id + 1;
+                //    _db.InvDept.AddRange(item);
+                //}
+                //else
+                //{
+                //    _db.Entry(item).State = EntityState.Modified;
+                //}
                 await _db.SaveChangesAsync(true);
 
                 return ("success", 0);
@@ -121,53 +120,32 @@ namespace IMIS_Service.Setup.IDepartment
                 throw;
             }
         }
-        public async Task<DepartmentVM> ViewEdit(decimal Id)
+        public async Task<RequisitionVM> ViewEdit(decimal Id)
         {
             try
             {
                 var response = await _db.InvDept.Where(x => x.DeptId == Id).FirstOrDefaultAsync();
-                if (response != null)
-                {
-                    return (new DepartmentVM()
-                    {
-                        DeptId = response.DeptId ,
-                        NameEn = response.NameEn,
-                        NameNp = response.NameNp,
+                //if (response != null)
+                //{
+                //    return (new RequisitionVM()
+                //    {
+                //        DeptId = response.DeptId ,
+                //        NameEn = response.NameEn,
+                //        NameNp = response.NameNp,
 
-                    });
-                }
-                else
-                {
-                    return new DepartmentVM();
-                }
+                //    });
+                //}
+                //else
+                //{
+                //    return new RequisitionVM();
+                //}
             }
             catch (Exception)
             {
 
                 throw;
             }
-        }
-
-        public async Task<(string message, int Id)> DeleteDepartment(int Departmentid)
-        {
-            try
-            {
-                var data = _db.InvDept.Where(x => x.DeptId == Departmentid).FirstOrDefault();
-                if (data != null)
-                {
-                    data.IsActive = false;
-                    _db.Entry(data).State = EntityState.Modified;
-
-                }
-                await _db.SaveChangesAsync(true);
-                return ("success", 0);
-            }
-            catch (Exception ex)
-            {
-                ExceptionManager.AppendLog(ex);
-                throw;
-            }
-
+            return new RequisitionVM();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.ICountryDtl
     {
         Task<DataTableResponse> CountryDtlFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditCountryDtl(CountryDtlVM model);
-
+        Task<(string message, int Id)> DeleteCountryDtl(int UnitId);
         Task<CountryDtlVM> ViewEdit(decimal Id);
     }
     public class CountryDtl : ICountryDtl
@@ -145,6 +146,28 @@ namespace IMIS_Service.Setup.ICountryDtl
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteCountryDtl(int CountryDtlid)
+        {
+            try
+            {
+                var data = _db.Nationalities.Where(x => x.Nationalityid == CountryDtlid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

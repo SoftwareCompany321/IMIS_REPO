@@ -10,5 +10,6 @@ namespace IMIS_DataEntity.EntityClass
         public string Nepname { get; set; }
         public string Engname { get; set; }
         public string Description { get; set; }
+        public bool IsActive { get; set; }
     }
 }

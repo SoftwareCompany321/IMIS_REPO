@@ -133,7 +133,7 @@ namespace IMIS
             services.AddScoped<IOrganizationType, OrganizationType>();
             services.AddScoped<IRoomDetials, RoomDetials>();
             services.AddScoped<IWareHouse, WareHouse>();
-            services.AddScoped<IDepartment, Department>();
+            services.AddScoped<IRequisition, Department>();
             services.AddScoped<IProjectSetup, ProjectSetup>();
             services.AddScoped<IItemMaster, ItemMaster>();
             services.AddScoped<IIncomeRecordKeeping, IncomeRecordKeeping>();

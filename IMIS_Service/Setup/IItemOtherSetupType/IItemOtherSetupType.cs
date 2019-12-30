@@ -1,5 +1,8 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +15,10 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
     public interface IItemOtherSetupType
     {
         Task<DataTableResponse> ItemOtherSetupTypeFetchData(DataTableVm model);
+        Task<(string message, int id)> AddEditItemOtherSetupType(ItemOtherSetupTypeVM model);
+        Task<(string message, int Id)> DeleteItemOtherSetupType(int UnitId);
+        Task<ItemOtherSetupTypeVM> ViewEdit(decimal Id);
+
     }
     public class ItemOtherSetupType : IItemOtherSetupType
     {
@@ -83,6 +90,87 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
                 };
                 //add to do for the error log save in db
             }
+        }
+
+
+        public async Task<(string message, int id)> AddEditItemOtherSetupType(ItemOtherSetupTypeVM model)
+        {
+            try
+            {
+                var item = new InvTypeSetup()
+                {
+                    Id = model.Id,
+                    DescEn = model.DescEn,
+                    DescNp = model.DescNp
+                };
+                if (model.Id == 0)
+                {
+                    int id = await _db.InvTypeSetup.CountAsync();
+                    item.Id = id + 1;
+                    _db.InvTypeSetup.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<ItemOtherSetupTypeVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.InvTypeSetup.Where(x => x.Id == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new ItemOtherSetupTypeVM()
+                    {
+                        Id = response.Id,
+                        DescEn = response.DescEn,
+                        DescNp = response.DescNp 
+
+                    });
+                }
+                else
+                {
+                    return new ItemOtherSetupTypeVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<(string message, int Id)> DeleteItemOtherSetupType(int ItemOtherSetupTypeid)
+        {
+            try
+            {
+                var data = _db.InvTypeSetup.Where(x => x.Id == ItemOtherSetupTypeid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

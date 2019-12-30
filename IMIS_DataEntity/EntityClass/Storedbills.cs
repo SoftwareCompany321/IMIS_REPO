@@ -17,6 +17,7 @@ namespace IMIS_DataEntity.EntityClass
         public string Billnoto { get; set; }
         public int? Code { get; set; }
         public int? Billtypeid { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual Tblbilltype Billtype { get; set; }
         public virtual ICollection<TaxThliIssuedCntr> TaxThliIssuedCntr { get; set; }

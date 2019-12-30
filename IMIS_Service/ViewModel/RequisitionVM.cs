@@ -4,13 +4,12 @@ using System.Text;
 
 namespace IMIS_Service.ViewModel
 {
-    public class CountryDtlVM
+    public class RequisitionVM
     {
         public int Nationalityid { get; set; }
         public string Code { get; set; }
         public string Nepname { get; set; }
         public string Engname { get; set; }
         public string Description { get; set; }
-        public bool IsActive { get; set; } = true;
     }
 }

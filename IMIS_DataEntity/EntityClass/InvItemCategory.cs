@@ -31,7 +31,7 @@ namespace IMIS_DataEntity.EntityClass
         public decimal? DepreciationMax { get; set; }
         public string Remarks { get; set; }
         public int? ItemId { get; set; }
-
+        public bool IsActive { get; set; }
         public virtual ICollection<InvIssueDetail> InvIssueDetail { get; set; }
         public virtual ICollection<InvPurOrderDetl> InvPurOrderDetl { get; set; }
     }

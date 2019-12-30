@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IBankDtl
     {
         Task<DataTableResponse> BankDtlFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditBankDtl(BankDtlVM model);
-
+        Task<(string message, int Id)> DeleteBankDtl(int UnitId);
         Task<BankDtlVM> ViewEdit(decimal Id);
     }
     public class BankDtl : IBankDtl
@@ -146,6 +147,28 @@ namespace IMIS_Service.Setup.IBankDtl
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteBankDtl(int BankDtlid)
+        {
+            try
+            {
+                var data = _db.Bankmaster.Where(x => x.Bankid == BankDtlid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

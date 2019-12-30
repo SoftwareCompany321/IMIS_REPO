@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IRoomDetials
     {
         Task<DataTableResponse> RoomDetialsFetchData(DataTableVm model);
         Task<(string message, int Id)> AddEdit(RoomDetialsVM Model);
-
+        Task<(string message, int Id)> DeleteRoomDetials(int RoomDetialsid);
         Task<RoomDetialsVM> ViewOrEditData(int Id);
     }
     public class RoomDetials : IRoomDetials
@@ -153,6 +154,28 @@ namespace IMIS_Service.Setup.IRoomDetials
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteRoomDetials(int RoomDetialsid)
+        {
+            try
+            {
+                var data = _db.InvRoomMst.Where(x => x.RoomId == RoomDetialsid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

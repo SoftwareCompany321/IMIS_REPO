@@ -9,5 +9,6 @@ namespace IMIS_DataEntity.EntityClass
         public string Code { get; set; }
         public string NpName { get; set; }
         public string EngName { get; set; }
+        public bool IsActive { get; set; }
     }
 }

@@ -17,5 +17,6 @@ namespace IMIS_DataEntity.EntityClass
         public string NepEng { get; set; }
         public string Remarks { get; set; }
         public char? Isdefault { get; set; }
+        public bool IsActive { get; set; }
     }
 }

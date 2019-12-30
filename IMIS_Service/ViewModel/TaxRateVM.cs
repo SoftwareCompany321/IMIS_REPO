@@ -10,5 +10,6 @@ namespace IMIS_Service.ViewModel
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public float TaxRate { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

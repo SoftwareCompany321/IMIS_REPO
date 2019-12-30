@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Core;
+﻿using ExceptionHandler;
+using IMIS_CORE.Core;
 using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
@@ -21,6 +22,7 @@ namespace IMIS_Service.Setup.IItemCategories
         Task<(string message, int id)> AddEditItemCategories(ItemCategoriesVM model);
         IEnumerable<SelectListItem> GetParentItemCategory(int id = 0);
         Task<ItemCategoriesVM> ViewEdit(int Id);
+        Task<(string message, int Id)> DeleteItemCategories(int ItemCategoriesid);
     }
     public class ItemCategories : IItemCategories
     {
@@ -301,6 +303,27 @@ namespace IMIS_Service.Setup.IItemCategories
         public IEnumerable<SelectListItem> GetParentItemCategory(int id = 0)
         {
             return new SelectList(_db.InvItemCategory.Where(x => x.Id == id), "Id", "DisplayName");
+
+        }
+        public async Task<(string message, int Id)> DeleteItemCategories(int ItemCategoriesid)
+        {
+            try
+            {
+                var data = _db.InvItemCategory.Where(x => x.Id == ItemCategoriesid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
 
         }
     }

@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.ISupplierListingDesc
     {
         Task<DataTableResponse> SupplierListingDescFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditSupplierListingDescType(SupplierListingDescVM model);
-
+        Task<(string message, int Id)> DeleteSupplierListingDescType(int SupplierListingDescTypeid);
         Task<SupplierListingDescVM> ViewEdit(decimal Id);
     }
     public class SupplierListingDesc : ISupplierListingDesc
@@ -139,6 +140,28 @@ namespace IMIS_Service.Setup.ISupplierListingDesc
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteSupplierListingDescType(int SupplierListingDescTypeid)
+        {
+            try
+            {
+                var data = _db.InvSupplierFiscalyear.Where(x => x.Id == SupplierListingDescTypeid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

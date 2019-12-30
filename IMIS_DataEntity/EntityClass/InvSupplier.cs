@@ -28,6 +28,7 @@ namespace IMIS_DataEntity.EntityClass
         public string IsSelected { get; set; }
         public string RegNo { get; set; }
         public string SupType { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual ICollection<InvPurOrderMast> InvPurOrderMast { get; set; }
     }

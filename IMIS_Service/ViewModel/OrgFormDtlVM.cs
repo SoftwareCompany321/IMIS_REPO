@@ -26,5 +26,6 @@ namespace IMIS_Service.ViewModel
         public int? OrgMasterId { get; set; }
         public string Sapati { get; set; }
         public int? OrcAccTypeId { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
