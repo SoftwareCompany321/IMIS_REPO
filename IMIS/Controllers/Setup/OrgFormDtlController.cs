@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OrgFormDtlEdit.html")]
-        public async Task<IActionResult> OrgFormDtlEdit(decimal id)
+        [Route("/{id}/OrgFormDtlEdit.html")]
+        public async Task<IActionResult> OrgFormDtlEdit(int id)
         {
             return View(await _OrgFormDtl.ViewEdit(id));
         }

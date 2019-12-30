@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OfficeOrgStructureEdit.html")]
-        public async Task<IActionResult> OfficeOrgStructureEdit(decimal id)
+        [Route("/{id}/OfficeOrgStructureEdit.html")]
+        public async Task<IActionResult> OfficeOrgStructureEdit(int id)
         {
             return View(await _OfficeOrgStructure.ViewEdit(id));
         }

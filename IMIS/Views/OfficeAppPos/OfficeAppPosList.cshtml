@@ -91,8 +91,7 @@
                 'stateSave': false,
               
 
-                "columns": [
-                { "data": "accId", "orderable": true },
+                "columns": [ 
                 { "data": "code", "orderable": true },
                 { "data": "nepName", "orderable": true },
                 { "data": "engName", "orderable": false }, 
@@ -108,7 +107,13 @@
                 ],
                 "fnInitComplete": function (oSettings, json) {
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
-				},
+                },
+                'createdRow': function (row, data, dataIndex) {
+                      $(row).attr('id', data.localPostId);
+                         var url = '/' + data.localPostId + '/OfficeAppPosEdit.html'; //edit for the parent  
+                     jQuery('td:last', row).html("<a href=" + url + " title='Edit Supplier' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                     jQuery('td:last-child', row).append("<a href=" + url + " title='delete' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                },
 
             });
             jQuery('#usersearch').on("keyup", function () {

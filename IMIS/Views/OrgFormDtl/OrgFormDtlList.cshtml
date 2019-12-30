@@ -42,10 +42,9 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>@Utils.GetLabel("Id")</th>
-
-                                        <th>@Utils.GetLabel("Firm Name(Nepali)")</th>
-
+                                        <th>@Utils.GetLabel("Id")</th> 
+                                        <th>@Utils.GetLabel("Code")</th>
+                                        <th>@Utils.GetLabel("Firm Name(Nepali)")</th> 
                                         <th>@Utils.GetLabel("Firm Name(English)")</th>
                                         <th>@Utils.GetLabel("Address")</th>
                                         <th>@Utils.GetLabel("Phone No.")</th>
@@ -100,18 +99,19 @@
 
 
                 "columns": [
+                 { "data": "code", "orderable": true },
                 { "data": "orgId", "orderable": true },
-                { "data": "NameNp", "orderable": true },
-                { "data": "NameEn", "orderable": true },
-                { "data": "RegNo", "orderable": false },
-                { "data": "Address", "orderable": false },
-                    { "data": "Emails", "orderable": false },
-                    { "data": "MobileNo", "orderable": false },
-                    { "data": "PanNo", "orderable": false },
-                    { "data": "VatNo", "orderable": false },
-                    { "data": "RelatedPerson", "orderable": false },
-                    { "data": "Sapati", "orderable": false },
-                    { "data": "orgId", "orderable": false },
+                { "data": "nameNp", "orderable": true },
+                { "data": "nameEn", "orderable": true },
+                { "data": "regNo", "orderable": false },
+                { "data": "address", "orderable": false },
+                { "data": "emails", "orderable": false },
+                { "data": "mobileNo", "orderable": false },
+                { "data": "panNo", "orderable": false },
+                { "data": "vatNo", "orderable": false },
+                { "data": "relatedPerson", "orderable": false },
+                { "data": "sapati", "orderable": false },
+                { "data": "orgId", "orderable": false },
                 ],
                 order: [
 
@@ -124,7 +124,13 @@
                 ],
                 "fnInitComplete": function (oSettings, json) {
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
-				},
+                },
+                 'createdRow': function (row, data, dataIndex) {
+                      $(row).attr('id', data.orgId);
+                         var url = '/' + data.orgId + '/OrganizationTypeEdit.html'; //edit for the parent  
+                     jQuery('td:last', row).html("<a href=" + url + " title='Edit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                     jQuery('td:last-child', row).append("<a href=" + url + " title='delete' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                },
 
             });
             jQuery('#usersearch').on("keyup", function () {

@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OfficeAppPosEdit.html")]
-        public async Task<IActionResult> OfficeAppPosEdit(decimal id)
+        [Route("/{id}/OfficeAppPosEdit.html")]
+        public async Task<IActionResult> OfficeAppPosEdit(int id)
         {
             return View(await _OfficeAppPos.ViewEdit(id));
         }
