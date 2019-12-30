@@ -24,3 +24,5 @@ Apps that use ASP.NET Core Identity should also use HTTPS. To enable HTTPS see h
 
 COPY PUBLIC."ACC_ACC_MASTER" FROM 'E:\IMISDATA\accmaster.csv' WITH CSV HEADER;
 ALTER TABLE public."Imis_Menu" ADD COLUMN Id SERIAL PRIMARY KEY;
+
+COPY PUBLIC."Imis_Menu" FROM 'E:\IMISDOC\menu.csv' WITH CSV HEADER;
