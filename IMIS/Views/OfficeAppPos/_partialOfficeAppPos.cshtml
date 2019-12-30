@@ -1,43 +1,57 @@
 ﻿@using IMIS_CORE.Core
- 
+
 @model IMIS_Service.ViewModel.OfficeAppPosVM
-    <div>
+<div>
+    <div class="form-group is-empty">
+        <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
+        <div class="col-md-9">
+            @if (Model.LocalPostId > 0)
+            {
+                <span>@Model.Code</span>
+            }
+            else
+            {
 
-        <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Post Name(Eng)")<span class="requried">*</span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="LocalPostNameEn">
-            </div>
-        </div>
-        <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Post Name(Nep)")<span class="requried">*</span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="LocalPostName">
-            </div>
-        </div>
-
-        @*dropdown*@
-        <div class="form-group is-empty">
-            <label for="short-name" class="col-md-2 control-label">
-                @Utils.GetLabel("Post Grade")
-            </label>
-            <div class="col-md-6">
-                <input type="text" class="form-control" asp-for="PostId">
-            </div>
+                <input type="text" class="form-control" asp-for="Code">
+            }
 
         </div>
-        <div class="form-group is-empty">
-            <label for="short-name" class="col-md-2 control-label">
-                @Utils.GetLabel("Duty Description")
-            </label>
-            <div class="col-md-6">
-                <input type="text" class="form-control" asp-for="PostDuties">
-            </div>
-
-        </div>
-        
     </div>
+    <div class="form-group is-empty">
+        <label for="region" class="col-md-2 control-label">
+            @Utils.GetLabel("Post Name(Eng)")<span class="requried">*</span>
+        </label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="LocalPostNameEn">
+        </div>
+    </div>
+    <div class="form-group is-empty">
+        <label for="region" class="col-md-2 control-label">
+            @Utils.GetLabel("Post Name(Nep)")<span class="requried">*</span>
+        </label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="LocalPostName">
+        </div>
+    </div>
+
+    @*dropdown*@
+    <div class="form-group is-empty">
+        <label for="short-name" class="col-md-2 control-label">
+            @Utils.GetLabel("Post Grade")
+        </label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" asp-for="PostId">
+        </div>
+
+    </div>
+    <div class="form-group is-empty">
+        <label for="short-name" class="col-md-2 control-label">
+            @Utils.GetLabel("Duty Description")
+        </label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" asp-for="PostDuties">
+        </div>
+
+    </div>
+
+</div>

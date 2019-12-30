@@ -2,6 +2,23 @@
 
 @model IMIS_Service.ViewModel.ItemSupplierDtlVM
 <div>
+
+    <div class="form-group is-empty">
+        <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
+        <div class="col-md-9">
+            @if (Model.SupId > 0)
+            {
+                <span>@Model.Code</span>
+            }
+            else
+            {
+
+                <input type="text" class="form-control" asp-for="Code">
+            }
+        </div>
+    </div>
+
+
     <div class="form-group is-empty">
         <div class="col-md-6">
             <label for="code" class="col-md-3 control-label" control-label">
@@ -16,7 +33,7 @@
                 @Utils.GetLabel("Person")<span class="requried">*</span>
             </label>
             <div class="col-md-6">
-                <input type="radio" name="SubT"  value="False" asp-for="SubT">
+                <input type="radio" name="SubT" value="False" asp-for="SubT">
             </div>
         </div>
     </div>
@@ -151,7 +168,7 @@
                                 <span class="text-danger" asp-validation-for="PhoneNo"></span>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-md-12 row">
                         <div class="form-group col-md-12">
                             <label class="font_field col-md-2">
