@@ -69,7 +69,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 </body>
- 
+
 
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {
@@ -89,20 +89,21 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-               
+
 
                 "columns": [
-                { "data": "deptId", "orderable": true }, 
+                { "data": "deptId", "orderable": true },
                 { "data": "nameNp", "orderable": true },
-                { "data": "nameEn", "orderable": false }, 
+                { "data": "nameEn", "orderable": false },
                 { "data": "deptId", "orderable": false },
                 ],
                  "rowCallback": function (row, data, index) {
                 //jQuery('td:first-child', row).find("input").attr({ "id": "Ids", "name": "Ids", "value": data.id });
                 var url ='/' + data.deptId + '/DepartmentEdit.html';
-                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Department' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                     jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Department' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                 jQuery('td:last-child', row).append("<a href=" + url + " title='delete' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
-            },
+               },
                 order: [
 
                     [1, "desc"]

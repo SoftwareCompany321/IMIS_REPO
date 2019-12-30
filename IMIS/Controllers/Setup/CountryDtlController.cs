@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/CountryDtlEdit.html")]
-        public async Task<IActionResult> CountryDtlEdit(decimal id)
+        [Route("/{id}/CountryDtlEdit.html")]
+        public async Task<IActionResult> CountryDtlEdit(int id)
         {
             return View(await _CountryDtl.ViewEdit(id));
         }

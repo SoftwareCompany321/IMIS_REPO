@@ -100,7 +100,8 @@
                 ],
                 "rowCallback": function (row, data, index) {
                  var url ='/' + data.brandId + '/ItemBrandEdit.html';
-                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                    jQuery('td:last-child', row).html("<a href=" + url + " title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                    jQuery('td:last-child', row).append("<a href=" + url + " title='delete' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
             },
                 order: [
@@ -114,8 +115,7 @@
                 ],
                 "fnInitComplete": function (oSettings, json) {
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
-				},
-
+                }, 
             });
             jQuery('#usersearch').on("keyup", function () {
                table.fnFilter(this.value);

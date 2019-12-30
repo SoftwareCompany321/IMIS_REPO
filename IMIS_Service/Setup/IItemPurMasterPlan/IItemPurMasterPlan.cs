@@ -50,7 +50,8 @@ namespace IMIS_Service.Setup.IItemPurMasterPlan
                                         {
                                             ipmp.Id,
                                             ipmp.NameEn,
-                                            ipmp.NameNp 
+                                            ipmp.NameNp,
+                                            ipmp.Code,
                                         });
                 ///filter count for the total; record
                 ///

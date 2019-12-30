@@ -99,7 +99,8 @@
                 ],
                  "rowCallback": function (row, data, index) {
                  var url ='/' + data.sn + '/FuelMaintenanceEdit.html';
-                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Fuel Maintenance' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                     jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Fuel Maintenance' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                      jQuery('td:last-child', row).append("<a href=" + url + " title='delete' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
             },
                 order: [

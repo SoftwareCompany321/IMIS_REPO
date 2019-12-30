@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/IncomeRecordKeepingEdit.html")]
-        public async Task<IActionResult> IncomeRecordKeepingEdit(decimal id)
+        [Route("/{id}/IncomeRecordKeepingEdit.html")]
+        public async Task<IActionResult> IncomeRecordKeepingEdit(int id)
         {
             return View(await _IncomeRecordKeeping.ViewEdit(id));
         }

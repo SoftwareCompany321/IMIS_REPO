@@ -48,7 +48,10 @@ namespace IMIS_Service.Setup.IIncomeRecordKeeping
                 var accMasters =  (from sb in _db.Storedbills
                                         select new
                                         {
-                                            sb.Code 
+                                            sb.Code,
+                                            sb.Billtype,
+                                            sb.Sn,
+                                            sb.Billnoto
                                         });
                 ///filter count for the total; record
                 ///

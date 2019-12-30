@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/ItemPurMasterPlanEdit.html")]
-        public async Task<IActionResult> ItemPurMasterPlanEdit(decimal id)
+        [Route("/{id}/ItemPurMasterPlanEdit.html")]
+        public async Task<IActionResult> ItemPurMasterPlanEdit(int id)
         {
             return View(await _ItemPurMasterPlan.ViewEdit(id));
         }
