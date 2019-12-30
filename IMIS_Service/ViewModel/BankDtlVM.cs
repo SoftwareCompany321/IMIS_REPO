@@ -7,6 +7,7 @@ namespace IMIS_Service.ViewModel
     public class BankDtlVM
     {
         public int Bankid { get; set; }
+        public string Code { get; set; }
         public string Engname { get; set; }
         public string Nepname { get; set; }
         public string Bankcode { get; set; }

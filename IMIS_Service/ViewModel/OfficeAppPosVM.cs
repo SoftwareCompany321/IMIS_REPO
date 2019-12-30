@@ -7,6 +7,7 @@ namespace IMIS_Service.ViewModel
     public class OfficeAppPosVM
     {
         public int LocalPostId { get; set; }
+        public string Code { get; set; }
         public string LocalPostName { get; set; }
         public string LocalPostNameEn { get; set; }
         public int? PostId { get; set; }

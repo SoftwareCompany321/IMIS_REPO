@@ -7,6 +7,7 @@ namespace IMIS_Service.ViewModel
     public class ItemUnitVM
     {
         public int UnitId { get; set; }
+        public string Code { get; set; }
         public string DescNp { get; set; }
         public string DescEn { get; set; }
         public decimal? MulFactor { get; set; }

@@ -7,6 +7,8 @@ namespace IMIS_Service.ViewModel
     public class ItemPurMasterPlanVM
     {
         public int Id { get; set; }
+
+        public string Code { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
         public string PkgNo { get; set; }

@@ -8,6 +8,7 @@ namespace IMIS_Service.ViewModel
     {
 
         public int RoomId { get; set; }
+        public string Code { get; set; }
         public int FloorNo { get; set; }
         public string BlockNo { get; set; }
         public string DescNp { get; set; }

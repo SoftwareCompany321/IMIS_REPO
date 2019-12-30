@@ -7,6 +7,8 @@ namespace IMIS_Service.ViewModel
     public class ReceiptDistributionVM
     {
         public int Sn { get; set; }
+
+        public string Code { get; set; }
         public string Dateissued { get; set; }
         public int Thelino { get; set; }
         public string Billnofrom { get; set; }

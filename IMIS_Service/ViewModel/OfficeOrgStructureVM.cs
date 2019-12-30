@@ -7,6 +7,7 @@ namespace IMIS_Service.ViewModel
     public class OfficeOrgStructureVM
     {
         public int Id { get; set; }
+        public string Code { get; set; }
         public int? ParentId { get; set; }
         public string NepName { get; set; }
         public string EngName { get; set; }

@@ -1,30 +1,51 @@
 ﻿@using IMIS_CORE.Core
- 
+
 @model IMIS_Service.ViewModel.CountryDtlVM
-<div>
     <div>
-        Upper Level
+        <div>
+            Upper Level
+        </div>
+
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Code")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                @if (Model.Nationalityid > 0)
+                {
+                    <span>@Model.Code</span>
+                }
+                else
+                {
+
+                    <input type="text" class="form-control" asp-for="Code">
+                }
+
+            </div>
+        </div>
+
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Name(English)")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Nepname">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Name(Nepali)")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Engname">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Description")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Description">
+            </div>
+        </div>
     </div>
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Name(English)")<span class="requried">*</span></label>
-<div class="col-md-9">
-<input type = "text" class="form-control" asp-for="Nepname">
-</div>
-</div>
-<div class="form-group is-empty">
-    <label for="region" class="col-md-2 control-label">
-        @Utils.GetLabel("Name(Nepali)")<span class="requried">*</span></label>
-<div class="col-md-9">
-<input type = "text" class="form-control" asp-for="Engname">
-</div>
-</div>
-<div class="form-group is-empty">
-    <label for="region" class="col-md-2 control-label">
-        @Utils.GetLabel("Description")<span class="requried">*</span>
-    </label>
-    <div class="col-md-9">
-        <input type="text" class="form-control" asp-for="Description">
-    </div>
-</div>
-</div>

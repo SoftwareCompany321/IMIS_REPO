@@ -7,6 +7,7 @@ namespace IMIS_Service.ViewModel
     public class EmployeePositionVM
     {
         public int PostId { get; set; }
+        public string Code { get; set; }
         public string GeneralPost { get; set; }
         public string GeneralPostShort { get; set; }
         public int? PostLevel { get; set; }

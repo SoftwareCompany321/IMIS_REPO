@@ -1,52 +1,74 @@
 ﻿@using IMIS_CORE.Core
- 
+
 @model IMIS_Service.ViewModel.IncomeRecordKeepingVM
-<div>
-    @*dropdown*@
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Receipt Type")<span class="requried">*</span>
-        </label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" asp-for="Billtypeid">
+    <div>
+        @*dropdown*@
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Code")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                @if (Model.Sn > 0)
+                {
+                    <span>@Model.Code</span>
+                }
+                else
+                {
+
+                    <input type="text" class="form-control" asp-for="Code">
+                }
+
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Receipt Type")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Billtypeid">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Receipt No.")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Sn">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Received Date")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Dateissued">
+            </div>
+        </div>
+
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Receipt No. From")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Billnofrom">
+            </div>
+
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Receipt No. To")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Billnoto">
+            </div>
+
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">
+                @Utils.GetLabel("Description")
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="Description">
+            </div>
         </div>
     </div>
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Receipt No.")<span class="requried">*</span></label>
-<div class="col-md-9">
-<input type = "text" class="form-control" asp-for="Sn">
-</div>
-</div>
-<div class="form-group is-empty">
-    <label for="region" class="col-md-2 control-label">
-        @Utils.GetLabel("Received Date")<span class="requried">*</span></label>
-<div class="col-md-9">
-<input type = "text" class="form-control" asp-for="Dateissued">
-</div>
-</div>
-     
-    <div class="form-group is-empty">
-        <label for="short-name" class="col-md-2 control-label">
-            @Utils.GetLabel("Receipt No. From")</label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" asp-for="Billnofrom">
-                </div>
-
-</div>
-    <div class="form-group is-empty">
-        <label for="short-name" class="col-md-2 control-label">
-            @Utils.GetLabel("Receipt No. To")</label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" asp-for="Billnoto">
-                </div>
-
-</div>
-    <div class="form-group is-empty">
-        <label for="short-name" class="col-md-2 control-label">
-            @Utils.GetLabel("Description")</label>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" asp-for="Description">
-                </div>
-</div>
-</div>
