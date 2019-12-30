@@ -59,5 +59,18 @@ namespace IMIS.Controllers.Setup
         {
             return View();
         }
+
+        [HttpGet]
+        [Route("/AccountHeaderEdit.html")]
+        public IActionResult AccountHeaderEdit(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        [Route("/AccountHeaderEdit.html")]
+        public IActionResult AccountHeaderEdit(AccountHeaderVM model)
+        {
+            return View();
+        }
     }
 }
