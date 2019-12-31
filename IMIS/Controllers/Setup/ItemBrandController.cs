@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/ItemBrandDelete.html")]
+        public async Task<IActionResult> ItemBrandDelete(int brandId)
+        {
+            var response = await _ItemBrand.DeleteItemBrand(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemBrandlist.html");
+            }
+            return View();
+        }
     }
 }

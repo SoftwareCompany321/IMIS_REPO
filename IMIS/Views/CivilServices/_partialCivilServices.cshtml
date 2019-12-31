@@ -6,18 +6,14 @@
         <label for="region" class="col-md-2 control-label">
             @Utils.GetLabel("Code")<span class="requried">*</span>
         </label>
-        <div class="col-md-9">
-            @if (Model.Id > 0)
-            {
-                <span>@Model.Code</span>
-            }
-            else
-            {
-
+        <input asp-for="Id" type="hidden" />
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
+            <div class="col-md-9">
                 <input type="text" class="form-control" asp-for="Code">
-            }
-
+            </div>
         </div>
+        
     </div>
     <div class="form-group is-empty">
         <label for="region" class="col-md-2 control-label">
