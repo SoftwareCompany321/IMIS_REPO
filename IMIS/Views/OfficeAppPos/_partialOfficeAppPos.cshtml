@@ -32,7 +32,10 @@
                 @Utils.GetLabel("Post Grade")
             </label>
             <div class="col-md-6">
-                <input type="text" class="form-control" asp-for="PostId">
+                <select asp-for="PostId" asp-items="@ViewData["post"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                </select>
+                 
             </div>
 
         </div>
