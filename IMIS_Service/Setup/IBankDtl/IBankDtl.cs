@@ -17,6 +17,7 @@ namespace IMIS_Service.Setup.IBankDtl
         Task<(string message, int id)> AddEditBankDtl(BankDtlVM model);
 
         Task<BankDtlVM> ViewEdit(decimal Id);
+        Task<string> DeleteById(int id);
     }
     public class BankDtl : IBankDtl
     {
@@ -45,14 +46,14 @@ namespace IMIS_Service.Setup.IBankDtl
                     draw = model.draw;
                 }
 
-                var accMasters =  (from bm in _db.Bankmaster
-                                        select new
-                                        {
-                                            bm.Code,
-                                            bm.Bankid,
-                                            bm.Nepname,
-                                            bm.Engname 
-                                        });
+                var accMasters = (from bm in _db.Bankmaster
+                                  select new
+                                  {
+                                      bm.Code,
+                                      bm.Bankid,
+                                      bm.Nepname,
+                                      bm.Engname
+                                  });
                 ///filter count for the total; record
                 ///
 
@@ -61,7 +62,7 @@ namespace IMIS_Service.Setup.IBankDtl
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.Nepname == searchBy || x.Engname == searchBy);
+                        accMasters = accMasters.Where(x => x.Nepname == searchBy || x.Engname == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
@@ -73,7 +74,7 @@ namespace IMIS_Service.Setup.IBankDtl
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =finallist
+                    data = finallist
                 };
 
 
@@ -85,7 +86,7 @@ namespace IMIS_Service.Setup.IBankDtl
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =0
+                    data = 0
                 };
                 //add to do for the error log save in db
             }
@@ -146,6 +147,25 @@ namespace IMIS_Service.Setup.IBankDtl
             {
 
                 throw;
+            }
+        }
+
+        public async Task<string> DeleteById(int id)
+        {
+            try
+            {
+                var data = await _db.Bankmaster.Where(x => x.Bankid == id).FirstOrDefaultAsync();
+                if (data != null)
+                {
+                    _db.Bankmaster.Remove(data);
+                    _db.SaveChanges(true);
+                    return "success";
+                }
+                return "fail";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

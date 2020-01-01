@@ -17,6 +17,7 @@ namespace IMIS_Service.Setup.ICountryDtl
         Task<(string message, int id)> AddEditCountryDtl(CountryDtlVM model);
 
         Task<CountryDtlVM> ViewEdit(decimal Id);
+        Task<string> Delete(int Id);
     }
     public class CountryDtl : ICountryDtl
     {
@@ -139,6 +140,30 @@ namespace IMIS_Service.Setup.ICountryDtl
                 {
                     return new CountryDtlVM();
                 }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<string> Delete(int Id)
+        {
+            try
+            {
+                var response = await _db.Nationalities.Where(x => x.Nationalityid == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    _db.Nationalities.Remove(response);
+                    _db.SaveChanges(true);
+                    return "success";
+                }
+                else
+                {
+                    return "fail";
+                }
+
             }
             catch (Exception)
             {

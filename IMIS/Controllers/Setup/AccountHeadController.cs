@@ -61,7 +61,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/AccountHeaderEdit.html")]
+        [Route("/{id}/AccountHeaderEdit.html")]
         public IActionResult AccountHeaderEdit(int id)
         {
             return View();
@@ -72,5 +72,12 @@ namespace IMIS.Controllers.Setup
         {
             return View();
         }
+
+        [HttpGet]
+        [Route("/{id}/AccountHeaderDelete.html")]
+        public IActionResult AccountHeaderDelete(int id)
+        {
+            return View();
+        } 
     }
 }

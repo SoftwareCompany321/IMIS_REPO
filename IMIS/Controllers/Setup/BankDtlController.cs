@@ -85,5 +85,11 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+        [HttpGet]
+        [Route("/{id}/BankDtlDelete.html")]
+        public async Task<IActionResult> BankDtlDelete(int id)
+        {
+            return View(await _BankDtl.DeleteById(id));
+        }
     }
 }
