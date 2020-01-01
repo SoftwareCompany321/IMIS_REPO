@@ -36,6 +36,7 @@ namespace IMIS_Service.Setup.IItemBrand
                 {
                    BrandId=model.BrandId,
                    NameEn=model.NameEn,
+                   Code=model.Code,
                    NameNp=model.NameNp,
                    IsActive=true
                 };
@@ -84,6 +85,7 @@ namespace IMIS_Service.Setup.IItemBrand
                                         select new
                                         {
                                             ib.BrandId,
+                                            ib.Code,
                                             ib.NameEn,
                                             ib.NameNp 
                                         });

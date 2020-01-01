@@ -100,7 +100,7 @@
 
 
                 "columns": [
-                { "data": "orgId", "orderable": true },
+                { "data": "code", "orderable": true },
                 { "data": "NameNp", "orderable": true },
                 { "data": "NameEn", "orderable": true },
                 { "data": "RegNo", "orderable": false },
@@ -113,6 +113,15 @@
                     { "data": "Sapati", "orderable": false },
                     { "data": "orgId", "orderable": false },
                 ],
+                 "rowCallback": function (row, data, index) {
+                      var url ='/' + data.orgId + '/OrgFormDtlEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.orgId + '/OrgFormDtlDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+                     
+            },
                 order: [
 
                     [1, "desc"]

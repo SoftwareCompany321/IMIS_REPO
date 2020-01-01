@@ -21,10 +21,10 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/RoomDetialsFetchData.html")]
-        public async Task<JsonResult> RoomDetialsFetchData(DataTableVm model)
+        [Route("/RoomDetailsFetchData.html")]
+        public async Task<JsonResult> RoomDetailsFetchData(DataTableVm model)
         {
-            var response = await _RoomDetials.RoomDetialsFetchData(model);
+            var response = await _RoomDetials.RoomDetailsFetchData(model);
             return Json(new
             {
                 draw = response.draw,
@@ -45,6 +45,7 @@ namespace IMIS.Controllers.Setup
         [Route("/RoomDetailsCreate.html")]
         public IActionResult RoomDetialsCreate()
         {
+            ViewData["departments"] = _RoomDetials.GetDepartmentList();
             return View();
         }
 
@@ -67,6 +68,7 @@ namespace IMIS.Controllers.Setup
         [Route("{SpecificationId}/RoomDetailsEdit.html")]
         public async Task<IActionResult> RoomDetailsEdit(int SpecificationId)
         {
+            ViewData["departments"] = _RoomDetials.GetDepartmentList();
             return View(await _RoomDetials.ViewOrEditData(SpecificationId));
         }
         [HttpPost]
@@ -77,6 +79,20 @@ namespace IMIS.Controllers.Setup
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/RoomDetailslist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{roomid}/RoomDetailsDelete.html")]
+        public async Task<IActionResult> RoomDetailsDelete(int roomid)
+        {
+            var response = await _RoomDetials.DeleteRoomDetails(roomid);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/RoomDetailslist.html");
             }

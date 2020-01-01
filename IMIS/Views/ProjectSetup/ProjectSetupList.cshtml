@@ -42,7 +42,7 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>@Utils.GetLabel("Id")</th>
+                                        <th>@Utils.GetLabel("Code")</th>
 
                                         <th>@Utils.GetLabel("Description(Nepali)")</th>
 
@@ -91,11 +91,20 @@
                 'stateSave': false,
                
                 "columns": [
-                { "data": "projectId", "orderable": true },
+                { "data": "code", "orderable": true },
                 { "data": "nameNp", "orderable": true },
                 { "data": "nameEn", "orderable": true }, 
                 { "data": "projectId", "orderable": false }, 
                 ],
+                 "rowCallback": function (row, data, index) {
+                      var url ='/' + data.projectId + '/ProjectSetupEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.projectId + '/ProjectSetupDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+                     
+            },
                 order: [
 
                     [1, "desc"]

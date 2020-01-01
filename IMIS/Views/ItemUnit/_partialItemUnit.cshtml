@@ -2,7 +2,7 @@
 
 @model IMIS_Service.ViewModel.ItemUnitVM
 <div>
-    <input asp-for="Code" type="hidden" />
+    <input asp-for="UnitId" type="hidden" />
     <div class="form-group is-empty">
         <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
         <div class="col-md-9">
@@ -31,8 +31,8 @@
                 <option value="0">@Utils.GetLabel("Please Select")</option>
             </select>
 
+        </div>
     </div>
-</div>
 
 
 </div>

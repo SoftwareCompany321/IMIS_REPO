@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{id}/WareHouseDelete.html")]
+        public async Task<IActionResult> WareHouseDelete(int id)
+        {
+            var response = await _WareHouse.DeleteWareHouse(id);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/WareHouselist.html");
+            }
+            return View();
+        }
     }
 }

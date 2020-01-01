@@ -47,10 +47,12 @@ namespace IMIS_Service.Setup.IProjectSetup
                 }
 
                 var accMasters =  (from ip in _db.InvProject
+                                   where ip.IsActive==true
                                         select new
                                         {
                                             ip.InvRequisitionMast,
-                                            //ip.IsActive,
+                                             ip.IsActive,
+                                             ip.Code,
                                             ip.NameEn,
                                             ip.NameNp, 
                                             ip.ProjectId 
@@ -100,6 +102,8 @@ namespace IMIS_Service.Setup.IProjectSetup
                 var item = new InvProject()
                 {
                     ProjectId = model.ProjectId,
+                    Code=model.Code,
+                    IsActive=model.IsActive,
                     NameEn = model.NameEn,
                     NameNp = model.NameNp
                 };
@@ -134,6 +138,8 @@ namespace IMIS_Service.Setup.IProjectSetup
                     return (new ProjectSetupVM()
                     {
                         ProjectId = response.ProjectId,
+                        Code=response.Code,
+                        IsActive=response.IsActive,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
 

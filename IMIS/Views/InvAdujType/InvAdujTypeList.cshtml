@@ -94,13 +94,22 @@
                 'stateSave': false,
                 
                 "columns": [
-                { "data": "id", "orderable": true },
+                { "data": "code", "orderable": true },
                 { "data": "nameEn", "orderable": true },
                 { "data": "nameNp", "orderable": true },
                 { "data": "addSub", "orderable": false },
                 { "data": "adjType", "orderable": false },
                 { "data": "id", "orderable": false },
                 ],
+                 "rowCallback": function (row, data, index) {
+                      var url ='/' + data.id + '/InvAdujTypeEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.id + '/InvAdujTypeDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+                     
+            },
                 order: [
 
                     [1, "desc"]

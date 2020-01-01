@@ -2,22 +2,11 @@
 
 @model IMIS_Service.ViewModel.WareHouseVM
     <div>
-
+        <input asp-for="WarehouseId" type="hidden" />
         <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Code")<span class="requried">*</span>
-            </label>
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
             <div class="col-md-9">
-                @if (Model.WarehouseId > 0)
-                {
-                    <span>@Model.Code</span>
-                }
-                else
-                {
-
-                    <input type="text" class="form-control" asp-for="Code">
-                }
-
+                <input type="text" class="form-control" asp-for="Code">
             </div>
         </div>
 
