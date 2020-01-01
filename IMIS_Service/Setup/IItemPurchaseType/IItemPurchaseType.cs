@@ -35,6 +35,7 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                 var item = new InvPurType()
                 {
                     Id = model.Id,
+                    Code=model.Code,
                     NepEng = model.NepEng,
                     NepName = model.NepName,
                     Isdefault = model.Isdefault,
@@ -83,6 +84,7 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                                   select new
                                   {
                                       ipt.Id,
+                                      ipt.Code,
                                       ipt.NepEng,
                                       ipt.NepName
                                   });
@@ -134,6 +136,7 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                     return (new ItemPurchaseTypeVM()
                     {
                         NepEng=response.NepEng,
+                        Code=response.Code,
                         NepName=response.NepName,
                         Remarks=response.Remarks,
                         Isdefault=response.Isdefault

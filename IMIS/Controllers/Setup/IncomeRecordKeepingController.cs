@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/IncomeRecordKeepingDelete.html")]
+        public async Task<IActionResult> IncomeRecordKeepingDelete(int brandId)
+        {
+            var response = await _IncomeRecordKeeping.DeleteIncomeRecordKeeping(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/IncomeRecordKeepinglist.html");
+            }
+            return View();
+        }
     }
 }

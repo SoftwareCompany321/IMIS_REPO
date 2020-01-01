@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,6 +13,7 @@ namespace IMIS_Service.IAccountHead
     public interface IAccountHead
     {
         Task<DataTableResponse> AccountHeadFetchData(DataTableVm model);
+        Task<(string message, int Id)> DeleteAccountHead(int AccountHeadid);
     }
     public class AccountHead : IAccountHead
     {
@@ -88,6 +90,28 @@ namespace IMIS_Service.IAccountHead
                 };
                 //add to do for the error log save in db
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteAccountHead(int AccountHeadid)
+        {
+            try
+            {
+                var data = _db.AccAccMaster.Where(x => x.AccId == AccountHeadid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }
