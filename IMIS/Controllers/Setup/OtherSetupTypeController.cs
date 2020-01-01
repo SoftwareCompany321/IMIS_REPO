@@ -57,5 +57,19 @@ namespace IMIS.Controllers.Setup
         {
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/OtherSetupTypeDelete.html")]
+        public async Task<IActionResult> OtherSetupTypeDelete(int brandId)
+        {
+            var response = await _OtherSetupType.DeleteItemOtherSetupType(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/OtherSetupTypelist.html");
+            }
+            return View();
+        }
     }
 }

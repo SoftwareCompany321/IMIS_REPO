@@ -89,5 +89,19 @@ namespace IMIS.Controllers.Setup
             ViewData["InvType"] = await _ItemPurYearlyPlan.InVPurType();
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/ItemPurYearlyPlanDelete.html")]
+        public async Task<IActionResult> ItemPurYearlyPlanDelete(int brandId)
+        {
+            var response = await _ItemPurYearlyPlan.DeleteItemPurYearlyPlan(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemPurYearlyPlanlist.html");
+            }
+            return View();
+        }
     }
 }

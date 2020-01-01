@@ -66,7 +66,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/{id}OrganizationTypeEdit.html")]
+        [Route("/{id}/OrganizationTypeEdit.html")]
         public async Task<IActionResult> OrganizationTypeEdit(int id)
         {
             return View(await _OrganizationType.ViewEdit(id));
@@ -80,6 +80,20 @@ namespace IMIS.Controllers.Setup
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Update";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/OrganizationTypelist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{brandId}/OrganizationTypeDelete.html")]
+        public async Task<IActionResult> OrganizationTypeDelete(int brandId)
+        {
+            var response = await _OrganizationType.DeleteOrganizationType(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/OrganizationTypelist.html");
             }

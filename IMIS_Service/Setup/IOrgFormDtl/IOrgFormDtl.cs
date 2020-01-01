@@ -48,7 +48,7 @@ namespace IMIS_Service.Setup.IOrgFormDtl
 
                 var accMasters =  (from aom in _db.AccOrgMaster
                                         select new
-                                        {
+                                        {  
                                             aom.OrgId,
                                             aom.NameNp,
                                             aom.NameEn,

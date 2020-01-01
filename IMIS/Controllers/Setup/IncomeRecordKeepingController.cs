@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/IncomeRecordKeepingEdit.html")]
-        public async Task<IActionResult> IncomeRecordKeepingEdit(decimal id)
+        [Route("/{id}/IncomeRecordKeepingEdit.html")]
+        public async Task<IActionResult> IncomeRecordKeepingEdit(int id)
         {
             return View(await _IncomeRecordKeeping.ViewEdit(id));
         }
@@ -80,6 +80,20 @@ namespace IMIS.Controllers.Setup
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/IncomeRecordKeepinglist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{brandId}/IncomeRecordKeepingDelete.html")]
+        public async Task<IActionResult> IncomeRecordKeepingDelete(int brandId)
+        {
+            var response = await _IncomeRecordKeeping.DeleteIncomeRecordKeeping(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/IncomeRecordKeepinglist.html");
             }

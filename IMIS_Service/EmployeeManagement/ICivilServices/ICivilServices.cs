@@ -49,6 +49,7 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
                                         select new
                                         {
                                             bm.Id,
+                                            bm.Code,
                                             bm.NameNp,
                                             bm.NameEn 
                                         });

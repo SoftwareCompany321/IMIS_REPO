@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/CivilServicesEdit.html")]
-        public async Task<IActionResult> CivilServicesEdit(decimal id)
+        [Route("/{id}/CivilServicesEdit.html")]
+        public async Task<IActionResult> CivilServicesEdit(int id)
         {
             return View(await _CivilServices.ViewEdit(id));
         }

@@ -101,16 +101,16 @@ namespace IMIS_Service.Setup.IItemMaster
             }
         }
 
-        public   List<SelectListItem>  InvUntList()
+        public List<SelectListItem> InvUntList()
         {
             var landlist = new List<SelectListItem>();
 
-            var list =  (from itemmaster in _db.InvItemMst
-                              join invunt in _db.InvUnit on itemmaster.UnitId equals invunt.UnitId into leftjoin
-                              from leftunit in leftjoin.DefaultIfEmpty()
-                              join invcat in _db.InvItemCategory on itemmaster.ItemType equals invcat.Id into leftjoincat
-                              from leftcat in leftjoincat.DefaultIfEmpty()
-                              select new { Id = itemmaster.ItemId, Text = itemmaster.Code + ' ' + itemmaster.NameEn + ' ' + leftcat.NameEn + ' ' + leftunit.DescEn }).ToList();
+            var list = (from itemmaster in _db.InvItemMst
+                        join invunt in _db.InvUnit on itemmaster.UnitId equals invunt.UnitId into leftjoin
+                        from leftunit in leftjoin.DefaultIfEmpty()
+                        join invcat in _db.InvItemCategory on itemmaster.ItemType equals invcat.Id into leftjoincat
+                        from leftcat in leftjoincat.DefaultIfEmpty()
+                        select new { Id = itemmaster.ItemId, Text = itemmaster.Code + ' ' + itemmaster.NameEn + ' ' + leftcat.NameEn + ' ' + leftunit.DescEn }).ToList();
             if (list.Count > 0)
             {
                 foreach (var item in list)
@@ -124,13 +124,13 @@ namespace IMIS_Service.Setup.IItemMaster
                 }
             }
             return landlist;
-        } 
-        public   List<SelectListItem>  CountryList()
+        }
+        public List<SelectListItem> CountryList()
         {
             var fuellist = new List<SelectListItem>();
 
-            var list =  (from nt in _db.Nationalities
-                              select new { Id = nt.Code, Text = Utils.ToggleLanguage(nt.Engname, nt.Nepname) }).ToList();
+            var list = (from nt in _db.Nationalities
+                        select new { Id = nt.Code, Text = Utils.ToggleLanguage(nt.Engname, nt.Nepname) }).ToList();
             if (list.Count > 0)
             {
                 foreach (var item in list)
@@ -145,12 +145,12 @@ namespace IMIS_Service.Setup.IItemMaster
             }
             return fuellist;
         }
-        public  List<SelectListItem> FuelMaintenanceDtl()
+        public List<SelectListItem> FuelMaintenanceDtl()
         {
             var fuellist = new List<SelectListItem>();
 
-            var list =  (from fuel in _db.TblVehicleParts 
-                              select new { Id = fuel.Sn, Text =Utils.ToggleLanguage(fuel.EngName,fuel.NpName) }).ToList();
+            var list = (from fuel in _db.TblVehicleParts
+                        select new { Id = fuel.Sn, Text = Utils.ToggleLanguage(fuel.EngName, fuel.NpName) }).ToList();
             if (list.Count > 0)
             {
                 foreach (var item in list)
@@ -165,12 +165,12 @@ namespace IMIS_Service.Setup.IItemMaster
             }
             return fuellist;
         }
-        public   List<SelectListItem>  OthersetupList()
+        public List<SelectListItem> OthersetupList()
         {
             var unitlist = new List<SelectListItem>();
 
-            var list =  (from its in _db.InvTypeSetup
-                              select new { Id = its.Id, Text = Utils.ToggleLanguage(its.DescEn, its.DescNp) }).ToList();
+            var list = (from its in _db.InvTypeSetup
+                        select new { Id = its.Id, Text = Utils.ToggleLanguage(its.DescEn, its.DescNp) }).ToList();
             if (unitlist.Count > 0)
             {
                 foreach (var item in list)
@@ -185,12 +185,12 @@ namespace IMIS_Service.Setup.IItemMaster
             }
             return unitlist;
         }
-        public   List<SelectListItem>  UnitList()
+        public List<SelectListItem> UnitList()
         {
             var unitlist = new List<SelectListItem>();
 
-            var list =  (from unit in _db.InvUnit
-                              select new { Id = unit.UnitId, Text = Utils.ToggleLanguage(unit.DescEn, unit.DescNp) }).ToList();
+            var list = (from unit in _db.InvUnit
+                        select new { Id = unit.UnitId, Text = Utils.ToggleLanguage(unit.DescEn, unit.DescNp) }).ToList();
             if (unitlist.Count > 0)
             {
                 foreach (var item in list)
@@ -205,12 +205,12 @@ namespace IMIS_Service.Setup.IItemMaster
             }
             return unitlist;
         }
-        public   List<SelectListItem>  ItemCategroyList()
+        public List<SelectListItem> ItemCategroyList()
         {
             var unitlist = new List<SelectListItem>();
 
-            var list =  (from ivt in _db.InvItemCategory
-                              select new { Id = ivt.Id, Text = Utils.ToggleLanguage(ivt.NameEn, ivt.NameNp) }).ToList();
+            var list = (from ivt in _db.InvItemCategory
+                        select new { Id = ivt.Id, Text = Utils.ToggleLanguage(ivt.NameEn, ivt.NameNp) }).ToList();
             if (unitlist.Count > 0)
             {
                 foreach (var item in list)
@@ -225,13 +225,13 @@ namespace IMIS_Service.Setup.IItemMaster
             }
             return unitlist;
         }
-        public   List<SelectListItem>  ItemSubCategroyList(int id=0)
+        public List<SelectListItem> ItemSubCategroyList(int id = 0)
         {
             var unitlist = new List<SelectListItem>();
 
-            var list =  (from ivt in _db.InvItemCategory
-                              where ivt.ParentId==id
-                              select new { Id = ivt.Id, Text = Utils.ToggleLanguage(ivt.NameEn, ivt.NameNp) }).ToList();
+            var list = (from ivt in _db.InvItemCategory
+                        where ivt.ParentId == id
+                        select new { Id = ivt.Id, Text = Utils.ToggleLanguage(ivt.NameEn, ivt.NameNp) }).ToList();
             if (unitlist.Count > 0)
             {
                 foreach (var item in list)
@@ -268,10 +268,35 @@ namespace IMIS_Service.Setup.IItemMaster
 
                 var accMasters = (from iim in _db.InvItemMst
                                   select new
-                                  {
+                                  {   iim.Code,
                                       iim.ItemId,
                                       iim.NameEn,
-                                      iim.NameNp
+                                      iim.NameNp,
+                                      iim.Companyname,
+                                      iim.Unit,
+                                      iim.ItemMainClass,
+                                      iim.ItemNature,
+                                      iim.KittaNo,
+                                      iim.Countryid,
+                                      iim.Maxl,
+                                      iim.Minl,
+                                      iim.Minrate,
+                                      iim.Depmaxrate,
+                                      iim.Depreciation,
+                                      iim.AccId,
+                                      iim.Constructontype,
+                                      iim.Landid,
+                                      iim.LandUnitRate,
+                                      iim.Propertytype,
+                                      iim.Source,
+                                      iim.VehiclePartsId.HasValue,
+                                      iim.ItemType,
+                                      iim.Rmaxl,
+                                      iim.Rminl,
+                                      iim.LandAreaInsqFeets,
+                                      iim.LandLocation,
+                                      iim.Remarks
+                                     
                                   });
                 ///filter count for the total; record
                 ///
@@ -317,8 +342,8 @@ namespace IMIS_Service.Setup.IItemMaster
             {
                 var response = await _db.InvItemMst.Where(x => x.AccId == Id).FirstOrDefaultAsync();
                 if (response != null)
-                { 
-                    ItemMasterVM vm= _mapper.Map<ItemMasterVM>(response);
+                {
+                    ItemMasterVM vm = _mapper.Map<ItemMasterVM>(response);
                     vm.landdesc = InvUntList();
                     vm.fuelmaintenance = FuelMaintenanceDtl();
                     vm.unitlist = UnitList();

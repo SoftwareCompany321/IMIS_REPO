@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/BankDtlEdit.html")]
-        public async Task<IActionResult> BankDtlEdit(decimal id)
+        [Route("/{id}/BankDtlEdit.html")]
+        public async Task<IActionResult> BankDtlEdit(int id)
         {
             return View(await _BankDtl.ViewEdit(id));
         }
@@ -80,6 +80,20 @@ namespace IMIS.Controllers.Setup
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/BankDtllist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{brandId}/BankDtlDelete.html")]
+        public async Task<IActionResult> BankDtlDelete(int brandId)
+        {
+            var response = await _BankDtl.DeleteBankDtl(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/BankDtllist.html");
             }

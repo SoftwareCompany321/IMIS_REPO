@@ -65,8 +65,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/InvAdujTypeEdit.html")]
-        public async Task<IActionResult> InvAdujTypeEdit(decimal id)
+        [Route("/{id}/InvAdujTypeEdit.html")]
+        public async Task<IActionResult> InvAdujTypeEdit(int id)
         {
             return View(await _InvAdujType.ViewEdit(id));
         }
@@ -79,6 +79,20 @@ namespace IMIS.Controllers.Setup
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/InvAdujTypelist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{brandId}/InvAdujTypeDelete.html")]
+        public async Task<IActionResult> InvAdujTypeDelete(int brandId)
+        {
+            var response = await _InvAdujType.DeleteInvAdujType(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/InvAdujTypelist.html");
             }

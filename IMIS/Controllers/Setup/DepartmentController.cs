@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/DepartmentEdit.html")]
-        public async Task<IActionResult> DepartmentEdit(decimal id)
+        [Route("/{id}/DepartmentEdit.html")]
+        public async Task<IActionResult> DepartmentEdit(int id)
         {
             return View(await _Department.ViewEdit(id));
         }
@@ -80,6 +80,20 @@ namespace IMIS.Controllers.Setup
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/Departmentlist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{brandId}/DepartmentDelete.html")]
+        public async Task<IActionResult> DepartmentDelete(int brandId)
+        {
+            var response = await _Department.DeleteDepartment(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/Departmentlist.html");
             }

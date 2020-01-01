@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/SupplierListingDescDelete.html")]
+        public async Task<IActionResult> SupplierListingDescDelete(int brandId)
+        {
+            var response = await _SupplierListingDesc.DeleteSupplierListingDescType(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/SupplierListingDesclist.html");
+            }
+            return View();
+        }
     }
 }

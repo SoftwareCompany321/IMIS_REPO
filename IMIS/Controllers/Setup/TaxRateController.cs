@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/TaxRateDelete.html")]
+        public async Task<IActionResult> TaxRateDelete(int brandId)
+        {
+            var response = await _TaxRate.DeleteTaxRate(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/TaxRatelist.html");
+            }
+            return View();
+        }
     }
 }

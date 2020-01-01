@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/CountryDtlEdit.html")]
-        public async Task<IActionResult> CountryDtlEdit(decimal id)
+        [Route("/{id}/CountryDtlEdit.html")]
+        public async Task<IActionResult> CountryDtlEdit(int id)
         {
             return View(await _CountryDtl.ViewEdit(id));
         }
@@ -80,6 +80,20 @@ namespace IMIS.Controllers.Setup
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/CountryDtllist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{brandId}/CountryDtlDelete.html")]
+        public async Task<IActionResult> CountryDtlDelete(int brandId)
+        {
+            var response = await _CountryDtl.DeleteCountryDtl(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/CountryDtllist.html");
             }

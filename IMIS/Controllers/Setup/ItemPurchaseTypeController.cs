@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/ItemPurchaseTypeDelete.html")]
+        public async Task<IActionResult> ItemPurchaseTypeDelete(int brandId)
+        {
+            var response = await _ItemPurchaseType.DeleteItemPurchaseType(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemPurchaseTypelist.html");
+            }
+            return View();
+        }
     }
 }

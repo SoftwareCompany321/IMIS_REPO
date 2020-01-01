@@ -82,8 +82,7 @@ namespace IMIS.Controllers.Setup
         [HttpGet]
         [Route("/{Id}/ItemMasterEdit.html")]
         public async Task<IActionResult> ItemMasterEdit(int Id)
-        {
-             
+        { 
            
             return View(await _ItemMaster.ViewEdit(Id));
         }
@@ -108,6 +107,20 @@ namespace IMIS.Controllers.Setup
             model.othsetuplist = _ItemMaster.OthersetupList();
             model.CountryList = _ItemMaster.CountryList();
 
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{brandId}/ItemMasterDelete.html")]
+        public async Task<IActionResult> ItemMasterDelete(int brandId)
+        {
+            var response = await _ItemMaster.DeleteItemMaster(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemMasterlist.html");
+            }
             return View();
         }
     }

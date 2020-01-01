@@ -43,11 +43,10 @@
                                 <thead>
                                     <tr>
                                         <th>@Utils.GetLabel("Id")</th>
-
+                                        <th>@Utils.GetLabel("accCode")</th>
                                         <th>@Utils.GetLabel("Description(Nepali)")</th>
-
                                         <th>@Utils.GetLabel("Description(English)")</th>
-
+                                        <th>@Utils.GetLabel("FiscalYear")</th>
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
@@ -93,11 +92,11 @@
 
                 "columns": [
                 { "data": "accId", "orderable": true },
+                { "data": "accCode", "orderable": true },
                 { "data": "code", "orderable": true },
-                { "data": "nepName", "orderable": true },
                 { "data": "engName", "orderable": false },
-                { "data": "accCode", "orderable": false },
-                { "data": "accCode", "orderable": false },
+                { "data": "nepName", "orderable": false },
+                { "data": "fiscalYear", "orderable": false }, 
                 ],
                 order: [
 
@@ -110,7 +109,13 @@
                 ],
                 "fnInitComplete": function (oSettings, json) {
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
-				},
+                },
+                'createdRow': function (row, data, dataIndex) {
+                      $(row).attr('id', data.accId);
+                         var url = '/' + data.accId + '/AccountHeaderEdit.html'; //edit for the parent  
+                    jQuery('td:last', row).html("<a href=" + url + " title='Edit Supplier' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                    jQuery('td:last-child', row).append("<a href=" + url + " title='delete Supplier' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                },
 
             });
             jQuery('#usersearch').on("keyup", function () {

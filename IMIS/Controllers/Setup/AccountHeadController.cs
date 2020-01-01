@@ -59,5 +59,32 @@ namespace IMIS.Controllers.Setup
         {
             return View();
         }
+
+        [HttpGet]
+        [Route("/AccountHeaderEdit.html")]
+        public IActionResult AccountHeaderEdit(int id)
+        {
+            return View();
+        }
+        [HttpPost]
+        [Route("/AccountHeaderEdit.html")]
+        public IActionResult AccountHeaderEdit(AccountHeaderVM model)
+        {
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{brandId}/AccountHeaderDelete.html")]
+        public async Task<IActionResult> AccountHeaderDelete(int brandId)
+        {
+            var response = await _accountHead.DeleteAccountHead(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/AccountHeaderlist.html");
+            }
+            return View();
+        }
     }
 }

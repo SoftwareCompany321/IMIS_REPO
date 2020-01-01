@@ -50,7 +50,8 @@ namespace IMIS_Service.EmployeeManagement.IOfficeAppPos
                                         {
                                             bm.LocalPostId,
                                             bm.LocalPostName,
-                                            bm.LocalPostNameEn 
+                                            bm.LocalPostNameEn,
+                                            bm.Code
                                         });
                 ///filter count for the total; record
                 ///

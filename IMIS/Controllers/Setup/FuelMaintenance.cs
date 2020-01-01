@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/FuelMaintenanceEdit.html")]
-        public async Task<IActionResult> FuelMaintenanceEdit(decimal id)
+        [Route("/{id}/FuelMaintenanceEdit.html")]
+        public async Task<IActionResult> FuelMaintenanceEdit(int id)
         {
             return View(await _FuelMaintenance.ViewEdit(id));
         }
@@ -80,6 +80,20 @@ namespace IMIS.Controllers.Setup
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/FuelMaintenancelist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{brandId}/FuelMaintenanceDelete.html")]
+        public async Task<IActionResult> FuelMaintenanceDelete(int brandId)
+        {
+            var response = await _FuelMaintenance.DeleteFuelMaintenance(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/FuelMaintenancelist.html");
             }

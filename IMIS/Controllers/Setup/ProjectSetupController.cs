@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/ProjectSetupDelete.html")]
+        public async Task<IActionResult> ProjectSetupDelete(int brandId)
+        {
+            var response = await _ProjectSetup.DeleteProjectSetup(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ProjectSetuplist.html");
+            }
+            return View();
+        }
     }
 }
