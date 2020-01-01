@@ -86,7 +86,7 @@ namespace IMIS_Service.Setup.IItemUnit
                 }
 
                 var accMasters = (from iu in _db.InvUnit
-                                  where iu.IsActive == true
+                                  where iu.IsActive == true 
                                   select new
                                   {
                                       iu.UnitId,

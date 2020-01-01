@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                 }
 
                 var accMasters =  (from tvp in _db.TblVehicleParts
-                                        select new
+                                   where tvp.IsActive == true
+                                   select new
                                         {
                                             tvp.Sn,
                                             tvp.NpName,

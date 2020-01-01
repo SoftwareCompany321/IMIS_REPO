@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.IIncomeRecordKeeping
                 }
 
                 var accMasters =  (from sb in _db.Storedbills
-                                        select new
+                                   where sb.IsActive == true
+                                   select new
                                         {
                                             sb.Code,
                                             sb.Billtype,

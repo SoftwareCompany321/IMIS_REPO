@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.IOrganizationType
                 }
 
                 var accMasters =  (from iot in _db.InvOrgType
-                                        select new
+                                   where iot.IsActive == true
+                                   select new
                                         {
                                             iot.Id,
                                             iot.NameEn,

@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.IWareHouse
                 }
 
                 var accMasters =  (from wareHouse in _db.InvWarehouse
-                                        select new
+                                   where wareHouse.IsActive == true
+                                   select new
                                         {
                                             wareHouse.WarehouseId,
                                             wareHouse.NameEn,

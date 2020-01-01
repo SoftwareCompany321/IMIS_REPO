@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.IRoomDetials
                 }
 
                 var accMasters =  (from IRM in _db.InvRoomMst
-                                        select new
+                                   where IRM.IsActive == true
+                                   select new
                                         {
                                             IRM.RoomId,
                                             IRM.BlockNo,

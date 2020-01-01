@@ -52,6 +52,7 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
                 }
 
                 var accMasters = (from iypp in _db.InvYrlyPurPlan
+                                  where iypp.IsActive == true
                                   select new
                                   {
                                       iypp.Id,

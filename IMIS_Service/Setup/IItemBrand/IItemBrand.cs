@@ -82,7 +82,8 @@ namespace IMIS_Service.Setup.IItemBrand
                 }
 
                 var accMasters =  (from ib in _db.InvBrand
-                                        select new
+                                   where ib.IsActive == true
+                                   select new
                                         {
                                             ib.BrandId,
                                             ib.Code,

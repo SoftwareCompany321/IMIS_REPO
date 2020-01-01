@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.IProjectSetup
                 }
 
                 var accMasters =  (from ip in _db.InvProject
-                                        select new
+                                   where ip.IsActive == true
+                                   select new
                                         {
                                             ip.InvRequisitionMast,
                                             //ip.IsActive,

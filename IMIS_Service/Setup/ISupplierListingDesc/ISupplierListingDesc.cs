@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.ISupplierListingDesc
                 }
 
                 var accMasters =  (from sfc in _db.InvSupplierFiscalyear
-                                        select new
+                                   where sfc.IsActive == true
+                                   select new
                                         {
                                             sfc.Id,
                                             sfc.SupId,

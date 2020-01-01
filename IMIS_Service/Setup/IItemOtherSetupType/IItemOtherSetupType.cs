@@ -48,7 +48,8 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
                 }
 
                 var accMasters =  (from its in _db.InvTypeSetup
-                                        select new
+                                   where its.IsActive == true
+                                   select new
                                         {
                                             its.Id,
                                             its.DescEn,

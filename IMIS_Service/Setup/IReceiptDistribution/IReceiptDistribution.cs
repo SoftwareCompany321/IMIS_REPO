@@ -47,6 +47,7 @@ namespace IMIS_Service.Setup.IReceiptDistribution
                 }
 
                 var accMasters = (from ib in _db.Issuedbills
+                                  where ib.IsActive == true
                                   select new
                                   {
                                       ib.Billnofrom,

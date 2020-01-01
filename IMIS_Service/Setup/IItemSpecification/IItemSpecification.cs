@@ -47,9 +47,11 @@ namespace IMIS_Service.Setup.IItemSpecification
                 }
 
                 var accMasters =  (from iis in _db.InvItemSpec
-                                        select new
+                                   where iis.IsActive == true
+                                   select new
                                         {
                                             iis.SpecId,
+                                            iis.Code,
                                             iis.NameEn,
                                             iis.NameNp 
                                         });
@@ -99,7 +101,9 @@ namespace IMIS_Service.Setup.IItemSpecification
                 {
                     SpecId = Model.SpecId,
                     NameEn = Model.NameEn,
-                    NameNp = Model.NameNp
+                    NameNp = Model.NameNp,
+                    Code=Model.Code,
+                    IsActive=Model.IsActive
 
                 };
 
@@ -134,7 +138,9 @@ namespace IMIS_Service.Setup.IItemSpecification
                     {
                         SpecId = data.SpecId,
                         NameNp = data.NameNp,
-                        NameEn = data.NameEn 
+                        NameEn = data.NameEn,
+                        Code = data.Code,
+                        IsActive = data.IsActive
                     };
                 }
                 else

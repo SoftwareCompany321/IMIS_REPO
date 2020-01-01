@@ -25,9 +25,10 @@ namespace IMIS_Service.Setup.IReceiptDistributionCenter
     {
         private readonly IMISDbContext _db;
         private readonly IMapper _mapper;
-        public ReceiptDistributionCenter(IMISDbContext db)
+        public ReceiptDistributionCenter(IMISDbContext db, IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
         }
 
         public async Task<(string message, int Id)> AddEditSave(ReceiptDistributionCenterVM model)
@@ -82,7 +83,8 @@ namespace IMIS_Service.Setup.IReceiptDistributionCenter
                 }
 
                 var accMasters =  (from cc in _db.Collectioncounters
-                                        select new
+                                   where cc.IsActive == true
+                                   select new
                                         {
                                             cc.Location,
                                             cc.Macaddress,

@@ -51,6 +51,7 @@ namespace IMIS_Service.Setup.IItemSupplierDtl
                 }
 
                 var accMasters = (from invs in _db.InvSupplier
+                                  where invs.IsActive == true
                                   select new
                                   {
                                       invs.SupId,

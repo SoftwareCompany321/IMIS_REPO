@@ -35,14 +35,15 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                 var item = new InvPurType()
                 {
                     Id = model.Id,
-                    Code=model.Code,
+                    Code = model.Code,
                     NepEng = model.NepEng,
                     NepName = model.NepName,
                     Isdefault = model.Isdefault,
-                    Remarks = model.Remarks
+                    Remarks = model.Remarks,
+                    IsActive=model.IsActive
                 };
                 if (model.Id == 0)
-                {  
+                {
                     _db.Entry(item).State = EntityState.Added;
                 }
                 else
@@ -81,6 +82,7 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                     draw = model.draw;
                 }
                 var accMasters = (from ipt in _db.InvPurType
+                                  where ipt.IsActive == true
                                   select new
                                   {
                                       ipt.Id,
@@ -135,11 +137,12 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                 {
                     return (new ItemPurchaseTypeVM()
                     {
-                        NepEng=response.NepEng,
-                        Code=response.Code,
-                        NepName=response.NepName,
-                        Remarks=response.Remarks,
-                        Isdefault=response.Isdefault
+                        NepEng = response.NepEng,
+                        Code = response.Code,
+                        NepName = response.NepName,
+                        Remarks = response.Remarks,
+                        Isdefault = response.Isdefault,
+                        IsActive=response.IsActive
                     });
                 }
                 else

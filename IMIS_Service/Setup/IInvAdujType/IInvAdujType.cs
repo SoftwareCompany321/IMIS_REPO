@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.IInvAdujType
                 }
 
                 var accMasters =  (from iiat in _db.InvItemAdjType
-                                        select new
+                                   where iiat.IsActive == true
+                                   select new
                                         {
                                             iiat.Id,
                                             iiat.NameEn,

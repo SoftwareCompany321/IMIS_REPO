@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.ITaxRate
                 }
 
                 var accMasters =  (from taxRate in _db.InvTaxRate
-                                        select new
+                                   where taxRate.IsActive == true
+                                   select new
                                         {
                                             taxRate.TaxRateId,
                                             taxRate.TaxRate,

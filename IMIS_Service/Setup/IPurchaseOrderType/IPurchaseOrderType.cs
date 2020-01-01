@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
                 }
 
                 var accMasters =  (from tka in _db.TblKharidaAadash
-                                        select new
+                                   where tka.IsActive == true
+                                   select new
                                         {
                                             tka.EngName,
                                             tka.Id,

@@ -47,7 +47,8 @@ namespace IMIS_Service.Setup.IItemPurMasterPlan
                 }
 
                 var accMasters =  (from ipmp in _db.InvPurMastPlan
-                                        select new
+                                   where ipmp.IsActive == true
+                                   select new
                                         {
                                             ipmp.Id,
                                             ipmp.NameEn,
