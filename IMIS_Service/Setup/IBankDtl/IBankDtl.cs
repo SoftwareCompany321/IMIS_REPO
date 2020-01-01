@@ -172,5 +172,24 @@ namespace IMIS_Service.Setup.IBankDtl
             }
 
         }
+
+        public async Task<string> DeleteById(int id)
+        {
+            try
+            {
+                var data = await _db.Bankmaster.Where(x => x.Bankid == id).FirstOrDefaultAsync();
+                if (data != null)
+                {
+                    _db.Bankmaster.Remove(data);
+                    _db.SaveChanges(true);
+                    return "success";
+                }
+                return "fail";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
