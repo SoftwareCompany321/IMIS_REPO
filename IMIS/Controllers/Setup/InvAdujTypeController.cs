@@ -65,8 +65,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/InvAdujTypeEdit.html")]
-        public async Task<IActionResult> InvAdujTypeEdit(decimal id)
+        [Route("/{id}/InvAdujTypeEdit.html")]
+        public async Task<IActionResult> InvAdujTypeEdit(int id)
         {
             return View(await _InvAdujType.ViewEdit(id));
         }

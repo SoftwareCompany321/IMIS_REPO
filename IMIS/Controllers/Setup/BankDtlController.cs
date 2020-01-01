@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/BankDtlEdit.html")]
-        public async Task<IActionResult> BankDtlEdit(decimal id)
+        [Route("/{id}/BankDtlEdit.html")]
+        public async Task<IActionResult> BankDtlEdit(int id)
         {
             return View(await _BankDtl.ViewEdit(id));
         }
@@ -84,6 +84,12 @@ namespace IMIS.Controllers.Setup
                 return Redirect("~/BankDtllist.html");
             }
             return View();
+        }
+        [HttpGet]
+        [Route("/{id}/BankDtlDelete.html")]
+        public async Task<IActionResult> BankDtlDelete(int id)
+        {
+            return View(await _BankDtl.DeleteById(id));
         }
     }
 }

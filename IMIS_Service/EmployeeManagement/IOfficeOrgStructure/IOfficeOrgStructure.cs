@@ -48,7 +48,11 @@ namespace IMIS_Service.EmployeeManagement.IOfficeOrgStructure
                 var accMasters =  (from bm in _db.OrganizationTree
                                         select new
                                         {
-                                            bm.Id 
+                                            bm.Id ,
+                                            bm.Code,
+                                            bm.ContainsDarbandi,
+                                            bm.EngName,
+                                            bm.NepName,
                                         });
                 ///filter count for the total; record
                 ///

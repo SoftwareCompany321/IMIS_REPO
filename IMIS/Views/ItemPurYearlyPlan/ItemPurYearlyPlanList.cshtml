@@ -117,7 +117,8 @@
                  'createdRow': function (row, data, dataIndex) {
                       $(row).attr('id', data.id);
                          var url = '/' + data.id + '/ItemPurYearlyPlanEdit.html'; //edit for the parent  
-                      jQuery('td:last', row).html("<a href=" + url + " title='Edit Supplier' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                     jQuery('td:last', row).html("<a href=" + url + " title='Edit Supplier' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                     jQuery('td:last-child', row).append("<a href=" + url + " title='delete' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                 },
                 "paging": true,
                 "pageLength": 10,
@@ -127,6 +128,7 @@
                 "fnInitComplete": function (oSettings, json) {
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
 				},
+
 
             });
             jQuery('#usersearch').on("keyup", function () {

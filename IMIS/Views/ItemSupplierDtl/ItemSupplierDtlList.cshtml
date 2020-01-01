@@ -116,7 +116,8 @@
                 'createdRow': function (row, data, dataIndex) {
                       $(row).attr('id', data.supId);
                          var url = '/' + data.supId + '/ItemSupplierDtlEdit.html'; //edit for the parent  
-                      jQuery('td:last', row).html("<a href=" + url + " title='Edit Supplier' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                    jQuery('td:last', row).html("<a href=" + url + " title='Edit Supplier' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                    jQuery('td:last-child', row).append("<a href=" + url + " title='delete' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                 },
 
                 "paging": true,

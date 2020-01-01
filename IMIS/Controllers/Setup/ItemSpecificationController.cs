@@ -65,10 +65,10 @@ namespace IMIS.Controllers.Setup
         }
         [HttpGet]
 
-        [Route("{SpecificationId}/ItemSpecificationEdit.html")]
-        public async Task<IActionResult> ItemSpecificationEdit(int SpecificationId)
+        [Route("{Id}/ItemSpecificationEdit.html")]
+        public async Task<IActionResult> ItemSpecificationEdit(int Id)
         {
-            return View(await _ItemSpecification.ViewOrEditData(SpecificationId));
+            return View(await _ItemSpecification.ViewOrEditData(Id));
         }
         [HttpPost]
         [Route("{SpecificationId}/ItemSpecificationEdit.html")]

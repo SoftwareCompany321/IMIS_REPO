@@ -64,7 +64,7 @@
                                         <th>@Utils.GetLabel("Remarks")</th>
                                         <th>@Utils.GetLabel("Kitta No")</th>
                                         <th>@Utils.GetLabel("Structure Type")</th>
-                                        <th>@Utils.GetLabel("Fuel Repair Details")</th> 
+                                        <th>@Utils.GetLabel("Fuel Repair Details")</th>
                                     </tr>
                                 </thead>
 
@@ -86,7 +86,7 @@
     <script src="js/bootstrap.min.js"></script>
 </body>
 
- 
+
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {
             var table = jQuery("#account");
@@ -105,15 +105,33 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-                
+
 
                 "columns": [
-                { "data": "accId", "orderable": true },
                 { "data": "code", "orderable": true },
                 { "data": "nepName", "orderable": true },
                 { "data": "engName", "orderable": false },
-                { "data": "accCode", "orderable": false },
-                { "data": "accCode", "orderable": false },
+                { "data": "unit", "orderable": false },
+                { "data": "itemMainClass", "orderable": true },
+                { "data": "itemId", "orderable": true },
+                { "data": "itemType", "orderable": true },
+                { "data": "itemNature", "orderable": true },
+                { "data": "countryid", "orderable": true },
+                { "data": "companyname", "orderable": true },
+                { "data": "maxl", "orderable": true },
+                { "data": "minl", "orderable": false }, 
+                { "data": "rmaxl", "orderable": false }, 
+                { "data": "rminl", "orderable": false },  
+                 { "data": "depreciation", "orderable": false },
+                 { "data": "minrate", "orderable": true },
+                { "data": "depmaxrate", "orderable": true },
+                { "data": "landAreaInsqFeets", "orderable": true },
+                { "data": "landLocation", "orderable": true },
+                { "data": "accId", "orderable": true },
+                { "data": "remarks", "orderable": true }, 
+                { "data": "KittaNo", "orderable": false }, 
+                { "data": "source", "orderable": false }, 
+                { "data": "source", "orderable": false }
                 ],
                  "rowCallback": function (row, data, index) {
                       var url ='/' + data.brandId + '/ItemMasterEdit.html';
@@ -135,7 +153,13 @@
                 ],
                 "fnInitComplete": function (oSettings, json) {
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
-				},
+                },
+                'createdRow': function (row, data, dataIndex) {
+                      $(row).attr('id', data.accId);
+                         var url = '/' + data.accId + '/BankDtlEdit.html'; //edit for the parent
+                    jQuery('td:last', row).html("<a href=" + url + " title='Edit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                    jQuery('td:last-child', row).append("<a href=" + url + " title='delete' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                },
 
             });
             jQuery('#usersearch').on("keyup", function () {

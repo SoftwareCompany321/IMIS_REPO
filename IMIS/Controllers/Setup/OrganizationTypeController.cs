@@ -66,7 +66,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/{id}OrganizationTypeEdit.html")]
+        [Route("/{id}/OrganizationTypeEdit.html")]
         public async Task<IActionResult> OrganizationTypeEdit(int id)
         {
             return View(await _OrganizationType.ViewEdit(id));

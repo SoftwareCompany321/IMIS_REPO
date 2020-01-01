@@ -82,8 +82,7 @@ namespace IMIS.Controllers.Setup
         [HttpGet]
         [Route("/{Id}/ItemMasterEdit.html")]
         public async Task<IActionResult> ItemMasterEdit(int Id)
-        {
-             
+        { 
            
             return View(await _ItemMaster.ViewEdit(Id));
         }
