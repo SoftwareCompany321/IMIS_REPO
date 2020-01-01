@@ -2,26 +2,16 @@
 
 @model IMIS_Service.ViewModel.RoomDetialsVM
     <div>
+        <input asp-for="RoomId" type="hidden" />
         <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Code")<span class="requried">*</span>
-            </label>
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
             <div class="col-md-9">
-                @if (Model.RoomId > 0)
-                {
-                    <span>@Model.Code</span>
-                }
-                else
-                {
-
-                    <input type="text" class="form-control" asp-for="Code">
-                }
-
+                <input type="text" class="form-control" asp-for="Code">
             </div>
         </div>
         <div class="form-group is-empty">
             <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel(" Room Description(English)")<span class="requried">*</span>
+                @Utils.GetLabel("Description(English)")<span class="requried">*</span>
             </label>
             <div class="col-md-9">
                 <input type="text" class="form-control" asp-for="DescEn">
@@ -29,7 +19,7 @@
         </div>
         <div class="form-group is-empty">
             <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Room Description(Nepali)")<span class="requried">*</span>
+                @Utils.GetLabel("Description(Nepali)")<span class="requried">*</span>
             </label>
             <div class="col-md-9">
                 <input type="text" class="form-control" asp-for="DescNp" onkeypress="return setUnicode(event,this);">
@@ -40,7 +30,7 @@
                 @Utils.GetLabel("Floor No.")<span class="requried">*</span>
             </label>
             <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="FloorNo">
+                <input type="number" class="form-control" asp-for="FloorNo">
             </div>
         </div>
         <div class="form-group is-empty">
@@ -48,7 +38,7 @@
                 @Utils.GetLabel("Block No.")<span class="requried">*</span>
             </label>
             <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="BlockNo">
+                <input type="number" class="form-control" asp-for="BlockNo">
             </div>
         </div>
         @*drop Box*@
@@ -57,7 +47,10 @@
                 @Utils.GetLabel("Branch")<span class="requried">*</span>
             </label>
             <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="DeptId">
+                <select asp-for="DeptId" asp-items="@ViewData["departments"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                </select>
+                
             </div>
         </div>
 

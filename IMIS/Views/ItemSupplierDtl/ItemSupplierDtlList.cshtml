@@ -91,7 +91,7 @@
                 'stateSave': false,
 
                 "columns": [
-                { "data": "supId", "orderable": true },
+                { "data": "code", "orderable": true },
                 { "data": "nameNp", "orderable": true },
                 { "data": "nameEn", "orderable": true }, 
                 { "data": "supType", "orderable": false },                
@@ -100,6 +100,15 @@
                 { "data": "supId", "orderable": true },
 
                 ],
+                 "rowCallback": function (row, data, index) {
+                      var url ='/' + data.supId + '/ItemSupplierDtlEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.supId + '/ItemSupplierDtlDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+                     
+            },
                 order: [
 
                     [1, "desc"]

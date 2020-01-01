@@ -47,10 +47,12 @@ namespace IMIS_Service.Setup.IWareHouse
                 }
 
                 var accMasters =  (from wareHouse in _db.InvWarehouse
-                                   where wareHouse.IsActive == true
+                                   where wareHouse.IsActive==true
                                    select new
                                         {
                                             wareHouse.WarehouseId,
+                                            wareHouse.Code,
+                                            wareHouse.IsActive,
                                             wareHouse.NameEn,
                                             wareHouse.NameNp
                                         });
@@ -99,6 +101,8 @@ namespace IMIS_Service.Setup.IWareHouse
                 var item = new InvWarehouse()
                 {
                     WarehouseId = model.WarehouseId,
+                    Code = model.Code,
+                    IsActive = model.IsActive,
                     NameEn = model.NameEn,
                     NameNp = model.NameNp
                 };
@@ -133,6 +137,8 @@ namespace IMIS_Service.Setup.IWareHouse
                     return (new WareHouseVM()
                     {
                         WarehouseId = response.WarehouseId,
+                        Code=response.Code,
+                        IsActive=response.IsActive,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
 

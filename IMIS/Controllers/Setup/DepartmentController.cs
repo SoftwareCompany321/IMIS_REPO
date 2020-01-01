@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace IMIS.Controllers.Setup
 {
-    public class RequisitionController : Controller
+    public class DepartmentController : Controller
     {
-        private readonly IRequisition _Department;
+        private readonly IDepartment _Department;
 
-        public RequisitionController(IRequisition Department)
+        public DepartmentController(IDepartment Department)
         {
             _Department = Department;
         }
@@ -87,10 +87,10 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("{brandId}/DepartmentDelete.html")]
-        public async Task<IActionResult> DepartmentDelete(int brandId)
+        [Route("{deptid}/DepartmentDelete.html")]
+        public async Task<IActionResult> DepartmentDelete(int deptid)
         {
-            var response = await _Department.DeleteDepartment(brandId);
+            var response = await _Department.DeleteDepartment(deptid);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Deleted";

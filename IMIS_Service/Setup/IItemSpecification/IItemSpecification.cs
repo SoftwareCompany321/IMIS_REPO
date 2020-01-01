@@ -63,7 +63,7 @@ namespace IMIS_Service.Setup.IItemSpecification
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
+                        accMasters = accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
@@ -75,19 +75,19 @@ namespace IMIS_Service.Setup.IItemSpecification
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =finallist
+                    data = finallist
                 };
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return new DataTableResponse
                 {
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =0
+                    data = 0
                 };
                 //add to do for the error log save in db
             }
@@ -100,6 +100,7 @@ namespace IMIS_Service.Setup.IItemSpecification
                 var AddEdit = new InvItemSpec()
                 {
                     SpecId = Model.SpecId,
+                    Code = Model.Code,
                     NameEn = Model.NameEn,
                     NameNp = Model.NameNp,
                     Code=Model.Code,
@@ -137,6 +138,7 @@ namespace IMIS_Service.Setup.IItemSpecification
                     return new ItemSpecificationVM()
                     {
                         SpecId = data.SpecId,
+                        Code = data.Code,
                         NameNp = data.NameNp,
                         NameEn = data.NameEn,
                         Code = data.Code,

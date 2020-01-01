@@ -2,18 +2,12 @@
 
 @model IMIS_Service.ViewModel.BankDtlVM
     <div>
+        <input asp-for="Bankid" type="hidden" />
         <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Code")<span class="requried">*</span>
-            </label>
-            <input asp-for="Bankid" type="hidden" />
-            <div class="form-group is-empty">
-                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" asp-for="Code">
-                </div>
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Code">
             </div>
-            
         </div>
 
         <div class="form-group is-empty">

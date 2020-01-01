@@ -87,10 +87,10 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("{brandId}/WareHouseDelete.html")]
-        public async Task<IActionResult> WareHouseDelete(int brandId)
+        [Route("{id}/WareHouseDelete.html")]
+        public async Task<IActionResult> WareHouseDelete(int id)
         {
-            var response = await _WareHouse.DeleteWareHouse(brandId);
+            var response = await _WareHouse.DeleteWareHouse(id);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Deleted";

@@ -61,7 +61,7 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/AccountHeaderEdit.html")]
+        [Route("/{id}/AccountHeaderEdit.html")]
         public IActionResult AccountHeaderEdit(int id)
         {
             return View();

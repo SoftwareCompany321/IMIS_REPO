@@ -87,13 +87,13 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("{brandId}/CountryDtlDelete.html")]
-        public async Task<IActionResult> CountryDtlDelete(int brandId)
+        [Route("/{id}/CountryDtlDelete.html")]
+        public async Task<IActionResult> CountryDtlDelete(int id)
         {
-            var response = await _CountryDtl.DeleteCountryDtl(brandId);
-            if (response.message == "success")
+            var response = await _CountryDtl.Delete(id);
+            if (response == "success")
             {
-                TempData["Message"] = "Successfully Deleted";
+                TempData["Message"] = "Successfully deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/CountryDtllist.html");
             }

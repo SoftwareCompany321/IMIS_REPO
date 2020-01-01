@@ -68,7 +68,9 @@
     <script src="js/plugins/script.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-</body> 
+</body>
+ 
+
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {
             var table = jQuery("#account");
@@ -87,28 +89,21 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-                //'select': {
-                //    info: false
-                //},
-                // 'columnDefs': [AccId
-                //    {
-                //        'targets': 0,
-                //        'checkboxes': {
-                //            'selectRow': true,
-                //            'selectAll': true,
-                //            'className': 'select-checkbox',
-                //        }
-                //    }
-                //],
-                //'select': {
-                //    'style': 'multi'
-                //},
-
+              
                 "columns": [
                 { "data": "nationalityid", "orderable": true }, 
                 { "data": "nepName", "orderable": true },
                 { "data": "engName", "orderable": false }, 
                 ],
+                 "rowCallback": function (row, data, index) {
+                      var url ='/' + data.brandId + '/CountryDtlEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.brandId + '/CountryDtlDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+                     
+            },
                 order: [
 
                     [1, "desc"]

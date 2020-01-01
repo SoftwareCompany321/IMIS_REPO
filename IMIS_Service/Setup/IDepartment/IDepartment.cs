@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace IMIS_Service.Setup.IDepartment
 {
-    public interface IRequisition
+    public interface IDepartment
     {
         Task<DataTableResponse> DepartmentFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditDepartment(DepartmentVM model);
         Task<(string message, int Id)> DeleteDepartment(int UnitId);
         Task<DepartmentVM> ViewEdit(decimal Id);
     }
-    public class Department : IRequisition
+    public class Department : IDepartment
     {
         private readonly IMISDbContext _db;
         public Department(IMISDbContext db)
@@ -47,11 +47,14 @@ namespace IMIS_Service.Setup.IDepartment
                 }
 
                 var accMasters =  (from ids in _db.InvDept
+                                   where ids.IsActive==true
                                         select new
                                         {
                                             ids.DeptId,
+                                            ids.Code,
                                             ids.NameEn,
-                                            ids.NameNp 
+                                            ids.NameNp ,
+                                            ids.IsActive
                                         });
                 ///filter count for the total; record
                 ///
@@ -97,8 +100,10 @@ namespace IMIS_Service.Setup.IDepartment
                 var item = new InvDept()
                 {
                     DeptId = model.DeptId,
+                    Code=model.Code,
                     NameEn = model.NameEn,
-                    NameNp = model.NameNp 
+                    NameNp = model.NameNp ,
+                    IsActive=model.IsActive
                 };
                 if (model.DeptId == 0)
                 {
@@ -131,9 +136,10 @@ namespace IMIS_Service.Setup.IDepartment
                     return (new DepartmentVM()
                     {
                         DeptId = response.DeptId ,
+                        Code=response.Code,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
-
+                        IsActive=response.IsActive,
                     });
                 }
                 else
