@@ -51,11 +51,11 @@ namespace IMIS.Controllers.Setup
             });
         }
         [HttpGet]
-        [Route("/{id}/ItemCategorylist.html")]
-        public IActionResult ItemCategoryList(int id)
+        [Route("/ItemCategorylist.html")]
+        public IActionResult ItemCategoryList()
         {
-            ViewData["ParentCategory"] = _ItemCategory.GetParentItemCategory(id); //calling the all parent menu
-            return View("_partialItemCategory");
+            //ViewData["ParentCategory"] = _ItemCategory.GetParentItemCategory(id); //calling the all parent menu
+            return View();
 
         }
 
@@ -93,6 +93,7 @@ namespace IMIS.Controllers.Setup
         [Route("/{id}/ItemCategoryPartial.html")]
         public IActionResult ItemCategoryPartial(int id)
         {
+            ViewData["id"] = id;
             return View("_CategoryList");
         }
     }

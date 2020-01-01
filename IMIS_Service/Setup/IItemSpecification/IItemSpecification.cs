@@ -102,8 +102,7 @@ namespace IMIS_Service.Setup.IItemSpecification
                     SpecId = Model.SpecId,
                     Code = Model.Code,
                     NameEn = Model.NameEn,
-                    NameNp = Model.NameNp,
-                    Code=Model.Code,
+                    NameNp = Model.NameNp, 
                     IsActive=Model.IsActive
 
                 };
@@ -140,8 +139,7 @@ namespace IMIS_Service.Setup.IItemSpecification
                         SpecId = data.SpecId,
                         Code = data.Code,
                         NameNp = data.NameNp,
-                        NameEn = data.NameEn,
-                        Code = data.Code,
+                        NameEn = data.NameEn, 
                         IsActive = data.IsActive
                     };
                 }

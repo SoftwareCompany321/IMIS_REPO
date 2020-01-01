@@ -51,6 +51,8 @@ namespace IMIS_Service.Setup.IOrganizationType
                                    select new
                                         {
                                             iot.Id,
+                                            iot.Code,
+                                            iot.IsActive,
                                             iot.NameEn,
                                             iot.NameNp 
                                         });
@@ -100,7 +102,9 @@ namespace IMIS_Service.Setup.IOrganizationType
                 {
                     Id = model.Id,
                     NameEn = model.NameEn,
-                    NameNp = model.NameNp 
+                    NameNp = model.NameNp ,
+                    Code=model.Code,
+                    IsActive=model.IsActive
                 };
                 if (model.Id == 0)
                 {
@@ -135,7 +139,10 @@ namespace IMIS_Service.Setup.IOrganizationType
                     return (new OrganizationTypeVM()
                     {
                         NameEn = response.NameEn,
-                        NameNp = response.NameNp
+                        NameNp = response.NameNp,
+                        Code = response.Code,
+                        IsActive = response.IsActive,
+                        Id=response.Id
                     });
                 }
                 else
