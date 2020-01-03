@@ -1,0 +1,140 @@
+﻿@using IMIS_CORE.Core@using IMIS_CORE.Core
+@{
+    ViewData["Title"] = "ItemStatusList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<body>
+    <!-- Bootstrap Core CSS -->
+    <!-- Navigation -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="tab-lists-wrapper boxed parentTabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Item Unit List")</a> </li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <!-- tab 1: region starts -->
+                    <div class="tab-pane fade active in" id="region-tab">
+                        <!-- generic add button for all the "add" forms | Add region -->
+                        <a href="@Url.Content("~/ItemStatusCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                        <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
+                        @if (ViewBag.Message != null || ViewBag.Message == "")
+                        {
+                            <div class="alert @ViewBag.Class">
+                                @ViewBag.Message
+                            </div>
+                        }
+                        <!-- search filters -->
+                        <div class="collapse" id="searchCollapse">
+                            <div class="well">
+                                <div class="form-group">
+                                    <div class="col-sm-3 ">
+                                        <input type="text" class="form-control" placeholder=@Utils.GetLabel("Name")>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" placeholder=@Utils.GetLabel("Name(Nepali)")>
+                                    </div>
+                                    <div class="col-sm-1 pull-right"><a href="#" class="btn btn-default form-modal-call"><i class="material-icons">search</i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="menu" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>@Utils.GetLabel("Code") </th>
+                                        <th>@Utils.GetLabel("Description(Nepali)")</th>
+                                        <th>@Utils.GetLabel("Description(English)")</th>
+                                        <th>@Utils.GetLabel("Small Unit")</th>
+                                        <th>@Utils.GetLabel("Action")</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /#page-wrapper -->
+    <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins/script.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+
+
+<script lang="ja" type="text/javascript">
+
+    jQuery(document).ready(function () {
+        var table = jQuery("#menu");
+        table.dataTable({
+            "bProcessing": true,
+            "processing": true,
+            "serverSide": true,
+            "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-3"p>><"clear">',
+            'searching': true,//recordsFiltered
+            "ajax": {
+                "url": "@Url.Content("~/ItemStatusFetchData.html")", "type": "GET", "data": function (d) {
+                    d.search = $("#usersearch").val();
+
+                },
+            }
+            ,
+            "language": {
+                "infoFiltered": ""
+            },
+            'stateSave': false,
+
+            "columns": [
+                { "data": "code", "orderable": true },
+                { "data": "descNp", "orderable": true },
+                { "data": "descEn", "orderable": true },
+                { "data": "noOfUnits", "orderable": true },
+                { "data": "unitId", "orderable": true },
+
+
+            ],
+
+            "rowCallback": function (row, data, index) { 
+                var url ='/' + data.unitId + '/ItemStatusEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.unitId + '/ItemStatusDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+            },
+
+            order: [
+
+                [1, "desc"]
+            ],
+            "paging": true,
+            "pageLength": 10,
+            lengthMenu: [
+                [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
+            ],
+            "fnInitComplete": function (oSettings, json) {
+                //jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
+            },
+
+        });
+        jQuery('#usersearch').on("keyup", function () {
+            table.fnFilter(this.value);
+        }).on("keypress", function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        })
+    });
+</script>
