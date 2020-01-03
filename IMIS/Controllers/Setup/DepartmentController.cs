@@ -85,5 +85,20 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+
+        [HttpGet]
+        [Route("/{id}/DepartmentDelete.html")]
+        public async Task<IActionResult> DepartmentDelete(int id)
+        {
+            var response = await _Department.Delete(id);
+            if (response == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/Departmentlist.html");
+            }
+            return View();
+        }
     }
 }

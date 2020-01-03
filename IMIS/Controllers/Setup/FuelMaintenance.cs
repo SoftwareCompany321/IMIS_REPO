@@ -85,5 +85,18 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+        [HttpGet]
+        [Route("/{id}/FuelMaintenanceDelete.html")]
+        public async Task<IActionResult> FuelMaintenanceDelete(int id)
+        {
+            var response = await _FuelMaintenance.Delete(id);
+            if (response== "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/FuelMaintenancelist.html");
+            }
+            return View();
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace IMIS_Service.Setup.IDepartment
         Task<(string message, int id)> AddEditDepartment(DepartmentVM model);
 
         Task<DepartmentVM> ViewEdit(decimal Id);
+        Task<string> Delete(int Id);
     }
     public class Department : IDepartment
     {
@@ -45,13 +46,13 @@ namespace IMIS_Service.Setup.IDepartment
                     draw = model.draw;
                 }
 
-                var accMasters =  (from ids in _db.InvDept
-                                        select new
-                                        {
-                                            ids.DeptId,
-                                            ids.NameEn,
-                                            ids.NameNp 
-                                        });
+                var accMasters = (from ids in _db.InvDept
+                                  select new
+                                  {
+                                      ids.DeptId,
+                                      ids.NameEn,
+                                      ids.NameNp
+                                  });
                 ///filter count for the total; record
                 ///
 
@@ -60,7 +61,7 @@ namespace IMIS_Service.Setup.IDepartment
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
+                        accMasters = accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
@@ -72,19 +73,19 @@ namespace IMIS_Service.Setup.IDepartment
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =finallist
+                    data = finallist
                 };
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return new DataTableResponse
                 {
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =0
+                    data = 0
                 };
                 //add to do for the error log save in db
             }
@@ -97,7 +98,7 @@ namespace IMIS_Service.Setup.IDepartment
                 {
                     DeptId = model.DeptId,
                     NameEn = model.NameEn,
-                    NameNp = model.NameNp 
+                    NameNp = model.NameNp
                 };
                 if (model.DeptId == 0)
                 {
@@ -129,7 +130,7 @@ namespace IMIS_Service.Setup.IDepartment
                 {
                     return (new DepartmentVM()
                     {
-                        DeptId = response.DeptId ,
+                        DeptId = response.DeptId,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
 
@@ -144,6 +145,30 @@ namespace IMIS_Service.Setup.IDepartment
             {
 
                 throw;
+            }
+        }
+
+        public async Task<string> Delete(int Id)
+        {
+
+            try
+            {
+                var response = await _db.InvDept.Where(x => x.DeptId == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    _db.InvDept.Remove(response);
+                    _db.SaveChanges(true);
+                    return "success";
+                }
+                else
+                {
+                    return "fail";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }

@@ -17,6 +17,7 @@ namespace IMIS_Service.Setup.IFuelMaintenance
         Task<(string message, int id)> AddEditFuelMaintenance(FuelMaintenanceVM model);
 
         Task<FuelMaintenanceVM> ViewEdit(decimal Id);
+        Task<string> Delete(int id);
     }
     public class FuelMaintenance : IFuelMaintenance
     {
@@ -137,6 +138,29 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                 else
                 {
                     return new FuelMaintenanceVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<string> Delete(int id)
+        {
+            try
+            {
+                var response = await _db.TblVehicleParts.Where(x => x.Sn == id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    _db.TblVehicleParts.Remove(response);
+                    _db.SaveChanges(true);
+                    return "success";
+                }
+                else
+                {
+                    return "fail";
                 }
             }
             catch (Exception)
