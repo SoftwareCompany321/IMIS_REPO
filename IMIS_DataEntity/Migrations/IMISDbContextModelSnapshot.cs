@@ -65,6 +65,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("GRP_LEVEL")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("IsBudgetable")
                         .HasColumnName("IS_BUDGETABLE")
                         .HasColumnType("character varying(1)")
@@ -8731,6 +8734,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("PARENT_ID")
                         .HasColumnType("integer");
 
+                    b.Property<int>("order")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("GeoRegion");
@@ -10795,6 +10801,9 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<int?>("ParentId")
                         .HasColumnName("PARENT_ID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("order")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
