@@ -15,6 +15,7 @@ namespace IMIS_DataEntity.EntityClass
         public int? ParentId { get; set; }
         public string NameNp { get; set; }
         public string NameEn { get; set; }
+        public int order { get; set; }
         public int? GrpLevel { get; set; }
 
         public virtual PisNijamatiSewaSamuha Parent { get; set; }

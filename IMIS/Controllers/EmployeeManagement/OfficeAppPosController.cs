@@ -7,7 +7,7 @@ using IMIS_Service.EmployeeManagement.IOfficeAppPos;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IMIS.Controllers.Setup
+namespace IMIS.Controllers.EmployeeManagement
 {
     public class OfficeAppPosController : Controller
     {

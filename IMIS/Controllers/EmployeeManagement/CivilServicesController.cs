@@ -4,30 +4,47 @@ using System.Linq;
 using System.Threading.Tasks;
 using IMIS_CORE.Utility;
 using IMIS_Service.EmployeeManagement.ICivilServices;
+using IMIS_Service.GlobalFunction;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IMIS.Controllers.Setup
+namespace IMIS.Controllers.EmployeeManagement
 {
     public class CivilServicesController : Controller
     {
-        private readonly ICivilServices _CivilServices;
-
-        public CivilServicesController(ICivilServices CivilServices)
+        private readonly ICivilServices _CivilServicesService;
+        private readonly GlobalFunction _global;
+        public CivilServicesController(ICivilServices CivilServicesService, GlobalFunction global)
         {
-            _CivilServices = CivilServices;
+            _CivilServicesService = CivilServicesService;
+            _global = global;
         }
-        //for the account head controller 
         public IActionResult Index()
+        {
+            return View();
+        }
+        [HttpGet]
+        [Route("/CivilServicesTreeFetchData.html")]
+        public JsonResult ItemCategoryFetchData(DataTableVm model)
+        {
+            // var response =  _ItemCategory.ItemCategoriesFetchData1(model);
+            //return Json(repo.GetDataTree(id, TreeViewPathProvider.Instance().openedNodes));
+            return Json(_CivilServicesService.CivilServicesTreeFetchData(model));
+
+
+        }
+        [HttpGet]
+        [Route("/CivilServiceslist.html")]
+        public IActionResult CivilServicesFetchList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/CivilServicesFetchData.html")]
-        public async Task<JsonResult> CivilServicesFetchData(DataTableVm model)
+        [Route("/{id}/CivilServicesdatagetfetchdatadatable.html")]
+        public async Task<JsonResult> CivilServicesdatagetfetchdatadatable(DataTableVm model, int id)
         {
-            var response = await _CivilServices.CivilServicesFetchData(model);
+            var response = await _CivilServicesService.CivilServicesChildDataTabel(model, id);
             return Json(new
             {
                 draw = response.draw,
@@ -38,52 +55,50 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/CivilServiceslist.html")]
-        public IActionResult CivilServicesList()
+        [Route("/{id}/CivilServicesCreate.html")]
+        public IActionResult CivilServicesCreate(int id)
         {
-            return View();
-        }
+            ViewData["ParentCivilServices"] = _CivilServicesService.GetParentCivilServices(id); //calling the all parent CivilServices
+            return View("_partialCivilServices");
 
-        [HttpGet]
-        [Route("/CivilServicesCreate.html")]
-        public IActionResult CivilServicesCreate()
-        {
-            return View();
         }
 
         [HttpPost]
         [Route("/CivilServicesCreate.html")]
         public async Task<IActionResult> CivilServicesCreate(CivilServicesVM model)
         {
-            var response = await _CivilServices.AddEditCivilServices(model);
-            if (response.message == "success")
+            var result = await _CivilServicesService.CivilServicesAddEdit(model);
+
+            if (result.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/CivilServiceslist.html");
+                return Redirect("~/CivilServicesdatafetchlist.html");
             }
+            ViewData["ParentCivilServices"] = _CivilServicesService.GetAllParentCivilServices();
             return View();
         }
+
 
         [HttpGet]
         [Route("/{id}/CivilServicesEdit.html")]
         public async Task<IActionResult> CivilServicesEdit(int id)
         {
-            return View(await _CivilServices.ViewEdit(id));
+            ViewData["ParentCivilServices"] = _CivilServicesService.GetAllParentCivilServices();
+            return View("_partialCivilServices", await _CivilServicesService.ViewEdit(id));
+
         }
 
+
+
+
         [HttpGet]
-        [Route("/CivilServicesEdit.html")]
-        public async Task<IActionResult> CivilServicesEdit(CivilServicesVM model, int id)
+        [Route("/{id}/CivilServicesTreePartial.html")]
+        public IActionResult CivilServicesTreePartial(int id)
         {
-            var response = await _CivilServices.AddEditCivilServices(model);
-            if (response.message == "success")
-            {
-                TempData["Message"] = "Successfully Added";
-                TempData["Class"] = "alert alert-success ";
-                return Redirect("~/CivilServiceslist.html");
-            }
-            return View();
+            ViewData["id"] = id;
+            return View("_CivilServicesList");
         }
+
     }
 }

@@ -7,7 +7,7 @@ using IMIS_Service.EmployeeManagement.IEmployeePosition;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IMIS.Controllers.Setup
+namespace IMIS.Controllers.EmployeeManagement
 {
     public class EmployeePositionController : Controller
     {

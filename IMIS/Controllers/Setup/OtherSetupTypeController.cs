@@ -24,10 +24,19 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OtherSetupTypeFetchData.html")]
-        public async Task<JsonResult> OtherSetupTypeFetchData(DataTableVm model)
+        [Route("/OtherSetupTypeFetchTreeData.html")]
+        public JsonResult OtherSetupTypeFetchTreeData(DataTableVm model)
         {
-            var response = await _OtherSetupType.ItemOtherSetupTypeFetchData(model);
+            
+            return Json(_OtherSetupType.ItemOtherSetupTypeFetchTreeData(model));
+
+
+        }
+        [HttpGet]
+        [Route("/{id}/OtherSetupTypeFetchData.html")]
+        public async Task<JsonResult> OtherSetupTypeFetchData(DataTableVm model, int id)
+        {
+            var response = await _OtherSetupType.ItemOtherSetupTypeFetchData(model,id);
             return Json(new
             {
                 draw = response.draw,
@@ -70,6 +79,14 @@ namespace IMIS.Controllers.Setup
                 return Redirect("~/OtherSetupTypelist.html");
             }
             return View();
+        }
+
+        [HttpGet]
+        [Route("/{id}/OtherSetupTypePartial.html")]
+        public IActionResult OtherSetupTypePartial(int id)
+        {
+            ViewData["id"] = id;
+            return View("_OtherSetupTypeList");
         }
     }
 }

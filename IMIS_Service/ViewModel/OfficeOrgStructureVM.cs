@@ -13,6 +13,7 @@ namespace IMIS_Service.ViewModel
         public string EngName { get; set; }
         public int? ContainsDarbandi { get; set; }
         public int? GeoRegion { get; set; }
-        public int? GrpLevel { get; set; }
+        public int? GrpLevel { get; set; } 
+        public int order { get; set; }
     }
 }

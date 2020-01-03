@@ -9,10 +9,17 @@
                 <input type="text" class="form-control" asp-for="Code">
             </div>
         </div>
-
         <div class="form-group is-empty">
             <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Name(Eng)")<span class="requried">*</span>
+                @Utils.GetLabel("Emp Id")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Code">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("First Name(Eng)")<span class="requried">*</span>
             </label>
             <div class="col-md-9">
                 <input type="text" class="form-control" asp-for="FirstNameEn">
@@ -20,10 +27,67 @@
         </div>
         <div class="form-group is-empty">
             <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Name(Nep)")<span class="requried">*</span>
+                @Utils.GetLabel("Last Name(Eng)")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="LastNameEn">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("First Name(Nep)")<span class="requried">*</span>
             </label>
             <div class="col-md-9">
                 <input type="text" class="form-control" asp-for="FirstNameNp">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Last Name(Nep)")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="LastNameNp">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Post Level")</label>
+
+            <div id="mulfactordiv" class="col-md-3" style="display:none;">
+                <select asp-for="PostId" asp-items="@ViewData["postlevel"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Local Post")</label>
+
+            <div id="mulfactordiv" class="col-md-3" style="display:none;">
+                <select asp-for="LocalPostId" asp-items="@ViewData["localpost"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Service Status")</label>
+
+            <div id="mulfactordiv" class="col-md-3" style="display:none;">
+                <select asp-for="ServiceStatus" asp-items="@ViewData["servicestatus"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Room No.")</label>
+
+            <div id="mulfactordiv" class="col-md-3" style="display:none;">
+                <select asp-for="RoomId" asp-items="@ViewData["roomno"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                </select>
+
             </div>
         </div>
     </div>

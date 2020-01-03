@@ -4,30 +4,47 @@ using System.Linq;
 using System.Threading.Tasks;
 using IMIS_CORE.Utility;
 using IMIS_Service.EmployeeManagement.IOfficeOrgStructure;
+using IMIS_Service.GlobalFunction;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IMIS.Controllers.Setup
+namespace IMIS.Controllers.EmployeeManagement
 {
     public class OfficeOrgStructureController : Controller
     {
-        private readonly IOfficeOrgStructure _OfficeOrgStructure;
-
-        public OfficeOrgStructureController(IOfficeOrgStructure OfficeOrgStructure)
+        private readonly IOfficeOrgStructure _OfficeOrgStructureService;
+        private readonly GlobalFunction _global;
+        public OfficeOrgStructureController(IOfficeOrgStructure OfficeOrgStructureService, GlobalFunction global)
         {
-            _OfficeOrgStructure = OfficeOrgStructure;
+            _OfficeOrgStructureService = OfficeOrgStructureService;
+            _global = global;
         }
-        //for the account head controller 
         public IActionResult Index()
+        {
+            return View();
+        }
+        [HttpGet]
+        [Route("/OfficeOrgStructureTreeFetchData.html")]
+        public JsonResult ItemCategoryFetchData(DataTableVm model)
+        {
+            // var response =  _ItemCategory.ItemCategoriesFetchData1(model);
+            //return Json(repo.GetDataTree(id, TreeViewPathProvider.Instance().openedNodes));
+            return Json(_OfficeOrgStructureService.OfficeOrgStructureTreeFetchData(model));
+
+
+        }
+        [HttpGet]
+        [Route("/OfficeOrgStructurelist.html")]
+        public IActionResult OfficeOrgStructureFetchList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/OfficeOrgStructureFetchData.html")]
-        public async Task<JsonResult> OfficeOrgStructureFetchData(DataTableVm model)
+        [Route("/{id}/OfficeOrgStructuredatagetfetchdatadatable.html")]
+        public async Task<JsonResult> OfficeOrgStructuredatagetfetchdatadatable(DataTableVm model, int id)
         {
-            var response = await _OfficeOrgStructure.OfficeOrgStructureFetchData(model);
+            var response = await _OfficeOrgStructureService.OfficeOrgStructureChildDataTabel(model, id);
             return Json(new
             {
                 draw = response.draw,
@@ -38,52 +55,49 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OfficeOrgStructurelist.html")]
-        public IActionResult OfficeOrgStructureList()
+        [Route("/{id}/OfficeOrgStructureCreate.html")]
+        public IActionResult OfficeOrgStructureCreate(int id)
         {
-            return View();
-        }
+            ViewData["ParentOfficeOrgStructure"] = _OfficeOrgStructureService.GetParentOfficeOrgStructure(id); //calling the all parent OfficeOrgStructure
+            return View("_partialOfficeOrgStructure");
 
-        [HttpGet]
-        [Route("/OfficeOrgStructureCreate.html")]
-        public IActionResult OfficeOrgStructureCreate()
-        {
-            return View();
         }
 
         [HttpPost]
         [Route("/OfficeOrgStructureCreate.html")]
         public async Task<IActionResult> OfficeOrgStructureCreate(OfficeOrgStructureVM model)
         {
-            var response = await _OfficeOrgStructure.AddEditOfficeOrgStructure(model);
-            if (response.message == "success")
+            var result = await _OfficeOrgStructureService.OfficeOrgStructureAddEdit(model);
+
+            if (result.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/OfficeOrgStructurelist.html");
+                return Redirect("~/OfficeOrgStructuredatafetchlist.html");
             }
+            ViewData["ParentOfficeOrgStructure"] = _OfficeOrgStructureService.GetAllParentOfficeOrgStructure();
             return View();
         }
+
 
         [HttpGet]
         [Route("/{id}/OfficeOrgStructureEdit.html")]
         public async Task<IActionResult> OfficeOrgStructureEdit(int id)
         {
-            return View(await _OfficeOrgStructure.ViewEdit(id));
+            ViewData["ParentOfficeOrgStructure"] = _OfficeOrgStructureService.GetAllParentOfficeOrgStructure();
+            return View("_partialOfficeOrgStructure", await _OfficeOrgStructureService.ViewEdit(id));
+
         }
 
+
+
+
         [HttpGet]
-        [Route("/OfficeOrgStructureEdit.html")]
-        public async Task<IActionResult> OfficeOrgStructureEdit(OfficeOrgStructureVM model, int id)
+        [Route("/{id}/OfficeOrgStructureTreePartial.html")]
+        public IActionResult OfficeOrgStructureTreePartial(int id)
         {
-            var response = await _OfficeOrgStructure.AddEditOfficeOrgStructure(model);
-            if (response.message == "success")
-            {
-                TempData["Message"] = "Successfully Added";
-                TempData["Class"] = "alert alert-success ";
-                return Redirect("~/OfficeOrgStructurelist.html");
-            }
-            return View();
+            ViewData["id"] = id;
+            return View("_OfficeOrgStructureList");
         }
     }
 }

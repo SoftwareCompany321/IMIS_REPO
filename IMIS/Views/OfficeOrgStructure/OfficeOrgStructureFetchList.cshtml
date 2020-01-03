@@ -1,9 +1,9 @@
-﻿@using IMIS_CORE.Core
+﻿
 @{
-    ViewData["Title"] = "OtherSetupTypeList";
+    ViewData["Title"] = "OfficeOrgStructureFetchList";
+
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<!DOCTYPE html>
 
 <style>
     td.details-control {
@@ -22,37 +22,19 @@
 <link href="~/lib/jstree/dist/themes/default/style.css" rel="stylesheet" />
 <script src="~/lib/jstree/dist/jstree.min.js"></script>
 <body>
-
+    <!-- Bootstrap Core CSS -->
     <!-- Navigation -->
     <div id="page-wrapper">
         <div class="container-fluid">
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">Other Setup Type List</a> </li>
+                    <li class="active"><a href="#region-tab">OfficeOrgStructure List</a> </li>
                 </ul>
 
                 <div class="tab-content">
 
-                    <!-- tab 1: region starts -->
-                    <div class="tab-pane fade active in" id="region-tab">
-                        <a href="@Url.Content("~/{0}/OtherSetupTypeCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
-                        <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
-                        <div class="collapse" id="searchCollapse">
-                            <div class="well">
-                                <div class="form-group">
-                                    <div class="col-sm-3 ">
-                                        <input type="text" class="form-control" placeholder=@Utils.GetLabel("Name")>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <input type="text" class="form-control" placeholder=@Utils.GetLabel("Name(Nepali)")>
-                                    </div>
-                                    <div class="col-sm-1 pull-right"><a href="#" class="btn btn-default form-modal-call"><i class="material-icons">search</i></a></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                  
                     <div class="col-sm-4" style="float: left;">
                         <nav class="navbar navbar-left col-sm-12" style="background-color:azure;margin-top:40px;border-right:5px solid gray">
                             <div id="tree"></div>
@@ -63,19 +45,18 @@
 
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
         <!-- /.container-fluid -->
     </div>
-
     <div id="add" hidden>
 
     </div>
 
 </body>
+
+
 
 <script type="text/javascript">
     $(function () {
@@ -86,7 +67,7 @@
                     "stripes": false
                 },
                 'data': {
-                    "url": "@Url.Content("~/OtherSetupTypeFetchTreeData.html")",
+                    "url": "@Url.Content("~/OfficeOrgStructureTreeFetchData.html")",
                     "data": function (node) {
                         return { "id": node.id };
                     }
@@ -97,22 +78,14 @@
     });
 
     function loadchildlist(id) {
-         var url1 = '/' + id + '/OtherSetupTypePartial.html';
+         var url1 = '/' + id + '/OfficeOrgStructureTreePartial.html';
         $.ajax({
         type: 'GET',
         url: url1,
-            success: function (data) {
-                debugger;
+            success: function (data) { 
            $('#partial').html(data);
         }
     });
 }
 
 </script>
-
-
-
-
-
-
-

@@ -1,7 +1,9 @@
-﻿using IMIS_CORE.Utility;
+﻿using IMIS_CORE.Core;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,19 +15,69 @@ namespace IMIS_Service.EmployeeManagement.IOfficeOrgStructure
 {
     public interface IOfficeOrgStructure
     {
-        Task<DataTableResponse> OfficeOrgStructureFetchData(DataTableVm model);
-        Task<(string message, int id)> AddEditOfficeOrgStructure(OfficeOrgStructureVM model);
-
-        Task<OfficeOrgStructureVM> ViewEdit(decimal Id);
+        Task<(string message, int Id)> OfficeOrgStructureAddEdit(OfficeOrgStructureVM mspOfficeOrgStructure);
+        List<TreeViewContainer> OfficeOrgStructureTreeFetchData(DataTableVm model);
+        Task<OfficeOrgStructureVM> ViewEdit(int id);
+        Task<DataTableResponse> OfficeOrgStructureChildDataTabel(DataTableVm model, int id = 0);
+        IEnumerable<SelectListItem> GetAllParentOfficeOrgStructure(int id = 0);
+        IEnumerable<SelectListItem> GetParentOfficeOrgStructure(int id = 0);
     }
     public class OfficeOrgStructure : IOfficeOrgStructure
     {
         private readonly IMISDbContext _db;
-        public OfficeOrgStructure(IMISDbContext db)
+        private readonly GlobalFunction.GlobalFunction _global;
+        public OfficeOrgStructure(IMISDbContext db, GlobalFunction.GlobalFunction global)
         {
             _db = db;
+            _global = global;
         }
-        public async Task<DataTableResponse> OfficeOrgStructureFetchData(DataTableVm model)
+
+        public async Task<(string message, int Id)> OfficeOrgStructureAddEdit(OfficeOrgStructureVM mspOfficeOrgStructure)
+        {
+            var add = new OrganizationTree()
+            {
+                Code = mspOfficeOrgStructure.Code,
+                ParentId = mspOfficeOrgStructure.ParentId,
+                NepName = mspOfficeOrgStructure.NepName,
+                EngName = mspOfficeOrgStructure.EngName,
+                order = mspOfficeOrgStructure.order,
+                GrpLevel = mspOfficeOrgStructure.GrpLevel
+            };
+            try
+            {
+                int OfficeOrgStructureId = 0;
+                if (mspOfficeOrgStructure.Id == 0)
+                {
+
+
+                    await _db.AddAsync(add);
+                    await _db.SaveChangesAsync();
+                    OfficeOrgStructureId = add.Id;
+                }
+                else
+                {
+                    add.Id = mspOfficeOrgStructure.Id;
+
+                    _db.Entry(add).State = EntityState.Modified;
+                    OfficeOrgStructureId = mspOfficeOrgStructure.Id;
+                    await _db.SaveChangesAsync();
+                }
+                return ("success", OfficeOrgStructureId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+
+            }
+        }
+
+        public Task<string> OfficeOrgStructureDelete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<DataTableResponse> OfficeOrgStructureChildDataTabel(DataTableVm model, int id = 0)
         {
             string searchBy = string.Empty;
             int skip = 0;
@@ -34,9 +86,55 @@ namespace IMIS_Service.EmployeeManagement.IOfficeOrgStructure
             int filteredResultsCount = 0;
             int draw = 0;
 
+            if (model != null)
+            {
+                searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
+                take = model.length;
+                skip = model.start;
+                draw = model.draw;
+            }
+
+
+            var OfficeOrgStructurelist = (from nt in _db.OrganizationTree
+                                     where nt.ParentId == id
+                                     select new
+                                     {
+                                         nt.Id,
+                                         nt.Code,
+                                         nt.NepName,
+                                         nt.EngName,
+                                         nt.order
+                                     }).ToList();
+            if (OfficeOrgStructurelist.Count > 0)
+            {
+                totalResultsCount = OfficeOrgStructurelist.Count();
+                if (!string.IsNullOrEmpty(searchBy))
+                {
+                    // OfficeOrgStructurelist = OfficeOrgStructurelist;
+                }
+                filteredResultsCount = OfficeOrgStructurelist.Count();
+            }
+
+            var list = OfficeOrgStructurelist.OrderByDescending(x => x.order).Skip(skip).ToList();
+
+            return new DataTableResponse
+            {
+                draw = draw,
+                TotalRecord = filteredResultsCount,
+                FilteredRecord = totalResultsCount,
+                data = list
+            };
+        }
+        public List<TreeViewContainer> OfficeOrgStructureTreeFetchData(DataTableVm model)
+        {
+            string searchBy = string.Empty;
+            int skip = 0;
+            int take = 10;
+            int draw = 0;
+            List<TreeViewContainer> result = new List<TreeViewContainer>();
+            List<TreeViewVM> Datas = new List<TreeViewVM>();
             try
             {
-
                 if (model != null)
                 {
                     searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
@@ -44,103 +142,85 @@ namespace IMIS_Service.EmployeeManagement.IOfficeOrgStructure
                     skip = model.start;
                     draw = model.draw;
                 }
-
-                var accMasters =  (from bm in _db.OrganizationTree
-                                        select new
-                                        {
-                                            bm.Id ,
-                                            bm.Code,
-                                            bm.ContainsDarbandi,
-                                            bm.EngName,
-                                            bm.NepName,
-                                        });
-                ///filter count for the total; record
-                ///
-
-                if (accMasters != null)
+                Datas = (from iic in _db.OrganizationTree
+                         select new TreeViewVM
+                         {
+                             id = iic.Id.ConvertToString(),
+                             text = Utils.ToggleLanguage(iic.EngName, iic.NepName),
+                             parentId = iic.ParentId.ConvertToString(),
+                         }).ToList();
+                if (Datas.Count < 1)
                 {
-                    totalResultsCount = await accMasters.CountAsync();
-                     
-                    filteredResultsCount = await accMasters.CountAsync();
+                    TreeViewVM tvm = new TreeViewVM();
+                    tvm.text = Utils.GetLabel("Root");
+                    tvm.id = "null";
+                    tvm.parentId = "0";
+                    Datas.Add(tvm);
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.Id).Skip(skip).ToListAsync();
+                result = (from d in Datas
+                          where d.parentId == "0"
+                          select (new TreeViewContainer()
+                          {
+                              text = d.text,
+                              id = d.id,
+                              parentId = null,
+                              state = new { d.opened },
+                              opened = d.opened,
+                              a_attr = new { href = "#", onclick = "loadchildlist('" + d.id + "');", }
+                          }).AddChildrens(Datas, 0)).ToList();
 
-                return new DataTableResponse
-                {
-                    draw = draw,
-                    TotalRecord = filteredResultsCount,
-                    FilteredRecord = totalResultsCount,
-                    data =finallist
-                };
 
 
             }
             catch (Exception)
             {
-                return new DataTableResponse
-                {
-                    draw = draw,
-                    TotalRecord = filteredResultsCount,
-                    FilteredRecord = totalResultsCount,
-                    data =0
-                };
-                //add to do for the error log save in db
+
+            }
+            return result;
+        }
+        public void Dispose()
+        {
+            if (_db != null)
+            {
+                _db.Dispose();
             }
         }
 
-        public async Task<(string message, int id)> AddEditOfficeOrgStructure(OfficeOrgStructureVM model)
+        public async Task<OfficeOrgStructureVM> ViewEdit(int id)
         {
             try
             {
-                var item = new OrganizationTree()
+                var data = await _db.OrganizationTree.Where(x => x.Id == id).FirstOrDefaultAsync();
+                if (data != null)
                 {
-                    Id = model.Id 
-                };
-                if (model.Id == 0)
-                {
-                    int id = await _db.OrganizationTree.CountAsync();
-                    item.Id = id + 1;
-                    _db.OrganizationTree.AddRange(item);
-                }
-                else
-                {
-                    _db.Entry(item).State = EntityState.Modified;
-                }
-                await _db.SaveChangesAsync(true);
-
-                return ("success", 0);
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        public async Task<OfficeOrgStructureVM> ViewEdit(decimal Id)
-        {
-            try
-            {
-                var response = await _db.OrganizationTree.Where(x => x.Id == Id).FirstOrDefaultAsync();
-                if (response != null)
-                {
-                    return (new OfficeOrgStructureVM()
+                    return (new OfficeOrgStructureVM
                     {
-                        Id = response.Id, 
+                        Id = data.Id,
+                        NepName = data.NepName,
+                        EngName = data.EngName,
+                        ParentId = data.ParentId
 
                     });
                 }
-                else
-                {
-                    return new OfficeOrgStructureVM();
-                }
+                return (new OfficeOrgStructureVM());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
+        }
+
+        public IEnumerable<SelectListItem> GetAllParentOfficeOrgStructure(int id = 0)
+        {
+            return new SelectList(_db.OrganizationTree.Where(x => x.ParentId == id), "Id", "DisplayName");
+
+        }
+        public IEnumerable<SelectListItem> GetParentOfficeOrgStructure(int id = 0)
+        {
+            return new SelectList(_db.OrganizationTree.Where(x => x.Id == id), "Id", "DisplayName");
+
         }
     }
 }

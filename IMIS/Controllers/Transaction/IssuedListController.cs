@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using IMIS_CORE.Utility;
-using IMIS_Service.Transaction.IRequisition;
+using IMIS_Service.Transaction.IIssuedList;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IMIS.Controllers.Transaction
 {
-    public class RequisitionController : Controller
+    public class IssuedListController : Controller
     {
-        private readonly IRequisition _Requisition;
+        private readonly IIssuedList _IssuedList;
 
-        public RequisitionController(IRequisition Requisition)
+        public IssuedListController(IIssuedList IssuedList)
         {
-            _Requisition = Requisition;
+            _IssuedList = IssuedList;
         }
         //for the account head controller 
         public IActionResult Index()
@@ -24,10 +24,10 @@ namespace IMIS.Controllers.Transaction
         }
 
         [HttpGet]
-        [Route("/RequisitionFetchData.html")]
-        public async Task<JsonResult> RequisitionFetchData(DataTableVm model)
+        [Route("/IssuedListFetchData.html")]
+        public async Task<JsonResult> IssuedListFetchData(DataTableVm model)
         {
-            var response = await _Requisition.RequisitionFetchData(model);
+            var response = await _IssuedList.IssuedListFetchData(model);
             return Json(new
             {
                 draw = response.draw,
@@ -38,50 +38,50 @@ namespace IMIS.Controllers.Transaction
         }
 
         [HttpGet]
-        [Route("/Requisitionlist.html")]
-        public IActionResult RequisitionList()
+        [Route("/IssuedListlist.html")]
+        public IActionResult IssuedListList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/RequisitionCreate.html")]
-        public IActionResult RequisitionCreate()
+        [Route("/IssuedListCreate.html")]
+        public IActionResult IssuedListCreate()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("/RequisitionCreate.html")]
-        public async Task<IActionResult> RequisitionCreate(RequisitionVM model)
+        [Route("/IssuedListCreate.html")]
+        public async Task<IActionResult> IssuedListCreate(IssuedListVM model)
         {
-            var response = await _Requisition.AddEditRequisition(model);
+            var response = await _IssuedList.AddEditIssuedList(model);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/Requisitionlist.html");
+                return Redirect("~/IssuedListlist.html");
             }
             return View();
         }
 
         [HttpGet]
-        [Route("/RequisitionEdit.html")]
-        public async Task<IActionResult> RequisitionEdit(decimal id)
+        [Route("/IssuedListEdit.html")]
+        public async Task<IActionResult> IssuedListEdit(decimal id)
         {
-            return View(await _Requisition.ViewEdit(id));
+            return View(await _IssuedList.ViewEdit(id));
         }
 
         [HttpGet]
-        [Route("/RequisitionEdit.html")]
-        public async Task<IActionResult> RequisitionEdit(RequisitionVM model, int id)
+        [Route("/IssuedListEdit.html")]
+        public async Task<IActionResult> IssuedListEdit(IssuedListVM model, int id)
         {
-            var response = await _Requisition.AddEditRequisition(model);
+            var response = await _IssuedList.AddEditIssuedList(model);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/Requisitionlist.html");
+                return Redirect("~/IssuedListlist.html");
             }
             return View();
         }

@@ -7,7 +7,7 @@ using IMIS_Service.EmployeeManagement.IEmploymentStatus;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
-namespace IMIS.Controllers.Setup
+namespace IMIS.Controllers.EmployeeManagement
 {
     public class EmploymentStatusController : Controller
     {
