@@ -66,8 +66,8 @@ namespace IMIS.Controllers.Transaction
         }
 
         [HttpGet]
-        [Route("/RequisitionEdit.html")]
-        public async Task<IActionResult> RequisitionEdit(decimal id)
+        [Route("/{id}/RequisitionEdit.html")]
+        public async Task<IActionResult> RequisitionEdit(int id)
         {
             return View(await _Requisition.ViewEdit(id));
         }
@@ -85,5 +85,13 @@ namespace IMIS.Controllers.Transaction
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("/{id}/RequisitionDelete.html")]
+        public async Task<IActionResult> RequisitionDelete(int id)
+        {
+            return View(await _Requisition.Delete(id));
+        }
+
     }
 }

@@ -15,8 +15,7 @@ namespace IMIS_Service.Setup.IFuelMaintenance
     public interface IFuelMaintenance
     {
         Task<DataTableResponse> FuelMaintenanceFetchData(DataTableVm model);
-        Task<(string message, int id)> AddEditFuelMaintenance(FuelMaintenanceVM model);
-        Task<(string message, int Id)> DeleteFuelMaintenance(int FuelMaintenanceid);
+        Task<(string message, int id)> AddEditFuelMaintenance(FuelMaintenanceVM model); 
         Task<FuelMaintenanceVM> ViewEdit(decimal Id);
         Task<string> Delete(int id);
     }

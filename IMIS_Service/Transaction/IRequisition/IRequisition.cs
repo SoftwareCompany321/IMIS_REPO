@@ -17,6 +17,7 @@ namespace IMIS_Service.Transaction.IRequisition
         Task<(string message, int id)> AddEditRequisition(RequisitionVM model);
 
         Task<RequisitionVM> ViewEdit(decimal Id);
+        Task<string> Delete(int Id);
     }
     public class Requisition : IRequisition
     {
@@ -45,13 +46,24 @@ namespace IMIS_Service.Transaction.IRequisition
                     draw = model.draw;
                 }
 
-                var accMasters =  (from ids in _db.InvDept
-                                        select new
-                                        {
-                                            ids.DeptId,
-                                            ids.NameEn,
-                                            ids.NameNp 
-                                        });
+                var accMasters = (from invreq in _db.InvRequisitionMast
+                                  join reqdetail in _db.InvReqDetail
+                                  on invreq.Code equals reqdetail.Code into leftinvreq
+                                  from leftreq in leftinvreq.DefaultIfEmpty()
+                                  join invmaster in _db.InvIssueMaster on invreq.Code equals invmaster.Code into leftjoinmaster
+                                  from leftmaaster in leftjoinmaster.DefaultIfEmpty()
+                                  select new
+                                  {
+                                      id=invreq.Id,
+                                      code= invreq.Code,
+                                      itemname=invreq.ItemId,
+                                      unitname= invreq.StockGive,
+                                      typename=invreq.TypeId,
+                                      brandname=leftreq.Brand,
+                                      specname=leftreq.Spec,
+                                      purquantity=leftreq.Qty,
+                                      remark= invreq.Remarks,
+                                  });
                 ///filter count for the total; record
                 ///
 
@@ -60,31 +72,31 @@ namespace IMIS_Service.Transaction.IRequisition
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
+                        accMasters = accMasters.Where(x => x.code == searchBy || x.unitname == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.DeptId).Skip(skip).ToListAsync();
+                var finallist = await accMasters.OrderByDescending(x => x.id).Skip(skip).ToListAsync();
 
                 return new DataTableResponse
                 {
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =finallist
+                    data = finallist
                 };
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return new DataTableResponse
                 {
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =0
+                    data = 0
                 };
                 //add to do for the error log save in db
             }
@@ -93,22 +105,25 @@ namespace IMIS_Service.Transaction.IRequisition
         {
             try
             {
-                //var item = new InvDept()
-                //{
-                //    DeptId = model.DeptId,
-                //    NameEn = model.NameEn,
-                //    NameNp = model.NameNp 
-                //};
-                //if (model.DeptId == 0)
-                //{
-                //    int id = await _db.InvDept.CountAsync();
-                //    item.DeptId = id + 1;
-                //    _db.InvDept.AddRange(item);
-                //}
-                //else
-                //{
-                //    _db.Entry(item).State = EntityState.Modified;
-                //}
+                var item = new InvRequisitionMast()
+                {
+                    Id=model.Id,
+                    StockGive=model.StockGive,
+                    ItemId=model.ItemId,
+                    TypeId=model.TypeId,
+                    Remarks=model.Remarks,
+                    
+                };
+                if (model.Id == 0)
+                {
+                    int id = await _db.InvRequisitionMast.CountAsync();
+                    item.Id = id + 1;
+                    _db.InvRequisitionMast.Add(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
                 await _db.SaveChangesAsync(true);
 
                 return ("success", 0);
@@ -124,28 +139,50 @@ namespace IMIS_Service.Transaction.IRequisition
         {
             try
             {
-                var response = await _db.InvDept.Where(x => x.DeptId == Id).FirstOrDefaultAsync();
-                //if (response != null)
-                //{
-                //    return (new RequisitionVM()
-                //    {
-                //        DeptId = response.DeptId ,
-                //        NameEn = response.NameEn,
-                //        NameNp = response.NameNp,
+                var response = await _db.InvRequisitionMast.Where(x => x.Id == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new RequisitionVM()
+                    {
+                        TypeId = response.TypeId,
+                        Remarks = response.Remarks,
+                        StockGive= response.StockGive,
+                        ItemId=response.ItemId,
+                        Id=response.Id,
+                    });
+                }
+                else
+                {
+                    return new RequisitionVM();
+                }
+            }
+            catch (Exception)
+            {
 
-                //    });
-                //}
-                //else
-                //{
-                //    return new RequisitionVM();
-                //}
+                throw;
+            } 
+        }
+
+        public async Task<string> Delete(int Id)
+        {
+            try
+            {
+                var response = await _db.InvRequisitionMast.Where(x => x.Id == Id).FirstOrDefaultAsync();
+
+                if (response != null)
+                {
+                    _db.InvRequisitionMast.Remove(response);
+                    _db.SaveChanges(true);
+                    return "success";
+                }
+
+                return "fail";
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return new RequisitionVM();
         }
     }
 }

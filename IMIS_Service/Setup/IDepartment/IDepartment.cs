@@ -15,8 +15,7 @@ namespace IMIS_Service.Setup.IDepartment
     public interface IDepartment
     {
         Task<DataTableResponse> DepartmentFetchData(DataTableVm model);
-        Task<(string message, int id)> AddEditDepartment(DepartmentVM model);
-        Task<(string message, int Id)> DeleteDepartment(int UnitId);
+        Task<(string message, int id)> AddEditDepartment(DepartmentVM model); 
         Task<DepartmentVM> ViewEdit(decimal Id);
         Task<string> Delete(int Id);
     }
@@ -103,7 +102,7 @@ namespace IMIS_Service.Setup.IDepartment
                     DeptId = model.DeptId,
                     Code=model.Code,
                     NameEn = model.NameEn, 
-                    NameNp = model.NameNp 
+                    NameNp = model.NameNp,
                     IsActive=model.IsActive
                 };
                 if (model.DeptId == 0)
