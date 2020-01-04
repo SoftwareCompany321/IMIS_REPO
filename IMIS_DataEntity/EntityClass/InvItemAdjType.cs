@@ -11,5 +11,6 @@ namespace IMIS_DataEntity.EntityClass
         public string NameEn { get; set; }
         public string AddSub { get; set; }
         public string AdjType { get; set; }
+        public bool IsActive { get; set; }
     }
 }

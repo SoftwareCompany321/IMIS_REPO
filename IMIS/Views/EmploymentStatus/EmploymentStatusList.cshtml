@@ -13,7 +13,7 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Bank Detail List")</a> </li>
+                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Employee Status List")</a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -99,6 +99,15 @@
                 { "data": "accCode", "orderable": false },
                 { "data": "accCode", "orderable": false },
                 ],
+                 "rowCallback": function (row, data, index) {
+                      var url ='/' + data.brandId + '/EmploymentStatusEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.brandId + '/EmploymentStatusDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+                     
+            },
                 order: [
 
                     [1, "desc"]

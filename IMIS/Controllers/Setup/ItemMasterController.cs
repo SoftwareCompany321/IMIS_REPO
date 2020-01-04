@@ -109,5 +109,19 @@ namespace IMIS.Controllers.Setup
 
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/ItemMasterDelete.html")]
+        public async Task<IActionResult> ItemMasterDelete(int brandId)
+        {
+            var response = await _ItemMaster.DeleteItemMaster(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemMasterlist.html");
+            }
+            return View();
+        }
     }
 }

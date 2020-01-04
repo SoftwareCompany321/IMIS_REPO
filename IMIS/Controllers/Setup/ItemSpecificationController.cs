@@ -83,5 +83,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{specid}/ItemSpecificationDelete.html")]
+        public async Task<IActionResult> ItemSpecificationDelete(int specid)
+        {
+            var response = await _ItemSpecification.DeleteItemSpecification(specid);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ItemSpecificationlist.html");
+            }
+            return View();
+        }
     }
 }

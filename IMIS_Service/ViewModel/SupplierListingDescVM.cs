@@ -9,5 +9,6 @@ namespace IMIS_Service.ViewModel
         public int Id { get; set; }
         public int SupId { get; set; }
         public string FiscalYear { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

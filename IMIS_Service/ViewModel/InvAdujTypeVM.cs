@@ -13,5 +13,6 @@ namespace IMIS_Service.ViewModel
         public string NameEn { get; set; }
         public string AddSub { get; set; }
         public string AdjType { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

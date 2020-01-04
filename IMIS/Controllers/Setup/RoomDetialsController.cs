@@ -21,10 +21,10 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/RoomDetialsFetchData.html")]
-        public async Task<JsonResult> RoomDetialsFetchData(DataTableVm model)
+        [Route("/RoomDetailsFetchData.html")]
+        public async Task<JsonResult> RoomDetailsFetchData(DataTableVm model)
         {
-            var response = await _RoomDetials.RoomDetialsFetchData(model);
+            var response = await _RoomDetials.RoomDetailsFetchData(model);
             return Json(new
             {
                 draw = response.draw,
@@ -42,41 +42,57 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/RoomDetailsCreate.html")]
+        [Route("/RoomDetialsCreate.html")]
         public IActionResult RoomDetialsCreate()
         {
+            ViewData["departments"] = _RoomDetials.GetDepartmentList();
             return View();
         }
 
         
         [HttpPost]
-        [Route("/RoomDetailsCreate.html")]
-        public async Task<IActionResult> RoomDetailsCreate(RoomDetialsVM model)
+        [Route("/RoomDetialsCreate.html")]
+        public async Task<IActionResult> RoomDetialsCreate(RoomDetialsVM model)
         {
             var response = await _RoomDetials.AddEdit(model);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/RoomDetailsList.html");
+                return Redirect("~/RoomDetialsList.html");
             }
             return View();
         }
         [HttpGet]
 
-        [Route("{SpecificationId}/RoomDetailsEdit.html")]
-        public async Task<IActionResult> RoomDetailsEdit(int SpecificationId)
+        [Route("{SpecificationId}/RoomDetialsEdit.html")]
+        public async Task<IActionResult> RoomDetialsEdit(int SpecificationId)
         {
+            ViewData["departments"] = _RoomDetials.GetDepartmentList();
             return View(await _RoomDetials.ViewOrEditData(SpecificationId));
         }
         [HttpPost]
-        [Route("{SpecificationId}/RoomDetailsEdit.html")]
-        public async Task<IActionResult> RoomDetailsEdit(RoomDetialsVM model, int SpecificationId)
+        [Route("{SpecificationId}/RoomDetialsEdit.html")]
+        public async Task<IActionResult> RoomDetialsEdit(RoomDetialsVM model, int SpecificationId)
         {
             var response = await _RoomDetials.AddEdit(model);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/RoomDetialslist.html");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        [Route("{roomid}/RoomDetailsDelete.html")]
+        public async Task<IActionResult> RoomDetailsDelete(int roomid)
+        {
+            var response = await _RoomDetials.DeleteRoomDetails(roomid);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/RoomDetailslist.html");
             }

@@ -49,6 +49,10 @@ using IMIS_Service.EmployeeManagement.IOfficeOrgStructure;
 using IMIS_Service.Setup.IItemSupplierDtl;
 using IMIS_Service.Setup.IItemPurYearlyPlan;
 using IMIS.TreeView;
+using IMIS_Service.Transaction.IRequisition;
+using IMIS_Service.Transaction.IGoodReceivedDetails;
+using IMIS_Service.Transaction.IItemNumbering;
+using IMIS_Service.Transaction.IItemStatus;
 
 namespace IMIS
 {
@@ -154,7 +158,15 @@ namespace IMIS
             services.AddScoped<IItemSupplierDtl, ItemSupplierDtl>();
             services.AddScoped<IItemPurYearlyPlan, ItemPurYearlyPlan>();
             services.AddScoped<IObjectRepositary, ObjectRepositary>();
-            //services.AddScoped<IItemPurMasterPlan, ItemPurMasterPlan>();
+            services.AddScoped<IRequisition, Requisition>();
+            services.AddScoped<IGoodReceivedDetails, GoodReceivedDetails>();
+            services.AddScoped<IItemNumbering, ItemNumbering>();
+            services.AddScoped<IItemStatus, ItemStatus>();
+            //services.AddScoped<IRequisition, Requisition>();
+            //services.AddScoped<IRequisition, Requisition>();
+            //services.AddScoped<IRequisition, Requisition>();
+            //services.AddScoped<IRequisition, Requisition>();
+            //services.AddScoped<IRequisition, Requisition>();
             //
 
             //adding the auto mapper in service layer class

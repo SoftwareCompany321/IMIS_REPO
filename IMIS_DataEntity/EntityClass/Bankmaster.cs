@@ -30,6 +30,7 @@ namespace IMIS_DataEntity.EntityClass
         public string Branch { get; set; }
         public string Bankname { get; set; }
 
+        public bool IsActive { get; set; }
         public virtual ICollection<AccBankTrans> AccBankTrans { get; set; }
         public virtual ICollection<BankBranch> BankBranch { get; set; }
         public virtual ICollection<PisBankPayroll> PisBankPayroll { get; set; }

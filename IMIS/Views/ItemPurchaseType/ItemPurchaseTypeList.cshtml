@@ -42,12 +42,10 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>@Utils.GetLabel("Id")</th>
-                                        @*<th>@Utils.GetLabel("Code")</th>*@
+                                        <th>@Utils.GetLabel("Code")</th>
                                         <th>@Utils.GetLabel("Description(Nepali)")</th>
                                         <th>@Utils.GetLabel("Description(English)")</th>
-                                        @*<th>@Utils.GetLabel("AccCode")</th>*@
-                                        <th style="width:50px">@Utils.GetLabel("Action")</th>
+                                         <th  >@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
 
@@ -87,30 +85,23 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-                //'select': {
-                //    info: false
-                //},
-                // 'columnDefs': [AccId
-                //    {
-                //        'targets': 0,
-                //        'checkboxes': {
-                //            'selectRow': true,
-                //            'selectAll': true,
-                //            'className': 'select-checkbox',
-                //        }
-                //    }
-                //],
-                //'select': {
-                //    'style': 'multi'
-                //},
-
+                 
                 "columns": [  
-                { "data": "id", "orderable": true }, 
+                { "data": "code", "orderable": true }, 
                 { "data": "nepName", "orderable": true },
                 { "data": "nepEng", "orderable": false }, 
                 { "data": "id", "orderable": true }, 
 
                 ],
+                 "rowCallback": function (row, data, index) {
+                      var url ='/' + data.id + '/ItemPurchaseTypeEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.id + '/ItemPurchaseTypeDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+                     
+            },
                 order: [
 
                     [1, "desc"]

@@ -35,5 +35,6 @@ namespace IMIS_DataEntity.EntityClass
         public DateTime? Wrk2FinDtAd { get; set; }
         public DateTime? WrkAcmplshDtAd { get; set; }
         public string Remarks { get; set; }
+        public bool IsActive { get; set; }
     }
 }

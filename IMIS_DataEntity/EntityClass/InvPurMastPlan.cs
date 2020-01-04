@@ -23,5 +23,6 @@ namespace IMIS_DataEntity.EntityClass
         public DateTime? WorkEndDateAd { get; set; }
         public string BudgetYear { get; set; }
         public string Remarks { get; set; }
+        public bool IsActive { get; set; }
     }
 }

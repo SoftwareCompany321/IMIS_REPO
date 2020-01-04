@@ -1,0 +1,60 @@
+﻿@using IMIS_CORE.Core
+
+@model IMIS_Service.ViewModel.GoodReceivedDetailsVM
+<div>
+    <input asp-for="UnitId" type="hidden" />
+    <div class="form-group is-empty">
+        <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="Code">
+        </div>
+    </div>
+    <div class="form-group is-empty">
+        <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Description(English)")<span class="requried">*</span></label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="DescEn">
+        </div>
+    </div>
+    <div class="form-group is-empty">
+        <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Description(Nepali)")  <span class="requried">*</span></label>
+        <div class="col-md-9">
+            <input type="text" class="form-control" asp-for="DescNp" onkeypress="return setUnicode(event,this);">
+        </div>
+    </div>
+    <div class="form-group is-empty">
+        <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Smallest Unit No")</label>
+        <div class="col-md-3">
+            <input type="number" id="NoOfUnits" onkeyup="checkmulfactor(this.value);" class="form-control" asp-for="NoOfUnits">
+        </div>
+        <div id="mulfactordiv" class="col-md-3" style="display:none;">
+            <select asp-for="MulFactor" asp-items="@ViewData["MultipleFactor"] as SelectList" class="form-control">
+                <option value="0">@Utils.GetLabel("Please Select")</option>
+            </select>
+
+        </div>
+    </div>
+
+
+</div>
+<script lang="ja" type="text/javascript">
+    jQuery(document).ready(function () {
+        var thisval = jQuery("#NoOfUnits").val();
+        if (thisval > 1) {
+            jQuery("#mulfactordiv").show();
+        }
+        else {
+            jQuery("#mulfactordiv").hide();
+        }
+    });
+
+    function checkmulfactor(value) {
+
+        if (value > 1) {
+            jQuery("#mulfactordiv").show();
+        }
+        else {
+            jQuery("#mulfactordiv").hide();
+        }
+    }
+
+</script>

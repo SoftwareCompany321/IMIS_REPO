@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IItemSpecification
     {
         Task<DataTableResponse> ItemSpecificationFetchData(DataTableVm model);
         Task<(string message, int Id)> AddEdit(ItemSpecificationVM Model);
-
+        Task<(string message, int Id)> DeleteItemSpecification(int ItemSpecificationid);
         Task<ItemSpecificationVM> ViewOrEditData(int Id);
     }
     public class ItemSpecification : IItemSpecification
@@ -46,9 +47,11 @@ namespace IMIS_Service.Setup.IItemSpecification
                 }
 
                 var accMasters =  (from iis in _db.InvItemSpec
-                                        select new
+                                   where iis.IsActive == true
+                                   select new
                                         {
                                             iis.SpecId,
+                                            iis.Code,
                                             iis.NameEn,
                                             iis.NameNp 
                                         });
@@ -60,7 +63,7 @@ namespace IMIS_Service.Setup.IItemSpecification
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters =  accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
+                        accMasters = accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }
@@ -72,19 +75,19 @@ namespace IMIS_Service.Setup.IItemSpecification
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =finallist
+                    data = finallist
                 };
 
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return new DataTableResponse
                 {
                     draw = draw,
                     TotalRecord = filteredResultsCount,
                     FilteredRecord = totalResultsCount,
-                    data =0
+                    data = 0
                 };
                 //add to do for the error log save in db
             }
@@ -97,8 +100,10 @@ namespace IMIS_Service.Setup.IItemSpecification
                 var AddEdit = new InvItemSpec()
                 {
                     SpecId = Model.SpecId,
+                    Code = Model.Code,
                     NameEn = Model.NameEn,
-                    NameNp = Model.NameNp
+                    NameNp = Model.NameNp, 
+                    IsActive=Model.IsActive
 
                 };
 
@@ -132,8 +137,10 @@ namespace IMIS_Service.Setup.IItemSpecification
                     return new ItemSpecificationVM()
                     {
                         SpecId = data.SpecId,
+                        Code = data.Code,
                         NameNp = data.NameNp,
-                        NameEn = data.NameEn 
+                        NameEn = data.NameEn, 
+                        IsActive = data.IsActive
                     };
                 }
                 else
@@ -147,6 +154,28 @@ namespace IMIS_Service.Setup.IItemSpecification
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteItemSpecification(int ItemSpecificationid)
+        {
+            try
+            {
+                var data = _db.InvItemSpec.Where(x => x.SpecId == ItemSpecificationid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

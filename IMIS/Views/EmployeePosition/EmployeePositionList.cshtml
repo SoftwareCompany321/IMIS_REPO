@@ -13,7 +13,7 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Bank Detail List")</a> </li>
+                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Post Salary List")</a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -44,10 +44,11 @@
                                     <tr>
                                         <th>@Utils.GetLabel("Id")</th>
 
-                                        <th>@Utils.GetLabel("Description(Nepali)")</th>
+                                        <th>@Utils.GetLabel("Post/Grade")</th>
 
-                                        <th>@Utils.GetLabel("Description(English)")</th>
-
+                                        <th>@Utils.GetLabel("Post Name")</th>
+                                        <th>@Utils.GetLabel("Level")</th>
+                                        <th>@Utils.GetLabel("Technical/Admin")</th>
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
@@ -69,7 +70,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 </body>
- 
+
 
 <script type="text/javascript" language="javascript">
         jQuery(document).ready(function () {
@@ -89,7 +90,7 @@
                     "infoFiltered": ""
                 },
                 'stateSave': false,
-              
+
 
                 "columns": [
                 { "data": "accId", "orderable": true },
@@ -99,6 +100,15 @@
                 { "data": "accCode", "orderable": false },
                 { "data": "accCode", "orderable": false },
                 ],
+                 "rowCallback": function (row, data, index) {
+                      var url ='/' + data.brandId + '/EmployeePositionEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.brandId + '/EmployeePositionDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+
+            },
                 order: [
 
                     [1, "desc"]

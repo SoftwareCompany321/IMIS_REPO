@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IInvAdujType
     {
         Task<DataTableResponse> InvAdujTypeFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditInvAdujType(InvAdujTypeVM model);
-
+        Task<(string message, int Id)> DeleteInvAdujType(int InvAdujTypeid);
         Task<InvAdujTypeVM> ViewEdit(decimal Id);
     }
     public class InvAdujType : IInvAdujType
@@ -46,7 +47,8 @@ namespace IMIS_Service.Setup.IInvAdujType
                 }
 
                 var accMasters =  (from iiat in _db.InvItemAdjType
-                                        select new
+                                   where iiat.IsActive == true
+                                   select new
                                         {
                                             iiat.Id,
                                             iiat.NameEn,
@@ -151,6 +153,28 @@ namespace IMIS_Service.Setup.IInvAdujType
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteInvAdujType(int InvAdujTypeid)
+        {
+            try
+            {
+                var data = _db.InvItemAdjType.Where(x => x.Id == InvAdujTypeid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

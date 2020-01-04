@@ -57,8 +57,8 @@ namespace ExceptionHandler
             get
             {
                 var buildDir = GetApplicationRoot();
-              //return  System.IO.Path.GetFullPath(buildDir + "logs/err_log_" + System.DateTime.Now.ToString("ddMMyyyy") + ".txt");
-                return System.IO.Path.GetFullPath(buildDir + "/logs/err_log_" + System.DateTime.Now.ToString("ddMMyyyy") + ".txt");
+                return System.IO.Path.GetFullPath(buildDir + "logs/err_log_" + System.DateTime.Now.ToString("ddMMyyyy") + ".txt");
+                //return System.IO.Path.GetFullPath(buildDir + "/logs/err_log_" + System.DateTime.Now.ToString("ddMMyyyy") + ".txt");
 
             }
         }

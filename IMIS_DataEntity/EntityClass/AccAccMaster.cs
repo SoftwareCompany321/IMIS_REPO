@@ -48,7 +48,7 @@ namespace IMIS_DataEntity.EntityClass
         public string FiscalYear { get; set; }
         public string IsHide { get; set; }
         public int? Iscapitalcurrent { get; set; }
-
+        public bool IsActive { get; set; }
         public virtual AccTransType Type { get; set; }
         public virtual ICollection<AccBgtTransfer> AccBgtTransferFromAcc { get; set; }
         public virtual ICollection<AccBgtTransfer> AccBgtTransferToAcc { get; set; }

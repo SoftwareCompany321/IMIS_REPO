@@ -24,7 +24,7 @@ namespace IMIS_DataEntity.EntityClass
         public int? ContainsDarbandi { get; set; }
         public int? GeoRegion { get; set; }
         public int? GrpLevel { get; set; }
-
+        public int order { get; set; }
         public virtual PisGeoRegion GeoRegionNavigation { get; set; }
         public virtual OrganizationTree Parent { get; set; }
         public virtual ICollection<OrganizationTree> InverseParent { get; set; }

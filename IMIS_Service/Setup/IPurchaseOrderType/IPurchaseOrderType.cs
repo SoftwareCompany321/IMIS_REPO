@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
     {
         Task<DataTableResponse> PurchaseOrderTypeFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditPurchaseOrderType(PurchaseOrderTypeVM model);
-
+        Task<(string message, int Id)> DeletePurchaseOrderType(int PurchaseOrderTypeid);
         Task<PurchaseOrderTypeVM> ViewEdit(decimal Id);
     }
     public class PurchaseOrderType : IPurchaseOrderType
@@ -46,7 +47,8 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
                 }
 
                 var accMasters =  (from tka in _db.TblKharidaAadash
-                                        select new
+                                   where tka.IsActive == true
+                                   select new
                                         {
                                             tka.EngName,
                                             tka.Id,
@@ -145,6 +147,28 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeletePurchaseOrderType(int PurchaseOrderTypeid)
+        {
+            try
+            {
+                var data = _db.TblKharidaAadash.Where(x => x.Id == PurchaseOrderTypeid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

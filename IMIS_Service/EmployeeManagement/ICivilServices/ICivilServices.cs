@@ -1,7 +1,9 @@
-﻿using IMIS_CORE.Utility;
+﻿using IMIS_CORE.Core;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,19 +15,69 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
 {
     public interface ICivilServices
     {
-        Task<DataTableResponse> CivilServicesFetchData(DataTableVm model);
-        Task<(string message, int id)> AddEditCivilServices(CivilServicesVM model);
-
-        Task<CivilServicesVM> ViewEdit(decimal Id);
+        Task<(string message, int Id)> CivilServicesAddEdit(CivilServicesVM mspCivilServices);
+         List<TreeViewContainer> CivilServicesTreeFetchData(DataTableVm model);
+        Task<CivilServicesVM> ViewEdit(int id);
+        Task<DataTableResponse> CivilServicesChildDataTabel(DataTableVm model, int id = 0);
+        IEnumerable<SelectListItem> GetAllParentCivilServices(int id = 0);
+        IEnumerable<SelectListItem> GetParentCivilServices(int id = 0);
     }
     public class CivilServices : ICivilServices
     {
         private readonly IMISDbContext _db;
-        public CivilServices(IMISDbContext db)
+        private readonly GlobalFunction.GlobalFunction _global;
+        public CivilServices(IMISDbContext db, GlobalFunction.GlobalFunction global)
         {
             _db = db;
+            _global = global;
         }
-        public async Task<DataTableResponse> CivilServicesFetchData(DataTableVm model)
+ 
+        public async Task<(string message, int Id)> CivilServicesAddEdit(CivilServicesVM mspCivilServices)
+        {
+            var add = new PisNijamatiSewaSamuha()
+            {
+                Code = mspCivilServices.Code,
+                ParentId = mspCivilServices.ParentId,
+                NameNp = mspCivilServices.NameNp,
+                NameEn = mspCivilServices.NameEn,
+                order = mspCivilServices.order,
+                GrpLevel = mspCivilServices.GrpLevel
+            };
+            try
+            {
+                int CivilServicesId = 0;
+                if (mspCivilServices.Id == 0)
+                {
+
+
+                    await _db.AddAsync(add);
+                    await _db.SaveChangesAsync();
+                    CivilServicesId = add.Id;
+                }
+                else
+                {
+                    add.Id = mspCivilServices.Id;
+
+                    _db.Entry(add).State = EntityState.Modified;
+                    CivilServicesId = mspCivilServices.Id;
+                    await _db.SaveChangesAsync();
+                }
+                return ("success", CivilServicesId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+
+            }
+        }
+
+        public Task<string> CivilServicesDelete(int id)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public async Task<DataTableResponse> CivilServicesChildDataTabel(DataTableVm model, int id = 0)
         {
             string searchBy = string.Empty;
             int skip = 0;
@@ -34,9 +86,55 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
             int filteredResultsCount = 0;
             int draw = 0;
 
+            if (model != null)
+            {
+                searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
+                take = model.length;
+                skip = model.start;
+                draw = model.draw;
+            }
+
+
+            var CivilServiceslist = (from nt in _db.PisNijamatiSewaSamuha
+                                     where nt.ParentId == id
+                                     select new
+                                     {
+                                         nt.Id,
+                                         nt.Code,
+                                         nt.NameNp,
+                                         nt.NameEn,
+                                         nt.order
+                                     }).ToList();
+            if (CivilServiceslist.Count > 0)
+            {
+                totalResultsCount = CivilServiceslist.Count();
+                if (!string.IsNullOrEmpty(searchBy))
+                {
+                    // CivilServiceslist = CivilServiceslist;
+                }
+                filteredResultsCount = CivilServiceslist.Count();
+            }
+
+            var list = CivilServiceslist.OrderByDescending(x => x.order).Skip(skip).ToList();
+
+            return new DataTableResponse
+            {
+                draw = draw,
+                TotalRecord = filteredResultsCount,
+                FilteredRecord = totalResultsCount,
+                data = list
+            };
+        }
+        public List<TreeViewContainer> CivilServicesTreeFetchData(DataTableVm model)
+        {
+            string searchBy = string.Empty;
+            int skip = 0;
+            int take = 10;
+            int draw = 0;
+            List<TreeViewContainer> result = new List<TreeViewContainer>();
+            List<TreeViewVM> Datas = new List<TreeViewVM>();
             try
             {
-
                 if (model != null)
                 {
                     searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
@@ -44,109 +142,85 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
                     skip = model.start;
                     draw = model.draw;
                 }
-
-                var accMasters =  (from bm in _db.PisNijamatiSewaSamuha
-                                        select new
-                                        {
-                                            bm.Id,
-                                            bm.Code,
-                                            bm.NameNp,
-                                            bm.NameEn 
-                                        });
-                ///filter count for the total; record
-                ///
-
-                if (accMasters != null)
+                Datas = (from iic in _db.PisNijamatiSewaSamuha
+                         select new TreeViewVM
+                         {
+                             id = iic.Id.ConvertToString(),
+                             text = Utils.ToggleLanguage(iic.NameEn, iic.NameNp),
+                             parentId = iic.ParentId.ConvertToString(),
+                         }).ToList();
+                if (Datas.Count < 1)
                 {
-                    totalResultsCount = await accMasters.CountAsync();
-                    if (!string.IsNullOrEmpty(searchBy))
-                    {
-                        accMasters =  accMasters.Where(x => x.NameNp == searchBy || x.NameEn == searchBy);
-                    }
-                    filteredResultsCount = await accMasters.CountAsync();
+                    TreeViewVM tvm = new TreeViewVM();
+                    tvm.text = Utils.GetLabel("Root");
+                    tvm.id = "null";
+                    tvm.parentId = "0";
+                    Datas.Add(tvm);
                 }
 
-                var finallist = await accMasters.OrderByDescending(x => x.Id).Skip(skip).ToListAsync();
+                result = (from d in Datas
+                          where d.parentId == "0"
+                          select (new TreeViewContainer()
+                          {
+                              text = d.text,
+                              id = d.id,
+                              parentId = null,
+                              state = new { d.opened },
+                              opened = d.opened,
+                              a_attr = new { href = "#", onclick = "loadchildlist('" + d.id + "');", }
+                          }).AddChildrens(Datas, 0)).ToList();
 
-                return new DataTableResponse
-                {
-                    draw = draw,
-                    TotalRecord = filteredResultsCount,
-                    FilteredRecord = totalResultsCount,
-                    data =finallist
-                };
 
 
             }
             catch (Exception)
             {
-                return new DataTableResponse
-                {
-                    draw = draw,
-                    TotalRecord = filteredResultsCount,
-                    FilteredRecord = totalResultsCount,
-                    data =0
-                };
-                //add to do for the error log save in db
+
+            }
+            return result;
+        }
+        public void Dispose()
+        {
+            if (_db != null)
+            {
+                _db.Dispose();
             }
         }
 
-        public async Task<(string message, int id)> AddEditCivilServices(CivilServicesVM model)
+        public async Task<CivilServicesVM> ViewEdit(int id)
         {
             try
             {
-                var item = new PisNijamatiSewaSamuha()
+                var data = await _db.PisNijamatiSewaSamuha.Where(x => x.Id == id).FirstOrDefaultAsync();
+                if (data != null)
                 {
-                    Id = model.Id,
-                    NameNp = model.NameNp,
-                    NameEn = model.NameEn
-                };
-                if (model.Id == 0)
-                {
-                    int id = await _db.PisNijamatiSewaSamuha.CountAsync();
-                    item.Id = id + 1;
-                    _db.PisNijamatiSewaSamuha.AddRange(item);
-                }
-                else
-                {
-                    _db.Entry(item).State = EntityState.Modified;
-                }
-                await _db.SaveChangesAsync(true);
-
-                return ("success", 0);
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-        public async Task<CivilServicesVM> ViewEdit(decimal Id)
-        {
-            try
-            {
-                var response = await _db.PisNijamatiSewaSamuha.Where(x => x.Id == Id).FirstOrDefaultAsync();
-                if (response != null)
-                {
-                    return (new CivilServicesVM()
+                    return (new CivilServicesVM
                     {
-                        Id = response.Id,
-                        NameEn = response.NameEn,
-                        NameNp = response.NameNp,
+                        Id = data.Id,
+                        NameNp = data.NameNp,
+                        NameEn = data.NameEn,
+                        ParentId = data.ParentId
 
                     });
                 }
-                else
-                {
-                    return new CivilServicesVM();
-                }
+                return (new CivilServicesVM());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
+        }
+
+        public IEnumerable<SelectListItem> GetAllParentCivilServices(int id = 0)
+        {
+            return new SelectList(_db.PisNijamatiSewaSamuha.Where(x => x.ParentId == id), "Id", "DisplayName");
+
+        }
+        public IEnumerable<SelectListItem> GetParentCivilServices(int id = 0)
+        {
+            return new SelectList(_db.PisNijamatiSewaSamuha.Where(x => x.Id == id), "Id", "DisplayName");
+
         }
     }
 }

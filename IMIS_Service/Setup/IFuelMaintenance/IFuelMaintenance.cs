@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IFuelMaintenance
     {
         Task<DataTableResponse> FuelMaintenanceFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditFuelMaintenance(FuelMaintenanceVM model);
-
+        Task<(string message, int Id)> DeleteFuelMaintenance(int FuelMaintenanceid);
         Task<FuelMaintenanceVM> ViewEdit(decimal Id);
         Task<string> Delete(int id);
     }
@@ -47,7 +48,8 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                 }
 
                 var accMasters =  (from tvp in _db.TblVehicleParts
-                                        select new
+                                   where tvp.IsActive == true
+                                   select new
                                         {
                                             tvp.Sn,
                                             tvp.NpName,

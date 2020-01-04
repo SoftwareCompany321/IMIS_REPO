@@ -32,6 +32,7 @@ namespace IMIS_DataEntity.EntityClass
         public int? OrgMasterId { get; set; }
         public string Sapati { get; set; }
         public int? OrcAccTypeId { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual ICollection<AccBankGrnty> AccBankGrnty { get; set; }
         public virtual ICollection<OrgBankAccount> OrgBankAccount { get; set; }

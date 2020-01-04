@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/ReceiptDistributionDelete.html")]
+        public async Task<IActionResult> ReceiptDistributionDelete(int brandId)
+        {
+            var response = await _ReceiptDistribution.DeleteReceiptDistribution(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/ReceiptDistributionlist.html");
+            }
+            return View();
+        }
     }
 }

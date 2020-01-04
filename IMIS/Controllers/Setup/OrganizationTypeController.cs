@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/OrganizationTypeDelete.html")]
+        public async Task<IActionResult> OrganizationTypeDelete(int brandId)
+        {
+            var response = await _OrganizationType.DeleteOrganizationType(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/OrganizationTypelist.html");
+            }
+            return View();
+        }
     }
 }

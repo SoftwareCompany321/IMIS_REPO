@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -16,7 +17,7 @@ namespace IMIS_Service.Setup.IItemPurchaseType
         Task<DataTableResponse> ItemPurchaseTypeFetchData(DataTableVm model);
 
         Task<(string message, int id)> AddEditSave(ItemPurchaseTypeVM model);
-
+        Task<(string message, int Id)> DeleteItemPurchaseType(int ItemPurchaseTypeid);
         Task<ItemPurchaseTypeVM> ViewEdit(int id);
     }
     public class ItemPurchaseType : IItemPurchaseType
@@ -34,13 +35,15 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                 var item = new InvPurType()
                 {
                     Id = model.Id,
+                    Code = model.Code,
                     NepEng = model.NepEng,
                     NepName = model.NepName,
                     Isdefault = model.Isdefault,
-                    Remarks = model.Remarks
+                    Remarks = model.Remarks,
+                    IsActive=model.IsActive
                 };
                 if (model.Id == 0)
-                {  
+                {
                     _db.Entry(item).State = EntityState.Added;
                 }
                 else
@@ -79,9 +82,11 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                     draw = model.draw;
                 }
                 var accMasters = (from ipt in _db.InvPurType
+                                  where ipt.IsActive == true
                                   select new
                                   {
                                       ipt.Id,
+                                      ipt.Code,
                                       ipt.NepEng,
                                       ipt.NepName
                                   });
@@ -132,10 +137,12 @@ namespace IMIS_Service.Setup.IItemPurchaseType
                 {
                     return (new ItemPurchaseTypeVM()
                     {
-                        NepEng=response.NepEng,
-                        NepName=response.NepName,
-                        Remarks=response.Remarks,
-                        Isdefault=response.Isdefault
+                        NepEng = response.NepEng,
+                        Code = response.Code,
+                        NepName = response.NepName,
+                        Remarks = response.Remarks,
+                        Isdefault = response.Isdefault,
+                        IsActive=response.IsActive
                     });
                 }
                 else
@@ -148,6 +155,27 @@ namespace IMIS_Service.Setup.IItemPurchaseType
 
                 throw;
             }
+        }
+        public async Task<(string message, int Id)> DeleteItemPurchaseType(int ItemPurchaseTypeid)
+        {
+            try
+            {
+                var data = _db.InvPurType.Where(x => x.Id == ItemPurchaseTypeid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

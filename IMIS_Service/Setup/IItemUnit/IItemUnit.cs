@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Core;
+﻿using ExceptionHandler;
+using IMIS_CORE.Core;
 using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
@@ -16,12 +17,10 @@ namespace IMIS_Service.Setup.IItemUnit
     public interface IItemUnit
     {
         Task<DataTableResponse> ItemUnitFetchData(DataTableVm model);
-
         Task<(string message, int Id)> AddEdit(ItemUnitVM Model);
-
         Task<ItemUnitVM> ViewOrEditData(int Id);
-
         IEnumerable<SelectListItem> GetItemUnitList();
+        Task<(string message, int Id)> DeleteItemUnit(int UnitId);
     }
     public class ItemUnit : IItemUnit
     {
@@ -38,9 +37,11 @@ namespace IMIS_Service.Setup.IItemUnit
                 var AddEdit = new InvUnit()
                 {
                     UnitId = Model.UnitId,
+                    Code = Model.Code,
                     DescEn = Model.DescEn,
                     DescNp = Model.DescNp,
-                    NoOfUnits = Model.NoOfUnits
+                    NoOfUnits = Model.NoOfUnits,
+                    IsActive = Model.IsActive
 
                 };
 
@@ -85,9 +86,11 @@ namespace IMIS_Service.Setup.IItemUnit
                 }
 
                 var accMasters = (from iu in _db.InvUnit
+                                  where iu.IsActive == true 
                                   select new
                                   {
                                       iu.UnitId,
+                                      iu.Code,
                                       iu.DescEn,
                                       iu.DescNp,
                                       iu.NoOfUnits
@@ -136,6 +139,7 @@ namespace IMIS_Service.Setup.IItemUnit
                     return new ItemUnitVM()
                     {
                         UnitId = data.UnitId,
+                        Code = data.Code,
                         DescNp = data.DescNp,
                         DescEn = data.DescEn,
                         NoOfUnits = data.NoOfUnits
@@ -163,29 +167,26 @@ namespace IMIS_Service.Setup.IItemUnit
         ///
         ///
 
-        public async Task<(string message, int Id)> DeleteItemUnit(ItemUnitVM Model)
+        public async Task<(string message, int Id)> DeleteItemUnit(int UnitId)
         {
             try
             {
-                var AddEdit = new InvUnit()
+                var data = _db.InvUnit.Where(x => x.UnitId == UnitId).FirstOrDefault();
+                if (data != null)
                 {
-                    //IsActive = false
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
 
-                };
-
-                if (Model.UnitId != 0)
-                {
-                    _db.Entry(AddEdit).State = EntityState.Modified;
                 }
-
                 await _db.SaveChangesAsync(true);
                 return ("success", 0);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                ExceptionManager.AppendLog(ex);
                 throw;
             }
+
         }
     }
 }

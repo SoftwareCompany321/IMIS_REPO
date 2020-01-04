@@ -25,5 +25,6 @@ namespace IMIS_Service.ViewModel
         public DateTime? WorkEndDateAd { get; set; }
         public string BudgetYear { get; set; }
         public string Remarks { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

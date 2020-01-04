@@ -1,44 +1,47 @@
 ﻿@using IMIS_CORE.Core
-
+@{
+    ViewData["Title"] = "OfficeOrgStructureCreate";
+    Layout = null;
+}
 @model IMIS_Service.ViewModel.OfficeOrgStructureVM
-<div>
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
-        <div class="col-md-9">
-            @if (Model.Id > 0)
-            {
-                <span>@Model.Code</span>
-            }
-            else
-            {
+<div class="row">
+    <div class="col-md-12">
+        <div class="well">
+            <form method="post" asp-action="OfficeOrgStructureCreate">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <label for="code" class="col-md-2 control-label">@Utils.GetLabel("Parent OfficeOrgStructure")<span class="requried">*</span></label>
+                    <div class="col-md-7">
+                        <select asp-for="ParentId" asp-items="@ViewData["ParentOfficeOrgStructure"] as SelectList" class="form-control">
+                            <option value="0">@Utils.GetLabel("Root")</option>
+                        </select>
+                    </div>
+                </div>
+                @if (Model != null)
+                {
+                    <input type="hidden" asp-for="Id"/>
+                }
+                <div class="form-group is-empty">
+                    <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Name(Eng)")<span class="requried">*</span></label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" asp-for="EngName">
+                    </div>
+                </div>
+                <div class="form-group is-empty">
+                    <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Name(Nep)")<span class="requried">*</span></label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" asp-for="NepName" onkeypress="return setUnicode(event,this);">
+                    </div>
+                </div>
+                
+                <div class="form-group form-action">
+                    <div class="col-md-10 col-md-offset-2">
+                        <button type="submit" class="btn btn-primary">@Utils.GetLabel("Submit")</button>
+                        <button type="button" class="btn btn-default btn-close">@Utils.GetLabel("Cancel")</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-                <input type="text" class="form-control" asp-for="Code">
-            }
-
-        </div>
-    </div>
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Name(Eng)")<span class="requried">*</span>
-        </label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" asp-for="EngName">
-        </div>
-    </div>
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Name(Nep)")<span class="requried">*</span>
-        </label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" asp-for="NepName">
-        </div>
-    </div>
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Geo Region")<span class="requried">*</span>
-        </label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" asp-for="GeoRegion">
-        </div>
-    </div>
 </div>

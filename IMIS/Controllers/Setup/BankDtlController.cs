@@ -85,11 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
         [HttpGet]
-        [Route("/{id}/BankDtlDelete.html")]
-        public async Task<IActionResult> BankDtlDelete(int id)
+        [Route("{brandId}/BankDtlDelete.html")]
+        public async Task<IActionResult> BankDtlDelete(int brandId)
         {
-            return View(await _BankDtl.DeleteById(id));
+            var response = await _BankDtl.DeleteBankDtl(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/BankDtllist.html");
+            }
+            return View();
         }
     }
 }

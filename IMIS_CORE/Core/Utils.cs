@@ -188,8 +188,8 @@ namespace IMIS_CORE.Core
         {
             var exePath = Path.GetDirectoryName(System.Reflection
                               .Assembly.GetExecutingAssembly().CodeBase);
-            //Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:/+[\S\s]*?(?=/+bin)");
-            Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:\\+[\S\s]*?(?=\\+bin)");
+            Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:/+[\S\s]*?(?=/+bin)");
+            //Regex appPathMatcher = new Regex(@"(?<!fil)[A-Za-z]:\\+[\S\s]*?(?=\\+bin)");
             var appRoot = appPathMatcher.Match(exePath).Value;
             return appRoot;
         }
@@ -215,9 +215,9 @@ namespace IMIS_CORE.Core
         private static DataTable getUnicodedataTable()
         {
             var buildDir = GetApplicationRoot();
-            //string filepath = System.IO.Path.GetFullPath(buildDir + @"Unicode/unicodexml.xml");
+            string filepath = System.IO.Path.GetFullPath(buildDir + @"Unicode/unicodexml.xml");
 
-            string filepath = System.IO.Path.GetFullPath(buildDir + @"\Unicode\unicodexml.xml");
+            //string filepath = System.IO.Path.GetFullPath(buildDir + @"\Unicode\unicodexml.xml");
             DataSet ds = new DataSet();
             ds.ReadXml(filepath);
             DataTable dtRes = new DataTable();

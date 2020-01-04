@@ -86,14 +86,14 @@ namespace IMIS.Controllers.Setup
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("{unitId}/ItemUnitDelete.html")]
-        public async Task<IActionResult> ItemUnitDelete(ItemUnitVM model, int UnitId)
+        public async Task<IActionResult> ItemUnitDelete( int UnitId)
         {
-            var response = await _ItemUnit.AddEdit(model);
+            var response = await _ItemUnit.DeleteItemUnit(UnitId);
             if (response.message == "success")
             {
-                TempData["Message"] = "Successfully Added";
+                TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
                 return Redirect("~/ItemUnitlist.html");
             }

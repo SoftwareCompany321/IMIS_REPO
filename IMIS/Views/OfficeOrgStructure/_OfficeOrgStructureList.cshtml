@@ -1,0 +1,135 @@
+﻿@using IMIS_CORE.Core
+@{
+
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<body>
+
+    <div class="tab-content">
+
+        <!-- tab 1: region starts -->
+        <div class="tab-pane fade active in" id="region-tab">
+            <!-- generic add button for all the "add" forms | Add region -->
+            <a href="#" onclick="createOfficeOrgStructure(@ViewData["id"]);" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+            <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
+            @if (ViewBag.Message != null || ViewBag.Message == "")
+            {
+                <div class="alert @ViewBag.Class">
+                    @ViewBag.Message
+                </div>
+            }
+            <!-- search filters -->
+            <div class="collapse" id="searchCollapse">
+                <div class="well">
+                    <div class="form-group">
+                        <div class="col-sm-1 pull-right"><a href="#" class="btn btn-default form-modal-call"><i class="material-icons">search</i></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="account" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>@Utils.GetLabel("Name(Eng)")</th>
+                            <th>@Utils.GetLabel("Name(Nep)")</th>
+                            <th style="width:80px;">@Utils.GetLabel("Action")</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id='myModal' class='modal'>
+        <div class="modal-dialog">
+            <div id='myModalContent'></div>
+        </div>
+
+    </div>
+</body>
+<script lang="ja" type="text/javascript">
+     jQuery(document).ready(function () {
+         var table = jQuery("#account");
+         var url1 = '/' + @ViewData["id"] + '/OfficeOrgStructuredatagetfetchdatadatable.html';
+        table.dataTable({
+            "bProcessing": true,
+            "processing": true,
+            "serverSide": true,
+            "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-3"p>><"clear">',
+            'searching': true,//recordsFiltered
+            "ajax": {
+                "url": url1, "type": "GET", "data": function (d) {
+                    d.search = $("#usersearch").val();
+
+                },
+            }
+            ,
+            "language": {
+                "infoFiltered": ""
+            },
+            'stateSave': false,
+
+            "columns": [
+                { "data": "displayName", "orderable": true },
+            { "data": "displayNepName", "orderable": true },
+            { "data": "id", "orderable": true },
+            ],
+
+            "rowCallback": function (row, data, index) {
+                //jQuery('td:first-child', row).find("input").attr({ "id": "Ids", "name": "Ids", "value": data.id });
+                var url ='/' + data.id + '/OfficeOrgStructureEdit.html';
+                jQuery('td:last-child', row).html("<a href='#' onclick='editOfficeOrgStructure("+data.id+")' title='Edit unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+            },
+
+            order: [
+
+                [1, "desc"]
+            ],
+            "paging": false,
+            "pageLength": 10,
+            lengthOfficeOrgStructure: [
+                [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
+            ],
+            "fnInitComplete": function (oSettings, json) {
+                //jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
+            },
+
+        });
+        jQuery('#usersearch').on("keyup", function () {
+            table.fnFilter(this.value);
+        }).on("keypress", function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+        })
+     });
+
+     function createOfficeOrgStructure(id) {
+         var url1 = '/' + id + '/OfficeOrgStructureCreate.html';
+         var options = { "backdrop": "static", keyboard: true };
+        $.ajax({
+        type: 'GET',
+        url: url1,
+            success: function (data) {
+          $('#myModalContent').html(data);
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+        }
+    });
+}
+  function editOfficeOrgStructure(id) {
+       var url1 = '/' + id + '/OfficeOrgStructureEdit.html';
+       var options = { "backdrop": "static", keyboard: true };
+      $.ajax({
+          type: 'GET',
+          url: url1,
+          success: function (data) {
+              $('#myModalContent').html(data);
+              $('#myModal').modal(options);
+              $('#myModal').modal('show');
+          }
+      });
+}
+</script>

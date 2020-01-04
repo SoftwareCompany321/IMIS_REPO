@@ -33,10 +33,9 @@
                     <thead>
                         <tr>
 
-                            <th>@Utils.GetLabel("Id")</th>
+                            <th>@Utils.GetLabel("Code")</th>
                             <th>@Utils.GetLabel("Description(Nepali)")</th>
                             <th>@Utils.GetLabel("Description(English)")</th>
-                            <th>@Utils.GetLabel("Code")</th>
                             <th>@Utils.GetLabel("Depreciation Max")</th>
                             <th>@Utils.GetLabel("Depreciation Min")</th>
                             <th style="width:80px;">@Utils.GetLabel("Action")</th>
@@ -55,7 +54,8 @@
 
 <script lang="ja" type="text/javascript">
      jQuery(document).ready(function () {
-        var table = jQuery("#account");
+         var table = jQuery("#account");
+            var url1 = '/' + @ViewData["id"] + '/ItemCategoryFetchDataList.html';
         table.dataTable({
             "bProcessing": true,
             "processing": true,
@@ -63,7 +63,7 @@
             "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-3"p>><"clear">',
             'searching': true,//recordsFiltered
             "ajax": {
-                "url": "@Url.Content("~/ItemCategoryFetchDataList.html")", "type": "GET", "data": function (d) {
+                "url": url1, "type": "GET", "data": function (d) {
                     d.search = $("#usersearch").val();
 
                 },
@@ -75,10 +75,9 @@
             'stateSave': false,
 
             "columns": [
-                { "data": "id", "orderable": true },
+                { "data": "code", "orderable": true },
             { "data": "nameNp", "orderable": true },
             { "data": "nameEn", "orderable": true },
-            { "data": "code", "orderable": true },
             { "data": "rmaxl", "orderable": true },
             { "data": "rminl", "orderable": true },
             { "data": "id", "orderable": true },
@@ -99,7 +98,7 @@
             ],
             "paging": false,
             "pageLength": 10,
-            lengthMenu: [
+            lengthmenu: [
                 [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
             ],
             "fnInitComplete": function (oSettings, json) {
@@ -116,7 +115,7 @@
         })
     });
       function createItemCategory(id) {
-         var url1 = '/' + id + '/MenuCreate.html';
+         var url1 = '/' + id + '/ItemCategoryCreate.html';
          var options = { "backdrop": "static", keyboard: true };
         $.ajax({
         type: 'GET',
@@ -128,8 +127,8 @@
         }
     });
 }
-  function editMenu(id) {
-         var url1 = '/' + id + '/MenuEdit.html';
+  function editItemCategory(id) {
+         var url1 = '/' + id + '/ItemCategoryEdit.html';
          var options = { "backdrop": "static", keyboard: true };
         $.ajax({
         type: 'GET',

@@ -1,38 +1,31 @@
 ﻿@using IMIS_CORE.Core
 
 @model IMIS_Service.ViewModel.ItemSpecificationVM
-<div>
+    <div>
 
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
-        <div class="col-md-9">
-            @if (Model.SpecId > 0)
-            {
-                <span>@Model.Code</span>
-            }
-            else
-            {
-
+        <input asp-for="SpecId" type="hidden" />
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
+            <div class="col-md-9">
                 <input type="text" class="form-control" asp-for="Code">
-            }
+            </div>
         </div>
-    </div>
 
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Specification Name(English)")<span class="requried">*</span>
-        </label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" asp-for="NameEn">
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Specification Name(English)")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="NameEn">
+            </div>
         </div>
-    </div>
-    <div class="form-group is-empty">
-        <label for="region" class="col-md-2 control-label">
-            @Utils.GetLabel("Specification Name(Nepali)")<span class="requried">*</span>
-        </label>
-        <div class="col-md-9">
-            <input type="text" class="form-control" asp-for="NameNp">
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Specification Name(Nepali)")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="NameNp">
+            </div>
         </div>
-    </div>
 
-</div>
+    </div>

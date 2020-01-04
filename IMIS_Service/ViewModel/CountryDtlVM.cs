@@ -11,5 +11,6 @@ namespace IMIS_Service.ViewModel
         public string Nepname { get; set; }
         public string Engname { get; set; }
         public string Description { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

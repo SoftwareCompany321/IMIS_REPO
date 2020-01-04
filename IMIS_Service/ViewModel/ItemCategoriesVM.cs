@@ -31,7 +31,8 @@ namespace IMIS_Service.ViewModel
         public string Remarks { get; set; }
         public int? ItemId { get; set; }
         public List<ItemCatSub>  itemCatSub { get; set; }
-         
+        public bool IsActive { get; set; } = true;
+
     }
 
     public class ItemCatSub: ItemCategoriesVM

@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IProjectSetup
     {
         Task<DataTableResponse> ProjectSetupFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditProjectSetup(ProjectSetupVM model);
-
+        Task<(string message, int Id)> DeleteProjectSetup(int ProjectSetupid);
         Task<ProjectSetupVM> ViewEdit(decimal Id);
     }
     public class ProjectSetup : IProjectSetup
@@ -46,10 +47,12 @@ namespace IMIS_Service.Setup.IProjectSetup
                 }
 
                 var accMasters =  (from ip in _db.InvProject
-                                        select new
+                                   where ip.IsActive == true
+                                   select new
                                         {
                                             ip.InvRequisitionMast,
-                                            //ip.IsActive,
+                                             ip.IsActive,
+                                             ip.Code,
                                             ip.NameEn,
                                             ip.NameNp, 
                                             ip.ProjectId 
@@ -99,6 +102,8 @@ namespace IMIS_Service.Setup.IProjectSetup
                 var item = new InvProject()
                 {
                     ProjectId = model.ProjectId,
+                    Code=model.Code,
+                    IsActive=model.IsActive,
                     NameEn = model.NameEn,
                     NameNp = model.NameNp
                 };
@@ -133,6 +138,8 @@ namespace IMIS_Service.Setup.IProjectSetup
                     return (new ProjectSetupVM()
                     {
                         ProjectId = response.ProjectId,
+                        Code=response.Code,
+                        IsActive=response.IsActive,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
 
@@ -148,6 +155,28 @@ namespace IMIS_Service.Setup.IProjectSetup
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteProjectSetup(int ProjectSetupid)
+        {
+            try
+            {
+                var data = _db.InvProject.Where(x => x.ProjectId == ProjectSetupid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

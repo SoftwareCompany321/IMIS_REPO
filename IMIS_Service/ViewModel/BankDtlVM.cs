@@ -22,5 +22,6 @@ namespace IMIS_Service.ViewModel
         public int? FinancelInstituteId { get; set; }
         public string Branch { get; set; }
         public string Bankname { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

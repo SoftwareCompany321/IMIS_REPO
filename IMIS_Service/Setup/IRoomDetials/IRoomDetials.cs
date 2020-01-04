@@ -1,7 +1,10 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Core;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,10 +16,11 @@ namespace IMIS_Service.Setup.IRoomDetials
 {
     public interface IRoomDetials
     {
-        Task<DataTableResponse> RoomDetialsFetchData(DataTableVm model);
+        Task<DataTableResponse> RoomDetailsFetchData(DataTableVm model);
         Task<(string message, int Id)> AddEdit(RoomDetialsVM Model);
-
+        Task<(string message, int Id)> DeleteRoomDetails(int RoomDetialsid);
         Task<RoomDetialsVM> ViewOrEditData(int Id);
+        IEnumerable<SelectListItem> GetDepartmentList();
     }
     public class RoomDetials : IRoomDetials
     {
@@ -25,7 +29,7 @@ namespace IMIS_Service.Setup.IRoomDetials
         {
             _db = db;
         }
-        public async Task<DataTableResponse> RoomDetialsFetchData(DataTableVm model)
+        public async Task<DataTableResponse> RoomDetailsFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
             int skip = 0;
@@ -46,10 +50,12 @@ namespace IMIS_Service.Setup.IRoomDetials
                 }
 
                 var accMasters =  (from IRM in _db.InvRoomMst
-                                        select new
+                                   where IRM.IsActive == true
+                                   select new
                                         {
                                             IRM.RoomId,
                                             IRM.BlockNo,
+                                            IRM.Code,
                                             IRM.Dept,
                                             IRM.DeptId,
                                             IRM.DescEn,
@@ -93,7 +99,11 @@ namespace IMIS_Service.Setup.IRoomDetials
                 //add to do for the error log save in db
             }
         }
+        public IEnumerable<SelectListItem> GetDepartmentList()
+        {
+            return new SelectList(_db.InvDept.Where(x => x.DeptId == x.DeptId), "DeptId", Utils.ToggleLanguage("NameEn", "NameNp"));
 
+        }
         public async Task<(string message, int Id)> AddEdit(RoomDetialsVM Model)
         {
             try
@@ -101,11 +111,13 @@ namespace IMIS_Service.Setup.IRoomDetials
                 var AddEdit = new InvRoomMst()
                 {
                     RoomId = Model.RoomId,
+                    Code=Model.Code,
                     DescEn = Model.DescEn,
                     DescNp = Model.DescNp ,
                     FloorNo=Model.FloorNo,
                     BlockNo=Model.BlockNo,
-                    DeptId=Model.DeptId
+                    DeptId=Model.DeptId,
+                    IsActive=Model.IsActive
 
                 };
 
@@ -137,9 +149,14 @@ namespace IMIS_Service.Setup.IRoomDetials
                 {
                     return new RoomDetialsVM()
                     {
-                        DeptId = data.RoomId,
+                        RoomId = data.RoomId,
+                        Code = data.Code,
+                    DescEn = data.DescEn,
                         DescNp = data.DescNp,
-                        DescEn = data.DescEn 
+                        FloorNo = data.FloorNo,
+                        BlockNo = data.BlockNo,
+                        DeptId = data.DeptId,
+                        IsActive = data.IsActive
                     };
                 }
                 else
@@ -153,6 +170,28 @@ namespace IMIS_Service.Setup.IRoomDetials
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteRoomDetails(int RoomDetialsid)
+        {
+            try
+            {
+                var data = _db.InvRoomMst.Where(x => x.RoomId == RoomDetialsid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

@@ -65,6 +65,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("GRP_LEVEL")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("IsBudgetable")
                         .HasColumnName("IS_BUDGETABLE")
                         .HasColumnType("character varying(1)")
@@ -1251,6 +1254,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("HEAD")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<int?>("Ministry")
                         .HasColumnName("MINISTRY")
@@ -3078,6 +3084,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("FINANCEL_INSTITUTE_ID")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
                         .HasColumnType("character varying(100)")
@@ -3551,6 +3560,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("Counterheadid")
                         .HasColumnName("COUNTERHEADID")
                         .HasColumnType("integer");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Location")
                         .HasColumnName("LOCATION")
@@ -5241,6 +5253,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
                         .HasColumnType("character varying(50)")
@@ -5283,6 +5298,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("GrpLevel")
                         .HasColumnName("GRP_LEVEL")
                         .HasColumnType("integer");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<int?>("IsHeader")
                         .HasColumnName("IS_HEADER")
@@ -5562,6 +5580,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("Gussage")
                         .HasColumnName("GUSSAGE")
                         .HasColumnType("integer");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<int?>("ItemMainClass")
                         .HasColumnName("ITEM_MAIN_CLASS")
@@ -6305,6 +6326,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
                         .HasColumnType("character varying(50)")
@@ -6589,6 +6613,9 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<char?>("Isdefault")
                         .HasColumnType("character(1)");
 
@@ -6841,6 +6868,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("FLOOR_NO")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.HasKey("RoomId")
                         .HasName("INV_ROOM_MST_pkey");
 
@@ -7018,6 +7048,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(30)")
                         .HasMaxLength(30);
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("IsSelected")
                         .HasColumnName("IS_SELECTED")
                         .HasColumnType("character varying(5)")
@@ -7088,6 +7121,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(15)")
                         .HasMaxLength(15);
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<int?>("SupId")
                         .HasColumnName("SUP_ID")
                         .HasColumnType("integer");
@@ -7105,6 +7141,9 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<string>("Code")
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("NameEn")
                         .HasColumnName("NAME_EN")
@@ -7263,6 +7302,9 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<string>("InfoPublishDate")
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("NameEn")
                         .HasColumnType("text");
@@ -7485,6 +7527,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("DATEISSUED")
                         .HasColumnType("character varying(10)")
                         .HasMaxLength(10);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("Sn")
                         .HasColumnName("SN")
@@ -8524,6 +8569,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(25)")
                         .HasMaxLength(25);
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<int>("Nationalityid")
                         .HasColumnName("NATIONALITYID")
                         .HasColumnType("integer");
@@ -8684,6 +8732,9 @@ namespace IMIS_DataEntity.Migrations
 
                     b.Property<int?>("ParentId")
                         .HasColumnName("PARENT_ID")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("order")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
@@ -10752,6 +10803,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("PARENT_ID")
                         .HasColumnType("integer");
 
+                    b.Property<int>("order")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ParentId");
@@ -12350,6 +12404,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("DESCRIPTION")
                         .HasColumnType("character varying(70)")
                         .HasMaxLength(70);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.HasKey("Sn")
                         .HasName("STOREDBILLS_pkey");
@@ -14957,6 +15014,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
 
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("NpName")
                         .HasColumnName("NP_NAME")
                         .HasColumnType("character varying(200)")
@@ -15527,6 +15587,9 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("ENG_NAME")
                         .HasColumnType("character varying(100)")
                         .HasMaxLength(100);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("NpName")
                         .HasColumnName("NP_NAME")

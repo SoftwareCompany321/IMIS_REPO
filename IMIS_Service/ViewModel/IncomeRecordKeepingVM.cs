@@ -13,7 +13,8 @@ namespace IMIS_Service.ViewModel
         public string Billnoto { get; set; }
         public int Code { get; set; }
         public int Billtypeid { get; set; }
+        public bool IsActive { get; set; } = true;
 
-        
+
     }
 }

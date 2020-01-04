@@ -13,7 +13,7 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Bank Detail List")</a> </li>
+                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Office Approved Post List")</a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -44,10 +44,10 @@
                                     <tr>
                                         <th>@Utils.GetLabel("Id")</th>
 
-                                        <th>@Utils.GetLabel("Description(Nepali)")</th>
+                                        <th>@Utils.GetLabel("Post Name(Nep)")</th>
 
-                                        <th>@Utils.GetLabel("Description(English)")</th>
-
+                                        <th>@Utils.GetLabel("Post Name(Eng)")</th>
+                                        <th>@Utils.GetLabel("Post ID)")</th>
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
@@ -78,7 +78,7 @@
                 "bProcessing": true,
                 "processing": true,
                 "serverSide": true,
-                "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
+                "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-3"p>><"clear">',
                 'searching': true,//recordsFiltered
 				"ajax": {
                    "url": "@Url.Content("~/OfficeAppPosFetchData.html")", "type": "GET", "data": function (d) {
@@ -96,6 +96,15 @@
                 { "data": "nepName", "orderable": true },
                 { "data": "engName", "orderable": false }, 
                 ],
+                 "rowCallback": function (row, data, index) {
+                      var url ='/' + data.brandId + '/OfficeAppPosEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.brandId + '/OfficeAppPosDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+                     
+            },
                 order: [
 
                     [1, "desc"]

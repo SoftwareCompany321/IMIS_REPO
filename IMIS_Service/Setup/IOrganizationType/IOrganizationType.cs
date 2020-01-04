@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IMIS_Service.ViewModel;
 using IMIS_DataEntity.EntityClass;
+using ExceptionHandler;
 
 namespace IMIS_Service.Setup.IOrganizationType
 {
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IOrganizationType
     {
         Task<DataTableResponse> OrganizationTypeFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditSave(OrganizationTypeVM model);
-
+        Task<(string message, int Id)> DeleteOrganizationType(int OrganizationTypeid);
         Task<OrganizationTypeVM> ViewEdit(int id);
     }
     public class OrganizationType : IOrganizationType
@@ -46,9 +47,12 @@ namespace IMIS_Service.Setup.IOrganizationType
                 }
 
                 var accMasters =  (from iot in _db.InvOrgType
-                                        select new
+                                   where iot.IsActive == true
+                                   select new
                                         {
                                             iot.Id,
+                                            iot.Code,
+                                            iot.IsActive,
                                             iot.NameEn,
                                             iot.NameNp 
                                         });
@@ -98,7 +102,9 @@ namespace IMIS_Service.Setup.IOrganizationType
                 {
                     Id = model.Id,
                     NameEn = model.NameEn,
-                    NameNp = model.NameNp 
+                    NameNp = model.NameNp ,
+                    Code=model.Code,
+                    IsActive=model.IsActive
                 };
                 if (model.Id == 0)
                 {
@@ -133,7 +139,10 @@ namespace IMIS_Service.Setup.IOrganizationType
                     return (new OrganizationTypeVM()
                     {
                         NameEn = response.NameEn,
-                        NameNp = response.NameNp
+                        NameNp = response.NameNp,
+                        Code = response.Code,
+                        IsActive = response.IsActive,
+                        Id=response.Id
                     });
                 }
                 else
@@ -146,6 +155,28 @@ namespace IMIS_Service.Setup.IOrganizationType
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteOrganizationType(int OrganizationTypeid)
+        {
+            try
+            {
+                var data = _db.InvOrgType.Where(x => x.Id == OrganizationTypeid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

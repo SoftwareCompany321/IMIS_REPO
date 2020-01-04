@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewData["Title"] = "CivilServicesFetchList";
+
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    td.details-control {
+        background: url('../images/icons/details_open.png') no-repeat center center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('../images/icons/details_close.png') no-repeat center center;
+    }
+</style>
+<script src="js/jquery.js"></script>
+<script src="js/plugins/script.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<link href="~/lib/jstree/dist/themes/default/style.css" rel="stylesheet" />
+<script src="~/lib/jstree/dist/jstree.min.js"></script>
+<body>
+    <!-- Bootstrap Core CSS -->
+    <!-- Navigation -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="tab-lists-wrapper boxed parentTabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#region-tab">CivilServices List</a> </li>
+                </ul>
+
+                <div class="tab-content">
+
+                  
+                    <div class="col-sm-4" style="float: left;">
+                        <nav class="navbar navbar-left col-sm-12" style="background-color:azure;margin-top:40px;border-right:5px solid gray">
+                            <div id="tree"></div>
+                        </nav>
+                    </div>
+                    <div class="col-sm-8" style="float: right;">
+                        <div id="partial">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <div id="add" hidden>
+
+    </div>
+
+</body>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#tree').jstree({
+            'core': {
+                "themes": {
+                    "icons": false,
+                    "stripes": false
+                },
+                'data': {
+                    "url": "@Url.Content("~/CivilServicesTreeFetchData.html")",
+                    "data": function (node) {
+                        return { "id": node.id };
+                    }
+                }
+            },
+            "plugins": ["wholerow"]
+        });
+    });
+
+    function loadchildlist(id) {
+         var url1 = '/' + id + '/CivilServicesTreePartial.html';
+        $.ajax({
+        type: 'GET',
+        url: url1,
+            success: function (data) { 
+           $('#partial').html(data);
+        }
+    });
+}
+
+</script>

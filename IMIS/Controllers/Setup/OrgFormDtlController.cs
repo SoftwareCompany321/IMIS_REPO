@@ -85,5 +85,19 @@ namespace IMIS.Controllers.Setup
             }
             return View();
         }
+
+        [HttpGet]
+        [Route("{brandId}/OrgFormDtlDelete.html")]
+        public async Task<IActionResult> OrgFormDtlDelete(int brandId)
+        {
+            var response = await _OrgFormDtl.DeleteOrgFormDtl(brandId);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Deleted";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/OrgFormDtllist.html");
+            }
+            return View();
+        }
     }
 }

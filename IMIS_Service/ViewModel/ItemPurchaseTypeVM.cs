@@ -12,5 +12,6 @@ namespace IMIS_Service.ViewModel
         public string NepEng { get; set; } 
         public string Remarks { get; set; } 
         public char? Isdefault { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

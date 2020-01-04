@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IWareHouse
     {
         Task<DataTableResponse> WareHouseFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditWareHouse(WareHouseVM model);
-
+        Task<(string message, int Id)> DeleteWareHouse(int WareHouseid);
         Task<WareHouseVM> ViewEdit(decimal Id);
     }
     public class WareHouse : IWareHouse
@@ -46,9 +47,12 @@ namespace IMIS_Service.Setup.IWareHouse
                 }
 
                 var accMasters =  (from wareHouse in _db.InvWarehouse
-                                        select new
+                                   where wareHouse.IsActive==true
+                                   select new
                                         {
                                             wareHouse.WarehouseId,
+                                            wareHouse.Code,
+                                            wareHouse.IsActive,
                                             wareHouse.NameEn,
                                             wareHouse.NameNp
                                         });
@@ -97,6 +101,8 @@ namespace IMIS_Service.Setup.IWareHouse
                 var item = new InvWarehouse()
                 {
                     WarehouseId = model.WarehouseId,
+                    Code = model.Code,
+                    IsActive = model.IsActive,
                     NameEn = model.NameEn,
                     NameNp = model.NameNp
                 };
@@ -131,6 +137,8 @@ namespace IMIS_Service.Setup.IWareHouse
                     return (new WareHouseVM()
                     {
                         WarehouseId = response.WarehouseId,
+                        Code=response.Code,
+                        IsActive=response.IsActive,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
 
@@ -146,6 +154,28 @@ namespace IMIS_Service.Setup.IWareHouse
 
                 throw;
             }
+        }
+
+        public async Task<(string message, int Id)> DeleteWareHouse(int WareHouseid)
+        {
+            try
+            {
+                var data = _db.InvWarehouse.Where(x => x.WarehouseId == WareHouseid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

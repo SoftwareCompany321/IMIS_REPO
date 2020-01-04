@@ -1,4 +1,5 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
@@ -15,7 +16,7 @@ namespace IMIS_Service.Setup.IDepartment
     {
         Task<DataTableResponse> DepartmentFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditDepartment(DepartmentVM model);
-
+        Task<(string message, int Id)> DeleteDepartment(int UnitId);
         Task<DepartmentVM> ViewEdit(decimal Id);
         Task<string> Delete(int Id);
     }
@@ -46,13 +47,16 @@ namespace IMIS_Service.Setup.IDepartment
                     draw = model.draw;
                 }
 
-                var accMasters = (from ids in _db.InvDept
-                                  select new
-                                  {
-                                      ids.DeptId,
-                                      ids.NameEn,
-                                      ids.NameNp
-                                  });
+                var accMasters =  (from ids in _db.InvDept
+                                   where ids.IsActive==true
+                                        select new
+                                        {
+                                            ids.DeptId,
+                                            ids.Code,
+                                            ids.NameEn,
+                                            ids.NameNp ,
+                                            ids.IsActive
+                                        });
                 ///filter count for the total; record
                 ///
 
@@ -97,8 +101,10 @@ namespace IMIS_Service.Setup.IDepartment
                 var item = new InvDept()
                 {
                     DeptId = model.DeptId,
-                    NameEn = model.NameEn,
-                    NameNp = model.NameNp
+                    Code=model.Code,
+                    NameEn = model.NameEn, 
+                    NameNp = model.NameNp 
+                    IsActive=model.IsActive
                 };
                 if (model.DeptId == 0)
                 {
@@ -130,10 +136,11 @@ namespace IMIS_Service.Setup.IDepartment
                 {
                     return (new DepartmentVM()
                     {
-                        DeptId = response.DeptId,
+                        DeptId = response.DeptId ,
+                        Code=response.Code,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
-
+                        IsActive=response.IsActive,
                     });
                 }
                 else

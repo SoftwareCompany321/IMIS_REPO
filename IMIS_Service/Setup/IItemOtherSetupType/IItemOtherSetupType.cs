@@ -1,5 +1,9 @@
-﻿using IMIS_CORE.Utility;
+﻿using ExceptionHandler;
+using IMIS_CORE.Core;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
+using IMIS_DataEntity.EntityClass;
+using IMIS_Service.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +15,12 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
 {
     public interface IItemOtherSetupType
     {
-        Task<DataTableResponse> ItemOtherSetupTypeFetchData(DataTableVm model);
+        Task<DataTableResponse> ItemOtherSetupTypeFetchData(DataTableVm model, int id);
+        Task<(string message, int id)> AddEditItemOtherSetupType(ItemOtherSetupTypeVM model);
+        List<TreeViewContainer> ItemOtherSetupTypeFetchTreeData(DataTableVm model);
+        Task<(string message, int Id)> DeleteItemOtherSetupType(int UnitId);
+        Task<ItemOtherSetupTypeVM> ViewEdit(decimal Id);
+
     }
     public class ItemOtherSetupType : IItemOtherSetupType
     {
@@ -20,7 +29,7 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
         {
             _db = db;
         }
-        public async Task<DataTableResponse> ItemOtherSetupTypeFetchData(DataTableVm model)
+        public async Task<DataTableResponse> ItemOtherSetupTypeFetchData(DataTableVm model, int id)
         {
             string searchBy = string.Empty;
             int skip = 0;
@@ -41,7 +50,8 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
                 }
 
                 var accMasters =  (from its in _db.InvTypeSetup
-                                        select new
+                                   where its.IsActive == true && its.TypeId==id
+                                   select new
                                         {
                                             its.Id,
                                             its.DescEn,
@@ -83,6 +93,150 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
                 };
                 //add to do for the error log save in db
             }
+        }
+
+        public List<TreeViewContainer> ItemOtherSetupTypeFetchTreeData(DataTableVm model)
+        {
+            string searchBy = string.Empty;
+            int skip = 0;
+            int take = 10;
+            int draw = 0;
+            List<TreeViewContainer> result = new List<TreeViewContainer>();
+            List<TreeViewVM> Datas = new List<TreeViewVM>();
+            try
+            {
+                if (model != null)
+                {
+                    searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
+                    take = model.length;
+                    skip = model.start;
+                    draw = model.draw;
+                }
+                TreeViewVM tvm = new TreeViewVM();
+                tvm.id = "1";
+                tvm.text = Utils.ToggleLanguage("Item Status Type", "सामान अवस्था किसिम");
+                tvm.parentId = "0";
+                Datas.Add(tvm);
+                tvm = new TreeViewVM();
+                tvm.id = "2";
+                tvm.text = Utils.ToggleLanguage("Item Nature Type", "सामान प्रकृति किसिम");
+                tvm.parentId = "0";
+                Datas.Add(tvm);
+                tvm = new TreeViewVM();
+                tvm.id = "3";
+                tvm.text = Utils.ToggleLanguage("Item Requisition Type", "सामान माग किसिम");
+                tvm.parentId = "0";
+                Datas.Add(tvm);
+                tvm = new TreeViewVM();
+                tvm.id = "4";
+                tvm.text = Utils.ToggleLanguage("Item Main Type", "सामानको मुख्य किसिम");
+                tvm.parentId = "0";
+                Datas.Add(tvm);
+                tvm = new TreeViewVM();
+                tvm.id = "5";
+                tvm.text = Utils.ToggleLanguage("Budget Type", "बजेट किसिम");
+                tvm.parentId = "0";
+                Datas.Add(tvm);
+
+                result = (from d in Datas
+                          where d.parentId == "0"
+                          select (new TreeViewContainer()
+                          {
+                              text = d.text,
+                              id = d.id,
+                              parentId = null,
+                              state = new { d.opened },
+                              opened = d.opened,
+                              a_attr = new { href = "#", onclick = "loadchildlist('" + d.id + "');", }
+                          }).AddChildrens(Datas, 0)).ToList();
+
+
+
+            }
+            catch (Exception)
+            {
+
+            }
+            return result;
+        }
+        public async Task<(string message, int id)> AddEditItemOtherSetupType(ItemOtherSetupTypeVM model)
+        {
+            try
+            {
+                var item = new InvTypeSetup()
+                {
+                    Id = model.Id,
+                    DescEn = model.DescEn,
+                    DescNp = model.DescNp
+                };
+                if (model.Id == 0)
+                {
+                    int id = await _db.InvTypeSetup.CountAsync();
+                    item.Id = id + 1;
+                    _db.InvTypeSetup.AddRange(item);
+                }
+                else
+                {
+                    _db.Entry(item).State = EntityState.Modified;
+                }
+                await _db.SaveChangesAsync(true);
+
+                return ("success", 0);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public async Task<ItemOtherSetupTypeVM> ViewEdit(decimal Id)
+        {
+            try
+            {
+                var response = await _db.InvTypeSetup.Where(x => x.Id == Id).FirstOrDefaultAsync();
+                if (response != null)
+                {
+                    return (new ItemOtherSetupTypeVM()
+                    {
+                        Id = response.Id,
+                        DescEn = response.DescEn,
+                        DescNp = response.DescNp 
+
+                    });
+                }
+                else
+                {
+                    return new ItemOtherSetupTypeVM();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task<(string message, int Id)> DeleteItemOtherSetupType(int ItemOtherSetupTypeid)
+        {
+            try
+            {
+                var data = _db.InvTypeSetup.Where(x => x.Id == ItemOtherSetupTypeid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
         }
     }
 }

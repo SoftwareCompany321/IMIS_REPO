@@ -5062,7 +5062,7 @@ namespace IMIS_DataEntity.Migrations
                     b.ToTable("INV_ITEM_ADJ_TYPE");
                 });
 
-            modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvItemCategory", b =>
+            modelBuilder.Entity("IMIS_DataEntity.EntityClass.InvSupplierListingDesc", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnName("ID")
@@ -16375,7 +16375,7 @@ namespace IMIS_DataEntity.Migrations
                         .HasForeignKey("ItemId")
                         .HasConstraintName("FK_INV_ISS_DTL_ITEM_ID");
 
-                    b.HasOne("IMIS_DataEntity.EntityClass.InvItemCategory", "ItemTypeNavigation")
+                    b.HasOne("IMIS_DataEntity.EntityClass.InvSupplierListingDesc", "ItemTypeNavigation")
                         .WithMany("InvIssueDetail")
                         .HasForeignKey("ItemType")
                         .HasConstraintName("FK_INV_ISS_DTL_ITEM_TYPE");
@@ -16521,7 +16521,7 @@ namespace IMIS_DataEntity.Migrations
                         .HasForeignKey("ItemId")
                         .HasConstraintName("FK_PUR_ORDER_ITEM_ID");
 
-                    b.HasOne("IMIS_DataEntity.EntityClass.InvItemCategory", "ItemTypeNavigation")
+                    b.HasOne("IMIS_DataEntity.EntityClass.InvSupplierListingDesc", "ItemTypeNavigation")
                         .WithMany("InvPurOrderDetl")
                         .HasForeignKey("ItemType")
                         .HasConstraintName("FK_PUR_ORDER_ITEM_TYPE");

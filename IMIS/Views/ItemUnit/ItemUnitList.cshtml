@@ -46,7 +46,7 @@
                             <table id="menu" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>@Utils.GetLabel("Unit Id") </th>
+                                        <th>@Utils.GetLabel("Code") </th>
                                         <th>@Utils.GetLabel("Description(Nepali)")</th>
                                         <th>@Utils.GetLabel("Description(English)")</th>
                                         <th>@Utils.GetLabel("Small Unit")</th>
@@ -97,7 +97,7 @@
             'stateSave': false,
 
             "columns": [
-                { "data": "unitId", "orderable": true },
+                { "data": "code", "orderable": true },
                 { "data": "descNp", "orderable": true },
                 { "data": "descEn", "orderable": true },
                 { "data": "noOfUnits", "orderable": true },
@@ -106,13 +106,12 @@
 
             ],
 
-            "rowCallback": function (row, data, index) {
-                
+            "rowCallback": function (row, data, index) { 
                 var url ='/' + data.unitId + '/ItemUnitEdit.html';
-                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
                  var urldelete ='/' + data.unitId + '/ItemUnitDelete.html';
-                jQuery('td:last-child', row).html("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-delete'></i></a>");
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
             },
 

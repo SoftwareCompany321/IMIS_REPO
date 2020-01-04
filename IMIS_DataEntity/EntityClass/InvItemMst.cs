@@ -50,6 +50,7 @@ namespace IMIS_DataEntity.EntityClass
         public int? AccId { get; set; }
         public int? BudgetAccId { get; set; }
         public int? VehiclePartsId { get; set; }
+        public bool IsActive { get; set; }
 
         public virtual InvUnit Unit { get; set; }
         public virtual ICollection<InvGoodsAdjust> InvGoodsAdjust { get; set; }

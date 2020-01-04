@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using ExceptionHandler;
 using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
@@ -19,6 +20,7 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
         Task<(string message, int id)> AddEditItemPurYearlyPlan(ItemPurYearlyPlanVM model);
         Task<ItemPurYearlyPlanVM> ViewEdit(int Id);
         Task<IEnumerable<SelectListItem>> InVPurType();
+        Task<(string message, int Id)> DeleteItemPurYearlyPlan(int ItemPurYearlyPlanid);
     }
     public class ItemPurYearlyPlan : IItemPurYearlyPlan
     {
@@ -50,6 +52,7 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
                 }
 
                 var accMasters = (from iypp in _db.InvYrlyPurPlan
+                                  where iypp.IsActive == true
                                   select new
                                   {
                                       iypp.Id,
@@ -179,7 +182,27 @@ namespace IMIS_Service.Setup.IItemPurYearlyPlan
                 throw ex;
             }
         }
+        public async Task<(string message, int Id)> DeleteItemPurYearlyPlan(int ItemPurYearlyPlanid)
+        {
+            try
+            {
+                var data = _db.InvYrlyPurPlan.Where(x => x.Id == ItemPurYearlyPlanid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
 
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
+        }
         public async Task<IEnumerable<SelectListItem>> InVPurType()
         {
             return new SelectList(await _db.InvPurType.ToListAsync(), "Id", "NepName");

@@ -10,5 +10,6 @@ namespace IMIS_Service.ViewModel
         public string Code { get; set; }
         public string NpName { get; set; }
         public string EngName { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }
