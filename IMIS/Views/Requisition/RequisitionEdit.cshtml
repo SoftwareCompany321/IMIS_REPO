@@ -1,30 +1,29 @@
 ﻿@using IMIS_CORE.Core
-@model IMIS_Service.ViewModel.ReceiptDistributionVM
 @{
-    ViewData["Title"] = "ReceiptDistributionCreate";
+    ViewData["Title"] = "RequisitionEdit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
+@model IMIS_Service.ViewModel.PurchaseDetailsVM
+
 <body>
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#sub11">@Utils.GetLabel("Edit Item Category")</a> </li>
+                    <li class="active"><a href="#sub11">@Utils.GetLabel("Edit Requisition Form")</a> </li>
 
                 </ul>
                 <div class="tab-content">
-                    <a asp-action="ReceiptDistributionList" asp-controller="ReceiptDistribution" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
+                    <a asp-action="PurchaseDetailsList" asp-controller="PurchaseDetails" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
                     <div class="tab-pane fade active in" id="sub111">
-                        <h2 class="form-title">
-                            @Utils.GetLabel("Add Item Category")
-                        </h2>
-
+                        <h2 class="form-title">@Utils.GetLabel("Add Edit Requisition")</h2>
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="well">
-                                    <form method="post" asp-action="ReceiptDistributionEdit" asp-controller="ReceiptDistribution">
+                                    <form method="post" asp-action="PurchaseDetailsCreate">
                                         @Html.AntiForgeryToken()
-                                        @await Html.PartialAsync("~/Views/ReceiptDistribution/_partialReceiptDistribution.cshtml", Model)
+                                        @await Html.PartialAsync("~/Views/Requisition/_partialRequisition.cshtml", Model)
                                         <div class="form-group form-action">
                                             <div class="col-md-10 col-md-offset-2">
                                                 <button type="submit" class="btn btn-primary">
@@ -46,3 +45,5 @@
         <!-- /.container-fluid -->
     </div>
 </body>
+
+

@@ -15,8 +15,7 @@ namespace IMIS_Service.Setup.IDepartment
     public interface IDepartment
     {
         Task<DataTableResponse> DepartmentFetchData(DataTableVm model);
-        Task<(string message, int id)> AddEditDepartment(DepartmentVM model);
-        Task<(string message, int Id)> DeleteDepartment(int UnitId);
+        Task<(string message, int id)> AddEditDepartment(DepartmentVM model); 
         Task<DepartmentVM> ViewEdit(decimal Id);
         Task<string> Delete(int Id);
     }

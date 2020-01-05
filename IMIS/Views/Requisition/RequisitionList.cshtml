@@ -1,8 +1,9 @@
 ﻿@using IMIS_CORE.Core
 @{
-    ViewData["Title"] = "AccountHeaderList";
+    ViewData["Title"] = "RequisitionList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+
 <!DOCTYPE html>
 
 <body>
@@ -13,7 +14,7 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Account Header List")</a> </li>
+                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Requisition List")</a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -21,7 +22,7 @@
                     <!-- tab 1: region starts -->
                     <div class="tab-pane fade active in" id="region-tab">
                         <!-- generic add button for all the "add" forms | Add region -->
-                        <a href="@Url.Content("~/AccountHeaderCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                        <a href="@Url.Content("~/RequisitionCreate.html")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
                         <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
 
                         <!-- search filters -->
@@ -43,10 +44,13 @@
                                 <thead>
                                     <tr>
                                         <th>@Utils.GetLabel("Id")</th>
-                                        <th>@Utils.GetLabel("accCode")</th>
-                                        <th>@Utils.GetLabel("Description(Nepali)")</th>
-                                        <th>@Utils.GetLabel("Description(English)")</th>
-                                        <th>@Utils.GetLabel("FiscalYear")</th>
+                                        <th>@Utils.GetLabel("Item Name")</th>
+                                        <th>@Utils.GetLabel("Unit Name")</th>
+                                        <th>@Utils.GetLabel("Type Name")</th>
+                                        <th>@Utils.GetLabel("Brand Name")</th>
+                                        <th>@Utils.GetLabel("Spec Name")</th>
+                                        <th>@Utils.GetLabel("Pur Qty")</th>
+                                        <th>@Utils.GetLabel("Remarks")</th>
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
@@ -80,33 +84,27 @@
                 "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
                 'searching': true,//recordsFiltered
 				"ajax": {
-                   "url": "@Url.Content("~/AccountHeaderFetchData.html")", "type": "GET", "data": function (d) {
+                   "url": "@Url.Content("~/RequisitionFetchData.html")", "type": "GET", "data": function (d) {
                     d.search = $("#usersearch").val();
                 }
                 },
                 "language": {
                     "infoFiltered": ""
                 },
-                'stateSave': false,
-
-
+                'stateSave': false, 
+                
                 "columns": [
-                { "data": "accId", "orderable": true },
-                { "data": "accCode", "orderable": true },
                 { "data": "code", "orderable": true },
-                { "data": "engName", "orderable": false },
-                { "data": "nepName", "orderable": false },
-                { "data": "fiscalYear", "orderable": false },
+                { "data": "itemname", "orderable": true },
+                { "data": "unitname", "orderable": true },
+                { "data": "typename", "orderable": true },
+                { "data": "brandname", "orderable": false },
+                { "data": "specname", "orderable": false },
+                { "data": "purquantity", "orderable": false },
+                { "data": "remark", "orderable": false }, 
+                { "data": "id", "orderable": false },
                 ],
-                 "rowCallback": function (row, data, index) {
-                      var url ='/' + data.brandId + '/AccountHeaderEdit.html';
-                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
-                jQuery('[data-toggle="tooltip"]').tooltip();
-                 var urldelete ='/' + data.brandId + '/AccountHeaderDelete.html';
-                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
-                    jQuery('[data-toggle="tooltip"]').tooltip();
-
-            },
+                 
                 order: [
 
                     [1, "desc"]
@@ -120,11 +118,14 @@
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
                 },
                 'createdRow': function (row, data, dataIndex) {
-                      $(row).attr('id', data.accId);
-                         var url = '/' + data.accId + '/AccountHeaderEdit.html'; //edit for the parent
-                    jQuery('td:last', row).html("<a href=" + url + " title='Edit Supplier' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
-                    jQuery('td:last-child', row).append("<a href=" + url + " title='delete Supplier' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
-                },
+                      var url ='/' + data.id + '/RequisitionEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.id + '/RequisitionDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+
+            },
 
             });
             jQuery('#usersearch').on("keyup", function () {
@@ -139,13 +140,3 @@
 
 
 </script>
-
-
-
-
-
-
-
-
-
-
