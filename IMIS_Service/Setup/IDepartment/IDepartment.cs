@@ -47,16 +47,16 @@ namespace IMIS_Service.Setup.IDepartment
                     draw = model.draw;
                 }
 
-                var accMasters =  (from ids in _db.InvDept
-                                   where ids.IsActive==true
-                                        select new
-                                        {
-                                            ids.DeptId,
-                                            ids.Code,
-                                            ids.NameEn,
-                                            ids.NameNp ,
-                                            ids.IsActive
-                                        });
+                var accMasters = (from ids in _db.InvDept
+                                  where ids.IsActive == true
+                                  select new
+                                  {
+                                      ids.DeptId,
+                                      ids.Code,
+                                      ids.NameEn,
+                                      ids.NameNp,
+                                      ids.IsActive
+                                  });
                 ///filter count for the total; record
                 ///
 
@@ -101,10 +101,10 @@ namespace IMIS_Service.Setup.IDepartment
                 var item = new InvDept()
                 {
                     DeptId = model.DeptId,
-                    Code=model.Code,
-                    NameEn = model.NameEn, 
-                    NameNp = model.NameNp 
-                    IsActive=model.IsActive
+                    Code = model.Code,
+                    NameEn = model.NameEn,
+                    NameNp = model.NameNp,
+                    IsActive = model.IsActive
                 };
                 if (model.DeptId == 0)
                 {
@@ -136,11 +136,11 @@ namespace IMIS_Service.Setup.IDepartment
                 {
                     return (new DepartmentVM()
                     {
-                        DeptId = response.DeptId ,
-                        Code=response.Code,
+                        DeptId = response.DeptId,
+                        Code = response.Code,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
-                        IsActive=response.IsActive,
+                        IsActive = response.IsActive,
                     });
                 }
                 else
@@ -154,7 +154,27 @@ namespace IMIS_Service.Setup.IDepartment
                 throw;
             }
         }
+        public async Task<(string message, int Id)> DeleteDepartment(int DeptId)
+        {
+            try
+            {
+                var data = _db.InvDept.Where(x => x.DeptId == DeptId).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
 
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
+        }
         public async Task<string> Delete(int Id)
         {
 

@@ -148,6 +148,27 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                 throw;
             }
         }
+        public async Task<(string message, int Id)> DeleteFuelMaintenance(int FuelMaintenanceid)
+        {
+            try
+            {
+                var data = _db.TblVehicleParts.Where(x => x.Sn == FuelMaintenanceid).FirstOrDefault();
+                if (data != null)
+                {
+                    data.IsActive = false;
+                    _db.Entry(data).State = EntityState.Modified;
+
+                }
+                await _db.SaveChangesAsync(true);
+                return ("success", 0);
+            }
+            catch (Exception ex)
+            {
+                ExceptionManager.AppendLog(ex);
+                throw;
+            }
+
+        }
 
         public async Task<string> Delete(int id)
         {
