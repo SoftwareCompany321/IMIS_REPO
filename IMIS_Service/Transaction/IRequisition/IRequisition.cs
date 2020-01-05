@@ -72,7 +72,7 @@ namespace IMIS_Service.Transaction.IRequisition
                     totalResultsCount = await accMasters.CountAsync();
                     if (!string.IsNullOrEmpty(searchBy))
                     {
-                        accMasters = accMasters.Where(x => x.code == searchBy || x.unitname == searchBy);
+                        accMasters = accMasters.Where(x => x.code == searchBy );
                     }
                     filteredResultsCount = await accMasters.CountAsync();
                 }

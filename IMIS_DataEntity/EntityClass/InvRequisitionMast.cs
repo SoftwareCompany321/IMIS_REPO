@@ -40,8 +40,8 @@ namespace IMIS_DataEntity.EntityClass
         public DateTime? PrepDtEng { get; set; }
         public DateTime? CheckDtEng { get; set; }
         public DateTime? AcceptDtEng { get; set; }
-        public string PurchaseGive { get; set; }
-        public string StockGive { get; set; }
+        public bool PurchaseGive { get; set; }
+        public bool StockGive { get; set; }
 
         public virtual PisEmployeeMaster AcceptByNavigation { get; set; }
         public virtual PisEmployeeMaster CheckByNavigation { get; set; }
