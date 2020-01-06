@@ -46,7 +46,7 @@ namespace IMIS.Controllers.Transaction
 
         [HttpGet]
         [Route("/RequisitionCreate.html")]
-        public IActionResult RequisitionCreate()
+        public async Task<IActionResult> RequisitionCreate()
         {
             RequisitionVM model = new RequisitionVM();
             model.PurchaseGive = false;
@@ -54,6 +54,9 @@ namespace IMIS.Controllers.Transaction
             return View(model);
          
         }
+
+
+
 
         [HttpPost]
         [Route("/RequisitionCreate.html")]
@@ -95,6 +98,15 @@ namespace IMIS.Controllers.Transaction
         public async Task<IActionResult> RequisitionDelete(int id)
         {
             return View(await _Requisition.Delete(id));
+        }
+
+
+        [HttpGet]
+        [Route("/RequisitionCreateDetail.html")]
+        public IActionResult RequisitionCreateDetail()
+        { 
+            return View("~/Views/Requisition/_partialRequisition.cshtml");
+
         }
 
     }
