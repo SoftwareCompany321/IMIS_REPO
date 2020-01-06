@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@model IMIS_Service.ViewModel.PurchaseDetailsVM
+@model IMIS_Service.ViewModel.RequisitionVM
 
 <body>
     <div id="page-wrapper">
@@ -19,7 +19,7 @@
                     <div class="tab-pane fade active in" id="sub111">
                         <h2 class="form-title">@Utils.GetLabel("Add Requisition")</h2>
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <div class="well">
                                     <form method="post" asp-action="PurchaseDetailsCreate">
                                         @Html.AntiForgeryToken()

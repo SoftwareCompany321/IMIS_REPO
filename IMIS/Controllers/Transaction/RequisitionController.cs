@@ -48,7 +48,11 @@ namespace IMIS.Controllers.Transaction
         [Route("/RequisitionCreate.html")]
         public IActionResult RequisitionCreate()
         {
-            return View();
+            RequisitionVM model = new RequisitionVM();
+            model.PurchaseGive = false;
+            model.StockGive = false;
+            return View(model);
+         
         }
 
         [HttpPost]
