@@ -1,0 +1,68 @@
+﻿@using IMIS_CORE.Core
+
+@model IMIS_Service.ViewModel.RequisitionVM
+<div>
+
+    <div class="form-group is-empty row">
+        <div class="col-lg-6">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Main Class")<span class="requried">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="MaintainItemId">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Item Type")<span class="requried">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="ItemId">
+            </div>
+        </div>
+    </div>
+    <div class="form-group is-empty row">
+        <div class="col-lg-6">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Unit")<span class="requried">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="StockGive">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Item Type")<span class="requried">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="ItemId">
+            </div>
+        </div>
+    </div>
+    <div class="form-group is-empty row">
+        <div class="col-lg-6">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Brand")<span class="requried">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="InvReqDetail.BrandId">
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Specification")<span class="requried">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="InvReqDetail.Spec">
+            </div>
+        </div>
+    </div>
+    <div class="form-group is-empty row">
+        <div class="col-lg-6">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Number")<span class="requried">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group is-empty row">
+
+        <div class="col-lg-12">
+            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Mis.Description")<span class="requried">*</span></label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Remarks">
+            </div>
+        </div>
+    </div>
+
+
+</div>

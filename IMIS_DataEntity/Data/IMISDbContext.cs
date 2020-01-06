@@ -5491,9 +5491,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.ProjId).HasColumnName("PROJ_ID");
 
-                entity.Property(e => e.PurchaseGive)
-                    .HasColumnName("PURCHASE_GIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.PurchaseGive)
+                //    .HasColumnName("PURCHASE_GIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.Reasion).HasColumnName("REASION");
 
@@ -5515,9 +5515,9 @@ namespace IMIS_DataEntity.Data
 
                 entity.Property(e => e.ReqType).HasColumnName("REQ_TYPE");
 
-                entity.Property(e => e.StockGive)
-                    .HasColumnName("STOCK_GIVE")
-                    .HasMaxLength(1);
+                //entity.Property(e => e.StockGive)
+                //    .HasColumnName("STOCK_GIVE")
+                //    .HasMaxLength(1);
 
                 entity.Property(e => e.TypeId).HasColumnName("TYPE_ID");
 

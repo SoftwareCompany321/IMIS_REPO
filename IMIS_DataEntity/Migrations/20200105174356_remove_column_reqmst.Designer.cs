@@ -3,15 +3,17 @@ using System;
 using IMIS_DataEntity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IMIS_DataEntity.Migrations
 {
     [DbContext(typeof(IMISDbContext))]
-    partial class IMISDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200105174356_remove_column_reqmst")]
+    partial class remove_column_reqmst
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -6766,9 +6768,6 @@ namespace IMIS_DataEntity.Migrations
                         .HasColumnName("PROJ_ID")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("PurchaseGive")
-                        .HasColumnType("boolean");
-
                     b.Property<string>("Reasion")
                         .HasColumnName("REASION")
                         .HasColumnType("text");
@@ -6799,9 +6798,6 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<int?>("ReqType")
                         .HasColumnName("REQ_TYPE")
                         .HasColumnType("integer");
-
-                    b.Property<bool>("StockGive")
-                        .HasColumnType("boolean");
 
                     b.Property<int?>("TypeId")
                         .HasColumnName("TYPE_ID")

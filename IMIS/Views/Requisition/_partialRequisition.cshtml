@@ -5,59 +5,98 @@
 
         <div class="form-group is-empty row">
             <div class="col-lg-6">
-                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Main Class")<span class="requried">*</span></label>
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Requisition Form Id")<span class="requried">*</span></label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" asp-for="MaintainItemId">
+                    <input type="text" class="form-control" asp-for="ReqId">
                 </div>
             </div>
             <div class="col-lg-6">
-                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Item Type")<span class="requried">*</span></label>
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Req Date")<span class="requried">*</span></label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" asp-for="ItemId">
-                </div>
-            </div>
-        </div>
-        <div class="form-group is-empty row">
-            <div class="col-lg-6">
-                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Unit")<span class="requried">*</span></label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" asp-for="StockGive">
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Item Type")<span class="requried">*</span></label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" asp-for="ItemId">
+                    <input type="text" class="form-control" asp-for="ReqDateNep">
                 </div>
             </div>
         </div>
         <div class="form-group is-empty row">
             <div class="col-lg-6">
-                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Brand")<span class="requried">*</span></label>
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Required Type")<span class="requried">*</span></label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" asp-for="InvReqDetail.BrandId">
+                    <input type="text" class="form-control" asp-for="ReqType">
                 </div>
             </div>
             <div class="col-lg-6">
-                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Specification")<span class="requried">*</span></label>
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Mag Garne  Karmachari")<span class="requried">*</span></label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" asp-for="InvReqDetail.Spec">
+                    <input type="text" class="form-control" asp-for="ReqByNavigation">
                 </div>
             </div>
         </div>
         <div class="form-group is-empty row">
             <div class="col-lg-6">
-                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Number")<span class="requried">*</span></label>
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Post Name")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" asp-for="Orgstaffpost">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Post Name")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" asp-for="Orgstaffpost">
+                </div>
+            </div>
+        </div>
+        <div class="form-group is-empty row">
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("sf]&fsf]ljj")<span class="requried">*</span></label>
                 <div class="col-md-9">
                     <input type="text" class="form-control">
                 </div>
             </div>
-             
+
         </div>
         <div class="form-group is-empty row">
-          
-            <div class="col-lg-12">
-                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Mis.Description")<span class="requried">*</span></label>
+
+            <div class="col-lg-4">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Item Given")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="radio" class="form-control" asp-for="StockGive">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Purchase From Mk")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="radio" class="form-control" asp-for="PurchaseGive">
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Item No Required To Maintain")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="radio" class="form-control" asp-for="MaintainItemId">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group is-empty row">
+
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Item Request Reson")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="radio" class="form-control" asp-for="Reasion">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label"><span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <select>
+                        <option>ssd</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group is-empty row">
+            <div class="col-lg-4">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Remark")<span class="requried">*</span></label>
                 <div class="col-md-9">
                     <input type="text" class="form-control" asp-for="Remarks">
                 </div>
@@ -65,4 +104,154 @@
         </div>
 
 
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @Utils.GetLabel("Requisition order Detils")
+            </div>
+            <div class="tab-content">
+
+                <!-- tab 1: region starts -->
+                <div class="tab-pane fade active in" id="region-tab">
+                    <!-- generic add button for all the "add" forms | Add region -->
+                    <a href="@Url.Content("~/Views/Requisition/_partialRequisition.cshtml")" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+                    <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
+
+                    <!-- search filters -->
+                    <div class="collapse" id="searchCollapse">
+
+                    </div>
+                    <div class="table-responsive">
+                        <table id="account" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>@Utils.GetLabel("Id")</th>
+                                    <th>@Utils.GetLabel("Item Name")</th>
+                                    <th>@Utils.GetLabel("Unit Name")</th>
+                                    <th>@Utils.GetLabel("Type Name")</th>
+                                    <th>@Utils.GetLabel("Brand Name")</th>
+                                    <th>@Utils.GetLabel("Spec Name")</th>
+                                    <th>@Utils.GetLabel("Pur Qty")</th>
+                                    <th>@Utils.GetLabel("Remarks")</th>
+                                    <th>@Utils.GetLabel("Action")</th>
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group is-empty row">
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Prepared By")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" asp-for="PrepBy">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Date")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="datetime" class="form-control" asp-for="PrepDt">
+                </div>
+            </div>
+        </div>
+        <div class="form-group is-empty row">
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Approved By")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" asp-for="CheckBy">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Date")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="datetime" class="form-control" asp-for="CheckDt">
+                </div>
+            </div>
+        </div>
+        <div class="form-group is-empty row">
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Accepted By")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control" asp-for="AcceptBy">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Date")<span class="requried">*</span></label>
+                <div class="col-md-9">
+                    <input type="datetime" class="form-control" asp-for="AcceptDt">
+                </div>
+            </div>
+        </div>
+
+
     </div>
+
+<script type="text/javascript" language="javascript">
+        jQuery(document).ready(function () {
+            var table = jQuery("#account");
+            table.dataTable({
+                "bProcessing": true,
+                "processing": true,
+                "serverSide": true,
+                "dom": 'r<"clear">t<"row"<"col-sm-3"l><"col-sm-3"i><"col-sm-6"p>><"clear">',
+                'searching': true,//recordsFiltered
+				"ajax": {
+                   "url": "@Url.Content("~/RequisitionFetchData.html")", "type": "GET", "data": function (d) {
+                    d.search = $("#usersearch").val();
+                }
+                },
+                "language": {
+                    "infoFiltered": ""
+                },
+                'stateSave': false,
+
+                "columns": [
+                { "data": "code", "orderable": true },
+                { "data": "itemname", "orderable": true },
+                { "data": "unitname", "orderable": true },
+                { "data": "typename", "orderable": true },
+                { "data": "brandname", "orderable": false },
+                { "data": "specname", "orderable": false },
+                { "data": "purquantity", "orderable": false },
+                { "data": "remark", "orderable": false },
+                { "data": "id", "orderable": false },
+                ],
+
+                order: [
+
+                    [1, "desc"]
+                ],
+                "paging": true,
+                "pageLength": 10,
+                lengthMenu: [
+                    [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
+                ],
+                "fnInitComplete": function (oSettings, json) {
+					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
+                },
+                'createdRow': function (row, data, dataIndex) {
+                      var url ='/' + data.id + '/RequisitionEdit.html';
+                jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
+                jQuery('[data-toggle="tooltip"]').tooltip();
+                 var urldelete ='/' + data.id + '/RequisitionDelete.html';
+                jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                    jQuery('[data-toggle="tooltip"]').tooltip();
+
+            },
+
+            });
+            jQuery('#usersearch').on("keyup", function () {
+               table.fnFilter(this.value);
+            }).on("keypress", function (e) {
+            if (e.which == 13) {
+                return false;
+            }
+            });
+
+        });
+
+
+</script>
