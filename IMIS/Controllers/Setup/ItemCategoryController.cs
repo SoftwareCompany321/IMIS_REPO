@@ -65,7 +65,7 @@ namespace IMIS.Controllers.Setup
         {
             var item = new ItemCategoriesVM();
             item.ParentId = id;
-            return View(item);
+            return View("_partialItemCategory");
         }
 
         [HttpPost]

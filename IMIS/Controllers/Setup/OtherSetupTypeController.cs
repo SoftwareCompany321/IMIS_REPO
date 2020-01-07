@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IMIS_CORE.Core;
 using IMIS_CORE.Utility;
 using IMIS_Service.Setup.IItemOtherSetupType;
 using IMIS_Service.ViewModel;
@@ -27,16 +28,16 @@ namespace IMIS.Controllers.Setup
         [Route("/OtherSetupTypeFetchTreeData.html")]
         public JsonResult OtherSetupTypeFetchTreeData(DataTableVm model)
         {
-            
+
             return Json(_OtherSetupType.ItemOtherSetupTypeFetchTreeData(model));
 
 
         }
         [HttpGet]
-        [Route("/{id}/OtherSetupTypeFetchData.html")]
-        public async Task<JsonResult> OtherSetupTypeFetchData(DataTableVm model, int id)
+        [Route("/{typeid}/OtherSetupTypeFetchData.html")]
+        public async Task<JsonResult> OtherSetupTypeFetchData(DataTableVm model, int typeid)
         {
-            var response = await _OtherSetupType.ItemOtherSetupTypeFetchData(model,id);
+            var response = await _OtherSetupType.ItemOtherSetupTypeFetchData(model, typeid);
             return Json(new
             {
                 draw = response.draw,
@@ -46,7 +47,7 @@ namespace IMIS.Controllers.Setup
             });
         }
 
-        [HttpGet]        
+        [HttpGet]
         [Route("/OtherSetupTypelist.html")]
         public IActionResult OtherSetupTypeList()
         {
@@ -54,24 +55,36 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/OtherSetupTypeCreate.html")]
-        public IActionResult OtherSetupTypeCreate()
+        [Route("/{typeid}/OtherSetupTypeCreate.html")]
+        public IActionResult OtherSetupTypeCreate(int typeid)
         {
-            return View();
+            var item = new ItemOtherSetupTypeVM();
+            item.TypeId = typeid;
+            item.type = GetType(typeid);
+            return View("_partialOtherSetupType",item);
         }
+
 
         [HttpPost]
         [Route("/OtherSetupTypeCreate.html")]
-        public IActionResult OtherSetupTypeCreate(ItemOtherSetupTypeVM model)
+        public async Task<IActionResult> OtherSetupTypeCreate(ItemOtherSetupTypeVM model)
         {
+            var response = await _OtherSetupType.AddEditItemOtherSetupType(model);
+            if (response.message == "success")
+            {
+                TempData["Message"] = "Successfully Added";
+                TempData["Class"] = "alert alert-success ";
+                return Redirect("~/OtherSetupTypelist.html");
+            }
             return View();
         }
 
+
         [HttpGet]
-        [Route("{brandId}/OtherSetupTypeDelete.html")]
-        public async Task<IActionResult> OtherSetupTypeDelete(int brandId)
+        [Route("{typeid}/OtherSetupTypeDelete.html")]
+        public async Task<IActionResult> OtherSetupTypeDelete(int typeid)
         {
-            var response = await _OtherSetupType.DeleteItemOtherSetupType(brandId);
+            var response = await _OtherSetupType.DeleteItemOtherSetupType(typeid);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Deleted";
@@ -82,11 +95,27 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/{id}/OtherSetupTypePartial.html")]
-        public IActionResult OtherSetupTypePartial(int id)
+        [Route("/{typeid}/OtherSetupTypePartial.html")]
+        public IActionResult OtherSetupTypePartial(int typeid)
         {
-            ViewData["id"] = id;
+            ViewData["typeid"] = typeid;
             return View("_OtherSetupTypeList");
+        }
+
+        private string GetType(int id)
+        {
+            string typename = "";
+            if (id == 1)
+                typename = Utils.ToggleLanguage("Item Status Type", "सामान अवस्था किसिम");
+            if (id == 2)
+                typename = Utils.ToggleLanguage("Item Nature Type", "सामान प्रकृति किसिम");
+            if (id == 3)
+                typename = Utils.ToggleLanguage("Item Requisition Type", "सामान माग किसिम");
+            if (id == 4)
+                typename = Utils.ToggleLanguage("Item Main Type", "सामानको मुख्य किसिम");
+            if (id == 5)
+                typename = Utils.ToggleLanguage("Budget Type", "बजेट किसिम");
+            return typename;
         }
     }
 }

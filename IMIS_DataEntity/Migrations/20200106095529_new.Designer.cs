@@ -3,15 +3,17 @@ using System;
 using IMIS_DataEntity.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace IMIS_DataEntity.Migrations
 {
     [DbContext(typeof(IMISDbContext))]
-    partial class IMISDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200106095529_new")]
+    partial class @new
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -8550,10 +8552,6 @@ namespace IMIS_DataEntity.Migrations
 
             modelBuilder.Entity("IMIS_DataEntity.EntityClass.Nationalities", b =>
                 {
-                    b.Property<int>("Nationalityid")
-                        .HasColumnName("NATIONALITYID")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Code")
                         .HasColumnName("CODE")
                         .HasColumnType("character varying(50)")
@@ -8572,13 +8570,14 @@ namespace IMIS_DataEntity.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
 
+                    b.Property<int>("Nationalityid")
+                        .HasColumnName("NATIONALITYID")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Nepname")
                         .HasColumnName("NEPNAME")
                         .HasColumnType("character varying(50)")
                         .HasMaxLength(50);
-
-                    b.HasKey("Nationalityid")
-                        .HasName("NATIONALITIES_pkey");
 
                     b.ToTable("NATIONALITIES");
                 });

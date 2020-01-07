@@ -53,6 +53,8 @@ using IMIS_Service.Transaction.IRequisition;
 using IMIS_Service.Transaction.IGoodReceivedDetails;
 using IMIS_Service.Transaction.IItemNumbering;
 using IMIS_Service.Transaction.IItemStatus;
+using IMIS_Service.Setup.IInvAdujType;
+using IMIS_Service.Setup.ICountryDtl;
 
 namespace IMIS
 {
@@ -162,8 +164,8 @@ namespace IMIS
             services.AddScoped<IGoodReceivedDetails, GoodReceivedDetails>();
             services.AddScoped<IItemNumbering, ItemNumbering>();
             services.AddScoped<IItemStatus, ItemStatus>();
-            //services.AddScoped<IRequisition, Requisition>();
-            //services.AddScoped<IRequisition, Requisition>();
+            services.AddScoped<IInvAdujType, InvAdujType>();
+             services.AddScoped<ICountryDtl, CountryDtl>();
             //services.AddScoped<IRequisition, Requisition>();
             //services.AddScoped<IRequisition, Requisition>();
             //services.AddScoped<IRequisition, Requisition>();

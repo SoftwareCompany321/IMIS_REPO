@@ -42,19 +42,13 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>@Utils.GetLabel("Id")</th> 
+                                        
                                         <th>@Utils.GetLabel("Code")</th>
                                         <th>@Utils.GetLabel("Firm Name(Nepali)")</th> 
                                         <th>@Utils.GetLabel("Firm Name(English)")</th>
-                                        <th>@Utils.GetLabel("Address")</th>
-                                        <th>@Utils.GetLabel("Phone No.")</th>
+                                        <th>@Utils.GetLabel("Address")</th> 
                                         <th>@Utils.GetLabel("Mobile No.")</th>
-                                        <th>@Utils.GetLabel("Email")</th>
-                                        <th>@Utils.GetLabel("Firm Reg No.")</th>
-                                        <th>@Utils.GetLabel("Vat Reg No.")</th>
-                                        <th>@Utils.GetLabel("PAN No.")</th>
-                                        <th>@Utils.GetLabel("Related Person")</th>
-                                        <th>@Utils.GetLabel("Lend")</th>
+                                        <th>@Utils.GetLabel("Email")</th> 
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
@@ -89,7 +83,7 @@
                 'searching': true,//recordsFiltered
 				"ajax": {
                    "url": "@Url.Content("~/OrgFormDtlFetchData.html")", "type": "GET", "data": function (d) {
-                    d.search = $("#usersearch").val();
+                        d.search = $("#usersearch").val(); 
                 }
                 },
                 "language": {
@@ -101,15 +95,10 @@
                 "columns": [
                 { "data": "code", "orderable": true },
                 { "data": "nameNp", "orderable": true },
-                { "data": "nameEn", "orderable": true },
-                { "data": "regNo", "orderable": false },
+                { "data": "nameEn", "orderable": true }, 
                 { "data": "address", "orderable": false },
                 { "data": "emails", "orderable": false },
-                { "data": "mobileNo", "orderable": false },
-                { "data": "panNo", "orderable": false },
-                { "data": "vatNo", "orderable": false },
-                { "data": "relatedPerson", "orderable": false },
-                { "data": "sapati", "orderable": false },
+                { "data": "mobileNo", "orderable": false }, 
                 { "data": "orgId", "orderable": false },
                 ],
                  "rowCallback": function (row, data, index) {
@@ -134,10 +123,7 @@
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
                 },
                  'createdRow': function (row, data, dataIndex) {
-                      $(row).attr('id', data.orgId);
-                         var url = '/' + data.orgId + '/OrganizationTypeEdit.html'; //edit for the parent  
-                     jQuery('td:last', row).html("<a href=" + url + " title='Edit' data-toggle='tooltip'><i class='fa fa-edit'></i></a>");
-                     jQuery('td:last-child', row).append("<a href=" + url + " title='delete' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
+                     
                 },
 
             });

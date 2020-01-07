@@ -55,7 +55,8 @@ namespace IMIS_Service.Setup.IInvAdujType
                                             iiat.NameNp ,
                                             iiat.AddSub,
                                             iiat.AdjType,
-
+                                            iiat.Code,
+                                            iiat.IsActive
                                         });
                 ///filter count for the total; record
                 ///
@@ -104,7 +105,9 @@ namespace IMIS_Service.Setup.IInvAdujType
                     NameEn = model.NameEn,
                     NameNp = model.NameNp,
                     AddSub = model.AddSub,
-                    AdjType=model.AdjType
+                    AdjType=model.AdjType,
+                    Code=model.Code, 
+                    IsActive=model.IsActive
                 };
                 if (model.Id == 0)
                 {
@@ -141,6 +144,8 @@ namespace IMIS_Service.Setup.IInvAdujType
                         NameNp = response.NameNp,
                         AddSub = response.AddSub,
                         AdjType = response.AdjType,
+                        Code=response.Code,
+                        IsActive=response.IsActive
                     });
                 }
                 else

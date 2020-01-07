@@ -12,7 +12,7 @@
         <!-- tab 1: region starts -->
         <div class="tab-pane fade active in" id="region-tab">
             <!-- generic add button for all the "add" forms | Add region -->
-            <a href="#" onclick="createOtherSetupType(@ViewData["id"]);" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+            <a href="#" onclick="createOtherSetupType(@ViewData["typeid"]);" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
             <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
             @if (ViewBag.Message != null || ViewBag.Message == "")
             {
@@ -35,7 +35,7 @@
 
                             <th>@Utils.GetLabel("Code")</th>
                             <th>@Utils.GetLabel("Description(Nepali)")</th>
-                            <th>@Utils.GetLabel("Description(English)")</th> 
+                            <th>@Utils.GetLabel("Description(English)")</th>
                             <th style="width:80px;">@Utils.GetLabel("Action")</th>
                         </tr>
                     </thead>
@@ -45,7 +45,12 @@
         </div>
 
     </div>
+    <div id='myModal' class='modal'>
+        <div class="modal-dialog">
+            <div id='myModalContent'></div>
+        </div>
 
+    </div>
 </body>
 
 
@@ -53,7 +58,7 @@
 <script lang="ja" type="text/javascript">
      jQuery(document).ready(function () {
          var table = jQuery("#account");
-            var url1 = '/' + @ViewData["id"] + '/OtherSetupTypeFetchDataList.html';
+            var url1 = '/' + @ViewData["typeid"] + '/OtherSetupTypeFetchData.html';
         table.dataTable({
             "bProcessing": true,
             "processing": true,
@@ -74,8 +79,8 @@
 
             "columns": [
                 { "data": "code", "orderable": true },
-            { "data": "nameNp", "orderable": true },
-            { "data": "nameEn", "orderable": true }, 
+            { "data": "descNp", "orderable": true },
+            { "data": "descEn", "orderable": true }, 
             { "data": "id", "orderable": true },
 
 
@@ -110,8 +115,8 @@
             }
         })
     });
-      function createOtherSetupType(id) {
-         var url1 = '/' + id + '/OtherSetupTypeCreate.html';
+      function createOtherSetupType(typeid) {
+         var url1 = '/' + typeid + '/OtherSetupTypeCreate.html';
          var options = { "backdrop": "static", keyboard: true };
         $.ajax({
         type: 'GET',
@@ -123,8 +128,8 @@
         }
     });
 }
-  function editOtherSetupType(id) {
-         var url1 = '/' + id + '/OtherSetupTypeEdit.html';
+  function editOtherSetupType(typeid) {
+         var url1 = '/' + typeid + '/OtherSetupTypeEdit.html';
          var options = { "backdrop": "static", keyboard: true };
         $.ajax({
         type: 'GET',

@@ -6719,9 +6719,14 @@ namespace IMIS_DataEntity.Data
 
             modelBuilder.Entity<Nationalities>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.Nationalityid)
+                     .HasName("NATIONALITIES_pkey");
 
                 entity.ToTable("NATIONALITIES");
+
+                entity.Property(e => e.Nationalityid)
+                    .HasColumnName("NATIONALITYID")
+                    .ValueGeneratedNever();
 
                 entity.Property(e => e.Code)
                     .HasColumnName("CODE")
@@ -6735,8 +6740,7 @@ namespace IMIS_DataEntity.Data
                     .HasColumnName("ENGNAME")
                     .HasMaxLength(25);
 
-                entity.Property(e => e.Nationalityid).HasColumnName("NATIONALITYID");
-
+              
                 entity.Property(e => e.Nepname)
                     .HasColumnName("NEPNAME")
                     .HasMaxLength(50);

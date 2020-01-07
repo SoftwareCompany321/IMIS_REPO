@@ -53,7 +53,9 @@ namespace IMIS_Service.Setup.ITaxRate
                                             taxRate.TaxRateId,
                                             taxRate.TaxRate,
                                             taxRate.NameEn,
-                                            taxRate.NameNp 
+                                            taxRate.NameNp ,
+                                            taxRate.Code,
+                                            taxRate.IsActive
                                         });
                 ///filter count for the total; record
                 ///
@@ -102,7 +104,9 @@ namespace IMIS_Service.Setup.ITaxRate
                     TaxRateId = model.TaxRateId,
                     NameEn = model.NameEn,
                     NameNp = model.NameNp,
-                    TaxRate=model.TaxRate
+                    TaxRate=model.TaxRate,
+                    Code=model.Code,
+                    IsActive=model.IsActive
                 };
                 if (model.TaxRateId == 0)
                 {
@@ -137,7 +141,9 @@ namespace IMIS_Service.Setup.ITaxRate
                         TaxRateId = response.TaxRateId,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
-                        TaxRate=response.TaxRate
+                        TaxRate=response.TaxRate,
+                        Code=response.Code,
+                        IsActive=response.IsActive
 
                     });
                 }

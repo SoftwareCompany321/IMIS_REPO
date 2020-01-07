@@ -55,7 +55,8 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
                                         {
                                             its.Id,
                                             its.DescEn,
-                                            its.DescNp 
+                                            its.DescNp ,
+                                            its.Code
                                         });
                 ///filter count for the total; record
                 ///
@@ -167,7 +168,10 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
                 {
                     Id = model.Id,
                     DescEn = model.DescEn,
-                    DescNp = model.DescNp
+                    DescNp = model.DescNp,
+                    TypeId=model.TypeId,
+                    Code=model.Code,
+                    IsActive=model.IsActive
                 };
                 if (model.Id == 0)
                 {
@@ -184,7 +188,7 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
                 return ("success", 0);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -201,7 +205,10 @@ namespace IMIS_Service.Setup.IItemOtherSetupType
                     {
                         Id = response.Id,
                         DescEn = response.DescEn,
-                        DescNp = response.DescNp 
+                        DescNp = response.DescNp ,
+                        TypeId=response.TypeId,
+                        IsActive=response.IsActive,
+                        Code=response.Code
 
                     });
                 }

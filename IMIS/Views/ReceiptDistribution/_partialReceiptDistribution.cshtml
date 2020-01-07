@@ -3,35 +3,45 @@
 @model IMIS_Service.ViewModel.ReceiptDistributionVM
     <div>
         <input asp-for="Sn" type="hidden" />
-        <div class="form-group is-empty">
+        <div class="col-md-6">
             <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
-            <div class="col-md-9">
+            <div class="col-md-6">
                 <input type="text" class="form-control" asp-for="Code">
             </div>
-        </div>
-
-        <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
+        </div> 
+        <div class="col-md-6">
+            <label for="region" class="col-md-3 control-label">
                 @Utils.GetLabel("Distributed Date")<span class="requried">*</span>
             </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="Dateissued">
+            <div class="col-md-6">
+                <div class='input-group date width-full nepali-calendar'>
+                    <input type="text" asp-for="Dateissued" name="InfoPublishDate" id='Dateissued' autocomplete="off" class="form-control font_value nepali-calendar" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <span asp-validation-for="Dateissued" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Receipt Type")</label>
+            <div class="col-md-1">
+                <input type="number" id="Sn"  class="form-control" asp-for="Sn">
+            </div>
+            <div id="receipttype" class="col-md-3" >
+                <select asp-for="Sn" asp-items="@ViewData["receipttype"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                </select>
+
             </div>
         </div>
         <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Receipt Type")<span class="requried">*</span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="Sn">
-            </div>
-        </div>
-        <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Receipt No.")<span class="requried">*</span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="Sn">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Receipt No.")</label>
+
+            <div id="receiptno" class="col-md-6" >
+                <select asp-for="Sn" asp-items="@ViewData["receiptno"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>dd
+                </select>
+
             </div>
         </div>
 
@@ -41,7 +51,7 @@
                 @Utils.GetLabel("Receipt No. From")
             </label>
             <div class="col-md-6">
-                <input type="text" class="form-control" asp-for="Billnofrom">
+                <input type="number" class="form-control" asp-for="Billnofrom">
             </div>
 
         </div>
@@ -50,26 +60,31 @@
                 @Utils.GetLabel("Receipt No. To")
             </label>
             <div class="col-md-6">
-                <input type="text" class="form-control" asp-for="Billnoto">
+                <input type="number" class="form-control" asp-for="Billnoto">
             </div>
 
         </div>
         <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Didtribution Center")<span class="requried">*</span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="Counterid">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Didtribution Center")</label>
+
+            <div id="Counterid" class="col-md-6"  >
+                <select asp-for="Counterid" asp-items="@ViewData["Counterid"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>dd
+                </select>
+
             </div>
         </div>
         <div class="form-group is-empty">
-            <label for="short-name" class="col-md-2 control-label">
-                @Utils.GetLabel("Received By")
-            </label>
-            <div class="col-md-6">
-                <input type="text" class="form-control" asp-for="Userid">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Received By")</label>
+
+            <div id="Userid" class="col-md-6"  >
+                <select asp-for="Userid" asp-items="@ViewData["receivedby"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>dd
+                </select>
+
             </div>
         </div>
+        
         <div class="form-group is-empty">
             <label for="short-name" class="col-md-2 control-label">
                 @Utils.GetLabel("Other Remarks")
@@ -79,3 +94,13 @@
             </div>
         </div>
     </div>
+
+
+<script type="text/javascript" src="~/nepaliDatepicker/js/nepali.datepicker.v2.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/nepaliDatepicker/css/nepali.datepicker.v2.2.min.css" />
+<script>
+    $(document).ready(function () {
+        $('#Dateissued').nepaliDatePicker();
+        
+    });
+</script>

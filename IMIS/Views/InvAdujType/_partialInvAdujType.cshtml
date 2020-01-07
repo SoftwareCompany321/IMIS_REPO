@@ -32,7 +32,12 @@
                 @Utils.GetLabel("Add/Sub")
             </label>
             <div class="col-md-6">
-                <input type="text" class="form-control" asp-for="AddSub">
+                <select asp-for="AddSub" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                    <option value="A">@Utils.GetLabel("Addition")</option>
+                    <option value="S">@Utils.GetLabel("Subtraction")</option> 
+                </select>
+               
             </div>
 
         </div>
@@ -41,7 +46,13 @@
                 @Utils.GetLabel("Type")
             </label>
             <div class="col-md-6">
-                <input type="text" class="form-control" asp-for="AdjType">
+                <select asp-for="AdjType" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                    <option value="A">@Utils.GetLabel("Adjustment")</option>
+                    <option value="R">@Utils.GetLabel("Release")</option>
+                    <option value="P">@Utils.GetLabel("Purchase")</option> 
+                </select>
+                 
             </div>
 
         </div>

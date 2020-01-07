@@ -13,7 +13,7 @@
 
             <div class="tab-lists-wrapper boxed parentTabs">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Item Specification List")</a> </li>
+                    <li class="active"><a href="#region-tab">@Utils.GetLabel("Country List")</a> </li>
                 </ul>
 
                 <div class="tab-content">
@@ -42,7 +42,7 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>@Utils.GetLabel("Id")</th>
+                                        <th>@Utils.GetLabel("Code")</th>
 
                                         <th>@Utils.GetLabel("Description(Nepali)")</th>
 
@@ -91,15 +91,16 @@
                 'stateSave': false,
               
                 "columns": [
-                { "data": "nationalityid", "orderable": true }, 
-                { "data": "nepName", "orderable": true },
-                { "data": "engName", "orderable": false }, 
+                { "data": "code", "orderable": true }, 
+                { "data": "nepname", "orderable": true },
+                    { "data": "engname", "orderable": false }, 
+                 { "data": "nationalityid", "orderable": true }, 
                 ],
                  "rowCallback": function (row, data, index) {
-                      var url ='/' + data.brandId + '/CountryDtlEdit.html';
+                      var url ='/' + data.nationalityid + '/CountryDtlEdit.html';
                 jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
-                 var urldelete ='/' + data.brandId + '/CountryDtlDelete.html';
+                 var urldelete ='/' + data.nationalityid + '/CountryDtlDelete.html';
                 jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                     jQuery('[data-toggle="tooltip"]').tooltip();
                      

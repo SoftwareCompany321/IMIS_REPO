@@ -11,7 +11,7 @@
         </div>
         <div class="form-group is-empty">
             <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Description(English)")<span class="requried">*</span>
+                @Utils.GetLabel("Description(Neg)")<span class="requried">*</span>
             </label>
             <div class="col-md-9">
                 <input type="text" class="form-control" asp-for="NameEn">
@@ -19,11 +19,121 @@
         </div>
         <div class="form-group is-empty">
             <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Description(Nepali)")<span class="requried">*</span>
+                @Utils.GetLabel("Description(Nep)")<span class="requried">*</span>
             </label>
             <div class="col-md-9">
                 <input type="text" class="form-control" asp-for="NameNp">
             </div>
         </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Budegeted Resource")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="BudgetResource">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Package No.")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="PkgNo">
+            </div>
+        </div>
 
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Fiscal Year")</label>
+            <div id="mulfactordiv" class="col-md-6" style="display:none;">
+                <select asp-for="BudgetYear" asp-items="@ViewData["fiscalYear"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Appx. Amt")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="ApproxAmt">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Purchase Type")</label>
+            <div id="mulfactordiv" class="col-md-6" style="display:none;">
+                <select asp-for="PurType" asp-items="@ViewData["purType"] as SelectList" class="form-control">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("1 Year")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Budget1year">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("2 Year")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Budget2year">
+            </div>
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("3 Year")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Budget3year">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <label for="region" class="col-md-3 control-label">
+                @Utils.GetLabel("Start Date")<span class="requried">*</span>
+            </label>
+            <div class="col-md-6">
+                <div class='input-group date width-full nepali-calendar'>
+                    <input type="text" asp-for="WorkStDate" name="InfoPublishDate" id='WorkStDate' autocomplete="off" class="form-control font_value nepali-calendar" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <span asp-validation-for="WorkStDate" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <label for="region" class="col-md-3 control-label">
+                @Utils.GetLabel("End Date")<span class="requried">*</span>
+            </label>
+            <div class="col-md-6">
+                <div class='input-group date width-full nepali-calendar'>
+                    <input type="text" asp-for="WorkEndDate" name="InfoPublishDate" id='WorkEndDate' autocomplete="off" class="form-control font_value nepali-calendar" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
+                <span asp-validation-for="WorkEndDate" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="form-group is-empty">
+            <label for="region" class="col-md-2 control-label">
+                @Utils.GetLabel("Remarks")<span class="requried">*</span>
+            </label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" asp-for="Remarks">
+            </div>
+        </div>
     </div>
+
+<script type="text/javascript" src="~/nepaliDatepicker/js/nepali.datepicker.v2.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/nepaliDatepicker/css/nepali.datepicker.v2.2.min.css" />
+
+<script>
+    $(document).ready(function () {
+        $('#WorkEndDate').nepaliDatePicker();
+        $('#WorkStDate').nepaliDatePicker(); 
+    });
+</script>

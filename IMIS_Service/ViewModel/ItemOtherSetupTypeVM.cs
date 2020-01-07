@@ -11,6 +11,7 @@ namespace IMIS_Service.ViewModel
         public string DescNp { get; set; }
         public string DescEn { get; set; }
         public int? TypeId { get; set; }
+        public string type { get; set; }
         public bool IsActive { get; set; } = true;
     }
 }

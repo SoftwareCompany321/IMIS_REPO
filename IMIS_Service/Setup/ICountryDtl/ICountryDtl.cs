@@ -52,7 +52,9 @@ namespace IMIS_Service.Setup.ICountryDtl
                                         {
                                             nt.Nationalityid,
                                             nt.Nepname,
-                                            nt.Engname 
+                                            nt.Engname ,
+                                            nt.Code,
+                                            nt.IsActive
                                         });
                 ///filter count for the total; record
                 ///
@@ -99,7 +101,9 @@ namespace IMIS_Service.Setup.ICountryDtl
                 {
                     Nationalityid = model.Nationalityid,
                     Nepname = model.Nepname,
-                    Engname = model.Engname
+                    Engname = model.Engname,
+                    Code=model.Code,
+                    IsActive=model.IsActive
                 };
                 if (model.Nationalityid == 0)
                 {
@@ -134,7 +138,8 @@ namespace IMIS_Service.Setup.ICountryDtl
                         Nationalityid = response.Nationalityid,
                         Engname = response.Engname,
                         Nepname = response.Nepname,
-
+                        Code=response.Code,
+                        IsActive=response.IsActive
                     });
                 }
                 else

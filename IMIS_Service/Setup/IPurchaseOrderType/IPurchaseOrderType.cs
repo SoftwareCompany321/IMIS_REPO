@@ -52,7 +52,8 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
                                         {
                                             tka.EngName,
                                             tka.Id,
-                                            tka.NpName 
+                                            tka.NpName ,
+                                            tka.Code
                                         });
                 ///filter count for the total; record
                 ///
@@ -99,7 +100,9 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
                 {
                     Id = model.Id,
                     EngName = model.EngName,
-                    NpName = model.NpName
+                    NpName = model.NpName,
+                    Code=model.Code,
+                    IsActive=model.IsActive
                 };
                 if (model.Id == 0)
                 {
@@ -134,6 +137,8 @@ namespace IMIS_Service.Setup.IPurchaseOrderType
                         Id = response.Id,
                         EngName = response.EngName,
                         NpName = response.NpName,
+                        Code=response.Code,
+                        IsActive=response.IsActive
 
                     });
                 }

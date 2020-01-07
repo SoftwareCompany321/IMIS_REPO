@@ -60,7 +60,9 @@ namespace IMIS_Service.Setup.IOrgFormDtl
                                             aom.PanNo,
                                             aom.VatNo,
                                             aom.RelatedPerson,
-                                            aom.Sapati
+                                            aom.Sapati,
+                                            aom.Code,
+                                            aom.IsActive
 
                                         });
                 ///filter count for the total; record
@@ -116,7 +118,9 @@ namespace IMIS_Service.Setup.IOrgFormDtl
                     PanNo=          model.PanNo,
                     VatNo=          model.VatNo,
                     RelatedPerson=  model.RelatedPerson,
-                    Sapati=         model.Sapati
+                    Sapati=         model.Sapati,
+                    Code=model.Code,
+                    IsActive=model.IsActive
                 };
                 if (model.OrgId == 0)
                 {
@@ -133,7 +137,7 @@ namespace IMIS_Service.Setup.IOrgFormDtl
                 return ("success", 0);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -158,7 +162,9 @@ namespace IMIS_Service.Setup.IOrgFormDtl
                         PanNo = response.PanNo,
                         VatNo = response.VatNo,
                         RelatedPerson = response.RelatedPerson,
-                        Sapati = response.Sapati
+                        Sapati = response.Sapati,
+                        Code=response.Code,
+                        IsActive=response.IsActive
 
                     });
                 }

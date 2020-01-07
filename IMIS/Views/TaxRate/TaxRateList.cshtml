@@ -94,18 +94,18 @@
                  
 
                 "columns": [
-                { "data": "accId", "orderable": true },
-                { "data": "code", "orderable": true },
-                { "data": "nepName", "orderable": true },
-                { "data": "engName", "orderable": false },
-                { "data": "accCode", "orderable": false },
-                { "data": "accCode", "orderable": false },
+                 
+                    { "data": "code", "orderable": true },
+                    { "data": "taxRate", "orderable": true },
+                { "data": "nameNp", "orderable": true },
+                { "data": "nameEn", "orderable": true },
+                { "data": "taxRateId", "orderable": false }, 
                 ],
                  "rowCallback": function (row, data, index) {
-                      var url ='/' + data.brandId + '/TaxRateEdit.html';
+                      var url ='/' + data.taxRateId + '/TaxRateEdit.html';
                 jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
-                 var urldelete ='/' + data.brandId + '/TaxRateDelete.html';
+                 var urldelete ='/' + data.taxRateId + '/TaxRateDelete.html';
                 jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                     jQuery('[data-toggle="tooltip"]').tooltip();
                      
