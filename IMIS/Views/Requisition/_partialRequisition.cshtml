@@ -244,15 +244,10 @@
                 { "data": "id", "orderable": false },
                 ],
 
-                order: [
-
-                    [1, "desc"]
-                ],
-                "paging": true,
-                "pageLength": 10,
-                lengthMenu: [
-                    [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
-                ],
+                 "paging":   false,
+                 "ordering": false,
+                 "info":     false ,
+                
                 "fnInitComplete": function (oSettings, json) {
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
                 },
@@ -278,13 +273,13 @@
 
             jQuery(document).on('click', '.addchild', function () {
 
-                 $('#modal-global-express').modal({
-                    backdrop: 'static'
-                    });
-                    var modal = $("#modal-global-express"); 
-                     modal.modal("show");
+                $('#modal-global-express').modal({
+                backdrop: 'static'
+                });
+                var modal = $("#modal-global-express"); 
+                    modal.modal("show");
 
-                   });
+          });
 
         });
 
