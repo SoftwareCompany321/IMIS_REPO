@@ -44,13 +44,13 @@
                                 <thead>
                                     <tr>
                                         <th>@Utils.GetLabel("Id")</th>
-                                        <th>@Utils.GetLabel("Item Name")</th>
-                                        <th>@Utils.GetLabel("Unit Name")</th>
-                                        <th>@Utils.GetLabel("Type Name")</th>
-                                        <th>@Utils.GetLabel("Brand Name")</th>
-                                        <th>@Utils.GetLabel("Spec Name")</th>
-                                        <th>@Utils.GetLabel("Pur Qty")</th>
+                                        <th>@Utils.GetLabel("Item Id")</th>
+                                        <th>@Utils.GetLabel("Type Id")</th>
                                         <th>@Utils.GetLabel("Remarks")</th>
+                                        <th>@Utils.GetLabel("Req Id")</th>
+                                        <th>@Utils.GetLabel("Req Type")</th>
+                                        <th>@Utils.GetLabel("Org Staff Post")</th>
+                                        <th>@Utils.GetLabel("Reasion")</th>
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
@@ -94,13 +94,13 @@
                 'stateSave': false, 
                 
                 "columns": [
-                { "data": "code", "orderable": true },
-                { "data": "itemname", "orderable": true },
-                { "data": "unitname", "orderable": true },
-                { "data": "typename", "orderable": true },
-                { "data": "brandname", "orderable": false },
-                { "data": "specname", "orderable": false },
-                { "data": "purquantity", "orderable": false },
+                { "data": "id", "orderable": true },
+                { "data": "itemId", "orderable": true },
+                { "data": "typeId", "orderable": true },
+                { "data": "reqId", "orderable": true },
+                { "data": "reqType", "orderable": false },
+                { "data": "orgstaffpost", "orderable": false },
+                { "data": "maintainItemId", "orderable": false },
                 { "data": "remark", "orderable": false }, 
                 { "data": "id", "orderable": false },
                 ],
