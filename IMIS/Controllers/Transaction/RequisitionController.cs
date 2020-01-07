@@ -46,13 +46,13 @@ namespace IMIS.Controllers.Transaction
 
         [HttpGet]
         [Route("/RequisitionCreate.html")]
-        public async Task<IActionResult> RequisitionCreate()
+        public IActionResult RequisitionCreate()
         {
             RequisitionVM model = new RequisitionVM();
             model.PurchaseGive = false;
             model.StockGive = false;
             return View(model);
-         
+
         }
 
 
@@ -104,7 +104,7 @@ namespace IMIS.Controllers.Transaction
         [HttpGet]
         [Route("/RequisitionCreateDetail.html")]
         public IActionResult RequisitionCreateDetail()
-        { 
+        {
             return View("~/Views/Requisition/_partialRequisition.cshtml");
 
         }
