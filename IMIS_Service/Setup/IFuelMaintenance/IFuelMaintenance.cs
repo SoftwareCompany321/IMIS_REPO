@@ -52,7 +52,9 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                                         {
                                             tvp.Sn,
                                             tvp.NpName,
-                                            tvp.EngName 
+                                            tvp.EngName ,
+                                            tvp.Code,
+                                            tvp.IsActive
                                         });
                 ///filter count for the total; record
                 ///
@@ -99,7 +101,9 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                 {
                     Sn = model.Sn,
                     EngName =model.EngName,
-                    NpName=model.NpName
+                    NpName=model.NpName,
+                    Code=model.Code,
+                    IsActive=model.IsActive
                 };
                 if (model.Sn == 0)
                 {
@@ -134,6 +138,8 @@ namespace IMIS_Service.Setup.IFuelMaintenance
                         Sn = response.Sn,
                         EngName = response.EngName,
                         NpName = response.NpName,
+                        Code=response.Code,
+                        IsActive=response.IsActive
                     });
                 }
                 else

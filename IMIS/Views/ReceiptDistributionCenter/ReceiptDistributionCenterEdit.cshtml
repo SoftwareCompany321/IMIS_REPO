@@ -1,7 +1,7 @@
 ﻿@using IMIS_CORE.Core
-@model IMIS_Service.ViewModel.ItemCategoriesVM
+@model IMIS_Service.ViewModel.ReceiptDistributionCenterVM
 @{
-    ViewData["Title"] = "ItemCategoryCreate";
+    ViewData["Title"] = "ReceiptDistributionCenterCreate";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <body>
@@ -13,7 +13,7 @@
 
                 </ul>
                 <div class="tab-content">
-                    <a asp-action="ItemCategoryList" asp-controller="ItemCategory" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
+                    <a asp-action="ReceiptDistributionCenterList" asp-controller="ReceiptDistributionCenter" class="btn btn-warning btn-fab"><i class="material-icons">arrow_backward</i></a>
                     <div class="tab-pane fade active in" id="sub111">
                         <h2 class="form-title">
                             @Utils.GetLabel("Add Item Category")
@@ -22,9 +22,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="well">
-                                    <form method="post" asp-action="ItemCategoryEdit" asp-controller="ItemCategory">
+                                    <form method="post" asp-action="ReceiptDistributionCenterEdit" asp-controller="ReceiptDistributionCenter">
                                         @Html.AntiForgeryToken()
-                                        @await Html.PartialAsync("~/Views/ItemCategory/_partialItemCaterory.cshtml", Model)
+                                        @await Html.PartialAsync("~/Views/ReceiptDistributionCenter/_partialReceiptDistributionCenter.cshtml", Model)
                                         <div class="form-group form-action">
                                             <div class="col-md-10 col-md-offset-2">
                                                 <button type="submit" class="btn btn-primary">

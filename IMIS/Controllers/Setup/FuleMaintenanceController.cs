@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IMIS_CORE.Utility; 
+using IMIS_CORE.Utility;
 using IMIS_Service.Setup.IFuelMaintenance;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IMIS.Controllers.Setup
 {
-    public class FuelMaintenance : Controller
+    public class FuelMaintenanceController : Controller
     {
         private readonly IFuelMaintenance _FuelMaintenance;
 
-        public FuelMaintenance(IFuelMaintenance FuelMaintenance)
+        public FuelMaintenanceController(IFuelMaintenance FuelMaintenance)
         {
             _FuelMaintenance = FuelMaintenance;
         }
@@ -90,7 +90,7 @@ namespace IMIS.Controllers.Setup
         public async Task<IActionResult> FuelMaintenanceDelete(int id)
         {
             var response = await _FuelMaintenance.Delete(id);
-            if (response== "success")
+            if (response == "success")
             {
                 TempData["Message"] = "Successfully Deleted";
                 TempData["Class"] = "alert alert-success ";
