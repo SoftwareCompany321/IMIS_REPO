@@ -59,12 +59,12 @@
             <div class="col-lg-4">
                 <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Item Given")<span class="requried">*</span></label>
                 <div class="col-md-9">
-                    <input type="radio" class="form-control" asp-for="StockGive" value="True">  From Stock
+                    <input type="checkbox" class="form-control" asp-for="StockGive" value="True">  From Stock
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="col-md-9">
-                    <input type="radio" class="form-control" asp-for="PurchaseGive" value="True">Purchase From Mk
+                    <input type="checkbox" class="form-control" asp-for="PurchaseGive" value="True">Purchase From Mk
                 </div>
             </div>
             <div class="col-lg-4">
@@ -107,6 +107,17 @@
             <div class="panel-heading">
                 @Utils.GetLabel("Requisition order Details")
             </div>
+            <div class="form-group is-empty row">
+                <div class="col-lg-6"> 
+                    <div class="col-md-9">
+                       <input type="button"id="addchild" class="btn-success"  value="Add New"/>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    
+                </div>
+            </div>
+
 
             <div class="tab-content">
 
@@ -119,7 +130,7 @@
                                 </button>
                                 <h4 class="modal-title"></h4>
                             </div>
-                            <div class="modal-body"> 
+                            <div class="modal-body">
                                 @await Html.PartialAsync("~/Views/Requisition/_partialRequisitionDetail.cshtml", Model)
                             </div>
                             <div class="modal-body">
@@ -136,8 +147,8 @@
                 <!-- tab 1: region starts -->
                 <div class="tab-pane fade active in" id="region-tab">
                     <!-- generic add button for all the "add" forms | Add region -->
-                    <a class="btn btn-primary btn-fab add"><i class="material-icons addchild">add</i></a>
-                    <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
+                    @*<a class="btn btn-primary btn-fab add"><i class="material-icons addchild">add</i></a>*@
+                    @*<a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>*@
 
                     <!-- search filters -->
                     <div class="collapse" id="searchCollapse">
@@ -244,15 +255,10 @@
                 { "data": "id", "orderable": false },
                 ],
 
-                order: [
-
-                    [1, "desc"]
-                ],
-                "paging": true,
-                "pageLength": 10,
-                lengthMenu: [
-                    [5, 10, 20, 50, 100, 500], [5, 10, 20, 50, 100, 500]
-                ],
+                 "paging":   false,
+                 "ordering": false,
+                 "info":     false ,
+                
                 "fnInitComplete": function (oSettings, json) {
 					//jQuery("#estimate").css({ "display": "table" }).animate({ "opacity": 1 }, 500);
                 },
@@ -276,15 +282,15 @@
             });
 
 
-            jQuery(document).on('click', '.addchild', function () {
+            jQuery(document).on('click', '#addchild', function () {
 
-                 $('#modal-global-express').modal({
-                    backdrop: 'static'
-                    });
-                    var modal = $("#modal-global-express"); 
-                     modal.modal("show");
+                $('#modal-global-express').modal({
+                backdrop: 'static'
+                });
+                var modal = $("#modal-global-express"); 
+                    modal.modal("show");
 
-                   });
+          });
 
         });
 
