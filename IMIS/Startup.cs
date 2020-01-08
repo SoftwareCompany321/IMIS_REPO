@@ -55,6 +55,10 @@ using IMIS_Service.Transaction.IItemNumbering;
 using IMIS_Service.Transaction.IItemStatus;
 using IMIS_Service.Setup.IInvAdujType;
 using IMIS_Service.Setup.ICountryDtl;
+using IMIS_Service.Transaction.IInspection;
+using IMIS_Service.Transaction.IPurchaseDetails;
+using IMIS_Service.Transaction.IInvAdjustment;
+using IMIS_Service.Transaction.IStockDetails;
 
 namespace IMIS
 {
@@ -166,9 +170,10 @@ namespace IMIS
             services.AddScoped<IItemStatus, ItemStatus>();
             services.AddScoped<IInvAdujType, InvAdujType>();
              services.AddScoped<ICountryDtl, CountryDtl>();
-            //services.AddScoped<IRequisition, Requisition>();
-            //services.AddScoped<IRequisition, Requisition>();
-            //services.AddScoped<IRequisition, Requisition>();
+             services.AddScoped<IInspection, Inspection>();
+             services.AddScoped<IPurchaseDetails, PurchaseDetails>();
+            services.AddScoped<IInvAdjustment, InvAdjustment>();
+            services.AddScoped<IStockDetails, StockDetails>();
             //
 
             //adding the auto mapper in service layer class

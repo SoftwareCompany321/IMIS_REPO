@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Transaction
         }
 
         [HttpGet]
-        [Route("/StockDetailslist.html")]
+        [Route("/StocksDetailsList.html")]
         public IActionResult StockDetailsList()
         {
             return View();

@@ -38,7 +38,7 @@ namespace IMIS.Controllers.Transaction
         }
 
         [HttpGet]
-        [Route("/Inspectionlist.html")]
+        [Route("/InvInspectionList.html")]
         public IActionResult InspectionList()
         {
             return View();
