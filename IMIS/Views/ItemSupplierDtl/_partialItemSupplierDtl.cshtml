@@ -1,181 +1,176 @@
 ﻿@using IMIS_CORE.Core
 
 @model IMIS_Service.ViewModel.ItemSupplierDtlVM
-    <div>
+<div>
+    <input asp-for="SupId" type="hidden" />
 
-        <input asp-for="SupId" type="hidden" />
-        <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
-            <div class="col-md-9">
+    <div class="form-group is-empty">
+        <div class="col-md-6">
+            <label for="code" class="col-md-3 control-label" control-label">
+                @Utils.GetLabel("Company")<span class="requried">*</span>
+            </label>
+            <div class="col-md-1">
+                <input type="radio" name="SubT" value="True" asp-for="SubT">
+            </div>
+            <label for="code" class="col-md-3 control-label" control-label">
+                @Utils.GetLabel("Person")<span class="requried">*</span>
+            </label>
+            <div class="col-md-1">
+                <input type="radio" name="SubT" value="False" asp-for="SubT">
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group is-empty">
+        <div class="col-md-6">
+            <label for="region" class="col-md-3 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
+            <div class="col-md-3">
                 <input type="text" class="form-control" asp-for="Code">
             </div>
         </div>
-
-
-        <div class="form-group is-empty">
+    </div>
+    <div class="form-group is-empty">
+        <div class="col-md-6">
+            <label for="region" class="col-md-3 control-label">
+                @Utils.GetLabel("Supplier Name(Eng)")<span class="requried">*</span>
+            </label>
             <div class="col-md-6">
-                <label for="code" class="col-md-3 control-label" control-label">
-                    @Utils.GetLabel("Company")<span class="requried">*</span>
+                <input type="text" class="form-control" asp-for="NameEn">
+            </div>
+        </div>
+        <div class="col-md-6">
+             
+                <label for="region" class="col-md-3 control-label">
+                    @Utils.GetLabel("Org Name")<span class="requried">*</span>
                 </label>
                 <div class="col-md-6">
-                    <input type="radio" name="SubT" value="True" asp-for="SubT">
+                    <select class="form-control" asp-for="OrgId">
+                        <option>Org</option>
+                    </select>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <label for="code" class="col-md-3 control-label" control-label">
-                    @Utils.GetLabel("Person")<span class="requried">*</span>
-                </label>
-                <div class="col-md-6">
-                    <input type="radio" name="SubT" value="False" asp-for="SubT">
-                </div>
-            </div>
-        </div>
-        <div class="form-group is-empty">
-            <div class="col-md-6">
-                <label for="region" class="col-md-2 control-label">
-                    @Utils.GetLabel("Supplier Name(Eng)")<span class="requried">*</span>
-                </label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" asp-for="NameEn">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group is-empty">
-                    <label for="region" class="col-md-2 control-label">
-                        @Utils.GetLabel("Org Name")<span class="requried">*</span>
-                    </label>
-                    <div class="col-md-9">
-                        <select asp-for="OrgId">
-                            <option>Org</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group is-empty">
-            <div class="col-md-6">
-                <label for="region" class="col-md-2 control-label">
-                    @Utils.GetLabel("Supplier Name(Nep)")<span class="requried">*</span>
-                </label>
-                <div class="col-md-9">
-                    <input type="text" class="form-control" asp-for="NameNp" onkeypress="return setUnicode(event,this);">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group is-empty">
-                    <label for="region" class="col-md-2 control-label">
-                        @Utils.GetLabel("Rls[t gePsf]")<span class="requried">*</span>
-                    </label>
-                    <div class="col-md-9">
-                        <input type="checkbox" asp-for="SubT" />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group is-empty">
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        @Utils.GetLabel("Supplier Company Description")
-                    </div>
-                    <div class="panel-body">
-                        <div class="col-md-6 row">
-                            <div class="form-group">
-                                <label class="font_field col-md-2">
-                                    @Utils.GetLabel("Org Type")
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control font_value" asp-for="OrgType" />
-                                    <span class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <select asp-for="OrgType"><option>Org A</option></select>
-                                <span class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-12 row">
-                            <div class="form-group col-md-12">
-                                <label class="font_field col-md-2">
-                                    @Utils.GetLabel("Reg Type")
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control font_value" asp-for="RegiType" />
-                                    <span class="text-danger" asp-validation-for="RegiType"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 row">
-                            <div class="form-group col-md-12">
-                                <label class="font_field col-md-2">
-                                    @Utils.GetLabel("Reg No.")
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control font_value" asp-for="RegNo" />
-                                    <span class="text-danger" asp-validation-for="RegNo"></span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12 row">
-                            <div class="form-group col-md-12">
-                                <label class="font_field col-md-2">
-                                    @Utils.GetLabel("VAT/PAN NO.")
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control font_value" asp-for="TpinPanNo" />
-                                    <span class="text-danger" asp-validation-for="RegNo"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        @Utils.GetLabel("Contact Details")
-                    </div>
-                    <div class="panel-body">
-                        <div class="col-md-12 row">
-                            <div class="form-group col-md-12">
-                                <label class="font_field col-md-2">
-                                    @Utils.GetLabel("Address")
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control font_value" asp-for="Address" />
-                                    <span class="text-danger" asp-validation-for="Address"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 row">
-                            <div class="form-group col-md-12">
-                                <label class="font_field col-md-2">
-                                    @Utils.GetLabel("Phone No.")
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control font_value" asp-for="PhoneNo" />
-                                    <span class="text-danger" asp-validation-for="PhoneNo"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 row">
-                            <div class="form-group col-md-12">
-                                <label class="font_field col-md-2">
-                                    @Utils.GetLabel("Email")
-                                </label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control font_value" asp-for="Email" />
-                                    <span class="text-danger" asp-validation-for="Email"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            
         </div>
     </div>
+    <div class="form-group is-empty">
+        <div class="col-md-6">
+            <label for="region" class="col-md-3 control-label">
+                @Utils.GetLabel("Supplier Name(Nep)")<span class="requried">*</span>
+            </label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" asp-for="NameNp" onkeypress="return setUnicode(event,this);">
+            </div>
+        </div>
+        <div class="col-md-6"> 
+                <label for="region" class="col-md-3 control-label">
+                    @Utils.GetLabel("Rls[t gePsf]")<span class="requried">*</span>
+                </label>
+                <div class="col-md-6">
+                    <input type="checkbox" asp-for="SubT" />
+                </div>
+            
+        </div>
+    </div>
+    <div class="form-group is-empty">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Utils.GetLabel("Supplier Company Description")
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-6 row"> 
+                            <label class="font_field col-md-3">
+                                @Utils.GetLabel("Org Type")
+                            </label>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control font_value" asp-for="OrgType" />
+                                <span class="text-danger"></span>
+                            </div>
+                        
+                        <div class="form-group col-md-4">
+                            <select asp-for="OrgType" class="form-control"><option>Org A</option></select>
+                            <span class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="form-group col-md-12">
+                            <label class="font_field col-md-3">
+                                @Utils.GetLabel("Reg Type")
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control font_value" asp-for="RegiType" />
+                                <span class="text-danger" asp-validation-for="RegiType"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 row">
+                        <div class="form-group col-md-12">
+                            <label class="font_field col-md-3">
+                                @Utils.GetLabel("Reg No.")
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control font_value" asp-for="RegNo" />
+                                <span class="text-danger" asp-validation-for="RegNo"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 row">
+                        <div class="form-group col-md-12">
+                            <label class="font_field col-md-3">
+                                @Utils.GetLabel("VAT/PAN NO.")
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control font_value" asp-for="TpinPanNo" />
+                                <span class="text-danger" asp-validation-for="RegNo"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    @Utils.GetLabel("Contact Details")
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-12 row">
+                        <div class="form-group col-md-12">
+                            <label class="font_field col-md-3">
+                                @Utils.GetLabel("Address")
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control font_value" asp-for="Address" />
+                                <span class="text-danger" asp-validation-for="Address"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="form-group col-md-12">
+                            <label class="font_field col-md-3">
+                                @Utils.GetLabel("Phone No.")
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control font_value" asp-for="PhoneNo" />
+                                <span class="text-danger" asp-validation-for="PhoneNo"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 row">
+                        <div class="form-group col-md-12">
+                            <label class="font_field col-md-3">
+                                @Utils.GetLabel("Email")
+                            </label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control font_value" asp-for="Email" />
+                                <span class="text-danger" asp-validation-for="Email"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
