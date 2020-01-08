@@ -120,14 +120,14 @@ namespace IMIS_Service.Transaction.IRequisition
                 {
                     Id = model.Id,
                     StockGive = model.StockGive,
-                    ItemId = model.ItemId??0,
-                    TypeId = model.TypeId??0,
+                    ItemId = model.ItemId ?? 0,
+                    TypeId = model.TypeId ?? 0,
                     Remarks = model.Remarks,
                     ReqId = model.ReqId,
                     ReqDateEng = model.ReqDateEng,
                     ReqType = model.ReqType,
                     Orgstaffpost = model.Orgstaffpost,
-                   // ReqByNavigation = model.ReqByNavigation,
+                    // ReqByNavigation = model.ReqByNavigation,
                     PurchaseGive = model.PurchaseGive,
                     MaintainItemId = model.MaintainItemId,
                     Reasion = model.Reasion,
@@ -139,36 +139,56 @@ namespace IMIS_Service.Transaction.IRequisition
                     AcceptDt = model.AcceptDt,
                     PrepByNavigation = new PisEmployeeMaster
                     {
-                        EmpId = model.PrepBy??0
+                        EmpId = model.PrepBy ?? 0
                     },
                     CheckByNavigation = new PisEmployeeMaster
                     {
-                        EmpId = model.CheckBy??0
+                        EmpId = model.CheckBy ?? 0
                     },
                     AcceptByNavigation = new PisEmployeeMaster
                     {
-                        EmpId = model.AcceptBy??0
+                        EmpId = model.AcceptBy ?? 0
                     },
                     ReqByNavigation = new PisEmployeeMaster
                     {
-                        EmpId = model.ReqBy??0
+                        EmpId = model.ReqBy ?? 0
                     },
-                    Proj=new InvProject
+                    Proj = new InvProject
                     {
-                        ProjectId=model.ProjId??0
+                        ProjectId = model.ProjId ?? 0,
+                        NameNp = "test"
                     },
-                    Item=new InvItemMst
+                    Item = new InvItemMst
                     {
-                        ItemId=model.ItemId??0
-                    }
-                    
+                        ItemId = model.ItemId ?? 0,
+                        NameNp = "test"
+                    },
 
                 };
                 if (model.Id == 0)
                 {
                     int id = await _db.InvRequisitionMast.CountAsync();
                     item.Id = id + 1;
-                    _db.InvRequisitionMast.Add(item); 
+                    _db.InvRequisitionMast.Add(item);
+
+                    var invreq = new InvReqDetail
+                    {
+
+                        Brand = model.InvReqDetail.Brand,
+                        Item = model.Item,
+                        BrandId = model.InvReqDetail.BrandId,
+                        ItemId = model.ItemId ?? 0,
+                        Remarks = model.InvReqDetail.Remarks,
+                        Qty = model.InvReqDetail.Qty,
+                        ReqMast = model.InvReqDetail.ReqMast,
+                        Spec = model.InvReqDetail.Spec,
+                        ReqMastId = model.InvReqDetail.ReqMastId,
+                        SpecId = model.InvReqDetail.SpecId,
+                        IsActive = model.InvReqDetail.IsActive,
+                        Code = model.InvReqDetail.Code,
+                        Id = item.Id
+                    };
+                    _db.InvReqDetail.Add(invreq);
                 }
                 else
                 {
@@ -208,6 +228,10 @@ namespace IMIS_Service.Transaction.IRequisition
                         PrepDt = response.PrepDt,
                         MaintainItemId = response.MaintainItemId,
                         Orgstaffpost = response.Orgstaffpost,
+                        ReqId = response.ReqId,
+                        ReqDateEng = response.ReqDateEng,
+                        ReqType = response.ReqType,
+
 
 
                     });
