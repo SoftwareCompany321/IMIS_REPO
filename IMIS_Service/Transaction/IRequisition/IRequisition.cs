@@ -55,7 +55,7 @@ namespace IMIS_Service.Transaction.IRequisition
                                   select new
                                   {
                                       id = invreq.Id,
-                                      code=invreq.Code,
+                                      code = invreq.Code,
                                       stockGive = invreq.StockGive,
                                       itemId = invreq.ItemId,
                                       typeId = invreq.TypeId,
@@ -120,14 +120,14 @@ namespace IMIS_Service.Transaction.IRequisition
                 {
                     Id = model.Id,
                     StockGive = model.StockGive,
-                    ItemId = model.ItemId,
-                    TypeId = model.TypeId,
+                    ItemId = model.ItemId??0,
+                    TypeId = model.TypeId??0,
                     Remarks = model.Remarks,
                     ReqId = model.ReqId,
                     ReqDateEng = model.ReqDateEng,
                     ReqType = model.ReqType,
                     Orgstaffpost = model.Orgstaffpost,
-                    ReqByNavigation = model.ReqByNavigation,
+                   // ReqByNavigation = model.ReqByNavigation,
                     PurchaseGive = model.PurchaseGive,
                     MaintainItemId = model.MaintainItemId,
                     Reasion = model.Reasion,
@@ -136,14 +136,39 @@ namespace IMIS_Service.Transaction.IRequisition
                     CheckBy = model.CheckBy,
                     CheckDt = model.CheckDt,
                     AcceptBy = model.AcceptBy,
-                    AcceptDt = model.AcceptDt
+                    AcceptDt = model.AcceptDt,
+                    PrepByNavigation = new PisEmployeeMaster
+                    {
+                        EmpId = model.PrepBy??0
+                    },
+                    CheckByNavigation = new PisEmployeeMaster
+                    {
+                        EmpId = model.CheckBy??0
+                    },
+                    AcceptByNavigation = new PisEmployeeMaster
+                    {
+                        EmpId = model.AcceptBy??0
+                    },
+                    ReqByNavigation = new PisEmployeeMaster
+                    {
+                        EmpId = model.ReqBy??0
+                    },
+                    Proj=new InvProject
+                    {
+                        ProjectId=model.ProjId??0
+                    },
+                    Item=new InvItemMst
+                    {
+                        ItemId=model.ItemId??0
+                    }
+                    
 
                 };
                 if (model.Id == 0)
                 {
                     int id = await _db.InvRequisitionMast.CountAsync();
                     item.Id = id + 1;
-                    _db.InvRequisitionMast.Add(item);
+                    _db.InvRequisitionMast.Add(item); 
                 }
                 else
                 {
@@ -154,10 +179,10 @@ namespace IMIS_Service.Transaction.IRequisition
                 return ("success", 0);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
         public async Task<RequisitionVM> ViewEdit(decimal Id)

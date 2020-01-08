@@ -191,7 +191,7 @@ namespace IMIS_Service.IMenuService
             }
 
 
-            var menulist = (from nt in _db.ImisMenu
+            var menulist = await (from nt in _db.ImisMenu
                             where nt.ParentMenuId == id
                             select new
                             {
@@ -199,7 +199,7 @@ namespace IMIS_Service.IMenuService
                                 nt.DisplayName,
                                 nt.DisplayNepName,
                                 nt.MenuOrder
-                            }).ToList();
+                            }).ToListAsync();
             if (menulist.Count > 0)
             {
                 totalResultsCount = menulist.Count();
