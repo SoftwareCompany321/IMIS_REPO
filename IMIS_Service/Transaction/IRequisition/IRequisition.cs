@@ -141,34 +141,35 @@ namespace IMIS_Service.Transaction.IRequisition
                     AcceptBy = model.AcceptBy,
                     AcceptDt = model.AcceptDt,
 
-                    PrepByNavigation = new PisEmployeeMaster
-                    {
-                        EmpId = model.PrepBy ?? 0
-                    },
-                    CheckByNavigation = new PisEmployeeMaster
-                    {
-                        EmpId = model.CheckBy ?? 0
-                    },
-                    AcceptByNavigation = new PisEmployeeMaster
-                    {
-                        EmpId = model.AcceptBy ?? 0
-                    },
-                    ReqByNavigation = new PisEmployeeMaster
-                    {
-                        EmpId = model.ReqBy ?? 0
-                    },
-                    Proj = new InvProject
-                    {
-                        ProjectId = model.ProjId ?? 0,
-                        NameNp = "test"
-                    },
-                    Item = new InvItemMst
-                    {
-                        ItemId = model.ItemId ?? 0,
-                        NameNp = "test",
-                        Unit = model.Item.Unit,
-
-                    },
+                    //PrepByNavigation = new PisEmployeeMaster
+                    //{
+                    //    EmpId = model.PrepBy ?? 0
+                    //},
+                    //CheckByNavigation = new PisEmployeeMaster
+                    //{
+                    //    EmpId = model.CheckBy ?? 0
+                    //},
+                    //AcceptByNavigation = new PisEmployeeMaster
+                    //{
+                    //    EmpId = model.AcceptBy ?? 0
+                    //},
+                    //ReqByNavigation = new PisEmployeeMaster
+                    //{
+                    //    EmpId = model.ReqBy ?? 0
+                    //},
+                    //Proj = new InvProject
+                    //{
+                    //    ProjectId = model.ProjId ?? 0,
+                    //    NameNp = "test"
+                    //},
+                    //Item = new InvItemMst
+                    //{
+                    //    ItemId = model.ItemId ?? 0,
+                    //    NameNp = "test",
+                    //    UnitId=model.Item.UnitId??0,
+                        
+                        
+                    //},
 
 
                 };
@@ -177,20 +178,20 @@ namespace IMIS_Service.Transaction.IRequisition
                     int id = await _db.InvRequisitionMast.CountAsync();
                     item.Id = id + 1;
                     _db.InvRequisitionMast.Add(item);
-                   
+                    await _db.SaveChangesAsync(true);
                     var invreq = new InvReqDetail
-                    {
-                        Brand = model.InvReqDetail.Brand,
-                        Item = model.Item,
-                        BrandId = model.InvReqDetail.BrandId,
+                    { 
+                        //Item = new InvItemMst {NameNp="test"},
+                        BrandId = model.InvReqDetail.BrandId??0,
                         ItemId = model.ItemId ?? 0,
                         Remarks = model.InvReqDetail.Remarks,
-                        Qty = model.InvReqDetail.Qty,
-                        ReqMast = model.InvReqDetail.ReqMast,
+                        Qty = model.InvReqDetail.Qty??0,
+                        //ReqMast = model.InvReqDetail.ReqMast,
                         Spec = model.InvReqDetail.Spec,
-                        ReqMastId = model.InvReqDetail.ReqMastId,
+                        ReqMastId = model.InvReqDetail.ReqMastId??0,
                         SpecId = model.InvReqDetail.SpecId,
                         IsActive = model.InvReqDetail.IsActive,
+                        
                         Code = item.Id.ToString(),
                        // Id = item.Id,
                     };
