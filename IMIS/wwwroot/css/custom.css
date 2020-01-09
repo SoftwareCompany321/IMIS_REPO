@@ -1,0 +1,314 @@
+body {
+    padding-top: 50px;
+    /*padding-bottom: 20px;*/
+    background:url("nepal.jpg") no-repeat;
+    background-size: 105%;
+    overflow-x: hidden;
+    background-color: rgba(22, 30, 42, 0.2);
+    background-blend-mode: overlay;
+}
+label{
+    padding-left: 10px; 
+}
+
+.panel-primary > .panel-heading {
+  color: #fff;
+  background: #EFF6FF;
+  border:none;
+
+}
+.col-lg-1,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,col,md-5{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-top: 0px;
+    }
+.col-sm-offset-2 {
+    margin-left: 13.666666666666664%;
+  }
+.btn{
+    width: 80px;
+    border-radius: 0px;
+}
+.btn-default {
+  color: #333333;
+  background-color: #6BABE2;
+  border-color: #B2D3E8;
+  width: 230px;
+  min-height: 59px;
+  margin-left: -15px;
+  border-radius: 2px;
+  box-shadow: 0 0 10px 0 #70BAF9;
+  -webkit-box-shadow: 0 0 10px 0 #70BAF9;
+  -moz-box-shadow: 0 0 10px 0 #70BAF9;
+  padding: 12px;
+}
+
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  color: #fff;
+  background-color: #045FAD;
+  border-color: #adadad;
+}
+.btn-default:hover {
+  color: #333;
+  background-color: #509CDF !important;
+  border-color: #adadad;
+}
+
+.btn-default:active:hover, .btn-default.active:hover, .open > .dropdown-toggle.btn-default:hover, .btn-default:active:focus, .btn-default.active:focus, .open > .dropdown-toggle.btn-default:focus, .btn-default:active.focus, .btn-default.active.focus, .open > .dropdown-toggle.btn-default.focus{
+    color: #fff;
+    background: #045FAD !important;
+}
+.btn-primary {
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #357ebd;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary {
+  color: #ffffff;
+  background-color: #3276b1;
+  border-color: #285e8e;
+}
+/*panel*/
+.panel{
+    border: 10px solid transparent;
+    border-radius: 8px;
+}
+.panel-body {
+  background: #EFF6FF;
+  /*max-height: 231px;*/
+   height: 315px;
+}
+
+.panel-primary{
+    border-color: #257AC3 !important;
+  box-shadow: 0px 0px 10px 0px #418DD8 !important;
+}
+textarea{
+     vertical-align: top;
+}
+a {
+  color: #428bca;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #0056A0;
+  text-decoration: underline;
+}
+
+.form-group{
+    margin-bottom: 9px; 
+}
+
+
+/*ownstyle*/
+.logo{
+    width: 90px;
+    height: 75px;
+    background-image: url("nepalGovernment.png");
+    position: absolute;
+    margin-left: 3px;
+    /*margin-top: -1px;*/
+    z-index: 2;
+}
+.logo_title{
+    /*margin-top: -5px;*/
+    background: #095BA2;
+    left: 0px;
+    padding: 10px 20px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(86, 86, 86, 0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(86, 86, 86, 0.75);
+    box-shadow: 0px 0px 10px 0px rgba(86, 86, 86, 0.75);
+}
+.login_title{
+    text-align: center;
+    font-weight:bold;
+    color: #fff;
+    margin-top: 30px;
+}
+.btn_login{
+    border-radius: 3px;
+    /*margin-top: 5px;*/
+}
+.mun_title{
+    text-indent: 110px;
+    color: #fff;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-top: 10px;
+}
+.sprite {
+     background: url("icons.png") no-repeat top left; 
+     width: 25px; height: 25px;
+     padding-left: 42px; 
+     padding-top: 2px;  
+     font-size: 15px; 
+} 
+
+.sprite.tax { background-position: 0 0; } 
+.sprite.revenue { background-position: 0 -40px; } 
+.sprite.expense { background-position: 0 -80px; } 
+.sprite.retention { background-position: 0 -120px; } 
+.sprite.inventory { background-position: 0 -160px; } 
+.sprite.pmis { background-position: 0 -200px; width: 30px; height: 20px; top:2px; } 
+
+label.btn.btn-default {
+    margin-top: -4px;
+}
+
+.error {
+    color: red;
+    /*text-indent: 64px;*/
+    width: 481px;
+    font-size: 12px;
+}
+.row_top{
+    margin-top: 10%;
+}
+.col_top{
+    padding-top: 5px;
+}
+.forgot-password{
+    padding-left: -10px;
+}
+.underline{
+    border-top: 1px solid #fff;
+    float: right;
+    color: #EBF2FA;
+    text-align: center;
+    font-size: 16px;
+    width: 622px;
+    margin-right: -140px;
+}
+ .footer_title {
+    color: #E9FB00;
+    font-weight: bold;
+}
+
+
+/*media queries*/
+
+
+@media (min-width: 992px) and (max-width: 1199px){
+    .col-lg-push-6{
+        left: 41% !important;
+    }
+    .col-lg-push-7{
+        left: 42.5% !important;
+    }
+    .col-md-3{
+        width: 22% !important;
+    }
+    .sprite{
+        font-size: 14px !important;
+    }
+  .form-group.error {
+    width: 363px;
+}
+  .panel-body{
+      height: 220px !important;
+      padding: 0 0 0 20px;
+  }
+  label{
+      font-size: 13px !important;
+  }
+  .form-control{
+        width: 195px;
+        font-size: 12px !important;
+}
+  .form-horizontal .form-group{
+        margin-right: -38px;
+    }
+   .row_top{
+       margin-top: 150px !important;
+   }
+}
+
+@media screen and (min-width: 1424px) and ( max-width: 1600px )  {
+    .underline{
+        width: 630px;
+        margin-right: -44px;
+  }
+   .form-group.error {
+    width: 420px;
+}
+   .col-lg-push-7{
+       left: 48.59%;
+   }
+   .col-lg-push-6{
+       left: 42%;
+   }
+   .row_top{
+    margin-top: 15% !important;
+}
+ }
+
+
+@media (min-width: 1824px) {
+    .col-lg-push-6{
+       left: 67%;
+    }
+    .col-lg-push-7{
+        left: 73.55%;
+    }
+    .underline{
+       margin-right: -330px !important;
+       width: 626px !important;
+    }
+    .btn-default{
+        min-height: 63px;
+    }
+    .panel-body{
+        height: 339px;
+    }
+   .row_top{
+       margin-top: 20% !important;
+   }
+}
+
+.clientwise_detail{
+    text-align: center;
+    margin-top: 50px; 
+    margin-right: 5%;
+    font-family: Kalimati;
+    color: #002b6e; 
+}
+.clientwise_detail h2{
+    /*font-size: 26px;*/
+    font-weight: 700;
+}
+.clientwise_detail h3{
+    text-align: center;
+    margin-top: 0px;
+    /*font-size: 22px;*/
+    font-weight: 600;
+}
+ .address {
+    font-size: 18px !important;
+    margin-bottom: 15px;
+}
+
+.panel-body1 {
+    height: 285px;
+    background: #EFF6FF;
+    padding: 0 0 0 20px;
+}

@@ -18,97 +18,96 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/css/main.css" rel="stylesheet" />
-    <link href="~/css/util.css" rel="stylesheet" />
-    <link href="~/css/admin.css" rel="stylesheet" />
+
+    <link href="~/css/css.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet" />
     <link href="~/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-    <link href="~/css/style.css" rel="stylesheet" />
+
 </head>
 <body class="login">
-    <div id="wrapper">
-        <!-- Navigation -->
-        <div class="login-wrapper">
-            <div class="login-vertical-adjust">
-                <div class="login-content">
-                    <main role="main">
-
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-sm-8 col-md-6 centered">
-                                    <div class="well">
-                                        <div style="text-align:right;padding-top: 15px;padding-bottom: 1px;">
-                                            @{ string lang = "English";
-                                                Byte[] binForm;
-                                                if (HttpContextAccessor.HttpContext.Session.TryGetValue("LanguageSetting", out binForm))
-                                                    lang = System.Text.Encoding.UTF8.GetString(binForm);
-                                                var langurl = "/" + lang + "/ChangeStatus.html";
-                                            }
-                                            <a id="changelanguage" href="@langurl" class="btn btn-default pull-right">@(Utils.Changelanguage())</a>
-                                            
-                                        </div>
-                                        <div class="brand">
-                                            <a class="platform-name" href="javascript:;">
-                                                <figure><img src="~/images/GovLogo.png" alt="IMIS Logo"></figure>
-                                                <span>@Utils.GetLabel("Inventory MIS")</span>
-                                            </a>
-
-                                            <div asp-validation-summary="All" class="text-danger"></div>
-
-                                        </div>
-
-
-                                        <div class="login-form">
-                                            @*<form action="index.html">*@
-                                            <form id="account" method="post">
-                                                <div class="form-group">
-                                                    <div class="col-md-9 centered">
-                                                        @*<label>@Utils.GetLabel("EMAIL")</label>*@
-                                                        <input asp-for="Input.Email" class="form-control" placeholder="@Utils.GetLabel("EMAIL")" />
-                                                        <span asp-validation-for="Input.Email" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="col-md-9 centered">
-                                                        <input asp-for="Input.Password" class="form-control" placeholder="@Utils.GetLabel("Password")" />
-                                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                                                    </div>
-                                                </div>
-                                                @*<div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>*@
-                                                <div class="form-group form-action">
-                                                    <div class="col-md-9 centered">
-                                                        <button type="submit" class="btn btn-primary">Login</button>
-                                                        <a id="forgot-password" asp-page="./ForgotPassword" class="btn btn-default pull-right">Forgot Password?</a>
-                                                    </div>
-                                                </div>
-
-                                            </form>
-                                        </div>
+    <div class="container body-content">
+        <div class="container">
+            <div class="row row_top">
+                <div class="col-lg-12">
+                  
+                        <div class="col-md-5 col-lg-4 col-md-push-4 col-lg-push-4">
+                            <div class="panel panel-primary ">
+                                <div class="col-lg-12 panel-heading">
+                                    <div class="logo">
+                                        <h3 class="mun_title">@Utils.GetLabel("IMIS Service")</h3>
                                     </div>
+                                    <div class="logo_title">
+                                        <h3 class="login_title">@Utils.GetLabel("Login")</h3>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <form class="form-horizontal" id="account" method="post">
+                                       
+                                            <div class="form-group">
+                                                <div class="col-md-3 col-lg-3 ">
+                                                    <label for="client_list">@Utils.GetLabel("Office")</label>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <select class="form-control" id="client_id" name="client_id">
+                                                        <option value="99" selected="selected">ABC - </option>
+                                                        <option value="106">XYZ - </option>
+                                                        <option value="94">AAA - </option>
+                                                        <option value="1">sys - प्रशासन</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-3 col-lg-3">
+                                                    <label for="username">@Utils.GetLabel("User") </label>
+                                                </div>
+                                                <div class="col-lg-8 ">
+                                                    <input asp-for="Input.Email" class="form-control" placeholder="@Utils.GetLabel("EMAIL")" />
+                                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-3 col-lg-3 ">
+                                                    <label for="password">@Utils.GetLabel("Password") </label>
+                                                </div>
+                                                <div class="col-lg-8">
+                                                    <input type="password" asp-for="Input.Password" class="form-control" placeholder="@Utils.GetLabel("Password")" />
+                                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                                    <span asp-validation-for="Input.Password" class="glyphicon glyphicon-eye-open toggle-password text-primary" style="float: right; margin-top: -25px; position: relative; z-index: 1000; cursor: pointer; margin-right: 10px;"></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-12 col-lg-12">
+                                                <div class="form-group error">
+                                                    <div class="col-lg-12" id="error-msg" style="left: 23%; color: red;  padding: 0;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-offset-3 col-lg-offset-3">
+                                                <button type="submit" class="btn btn-primary btn_login">@Utils.GetLabel("Login")</button>
+                                                @*<a id="forgot-password" asp-page="./ForgotPassword" class="btn btn-default pull-right">Forgot Password?</a>*@
+
+                                            </div>
+                                        </form>
+
+
+                                </div>
+                                <div style="float:right; margin-top: 3%">
+                                    <label for="version_no">IMIS 1.1</label>
                                 </div>
                             </div>
                         </div>
-                        <!-- /.container-->
-
-                    </main>
-                    <!-- main ends -->
+                        
                 </div>
             </div>
-        </div>
-        <!-- /#page-wrapper -->
-    </div>
-    <!-- /#wrapper -->
-    <!-- jQuery --> 
+        </div> 
+    </div> 
 </body>
 </html> 
 @section Scripts {
