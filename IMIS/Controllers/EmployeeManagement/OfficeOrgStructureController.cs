@@ -55,10 +55,11 @@ namespace IMIS.Controllers.EmployeeManagement
         }
 
         [HttpGet]
-        [Route("/{id}/OfficeOrgStructureCreate.html")]
-        public IActionResult OfficeOrgStructureCreate(int id)
+        [Route("/{parentid}/OfficeOrgStructureCreate.html")]
+        public IActionResult OfficeOrgStructureCreate(int parentid)
         {
-            ViewData["ParentOfficeOrgStructure"] = _OfficeOrgStructureService.GetParentOfficeOrgStructure(id); //calling the all parent OfficeOrgStructure
+            ViewData["ParentOfficeOrgStructure"] = _OfficeOrgStructureService.GetParentOfficeOrgStructure(parentid); //calling the all parent OfficeOrgStructure
+            ViewData["georegion"] = _OfficeOrgStructureService.GetGeoRegion();
             return View("_partialOfficeOrgStructure");
 
         }
@@ -81,11 +82,11 @@ namespace IMIS.Controllers.EmployeeManagement
 
 
         [HttpGet]
-        [Route("/{id}/OfficeOrgStructureEdit.html")]
-        public async Task<IActionResult> OfficeOrgStructureEdit(int id)
+        [Route("/{parentid}/OfficeOrgStructureEdit.html")]
+        public async Task<IActionResult> OfficeOrgStructureEdit(int parentid)
         {
             ViewData["ParentOfficeOrgStructure"] = _OfficeOrgStructureService.GetAllParentOfficeOrgStructure();
-            return View("_partialOfficeOrgStructure", await _OfficeOrgStructureService.ViewEdit(id));
+            return View("_partialOfficeOrgStructure", await _OfficeOrgStructureService.ViewEdit(parentid));
 
         }
 
@@ -93,10 +94,10 @@ namespace IMIS.Controllers.EmployeeManagement
 
 
         [HttpGet]
-        [Route("/{id}/OfficeOrgStructureTreePartial.html")]
-        public IActionResult OfficeOrgStructureTreePartial(int id)
+        [Route("/{parentid}/OfficeOrgStructureTreePartial.html")]
+        public IActionResult OfficeOrgStructureTreePartial(int parentid)
         {
-            ViewData["id"] = id;
+            ViewData["parentid"] = parentid;
             return View("_OfficeOrgStructureList");
         }
     }

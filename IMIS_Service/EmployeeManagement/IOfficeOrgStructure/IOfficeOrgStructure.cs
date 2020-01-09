@@ -21,6 +21,7 @@ namespace IMIS_Service.EmployeeManagement.IOfficeOrgStructure
         Task<DataTableResponse> OfficeOrgStructureChildDataTabel(DataTableVm model, int id = 0);
         IEnumerable<SelectListItem> GetAllParentOfficeOrgStructure(int id = 0);
         IEnumerable<SelectListItem> GetParentOfficeOrgStructure(int id = 0);
+        IEnumerable<SelectListItem> GetGeoRegion();
     }
     public class OfficeOrgStructure : IOfficeOrgStructure
     {
@@ -220,6 +221,12 @@ namespace IMIS_Service.EmployeeManagement.IOfficeOrgStructure
         public IEnumerable<SelectListItem> GetParentOfficeOrgStructure(int id = 0)
         {
             return new SelectList(_db.OrganizationTree.Where(x => x.Id == id), "Id", "DisplayName");
+
+        }
+
+        public IEnumerable<SelectListItem> GetGeoRegion( )
+        {
+            return new SelectList(_db.PisGeoRegion.Where(x => x.Id == x.Id), "Id", "Grname");
 
         }
     }

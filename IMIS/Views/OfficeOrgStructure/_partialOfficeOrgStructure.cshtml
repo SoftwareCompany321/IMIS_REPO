@@ -19,7 +19,7 @@
                 </div>
                 @if (Model != null)
                 {
-                    <input type="hidden" asp-for="Id"/>
+                    <input type="hidden" asp-for="Id" />
                 }
                 <div class="form-group is-empty">
                     <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Name(Eng)")<span class="requried">*</span></label>
@@ -33,7 +33,24 @@
                         <input type="text" class="form-control" asp-for="NepName" onkeypress="return setUnicode(event,this);">
                     </div>
                 </div>
-                
+                <div class="form-group is-empty">
+                    <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Geo Region")</label>
+
+                    <div id="mulfactordiv" class="col-md-6" style="display:none;">
+                        <select asp-for="GeoRegion" asp-items="@ViewData["georegion"] as SelectList" class="form-control">
+                            <option value="0">@Utils.GetLabel("Please Select")</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="form-group is-empty">
+                    
+                    
+                    <div id="mulfactordiv" class="col-md-6" style="display:none;">
+                        <input type="checkbox" class="form-control" asp-for="ContainsDarbandi">
+                        <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Employee Darbandi Unit")</label>
+                    </div>
+                </div>
                 <div class="form-group form-action">
                     <div class="col-md-10 col-md-offset-2">
                         <button type="submit" class="btn btn-primary">@Utils.GetLabel("Submit")</button>

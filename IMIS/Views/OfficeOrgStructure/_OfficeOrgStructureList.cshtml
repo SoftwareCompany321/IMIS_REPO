@@ -12,7 +12,7 @@
         <!-- tab 1: region starts -->
         <div class="tab-pane fade active in" id="region-tab">
             <!-- generic add button for all the "add" forms | Add region -->
-            <a href="#" onclick="createOfficeOrgStructure(@ViewData["id"]);" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+            <a href="#" onclick="createOfficeOrgStructure(@ViewData["parentid"]);" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
             <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
             @if (ViewBag.Message != null || ViewBag.Message == "")
             {
