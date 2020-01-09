@@ -38,6 +38,22 @@ namespace IMIS.Controllers.Transaction
         }
 
         [HttpGet]
+        [Route("/RequisitionFetchDataDetails.html")]
+        public async Task<JsonResult> RequisitionFetchDataChild(DataTableVm model,int paarentId)
+        {
+            var response = await _Requisition.RequisitionFetchDataReuisitionDetail(model, paarentId);
+            return Json(new
+            {
+                draw = response.draw,
+                recordsTotal = response.TotalRecord,// 5,//totalResultsCount,
+                recordsFiltered = response.FilteredRecord,// 5000,//filteredResultsCount,
+                data = response.data
+            });
+        }
+
+
+
+        [HttpGet]
         [Route("/Requisitionlist.html")]
         public IActionResult RequisitionList()
         {

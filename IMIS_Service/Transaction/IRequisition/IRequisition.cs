@@ -18,6 +18,9 @@ namespace IMIS_Service.Transaction.IRequisition
 
         Task<RequisitionVM> ViewEdit(decimal Id);
         Task<string> Delete(int Id);
+
+        Task<DataTableResponse> RequisitionFetchDataReuisitionDetail(DataTableVm model, int ParentId);
+
     }
     public class Requisition : IRequisition
     {
@@ -137,6 +140,7 @@ namespace IMIS_Service.Transaction.IRequisition
                     CheckDt = model.CheckDt,
                     AcceptBy = model.AcceptBy,
                     AcceptDt = model.AcceptDt,
+
                     PrepByNavigation = new PisEmployeeMaster
                     {
                         EmpId = model.PrepBy ?? 0
@@ -161,8 +165,11 @@ namespace IMIS_Service.Transaction.IRequisition
                     Item = new InvItemMst
                     {
                         ItemId = model.ItemId ?? 0,
-                        NameNp = "test"
+                        NameNp = "test",
+                        Unit = model.Item.Unit,
+
                     },
+
 
                 };
                 if (model.Id == 0)
@@ -170,10 +177,9 @@ namespace IMIS_Service.Transaction.IRequisition
                     int id = await _db.InvRequisitionMast.CountAsync();
                     item.Id = id + 1;
                     _db.InvRequisitionMast.Add(item);
-
+                   
                     var invreq = new InvReqDetail
                     {
-
                         Brand = model.InvReqDetail.Brand,
                         Item = model.Item,
                         BrandId = model.InvReqDetail.BrandId,
@@ -185,9 +191,11 @@ namespace IMIS_Service.Transaction.IRequisition
                         ReqMastId = model.InvReqDetail.ReqMastId,
                         SpecId = model.InvReqDetail.SpecId,
                         IsActive = model.InvReqDetail.IsActive,
-                        Code = model.InvReqDetail.Code,
-                        Id = item.Id
+                        Code = item.Id.ToString(),
+                       // Id = item.Id,
                     };
+                    int invmst = await _db.InvReqDetail.CountAsync();
+                    invreq.Id = invmst + 1;
                     _db.InvReqDetail.Add(invreq);
                 }
                 else
@@ -267,6 +275,84 @@ namespace IMIS_Service.Transaction.IRequisition
             {
 
                 throw;
+            }
+        }
+
+        public async Task<DataTableResponse> RequisitionFetchDataReuisitionDetail(DataTableVm model, int ParentId)
+        {
+            string searchBy = string.Empty;
+            int skip = 0;
+            int take = 10;
+            int totalResultsCount = 0;
+            int filteredResultsCount = 0;
+            int draw = 0;
+
+            try
+            {
+                if (model != null)
+                {
+                    searchBy = searchBy = !string.IsNullOrEmpty(model.search) ? model.search.Trim() : "";
+                    take = model.length;
+                    skip = model.start;
+                    draw = model.draw;
+                }
+
+                var accMasters = (from invreq in _db.InvReqDetail
+                                  join invmst in _db.InvItemMst on invreq.Id.ToString() equals invmst.Code into leftreqjoin
+                                  from leftreq in leftreqjoin.DefaultIfEmpty()
+                                  where invreq.Code == ParentId.ToString()
+                                  //join reqdetail in _db.InvReqDetail
+                                  //on invreq.Code equals reqdetail.Code into leftinvreq
+                                  //from leftreq in leftinvreq.DefaultIfEmpty()
+                                  //join invmaster in _db.InvIssueMaster on invreq.Code equals invmaster.Code into leftjoinmaster
+                                  //from leftmaaster in leftjoinmaster.DefaultIfEmpty()
+                                  select new
+                                  {
+                                      id = invreq.Id,
+                                      code = invreq.Code,
+                                      itemname = invreq.ItemId,
+                                      unitname = leftreq.Unit,
+                                      typename=leftreq.ItemType,
+                                      brandname=invreq.BrandId,
+                                      specName=invreq.Spec,
+                                      purquantity=invreq.Qty,
+                                      remarks=invreq.Remarks 
+                                  });
+                ///filter count for the total; record
+                ///
+
+                if (accMasters != null)
+                {
+                    totalResultsCount = await accMasters.CountAsync();
+                    if (!string.IsNullOrEmpty(searchBy))
+                    {
+                        accMasters = accMasters.Where(x => x.remarks == searchBy);
+                    }
+                    filteredResultsCount = await accMasters.CountAsync();
+                }
+
+                var finallist = await accMasters.OrderByDescending(x => x.id).Skip(skip).ToListAsync();
+
+                return new DataTableResponse
+                {
+                    draw = draw,
+                    TotalRecord = filteredResultsCount,
+                    FilteredRecord = totalResultsCount,
+                    data = finallist
+                };
+
+
+            }
+            catch (Exception)
+            {
+                return new DataTableResponse
+                {
+                    draw = draw,
+                    TotalRecord = filteredResultsCount,
+                    FilteredRecord = totalResultsCount,
+                    data = 0
+                };
+                //add to do for the error log save in db
             }
         }
     }
