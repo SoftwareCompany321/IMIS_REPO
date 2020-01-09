@@ -42,10 +42,8 @@
                             <table id="account" class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th>@Utils.GetLabel("Id")</th>
-
-                                        <th>@Utils.GetLabel("Post Name(Nep)")</th>
-
+                                        <th>@Utils.GetLabel("Id")</th> 
+                                        <th>@Utils.GetLabel("Post Name(Nep)")</th> 
                                         <th>@Utils.GetLabel("Post Name(Eng)")</th>
                                         <th>@Utils.GetLabel("Post ID)")</th>
                                         <th>@Utils.GetLabel("Action")</th>
@@ -93,14 +91,16 @@
 
                 "columns": [ 
                 { "data": "code", "orderable": true },
-                { "data": "nepName", "orderable": true },
-                { "data": "engName", "orderable": false }, 
+                { "data": "localPostName", "orderable": true },
+                    { "data": "localPostNameEn", "orderable": true }, 
+                    { "data": "postId", "orderable": true },
+                  { "data": "localPostId", "orderable": false },
                 ],
                  "rowCallback": function (row, data, index) {
-                      var url ='/' + data.brandId + '/OfficeAppPosEdit.html';
+                      var url ='/' + data.localPostId + '/OfficeAppPosEdit.html';
                 jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
-                 var urldelete ='/' + data.brandId + '/OfficeAppPosDelete.html';
+                 var urldelete ='/' + data.localPostId + '/OfficeAppPosDelete.html';
                 jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                     jQuery('[data-toggle="tooltip"]').tooltip();
                      

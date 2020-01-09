@@ -28,15 +28,23 @@
         </div>
 
         @*DropDown*@
-        <div class="form-group is-empty">
-            <label for="short-name" class="col-md-2 control-label">
-                @Utils.GetLabel("Post/Grade Level")
-            </label>
-            <div class="col-md-6">
-                <input type="text" class="form-control" asp-for="PostLevel">
-            </div>
+    <div class="form-group is-empty">
+        <label for="short-name" class="col-md-2 control-label">
+            @Utils.GetLabel("Post/Grade Level")
+        </label>
+        <div class="col-md-6">
+            <select asp-for="PostLevel" class="form-control">
+                @for (int i = 1; i <= 50; i++)
+                {
+                    <option value="@Utils.GetLabel(i.ConvertToString())">@Utils.GetLabel(i.ConvertToString())</option>
+                }
+                 
+            </select>
 
         </div>
+ 
+
+    </div>
         @*DropDown*@
         <div class="form-group is-empty">
             <label for="short-name" class="col-md-2 control-label">

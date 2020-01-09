@@ -12,7 +12,7 @@
         <!-- tab 1: region starts -->
         <div class="tab-pane fade active in" id="region-tab">
             <!-- generic add button for all the "add" forms | Add region -->
-            <a href="#" onclick="createCivilServices(@ViewData["id"]);" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
+            <a href="#" onclick="createCivilServices(@ViewData["parentid"]);" class="btn btn-primary btn-fab add"><i class="material-icons">add</i></a>
             <a href="#searchCollapse" class="btn btn-warning btn-fab search" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="searchCollapse"> <i class="material-icons search">search</i><i class="material-icons close">close</i></a>
             @if (ViewBag.Message != null || ViewBag.Message == "")
             {
@@ -51,7 +51,7 @@
 <script lang="ja" type="text/javascript">
      jQuery(document).ready(function () {
          var table = jQuery("#account");
-         var url1 = '/' + @ViewData["id"] + '/CivilServicesdatagetfetchdatadatable.html';
+         var url1 = '/' + @ViewData["parentid"] + '/CivilServicesdatagetfetchdatadatable.html';
         table.dataTable({
             "bProcessing": true,
             "processing": true,
@@ -71,8 +71,8 @@
             'stateSave': false,
 
             "columns": [
-                { "data": "displayName", "orderable": true },
-            { "data": "displayNepName", "orderable": true },
+                { "data": "nameNp", "orderable": true },
+            { "data": "nameEn", "orderable": true },
             { "data": "id", "orderable": true },
             ],
 
@@ -113,10 +113,12 @@
         type: 'GET',
         url: url1,
             success: function (data) {
-          $('#myModalContent').html(data);
+             $('#myModalContent').html(data);
                     $('#myModal').modal(options);
                     $('#myModal').modal('show');
-        }
+            },
+            error: function (error) {
+             }
     });
 }
   function editCivilServices(id) {

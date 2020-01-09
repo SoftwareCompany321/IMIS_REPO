@@ -54,7 +54,7 @@ namespace IMIS.Controllers.Setup
         [Route("/ItemCategorylist.html")]
         public IActionResult ItemCategoryList()
         {
-            //ViewData["ParentCategory"] = _ItemCategory.GetParentItemCategory(id); //calling the all parent menu
+           // ViewData["ParentCategory"] = _ItemCategory.GetParentItemCategory(id); //calling the all parent menu
             return View();
 
         }

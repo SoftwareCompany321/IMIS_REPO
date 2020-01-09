@@ -91,19 +91,17 @@
                 'stateSave': false,
               
 
-                "columns": [
-                { "data": "accId", "orderable": true },
+                "columns": [ 
                 { "data": "code", "orderable": true },
-                { "data": "nepName", "orderable": true },
-                { "data": "engName", "orderable": false },
-                { "data": "accCode", "orderable": false },
-                { "data": "accCode", "orderable": false },
+                { "data": "nameNp", "orderable": true },
+                { "data": "nameEn", "orderable": false },
+                { "data": "id", "orderable": false }, 
                 ],
                  "rowCallback": function (row, data, index) {
-                      var url ='/' + data.brandId + '/EmploymentStatusEdit.html';
+                      var url ='/' + data.id + '/EmploymentStatusEdit.html';
                 jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
-                 var urldelete ='/' + data.brandId + '/EmploymentStatusDelete.html';
+                 var urldelete ='/' + data.id + '/EmploymentStatusDelete.html';
                 jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                     jQuery('[data-toggle="tooltip"]').tooltip();
                      

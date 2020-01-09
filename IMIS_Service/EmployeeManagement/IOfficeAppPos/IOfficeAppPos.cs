@@ -1,7 +1,9 @@
-﻿using IMIS_CORE.Utility;
+﻿using IMIS_CORE.Core;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ namespace IMIS_Service.EmployeeManagement.IOfficeAppPos
         Task<(string message, int id)> AddEditOfficeAppPos(OfficeAppPosVM model);
 
         Task<OfficeAppPosVM> ViewEdit(decimal Id);
+        IEnumerable<SelectListItem> GetPositionList();
     }
     public class OfficeAppPos : IOfficeAppPos
     {
@@ -51,7 +54,8 @@ namespace IMIS_Service.EmployeeManagement.IOfficeAppPos
                                             bm.LocalPostId,
                                             bm.LocalPostName,
                                             bm.LocalPostNameEn,
-                                            bm.Code
+                                            bm.Code,
+                                            bm.PostId
                                         });
                 ///filter count for the total; record
                 ///
@@ -99,7 +103,9 @@ namespace IMIS_Service.EmployeeManagement.IOfficeAppPos
                 {
                     LocalPostId = model.LocalPostId,
                     LocalPostName = model.LocalPostName,
-                    LocalPostNameEn = model.LocalPostNameEn
+                    LocalPostNameEn = model.LocalPostNameEn,
+                    Code=model.Code,
+                    PostId=model.PostId
                 };
                 if (model.LocalPostId == 0)
                 {
@@ -134,6 +140,8 @@ namespace IMIS_Service.EmployeeManagement.IOfficeAppPos
                         LocalPostId = response.LocalPostId,
                         LocalPostNameEn = response.LocalPostNameEn,
                         LocalPostName = response.LocalPostName,
+                        Code = response.Code,
+                        PostId = response.PostId
 
                     });
                 }
@@ -147,6 +155,11 @@ namespace IMIS_Service.EmployeeManagement.IOfficeAppPos
 
                 throw;
             }
+        }
+        public IEnumerable<SelectListItem> GetPositionList()
+        {
+            return new SelectList(_db.PisPostMaster.Where(x => x.PostId == x.PostId), "PostId", Utils.ToggleLanguage("GeneralPost", "GeneralPost"));
+
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using IMIS_CORE.Utility;
+﻿using IMIS_CORE.Core;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ namespace IMIS_Service.EmployeeManagement.IEmployeePosition
         Task<(string message, int id)> AddEditEmployeePosition(EmployeePositionVM model);
 
         Task<EmployeePositionVM> ViewEdit(decimal Id);
+       
     }
     public class EmployeePosition : IEmployeePosition
     {
@@ -50,7 +53,10 @@ namespace IMIS_Service.EmployeeManagement.IEmployeePosition
                                         {
                                             bm.PostId ,
                                             bm.GeneralPost,
-                                            bm.GeneralPostShort
+                                            bm.GeneralPostShort,
+                                            bm.Code,
+                                            bm.PostLevel,
+                                            bm.PrabidikOrPrasasan
                                         });
                 ///filter count for the total; record
                 ///
@@ -98,7 +104,10 @@ namespace IMIS_Service.EmployeeManagement.IEmployeePosition
                 {
                     PostId = model.PostId,
                     GeneralPost = model.GeneralPost,
-                    GeneralPostShort = model.GeneralPostShort
+                    GeneralPostShort = model.GeneralPostShort,
+                    Code=model.Code,
+                    PostLevel=model.PostLevel,
+                    PrabidikOrPrasasan=model.PrabidikOrPrasasan
                 };
                 if (model.PostId == 0)
                 {
@@ -133,6 +142,9 @@ namespace IMIS_Service.EmployeeManagement.IEmployeePosition
                         PostId = response.PostId,
                         GeneralPost = response.GeneralPost,
                         GeneralPostShort = response.GeneralPostShort,
+                        Code = response.Code,
+                        PostLevel = response.PostLevel,
+                        PrabidikOrPrasasan = response.PrabidikOrPrasasan
 
                     });
                 }
@@ -147,5 +159,7 @@ namespace IMIS_Service.EmployeeManagement.IEmployeePosition
                 throw;
             }
         }
+
+      
     }
 }

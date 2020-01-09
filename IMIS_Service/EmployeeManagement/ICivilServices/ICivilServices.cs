@@ -16,7 +16,7 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
     public interface ICivilServices
     {
         Task<(string message, int Id)> CivilServicesAddEdit(CivilServicesVM mspCivilServices);
-         List<TreeViewContainer> CivilServicesTreeFetchData(DataTableVm model);
+        List<TreeViewContainer> CivilServicesTreeFetchData(DataTableVm model);
         Task<CivilServicesVM> ViewEdit(int id);
         Task<DataTableResponse> CivilServicesChildDataTabel(DataTableVm model, int id = 0);
         IEnumerable<SelectListItem> GetAllParentCivilServices(int id = 0);
@@ -31,13 +31,13 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
             _db = db;
             _global = global;
         }
- 
+
         public async Task<(string message, int Id)> CivilServicesAddEdit(CivilServicesVM mspCivilServices)
         {
             var add = new PisNijamatiSewaSamuha()
             {
                 Code = mspCivilServices.Code,
-                ParentId = mspCivilServices.ParentId,
+                ParentId = (mspCivilServices.ParentId == 0) ? null : mspCivilServices.ParentId,
                 NameNp = mspCivilServices.NameNp,
                 NameEn = mspCivilServices.NameEn,
                 order = mspCivilServices.order,
@@ -46,9 +46,13 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
             try
             {
                 int CivilServicesId = 0;
+
+
                 if (mspCivilServices.Id == 0)
                 {
 
+                    int id = await _db.PisNijamatiSewaSamuha.CountAsync();
+                    add.Id = id + 1;
 
                     await _db.AddAsync(add);
                     await _db.SaveChangesAsync();
@@ -76,7 +80,7 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
         {
             throw new NotImplementedException();
         }
-        
+
         public async Task<DataTableResponse> CivilServicesChildDataTabel(DataTableVm model, int id = 0)
         {
             string searchBy = string.Empty;
@@ -159,7 +163,7 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
                 }
 
                 result = (from d in Datas
-                          where d.parentId == "0"
+                          where (d.parentId == "0" || d.parentId == "")
                           select (new TreeViewContainer()
                           {
                               text = d.text,
@@ -214,12 +218,12 @@ namespace IMIS_Service.EmployeeManagement.ICivilServices
 
         public IEnumerable<SelectListItem> GetAllParentCivilServices(int id = 0)
         {
-            return new SelectList(_db.PisNijamatiSewaSamuha.Where(x => x.ParentId == id), "Id", "DisplayName");
+            return new SelectList(_db.PisNijamatiSewaSamuha.Where(x => x.ParentId == id), "Id", Utils.ToggleLanguage("NameEn", "NameNp"));
 
         }
         public IEnumerable<SelectListItem> GetParentCivilServices(int id = 0)
         {
-            return new SelectList(_db.PisNijamatiSewaSamuha.Where(x => x.Id == id), "Id", "DisplayName");
+            return new SelectList(_db.PisNijamatiSewaSamuha.Where(x => x.Id == id), "Id", Utils.ToggleLanguage("NameEn", "NameNp"));
 
         }
     }

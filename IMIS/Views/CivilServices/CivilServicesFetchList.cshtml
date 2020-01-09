@@ -77,8 +77,8 @@
         });
     });
 
-    function loadchildlist(id) {
-         var url1 = '/' + id + '/CivilServicesTreePartial.html';
+    function loadchildlist(parentid) {
+         var url1 = '/' + parentid + '/CivilServicesTreePartial.html';
         $.ajax({
         type: 'GET',
         url: url1,

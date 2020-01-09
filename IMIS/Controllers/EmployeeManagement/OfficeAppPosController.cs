@@ -48,6 +48,7 @@ namespace IMIS.Controllers.EmployeeManagement
         [Route("/OfficeAppPosCreate.html")]
         public IActionResult OfficeAppPosCreate()
         {
+            ViewData["post"] = _OfficeAppPos.GetPositionList();
             return View();
         }
 

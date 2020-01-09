@@ -41,10 +41,10 @@ namespace IMIS.Controllers.EmployeeManagement
         }
 
         [HttpGet]
-        [Route("/{id}/CivilServicesdatagetfetchdatadatable.html")]
-        public async Task<JsonResult> CivilServicesdatagetfetchdatadatable(DataTableVm model, int id)
+        [Route("/{parentid}/CivilServicesdatagetfetchdatadatable.html")]
+        public async Task<JsonResult> CivilServicesdatagetfetchdatadatable(DataTableVm model, int parentid)
         {
-            var response = await _CivilServicesService.CivilServicesChildDataTabel(model, id);
+            var response = await _CivilServicesService.CivilServicesChildDataTabel(model, parentid);
             return Json(new
             {
                 draw = response.draw,
@@ -55,10 +55,10 @@ namespace IMIS.Controllers.EmployeeManagement
         }
 
         [HttpGet]
-        [Route("/{id}/CivilServicesCreate.html")]
-        public IActionResult CivilServicesCreate(int id)
+        [Route("/{parentid}/CivilServicesCreate.html")]
+        public IActionResult CivilServicesCreate(int parentid)
         {
-            ViewData["ParentCivilServices"] = _CivilServicesService.GetParentCivilServices(id); //calling the all parent CivilServices
+            ViewData["ParentCivilServices"] = _CivilServicesService.GetParentCivilServices(parentid); //calling the all parent CivilServices
             return View("_partialCivilServices");
 
         }
@@ -73,7 +73,7 @@ namespace IMIS.Controllers.EmployeeManagement
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/CivilServicesdatafetchlist.html");
+                return Redirect("~/CivilServiceslist.html");
             }
             ViewData["ParentCivilServices"] = _CivilServicesService.GetAllParentCivilServices();
             return View();
@@ -81,11 +81,11 @@ namespace IMIS.Controllers.EmployeeManagement
 
 
         [HttpGet]
-        [Route("/{id}/CivilServicesEdit.html")]
-        public async Task<IActionResult> CivilServicesEdit(int id)
+        [Route("/{parentid}/CivilServicesEdit.html")]
+        public async Task<IActionResult> CivilServicesEdit(int parentid)
         {
             ViewData["ParentCivilServices"] = _CivilServicesService.GetAllParentCivilServices();
-            return View("_partialCivilServices", await _CivilServicesService.ViewEdit(id));
+            return View("_partialCivilServices", await _CivilServicesService.ViewEdit(parentid));
 
         }
 
@@ -93,10 +93,10 @@ namespace IMIS.Controllers.EmployeeManagement
 
 
         [HttpGet]
-        [Route("/{id}/CivilServicesTreePartial.html")]
-        public IActionResult CivilServicesTreePartial(int id)
+        [Route("/{parentid}/CivilServicesTreePartial.html")]
+        public IActionResult CivilServicesTreePartial(int parentid)
         {
-            ViewData["id"] = id;
+            ViewData["parentid"] = parentid;
             return View("_CivilServicesList");
         }
 

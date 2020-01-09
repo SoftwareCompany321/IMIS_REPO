@@ -48,6 +48,7 @@ namespace IMIS.Controllers.EmployeeManagement
         [Route("/EmployeePositionCreate.html")]
         public IActionResult EmployeePositionCreate()
         {
+           
             return View();
         }
 

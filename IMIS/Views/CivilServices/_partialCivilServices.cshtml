@@ -16,11 +16,8 @@
                             <option value="0">@Utils.GetLabel("Root")</option>
                         </select>
                     </div>
-                </div>
-                @if (Model != null)
-                {
-                    <input type="hidden" asp-for="Id"/>
-                }
+                </div> 
+                    <input type="hidden" asp-for="Id"/> 
                 <div class="form-group is-empty">
                     <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Name(Eng)")<span class="requried">*</span></label>
                     <div class="col-md-9">

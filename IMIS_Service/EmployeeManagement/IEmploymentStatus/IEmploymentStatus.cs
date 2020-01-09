@@ -50,7 +50,9 @@ namespace IMIS_Service.EmployeeManagement.IEmploymentStatus
                                         {
                                             bm.Id,
                                             bm.NameNp,
-                                            bm.NameEn 
+                                            bm.NameEn ,
+                                            bm.Code,
+                                           
                                         });
                 ///filter count for the total; record
                 ///
@@ -98,7 +100,8 @@ namespace IMIS_Service.EmployeeManagement.IEmploymentStatus
                 {
                     Id = model.Id,
                     NameNp = model.NameNp,
-                    NameEn = model.NameEn
+                    NameEn = model.NameEn,
+                    Code=model.Code
                 };
                 if (model.Id == 0)
                 {
@@ -133,7 +136,7 @@ namespace IMIS_Service.EmployeeManagement.IEmploymentStatus
                         Id = response.Id,
                         NameEn = response.NameEn,
                         NameNp = response.NameNp,
-
+                        Code=response.Code
                     });
                 }
                 else
