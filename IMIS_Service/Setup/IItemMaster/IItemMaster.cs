@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IMIS_CORE.Core;
 using ExceptionHandler;
+using IMIS_Service.GlobalFunction;
 
 namespace IMIS_Service.Setup.IItemMaster
 {
@@ -23,21 +24,19 @@ namespace IMIS_Service.Setup.IItemMaster
         Task<ItemMasterVM> ViewEdit(int Id);
         List<SelectListItem> InvUntList();
         List<SelectListItem> FuelMaintenanceDtl();
-        List<SelectListItem> UnitList();
-        List<SelectListItem> ItemCategroyList();
-        List<SelectListItem> ItemSubCategroyList(int id);
-        List<SelectListItem> OthersetupList();
-        List<SelectListItem> CountryList();
+         
         Task<(string message, int Id)> DeleteItemMaster(int ItemMasterid);
     }
     public class ItemMaster : IItemMaster
     {
         private readonly IMISDbContext _db;
         private readonly IMapper _mapper;
-        public ItemMaster(IMISDbContext db, IMapper mapper)
+        private readonly GlobalFunction.GlobalFunction _global;
+        public ItemMaster(IMISDbContext db, IMapper mapper, GlobalFunction.GlobalFunction global)
         {
             _db = db;
             _mapper = mapper;
+            _global = global;
         }
 
         public async Task<(string message, int Id)> AddEditSave(ItemMasterVM model)
@@ -125,26 +124,7 @@ namespace IMIS_Service.Setup.IItemMaster
             }
             return landlist;
         }
-        public List<SelectListItem> CountryList()
-        {
-            var fuellist = new List<SelectListItem>();
-
-            var list = (from nt in _db.Nationalities
-                        select new { Id = nt.Code, Text = Utils.ToggleLanguage(nt.Engname, nt.Nepname) }).ToList();
-            if (list.Count > 0)
-            {
-                foreach (var item in list)
-                {
-                    SelectListItem selectListItem = new SelectListItem()
-                    {
-                        Text = item.Text,
-                        Value = item.Id.ToString()
-                    };
-                    fuellist.Add(selectListItem);
-                }
-            }
-            return fuellist;
-        }
+     
         public List<SelectListItem> FuelMaintenanceDtl()
         {
             var fuellist = new List<SelectListItem>();
@@ -165,87 +145,8 @@ namespace IMIS_Service.Setup.IItemMaster
             }
             return fuellist;
         }
-        public List<SelectListItem> OthersetupList()
-        {
-            var unitlist = new List<SelectListItem>();
-
-            var list = (from its in _db.InvTypeSetup
-                        select new { Id = its.Id, Text = Utils.ToggleLanguage(its.DescEn, its.DescNp) }).ToList();
-            if (unitlist.Count > 0)
-            {
-                foreach (var item in list)
-                {
-                    SelectListItem selectListItem = new SelectListItem()
-                    {
-                        Text = item.Text,
-                        Value = item.Id.ToString()
-                    };
-                    unitlist.Add(selectListItem);
-                }
-            }
-            return unitlist;
-        }
-        public List<SelectListItem> UnitList()
-        {
-            var unitlist = new List<SelectListItem>();
-
-            var list = (from unit in _db.InvUnit
-                        select new { Id = unit.UnitId, Text = Utils.ToggleLanguage(unit.DescEn, unit.DescNp) }).ToList();
-            if (unitlist.Count > 0)
-            {
-                foreach (var item in list)
-                {
-                    SelectListItem selectListItem = new SelectListItem()
-                    {
-                        Text = item.Text,
-                        Value = item.Id.ToString()
-                    };
-                    unitlist.Add(selectListItem);
-                }
-            }
-            return unitlist;
-        }
-        public List<SelectListItem> ItemCategroyList()
-        {
-            var unitlist = new List<SelectListItem>();
-
-            var list = (from ivt in _db.InvItemCategory
-                        select new { Id = ivt.Id, Text = Utils.ToggleLanguage(ivt.NameEn, ivt.NameNp) }).ToList();
-            if (unitlist.Count > 0)
-            {
-                foreach (var item in list)
-                {
-                    SelectListItem selectListItem = new SelectListItem()
-                    {
-                        Text = item.Text,
-                        Value = item.Id.ToString()
-                    };
-                    unitlist.Add(selectListItem);
-                }
-            }
-            return unitlist;
-        }
-        public List<SelectListItem> ItemSubCategroyList(int id = 0)
-        {
-            var unitlist = new List<SelectListItem>();
-
-            var list = (from ivt in _db.InvItemCategory
-                        where ivt.ParentId == id
-                        select new { Id = ivt.Id, Text = Utils.ToggleLanguage(ivt.NameEn, ivt.NameNp) }).ToList();
-            if (unitlist.Count > 0)
-            {
-                foreach (var item in list)
-                {
-                    SelectListItem selectListItem = new SelectListItem()
-                    {
-                        Text = item.Text,
-                        Value = item.Id.ToString()
-                    };
-                    unitlist.Add(selectListItem);
-                }
-            }
-            return unitlist;
-        }
+        
+      
         public async Task<DataTableResponse> ItemMasterFetchData(DataTableVm model)
         {
             string searchBy = string.Empty;
@@ -268,7 +169,8 @@ namespace IMIS_Service.Setup.IItemMaster
 
                 var accMasters = (from iim in _db.InvItemMst
                                   select new
-                                  {   iim.Code,
+                                  {
+                                      iim.Code,
                                       iim.ItemId,
                                       iim.NameEn,
                                       iim.NameNp,
@@ -296,7 +198,7 @@ namespace IMIS_Service.Setup.IItemMaster
                                       iim.LandAreaInsqFeets,
                                       iim.LandLocation,
                                       iim.Remarks
-                                     
+
                                   });
                 ///filter count for the total; record
                 ///
@@ -346,11 +248,11 @@ namespace IMIS_Service.Setup.IItemMaster
                     ItemMasterVM vm = _mapper.Map<ItemMasterVM>(response);
                     vm.landdesc = InvUntList();
                     vm.fuelmaintenance = FuelMaintenanceDtl();
-                    vm.unitlist = UnitList();
-                    vm.ItemCategorylist = ItemCategroyList();
-                    vm.ItemSubCategoryList = ItemSubCategroyList(0);
-                    vm.othsetuplist = OthersetupList();
-                    vm.CountryList = CountryList();
+                    vm.unitlist = _global.UnitList();
+                    vm.ItemCategorylist = _global.ItemCategroyList();
+                    vm.ItemSubCategoryList = _global.ItemSubCategroyList(0);
+                    vm.othsetuplist = _global.OthersetupList();
+                    vm.CountryList = _global.CountryList();
                     return vm;
                 }
                 return new ItemMasterVM();

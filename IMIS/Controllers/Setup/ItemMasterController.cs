@@ -1,4 +1,5 @@
 ﻿using IMIS_CORE.Utility;
+using IMIS_Service.GlobalFunction;
 using IMIS_Service.Setup.IItemMaster;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +10,11 @@ namespace IMIS.Controllers.Setup
     public class ItemMasterController : Controller
     {
         private readonly IItemMaster _ItemMaster;
-
-        public ItemMasterController(IItemMaster ItemMaster)
+        private readonly GlobalFunction _global;
+        public ItemMasterController(IItemMaster ItemMaster,  GlobalFunction global)
         {
             _ItemMaster = ItemMaster;
+            _global = global;
         }
         //for the account head controller 
         public IActionResult Index()
@@ -48,11 +50,11 @@ namespace IMIS.Controllers.Setup
             ItemMasterVM model = new ItemMasterVM();
             model.landdesc = _ItemMaster.InvUntList();
             model.fuelmaintenance  = _ItemMaster.FuelMaintenanceDtl();
-            model.unitlist  = _ItemMaster.UnitList();
-            model.ItemCategorylist  = _ItemMaster.ItemCategroyList();
-            model.ItemSubCategoryList  = _ItemMaster.ItemSubCategroyList(0);
-            model.othsetuplist  = _ItemMaster.OthersetupList();
-            model.CountryList  = _ItemMaster.CountryList();
+            model.unitlist  = _global.UnitList();
+            model.ItemCategorylist  = _global.ItemCategroyList();
+            model.ItemSubCategoryList  = _global.ItemSubCategroyList(0);
+            model.othsetuplist  = _global.OthersetupList();
+            model.CountryList  = _global.CountryList();
             return View(model);
         }
 
@@ -70,11 +72,11 @@ namespace IMIS.Controllers.Setup
             }
             model.landdesc = _ItemMaster.InvUntList();
             model.fuelmaintenance = _ItemMaster.FuelMaintenanceDtl();
-            model.unitlist = _ItemMaster.UnitList();
-            model.ItemCategorylist = _ItemMaster.ItemCategroyList();
-            model.ItemSubCategoryList = _ItemMaster.ItemSubCategroyList(0);
-            model.othsetuplist = _ItemMaster.OthersetupList();
-            model.CountryList = _ItemMaster.CountryList();
+            model.unitlist = _global.UnitList();
+            model.ItemCategorylist = _global.ItemCategroyList();
+            model.ItemSubCategoryList = _global.ItemSubCategroyList(0);
+            model.othsetuplist = _global.OthersetupList();
+            model.CountryList = _global.CountryList();
 
             return View();
         }
@@ -101,11 +103,11 @@ namespace IMIS.Controllers.Setup
             }
             model.landdesc = _ItemMaster.InvUntList();
             model.fuelmaintenance = _ItemMaster.FuelMaintenanceDtl();
-            model.unitlist = _ItemMaster.UnitList();
-            model.ItemCategorylist = _ItemMaster.ItemCategroyList();
-            model.ItemSubCategoryList = _ItemMaster.ItemSubCategroyList(0);
-            model.othsetuplist = _ItemMaster.OthersetupList();
-            model.CountryList = _ItemMaster.CountryList();
+            model.unitlist = _global.UnitList();
+            model.ItemCategorylist = _global.ItemCategroyList();
+            model.ItemSubCategoryList = _global.ItemSubCategroyList(0);
+            model.othsetuplist = _global.OthersetupList();
+            model.CountryList = _global.CountryList();
 
             return View();
         }
