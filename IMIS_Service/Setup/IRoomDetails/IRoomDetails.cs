@@ -12,20 +12,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IMIS_Service.Setup.IRoomDetials
+namespace IMIS_Service.Setup.IRoomDetails
 {
-    public interface IRoomDetials
+    public interface IRoomDetails
     {
         Task<DataTableResponse> RoomDetailsFetchData(DataTableVm model);
-        Task<(string message, int Id)> AddEdit(RoomDetialsVM Model);
-        Task<(string message, int Id)> DeleteRoomDetails(int RoomDetialsid);
-        Task<RoomDetialsVM> ViewOrEditData(int Id);
+        Task<(string message, int Id)> AddEdit(RoomDetailsVM Model);
+        Task<(string message, int Id)> DeleteRoomDetails(int RoomDetailsid);
+        Task<RoomDetailsVM> ViewOrEditData(int Id);
         IEnumerable<SelectListItem> GetDepartmentList();
     }
-    public class RoomDetials : IRoomDetials
+    public class RoomDetails : IRoomDetails
     {
         private readonly IMISDbContext _db;
-        public RoomDetials(IMISDbContext db)
+        public RoomDetails(IMISDbContext db)
         {
             _db = db;
         }
@@ -104,7 +104,7 @@ namespace IMIS_Service.Setup.IRoomDetials
             return new SelectList(_db.InvDept.Where(x => x.DeptId == x.DeptId), "DeptId", Utils.ToggleLanguage("NameEn", "NameNp"));
 
         }
-        public async Task<(string message, int Id)> AddEdit(RoomDetialsVM Model)
+        public async Task<(string message, int Id)> AddEdit(RoomDetailsVM Model)
         {
             try
             {
@@ -140,14 +140,14 @@ namespace IMIS_Service.Setup.IRoomDetials
                 throw;
             }
         }
-        public async Task<RoomDetialsVM> ViewOrEditData(int roomid)
+        public async Task<RoomDetailsVM> ViewOrEditData(int roomid)
         {
             try
             {
                 var data = await _db.InvRoomMst.Where(x => x.RoomId == roomid).FirstOrDefaultAsync();
                 if (data != null)
                 {
-                    return new RoomDetialsVM()
+                    return new RoomDetailsVM()
                     {
                         RoomId = data.RoomId,
                         Code = data.Code,
@@ -161,7 +161,7 @@ namespace IMIS_Service.Setup.IRoomDetials
                 }
                 else
                 {
-                    return new RoomDetialsVM();
+                    return new RoomDetailsVM();
                 }
 
             }
@@ -172,11 +172,11 @@ namespace IMIS_Service.Setup.IRoomDetials
             }
         }
 
-        public async Task<(string message, int Id)> DeleteRoomDetails(int RoomDetialsid)
+        public async Task<(string message, int Id)> DeleteRoomDetails(int RoomDetailsid)
         {
             try
             {
-                var data = _db.InvRoomMst.Where(x => x.RoomId == RoomDetialsid).FirstOrDefault();
+                var data = _db.InvRoomMst.Where(x => x.RoomId == RoomDetailsid).FirstOrDefault();
                 if (data != null)
                 {
                     data.IsActive = false;

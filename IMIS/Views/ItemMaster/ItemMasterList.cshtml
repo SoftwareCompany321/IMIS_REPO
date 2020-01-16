@@ -49,22 +49,8 @@
                                         <th>@Utils.GetLabel("Main Class")</th>
                                         <th>@Utils.GetLabel("Item type")</th>
                                         <th>@Utils.GetLabel("Item Nature")</th>
-                                        <th>@Utils.GetLabel("Country")</th>
-                                        <th>@Utils.GetLabel("Company")</th>
-                                        <th>@Utils.GetLabel("Maximum")</th>
-                                        <th>@Utils.GetLabel("Minimum")</th>
-                                        <th>@Utils.GetLabel("Current Upper Limit")</th>
-                                        <th>@Utils.GetLabel("Current Lowe Limit")</th>
-                                        <th>@Utils.GetLabel("Depreciation")</th>
-                                        <th>@Utils.GetLabel("Min Dep. Amt.")</th>
-                                        <th>@Utils.GetLabel("Max Dep. Amt.")</th>
-                                        <th>@Utils.GetLabel("Land Area")</th>
-                                        <th>@Utils.GetLabel("House Area")</th>
-                                        <th>@Utils.GetLabel("Account Title")</th>
-                                        <th>@Utils.GetLabel("Remarks")</th>
-                                        <th>@Utils.GetLabel("Kitta No")</th>
-                                        <th>@Utils.GetLabel("Structure Type")</th>
-                                        <th>@Utils.GetLabel("Fuel Repair Details")</th>
+                                       
+                                        <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
 
@@ -109,35 +95,19 @@
 
                 "columns": [
                 { "data": "code", "orderable": true },
-                { "data": "nepName", "orderable": true },
-                { "data": "engName", "orderable": false },
+                { "data": "nameNp", "orderable": true },
+                { "data": "nameEn", "orderable": false },
                 { "data": "unit", "orderable": false },
-                { "data": "itemMainClass", "orderable": true },
-                { "data": "itemId", "orderable": true },
+                { "data": "itemMainClass", "orderable": true },               
                 { "data": "itemType", "orderable": true },
                 { "data": "itemNature", "orderable": true },
-                { "data": "countryid", "orderable": true },
-                { "data": "companyname", "orderable": true },
-                { "data": "maxl", "orderable": true },
-                { "data": "minl", "orderable": false }, 
-                { "data": "rmaxl", "orderable": false }, 
-                { "data": "rminl", "orderable": false },  
-                 { "data": "depreciation", "orderable": false },
-                 { "data": "minrate", "orderable": true },
-                { "data": "depmaxrate", "orderable": true },
-                { "data": "landAreaInsqFeets", "orderable": true },
-                { "data": "landLocation", "orderable": true },
-                { "data": "accId", "orderable": true },
-                { "data": "remarks", "orderable": true }, 
-                { "data": "KittaNo", "orderable": false }, 
-                { "data": "source", "orderable": false }, 
-                { "data": "source", "orderable": false }
+                 { "data": "itemId", "orderable": true }
                 ],
                  "rowCallback": function (row, data, index) {
-                      var url ='/' + data.brandId + '/ItemMasterEdit.html';
+                      var url ='/' + data.itemId + '/ItemMasterEdit.html';
                 jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
-                 var urldelete ='/' + data.brandId + '/ItemMasterDelete.html';
+                 var urldelete ='/' + data.itemId + '/ItemMasterDelete.html';
                 jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                     jQuery('[data-toggle="tooltip"]').tooltip();
                      

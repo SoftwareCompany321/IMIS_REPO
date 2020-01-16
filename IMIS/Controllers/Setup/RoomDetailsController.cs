@@ -1,18 +1,18 @@
 ﻿using System.Threading.Tasks;
 using IMIS_CORE.Utility;
-using IMIS_Service.Setup.IRoomDetials;
+using IMIS_Service.Setup.IRoomDetails;
 using IMIS_Service.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 
 namespace IMIS.Controllers.Setup
 {
-    public class RoomDetialsController : Controller
+    public class RoomDetailsController : Controller
     {
-        private readonly IRoomDetials _RoomDetials;
+        private readonly IRoomDetails _RoomDetails;
 
-        public RoomDetialsController(IRoomDetials RoomDetials)
+        public RoomDetailsController(IRoomDetails RoomDetails)
         {
-            _RoomDetials = RoomDetials;
+            _RoomDetails = RoomDetails;
         }
         //for the account head controller 
         public IActionResult Index()
@@ -24,7 +24,7 @@ namespace IMIS.Controllers.Setup
         [Route("/RoomDetailsFetchData.html")]
         public async Task<JsonResult> RoomDetailsFetchData(DataTableVm model)
         {
-            var response = await _RoomDetials.RoomDetailsFetchData(model);
+            var response = await _RoomDetails.RoomDetailsFetchData(model);
             return Json(new
             {
                 draw = response.draw,
@@ -35,52 +35,52 @@ namespace IMIS.Controllers.Setup
         }
 
         [HttpGet]
-        [Route("/RoomDetialslist.html")]
-        public IActionResult RoomDetialsList()
+        [Route("/RoomDetailslist.html")]
+        public IActionResult RoomDetailsList()
         {
             return View();
         }
 
         [HttpGet]
-        [Route("/RoomDetialsCreate.html")]
-        public IActionResult RoomDetialsCreate()
+        [Route("/RoomDetailsCreate.html")]
+        public IActionResult RoomDetailsCreate()
         {
-            ViewData["departments"] = _RoomDetials.GetDepartmentList();
+            ViewData["departments"] = _RoomDetails.GetDepartmentList();
             return View();
         }
 
         
         [HttpPost]
-        [Route("/RoomDetialsCreate.html")]
-        public async Task<IActionResult> RoomDetialsCreate(RoomDetialsVM model)
+        [Route("/RoomDetailsCreate.html")]
+        public async Task<IActionResult> RoomDetailsCreate(RoomDetailsVM model)
         {
-            var response = await _RoomDetials.AddEdit(model);
+            var response = await _RoomDetails.AddEdit(model);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/RoomDetialsList.html");
+                return Redirect("~/RoomDetailsList.html");
             }
             return View();
         }
         [HttpGet]
 
-        [Route("{SpecificationId}/RoomDetialsEdit.html")]
-        public async Task<IActionResult> RoomDetialsEdit(int SpecificationId)
+        [Route("{SpecificationId}/RoomDetailsEdit.html")]
+        public async Task<IActionResult> RoomDetailsEdit(int SpecificationId)
         {
-            ViewData["departments"] = _RoomDetials.GetDepartmentList();
-            return View(await _RoomDetials.ViewOrEditData(SpecificationId));
+            ViewData["departments"] = _RoomDetails.GetDepartmentList();
+            return View(await _RoomDetails.ViewOrEditData(SpecificationId));
         }
         [HttpPost]
-        [Route("{SpecificationId}/RoomDetialsEdit.html")]
-        public async Task<IActionResult> RoomDetialsEdit(RoomDetialsVM model, int SpecificationId)
+        [Route("{SpecificationId}/RoomDetailsEdit.html")]
+        public async Task<IActionResult> RoomDetailsEdit(RoomDetailsVM model, int SpecificationId)
         {
-            var response = await _RoomDetials.AddEdit(model);
+            var response = await _RoomDetails.AddEdit(model);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Added";
                 TempData["Class"] = "alert alert-success ";
-                return Redirect("~/RoomDetialslist.html");
+                return Redirect("~/RoomDetailslist.html");
             }
             return View();
         }
@@ -89,7 +89,7 @@ namespace IMIS.Controllers.Setup
         [Route("{roomid}/RoomDetailsDelete.html")]
         public async Task<IActionResult> RoomDetailsDelete(int roomid)
         {
-            var response = await _RoomDetials.DeleteRoomDetails(roomid);
+            var response = await _RoomDetails.DeleteRoomDetails(roomid);
             if (response.message == "success")
             {
                 TempData["Message"] = "Successfully Deleted";

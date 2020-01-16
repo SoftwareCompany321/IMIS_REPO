@@ -13,7 +13,7 @@ namespace IMIS_Service.ViewModel
         public List<SelectListItem> unitlist { set; get; }
         public List<SelectListItem> ItemCategorylist { set; get; }
         public List<SelectListItem> ItemSubCategoryList { set; get; }
-        public List<SelectListItem> othsetuplist { set; get; }
+        public List<SelectListItem> ItemNatureList { set; get; }
         public List<SelectListItem> CountryList { set; get; }
     }
 }

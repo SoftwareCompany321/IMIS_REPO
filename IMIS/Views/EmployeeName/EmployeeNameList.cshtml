@@ -47,13 +47,12 @@
                                         <th>@Utils.GetLabel("Name")</th>
 
                                         <th>@Utils.GetLabel("Surname")</th>
-                                        <th>@Utils.GetLabel("Name(Eng)")</th>
-
+                                        <th>@Utils.GetLabel("Name(Eng)")</th> 
                                         <th>@Utils.GetLabel("Surname(Eng)")</th>
-                                        <th>@Utils.GetLabel("Post Level")</th>
+                                        @*<th>@Utils.GetLabel("Post Level")</th>
                                         <th>@Utils.GetLabel("Working Post")</th>
                                         <th>@Utils.GetLabel("Service Status")</th>
-                                        <th>@Utils.GetLabel("Room No.")</th>
+                                        <th>@Utils.GetLabel("Room No.")</th>*@
                                         <th>@Utils.GetLabel("Action")</th>
                                     </tr>
                                 </thead>
@@ -98,18 +97,23 @@
               
 
                 "columns": [
-                { "data": "accId", "orderable": true },
                 { "data": "code", "orderable": true },
-                { "data": "nepName", "orderable": true },
-                { "data": "engName", "orderable": false },
-                { "data": "accCode", "orderable": false },
-                { "data": "accCode", "orderable": false },
+                
+                { "data": "firstNameNp", "orderable": true },
+                { "data": "lastNameNp", "orderable": false },
+                { "data": "firstNameEn", "orderable": false },
+                    { "data": "lastNameEn", "orderable": false },
+                    //{ "data": "postId", "orderable": false },
+                    //{ "data": "localPostId", "orderable": false },
+                    //{ "data": "roomId", "orderable": false },
+                    //    { "data": "serviceStatus", "orderable": false },
+                 { "data": "empId", "orderable": true },
                 ],
                  "rowCallback": function (row, data, index) {
-                      var url ='/' + data.brandId + '/EmployeeNameEdit.html';
+                      var url ='/' + data.empId + '/EmployeeNameEdit.html';
                 jQuery('td:last-child', row).html("<a href=" + url + " title='Edit Unit' data-toggle='tooltip' style='margin-right: 10px;'><i class='fa fa-edit'></i></a>");
                 jQuery('[data-toggle="tooltip"]').tooltip();
-                 var urldelete ='/' + data.brandId + '/EmployeeNameDelete.html';
+                 var urldelete ='/' + data.empId + '/EmployeeNameDelete.html';
                 jQuery('td:last-child', row).append("<a href=" + urldelete + " title='Delete Unit' data-toggle='tooltip'><i class='fa fa-trash'></i></a>");
                     jQuery('[data-toggle="tooltip"]').tooltip();
                      

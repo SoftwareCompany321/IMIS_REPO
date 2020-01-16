@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IMIS_Service.ViewModel
 {
-    public class RoomDetialsVM
+    public class RoomDetailsVM
     {
 
         public int RoomId { get; set; }

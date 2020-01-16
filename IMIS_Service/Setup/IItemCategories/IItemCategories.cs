@@ -48,7 +48,8 @@ namespace IMIS_Service.Setup.IItemCategories
                     Isexp = model.Isexp == true ? Convert.ToSByte(1) : Convert.ToSByte(0),
                     DepreciationMax = model.DepreciationMax,
                     DepreciationMin = model.DepreciationMin,
-                    DepreciationPer = model.DepreciationPer
+                    DepreciationPer = model.DepreciationPer,
+                    IsActive=model.IsActive
                 };
                 if (model.Id == 0)
                 {
@@ -284,7 +285,8 @@ namespace IMIS_Service.Setup.IItemCategories
                         NameNp = response.NameNp,
                         Rmaxl = response.Rmaxl,
                         Rminl = response.Rminl,
-                        ParentId = response.ParentId
+                        ParentId = response.ParentId,
+                        IsActive=response.IsActive
 
                     });
                 }

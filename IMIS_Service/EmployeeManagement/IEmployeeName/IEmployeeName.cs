@@ -1,7 +1,9 @@
-﻿using IMIS_CORE.Utility;
+﻿using IMIS_CORE.Core;
+using IMIS_CORE.Utility;
 using IMIS_DataEntity.Data;
 using IMIS_DataEntity.EntityClass;
 using IMIS_Service.ViewModel;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,10 @@ namespace IMIS_Service.EmployeeManagement.IEmployeeName
     {
         Task<DataTableResponse> EmployeeNameFetchData(DataTableVm model);
         Task<(string message, int id)> AddEditEmployeeName(EmployeeNameVM model);
-
+        IEnumerable<SelectListItem> GetPostLevel();
+        IEnumerable<SelectListItem> GetLocalPost();
+        IEnumerable<SelectListItem> GetServiceStatus();
+        IEnumerable<SelectListItem> GetRoomNo();
         Task<EmployeeNameVM> ViewEdit(decimal Id);
     }
     public class EmployeeName : IEmployeeName
@@ -46,11 +51,19 @@ namespace IMIS_Service.EmployeeManagement.IEmployeeName
                 }
 
                 var accMasters =  (from bm in _db.PisEmployeeMaster
+                                  
                                         select new
                                         {
                                             bm.EmpId,
+                                            bm.Code,
                                             bm.FirstNameNp,
-                                            bm.FirstNameEn 
+                                            bm.FirstNameEn ,
+                                            bm.LastNameEn,
+                                            bm.LastNameNp,
+                                            bm.LocalPostId,
+                                            bm.PostId,
+                                            bm.RoomId,
+                                            bm.ServiceStatus
                                         });
                 ///filter count for the total; record
                 ///
@@ -97,8 +110,15 @@ namespace IMIS_Service.EmployeeManagement.IEmployeeName
                 var item = new PisEmployeeMaster()
                 {
                     EmpId = model.EmpId,
+                    Code = model.Code,
                     FirstNameNp = model.FirstNameNp,
-                    FirstNameEn = model.FirstNameEn
+                    FirstNameEn = model.FirstNameEn,
+                    LastNameEn=model.LastNameEn,
+                    LastNameNp=model.LastNameNp,
+                    PostId=model.PostId,
+                    LocalPostId=model.LocalPostId,
+                    ServiceStatus=model.ServiceStatus,
+                    RoomId=model.RoomId
                 };
                 if (model.EmpId == 0)
                 {
@@ -131,9 +151,15 @@ namespace IMIS_Service.EmployeeManagement.IEmployeeName
                     return (new EmployeeNameVM()
                     {
                         EmpId = response.EmpId,
+                        Code = response.Code,
                         FirstNameEn = response.FirstNameEn,
                         FirstNameNp = response.FirstNameNp,
-
+                        LastNameEn = response.LastNameEn,
+                        LastNameNp = response.LastNameNp,
+                        PostId = response.PostId,
+                        LocalPostId = response.LocalPostId,
+                        ServiceStatus = response.ServiceStatus,
+                        RoomId = response.RoomId
                     });
                 }
                 else
@@ -147,5 +173,27 @@ namespace IMIS_Service.EmployeeManagement.IEmployeeName
                 throw;
             }
         }
+
+        public IEnumerable<SelectListItem> GetPostLevel()
+        {
+            return new SelectList(_db.PisPostMaster.Where(x => x.PostId == x.PostId), "PostId", Utils.ToggleLanguage("GeneralPost", "GeneralPostShort"));
+
+        }
+        public IEnumerable<SelectListItem> GetLocalPost()
+        {
+            return new SelectList(_db.PisLocalPostMaster.Where(x => x.LocalPostId == x.LocalPostId), "LocalPostId", Utils.ToggleLanguage("LocalPostNameEn", "LocalPostName"));
+
+        }
+        public IEnumerable<SelectListItem> GetServiceStatus()
+        {
+            return new SelectList(_db.PisServiceStatus.Where(x => x.Id == x.Id), "Id", Utils.ToggleLanguage("NameEn", "NameNp"));
+
+        }
+        public IEnumerable<SelectListItem> GetRoomNo()
+        {
+            return new SelectList(_db.InvRoomMst.Where(x => x.RoomId == x.RoomId), "RoomId", Utils.ToggleLanguage("DescEn", "DescNp"));
+
+        }
+
     }
 }

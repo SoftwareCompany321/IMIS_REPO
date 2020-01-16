@@ -48,6 +48,10 @@ namespace IMIS.Controllers.EmployeeManagement
         [Route("/EmployeeNameCreate.html")]
         public IActionResult EmployeeNameCreate()
         {
+            ViewData["postlevel"] = _EmployeeName.GetPostLevel();
+            ViewData["localpost"] = _EmployeeName.GetLocalPost();
+            ViewData["servicestatus"] = _EmployeeName.GetServiceStatus();           
+            ViewData["roomno"] = _EmployeeName.GetRoomNo();
             return View();
         }
 

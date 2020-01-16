@@ -26,7 +26,7 @@ using IMIS_Service.Setup.IItemPurchaseType;
 using IMIS_Service.Setup.IItemSpecification;
 using IMIS_Service.Setup.IItemOtherSetupType;
 using IMIS_Service.Setup.IOrganizationType;
-using IMIS_Service.Setup.IRoomDetials;
+using IMIS_Service.Setup.IRoomDetails;
 using IMIS_Service.Setup.IWareHouse;
 using IMIS_Service.Setup.IDepartment;
 using IMIS_Service.Setup.IProjectSetup;
@@ -141,7 +141,7 @@ namespace IMIS
             services.AddScoped<IItemSpecification, ItemSpecification>();
             services.AddScoped<IItemOtherSetupType, ItemOtherSetupType>();
             services.AddScoped<IOrganizationType, OrganizationType>();
-            services.AddScoped<IRoomDetials, RoomDetials>();
+            services.AddScoped<IRoomDetails, RoomDetails>();
             services.AddScoped<IWareHouse, WareHouse>();
             services.AddScoped<IDepartment, Department>();
             services.AddScoped<IProjectSetup, ProjectSetup>();

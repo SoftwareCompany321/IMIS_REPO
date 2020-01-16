@@ -49,8 +49,9 @@ namespace IMIS_Service.GlobalFunction
             var unitlist = new List<SelectListItem>();
 
             var list = (from unit in _db.InvUnit
+                        where unit.IsActive == true
                         select new { Id = unit.UnitId, Text = Utils.ToggleLanguage(unit.DescEn, unit.DescNp) }).ToList();
-            if (unitlist.Count > 0)
+            if (list.Count > 0)
             {
                 foreach (var item in list)
                 {
@@ -79,8 +80,9 @@ namespace IMIS_Service.GlobalFunction
             var unitlist = new List<SelectListItem>();
 
             var list = (from ivt in _db.InvItemCategory
+                        where (ivt.ParentId == null || ivt.ParentId == 0) && ivt.IsActive==true
                         select new { Id = ivt.Id, Text = Utils.ToggleLanguage(ivt.NameEn, ivt.NameNp) }).ToList();
-            if (unitlist.Count > 0)
+            if (list.Count > 0)
             {
                 foreach (var item in list)
                 {
@@ -97,11 +99,11 @@ namespace IMIS_Service.GlobalFunction
         public List<SelectListItem> ItemSubCategroyList(int id = 0)
         {
             var unitlist = new List<SelectListItem>();
-
+            //Need to change logic for subcategory
             var list = (from ivt in _db.InvItemCategory
-                        where ivt.ParentId == id
+                        where ivt.IsActive==true// ivt.ParentId == id
                         select new { Id = ivt.Id, Text = Utils.ToggleLanguage(ivt.NameEn, ivt.NameNp) }).ToList();
-            if (unitlist.Count > 0)
+            if (list.Count > 0)
             {
                 foreach (var item in list)
                 {
@@ -118,13 +120,14 @@ namespace IMIS_Service.GlobalFunction
         //End of Item Category
 
         //Other Setup
-        public List<SelectListItem> OthersetupList()
+        public List<SelectListItem> OthersetupList(int typeid)
         {
             var unitlist = new List<SelectListItem>();
 
             var list = (from its in _db.InvTypeSetup
+                        where its.TypeId == typeid && its.IsActive == true
                         select new { Id = its.Id, Text = Utils.ToggleLanguage(its.DescEn, its.DescNp) }).ToList();
-            if (unitlist.Count > 0)
+            if (list.Count > 0)
             {
                 foreach (var item in list)
                 {

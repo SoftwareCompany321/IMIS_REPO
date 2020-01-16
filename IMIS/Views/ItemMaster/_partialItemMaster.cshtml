@@ -17,6 +17,7 @@
             </label>
             <div class="col-md-6">
                 <select class="form-control" asp-for="VehiclePartsId" asp-items="Model.fuelmaintenance">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
             </div>
         </div>
@@ -57,6 +58,7 @@
             </div>
             <div class="col-md-4">
                 <select class="form-control" asp-for="UnitId" asp-items="Model.unitlist">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
             </div>
         </div>
@@ -71,6 +73,7 @@
             </div>
             <div class="col-md-4">
                 <select class="form-control" asp-for="ItemMainClass" asp-items="Model.ItemCategorylist">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
             </div>
         </div>
@@ -83,6 +86,7 @@
             </div>
             <div class="col-md-4">
                 <select class="form-control" asp-for="ItemType" asp-items="Model.ItemSubCategoryList">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
             </div>
         </div>
@@ -96,7 +100,8 @@
                 <input type="text" class="form-control" asp-for="ItemNature">
             </div>
             <div class="col-md-4">
-                <select class="form-control" asp-for="ItemNature" asp-items="Model.ItemSubCategoryList">
+                <select class="form-control" asp-for="ItemNature" asp-items="Model.ItemNatureList">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
             </div>
         </div>
@@ -119,6 +124,7 @@
             </div>
             <div class="col-md-4">
                 <select class="form-control" asp-for="Countryid" asp-items="Model.CountryList">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
             </div>
         </div>
@@ -206,6 +212,7 @@
             </label>
             <div class="col-md-6">
                 <select class="form-control" asp-for="Landid" asp-items="Model.landdesc">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
             </div>
         </div>
@@ -233,6 +240,7 @@
             </label>
             <div class="col-md-6">
                 <select class="form-control" asp-for="Propertytype" asp-items="@EnumToList.EnumSelectlist<EnumHelper.PropertyClassfication>(true)">
+                    <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
             </div>
         </div>

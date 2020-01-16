@@ -2,21 +2,14 @@
  
 @model IMIS_Service.ViewModel.EmployeeNameVM
     <div>
-        <input asp-for="GovtEmpId" type="hidden" />
+        <input asp-for="EmpId" type="hidden" />
         <div class="form-group is-empty">
             <label for="region" class="col-md-2 control-label">@Utils.GetLabel("Code")<span class="requried">*</span></label>
             <div class="col-md-9">
                 <input type="text" class="form-control" asp-for="Code">
             </div>
         </div>
-        <div class="form-group is-empty">
-            <label for="region" class="col-md-2 control-label">
-                @Utils.GetLabel("Emp Id")<span class="requried">*</span>
-            </label>
-            <div class="col-md-9">
-                <input type="text" class="form-control" asp-for="Code">
-            </div>
-        </div>
+      
         <div class="form-group is-empty">
             <label for="region" class="col-md-2 control-label">
                 @Utils.GetLabel("First Name(Eng)")<span class="requried">*</span>
@@ -52,7 +45,7 @@
         <div class="form-group is-empty">
             <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Post Level")</label>
 
-            <div id="mulfactordiv" class="col-md-3" style="display:none;">
+            <div id="mulfactordiv" class="col-md-3" >
                 <select asp-for="PostId" asp-items="@ViewData["postlevel"] as SelectList" class="form-control">
                     <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
@@ -63,7 +56,7 @@
         <div class="form-group is-empty">
             <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Local Post")</label>
 
-            <div id="mulfactordiv" class="col-md-3" style="display:none;">
+            <div id="mulfactordiv" class="col-md-3" >
                 <select asp-for="LocalPostId" asp-items="@ViewData["localpost"] as SelectList" class="form-control">
                     <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
@@ -73,7 +66,7 @@
         <div class="form-group is-empty">
             <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Service Status")</label>
 
-            <div id="mulfactordiv" class="col-md-3" style="display:none;">
+            <div id="mulfactordiv" class="col-md-3" >
                 <select asp-for="ServiceStatus" asp-items="@ViewData["servicestatus"] as SelectList" class="form-control">
                     <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>
@@ -83,7 +76,7 @@
         <div class="form-group is-empty">
             <label for="short-name" class="col-md-2 control-label">@Utils.GetLabel("Room No.")</label>
 
-            <div id="mulfactordiv" class="col-md-3" style="display:none;">
+            <div id="mulfactordiv" class="col-md-3" >
                 <select asp-for="RoomId" asp-items="@ViewData["roomno"] as SelectList" class="form-control">
                     <option value="0">@Utils.GetLabel("Please Select")</option>
                 </select>

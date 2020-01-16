@@ -53,7 +53,7 @@ namespace IMIS.Controllers.Setup
             model.unitlist  = _global.UnitList();
             model.ItemCategorylist  = _global.ItemCategroyList();
             model.ItemSubCategoryList  = _global.ItemSubCategroyList(0);
-            model.othsetuplist  = _global.OthersetupList();
+            model.ItemNatureList = _global.OthersetupList(2);
             model.CountryList  = _global.CountryList();
             return View(model);
         }
@@ -75,7 +75,7 @@ namespace IMIS.Controllers.Setup
             model.unitlist = _global.UnitList();
             model.ItemCategorylist = _global.ItemCategroyList();
             model.ItemSubCategoryList = _global.ItemSubCategroyList(0);
-            model.othsetuplist = _global.OthersetupList();
+            model.ItemNatureList = _global.OthersetupList(2);
             model.CountryList = _global.CountryList();
 
             return View();
@@ -106,7 +106,7 @@ namespace IMIS.Controllers.Setup
             model.unitlist = _global.UnitList();
             model.ItemCategorylist = _global.ItemCategroyList();
             model.ItemSubCategoryList = _global.ItemSubCategroyList(0);
-            model.othsetuplist = _global.OthersetupList();
+            model.ItemNatureList = _global.OthersetupList(2);
             model.CountryList = _global.CountryList();
 
             return View();

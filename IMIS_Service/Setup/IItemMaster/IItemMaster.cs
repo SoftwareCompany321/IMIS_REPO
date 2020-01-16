@@ -82,7 +82,7 @@ namespace IMIS_Service.Setup.IItemMaster
                 //};
 
                 var item = _mapper.Map<InvItemMst>(model);
-                if (model.AccId == 0)
+                if (model.ItemId == 0)
                 {
                     await _db.AddAsync(item);
                 }
@@ -176,7 +176,7 @@ namespace IMIS_Service.Setup.IItemMaster
                                       iim.NameNp,
                                       iim.Companyname,
                                       iim.Unit,
-                                      iim.ItemMainClass,
+                                      iim.ItemMainClass, 
                                       iim.ItemNature,
                                       iim.KittaNo,
                                       iim.Countryid,
@@ -251,7 +251,7 @@ namespace IMIS_Service.Setup.IItemMaster
                     vm.unitlist = _global.UnitList();
                     vm.ItemCategorylist = _global.ItemCategroyList();
                     vm.ItemSubCategoryList = _global.ItemSubCategroyList(0);
-                    vm.othsetuplist = _global.OthersetupList();
+                    vm.ItemNatureList = _global.OthersetupList(2);
                     vm.CountryList = _global.CountryList();
                     return vm;
                 }
