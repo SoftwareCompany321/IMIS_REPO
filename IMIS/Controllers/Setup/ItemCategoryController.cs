@@ -54,7 +54,7 @@ namespace IMIS.Controllers.Setup
         [Route("/ItemCategorylist.html")]
         public IActionResult ItemCategoryList()
         {
-           // ViewData["ParentCategory"] = _ItemCategory.GetParentItemCategory(id); //calling the all parent menu
+           
             return View();
 
         }
@@ -65,6 +65,7 @@ namespace IMIS.Controllers.Setup
         {
             var item = new ItemCategoriesVM();
             item.ParentId = id;
+            ViewData["ParentCategory"] = _ItemCategory.GetParentItemCategory(id);  
             return View("_partialItemCategory");
         }
 
@@ -86,6 +87,7 @@ namespace IMIS.Controllers.Setup
         [Route("/{id}/ItemCategoryEdit.html")]
         public async Task<IActionResult> ItemCategoryEdit(int id)
         {
+            ViewData["ParentCategory"] = _ItemCategory.GetParentItemCategory(id);
             return View(await _ItemCategory.ViewEdit(id));
         }
 

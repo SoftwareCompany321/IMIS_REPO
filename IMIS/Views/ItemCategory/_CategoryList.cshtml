@@ -45,12 +45,7 @@
                 </table>
             </div>
         </div>
-        <div id='myModal' class='modal'>
-            <div class="modal-dialog">
-                <div id='myModalContent'></div>
-            </div>
-
-        </div>
+       
     </div>
 
 </body>
@@ -119,31 +114,6 @@
             }
         })
     });
-      function createItemCategory(id) {
-         var url1 = '/' + id + '/ItemCategoryCreate.html';
-         var options = { "backdrop": "static", keyboard: true };
-        $.ajax({
-        type: 'GET',
-        url: url1,
-            success: function (data) {
-          $('#myModalContent').html(data);
-                    $('#myModal').modal(options);
-                    $('#myModal').modal('show');
-        }
-    });
-}
-  function editItemCategory(id) {
-         var url1 = '/' + id + '/ItemCategoryEdit.html';
-         var options = { "backdrop": "static", keyboard: true };
-        $.ajax({
-        type: 'GET',
-        url: url1,
-            success: function (data) {
-          $('#myModalContent').html(data);
-                    $('#myModal').modal(options);
-                    $('#myModal').modal('show');
-        }
-    });
-}
+  
 
 </script>

@@ -302,7 +302,7 @@ namespace IMIS_Service.Setup.IItemCategories
 
         public IEnumerable<SelectListItem> GetParentItemCategory(int id = 0)
         {
-            return new SelectList(_db.InvItemCategory.Where(x => x.Id == id), "Id", "DisplayName");
+            return new SelectList(_db.InvItemCategory.Where(x => x.Id == id), "Id",Utils.ToggleLanguage("NameEn", "NameNp"));
 
         }
         public async Task<(string message, int Id)> DeleteItemCategories(int ItemCategoriesid)
